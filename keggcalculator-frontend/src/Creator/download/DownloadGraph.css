@@ -1,0 +1,23 @@
+.downloadButton{
+    width: 80%;
+    background-color: rgb(150, 25, 130);
+    border-radius: 0.8vw;
+    color: white;
+    transition: all 400ms ease-in-out;
+    text-transform: uppercase;
+    font-size: clamp(12px, 1vw, 22px);;
+    font-family: Roboto;
+    margin: 2px;
+    padding: 4px;
+}
+
+.downloadButton:hover {
+    background-color: rgb(120, -5, 100);
+    cursor: pointer;
+}
+
+.downloadButton:disabled:hover {
+    background-color: rgb(150, 25, 130);
+    cursor: default;
+}
+

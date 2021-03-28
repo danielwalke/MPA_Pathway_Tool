@@ -1,0 +1,15 @@
+.sampleButton{
+    background-color: rgb(150, 25, 130);
+    border-radius: 0.8vw;
+    color: white;
+    transition: all 400ms ease-in-out;
+    font-size: clamp(12px, 1.7vw, 17px);
+    font-family: Roboto;
+    padding: 5px;
+    margin: 2px 5px;
+}
+
+.sampleButton:hover {
+    background-color: rgb(120, -5, 100);
+    cursor: pointer;
+}

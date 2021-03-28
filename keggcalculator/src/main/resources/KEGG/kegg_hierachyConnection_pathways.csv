@@ -1,0 +1,603 @@
+Pathway_ID	Pathway_NAME	ALL_Pathway_NAMES	CONNECTION_FROM	CONNECTION_TO	CONNECTION_TYPE
+Metabolism	Metabolism	Metabolism	Metabolism	Metabolism	pathways_levels
+Global and overview maps	unknown	unknown	Global and overview maps	Metabolism	pathways_levels
+01100	Metabolic pathways	Metabolic pathways	01100	Global and overview maps	pathways_levels
+01110	Biosynthesis of secondary metabolites	Biosynthesis of secondary metabolites	01110	Global and overview maps	pathways_levels
+01120	Microbial metabolism in diverse environments	Microbial metabolism in diverse environments	01120	Global and overview maps	pathways_levels
+01200	Carbon metabolism	Carbon metabolism	01200	Global and overview maps	pathways_levels
+01210	2-Oxocarboxylic acid metabolism	2-Oxocarboxylic acid metabolism	01210	Global and overview maps	pathways_levels
+01212	Fatty acid metabolism	Fatty acid metabolism	01212	Global and overview maps	pathways_levels
+01230	Biosynthesis of amino acids	Biosynthesis of amino acids	01230	Global and overview maps	pathways_levels
+01220	Degradation of aromatic compounds	Degradation of aromatic compounds	01220	Global and overview maps	pathways_levels
+Carbohydrate metabolism	unknown	unknown	Carbohydrate metabolism	Metabolism	pathways_levels
+00010	Glycolysis / Gluconeogenesis	Glycolysis / Gluconeogenesis	00010	Carbohydrate metabolism	pathways_levels
+00020	Citrate cycle (TCA cycle)	Citrate cycle (TCA cycle)	00020	Carbohydrate metabolism	pathways_levels
+00030	Pentose phosphate pathway	Pentose phosphate pathway	00030	Carbohydrate metabolism	pathways_levels
+00040	Pentose and glucuronate interconversions	Pentose and glucuronate interconversions	00040	Carbohydrate metabolism	pathways_levels
+00051	Fructose and mannose metabolism	Fructose and mannose metabolism	00051	Carbohydrate metabolism	pathways_levels
+00052	Galactose metabolism	Galactose metabolism	00052	Carbohydrate metabolism	pathways_levels
+00053	Ascorbate and aldarate metabolism	Ascorbate and aldarate metabolism	00053	Carbohydrate metabolism	pathways_levels
+00500	Starch and sucrose metabolism	Starch and sucrose metabolism	00500	Carbohydrate metabolism	pathways_levels
+00520	Amino sugar and nucleotide sugar metabolism	Amino sugar and nucleotide sugar metabolism	00520	Carbohydrate metabolism	pathways_levels
+00620	Pyruvate metabolism	Pyruvate metabolism	00620	Carbohydrate metabolism	pathways_levels
+00630	Glyoxylate and dicarboxylate metabolism	Glyoxylate and dicarboxylate metabolism	00630	Carbohydrate metabolism	pathways_levels
+00640	Propanoate metabolism	Propanoate metabolism	00640	Carbohydrate metabolism	pathways_levels
+00650	Butanoate metabolism	Butanoate metabolism	00650	Carbohydrate metabolism	pathways_levels
+00660	C5-Branched dibasic acid metabolism	C5-Branched dibasic acid metabolism	00660	Carbohydrate metabolism	pathways_levels
+00562	Inositol phosphate metabolism	Inositol phosphate metabolism	00562	Carbohydrate metabolism	pathways_levels
+Energy metabolism	unknown	unknown	Energy metabolism	Metabolism	pathways_levels
+00190	Oxidative phosphorylation	Oxidative phosphorylation	00190	Energy metabolism	pathways_levels
+00195	Photosynthesis	Photosynthesis	00195	Energy metabolism	pathways_levels
+00196	Photosynthesis - antenna proteins	Photosynthesis - antenna proteins	00196	Energy metabolism	pathways_levels
+00710	Carbon fixation in photosynthetic organisms	Carbon fixation in photosynthetic organisms	00710	Energy metabolism	pathways_levels
+00720	Carbon fixation pathways in prokaryotes	Carbon fixation pathways in prokaryotes	00720	Energy metabolism	pathways_levels
+00680	Methane metabolism	Methane metabolism	00680	Energy metabolism	pathways_levels
+00910	Nitrogen metabolism	Nitrogen metabolism	00910	Energy metabolism	pathways_levels
+00920	Sulfur metabolism	Sulfur metabolism	00920	Energy metabolism	pathways_levels
+Lipid metabolism	unknown	unknown	Lipid metabolism	Metabolism	pathways_levels
+00061	Fatty acid biosynthesis	Fatty acid biosynthesis	00061	Lipid metabolism	pathways_levels
+00062	Fatty acid elongation	Fatty acid elongation	00062	Lipid metabolism	pathways_levels
+00071	Fatty acid degradation	Fatty acid degradation	00071	Lipid metabolism	pathways_levels
+00072	Synthesis and degradation of ketone bodies	Synthesis and degradation of ketone bodies	00072	Lipid metabolism	pathways_levels
+00073	Cutin, suberine and wax biosynthesis	Cutin, suberine and wax biosynthesis	00073	Lipid metabolism	pathways_levels
+00100	Steroid biosynthesis	Steroid biosynthesis	00100	Lipid metabolism	pathways_levels
+00120	Primary bile acid biosynthesis	Primary bile acid biosynthesis	00120	Lipid metabolism	pathways_levels
+00121	Secondary bile acid biosynthesis	Secondary bile acid biosynthesis	00121	Lipid metabolism	pathways_levels
+00140	Steroid hormone biosynthesis	Steroid hormone biosynthesis	00140	Lipid metabolism	pathways_levels
+00561	Glycerolipid metabolism	Glycerolipid metabolism	00561	Lipid metabolism	pathways_levels
+00564	Glycerophospholipid metabolism	Glycerophospholipid metabolism	00564	Lipid metabolism	pathways_levels
+00565	Ether lipid metabolism	Ether lipid metabolism	00565	Lipid metabolism	pathways_levels
+00600	Sphingolipid metabolism	Sphingolipid metabolism	00600	Lipid metabolism	pathways_levels
+00590	Arachidonic acid metabolism	Arachidonic acid metabolism	00590	Lipid metabolism	pathways_levels
+00591	Linoleic acid metabolism	Linoleic acid metabolism	00591	Lipid metabolism	pathways_levels
+00592	alpha-Linolenic acid metabolism	alpha-Linolenic acid metabolism	00592	Lipid metabolism	pathways_levels
+01040	Biosynthesis of unsaturated fatty acids	Biosynthesis of unsaturated fatty acids	01040	Lipid metabolism	pathways_levels
+Nucleotide metabolism	unknown	unknown	Nucleotide metabolism	Metabolism	pathways_levels
+00230	Purine metabolism	Purine metabolism	00230	Nucleotide metabolism	pathways_levels
+00240	Pyrimidine metabolism	Pyrimidine metabolism	00240	Nucleotide metabolism	pathways_levels
+Amino acid metabolism	unknown	unknown	Amino acid metabolism	Metabolism	pathways_levels
+00250	Alanine, aspartate and glutamate metabolism	Alanine, aspartate and glutamate metabolism	00250	Amino acid metabolism	pathways_levels
+00260	Glycine, serine and threonine metabolism	Glycine, serine and threonine metabolism	00260	Amino acid metabolism	pathways_levels
+00270	Cysteine and methionine metabolism	Cysteine and methionine metabolism	00270	Amino acid metabolism	pathways_levels
+00280	Valine, leucine and isoleucine degradation	Valine, leucine and isoleucine degradation	00280	Amino acid metabolism	pathways_levels
+00290	Valine, leucine and isoleucine biosynthesis	Valine, leucine and isoleucine biosynthesis	00290	Amino acid metabolism	pathways_levels
+00300	Lysine biosynthesis	Lysine biosynthesis	00300	Amino acid metabolism	pathways_levels
+00310	Lysine degradation	Lysine degradation	00310	Amino acid metabolism	pathways_levels
+00220	Arginine biosynthesis	Arginine biosynthesis	00220	Amino acid metabolism	pathways_levels
+00330	Arginine and proline metabolism	Arginine and proline metabolism	00330	Amino acid metabolism	pathways_levels
+00340	Histidine metabolism	Histidine metabolism	00340	Amino acid metabolism	pathways_levels
+00350	Tyrosine metabolism	Tyrosine metabolism	00350	Amino acid metabolism	pathways_levels
+00360	Phenylalanine metabolism	Phenylalanine metabolism	00360	Amino acid metabolism	pathways_levels
+00380	Tryptophan metabolism	Tryptophan metabolism	00380	Amino acid metabolism	pathways_levels
+00400	Phenylalanine, tyrosine and tryptophan biosynthesis	Phenylalanine, tyrosine and tryptophan biosynthesis	00400	Amino acid metabolism	pathways_levels
+Metabolism of other amino acids	unknown	unknown	Metabolism of other amino acids	Metabolism	pathways_levels
+00410	beta-Alanine metabolism	beta-Alanine metabolism	00410	Metabolism of other amino acids	pathways_levels
+00430	Taurine and hypotaurine metabolism	Taurine and hypotaurine metabolism	00430	Metabolism of other amino acids	pathways_levels
+00440	Phosphonate and phosphinate metabolism	Phosphonate and phosphinate metabolism	00440	Metabolism of other amino acids	pathways_levels
+00450	Selenocompound metabolism	Selenocompound metabolism	00450	Metabolism of other amino acids	pathways_levels
+00460	Cyanoamino acid metabolism	Cyanoamino acid metabolism	00460	Metabolism of other amino acids	pathways_levels
+00471	D-Glutamine and D-glutamate metabolism	D-Glutamine and D-glutamate metabolism	00471	Metabolism of other amino acids	pathways_levels
+00472	D-Arginine and D-ornithine metabolism	D-Arginine and D-ornithine metabolism	00472	Metabolism of other amino acids	pathways_levels
+00473	D-Alanine metabolism	D-Alanine metabolism	00473	Metabolism of other amino acids	pathways_levels
+00480	Glutathione metabolism	Glutathione metabolism	00480	Metabolism of other amino acids	pathways_levels
+Glycan biosynthesis and metabolism	unknown	unknown	Glycan biosynthesis and metabolism	Metabolism	pathways_levels
+00510	N-Glycan biosynthesis	N-Glycan biosynthesis	00510	Glycan biosynthesis and metabolism	pathways_levels
+00513	Various types of N-glycan biosynthesis	Various types of N-glycan biosynthesis	00513	Glycan biosynthesis and metabolism	pathways_levels
+00512	Mucin type O-glycan biosynthesis	Mucin type O-glycan biosynthesis	00512	Glycan biosynthesis and metabolism	pathways_levels
+00515	Mannose type O-glycan biosynthesis	Mannose type O-glycan biosynthesis	00515	Glycan biosynthesis and metabolism	pathways_levels
+00514	Other types of O-glycan biosynthesis	Other types of O-glycan biosynthesis	00514	Glycan biosynthesis and metabolism	pathways_levels
+00532	Glycosaminoglycan biosynthesis - chondroitin sulfate / dermatan sulfate	Glycosaminoglycan biosynthesis - chondroitin sulfate / dermatan sulfate	00532	Glycan biosynthesis and metabolism	pathways_levels
+00534	Glycosaminoglycan biosynthesis - heparan sulfate / heparin	Glycosaminoglycan biosynthesis - heparan sulfate / heparin	00534	Glycan biosynthesis and metabolism	pathways_levels
+00533	Glycosaminoglycan biosynthesis - keratan sulfate	Glycosaminoglycan biosynthesis - keratan sulfate	00533	Glycan biosynthesis and metabolism	pathways_levels
+00531	Glycosaminoglycan degradation	Glycosaminoglycan degradation	00531	Glycan biosynthesis and metabolism	pathways_levels
+00563	Glycosylphosphatidylinositol (GPI)-anchor biosynthesis	Glycosylphosphatidylinositol (GPI)-anchor biosynthesis	00563	Glycan biosynthesis and metabolism	pathways_levels
+00601	Glycosphingolipid biosynthesis - lacto and neolacto series	Glycosphingolipid biosynthesis - lacto and neolacto series	00601	Glycan biosynthesis and metabolism	pathways_levels
+00603	Glycosphingolipid biosynthesis - globo and isoglobo series	Glycosphingolipid biosynthesis - globo and isoglobo series	00603	Glycan biosynthesis and metabolism	pathways_levels
+00604	Glycosphingolipid biosynthesis - ganglio series	Glycosphingolipid biosynthesis - ganglio series	00604	Glycan biosynthesis and metabolism	pathways_levels
+00540	Lipopolysaccharide biosynthesis	Lipopolysaccharide biosynthesis	00540	Glycan biosynthesis and metabolism	pathways_levels
+00550	Peptidoglycan biosynthesis	Peptidoglycan biosynthesis	00550	Glycan biosynthesis and metabolism	pathways_levels
+00511	Other glycan degradation	Other glycan degradation	00511	Glycan biosynthesis and metabolism	pathways_levels
+00571	Lipoarabinomannan (LAM) biosynthesis	Lipoarabinomannan (LAM) biosynthesis	00571	Glycan biosynthesis and metabolism	pathways_levels
+00572	Arabinogalactan biosynthesis - Mycobacterium	Arabinogalactan biosynthesis - Mycobacterium	00572	Glycan biosynthesis and metabolism	pathways_levels
+Metabolism of cofactors and vitamins	unknown	unknown	Metabolism of cofactors and vitamins	Metabolism	pathways_levels
+00730	Thiamine metabolism	Thiamine metabolism	00730	Metabolism of cofactors and vitamins	pathways_levels
+00740	Riboflavin metabolism	Riboflavin metabolism	00740	Metabolism of cofactors and vitamins	pathways_levels
+00750	Vitamin B6 metabolism	Vitamin B6 metabolism	00750	Metabolism of cofactors and vitamins	pathways_levels
+00760	Nicotinate and nicotinamide metabolism	Nicotinate and nicotinamide metabolism	00760	Metabolism of cofactors and vitamins	pathways_levels
+00770	Pantothenate and CoA biosynthesis	Pantothenate and CoA biosynthesis	00770	Metabolism of cofactors and vitamins	pathways_levels
+00780	Biotin metabolism	Biotin metabolism	00780	Metabolism of cofactors and vitamins	pathways_levels
+00785	Lipoic acid metabolism	Lipoic acid metabolism	00785	Metabolism of cofactors and vitamins	pathways_levels
+00790	Folate biosynthesis	Folate biosynthesis	00790	Metabolism of cofactors and vitamins	pathways_levels
+00670	One carbon pool by folate	One carbon pool by folate	00670	Metabolism of cofactors and vitamins	pathways_levels
+00830	Retinol metabolism	Retinol metabolism	00830	Metabolism of cofactors and vitamins	pathways_levels
+00860	Porphyrin and chlorophyll metabolism	Porphyrin and chlorophyll metabolism	00860	Metabolism of cofactors and vitamins	pathways_levels
+00130	Ubiquinone and other terpenoid-quinone biosynthesis	Ubiquinone and other terpenoid-quinone biosynthesis	00130	Metabolism of cofactors and vitamins	pathways_levels
+Metabolism of terpenoids and polyketides	unknown	unknown	Metabolism of terpenoids and polyketides	Metabolism	pathways_levels
+00900	Terpenoid backbone biosynthesis	Terpenoid backbone biosynthesis	00900	Metabolism of terpenoids and polyketides	pathways_levels
+00902	Monoterpenoid biosynthesis	Monoterpenoid biosynthesis	00902	Metabolism of terpenoids and polyketides	pathways_levels
+00909	Sesquiterpenoid and triterpenoid biosynthesis	Sesquiterpenoid and triterpenoid biosynthesis	00909	Metabolism of terpenoids and polyketides	pathways_levels
+00904	Diterpenoid biosynthesis	Diterpenoid biosynthesis	00904	Metabolism of terpenoids and polyketides	pathways_levels
+00906	Carotenoid biosynthesis	Carotenoid biosynthesis	00906	Metabolism of terpenoids and polyketides	pathways_levels
+00905	Brassinosteroid biosynthesis	Brassinosteroid biosynthesis	00905	Metabolism of terpenoids and polyketides	pathways_levels
+00981	Insect hormone biosynthesis	Insect hormone biosynthesis	00981	Metabolism of terpenoids and polyketides	pathways_levels
+00908	Zeatin biosynthesis	Zeatin biosynthesis	00908	Metabolism of terpenoids and polyketides	pathways_levels
+00903	Limonene and pinene degradation	Limonene and pinene degradation	00903	Metabolism of terpenoids and polyketides	pathways_levels
+00281	Geraniol degradation	Geraniol degradation	00281	Metabolism of terpenoids and polyketides	pathways_levels
+01052	Type I polyketide structures	Type I polyketide structures	01052	Metabolism of terpenoids and polyketides	pathways_levels
+00522	Biosynthesis of 12-, 14- and 16-membered macrolides	Biosynthesis of 12-, 14- and 16-membered macrolides	00522	Metabolism of terpenoids and polyketides	pathways_levels
+01051	Biosynthesis of ansamycins	Biosynthesis of ansamycins	01051	Metabolism of terpenoids and polyketides	pathways_levels
+01059	Biosynthesis of enediyne antibiotics	Biosynthesis of enediyne antibiotics	01059	Metabolism of terpenoids and polyketides	pathways_levels
+01056	Biosynthesis of type II polyketide backbone	Biosynthesis of type II polyketide backbone	01056	Metabolism of terpenoids and polyketides	pathways_levels
+01057	Biosynthesis of type II polyketide products	Biosynthesis of type II polyketide products	01057	Metabolism of terpenoids and polyketides	pathways_levels
+00253	Tetracycline biosynthesis	Tetracycline biosynthesis	00253	Metabolism of terpenoids and polyketides	pathways_levels
+00523	Polyketide sugar unit biosynthesis	Polyketide sugar unit biosynthesis	00523	Metabolism of terpenoids and polyketides	pathways_levels
+01054	Nonribosomal peptide structures	Nonribosomal peptide structures	01054	Metabolism of terpenoids and polyketides	pathways_levels
+01053	Biosynthesis of siderophore group nonribosomal peptides	Biosynthesis of siderophore group nonribosomal peptides	01053	Metabolism of terpenoids and polyketides	pathways_levels
+01055	Biosynthesis of vancomycin group antibiotics	Biosynthesis of vancomycin group antibiotics	01055	Metabolism of terpenoids and polyketides	pathways_levels
+Biosynthesis of other secondary metabolites	unknown	unknown	Biosynthesis of other secondary metabolites	Metabolism	pathways_levels
+00940	Phenylpropanoid biosynthesis	Phenylpropanoid biosynthesis	00940	Biosynthesis of other secondary metabolites	pathways_levels
+00945	Stilbenoid, diarylheptanoid and gingerol biosynthesis	Stilbenoid, diarylheptanoid and gingerol biosynthesis	00945	Biosynthesis of other secondary metabolites	pathways_levels
+00941	Flavonoid biosynthesis	Flavonoid biosynthesis	00941	Biosynthesis of other secondary metabolites	pathways_levels
+00944	Flavone and flavonol biosynthesis	Flavone and flavonol biosynthesis	00944	Biosynthesis of other secondary metabolites	pathways_levels
+00942	Anthocyanin biosynthesis	Anthocyanin biosynthesis	00942	Biosynthesis of other secondary metabolites	pathways_levels
+00943	Isoflavonoid biosynthesis	Isoflavonoid biosynthesis	00943	Biosynthesis of other secondary metabolites	pathways_levels
+00901	Indole alkaloid biosynthesis	Indole alkaloid biosynthesis	00901	Biosynthesis of other secondary metabolites	pathways_levels
+00403	Indole diterpene alkaloid biosynthesis	Indole diterpene alkaloid biosynthesis	00403	Biosynthesis of other secondary metabolites	pathways_levels
+00950	Isoquinoline alkaloid biosynthesis	Isoquinoline alkaloid biosynthesis	00950	Biosynthesis of other secondary metabolites	pathways_levels
+00960	Tropane, piperidine and pyridine alkaloid biosynthesis	Tropane, piperidine and pyridine alkaloid biosynthesis	00960	Biosynthesis of other secondary metabolites	pathways_levels
+01058	Acridone alkaloid biosynthesis	Acridone alkaloid biosynthesis	01058	Biosynthesis of other secondary metabolites	pathways_levels
+00232	Caffeine metabolism	Caffeine metabolism	00232	Biosynthesis of other secondary metabolites	pathways_levels
+00965	Betalain biosynthesis	Betalain biosynthesis	00965	Biosynthesis of other secondary metabolites	pathways_levels
+00966	Glucosinolate biosynthesis	Glucosinolate biosynthesis	00966	Biosynthesis of other secondary metabolites	pathways_levels
+00402	Benzoxazinoid biosynthesis	Benzoxazinoid biosynthesis	00402	Biosynthesis of other secondary metabolites	pathways_levels
+00311	Penicillin and cephalosporin biosynthesis	Penicillin and cephalosporin biosynthesis	00311	Biosynthesis of other secondary metabolites	pathways_levels
+00332	Carbapenem biosynthesis	Carbapenem biosynthesis	00332	Biosynthesis of other secondary metabolites	pathways_levels
+00261	Monobactam biosynthesis	Monobactam biosynthesis	00261	Biosynthesis of other secondary metabolites	pathways_levels
+00331	Clavulanic acid biosynthesis	Clavulanic acid biosynthesis	00331	Biosynthesis of other secondary metabolites	pathways_levels
+00521	Streptomycin biosynthesis	Streptomycin biosynthesis	00521	Biosynthesis of other secondary metabolites	pathways_levels
+00524	Neomycin, kanamycin and gentamicin biosynthesis	Neomycin, kanamycin and gentamicin biosynthesis	00524	Biosynthesis of other secondary metabolites	pathways_levels
+00525	Acarbose and validamycin biosynthesis	Acarbose and validamycin biosynthesis	00525	Biosynthesis of other secondary metabolites	pathways_levels
+00401	Novobiocin biosynthesis	Novobiocin biosynthesis	00401	Biosynthesis of other secondary metabolites	pathways_levels
+00404	Staurosporine biosynthesis	Staurosporine biosynthesis	00404	Biosynthesis of other secondary metabolites	pathways_levels
+00405	Phenazine biosynthesis	Phenazine biosynthesis	00405	Biosynthesis of other secondary metabolites	pathways_levels
+00333	Prodigiosin biosynthesis	Prodigiosin biosynthesis	00333	Biosynthesis of other secondary metabolites	pathways_levels
+00254	Aflatoxin biosynthesis	Aflatoxin biosynthesis	00254	Biosynthesis of other secondary metabolites	pathways_levels
+00999	Biosynthesis of various secondary metabolites - part 1	Biosynthesis of various secondary metabolites - part 1	00999	Biosynthesis of other secondary metabolites	pathways_levels
+00998	Biosynthesis of various secondary metabolites - part 2	Biosynthesis of various secondary metabolites - part 2	00998	Biosynthesis of other secondary metabolites	pathways_levels
+00997	Biosynthesis of various secondary metabolites - part 3	Biosynthesis of various secondary metabolites - part 3	00997	Biosynthesis of other secondary metabolites	pathways_levels
+Xenobiotics biodegradation and metabolism	unknown	unknown	Xenobiotics biodegradation and metabolism	Metabolism	pathways_levels
+00362	Benzoate degradation	Benzoate degradation	00362	Xenobiotics biodegradation and metabolism	pathways_levels
+00627	Aminobenzoate degradation	Aminobenzoate degradation	00627	Xenobiotics biodegradation and metabolism	pathways_levels
+00364	Fluorobenzoate degradation	Fluorobenzoate degradation	00364	Xenobiotics biodegradation and metabolism	pathways_levels
+00625	Chloroalkane and chloroalkene degradation	Chloroalkane and chloroalkene degradation	00625	Xenobiotics biodegradation and metabolism	pathways_levels
+00361	Chlorocyclohexane and chlorobenzene degradation	Chlorocyclohexane and chlorobenzene degradation	00361	Xenobiotics biodegradation and metabolism	pathways_levels
+00623	Toluene degradation	Toluene degradation	00623	Xenobiotics biodegradation and metabolism	pathways_levels
+00622	Xylene degradation	Xylene degradation	00622	Xenobiotics biodegradation and metabolism	pathways_levels
+00633	Nitrotoluene degradation	Nitrotoluene degradation	00633	Xenobiotics biodegradation and metabolism	pathways_levels
+00642	Ethylbenzene degradation	Ethylbenzene degradation	00642	Xenobiotics biodegradation and metabolism	pathways_levels
+00643	Styrene degradation	Styrene degradation	00643	Xenobiotics biodegradation and metabolism	pathways_levels
+00791	Atrazine degradation	Atrazine degradation	00791	Xenobiotics biodegradation and metabolism	pathways_levels
+00930	Caprolactam degradation	Caprolactam degradation	00930	Xenobiotics biodegradation and metabolism	pathways_levels
+00363	Bisphenol degradation	Bisphenol degradation	00363	Xenobiotics biodegradation and metabolism	pathways_levels
+00621	Dioxin degradation	Dioxin degradation	00621	Xenobiotics biodegradation and metabolism	pathways_levels
+00626	Naphthalene degradation	Naphthalene degradation	00626	Xenobiotics biodegradation and metabolism	pathways_levels
+00624	Polycyclic aromatic hydrocarbon degradation	Polycyclic aromatic hydrocarbon degradation	00624	Xenobiotics biodegradation and metabolism	pathways_levels
+00365	Furfural degradation	Furfural degradation	00365	Xenobiotics biodegradation and metabolism	pathways_levels
+00984	Steroid degradation	Steroid degradation	00984	Xenobiotics biodegradation and metabolism	pathways_levels
+00980	Metabolism of xenobiotics by cytochrome P450	Metabolism of xenobiotics by cytochrome P450	00980	Xenobiotics biodegradation and metabolism	pathways_levels
+00982	Drug metabolism - cytochrome P450	Drug metabolism - cytochrome P450	00982	Xenobiotics biodegradation and metabolism	pathways_levels
+00983	Drug metabolism - other enzymes	Drug metabolism - other enzymes	00983	Xenobiotics biodegradation and metabolism	pathways_levels
+Chemical structure transformation maps	unknown	unknown	Chemical structure transformation maps	Metabolism	pathways_levels
+01010	Overview of biosynthetic pathways	Overview of biosynthetic pathways	01010	Chemical structure transformation maps	pathways_levels
+01060	Biosynthesis of plant secondary metabolites	Biosynthesis of plant secondary metabolites	01060	Chemical structure transformation maps	pathways_levels
+01061	Biosynthesis of phenylpropanoids	Biosynthesis of phenylpropanoids	01061	Chemical structure transformation maps	pathways_levels
+01062	Biosynthesis of terpenoids and steroids	Biosynthesis of terpenoids and steroids	01062	Chemical structure transformation maps	pathways_levels
+01063	Biosynthesis of alkaloids derived from shikimate pathway	Biosynthesis of alkaloids derived from shikimate pathway	01063	Chemical structure transformation maps	pathways_levels
+01064	Biosynthesis of alkaloids derived from ornithine, lysine and nicotinic acid	Biosynthesis of alkaloids derived from ornithine, lysine and nicotinic acid	01064	Chemical structure transformation maps	pathways_levels
+01065	Biosynthesis of alkaloids derived from histidine and purine	Biosynthesis of alkaloids derived from histidine and purine	01065	Chemical structure transformation maps	pathways_levels
+01066	Biosynthesis of alkaloids derived from terpenoid and polyketide	Biosynthesis of alkaloids derived from terpenoid and polyketide	01066	Chemical structure transformation maps	pathways_levels
+01070	Biosynthesis of plant hormones	Biosynthesis of plant hormones	01070	Chemical structure transformation maps	pathways_levels
+Genetic	Genetic Information Processing	Genetic Information Processing	Genetic	Genetic	pathways_levels
+Transcription	unknown	unknown	Transcription	Genetic	pathways_levels
+03020	RNA polymerase	RNA polymerase	03020	Transcription	pathways_levels
+03022	Basal transcription factors	Basal transcription factors	03022	Transcription	pathways_levels
+03040	Spliceosome	Spliceosome	03040	Transcription	pathways_levels
+Translation	unknown	unknown	Translation	Genetic	pathways_levels
+03010	Ribosome	Ribosome	03010	Translation	pathways_levels
+00970	Aminoacyl-tRNA biosynthesis	Aminoacyl-tRNA biosynthesis	00970	Translation	pathways_levels
+03013	RNA transport	RNA transport	03013	Translation	pathways_levels
+03015	mRNA surveillance pathway	mRNA surveillance pathway	03015	Translation	pathways_levels
+03008	Ribosome biogenesis in eukaryotes	Ribosome biogenesis in eukaryotes	03008	Translation	pathways_levels
+Folding, sorting and degradation	unknown	unknown	Folding, sorting and degradation	Genetic	pathways_levels
+03060	Protein export	Protein export	03060	Folding, sorting and degradation	pathways_levels
+04141	Protein processing in endoplasmic reticulum	Protein processing in endoplasmic reticulum	04141	Folding, sorting and degradation	pathways_levels
+04130	SNARE interactions in vesicular transport	SNARE interactions in vesicular transport	04130	Folding, sorting and degradation	pathways_levels
+04120	Ubiquitin mediated proteolysis	Ubiquitin mediated proteolysis	04120	Folding, sorting and degradation	pathways_levels
+04122	Sulfur relay system	Sulfur relay system	04122	Folding, sorting and degradation	pathways_levels
+03050	Proteasome	Proteasome	03050	Folding, sorting and degradation	pathways_levels
+03018	RNA degradation	RNA degradation	03018	Folding, sorting and degradation	pathways_levels
+Replication and repair	unknown	unknown	Replication and repair	Genetic	pathways_levels
+03030	DNA replication	DNA replication	03030	Replication and repair	pathways_levels
+03410	Base excision repair	Base excision repair	03410	Replication and repair	pathways_levels
+03420	Nucleotide excision repair	Nucleotide excision repair	03420	Replication and repair	pathways_levels
+03430	Mismatch repair	Mismatch repair	03430	Replication and repair	pathways_levels
+03440	Homologous recombination	Homologous recombination	03440	Replication and repair	pathways_levels
+03450	Non-homologous end-joining	Non-homologous end-joining	03450	Replication and repair	pathways_levels
+03460	Fanconi anemia pathway	Fanconi anemia pathway	03460	Replication and repair	pathways_levels
+Environmental	Environmental Information Processing	Environmental Information Processing	Environmental	Environmental	pathways_levels
+Membrane transport	unknown	unknown	Membrane transport	Environmental	pathways_levels
+02010	ABC transporters	ABC transporters	02010	Membrane transport	pathways_levels
+02060	Phosphotransferase system (PTS)	Phosphotransferase system (PTS)	02060	Membrane transport	pathways_levels
+03070	Bacterial secretion system	Bacterial secretion system	03070	Membrane transport	pathways_levels
+Signal transduction	unknown	unknown	Signal transduction	Environmental	pathways_levels
+02020	Two-component system	Two-component system	02020	Signal transduction	pathways_levels
+04014	Ras signaling pathway	Ras signaling pathway	04014	Signal transduction	pathways_levels
+04015	Rap1 signaling pathway	Rap1 signaling pathway	04015	Signal transduction	pathways_levels
+04010	MAPK signaling pathway	MAPK signaling pathway	04010	Signal transduction	pathways_levels
+04013	MAPK signaling pathway - fly	MAPK signaling pathway - fly	04013	Signal transduction	pathways_levels
+04016	MAPK signaling pathway - plant	MAPK signaling pathway - plant	04016	Signal transduction	pathways_levels
+04011	MAPK signaling pathway - yeast	MAPK signaling pathway - yeast	04011	Signal transduction	pathways_levels
+04012	ErbB signaling pathway	ErbB signaling pathway	04012	Signal transduction	pathways_levels
+04310	Wnt signaling pathway	Wnt signaling pathway	04310	Signal transduction	pathways_levels
+04330	Notch signaling pathway	Notch signaling pathway	04330	Signal transduction	pathways_levels
+04340	Hedgehog signaling pathway	Hedgehog signaling pathway	04340	Signal transduction	pathways_levels
+04341	Hedgehog signaling pathway - fly	Hedgehog signaling pathway - fly	04341	Signal transduction	pathways_levels
+04350	TGF-beta signaling pathway	TGF-beta signaling pathway	04350	Signal transduction	pathways_levels
+04390	Hippo signaling pathway	Hippo signaling pathway	04390	Signal transduction	pathways_levels
+04391	Hippo signaling pathway - fly	Hippo signaling pathway - fly	04391	Signal transduction	pathways_levels
+04392	Hippo signaling pathway - multiple species	Hippo signaling pathway - multiple species	04392	Signal transduction	pathways_levels
+04370	VEGF signaling pathway	VEGF signaling pathway	04370	Signal transduction	pathways_levels
+04371	Apelin signaling pathway	Apelin signaling pathway	04371	Signal transduction	pathways_levels
+04630	Jak-STAT signaling pathway	Jak-STAT signaling pathway	04630	Signal transduction	pathways_levels
+04064	NF-kappa B signaling pathway	NF-kappa B signaling pathway	04064	Signal transduction	pathways_levels
+04668	TNF signaling pathway	TNF signaling pathway	04668	Signal transduction	pathways_levels
+04066	HIF-1 signaling pathway	HIF-1 signaling pathway	04066	Signal transduction	pathways_levels
+04068	FoxO signaling pathway	FoxO signaling pathway	04068	Signal transduction	pathways_levels
+04020	Calcium signaling pathway	Calcium signaling pathway	04020	Signal transduction	pathways_levels
+04070	Phosphatidylinositol signaling system	Phosphatidylinositol signaling system	04070	Signal transduction	pathways_levels
+04072	Phospholipase D signaling pathway	Phospholipase D signaling pathway	04072	Signal transduction	pathways_levels
+04071	Sphingolipid signaling pathway	Sphingolipid signaling pathway	04071	Signal transduction	pathways_levels
+04024	cAMP signaling pathway	cAMP signaling pathway	04024	Signal transduction	pathways_levels
+04022	cGMP-PKG signaling pathway	cGMP-PKG signaling pathway	04022	Signal transduction	pathways_levels
+04151	PI3K-Akt signaling pathway	PI3K-Akt signaling pathway	04151	Signal transduction	pathways_levels
+04152	AMPK signaling pathway	AMPK signaling pathway	04152	Signal transduction	pathways_levels
+04150	mTOR signaling pathway	mTOR signaling pathway	04150	Signal transduction	pathways_levels
+04075	Plant hormone signal transduction	Plant hormone signal transduction	04075	Signal transduction	pathways_levels
+Signaling molecules and interaction	unknown	unknown	Signaling molecules and interaction	Environmental	pathways_levels
+04080	Neuroactive ligand-receptor interaction	Neuroactive ligand-receptor interaction	04080	Signaling molecules and interaction	pathways_levels
+04060	Cytokine-cytokine receptor interaction	Cytokine-cytokine receptor interaction	04060	Signaling molecules and interaction	pathways_levels
+04061	Viral protein interaction with cytokine and cytokine receptor	Viral protein interaction with cytokine and cytokine receptor	04061	Signaling molecules and interaction	pathways_levels
+04512	ECM-receptor interaction	ECM-receptor interaction	04512	Signaling molecules and interaction	pathways_levels
+04514	Cell adhesion molecules (CAMs)	Cell adhesion molecules (CAMs)	04514	Signaling molecules and interaction	pathways_levels
+Cellular	Cellular Processes	Cellular Processes	Cellular	Cellular	pathways_levels
+Transport and catabolism	unknown	unknown	Transport and catabolism	Cellular	pathways_levels
+04144	Endocytosis	Endocytosis	04144	Transport and catabolism	pathways_levels
+04145	Phagosome	Phagosome	04145	Transport and catabolism	pathways_levels
+04142	Lysosome	Lysosome	04142	Transport and catabolism	pathways_levels
+04146	Peroxisome	Peroxisome	04146	Transport and catabolism	pathways_levels
+04140	Autophagy - animal	Autophagy - animal	04140	Transport and catabolism	pathways_levels
+04138	Autophagy - yeast	Autophagy - yeast	04138	Transport and catabolism	pathways_levels
+04136	Autophagy - other	Autophagy - other	04136	Transport and catabolism	pathways_levels
+04137	Mitophagy - animal	Mitophagy - animal	04137	Transport and catabolism	pathways_levels
+04139	Mitophagy - yeast	Mitophagy - yeast	04139	Transport and catabolism	pathways_levels
+Cell growth and death	unknown	unknown	Cell growth and death	Cellular	pathways_levels
+04110	Cell cycle	Cell cycle	04110	Cell growth and death	pathways_levels
+04111	Cell cycle - yeast	Cell cycle - yeast	04111	Cell growth and death	pathways_levels
+04112	Cell cycle - Caulobacter	Cell cycle - Caulobacter	04112	Cell growth and death	pathways_levels
+04113	Meiosis - yeast	Meiosis - yeast	04113	Cell growth and death	pathways_levels
+04114	Oocyte meiosis	Oocyte meiosis	04114	Cell growth and death	pathways_levels
+04210	Apoptosis	Apoptosis	04210	Cell growth and death	pathways_levels
+04214	Apoptosis - fly	Apoptosis - fly	04214	Cell growth and death	pathways_levels
+04215	Apoptosis - multiple species	Apoptosis - multiple species	04215	Cell growth and death	pathways_levels
+04216	Ferroptosis	Ferroptosis	04216	Cell growth and death	pathways_levels
+04217	Necroptosis	Necroptosis	04217	Cell growth and death	pathways_levels
+04115	p53 signaling pathway	p53 signaling pathway	04115	Cell growth and death	pathways_levels
+04218	Cellular senescence	Cellular senescence	04218	Cell growth and death	pathways_levels
+Cellular community - eukaryotes	unknown	unknown	Cellular community - eukaryotes	Cellular	pathways_levels
+04510	Focal adhesion	Focal adhesion	04510	Cellular community - eukaryotes	pathways_levels
+04520	Adherens junction	Adherens junction	04520	Cellular community - eukaryotes	pathways_levels
+04530	Tight junction	Tight junction	04530	Cellular community - eukaryotes	pathways_levels
+04540	Gap junction	Gap junction	04540	Cellular community - eukaryotes	pathways_levels
+04550	Signaling pathways regulating pluripotency of stem cells	Signaling pathways regulating pluripotency of stem cells	04550	Cellular community - eukaryotes	pathways_levels
+Cellular community - prokaryotes	unknown	unknown	Cellular community - prokaryotes	Cellular	pathways_levels
+02024	Quorum sensing	Quorum sensing	02024	Cellular community - prokaryotes	pathways_levels
+05111	Biofilm formation - Vibrio cholerae	Biofilm formation - Vibrio cholerae	05111	Cellular community - prokaryotes	pathways_levels
+02025	Biofilm formation - Pseudomonas aeruginosa	Biofilm formation - Pseudomonas aeruginosa	02025	Cellular community - prokaryotes	pathways_levels
+02026	Biofilm formation - Escherichia coli	Biofilm formation - Escherichia coli	02026	Cellular community - prokaryotes	pathways_levels
+Cell motility	unknown	unknown	Cell motility	Cellular	pathways_levels
+02030	Bacterial chemotaxis	Bacterial chemotaxis	02030	Cell motility	pathways_levels
+02040	Flagellar assembly	Flagellar assembly	02040	Cell motility	pathways_levels
+04810	Regulation of actin cytoskeleton	Regulation of actin cytoskeleton	04810	Cell motility	pathways_levels
+Organismal	Organismal Systems	Organismal Systems	Organismal	Organismal	pathways_levels
+Immune system	unknown	unknown	Immune system	Organismal	pathways_levels
+04640	Hematopoietic cell lineage	Hematopoietic cell lineage	04640	Immune system	pathways_levels
+04610	Complement and coagulation cascades	Complement and coagulation cascades	04610	Immune system	pathways_levels
+04611	Platelet activation	Platelet activation	04611	Immune system	pathways_levels
+04620	Toll-like receptor signaling pathway	Toll-like receptor signaling pathway	04620	Immune system	pathways_levels
+04624	Toll and Imd signaling pathway	Toll and Imd signaling pathway	04624	Immune system	pathways_levels
+04621	NOD-like receptor signaling pathway	NOD-like receptor signaling pathway	04621	Immune system	pathways_levels
+04622	RIG-I-like receptor signaling pathway	RIG-I-like receptor signaling pathway	04622	Immune system	pathways_levels
+04623	Cytosolic DNA-sensing pathway	Cytosolic DNA-sensing pathway	04623	Immune system	pathways_levels
+04625	C-type lectin receptor signaling pathway	C-type lectin receptor signaling pathway	04625	Immune system	pathways_levels
+04650	Natural killer cell mediated cytotoxicity	Natural killer cell mediated cytotoxicity	04650	Immune system	pathways_levels
+04612	Antigen processing and presentation	Antigen processing and presentation	04612	Immune system	pathways_levels
+04660	T cell receptor signaling pathway	T cell receptor signaling pathway	04660	Immune system	pathways_levels
+04658	Th1 and Th2 cell differentiation	Th1 and Th2 cell differentiation	04658	Immune system	pathways_levels
+04659	Th17 cell differentiation	Th17 cell differentiation	04659	Immune system	pathways_levels
+04657	IL-17 signaling pathway	IL-17 signaling pathway	04657	Immune system	pathways_levels
+04662	B cell receptor signaling pathway	B cell receptor signaling pathway	04662	Immune system	pathways_levels
+04664	Fc epsilon RI signaling pathway	Fc epsilon RI signaling pathway	04664	Immune system	pathways_levels
+04666	Fc gamma R-mediated phagocytosis	Fc gamma R-mediated phagocytosis	04666	Immune system	pathways_levels
+04670	Leukocyte transendothelial migration	Leukocyte transendothelial migration	04670	Immune system	pathways_levels
+04672	Intestinal immune network for IgA production	Intestinal immune network for IgA production	04672	Immune system	pathways_levels
+04062	Chemokine signaling pathway	Chemokine signaling pathway	04062	Immune system	pathways_levels
+Endocrine system	unknown	unknown	Endocrine system	Organismal	pathways_levels
+04911	Insulin secretion	Insulin secretion	04911	Endocrine system	pathways_levels
+04910	Insulin signaling pathway	Insulin signaling pathway	04910	Endocrine system	pathways_levels
+04922	Glucagon signaling pathway	Glucagon signaling pathway	04922	Endocrine system	pathways_levels
+04923	Regulation of lipolysis in adipocytes	Regulation of lipolysis in adipocytes	04923	Endocrine system	pathways_levels
+04920	Adipocytokine signaling pathway	Adipocytokine signaling pathway	04920	Endocrine system	pathways_levels
+03320	PPAR signaling pathway	PPAR signaling pathway	03320	Endocrine system	pathways_levels
+04929	GnRH secretion	GnRH secretion	04929	Endocrine system	pathways_levels
+04912	GnRH signaling pathway	GnRH signaling pathway	04912	Endocrine system	pathways_levels
+04913	Ovarian steroidogenesis	Ovarian steroidogenesis	04913	Endocrine system	pathways_levels
+04915	Estrogen signaling pathway	Estrogen signaling pathway	04915	Endocrine system	pathways_levels
+04914	Progesterone-mediated oocyte maturation	Progesterone-mediated oocyte maturation	04914	Endocrine system	pathways_levels
+04917	Prolactin signaling pathway	Prolactin signaling pathway	04917	Endocrine system	pathways_levels
+04921	Oxytocin signaling pathway	Oxytocin signaling pathway	04921	Endocrine system	pathways_levels
+04926	Relaxin signaling pathway	Relaxin signaling pathway	04926	Endocrine system	pathways_levels
+04935	Growth hormone synthesis, secretion and action	Growth hormone synthesis, secretion and action	04935	Endocrine system	pathways_levels
+04918	Thyroid hormone synthesis	Thyroid hormone synthesis	04918	Endocrine system	pathways_levels
+04919	Thyroid hormone signaling pathway	Thyroid hormone signaling pathway	04919	Endocrine system	pathways_levels
+04928	Parathyroid hormone synthesis, secretion and action	Parathyroid hormone synthesis, secretion and action	04928	Endocrine system	pathways_levels
+04916	Melanogenesis	Melanogenesis	04916	Endocrine system	pathways_levels
+04924	Renin secretion	Renin secretion	04924	Endocrine system	pathways_levels
+04614	Renin-angiotensin system	Renin-angiotensin system	04614	Endocrine system	pathways_levels
+04925	Aldosterone synthesis and secretion	Aldosterone synthesis and secretion	04925	Endocrine system	pathways_levels
+04927	Cortisol synthesis and secretion	Cortisol synthesis and secretion	04927	Endocrine system	pathways_levels
+Circulatory system	unknown	unknown	Circulatory system	Organismal	pathways_levels
+04260	Cardiac muscle contraction	Cardiac muscle contraction	04260	Circulatory system	pathways_levels
+04261	Adrenergic signaling in cardiomyocytes	Adrenergic signaling in cardiomyocytes	04261	Circulatory system	pathways_levels
+04270	Vascular smooth muscle contraction	Vascular smooth muscle contraction	04270	Circulatory system	pathways_levels
+Digestive system	unknown	unknown	Digestive system	Organismal	pathways_levels
+04970	Salivary secretion	Salivary secretion	04970	Digestive system	pathways_levels
+04971	Gastric acid secretion	Gastric acid secretion	04971	Digestive system	pathways_levels
+04972	Pancreatic secretion	Pancreatic secretion	04972	Digestive system	pathways_levels
+04976	Bile secretion	Bile secretion	04976	Digestive system	pathways_levels
+04973	Carbohydrate digestion and absorption	Carbohydrate digestion and absorption	04973	Digestive system	pathways_levels
+04974	Protein digestion and absorption	Protein digestion and absorption	04974	Digestive system	pathways_levels
+04975	Fat digestion and absorption	Fat digestion and absorption	04975	Digestive system	pathways_levels
+04979	Cholesterol metabolism	Cholesterol metabolism	04979	Digestive system	pathways_levels
+04977	Vitamin digestion and absorption	Vitamin digestion and absorption	04977	Digestive system	pathways_levels
+04978	Mineral absorption	Mineral absorption	04978	Digestive system	pathways_levels
+Excretory system	unknown	unknown	Excretory system	Organismal	pathways_levels
+04962	Vasopressin-regulated water reabsorption	Vasopressin-regulated water reabsorption	04962	Excretory system	pathways_levels
+04960	Aldosterone-regulated sodium reabsorption	Aldosterone-regulated sodium reabsorption	04960	Excretory system	pathways_levels
+04961	Endocrine and other factor-regulated calcium reabsorption	Endocrine and other factor-regulated calcium reabsorption	04961	Excretory system	pathways_levels
+04964	Proximal tubule bicarbonate reclamation	Proximal tubule bicarbonate reclamation	04964	Excretory system	pathways_levels
+04966	Collecting duct acid secretion	Collecting duct acid secretion	04966	Excretory system	pathways_levels
+Nervous system	unknown	unknown	Nervous system	Organismal	pathways_levels
+04724	Glutamatergic synapse	Glutamatergic synapse	04724	Nervous system	pathways_levels
+04727	GABAergic synapse	GABAergic synapse	04727	Nervous system	pathways_levels
+04725	Cholinergic synapse	Cholinergic synapse	04725	Nervous system	pathways_levels
+04728	Dopaminergic synapse	Dopaminergic synapse	04728	Nervous system	pathways_levels
+04726	Serotonergic synapse	Serotonergic synapse	04726	Nervous system	pathways_levels
+04720	Long-term potentiation	Long-term potentiation	04720	Nervous system	pathways_levels
+04730	Long-term depression	Long-term depression	04730	Nervous system	pathways_levels
+04723	Retrograde endocannabinoid signaling	Retrograde endocannabinoid signaling	04723	Nervous system	pathways_levels
+04721	Synaptic vesicle cycle	Synaptic vesicle cycle	04721	Nervous system	pathways_levels
+04722	Neurotrophin signaling pathway	Neurotrophin signaling pathway	04722	Nervous system	pathways_levels
+Sensory system	unknown	unknown	Sensory system	Organismal	pathways_levels
+04744	Phototransduction	Phototransduction	04744	Sensory system	pathways_levels
+04745	Phototransduction - fly	Phototransduction - fly	04745	Sensory system	pathways_levels
+04740	Olfactory transduction	Olfactory transduction	04740	Sensory system	pathways_levels
+04742	Taste transduction	Taste transduction	04742	Sensory system	pathways_levels
+04750	Inflammatory mediator regulation of TRP channels	Inflammatory mediator regulation of TRP channels	04750	Sensory system	pathways_levels
+Development and regeneration	unknown	unknown	Development and regeneration	Organismal	pathways_levels
+04320	Dorso-ventral axis formation	Dorso-ventral axis formation	04320	Development and regeneration	pathways_levels
+04360	Axon guidance	Axon guidance	04360	Development and regeneration	pathways_levels
+04361	Axon regeneration	Axon regeneration	04361	Development and regeneration	pathways_levels
+04380	Osteoclast differentiation	Osteoclast differentiation	04380	Development and regeneration	pathways_levels
+Aging	unknown	unknown	Aging	Organismal	pathways_levels
+04211	Longevity regulating pathway	Longevity regulating pathway	04211	Aging	pathways_levels
+04212	Longevity regulating pathway - worm	Longevity regulating pathway - worm	04212	Aging	pathways_levels
+04213	Longevity regulating pathway - multiple species	Longevity regulating pathway - multiple species	04213	Aging	pathways_levels
+Environmental adaptation	unknown	unknown	Environmental adaptation	Organismal	pathways_levels
+04710	Circadian rhythm	Circadian rhythm	04710	Environmental adaptation	pathways_levels
+04713	Circadian entrainment	Circadian entrainment	04713	Environmental adaptation	pathways_levels
+04711	Circadian rhythm - fly	Circadian rhythm - fly	04711	Environmental adaptation	pathways_levels
+04712	Circadian rhythm - plant	Circadian rhythm - plant	04712	Environmental adaptation	pathways_levels
+04714	Thermogenesis	Thermogenesis	04714	Environmental adaptation	pathways_levels
+04626	Plant-pathogen interaction	Plant-pathogen interaction	04626	Environmental adaptation	pathways_levels
+Human	Human Diseases	Human Diseases	Human	Human	pathways_levels
+Cancer: overview	unknown	unknown	Cancer: overview	Human	pathways_levels
+05200	Pathways in cancer	Pathways in cancer	05200	Cancer: overview	pathways_levels
+05202	Transcriptional misregulation in cancer	Transcriptional misregulation in cancer	05202	Cancer: overview	pathways_levels
+05206	MicroRNAs in cancer	MicroRNAs in cancer	05206	Cancer: overview	pathways_levels
+05205	Proteoglycans in cancer	Proteoglycans in cancer	05205	Cancer: overview	pathways_levels
+05204	Chemical carcinogenesis	Chemical carcinogenesis	05204	Cancer: overview	pathways_levels
+05203	Viral carcinogenesis	Viral carcinogenesis	05203	Cancer: overview	pathways_levels
+05230	Central carbon metabolism in cancer	Central carbon metabolism in cancer	05230	Cancer: overview	pathways_levels
+05231	Choline metabolism in cancer	Choline metabolism in cancer	05231	Cancer: overview	pathways_levels
+05235	PD-L1 expression and PD-1 checkpoint pathway in cancer	PD-L1 expression and PD-1 checkpoint pathway in cancer	05235	Cancer: overview	pathways_levels
+Cancer: specific types	unknown	unknown	Cancer: specific types	Human	pathways_levels
+05210	Colorectal cancer	Colorectal cancer	05210	Cancer: specific types	pathways_levels
+05212	Pancreatic cancer	Pancreatic cancer	05212	Cancer: specific types	pathways_levels
+05225	Hepatocellular carcinoma	Hepatocellular carcinoma	05225	Cancer: specific types	pathways_levels
+05226	Gastric cancer	Gastric cancer	05226	Cancer: specific types	pathways_levels
+05214	Glioma	Glioma	05214	Cancer: specific types	pathways_levels
+05216	Thyroid cancer	Thyroid cancer	05216	Cancer: specific types	pathways_levels
+05221	Acute myeloid leukemia	Acute myeloid leukemia	05221	Cancer: specific types	pathways_levels
+05220	Chronic myeloid leukemia	Chronic myeloid leukemia	05220	Cancer: specific types	pathways_levels
+05217	Basal cell carcinoma	Basal cell carcinoma	05217	Cancer: specific types	pathways_levels
+05218	Melanoma	Melanoma	05218	Cancer: specific types	pathways_levels
+05211	Renal cell carcinoma	Renal cell carcinoma	05211	Cancer: specific types	pathways_levels
+05219	Bladder cancer	Bladder cancer	05219	Cancer: specific types	pathways_levels
+05215	Prostate cancer	Prostate cancer	05215	Cancer: specific types	pathways_levels
+05213	Endometrial cancer	Endometrial cancer	05213	Cancer: specific types	pathways_levels
+05224	Breast cancer	Breast cancer	05224	Cancer: specific types	pathways_levels
+05222	Small cell lung cancer	Small cell lung cancer	05222	Cancer: specific types	pathways_levels
+05223	Non-small cell lung cancer	Non-small cell lung cancer	05223	Cancer: specific types	pathways_levels
+Immune disease	unknown	unknown	Immune disease	Human	pathways_levels
+05310	Asthma	Asthma	05310	Immune disease	pathways_levels
+05322	Systemic lupus erythematosus	Systemic lupus erythematosus	05322	Immune disease	pathways_levels
+05323	Rheumatoid arthritis	Rheumatoid arthritis	05323	Immune disease	pathways_levels
+05320	Autoimmune thyroid disease	Autoimmune thyroid disease	05320	Immune disease	pathways_levels
+05321	Inflammatory bowel disease (IBD)	Inflammatory bowel disease (IBD)	05321	Immune disease	pathways_levels
+05330	Allograft rejection	Allograft rejection	05330	Immune disease	pathways_levels
+05332	Graft-versus-host disease	Graft-versus-host disease	05332	Immune disease	pathways_levels
+05340	Primary immunodeficiency	Primary immunodeficiency	05340	Immune disease	pathways_levels
+Neurodegenerative disease	unknown	unknown	Neurodegenerative disease	Human	pathways_levels
+05010	Alzheimer disease	Alzheimer disease	05010	Neurodegenerative disease	pathways_levels
+05012	Parkinson disease	Parkinson disease	05012	Neurodegenerative disease	pathways_levels
+05014	Amyotrophic lateral sclerosis (ALS)	Amyotrophic lateral sclerosis (ALS)	05014	Neurodegenerative disease	pathways_levels
+05016	Huntington disease	Huntington disease	05016	Neurodegenerative disease	pathways_levels
+05017	Spinocerebellar ataxia	Spinocerebellar ataxia	05017	Neurodegenerative disease	pathways_levels
+05020	Prion diseases	Prion diseases	05020	Neurodegenerative disease	pathways_levels
+Substance dependence	unknown	unknown	Substance dependence	Human	pathways_levels
+05030	Cocaine addiction	Cocaine addiction	05030	Substance dependence	pathways_levels
+05031	Amphetamine addiction	Amphetamine addiction	05031	Substance dependence	pathways_levels
+05032	Morphine addiction	Morphine addiction	05032	Substance dependence	pathways_levels
+05033	Nicotine addiction	Nicotine addiction	05033	Substance dependence	pathways_levels
+05034	Alcoholism	Alcoholism	05034	Substance dependence	pathways_levels
+Cardiovascular disease	unknown	unknown	Cardiovascular disease	Human	pathways_levels
+05418	Fluid shear stress and atherosclerosis	Fluid shear stress and atherosclerosis	05418	Cardiovascular disease	pathways_levels
+05410	Hypertrophic cardiomyopathy (HCM)	Hypertrophic cardiomyopathy (HCM)	05410	Cardiovascular disease	pathways_levels
+05412	Arrhythmogenic right ventricular cardiomyopathy (ARVC)	Arrhythmogenic right ventricular cardiomyopathy (ARVC)	05412	Cardiovascular disease	pathways_levels
+05414	Dilated cardiomyopathy (DCM)	Dilated cardiomyopathy (DCM)	05414	Cardiovascular disease	pathways_levels
+05416	Viral myocarditis	Viral myocarditis	05416	Cardiovascular disease	pathways_levels
+Endocrine and metabolic disease	unknown	unknown	Endocrine and metabolic disease	Human	pathways_levels
+04930	Type II diabetes mellitus	Type II diabetes mellitus	04930	Endocrine and metabolic disease	pathways_levels
+04940	Type I diabetes mellitus	Type I diabetes mellitus	04940	Endocrine and metabolic disease	pathways_levels
+04950	Maturity onset diabetes of the young	Maturity onset diabetes of the young	04950	Endocrine and metabolic disease	pathways_levels
+04932	Non-alcoholic fatty liver disease (NAFLD)	Non-alcoholic fatty liver disease (NAFLD)	04932	Endocrine and metabolic disease	pathways_levels
+04931	Insulin resistance	Insulin resistance	04931	Endocrine and metabolic disease	pathways_levels
+04933	AGE-RAGE signaling pathway in diabetic complications	AGE-RAGE signaling pathway in diabetic complications	04933	Endocrine and metabolic disease	pathways_levels
+04934	Cushing syndrome	Cushing syndrome	04934	Endocrine and metabolic disease	pathways_levels
+Infectious disease: bacterial	unknown	unknown	Infectious disease: bacterial	Human	pathways_levels
+05110	Vibrio cholerae infection	Vibrio cholerae infection	05110	Infectious disease: bacterial	pathways_levels
+05120	Epithelial cell signaling in Helicobacter pylori infection	Epithelial cell signaling in Helicobacter pylori infection	05120	Infectious disease: bacterial	pathways_levels
+05130	Pathogenic Escherichia coli infection	Pathogenic Escherichia coli infection	05130	Infectious disease: bacterial	pathways_levels
+05132	Salmonella infection	Salmonella infection	05132	Infectious disease: bacterial	pathways_levels
+05131	Shigellosis	Shigellosis	05131	Infectious disease: bacterial	pathways_levels
+05135	Yersinia infection	Yersinia infection	05135	Infectious disease: bacterial	pathways_levels
+05133	Pertussis	Pertussis	05133	Infectious disease: bacterial	pathways_levels
+05134	Legionellosis	Legionellosis	05134	Infectious disease: bacterial	pathways_levels
+05150	Staphylococcus aureus infection	Staphylococcus aureus infection	05150	Infectious disease: bacterial	pathways_levels
+05152	Tuberculosis	Tuberculosis	05152	Infectious disease: bacterial	pathways_levels
+05100	Bacterial invasion of epithelial cells	Bacterial invasion of epithelial cells	05100	Infectious disease: bacterial	pathways_levels
+Infectious disease: viral	unknown	unknown	Infectious disease: viral	Human	pathways_levels
+05166	Human T-cell leukemia virus 1 infection	Human T-cell leukemia virus 1 infection	05166	Infectious disease: viral	pathways_levels
+05170	Human immunodeficiency virus 1 infection	Human immunodeficiency virus 1 infection	05170	Infectious disease: viral	pathways_levels
+05162	Measles	Measles	05162	Infectious disease: viral	pathways_levels
+05164	Influenza A	Influenza A	05164	Infectious disease: viral	pathways_levels
+05161	Hepatitis B	Hepatitis B	05161	Infectious disease: viral	pathways_levels
+05160	Hepatitis C	Hepatitis C	05160	Infectious disease: viral	pathways_levels
+05168	Herpes simplex virus 1 infection	Herpes simplex virus 1 infection	05168	Infectious disease: viral	pathways_levels
+05163	Human cytomegalovirus infection	Human cytomegalovirus infection	05163	Infectious disease: viral	pathways_levels
+05167	Kaposi sarcoma-associated herpesvirus infection	Kaposi sarcoma-associated herpesvirus infection	05167	Infectious disease: viral	pathways_levels
+05169	Epstein-Barr virus infection	Epstein-Barr virus infection	05169	Infectious disease: viral	pathways_levels
+05165	Human papillomavirus infection	Human papillomavirus infection	05165	Infectious disease: viral	pathways_levels
+Infectious disease: parasitic	unknown	unknown	Infectious disease: parasitic	Human	pathways_levels
+05146	Amoebiasis	Amoebiasis	05146	Infectious disease: parasitic	pathways_levels
+05144	Malaria	Malaria	05144	Infectious disease: parasitic	pathways_levels
+05145	Toxoplasmosis	Toxoplasmosis	05145	Infectious disease: parasitic	pathways_levels
+05140	Leishmaniasis	Leishmaniasis	05140	Infectious disease: parasitic	pathways_levels
+05142	Chagas disease (American trypanosomiasis)	Chagas disease (American trypanosomiasis)	05142	Infectious disease: parasitic	pathways_levels
+05143	African trypanosomiasis	African trypanosomiasis	05143	Infectious disease: parasitic	pathways_levels
+Drug resistance: antimicrobial	unknown	unknown	Drug resistance: antimicrobial	Human	pathways_levels
+01501	beta-Lactam resistance	beta-Lactam resistance	01501	Drug resistance: antimicrobial	pathways_levels
+01502	Vancomycin resistance	Vancomycin resistance	01502	Drug resistance: antimicrobial	pathways_levels
+01503	Cationic antimicrobial peptide (CAMP) resistance	Cationic antimicrobial peptide (CAMP) resistance	01503	Drug resistance: antimicrobial	pathways_levels
+Drug resistance: antineoplastic	unknown	unknown	Drug resistance: antineoplastic	Human	pathways_levels
+01521	EGFR tyrosine kinase inhibitor resistance	EGFR tyrosine kinase inhibitor resistance	01521	Drug resistance: antineoplastic	pathways_levels
+01524	Platinum drug resistance	Platinum drug resistance	01524	Drug resistance: antineoplastic	pathways_levels
+01523	Antifolate resistance	Antifolate resistance	01523	Drug resistance: antineoplastic	pathways_levels
+01522	Endocrine resistance	Endocrine resistance	01522	Drug resistance: antineoplastic	pathways_levels
+Drug	Drug Development	Drug Development	Drug	Drug	pathways_levels
+Chronology: Antiinfectives	unknown	unknown	Chronology: Antiinfectives	Drug	pathways_levels
+07011	Penicillins	Penicillins	07011	Chronology: Antiinfectives	pathways_levels
+07012	Cephalosporins - parenteral agents	Cephalosporins - parenteral agents	07012	Chronology: Antiinfectives	pathways_levels
+07013	Cephalosporins - oral agents	Cephalosporins - oral agents	07013	Chronology: Antiinfectives	pathways_levels
+07021	Aminoglycosides	Aminoglycosides	07021	Chronology: Antiinfectives	pathways_levels
+07019	Tetracyclines	Tetracyclines	07019	Chronology: Antiinfectives	pathways_levels
+07020	Macrolides and ketolides	Macrolides and ketolides	07020	Chronology: Antiinfectives	pathways_levels
+07014	Quinolones	Quinolones	07014	Chronology: Antiinfectives	pathways_levels
+07023	Rifamycins	Rifamycins	07023	Chronology: Antiinfectives	pathways_levels
+07026	Antifungal agents	Antifungal agents	07026	Chronology: Antiinfectives	pathways_levels
+07044	Antiviral agents	Antiviral agents	07044	Chronology: Antiinfectives	pathways_levels
+07053	Anti-HIV agents	Anti-HIV agents	07053	Chronology: Antiinfectives	pathways_levels
+Chronology: Antineoplastics	unknown	unknown	Chronology: Antineoplastics	Drug	pathways_levels
+07040	Antineoplastics - alkylating agents	Antineoplastics - alkylating agents	07040	Chronology: Antineoplastics	pathways_levels
+07041	Antineoplastics - antimetabolic agents	Antineoplastics - antimetabolic agents	07041	Chronology: Antineoplastics	pathways_levels
+07042	Antineoplastics - agents from natural products	Antineoplastics - agents from natural products	07042	Chronology: Antineoplastics	pathways_levels
+07043	Antineoplastics - hormones	Antineoplastics - hormones	07043	Chronology: Antineoplastics	pathways_levels
+07045	Antineoplastics - protein kinases inhibitors	Antineoplastics - protein kinases inhibitors	07045	Chronology: Antineoplastics	pathways_levels
+Chronology: Nervous system agents	unknown	unknown	Chronology: Nervous system agents	Drug	pathways_levels
+07032	Hypnotics	Hypnotics	07032	Chronology: Nervous system agents	pathways_levels
+07030	Anxiolytics	Anxiolytics	07030	Chronology: Nervous system agents	pathways_levels
+07033	Anticonvulsants	Anticonvulsants	07033	Chronology: Nervous system agents	pathways_levels
+07015	Local analgesics	Local analgesics	07015	Chronology: Nervous system agents	pathways_levels
+07039	Opioid analgesics	Opioid analgesics	07039	Chronology: Nervous system agents	pathways_levels
+07028	Antipsychotics	Antipsychotics	07028	Chronology: Nervous system agents	pathways_levels
+07029	Antipsychotics - phenothiazines	Antipsychotics - phenothiazines	07029	Chronology: Nervous system agents	pathways_levels
+07031	Antipsychotics - butyrophenones	Antipsychotics - butyrophenones	07031	Chronology: Nervous system agents	pathways_levels
+07027	Antidepressants	Antidepressants	07027	Chronology: Nervous system agents	pathways_levels
+07056	Agents for Alzheimer-type dementia	Agents for Alzheimer-type dementia	07056	Chronology: Nervous system agents	pathways_levels
+07057	Antiparkinsonian agents	Antiparkinsonian agents	07057	Chronology: Nervous system agents	pathways_levels
+Chronology: Other drugs	unknown	unknown	Chronology: Other drugs	Drug	pathways_levels
+07055	Sulfonamide derivatives - overview	Sulfonamide derivatives - overview	07055	Chronology: Other drugs	pathways_levels
+07016	Sulfonamide derivatives - sulfa drugs	Sulfonamide derivatives - sulfa drugs	07016	Chronology: Other drugs	pathways_levels
+07017	Sulfonamide derivatives - diuretics	Sulfonamide derivatives - diuretics	07017	Chronology: Other drugs	pathways_levels
+07018	Sulfonamide derivatives - hypoglycemic agents	Sulfonamide derivatives - hypoglycemic agents	07018	Chronology: Other drugs	pathways_levels
+07037	Antiarrhythmic drugs	Antiarrhythmic drugs	07037	Chronology: Other drugs	pathways_levels
+07038	Antiulcer drugs	Antiulcer drugs	07038	Chronology: Other drugs	pathways_levels
+07046	Immunosuppressive agents	Immunosuppressive agents	07046	Chronology: Other drugs	pathways_levels
+07047	Osteoporosis drugs	Osteoporosis drugs	07047	Chronology: Other drugs	pathways_levels
+07048	Antimigraines	Antimigraines	07048	Chronology: Other drugs	pathways_levels
+07049	Antithrombosis agents	Antithrombosis agents	07049	Chronology: Other drugs	pathways_levels
+07050	Antirheumatics - DMARDs and biological agents	Antirheumatics - DMARDs and biological agents	07050	Chronology: Other drugs	pathways_levels
+07051	Antidiabetics	Antidiabetics	07051	Chronology: Other drugs	pathways_levels
+07052	Antidyslipidemic agents	Antidyslipidemic agents	07052	Chronology: Other drugs	pathways_levels
+07054	Antiglaucoma agents	Antiglaucoma agents	07054	Chronology: Other drugs	pathways_levels
+Target-based classification: G protein-coupled receptors	unknown	unknown	Target-based classification: G protein-coupled receptors	Drug	pathways_levels
+07220	Cholinergic and anticholinergic drugs	Cholinergic and anticholinergic drugs	07220	Target-based classification: G protein-coupled receptors	pathways_levels
+07215	alpha-Adrenergic receptor agonists/antagonists	alpha-Adrenergic receptor agonists/antagonists	07215	Target-based classification: G protein-coupled receptors	pathways_levels
+07214	beta-Adrenergic receptor agonists/antagonists	beta-Adrenergic receptor agonists/antagonists	07214	Target-based classification: G protein-coupled receptors	pathways_levels
+07213	Dopamine receptor agonists/antagonists	Dopamine receptor agonists/antagonists	07213	Target-based classification: G protein-coupled receptors	pathways_levels
+07212	Histamine H1 receptor antagonists	Histamine H1 receptor antagonists	07212	Target-based classification: G protein-coupled receptors	pathways_levels
+07227	Histamine H2/H3 receptor agonists/antagonists	Histamine H2/H3 receptor agonists/antagonists	07227	Target-based classification: G protein-coupled receptors	pathways_levels
+07211	Serotonin receptor agonists/antagonists	Serotonin receptor agonists/antagonists	07211	Target-based classification: G protein-coupled receptors	pathways_levels
+07228	Eicosanoid receptor agonists/antagonists	Eicosanoid receptor agonists/antagonists	07228	Target-based classification: G protein-coupled receptors	pathways_levels
+07224	Opioid receptor agonists/antagonists	Opioid receptor agonists/antagonists	07224	Target-based classification: G protein-coupled receptors	pathways_levels
+07229	Angiotensin receptor and endothelin receptor antagonists	Angiotensin receptor and endothelin receptor antagonists	07229	Target-based classification: G protein-coupled receptors	pathways_levels
+Target-based classification: Nuclear receptors	unknown	unknown	Target-based classification: Nuclear receptors	Drug	pathways_levels
+07225	Glucocorticoid and mineralocorticoid receptor agonists/antagonists	Glucocorticoid and mineralocorticoid receptor agonists/antagonists	07225	Target-based classification: Nuclear receptors	pathways_levels
+07226	Progesterone, androgen and estrogen receptor agonists/antagonists	Progesterone, androgen and estrogen receptor agonists/antagonists	07226	Target-based classification: Nuclear receptors	pathways_levels
+07223	Retinoic acid receptor (RAR) and retinoid X receptor (RXR) agonists/antagonists	Retinoic acid receptor (RAR) and retinoid X receptor (RXR) agonists/antagonists	07223	Target-based classification: Nuclear receptors	pathways_levels
+07222	Peroxisome proliferator-activated receptor (PPAR) agonists	Peroxisome proliferator-activated receptor (PPAR) agonists	07222	Target-based classification: Nuclear receptors	pathways_levels
+Target-based classification: Ion channels	unknown	unknown	Target-based classification: Ion channels	Drug	pathways_levels
+07221	Nicotinic cholinergic receptor antagonists	Nicotinic cholinergic receptor antagonists	07221	Target-based classification: Ion channels	pathways_levels
+07230	GABA-A receptor agonists/antagonists	GABA-A receptor agonists/antagonists	07230	Target-based classification: Ion channels	pathways_levels
+07036	Calcium channel blocking drugs	Calcium channel blocking drugs	07036	Target-based classification: Ion channels	pathways_levels
+07231	Sodium channel blocking drugs	Sodium channel blocking drugs	07231	Target-based classification: Ion channels	pathways_levels
+07232	Potassium channel blocking and opening drugs	Potassium channel blocking and opening drugs	07232	Target-based classification: Ion channels	pathways_levels
+07235	N-Metyl-D-aspartic acid receptor antagonists	N-Metyl-D-aspartic acid receptor antagonists	07235	Target-based classification: Ion channels	pathways_levels
+Target-based classification: Transporters	unknown	unknown	Target-based classification: Transporters	Drug	pathways_levels
+07233	Ion transporter inhibitors	Ion transporter inhibitors	07233	Target-based classification: Transporters	pathways_levels
+07234	Neurotransmitter transporter inhibitors	Neurotransmitter transporter inhibitors	07234	Target-based classification: Transporters	pathways_levels
+Target-based classification: Enzymes	unknown	unknown	Target-based classification: Enzymes	Drug	pathways_levels
+07216	Catecholamine transferase inhibitors	Catecholamine transferase inhibitors	07216	Target-based classification: Enzymes	pathways_levels
+07219	Cyclooxygenase inhibitors	Cyclooxygenase inhibitors	07219	Target-based classification: Enzymes	pathways_levels
+07024	HMG-CoA reductase inhibitors	HMG-CoA reductase inhibitors	07024	Target-based classification: Enzymes	pathways_levels
+07217	Renin-angiotensin system inhibitors	Renin-angiotensin system inhibitors	07217	Target-based classification: Enzymes	pathways_levels
+07218	HIV protease inhibitors	HIV protease inhibitors	07218	Target-based classification: Enzymes	pathways_levels
+Structure-based classification	unknown	unknown	Structure-based classification	Drug	pathways_levels
+07025	Quinolines	Quinolines	07025	Structure-based classification	pathways_levels
+07034	Eicosanoids	Eicosanoids	07034	Structure-based classification	pathways_levels
+07035	Prostaglandins	Prostaglandins	07035	Structure-based classification	pathways_levels
+Skeleton-based classification	unknown	unknown	Skeleton-based classification	Drug	pathways_levels
+07110	Benzoic acid family	Benzoic acid family	07110	Skeleton-based classification	pathways_levels
+07112	1,2-Diphenyl substitution family	1,2-Diphenyl substitution family	07112	Skeleton-based classification	pathways_levels
+07114	Naphthalene family	Naphthalene family	07114	Skeleton-based classification	pathways_levels
+07117	Benzodiazepine family	Benzodiazepine family	07117	Skeleton-based classification	pathways_levels

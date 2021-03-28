@@ -1,0 +1,8 @@
+.structureBodyContainer{
+    display: grid;
+
+}
+
+.keyCompoundChoice{
+    display: inline-flex;
+}

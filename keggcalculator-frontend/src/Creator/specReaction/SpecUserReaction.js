@@ -1,0 +1,63 @@
+import React from "react"
+import "./SpecUserReaction.css"
+import {handleSpecSubmit} from "./SpecReactionGraphConstruction";
+import SpecSubstrates from "./SpecSubstrates";
+import SpecProducts from "./SpecProducts";
+import SpecReaction from "./SpecReaction";
+import SpecTaxonomy from "./SpecTaxonomy";
+import SpecKoEc from "./SpecKoEc";
+import {useDispatch, useSelector} from "react-redux";
+import {makeStyles} from "@material-ui/core";
+import Modal from "@material-ui/core/Modal";
+
+
+const useStyles = makeStyles((theme) => ({
+    modal: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    paper: {
+        backgroundColor: theme.palette.background.paper,
+        fontFamily: "Roboto",
+        border: '2px solid rgb(150, 25, 130)',
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3),
+    }
+}));
+
+
+const SpecUserReaction = () => {
+    const dispatch = useDispatch();
+    const state = useSelector(state => state.general)
+    const graphStates = useSelector(state => state.graph)
+    const specReactionStates = useSelector(state => state.specificReaction)
+    const classes = useStyles()
+    const body = (
+        <div className={classes.paper} style={{width:"40vw"}}>
+            <div className={"mainContainerSpec"}>
+                <SpecSubstrates className={"substrate"}/>
+                <SpecProducts className={"product"}/>
+                <SpecReaction className={"reaction"}/>
+                <SpecKoEc className={"koAndEc"}/>
+                <SpecTaxonomy className={"taxonomy"}/>
+                <div className={"submitSpecReaction"}>
+                    <button className={"buttonShowReaction"} onClick={()=> dispatch({type:"SWITCHSHOWREACTIONDETAILS"})}>show Reaction</button>
+                    <button className={"buttonSpec"}
+                            disabled={specReactionStates.specSubstrates.length < 1 || specReactionStates.specProducts < 1 || specReactionStates.specReaction.length < 1}
+                            onClick={(e) => handleSpecSubmit(e, graphStates, specReactionStates, dispatch)}>Submit
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    )
+    return (
+        <Modal className={classes.modal} open={state.showSpecificReaction}
+               onClose={() => dispatch({type: "SWITCHSHOWSPECIFICREACTION"})}>
+            {body}
+        </Modal>
+    )
+}
+
+export default SpecUserReaction

@@ -1,0 +1,53 @@
+.koAndEcContainer{
+    display: grid;
+    grid-template-columns: 30% 20% 30% 20%;
+    grid-template-areas: "ko addKo ec addEc";
+
+}
+
+.ko{
+    grid-area: ko;
+}
+
+.addKo{
+    grid-area: addKo;
+    background-color: rgb(150, 25, 130);
+    border-width: 0;
+    border-radius: 0.8vw;
+    color: white;
+    transition: all 400ms ease-in-out;
+    text-transform: uppercase;
+    font-size: clamp(10px, 1vw, 14px);
+    font-family: Roboto;
+    padding: 0;
+    margin: 2px;
+    transform: translate(0,-3px);
+}
+
+.addKo:hover {
+    background-color: rgb(120, -5, 100);
+    cursor: pointer;
+}
+
+.ec{
+    grid-area: ec;
+}
+.addEc{
+    grid-area: addEc;
+    background-color: rgb(150, 25, 130);
+    border-width: 0;
+    border-radius: 0.8vw;
+    color: white;
+    transition: all 400ms ease-in-out;
+    text-transform: uppercase;
+    font-size: clamp(10px, 1vw, 14px);
+    font-family: Roboto;
+    padding: 0;
+    margin: 2px;
+    transform: translate(0,-3px);
+}
+
+.addEc:hover {
+    background-color: rgb(120, -5, 100);
+    cursor: pointer;
+}

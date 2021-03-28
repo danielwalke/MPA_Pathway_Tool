@@ -1,0 +1,22 @@
+.uploadLabel{
+    background-color: rgb(150, 25, 130);
+    border-radius: 0.8vw;
+    color: white;
+    transition: all 400ms ease-in-out;
+    font-size: clamp(12px, 1vw, 20px);
+    font-family: Roboto;
+    padding: 3px;
+    margin-bottom: 2px;
+}
+
+.uploadLabel:hover {
+    background-color: rgb(120, -5, 100);
+    cursor: pointer;
+}
+
+.fileName{
+    margin: 2px;
+    padding: 2px;
+    font-size: clamp(10px, 1vw, 14px);
+    font-family: Roboto;
+}

@@ -1,0 +1,3 @@
+step;reactionNumber;koNumber;ecNumber;compNumber;glycanNumber
+1;[R00148];[K10944, K10945, K10946];[1.14.99.39];[C00001, C00007, C00014, C00192, C00390, C00399];[]
+2;[R10164];[K10535];[1.7.2.6];[C00001, C00080, C00088, C00125, C00126, C00192];[]

@@ -1,0 +1,29 @@
+.abbreviationContainer{
+    display: grid;
+    grid-template-columns: 2fr 6fr 2fr;
+    grid-template-areas: "abbreviation fullName submit";
+    height: 8vh;
+    margin: 2px;
+}
+
+.abbreviation{
+    grid-area: abbreviation;
+    display: flex;
+    width: auto;
+    margin: 2px
+}
+
+.fullName{
+    border: 2px solid rgb(150, 25, 130);
+    width: auto;
+    grid-area: fullName;
+    overflow-y: scroll;
+    margin: 2px
+}
+
+.submitAbbreviation{
+    width: auto;
+    display: flex;
+    grid-area: submit;
+    margin: 2px
+}

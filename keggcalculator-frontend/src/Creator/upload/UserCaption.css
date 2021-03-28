@@ -1,0 +1,43 @@
+.captionContainer{
+    transform: translate(-10px,0);
+    max-width: 94vw;
+    margin: 0 1vw;
+    display: grid;
+    grid-template-columns: repeat(5, 20%);
+    grid-template-rows: 50% 50%;
+    grid-template-areas: "min min2 mid max3 max2 max"
+"heat heat heat heat heat heat";
+    justify-content: space-between;
+}
+.userCaption{
+    grid-area: heat;
+    background: linear-gradient(90deg, rgb(0,0,255),rgb(255,0,0));
+    height: 10px;
+}
+
+.min{
+    grid-area: min;
+}
+
+.min2{
+    grid-area: min2;
+}
+
+.mid{
+    grid-area: mid;
+}
+
+.max3{
+    grid-area: max3;
+}
+
+.max2{
+    grid-area: max2;
+}
+
+.max{
+    grid-area: max;
+    justify-self: end;
+}
+
+

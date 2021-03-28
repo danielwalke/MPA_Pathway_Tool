@@ -1,0 +1,39 @@
+.substrateContainerSpec{
+    display: grid;
+    grid-template-columns: 6fr 1.2fr 2fr;
+    grid-template-areas: "substrate substrateSc addSubstrate";
+}
+
+.substrate{
+    grid-area: substrate;
+    margin: 2px;
+}
+
+.substrateSc{
+    grid-area: substrateSc;
+    transform: translate(0,-3px);
+    margin: 2px;
+}
+
+.addSubstrate{
+    grid-area: addSubstrate;
+    background-color: rgb(150, 25, 130);
+    border-radius: 0.8vw;
+    color: white;
+    transition: all 400ms ease-in-out;
+    text-transform: uppercase;
+    font-size: clamp(12px, 1vw, 15px);
+    font-family: Roboto;
+    padding: 0;
+    margin: 2px;
+}
+
+.addSubstrate:hover {
+    background-color: rgb(120, -5, 100);
+    cursor: pointer;
+}
+
+.addSubstrate:disabled:hover {
+    background-color: rgb(150, 25, 130);
+    cursor: default;
+}

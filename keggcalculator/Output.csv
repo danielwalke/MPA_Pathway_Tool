@@ -1,0 +1,396 @@
+Module,module-name,Steps found,Total steps module,Quant1;Quant2;Quant3;Quant4;Quant5
+M00001,Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate,4.0,15.0,25.0; 20.0; 27.0; 24.0; 32.0
+M00002,Glycolysis, core module involving three-carbon compounds,0.0,8.0,nd
+M00003,Gluconeogenesis, oxaloacetate => fructose-6P,2.0,11.0,2.0; 0.0; 6.0; 2.0; 0.0
+M00004,Pentose phosphate pathway (Pentose phosphate cycle),0.0,12.0,nd
+M00005,PRPP biosynthesis, ribose 5P => PRPP,0.0,1.0,nd
+M00006,Pentose phosphate pathway, oxidative phase, glucose 6P => ribulose 5P,0.0,5.0,nd
+M00007,Pentose phosphate pathway, non-oxidative phase, fructose 6P => ribose 5P,0.0,5.0,nd
+M00008,Entner-Doudoroff pathway, glucose-6P => glyceraldehyde-3P + pyruvate,0.0,4.0,nd
+M00009,Citrate cycle (TCA cycle, Krebs cycle),0.0,21.0,nd
+M00010,Citrate cycle, first carbon oxidation, oxaloacetate => 2-oxoglutarate,0.0,8.0,nd
+M00011,Citrate cycle, second carbon oxidation, 2-oxoglutarate => oxaloacetate,0.0,13.0,nd
+M00012,Glyoxylate cycle,0.0,8.0,nd
+M00013,Malonate semialdehyde pathway, propanoyl-CoA => acetyl-CoA,0.0,7.0,nd
+M00014,Glucuronate pathway (uronate pathway),0.0,11.0,nd
+M00015,Proline biosynthesis, glutamate => proline,0.0,4.0,nd
+M00016,Lysine biosynthesis, succinyl-DAP pathway, aspartate => lysine,0.0,10.0,nd
+M00017,Methionine biosynthesis, apartate => homoserine => methionine,0.0,9.0,nd
+M00018,Threonine biosynthesis, aspartate => homoserine => threonine,0.0,6.0,nd
+M00019,Valine/isoleucine biosynthesis, pyruvate => valine / 2-oxobutanoate => isoleucine,0.0,11.0,nd
+M00020,Serine biosynthesis, glycerate-3P => serine,0.0,3.0,nd
+M00021,Cysteine biosynthesis, serine => cysteine,0.0,2.0,nd
+M00022,Shikimate pathway, phosphoenolpyruvate + erythrose-4P => chorismate,0.0,7.0,nd
+M00023,Tryptophan biosynthesis, chorismate => tryptophan,0.0,6.0,nd
+M00024,Phenylalanine biosynthesis, chorismate => phenylalanine,0.0,3.0,nd
+M00025,Tyrosine biosynthesis, chorismate => tyrosine,0.0,3.0,nd
+M00026,Histidine biosynthesis, PRPP => histidine,0.0,10.0,nd
+M00027,GABA (gamma-Aminobutyrate) shunt,0.0,5.0,nd
+M00028,Ornithine biosynthesis, glutamate => ornithine,0.0,6.0,nd
+M00029,Urea cycle,0.0,5.0,nd
+M00030,Lysine biosynthesis, AAA pathway, 2-oxoglutarate => 2-aminoadipate => lysine,0.0,10.0,nd
+M00031,Lysine biosynthesis, mediated by LysW, 2-aminoadipate => lysine,0.0,5.0,nd
+M00032,Lysine degradation, lysine => saccharopine => acetoacetyl-CoA,0.0,11.0,nd
+M00033,Ectoine biosynthesis, aspartate => ectoine,0.0,5.0,nd
+M00034,Methionine salvage pathway,0.0,14.0,nd
+M00035,Methionine degradation,0.0,4.0,nd
+M00036,Leucine degradation, leucine => acetoacetate + acetyl-CoA,0.0,9.0,nd
+M00037,Melatonin biosynthesis, tryptophan => serotonin => melatonin,0.0,4.0,nd
+M00038,Tryptophan metabolism, tryptophan => kynurenine => 2-aminomuconate,0.0,7.0,nd
+M00039,Monolignol biosynthesis, phenylalanine/tyrosine => monolignol,0.0,15.0,nd
+M00040,Tyrosine biosynthesis, prephanate => pretyrosine => tyrosine,0.0,3.0,nd
+M00042,Catecholamine biosynthesis, tyrosine => dopamine => noradrenaline => adrenaline,0.0,5.0,nd
+M00043,Thyroid hormone biosynthesis, tyrosine => triiodothyronine/thyroxine,0.0,3.0,nd
+M00044,Tyrosine degradation, tyrosine => homogentisate,0.0,6.0,nd
+M00045,Histidine degradation, histidine => N-formiminoglutamate => glutamate,0.0,7.0,nd
+M00046,Pyrimidine degradation, uracil => beta-alanine, thymine => 3-aminoisobutanoate,0.0,8.0,nd
+M00047,Creatine pathway,0.0,4.0,nd
+M00048,Inosine monophosphate biosynthesis, PRPP + glutamine => IMP,0.0,13.0,nd
+M00049,Adenine ribonucleotide biosynthesis, IMP => ADP,ATP,0.0,6.0,nd
+M00050,Guanine ribonucleotide biosynthesis IMP => GDP,GTP,0.0,6.0,nd
+M00051,Uridine monophosphate biosynthesis, glutamine (+ PRPP) => UMP,0.0,8.0,nd
+M00052,Pyrimidine ribonucleotide biosynthesis, UMP => UDP/UTP,CDP/CTP,0.0,5.0,nd
+M00053,Pyrimidine deoxyribonuleotide biosynthesis, CDP/CTP => dCDP/dCTP,dTDP/dTTP,0.0,9.0,nd
+M00055,N-glycan precursor biosynthesis,0.0,15.0,nd
+M00056,O-glycan biosynthesis, mucin type core,0.0,6.0,nd
+M00057,Glycosaminoglycan biosynthesis, linkage tetrasaccharide,0.0,4.0,nd
+M00058,Glycosaminoglycan biosynthesis, chondroitin sulfate backbone,0.0,3.0,nd
+M00059,Glycosaminoglycan biosynthesis, heparan sulfate backbone,0.0,3.0,nd
+M00060,KDO2-lipid A biosynthesis, Raetz pathway, LpxL-LpxM type,0.0,10.0,nd
+M00061,D-Glucuronate degradation, D-glucuronate => pyruvate + D-glyceraldehyde 3P,0.0,5.0,nd
+M00063,CMP-KDO biosynthesis,0.0,4.0,nd
+M00064,ADP-L-glycero-D-manno-heptose biosynthesis,0.0,5.0,nd
+M00065,GPI-anchor biosynthesis, core oligosaccharide,0.0,8.0,nd
+M00066,Lactosylceramide biosynthesis,0.0,2.0,nd
+M00067,Sulfoglycolipids biosynthesis, ceramide/1-alkyl-2-acylglycerol => sulfatide/seminolipid,0.0,4.0,nd
+M00068,Glycosphingolipid biosynthesis, globo-series, LacCer => Gb4Cer,0.0,2.0,nd
+M00069,Glycosphingolipid biosynthesis, ganglio series, LacCer => GT3,0.0,3.0,nd
+M00070,Glycosphingolipid biosynthesis, lacto-series, LacCer => Lc4Cer,0.0,2.0,nd
+M00071,Glycosphingolipid biosynthesis, neolacto-series, LacCer => nLc4Cer,0.0,2.0,nd
+M00072,N-glycosylation by oligosaccharyltransferase,0.0,1.0,nd
+M00073,N-glycan precursor trimming,0.0,5.0,nd
+M00074,N-glycan biosynthesis, high-mannose type,0.0,5.0,nd
+M00075,N-glycan biosynthesis, complex type,0.0,9.0,nd
+M00076,Dermatan sulfate degradation,0.0,5.0,nd
+M00077,Chondroitin sulfate degradation,0.0,2.0,nd
+M00078,Heparan sulfate degradation,0.0,9.0,nd
+M00079,Keratan sulfate degradation,0.0,6.0,nd
+M00081,Pectin degradation,0.0,3.0,nd
+M00082,Fatty acid biosynthesis, initiation,0.0,5.0,nd
+M00083,Fatty acid biosynthesis, elongation,0.0,35.0,nd
+M00085,Fatty acid elongation in mitochondria,0.0,28.0,nd
+M00086,beta-Oxidation, acyl-CoA synthesis,0.0,1.0,nd
+M00087,beta-Oxidation,0.0,28.0,nd
+M00088,Ketone body biosynthesis, acetyl-CoA => acetoacetate/3-hydroxybutyrate/acetone,0.0,5.0,nd
+M00089,Triacylglycerol biosynthesis,0.0,4.0,nd
+M00090,Phosphatidylcholine (PC) biosynthesis, choline => PC,0.0,3.0,nd
+M00091,Phosphatidylcholine (PC) biosynthesis, PE => PC,0.0,3.0,nd
+M00092,Phosphatidylethanolamine (PE) biosynthesis, ethanolamine => PE,0.0,3.0,nd
+M00093,Phosphatidylethanolamine (PE) biosynthesis, PA => PS => PE,0.0,3.0,nd
+M00094,Ceramide biosynthesis,0.0,4.0,nd
+M00095,C5 isoprenoid biosynthesis, mevalonate pathway,0.0,7.0,nd
+M00096,C5 isoprenoid biosynthesis, non-mevalonate pathway,0.0,9.0,nd
+M00097,beta-Carotene biosynthesis, GGAP => beta-carotene,0.0,10.0,nd
+M00098,Acylglycerol degradation,0.0,3.0,nd
+M00099,Sphingosine biosynthesis,0.0,5.0,nd
+M00100,Sphingosine degradation,0.0,2.0,nd
+M00101,Cholesterol biosynthesis, squalene 2,3-epoxide => cholesterol,0.0,14.0,nd
+M00102,Ergocalciferol biosynthesis,0.0,6.0,nd
+M00103,Cholecalciferol biosynthesis,0.0,3.0,nd
+M00104,Bile acid biosynthesis, cholesterol => cholate/chenodeoxycholate,0.0,29.0,nd
+M00106,Conjugated bile acid biosynthesis, cholate => taurocholate/glycocholate,0.0,3.0,nd
+M00107,Steroid hormone biosynthesis, cholesterol => prognenolone => progesterone,0.0,6.0,nd
+M00108,C21-Steroid hormone biosynthesis, progesterone => corticosterone/aldosterone,0.0,4.0,nd
+M00109,C21-Steroid hormone biosynthesis, progesterone => cortisol/cortisone,0.0,5.0,nd
+M00110,C19/C18-Steroid hormone biosynthesis, pregnenolone => androstenedione => estrone,0.0,6.0,nd
+M00112,Tocopherol/tocotorienol biosynthesis,0.0,12.0,nd
+M00113,Jasmonic acid biosynthesis,0.0,18.0,nd
+M00114,Ascorbate biosynthesis, plants, glucose-6P => ascorbate,0.0,9.0,nd
+M00115,NAD biosynthesis, aspartate => NAD,0.0,6.0,nd
+M00116,Menaquinone biosynthesis, chorismate => menaquinol,0.0,9.0,nd
+M00117,Ubiquinone biosynthesis, prokaryotes, chorismate => ubiquinone,0.0,9.0,nd
+M00118,Glutathione biosynthesis, glutamate => glutathione,0.0,2.0,nd
+M00119,Pantothenate biosynthesis, valine/L-aspartate => pantothenate,0.0,5.0,nd
+M00120,Coenzyme A biosynthesis, pantothenate => CoA,0.0,6.0,nd
+M00121,Heme biosynthesis, plants and bacteria, glutamate => heme,0.0,13.0,nd
+M00122,Cobalamin biosynthesis, cobinamide => cobalamin,0.0,9.0,nd
+M00123,Biotin biosynthesis, pimeloyl-ACP/CoA => biotin,0.0,6.0,nd
+M00124,Pyridoxal biosynthesis, erythrose-4P => pyridoxal-5P,0.0,7.0,nd
+M00125,Riboflavin biosynthesis, GTP => riboflavin/FMN/FAD,0.0,9.0,nd
+M00126,Tetrahydrofolate biosynthesis, GTP => THF,0.0,14.0,nd
+M00127,Thiamine biosynthesis, prokaryotes, AIR (+ DXP/tyrosine) => TMP/TPP,0.0,9.0,nd
+M00128,Ubiquinone biosynthesis, eukaryotes, 4-hydroxybenzoate => ubiquinone,0.0,8.0,nd
+M00129,Ascorbate biosynthesis, animals, glucose-1P => ascorbate,0.0,8.0,nd
+M00130,Inositol phosphate metabolism, PI=> PIP2 => Ins(1,4,5)P3 => Ins(1,3,4,5)P4,0.0,4.0,nd
+M00131,Inositol phosphate metabolism, Ins(1,3,4,5)P4 => Ins(1,3,4)P3 => myo-inositol,0.0,4.0,nd
+M00132,Inositol phosphate metabolism, Ins(1,3,4)P3 => phytate,0.0,3.0,nd
+M00133,Polyamine biosynthesis, arginine => agmatine => putrescine => spermidine,0.0,4.0,nd
+M00134,Polyamine biosynthesis, arginine => ornithine => putrescine,0.0,2.0,nd
+M00135,GABA biosynthesis, eukaryotes, putrescine => GABA,0.0,5.0,nd
+M00136,GABA biosynthesis, prokaryotes, putrescine => GABA,0.0,5.0,nd
+M00137,Flavanone biosynthesis, phenylalanine => naringenin,0.0,5.0,nd
+M00138,Flavonoid biosynthesis, naringenin => pelargonidin,0.0,3.0,nd
+M00140,C1-unit interconversion, prokaryotes,0.0,4.0,nd
+M00141,C1-unit interconversion, eukaryotes,0.0,5.0,nd
+M00142,NADH:ubiquinone oxidoreductase, mitochondria,0.0,1.0,nd
+M00143,NADH dehydrogenase (ubiquinone) Fe-S protein/flavoprotein complex, mitochondria,0.0,0.0,nd
+M00144,NADH:quinone oxidoreductase, prokaryotes,0.0,1.0,nd
+M00145,NAD(P)H:quinone oxidoreductase, chloroplasts and cyanobacteria,0.0,1.0,nd
+M00146,NADH dehydrogenase (ubiquinone) 1 alpha subcomplex,0.0,0.0,nd
+M00147,NADH dehydrogenase (ubiquinone) 1 beta subcomplex,0.0,0.0,nd
+M00148,Succinate dehydrogenase (ubiquinone),0.0,1.0,nd
+M00149,Succinate dehydrogenase, prokaryotes,0.0,1.0,nd
+M00150,Fumarate reductase, prokaryotes,0.0,1.0,nd
+M00151,Cytochrome bc1 complex respiratory unit,0.0,0.0,nd
+M00152,Cytochrome bc1 complex,0.0,0.0,nd
+M00153,Cytochrome bd ubiquinol oxidase,0.0,0.0,nd
+M00154,Cytochrome c oxidase,0.0,0.0,nd
+M00155,Cytochrome c oxidase, prokaryotes,0.0,0.0,nd
+M00156,Cytochrome c oxidase, cbb3-type,0.0,0.0,nd
+M00157,F-type ATPase, prokaryotes and chloroplasts,0.0,0.0,nd
+M00158,F-type ATPase, eukaryotes,0.0,0.0,nd
+M00159,V/A-type ATPase, prokaryotes,0.0,0.0,nd
+M00160,V-type ATPase, eukaryotes,0.0,0.0,nd
+M00161,Photosystem II,0.0,0.0,nd
+M00162,Cytochrome b6f complex,0.0,0.0,nd
+M00163,Photosystem I,0.0,0.0,nd
+M00165,Reductive pentose phosphate cycle (Calvin cycle),0.0,12.0,nd
+M00166,Reductive pentose phosphate cycle, ribulose-5P => glyceraldehyde-3P,0.0,5.0,nd
+M00167,Reductive pentose phosphate cycle, glyceraldehyde-3P => ribulose-5P,0.0,7.0,nd
+M00168,CAM (Crassulacean acid metabolism), dark,0.0,2.0,nd
+M00169,CAM (Crassulacean acid metabolism), light,0.0,2.0,nd
+M00170,C4-dicarboxylic acid cycle, phosphoenolpyruvate carboxykinase type,0.0,4.0,nd
+M00171,C4-dicarboxylic acid cycle, NAD - malic enzyme type,0.0,8.0,nd
+M00172,C4-dicarboxylic acid cycle, NADP - malic enzyme type,0.0,4.0,nd
+M00173,Reductive citrate cycle (Arnon-Buchanan cycle),0.0,18.0,nd
+M00174,Methane oxidation, methanotroph, methane => formaldehyde,0.0,3.0,nd
+M00175,Nitrogen fixation, nitrogen => ammonia,0.0,2.0,nd
+M00176,Assimilatory sulfate reduction, sulfate => H2S,0.0,5.0,nd
+M00307,Pyruvate oxidation, pyruvate => acetyl-CoA,0.0,2.0,nd
+M00308,Semi-phosphorylative Entner-Doudoroff pathway, gluconate => glycerate-3P,0.0,7.0,nd
+M00309,Non-phosphorylative Entner-Doudoroff pathway, gluconate/galactonate => glycerate,0.0,7.0,nd
+M00338,Cysteine biosynthesis, homocysteine + serine => cysteine,0.0,2.0,nd
+M00344,Formaldehyde assimilation, xylulose monophosphate pathway,0.0,4.0,nd
+M00345,Formaldehyde assimilation, ribulose monophosphate pathway,2.0,8.0,10.0; 12.0; 18.0; 4.0; 4.0
+M00346,Formaldehyde assimilation, serine pathway,0.0,10.0,nd
+M00356,Methanogenesis, methanol => methane,0.0,7.0,nd
+M00357,Methanogenesis, acetate => methane,0.0,11.0,nd
+M00358,Coenzyme M biosynthesis,0.0,5.0,nd
+M00363,EHEC pathogenicity signature, Shiga toxin,0.0,0.0,nd
+M00364,C10-C20 isoprenoid biosynthesis, bacteria,0.0,4.0,nd
+M00365,C10-C20 isoprenoid biosynthesis, archaea,0.0,4.0,nd
+M00366,C10-C20 isoprenoid biosynthesis, plants,0.0,4.0,nd
+M00367,C10-C20 isoprenoid biosynthesis, non-plant eukaryotes,0.0,4.0,nd
+M00368,Ethylene biosynthesis, methionine => ethylene,0.0,3.0,nd
+M00369,Cyanogenic glycoside biosynthesis, tyrosine => dhurrin,0.0,5.0,nd
+M00370,Glucosinolate biosynthesis, tryptophan => glucobrassicin,0.0,5.0,nd
+M00371,Castasterone biosynthesis, campesterol => castasterone,0.0,8.0,nd
+M00372,Abscisic acid biosynthesis, beta-carotene => abscisic acid,0.0,11.0,nd
+M00373,Ethylmalonyl pathway,0.0,14.0,nd
+M00374,Dicarboxylate-hydroxybutyrate cycle,0.0,14.0,nd
+M00375,Hydroxypropionate-hydroxybutylate cycle,0.0,16.0,nd
+M00376,3-Hydroxypropionate bi-cycle,0.0,19.0,nd
+M00377,Reductive acetyl-CoA pathway (Wood-Ljungdahl pathway),0.0,9.0,nd
+M00378,F420 biosynthesis,0.0,6.0,nd
+M00415,Fatty acid elongation in endoplasmic reticulum,0.0,0.0,nd
+M00416,Cytochrome aa3-600 menaquinol oxidase,0.0,1.0,nd
+M00417,Cytochrome o ubiquinol oxidase,0.0,0.0,nd
+M00418,Toluene degradation, anaerobic, toluene => benzoyl-CoA,0.0,6.0,nd
+M00419,Cymene degradation, p-cymene => p-cumate,0.0,3.0,nd
+M00422,Acetyl-CoA pathway, CO2 => acetyl-CoA,0.0,3.0,nd
+M00432,Leucine biosynthesis, 2-oxoisovalerate => 2-oxoisocaproate,0.0,5.0,nd
+M00433,Lysine biosynthesis, 2-oxoglutarate => 2-oxoadipate,0.0,5.0,nd
+M00525,Lysine biosynthesis, acetyl-DAP pathway, aspartate => lysine,0.0,10.0,nd
+M00526,Lysine biosynthesis, DAP dehydrogenase pathway, aspartate => lysine,0.0,8.0,nd
+M00527,Lysine biosynthesis, DAP aminotransferase pathway, aspartate => lysine,0.0,8.0,nd
+M00528,Nitrification, ammonia => nitrite,0.0,2.0,nd
+M00529,Denitrification, nitrate => nitrogen,0.0,6.0,nd
+M00530,Dissimilatory nitrate reduction, nitrate => ammonia,0.0,6.0,nd
+M00531,Assimilatory nitrate reduction, nitrate => ammonia,0.0,7.0,nd
+M00532,Photorespiration,0.0,10.0,nd
+M00533,Homoprotocatechuate degradation, homoprotocatechuate => 2-oxohept-3-enedioate,0.0,5.0,nd
+M00534,Naphthalene degradation, naphthalene => salicylate,0.0,6.0,nd
+M00535,Isoleucine biosynthesis, pyruvate => 2-oxobutanoate,0.0,4.0,nd
+M00537,Xylene degradation, xylene => methylbenzoate,0.0,9.0,nd
+M00538,Toluene degradation, toluene => benzoate,0.0,3.0,nd
+M00539,Cumate degradation, p-cumate => 2-oxopent-4-enoate + 2-methylpropanoate,0.0,5.0,nd
+M00540,Benzoate degradation, cyclohexanecarboxylic acid =>pimeloyl-CoA,0.0,5.0,nd
+M00541,Benzoyl-CoA degradation, benzoyl-CoA => 3-hydroxypimeloyl-CoA,0.0,5.0,nd
+M00542,EHEC/EPEC pathogenicity signature, T3SS and effectors,0.0,0.0,nd
+M00543,Biphenyl degradation, biphenyl => 2-oxopent-4-enoate + benzoate,0.0,10.0,nd
+M00544,Carbazole degradation, carbazole => 2-oxopent-4-enoate + anthranilate,0.0,4.0,nd
+M00545,Trans-cinnamate degradation, trans-cinnamate => acetyl-CoA,0.0,9.0,nd
+M00546,Purine degradation, xanthine => urea,0.0,8.0,nd
+M00547,Benzene/toluene degradation, benzene => catechol / toluene => 3-methylcatechol,0.0,4.0,nd
+M00548,Benzene degradation, benzene => catechol,0.0,2.0,nd
+M00549,Nucleotide sugar biosynthesis, glucose => UDP-glucose,1.0,4.0,12.0; 10.0; 14.0; 18.0; 20.0
+M00550,Ascorbate degradation, ascorbate => D-xylulose-5P,0.0,5.0,nd
+M00551,Benzoate degradation, benzoate => catechol / methylbenzoate => methylcatechol,0.0,8.0,nd
+M00552,D-galactonate degradation, De Ley-Doudoroff pathway, D-galactonate => glycerate-3P,0.0,5.0,nd
+M00554,Nucleotide sugar biosynthesis, galactose => UDP-galactose,0.0,2.0,nd
+M00555,Betaine biosynthesis, choline => betaine,0.0,8.0,nd
+M00563,Methanogenesis, methylamine/dimethylamine/trimethylamine => methane,0.0,9.0,nd
+M00564,Helicobacter pylori pathogenicity signature, cagA pathogenicity island,0.0,0.0,nd
+M00565,Trehalose biosynthesis, D-glucose 1P => trehalose,0.0,6.0,nd
+M00567,Methanogenesis, CO2 => methane,0.0,13.0,nd
+M00568,Catechol ortho-cleavage, catechol => 3-oxoadipate,0.0,4.0,nd
+M00569,Catechol meta-cleavage, catechol => acetyl-CoA / 4-methylcatechol => propanoyl-CoA,0.0,16.0,nd
+M00570,Isoleucine biosynthesis, threonine => 2-oxobutanoate => isoleucine,0.0,6.0,nd
+M00572,Pimeloyl-ACP biosynthesis, BioC-BioH pathway, malonyl-ACP => pimeloyl-ACP,0.0,10.0,nd
+M00573,Biotin biosynthesis, BioI pathway, long-chain-acyl-ACP => pimeloyl-ACP => biotin,0.0,5.0,nd
+M00574,Pertussis pathogenicity signature, pertussis toxin,0.0,0.0,nd
+M00575,Pertussis pathogenicity signature, T1SS,0.0,0.0,nd
+M00576,ETEC pathogenicity signature, heat-labile and heat-stable enterotoxins,0.0,0.0,nd
+M00577,Biotin biosynthesis, BioW pathway, pimelate => pimeloyl-CoA => biotin,0.0,6.0,nd
+M00579,Phosphate acetyltransferase-acetate kinase pathway, acetyl-CoA => acetate,0.0,2.0,nd
+M00580,Pentose phosphate pathway, archaea, fructose 6P => ribose 5P,0.0,3.0,nd
+M00595,Thiosulfate oxidation by SOX complex, thiosulfate => sulfate,0.0,1.0,nd
+M00596,Dissimilatory sulfate reduction, sulfate => H2S,0.0,3.0,nd
+M00597,Anoxygenic photosystem II,0.0,0.0,nd
+M00598,Anoxygenic photosystem I,0.0,0.0,nd
+M00608,2-Oxocarboxylic acid chain extension, 2-oxoglutarate => 2-oxoadipate => 2-oxopimelate => 2-oxosuberate,0.0,15.0,nd
+M00609,Cysteine biosynthesis, methionine => cysteine,0.0,6.0,nd
+M00611,Oxygenic photosynthesis in plants and cyanobacteria,0.0,0.0,nd
+M00612,Anoxygenic photosynthesis in purple bacteria,0.0,0.0,nd
+M00613,Anoxygenic photosynthesis in green nonsulfur bacteria,0.0,0.0,nd
+M00614,Anoxygenic photosynthesis in green sulfur bacteria,0.0,0.0,nd
+M00615,Nitrate assimilation,0.0,0.0,nd
+M00616,Sulfate-sulfur assimilation,0.0,0.0,nd
+M00617,Methanogen,0.0,0.0,nd
+M00618,Acetogen,0.0,0.0,nd
+M00620,Incomplete reductive citrate cycle, acetyl-CoA => oxoglutarate,0.0,7.0,nd
+M00622,Nicotinate degradation, nicotinate => fumarate,0.0,6.0,nd
+M00623,Phthalate degradation, phthalate => protocatechuate,0.0,3.0,nd
+M00624,Terephthalate degradation, terephthalate => 3,4-dihydroxybenzoate,0.0,2.0,nd
+M00625,Methicillin resistance,0.0,0.0,nd
+M00627,beta-Lactam resistance, Bla system,0.0,0.0,nd
+M00630,D-Galacturonate degradation (fungi), D-galacturonate => glycerol,0.0,5.0,nd
+M00631,D-Galacturonate degradation (bacteria), D-galacturonate => pyruvate + D-glyceraldehyde 3P,0.0,5.0,nd
+M00632,Galactose degradation, Leloir pathway, galactose => alpha-D-glucose-1P,0.0,4.0,nd
+M00633,Semi-phosphorylative Entner-Doudoroff pathway, gluconate/galactonate => glycerate-3P,0.0,8.0,nd
+M00636,Phthalate degradation, phthalate => protocatechuate,0.0,3.0,nd
+M00637,Anthranilate degradation, anthranilate => catechol,0.0,2.0,nd
+M00638,Salicylate degradation, salicylate => gentisate,0.0,2.0,nd
+M00639,Multidrug resistance, efflux pump MexCD-OprJ,0.0,0.0,nd
+M00641,Multidrug resistance, efflux pump MexEF-OprN,0.0,0.0,nd
+M00642,Multidrug resistance, efflux pump MexJK-OprM,0.0,0.0,nd
+M00643,Multidrug resistance, efflux pump MexXY-OprM,0.0,0.0,nd
+M00649,Multidrug resistance, efflux pump AdeABC,0.0,0.0,nd
+M00651,Vancomycin resistance, D-Ala-D-Lac type,0.0,0.0,nd
+M00652,Vancomycin resistance, D-Ala-D-Ser type,0.0,0.0,nd
+M00660,Xanthomonas spp. pathogenicity signature, T3SS and effectors,0.0,0.0,nd
+M00661,Paspaline biosynthesis, geranylgeranyl-PP + indoleglycerol phosphate => paspaline,0.0,5.0,nd
+M00664,Nodulation,0.0,0.0,nd
+M00672,Penicillin biosynthesis, aminoadipate + cycteine + valine => penicillin,0.0,3.0,nd
+M00673,Cephamycin C biosynthesis, aminoadipate + cycteine + valine => cephamycin C,0.0,8.0,nd
+M00674,Clavaminate biosynthesis, arginine + glyceraldehyde-3P => clavaminate,0.0,6.0,nd
+M00675,Carbapenem-3-carboxylate biosynthesis, pyrroline-5-carboxylate + malonyl-CoA => carbapenem-3-carboxylate,0.0,3.0,nd
+M00696,Multidrug resistance, efflux pump AcrEF-TolC,0.0,0.0,nd
+M00697,Multidrug resistance, efflux pump MdtEF-TolC,0.0,0.0,nd
+M00698,Multidrug resistance, efflux pump BpeEF-OprC,0.0,0.0,nd
+M00700,Multidrug resistance, efflux pump AbcA,0.0,0.0,nd
+M00702,Multidrug resistance, efflux pump NorB,0.0,0.0,nd
+M00704,Tetracycline resistance, efflux pump Tet38,0.0,0.0,nd
+M00705,Multidrug resistance, efflux pump MepA,0.0,0.0,nd
+M00714,Multidrug resistance, efflux pump QacA,0.0,0.0,nd
+M00718,Multidrug resistance, efflux pump MexAB-OprM,0.0,0.0,nd
+M00725,Cationic antimicrobial peptide (CAMP) resistance, dltABCD operon,0.0,0.0,nd
+M00726,Cationic antimicrobial peptide (CAMP) resistance, lysyl-phosphatidylglycerol (L-PG) synthase MprF,0.0,0.0,nd
+M00730,Cationic antimicrobial peptide (CAMP) resistance, VraFG transporter,0.0,0.0,nd
+M00736,Nocardicin A biosynthesis, L-pHPG + arginine + serine => nocardicin A,0.0,7.0,nd
+M00740,Methylaspartate cycle,0.0,14.0,nd
+M00741,Propanoyl-CoA metabolism, propanoyl-CoA => succinyl-CoA,0.0,3.0,nd
+M00744,Cationic antimicrobial peptide (CAMP) resistance, protease PgtE,0.0,0.0,nd
+M00745,Imipenem resistance, repression of porin OprD,0.0,0.0,nd
+M00746,Multidrug resistance, repression of porin OmpF,0.0,0.0,nd
+M00761,Undecaprenylphosphate alpha-L-Ara4N biosynthesis, UDP-GlcA => undecaprenyl phosphate alpha-L-Ara4N,0.0,5.0,nd
+M00763,Ornithine biosynthesis, mediated by LysW, glutamate => ornithine,0.0,5.0,nd
+M00769,Multidrug resistance, efflux pump MexPQ-OpmE,0.0,0.0,nd
+M00773,Tylosin biosynthesis, methylmalonyl-CoA + malonyl-CoA => tylactone => tylosin,0.0,8.0,nd
+M00774,Erythromycin biosynthesis, propanoyl-CoA + methylmalonyl-CoA => deoxyerythronolide B => erythromycin A/B,0.0,7.0,nd
+M00775,Oleandomycin biosynthesis, malonyl-CoA + methylmalonyl-CoA => 8,8a-deoxyoleandolide => oleandomycin,0.0,5.0,nd
+M00776,Pikromycin/methymycin biosynthesis, methylmalonyl-CoA + malonyl-CoA => narbonolide/10-deoxymethynolide => pikromycin/methymycin,0.0,6.0,nd
+M00777,Avermectin biosynthesis, 2-methylbutanoyl-CoA/isobutyryl-CoA => 6,8a-Seco-6,8a-deoxy-5-oxoavermectin 1a/1b aglycone => avermectin A1a/B1a/A1b/B1b,0.0,16.0,nd
+M00778,Type II polyketide backbone biosynthesis, acyl-CoA + malonyl-CoA => polyketide,0.0,17.0,nd
+M00779,Dihydrokalafungin biosynthesis, octaketide => dihydrokalafungin,0.0,7.0,nd
+M00780,Tetracycline/oxytetracycline biosynthesis, pretetramide => tetracycline/oxytetracycline,0.0,10.0,nd
+M00781,Nogalavinone/aklavinone biosynthesis, deoxynogalonate/deoxyaklanonate => nogalavinone/aklavinone,0.0,8.0,nd
+M00782,Mithramycin biosynthesis, 4-demethylpremithramycinone => mithramycin,0.0,9.0,nd
+M00783,Tetracenomycin C/8-demethyltetracenomycin C biosynthesis, tetracenomycin F2 => tetracenomycin C/8-demethyltetracenomycin C,0.0,8.0,nd
+M00784,Elloramycin biosynthesis, 8-demethyltetracenomycin C => elloramycin A,0.0,5.0,nd
+M00785,Cycloserine biosynthesis, arginine/serine => cycloserine,0.0,6.0,nd
+M00786,Fumitremorgin alkaloid biosynthesis, tryptophan + proline => fumitremorgin C/A,0.0,9.0,nd
+M00787,Bacilysin biosynthesis, prephenate => bacilysin,0.0,7.0,nd
+M00788,Terpentecin biosynthesis, GGAP => terpentecin,0.0,3.0,nd
+M00789,Rebeccamycin biosynthesis, tryptophan => rebeccamycin,0.0,6.0,nd
+M00790,Pyrrolnitrin biosynthesis, tryptophan => pyrrolnitrin,0.0,4.0,nd
+M00793,dTDP-L-rhamnose biosynthesis,0.0,4.0,nd
+M00794,dTDP-6-deoxy-D-allose biosynthesis,0.0,3.0,nd
+M00795,dTDP-beta-L-noviose biosynthesis,0.0,3.0,nd
+M00796,dTDP-D-mycaminose biosynthesis,0.0,3.0,nd
+M00797,dTDP-D-desosamine biosynthesis,0.0,4.0,nd
+M00798,dTDP-L-mycarose biosynthesis,0.0,5.0,nd
+M00799,dTDP-L-oleandrose biosynthesis,0.0,5.0,nd
+M00800,dTDP-L-megosamine biosynthesis,0.0,5.0,nd
+M00801,dTDP-L-olivose biosynthesis,0.0,4.0,nd
+M00802,dTDP-D-forosamine biosynthesis,0.0,5.0,nd
+M00803,dTDP-D-angolosamine biosynthesis,0.0,4.0,nd
+M00804,Complete nitrification, comammox, ammonia => nitrite => nitrate,0.0,3.0,nd
+M00805,Staurosporine biosynthesis, tryptophan => staurosporine,0.0,7.0,nd
+M00808,Violacein biosynthesis, tryptophan => violacein,0.0,5.0,nd
+M00810,Nicotine degradation, pyridine pathway, nicotine => 2,6-dihydroxypyridine/succinate semialdehyde,0.0,8.0,nd
+M00811,Nicotine degradation, pyrrolidine pathway, nicotine => succinate semialdehyde,0.0,7.0,nd
+M00814,Acarbose biosynthesis, sedoheptulopyranose-7P => acarbose,0.0,10.0,nd
+M00815,Validamycin A biosynthesis, sedoheptulopyranose-7P => validamycin A,0.0,9.0,nd
+M00819,Pentalenolactone biosynthesis, farnesyl-PP => pentalenolactone,0.0,8.0,nd
+M00823,Chlortetracycline biosynthesis, pretetramide => chlortetracycline,0.0,9.0,nd
+M00824,9-membered enediyne core biosynthesis, malonyl-CoA => 3-hydroxyhexadeca-4,6,8,10,12,14-hexaenoyl-ACP => 9-membered enediyne core,0.0,0.0,nd
+M00825,10-membered enediyne core biosynthesis, malonyl-CoA => 3-hydroxyhexadeca-4,6,8,10,12,14-hexaenoyl-ACP => 10-membered enediyne core,0.0,0.0,nd
+M00826,C-1027 benzoxazolinate moiety biosynthesis, chorismate => benzoxazolinyl-CoA,0.0,6.0,nd
+M00827,C-1027 beta-amino acid moiety biosynthesis, tyrosine => 3-chloro-4,5-dihydroxy-beta-phenylalanyl-PCP,0.0,4.0,nd
+M00828,Maduropeptin beta-hydroxy acid moiety biosynthesis, tyrosine => 3-(4-hydroxyphenyl)-3-oxopropanoyl-PCP,0.0,3.0,nd
+M00829,3,6-Dimethylsalicylyl-CoA biosynthesis, malonyl-CoA => 6-methylsalicylate => 3,6-dimethylsalicylyl-CoA,0.0,3.0,nd
+M00830,Neocarzinostatin naphthoate moiety biosynthesis, malonyl-CoA => 2-hydroxy-5-methyl-1-naphthoate => 2-hydroxy-7-methoxy-5-methyl-1-naphthoyl-CoA,0.0,4.0,nd
+M00831,Kedarcidin 2-hydroxynaphthoate moiety biosynthesis, malonyl-CoA => 3,6,8-trihydroxy-2-naphthoate => 3-hydroxy-7,8-dimethoxy-6-isopropoxy-2-naphthoyl-CoA,0.0,4.0,nd
+M00832,Kedarcidin 2-aza-3-chloro-beta-tyrosine moiety biosynthesis, azatyrosine => 2-aza-3-chloro-beta-tyrosyl-PCP,0.0,3.0,nd
+M00833,Calicheamicin biosynthesis, calicheamicinone => calicheamicin,0.0,12.0,nd
+M00834,Calicheamicin orsellinate moiety biosynthesis, malonyl-CoA => orsellinate-ACP => 5-iodo-2,3-dimethoxyorsellinate-ACP,0.0,5.0,nd
+M00835,Pyocyanine biosynthesis, chorismate => pyocyanine,0.0,11.0,nd
+M00836,Coenzyme F430 biosynthesis, sirohydrochlorin => coenzyme F430,0.0,4.0,nd
+M00837,Prodigiosin biosynthesis, L-proline => prodigiosin,0.0,11.0,nd
+M00838,Undecylprodigiosin biosynthesis, L-proline => undecylprodigiosin,0.0,12.0,nd
+M00840,Tetrahydrofolate biosynthesis, mediated by ribA and trpF, GTP => THF,0.0,10.0,nd
+M00841,Tetrahydrofolate biosynthesis, mediated by PTPS, GTP => THF,0.0,11.0,nd
+M00842,Tetrahydrobiopterin biosynthesis, GTP => BH4,0.0,6.0,nd
+M00843,L-threo-Tetrahydrobiopterin biosynthesis, GTP => L-threo-BH4,0.0,6.0,nd
+M00844,Arginine biosynthesis, ornithine => arginine,0.0,3.0,nd
+M00845,Arginine biosynthesis, glutamate => acetylcitrulline => arginine,0.0,8.0,nd
+M00846,Siroheme biosynthesis, glutamate => siroheme,0.0,9.0,nd
+M00847,Heme biosynthesis, archaea, siroheme => heme,0.0,3.0,nd
+M00848,Aurachin biosynthesis, anthranilate => aurachin A,0.0,10.0,nd
+M00849,C5 isoprenoid biosynthesis, mevalonate pathway, archaea,0.0,11.0,nd
+M00850,Vibrio cholerae pathogenicity signature, cholera toxins,0.0,0.0,nd
+M00851,Carbapenem resistance,0.0,0.0,nd
+M00852,Vibrio cholerae pathogenicity signature, toxin coregulated pilus,0.0,0.0,nd
+M00853,ETEC pathogenicity signature, colonization factors,0.0,0.0,nd
+M00854,Glycogen biosynthesis, glucose-1P => glycogen/starch,0.0,5.0,nd
+M00855,Glycogen degradation, glycogen => glucose-6P,0.0,2.0,nd
+M00856,Salmonella enterica pathogenicity signature, typhoid toxin,0.0,0.0,nd
+M00857,Salmonella enterica pathogenicity signature, Vi antigen,0.0,0.0,nd
+M00859,Bacillus anthracis pathogenicity signature, anthrax toxin,0.0,0.0,nd
+M00860,Bacillus anthracis pathogenicity signature, polyglutamic acid capsule biosynthesis,0.0,0.0,nd
+M00861,beta-Oxidation, peroxisome, VLCFA,0.0,8.0,nd
+M00862,beta-Oxidation, peroxisome, tri/dihydroxycholestanoyl-CoA => choloyl/chenodeoxycholoyl-CoA,0.0,8.0,nd
+M00866,KDO2-lipid A biosynthesis, Raetz pathway, non-LpxL-LpxM type,0.0,0.0,nd
+M00867,KDO2-lipid A modification pathway,0.0,5.0,nd
+M00868,Heme biosynthesis, animals and fungi, glycine => heme,0.0,8.0,nd
+M00872,O-glycan biosynthesis, mannose type (core M3),0.0,11.0,nd
+M00873,Fatty acid biosynthesis in mitochondria, animals,0.0,0.0,nd
+M00874,Fatty acid biosynthesis in mitochondria, fungi,0.0,0.0,nd
+M00875,Staphyloferrin B biosynthesis, L-serine => staphyloferrin B,0.0,7.0,nd
+M00876,Staphyloferrin A biosynthesis, L-ornithine => staphyloferrin A,0.0,3.0,nd
+M00877,Kanosamine biosynthesis, glucose 6-phosphate => kanosamine,0.0,3.0,nd
+M00878,Phenylacetate degradation, phenylaxetate => acetyl-CoA/succinyl-CoA,0.0,9.0,nd
+M00879,Arginine succinyltransferase pathway, arginine => glutamate,0.0,5.0,nd
+M00880,Molybdenum cofactor biosynthesis, GTP => molybdenum cofactor,0.0,5.0,nd
+M0Test,,6.0,7.0,65.0; 56.0; 79.0; 92.0; 102.0

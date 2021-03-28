@@ -1,0 +1,40 @@
+.productContainerSpec{
+    display: grid;
+    grid-template-columns: 6fr 1.2fr 2fr;
+    grid-template-areas: "product productSc addProduct";
+}
+
+.product{
+    grid-area: product;
+    margin: 2px;
+}
+
+.productSc{
+    grid-area: productSc;
+    transform: translate(0,-3px);
+    margin: 2px;
+}
+
+.addProduct{
+    grid-area: addProduct;
+    background-color: rgb(150, 25, 130);
+    border-width: 0;
+    border-radius: 0.8vw;
+    color: white;
+    transition: all 400ms ease-in-out;
+    text-transform: uppercase;
+    font-size: clamp(12px, 1vw, 15px);
+    font-family: Roboto;
+    padding: 0;
+    margin: 2px;
+}
+
+.addProduct:hover {
+    background-color: rgb(120, -5, 100);
+    cursor: pointer;
+}
+
+.addProduct:disabled:hover {
+    background-color: rgb(150, 25, 130);
+    cursor: default;
+}

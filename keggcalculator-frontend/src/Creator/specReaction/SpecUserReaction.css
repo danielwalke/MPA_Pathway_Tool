@@ -1,0 +1,91 @@
+.mainContainerSpec {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 0.75fr;
+    grid-template-areas: "substrate"
+"product"
+"reaction"
+"koAndEc"
+"taxonomy"
+"submit";
+    grid-row-gap: 4px;
+}
+
+.close{
+    grid-area: close;
+    background-color: rgb(150, 25, 130);
+    transition: all 400ms ease;
+}
+
+.close:hover {
+    background-color: rgb(120, -5, 100);
+    cursor: pointer;
+}
+
+.substrate{
+    grid-area: substrate;
+    margin: 0;
+}
+
+.product{
+    grid-area: product;
+    margin: 0;
+}
+
+.reaction{
+    grid-area: reaction;
+}
+
+.koAndEc{
+    grid-area: koAndEc;
+}
+
+.taxonomy{
+    grid-area: taxonomy;
+}
+
+.submitSpecReaction{
+    grid-area: submit;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "showReaction submitButton";
+}
+
+.buttonShowReaction{
+    /*grid-area: showReaction;*/
+    color: white;
+    background-color: rgb(150, 25, 130);
+    border-radius: 1.5vw;
+    transition: all 400ms ease;
+    text-transform: uppercase;
+    font-size: clamp(12px, 1vw, 15px);
+    font-family: Roboto;
+}
+
+.buttonShowReaction:hover {
+    background-color: rgb(120, -5, 100);
+    cursor: pointer;
+}
+
+.buttonSpec {
+    /*grid-area: submitButton;*/
+    color: white;
+    background-color: rgb(150, 25, 130);
+    border-radius: 1.5vw;
+    transition: all 400ms ease;
+    text-transform: uppercase;
+    font-size: clamp(12px, 1vw, 15px);
+    padding: 0;
+    font-family: Roboto;
+}
+
+.buttonSpec:hover {
+    background-color: rgb(120, -5, 100);
+    cursor: pointer;
+}
+
+.buttonSpec:disabled:hover {
+    background-color: rgb(150, 25, 130);
+    cursor: default;
+}
+
+

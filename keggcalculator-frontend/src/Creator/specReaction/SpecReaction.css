@@ -1,0 +1,10 @@
+.reactionContainerSpec{
+    display: grid;
+    margin: 0;
+    grid-template-columns: 100%;
+    grid-template-areas: "reaction";
+}
+
+.reaction{
+    grid-area: reaction;
+}

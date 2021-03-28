@@ -1,0 +1,42 @@
+.relativePosition {
+    position: relative;
+    user-select: none;
+}
+
+.floatingDivCompoundForNormal {
+    position: absolute !important;
+    z-index: 10;
+    top: 40%;
+    width: 65%;
+    left: 18%;
+}
+
+.floatingDivCompoundForBig {
+    position: absolute !important;
+    z-index: 10;
+    top: 30%;
+    width: 50%;
+    left: 25%;
+}
+
+.floatingDivReaction {
+    position: absolute !important;
+    z-index: 10;
+    top: 40%;
+    width: 60%;
+    left: 20%;
+}
+
+.cursor {
+    cursor: pointer !important;
+}
+
+.mediumIcons {
+    width: 200px;
+    height: 200px;
+}
+
+.bigIcons {
+    width: 400px;
+    height: 200px;
+}

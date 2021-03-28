@@ -1,0 +1,8 @@
+/target/
+/.classpath
+/.project
+/upload/
+/download/
+/.idea/
+/.settings/
+/bin/

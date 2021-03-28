@@ -1,0 +1,39 @@
+.captionContainerReaction{
+    /*transform: translate(-10px,0);*/
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 20%);
+    grid-template-rows: 50% 50%;
+    grid-template-areas: "minReaction min2Reaction midReaction  max2Reaction maxReaction"
+"heatReaction heatReaction heatReaction heatReaction heatReaction";
+    justify-content: space-between;
+}
+.userCaptionReaction{
+    grid-area: heatReaction;
+    background: linear-gradient(90deg, rgb(255,0,0),rgb(255,255,0),rgb(0,255,0));
+    height: 10px;
+}
+
+.minReaction{
+    grid-area: minReaction;
+}
+
+.min2Reaction{
+    grid-area: min2Reaction;
+}
+
+.midReaction{
+    grid-area: midReaction;
+}
+
+
+.max2Reaction{
+    grid-area: max2Reaction;
+}
+
+.maxReaction{
+    grid-area: maxReaction;
+    justify-self: end;
+}
+
+

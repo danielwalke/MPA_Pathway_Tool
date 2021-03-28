@@ -1,0 +1,25 @@
+.autocomplete {
+    width: 30vw;
+    margin: 0 0 6px 0;
+}
+
+.checkBox {
+    width: 1vw;
+    height: 9vh;
+    display: none;
+}
+
+.autoCompleteContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.keggContainer {
+    display: flex;
+    flex-direction: column;
+    width: 35vw;
+    float: left;
+    z-index: 1;
+    border: 2px solid black;
+}
+

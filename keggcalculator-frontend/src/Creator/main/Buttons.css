@@ -1,0 +1,30 @@
+.delete{
+    position: relative;
+    color: darkblue;
+    height: 20vh;
+    font-size: small;
+    flex-direction: column;
+    left: 55vw
+}
+
+.submit{
+    padding-top: 2.5%;
+    border-radius: 20vw;
+    position: relative;
+    height: 10vh;
+    color: darkblue;
+    align-content: baseline;
+    background-color: white;
+    font-size: large;
+    font-weight: bold;
+    display: inline-flex;
+    flex-direction: row;
+    border: none;
+    margin: auto;
+    outline: none;
+    z-index: 1;
+}
+
+.submit:hover{
+    background-color: 	#D0D0D0;
+}

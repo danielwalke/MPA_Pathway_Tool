@@ -1,0 +1,17 @@
+.interfaceContainer{
+    /*width: auto;*/
+    display: grid;
+    grid-auto-columns: auto;
+    height: auto;
+    grid-auto-rows: auto;
+    gap: 2px;
+    /*grid-template-rows: 1fr 3fr 3fr 10fr 2fr;*/
+}
+
+.config{
+    display: flex;
+}
+
+.reactions{
+    display: flex;
+}
