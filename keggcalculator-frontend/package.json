@@ -20,7 +20,7 @@
     "node-gyp": "^7.1.2",
     "object-to-xml": "^2.0.0",
     "react": "^16.8.6",
-    "react-d3-graph": "^2.5.0",
+    "react-d3-graph": "2.5.0",
     "react-dom": "^16.13.1",
     "react-player": "^2.8.2",
     "react-redux": "^7.2.2",
@@ -56,7 +56,6 @@
     "@babel/plugin-syntax-jsx": "^7.12.13",
     "@babel/preset-react": "^7.12.13",
     "@material-ui/core": "^4.11.0",
-    "axios": "^0.20.0",
     "react-dropzone": "^11.0.3",
     "react-router-dom": "^5.2.0"
   }
