@@ -11,8 +11,6 @@ import IconButton from "@material-ui/core/IconButton";
 import clsx from "clsx";
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
-import SpecialproteinsModal from "./SpecialproteinsModal";
-import SBMLKEGGConverter from "../upload/SBMLKEGGConverter";
 
 const UserInterface = () => {
     const [open, setOpen] = React.useState(true)
@@ -129,15 +127,6 @@ const UserInterface = () => {
                             Reactions
                         </button>
                     </div>
-                    <div>
-                        <SpecialproteinsModal/>
-                        <button className={"downloadButton"} onClick={()=> {
-                            dispatch({type: "SWITCHSHOWSPECIALPROTEINSMODAL"})
-                        }}>protein without metabolites</button>
-                    </div>
-    <div>
-        <SBMLKEGGConverter speciesSBML={keggState.sbmlSpecies} reactionsSBML={[]} showSbmlKeggConverter={keggState.showSbmlKeggConverter} dispatch={useDispatch} state={keggState}/>
-    </div>
                     <div>
                         <button className={"downloadButton"}
                                 onClick={() => dispatch({type: "SWITCHMULTIREACTIONMODAL"})}>import multiple reactions
