@@ -20,13 +20,8 @@ import {requestGenerator} from "../request/RequestGenerator";
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import {Drawer, makeStyles, Toolbar, useTheme} from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
-import clsx from "clsx";
-import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
-import Divider from "@material-ui/core/Divider";
 //main class for graph visualization and UI for modifying graph
-//TODO: disables buttons if request is not valid -> checkbox
-//TODO: download csv for calculator and set it as second file in the downloadButton
 //BUG: API doppelt C00668 bei C00267 => einmal linke Seite, einmal Rechte vllt anpassen in meiner api
 //FILTER: in api filter after compounds who only have reactions-> others dont make sense
 // const ModuleStore = React.createContext(); //idea for storing all states a separate store
@@ -54,11 +49,9 @@ export const useStylesMain = makeStyles({
 
 const Main = () => {
     const [open, setOpen] = React.useState(false)
-    const generalState = useSelector(state => state.general)
     const graphState = useSelector(state => state.graph)
     const dispatch = useDispatch()
     const proteinState = useSelector(state => state.mpaProteins)
-    const theme = useTheme()
     const exit = () => "Are you sure you want to exit?"
     useEffect(() => {     //first effect triggered after page loads first time (componentDidMount)
             dispatch({type: "SWITCHLOADING"})
@@ -78,7 +71,6 @@ const Main = () => {
             window.onbeforeunload = exit
         }, [dispatch]
     )
-
 
     const classes = useStylesMain()
 
@@ -132,7 +124,6 @@ const Main = () => {
                             {proteinState.proteinSet.size === 0 && <h4>Waiting for experimental data...</h4>}
                         </div>
                         <Sample/>
-
                     </Drawer>
                 </div>
             </div>

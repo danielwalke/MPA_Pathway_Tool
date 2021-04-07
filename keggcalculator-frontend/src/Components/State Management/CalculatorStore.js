@@ -2,21 +2,43 @@ import {action, observable, computed, decorate, toJS} from "mobx"
 
 class Calculator_Store {
 
-    jobID = undefined;
+    constructor() {
+        this.jobID = undefined;
 
-    MPAFile = [];
+        this.MPAFile = [];
 
-    moduleFiles = [];
+        this.moduleFiles = [];
 
-    currentStatus = undefined;
+        this.currentStatus = undefined;
 
-    downloadLink = undefined;
+        this.downloadLink = undefined;
 
-    processing = false;
+        this.processing = false;
 
-    error = undefined;
+        this.error = undefined;
+        this.setUploadedFiles = this.setUploadedFiles.bind(this)
+        this.setJobIDAndMessage = this.setJobIDAndMessage.bind(this)
+        this.setErrorMessage = this.setErrorMessage.bind(this)
+        this.setDownloadStatusAndMessage = this.setDownloadStatusAndMessage.bind(this)
+        this.getSize = this.getSize.bind(this)
+        this.removeFiles = this.removeFiles.bind(this)
+    }
 
-    setUploadedFiles = (fileType, collection) => {
+    // jobID = undefined;
+    //
+    // MPAFile = [];
+    //
+    // moduleFiles = [];
+    //
+    // currentStatus = undefined;
+    //
+    // downloadLink = undefined;
+    //
+    // processing = false;
+    //
+    // error = undefined;
+
+    setUploadedFiles(fileType, collection){
         this.downloadLink = undefined;
         this.currentStatus = undefined;
         if(fileType === "MPAFile") {
@@ -27,12 +49,12 @@ class Calculator_Store {
         }
     };
 
-    setJobIDAndMessage = (jobID, message) => {
+    setJobIDAndMessage(jobID, message){
         this.jobID = jobID;
         this.currentStatus = message;
     };
 
-    setErrorMessage = (errorMessage) => {
+    setErrorMessage(errorMessage){
         this.currentStatus = errorMessage;
         this.processing = false;
         this.downloadLink = undefined;
@@ -40,12 +62,12 @@ class Calculator_Store {
         this.error = true;
     };
 
-    setDownloadStatusAndMessage = (downloadLink, message) => {
+    setDownloadStatusAndMessage(downloadLink, message){
         this.downloadLink = downloadLink;
         this.currentStatus = message;
     };
 
-    getSize = (fileType) => {
+    getSize (fileType) {
         if(fileType === "MPAFile") {
             return this.MPAFile.length;
         }
@@ -62,7 +84,7 @@ class Calculator_Store {
         return toJS(this.moduleFiles);
     }
 
-    removeFiles = (fileType, index) => {
+    removeFiles (fileType, index) {
         this.downloadLink = undefined;
         this.currentStatus = undefined;
         if(fileType === "MPAFile") {

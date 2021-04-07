@@ -4,13 +4,31 @@ import {endpoint_getReactionAndProduct} from "../../App Configurations/RequestUR
 
 class Module_Store {
 
-    reactionsStack = [
-        {rawEntity: "", reaction: "", productEntity: "", reactionWithProduct: "", reversible: false}
-    ];
+    constructor() {
+        this.reactionsStack = [
+            {rawEntity: "", reaction: "", productEntity: "", reactionWithProduct: "", reversible: false}
+        ];
 
-    enableBackdrop = false;
+        this.enableBackdrop = false;
+        this.addReaction = this.addReaction.bind(this)
+        this.switchBackdrop = this.switchBackdrop.bind(this)
+        this.addCompounds = this.addCompounds.bind(this)
+        this.addToReactionStack = this.addToReactionStack.bind(this)
+        this.removeFromReactionStack = this.removeFromReactionStack.bind(this)
+        this.addReactionWithProduct = this.addReactionWithProduct.bind(this)
+        this.getData = this.getData.bind(this)
+        this.getValueTag = this.getValueTag.bind(this)
+        this.getReactionWithProduct = this.getReactionWithProduct.bind(this)
 
-    addReaction = (currentIndex) => {
+    }
+
+    // reactionsStack = [
+    //     {rawEntity: "", reaction: "", productEntity: "", reactionWithProduct: "", reversible: false}
+    // ];
+    //
+    // enableBackdrop = false;
+
+    addReaction (currentIndex){
         this.switchBackdrop(true);
         this.getReactionWithProduct(this.reactionsStack[currentIndex].productEntity.compoundId).then(response => {
             if(response.status === 201){
@@ -25,11 +43,11 @@ class Module_Store {
         return toJS(this.reactionsStack);
     };
 
-    switchBackdrop = (flag) => {
+    switchBackdrop (flag) {
         this.enableBackdrop = flag;
     };
 
-    addCompounds = (compoundList) => {
+    addCompounds (compoundList) {
         this.compoundList = compoundList;
     };
 
@@ -37,7 +55,7 @@ class Module_Store {
         return toJS(this.compoundList)
     };
 
-    addToReactionStack = (reactionIndex, reactionAttribute, attributeValue) => {
+    addToReactionStack (reactionIndex, reactionAttribute, attributeValue) {
         this.reactionsStack[reactionIndex][reactionAttribute] = attributeValue;
         if(this.reactionsStack[reactionIndex].reaction !== "" && this.reactionsStack[reactionIndex].productEntity !== "") {
             this.reactionsStack[reactionIndex].reactionWithProduct.map(reactionWithProduct => {
@@ -52,7 +70,7 @@ class Module_Store {
         }
     };
 
-    removeFromReactionStack = (reactionIndex, reactionAttribute) => {
+    removeFromReactionStack (reactionIndex, reactionAttribute) {
         this.reactionsStack[reactionIndex][reactionAttribute] = "";
         if(reactionAttribute === "rawEntity") {
             this.reactionsStack[reactionIndex].reaction = "";
@@ -65,7 +83,7 @@ class Module_Store {
         }
     };
 
-    addReactionWithProduct = (data, reactionIndex) => {
+    addReactionWithProduct (data, reactionIndex)  {
         let reactionWithProduct =[]
         //Non reversible reaction
         data.productSortedReactions.map(reactionAndProduct => {
@@ -80,7 +98,7 @@ class Module_Store {
         this.reactionsStack[reactionIndex].reactionWithProduct = reactionWithProduct;
     };
 
-    getData = (reactionIndex, type,  searchEntry) => {
+    getData (reactionIndex, type,  searchEntry)  {
         let returnData = [];
         if(type === "reaction"){
             let duplicateFinder = [];
@@ -117,7 +135,7 @@ class Module_Store {
         return returnData;
     };
 
-    getValueTag = (reactionIndex, type) => {
+    getValueTag (reactionIndex, type)  {
         if(type === "rawEntity") {
             return `${this.reactionsStack[reactionIndex].rawEntity.compoundName} (${this.reactionsStack[reactionIndex].rawEntity.compoundId})`
         }
@@ -129,7 +147,7 @@ class Module_Store {
         }
     };
 
-    getReactionWithProduct = (compoundId) => {
+    getReactionWithProduct (compoundId) {
         return requestGenerator("POST", endpoint_getReactionAndProduct, {substrateId: compoundId}, "", "")
     };
 

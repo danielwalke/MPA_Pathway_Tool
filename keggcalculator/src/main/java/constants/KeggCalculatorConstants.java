@@ -41,4 +41,6 @@ public class KeggCalculatorConstants {
 	public static final String SUBSTRATE_TO_REACTION_DIR="src/main/resources/KEGG/essentialFiles/kegg_list_reaction2substrate_300920.csv";
 	//list of products to reaction from kegg-api (contains products, stochiometric coefficient, polymerisation factor and reaction-number)
 	public static final String PRODUCT_TO_REACTION_DIR="src/main/resources/KEGG/essentialFiles/kegg_list_reaction2product_300920.csv";
+	
+
 }

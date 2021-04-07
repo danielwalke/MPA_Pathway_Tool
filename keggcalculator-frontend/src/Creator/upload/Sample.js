@@ -18,7 +18,7 @@ const handleSample = (e, index, state, dispatch) => {
         }
     })
     graphState.data.nodes.map(node => {
-        if (node.symbolType === "diamond") {
+        if (node.symbolType === "diamond" || node.symbolType === "square") {
             const filteredReaction = generalState.reactionsInSelectArray.filter(r => node.id.substring(node.id.length - 6, node.id.length) === r.reactionId)
             const reaction = filteredReaction[0]; //matches everytime only one element
             const {koNumbersString, ecNumbersString, taxonomies, taxa} = reaction

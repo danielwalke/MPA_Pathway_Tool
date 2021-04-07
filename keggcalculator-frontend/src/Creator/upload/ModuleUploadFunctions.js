@@ -15,37 +15,54 @@ export const handleGraphUpload = (rows, dispatch, state) => {
         const compoundAbbr = columns[14]
         const keyComp = columns[15]
         const opacity = keyComp === "true" ? 1 : 0.4
-        const compoundNode = {
-            id: compoundName,
-            x: +compoundX,
-            y: +compoundY,
-            color: "darkgreen",
-            symbolType: "circle",
-            opacity: opacity
-        }
-        if(!addedReactions.includes(reactionName)){
-            const reactionNode = {
-                id: reactionName,
-                x: +reactionX,
-                y: +reactionY,
-                color: "black",
-                symbolType: "diamond",
-                opacity: 1
+        if(compoundName.length===0){
+            if(!addedReactions.includes(reactionName)){
+                const reactionNode = {
+                    id: reactionName,
+                    x: +reactionX,
+                    y: +reactionY,
+                    color: "black",
+                    symbolType: "square",
+                    opacity: 1
+                }
+                nodes.push(reactionNode)
             }
-            nodes.push(reactionNode)
+            addedReactions.push(reactionName)
+            state.abbreviationsObject[`${reactionName}`] = reactionAbbr
+        }else{
+            const compoundNode = {
+                id: compoundName,
+                x: +compoundX,
+                y: +compoundY,
+                color: "darkgreen",
+                symbolType: "circle",
+                opacity: opacity
+            }
+            if(!addedReactions.includes(reactionName)){
+                const reactionNode = {
+                    id: reactionName,
+                    x: +reactionX,
+                    y: +reactionY,
+                    color: "black",
+                    symbolType: "diamond",
+                    opacity: 1
+                }
+                nodes.push(reactionNode)
+            }
+            addedReactions.push(reactionName)
+            state.abbreviationsObject[`${reactionName}`] = reactionAbbr
+            state.abbreviationsObject[`${compoundName}`] = compoundAbbr
+            let link = {}
+            if (typeOfCompound === "substrate") {
+                link = {source: compoundName, target: reactionName, opacity: opacity}
+            } else {
+                link = {source: reactionName, target: compoundName, opacity: opacity}
+            }
+            links.push(link)
+            nodes.push(compoundNode)
         }
-        addedReactions.push(reactionName)
-        state.abbreviationsObject[`${reactionName}`] = reactionAbbr
-        state.abbreviationsObject[`${compoundName}`] = compoundAbbr
         dispatch({type: "SETABBREVIATIONOBJECT", payload: state.abbreviationsObject})
-        let link = {}
-        if (typeOfCompound === "substrate") {
-            link = {source: compoundName, target: reactionName, opacity: opacity}
-        } else {
-            link = {source: reactionName, target: compoundName, opacity: opacity}
-        }
-        links.push(link)
-        nodes.push(compoundNode)
+
 
     }
     return ({nodes, links})

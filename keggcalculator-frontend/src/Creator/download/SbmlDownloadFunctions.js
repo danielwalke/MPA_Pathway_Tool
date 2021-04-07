@@ -134,3 +134,17 @@ export const setReactionListfromSbml = (reactions, dispatch) => {
     })
 
 }
+
+
+export const getSpeciesFromSbml = (sbmlObject) =>{
+    const listOfSpecies = sbmlObject.getElementsByTagName("listOfSpecies")[0]
+    const list = []
+    for(const species of listOfSpecies.children){
+        console.log(species)
+        const name = species.attributes.name
+        console.log(name)
+        const id = species.attributes.id
+        list.push({name:name, id:id})
+    }
+    return list
+}

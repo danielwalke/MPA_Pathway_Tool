@@ -18,7 +18,13 @@ const defaultState = {
     nodeConfigurationModal: false,
     taxonomy: "",
     taxonomies: [],
-    taxonomicRank: ""
+    taxonomicRank: "",
+    showSpecialProteinsModal: false,
+    specialProteinName: "",
+    specialProteinKoNumbers: [],
+    specialProteinEcNumbers: [],
+    specialProteins: [],
+
 }
 
 export const generalReducer = (state = defaultState, action) => {
@@ -101,6 +107,25 @@ export const generalReducer = (state = defaultState, action) => {
         }
         case "SETTAXONOMICRANK":
             return {...state, taxonomicRank: payload}
+        case "SWITCHSHOWSPECIALPROTEINSMODAL":
+            return {...state, showSpecialProteinsModal: !state.showSpecialProteinsModal}
+        case "SETSPECIALPROTEINNAME":
+            return {...state, specialProteinName: payload}
+        case "SETSPECIALPROTEINKONUMBERS":
+            const koNumbers = payload.split(";")
+            return {...state, specialProteinKoNumbers: koNumbers}
+        case "SETSPECIALPROTEINECNUMBERS":
+            const ecNumbers = payload.split(";")
+            return {...state, specialProteinEcNumbers: ecNumbers}
+        case "ADDSPECIALPROTEIN":
+            return {...state,
+                specialProteins: [...state.specialProteins, {
+                    name: state.specialProteinName,
+                    koNumbers: state.specialProteinKoNumbers,
+                    ecNumbers: state.specialProteinEcNumbers
+                }]
+            }
+
         default:
             return state;
     }

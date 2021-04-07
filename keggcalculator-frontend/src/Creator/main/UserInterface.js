@@ -11,9 +11,14 @@ import IconButton from "@material-ui/core/IconButton";
 import clsx from "clsx";
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
+import SpecialproteinsModal from "./SpecialproteinsModal";
+import SBMLKEGGConverter from "../upload/SBMLKEGGConverter";
+
 const UserInterface = () => {
     const [open, setOpen] = React.useState(true)
     const [drawerOffSet, setDrawerOffset] = React.useState(0)
+    const state = useSelector(state => state.general)
+    const keggState = useSelector(state=> state.keggReaction)
     const graphState = useSelector(state => state.graph)
     const dispatch = useDispatch()
     useEffect(()=>{
@@ -52,7 +57,7 @@ const UserInterface = () => {
         drawerPaper: {
             position:"absolute",
             top: `${drawerOffSet}px`,
-            height:"85vh"
+            height:"80vh"
 
         }
     });
@@ -125,6 +130,15 @@ const UserInterface = () => {
                         </button>
                     </div>
                     <div>
+                        <SpecialproteinsModal/>
+                        <button className={"downloadButton"} onClick={()=> {
+                            dispatch({type: "SWITCHSHOWSPECIALPROTEINSMODAL"})
+                        }}>protein without metabolites</button>
+                    </div>
+    <div>
+        <SBMLKEGGConverter speciesSBML={keggState.sbmlSpecies} reactionsSBML={[]} showSbmlKeggConverter={keggState.showSbmlKeggConverter} dispatch={useDispatch} state={keggState}/>
+    </div>
+                    <div>
                         <button className={"downloadButton"}
                                 onClick={() => dispatch({type: "SWITCHMULTIREACTIONMODAL"})}>import multiple reactions
                         </button>
@@ -138,7 +152,7 @@ const UserInterface = () => {
                         </div>
                         <DonwloadModal/>
                     </div>
-                    {graphState.doubleClickNode.length > 0 && <div style={{width:"15vw", height:"25vh", overflow:"auto"}}>
+                    {graphState.doubleClickNode.length > 0 && <div style={{width:"15vw", height:"25vh", overflow:"auto", margin:"3px"}}>
                         {compound.id}
                         <div>x:</div>
                         <TextField type={"text"} id={"x coordinates"}

@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import xmlParser from "react-xml-parser/xmlParser"
 import {
     drawGraphFromSbml,
-    getReactionsFromSbml,
+    getReactionsFromSbml, getSpeciesFromSbml,
     getSpeciesInformation, setReactionListfromSbml
 } from "../download/SbmlDownloadFunctions";
 
@@ -18,11 +18,16 @@ const ModuleSBMLUpload = () => {
             const result = e.target.result.trim()
             const parser = new xmlParser()
             const sbmlObject = parser.parseFromString(result)
-            const reactions = getReactionsFromSbml(sbmlObject)
-            const reactionObjects = getSpeciesInformation(reactions, sbmlObject)
-            const data = drawGraphFromSbml(reactionObjects)
-            setReactionListfromSbml(reactionObjects, dispatch)
-            dispatch({type: "SETDATA", payload: data})
+            const sbmlSpecies = getSpeciesFromSbml(sbmlObject)
+            console.log(sbmlSpecies)
+            // const reactions = getReactionsFromSbml(sbmlObject)
+            // const reactionObjects = getSpeciesInformation(reactions, sbmlObject)
+            // const data = drawGraphFromSbml(reactionObjects)
+            // setReactionListfromSbml(reactionObjects, dispatch)
+            dispatch({type:"SETSBMLSPECIES", payload:sbmlSpecies})
+            dispatch({type:"SWITCHSHOWSBMLKEGGCONVERTER"})
+
+            // dispatch({type: "SETDATA", payload: data})
             dispatch({type: "SWITCHISMODULEIMPORT"})
             dispatch({type: "SETLOADING", payload: false})
         }

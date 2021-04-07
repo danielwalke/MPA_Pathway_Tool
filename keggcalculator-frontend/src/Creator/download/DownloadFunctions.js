@@ -22,8 +22,8 @@ export const getReactions = (graphState) =>{
             product.x = getNodePosition(productName).x
             product.y = getNodePosition(productName).y
             product.name = productName
-            product.opacity = typeof graphState.data.nodes.filter(node => node.id === productName)[0].opacity === "undefined"? 1: graphState.data.nodes.filter(node => node.id === productName)[0].opacity
-            product.abbreviation = typeof graphState.abbreviationsObject[productName] === "undefined" ? productName : graphState.abbreviationsObject[productName]
+            product.opacity = typeof clonedeep(graphState.data.nodes).filter(node => node.id === productName)[0].opacity === "undefined"? 1: clonedeep(graphState.data.nodes).filter(node => node.id === productName)[0].opacity
+            product.abbreviation = typeof clonedeep(graphState.abbreviationsObject[productName]) === "undefined" ? productName : clonedeep(graphState.abbreviationsObject[productName])
             reactionObjects[`${reactionName}`].products.push(product)
 
         } else {
@@ -41,12 +41,15 @@ export const getReactions = (graphState) =>{
             substrate.x = getNodePosition(substrateName).x
             substrate.y = getNodePosition(substrateName).y
             substrate.name = substrateName
-            substrate.opacity = typeof graphState.data.nodes.filter(node => node.id === substrateName)[0].opacity === "undefined"? 1 : graphState.data.nodes.filter(node => node.id === substrateName)[0].opacity
-            substrate.abbreviation = typeof graphState.abbreviationsObject[substrateName] === "undefined" ? substrateName : graphState.abbreviationsObject[substrateName]
+            substrate.opacity = typeof clonedeep(graphState.data.nodes.filter(node => node.id === substrateName)[0].opacity) === "undefined"? 1 : clonedeep(graphState.data.nodes.filter(node => node.id === substrateName)[0].opacity)
+            substrate.abbreviation = typeof clonedeep(graphState.abbreviationsObject[substrateName]) === "undefined" ? substrateName : clonedeep(graphState.abbreviationsObject[substrateName])
             reactionObjects[`${reactionName}`].substrates.push(substrate)
         }
         return null;
     })
+    if(graphState.data.links.length === 0){
+        graphState.data.nodes.map(specialProtein => reactionNames.push(specialProtein.id))
+    }
     console.log(reactionObjects)
     return {reactionObjects, reactionNames}
 }

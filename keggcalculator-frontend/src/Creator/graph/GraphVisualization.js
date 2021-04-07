@@ -12,7 +12,7 @@ const onClickNode = (nodeId, dispatch, graphState, keggState) => {
     }
     // the graph configuration, you only need to pass down properties
 // that you want to override, otherwise default ones will be used
-    if (nodeId.match(/[R,U][0-9][0-9][0-9][0-9][0-9]/) != null) {
+    if (nodeId.match(/[R,UP][0-9][0-9][0-9][0-9][0-9]/) != null) {
         dispatch({type: "SETCHOSENNODE", payload: nodeId.substring(nodeId.length - 6, nodeId.length)})
         dispatch({type: "SETSHOWINFO", payload: true})
     }

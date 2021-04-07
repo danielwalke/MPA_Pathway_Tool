@@ -51,9 +51,9 @@ const EcReactions = () => {
         const products = Object.keys(reaction.stochiometryProductsString)
         const substratesName = substrates.map(substrate => state.compoundId2Name[substrate])
         const productsName = products.map(product => state.compoundId2Name[product])
-        substratesName.map(substrate => data.nodes.push({id:substrate, color: "darkgreen", opacity: 1}))
-        productsName.map(product => data.nodes.push({id:product, color: "darkgreen", opacity: 1}))
-        data.nodes.push({id:`${reaction.reactionName} ${reaction.reactionId}`, color: "black", opacity: 1, symbolType: "diamond"})
+        substratesName.map(substrate => data.nodes.push({id:substrate, color: "darkgreen", opacity: 1,x:0,y:0}))
+        productsName.map(product => data.nodes.push({id:product, color: "darkgreen", opacity: 1,x:0,y:0}))
+        data.nodes.push({id:`${reaction.reactionName} ${reaction.reactionId}`, color: "black", opacity: 1, symbolType: "diamond",x:0,y:0})
         substratesName.map(substrate => data.links.push({source: substrate, target: `${reaction.reactionName} ${reaction.reactionId}`}))
         productsName.map(product => data.links.push({source: `${reaction.reactionName} ${reaction.reactionId}`, target: product}))
         dispatch({type: "SETDATA", payload: data})
@@ -112,7 +112,7 @@ const EcReactions = () => {
                     variant="outlined"
                     id="ecRequest"
                     value={state.ecNumbersRequestText}
-                    placeholder={"A.B.C.D;E.F.G.H"}
+                    placeholder={"1.1.1.1;1.1.1.2"}
                     onChange={(e) => dispatch({
                         type: "SETECNUMBERSREQUESTTEXT",
                         payload: e.target.value.toString()
@@ -121,6 +121,7 @@ const EcReactions = () => {
                 <button className={"downloadButton"} onClick={()=> dispatch({type:"SETECNUMBERSREQUEST", payload: state.ecNumbersRequestText})}>set ec numbers</button>
             </div>
             <div style={{display:"grid", gridTemplateColumns:"8fr 2fr"}}>
+                {console.log(state.ecNumberSet)}
                 <div><Autocomplete
                     size={"small"}
                     id="combo-box-demo"
