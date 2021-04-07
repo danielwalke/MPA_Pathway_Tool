@@ -15,8 +15,6 @@ import CloseIcon from '@material-ui/icons/Close';
 const UserInterface = () => {
     const [open, setOpen] = React.useState(true)
     const [drawerOffSet, setDrawerOffset] = React.useState(0)
-    const state = useSelector(state => state.general)
-    const keggState = useSelector(state=> state.keggReaction)
     const graphState = useSelector(state => state.graph)
     const dispatch = useDispatch()
     useEffect(()=>{
