@@ -41,6 +41,11 @@ public class KeggCalculatorConstants {
 	public static final String SUBSTRATE_TO_REACTION_DIR="src/main/resources/KEGG/essentialFiles/kegg_list_reaction2substrate_300920.csv";
 	//list of products to reaction from kegg-api (contains products, stochiometric coefficient, polymerisation factor and reaction-number)
 	public static final String PRODUCT_TO_REACTION_DIR="src/main/resources/KEGG/essentialFiles/kegg_list_reaction2product_300920.csv";
+
+	//SBML-file namespaces
+	public static final String LEVEL1 = "http://www.sbml.org/sbml/level1";//according to devops depractated
+	public static final String LEVEL2 = "http://www.sbml.org/sbml/level3/version1/core";//according to devops depractated
+	public static final String LEVEL3 = "http://www.sbml.org/sbml/level3";
 	
 
 }

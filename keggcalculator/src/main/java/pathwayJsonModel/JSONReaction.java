@@ -11,6 +11,7 @@ public class JSONReaction {
 	private final HashMap<String, String> stochiometrySubstratesString;
 	private final HashMap<String, String> stochiometryProductsString;
 	private final ArrayList<String> taxonomies;
+	private final HashMap<String, String> taxa;
 	private final boolean isForwardReaction;
 	private final String abbreviation;
 	private final double opacity;
@@ -36,6 +37,7 @@ public class JSONReaction {
 		this.y = "";
 		this.substrates = new ArrayList<>();
 		this.products = new ArrayList<>();
+		this.taxa = new HashMap<>();
 	}
 
 	public String getReactionId() {
@@ -96,6 +98,10 @@ public class JSONReaction {
 
 	public ArrayList<JSONCompound> getProducts() {
 		return products;
+	}
+
+	public HashMap<String, String> getTaxa() {
+		return taxa;
 	}
 	
 	
