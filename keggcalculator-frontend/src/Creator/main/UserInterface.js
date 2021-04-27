@@ -13,15 +13,19 @@ import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
 import SpecialproteinsModal from "./SpecialproteinsModal";
 import SBMLKEGGConverter from "../upload/SBMLKEGGConverter";
-import StoichiometricMatrix from "../stochiometricMatrix/StoichiometricMatrix";
 
 const UserInterface = () => {
     const [open, setOpen] = React.useState(true)
+    const [drawerOffSet, setDrawerOffset] = React.useState(0)
     const state = useSelector(state => state.general)
     const keggState = useSelector(state=> state.keggReaction)
     const graphState = useSelector(state => state.graph)
     const dispatch = useDispatch()
-
+    useEffect(()=>{
+        const headerHeight = document.getElementsByClassName('MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary MuiPaper-elevation4')[0].clientHeight;
+        const tabHeight = document.getElementsByClassName("MuiTabs-root")[0].clientHeight
+        setDrawerOffset(tabHeight+headerHeight)
+    },[])
     const handleShowSpecReaction = () => {
         dispatch({type: "SWITCHSHOWSPECIFICREACTION"})
     }
@@ -52,7 +56,7 @@ const UserInterface = () => {
     const useStyles = makeStyles({
         drawerPaper: {
             position:"absolute",
-            top: `${state.headerHeight}px`,
+            top: `${drawerOffSet}px`,
             height:"80vh"
 
         }
@@ -103,11 +107,11 @@ const UserInterface = () => {
                             <UploadModal/>
                         </div>
                     </div>
-                    {/*<div className={"helpContainer"}>*/}
-                    {/*    <button className={"downloadButton"}*/}
-                    {/*            onClick={() => dispatch({type: "SWITCHSHOWUSERINFO"})}>Help*/}
-                    {/*    </button>*/}
-                    {/*</div>*/}
+                    <div className={"helpContainer"}>
+                        <button className={"downloadButton"}
+                                onClick={() => dispatch({type: "SWITCHSHOWUSERINFO"})}>Help
+                        </button>
+                    </div>
                     <div>
                         <button className={"downloadButton"} onClick={() => {
                             dispatch({type: "SWITCHNODECONFIGURATIONMODAL"})
@@ -132,7 +136,7 @@ const UserInterface = () => {
                         }}>protein without metabolites</button>
                     </div>
     <div>
-        <SBMLKEGGConverter speciesSBML={keggState.sbmlSpecies} reactionsSBML={[]} showSbmlKeggConverter={keggState.showSbmlKeggConverter}/>
+        <SBMLKEGGConverter speciesSBML={keggState.sbmlSpecies} reactionsSBML={[]} showSbmlKeggConverter={keggState.showSbmlKeggConverter} dispatch={useDispatch} state={keggState}/>
     </div>
                     <div>
                         <button className={"downloadButton"}
@@ -148,8 +152,7 @@ const UserInterface = () => {
                         </div>
                         <DonwloadModal/>
                     </div>
-                    <div><StoichiometricMatrix/></div>
-                    {graphState.doubleClickNode.length > 0 && <div style={{width:"15vw", height:"25vh", overflow:"auto", margin:"5px"}}>
+                    {graphState.doubleClickNode.length > 0 && <div style={{width:"15vw", height:"25vh", overflow:"auto", margin:"3px"}}>
                         {compound.id}
                         <div>x:</div>
                         <TextField type={"text"} id={"x coordinates"}
