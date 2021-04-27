@@ -32,12 +32,13 @@ const SpecUserReaction = () => {
     const state = useSelector(state => state.general)
     const graphStates = useSelector(state => state.graph)
     const specReactionStates = useSelector(state => state.specificReaction)
+    const numberOfExistentNodes = graphStates.data.nodes.length + specReactionStates.specSubstrates.length + specReactionStates.specProducts.length
     const classes = useStyles()
     const body = (
         <div className={classes.paper} style={{width:"40vw"}}>
             <div className={"mainContainerSpec"}>
-                <SpecSubstrates className={"substrate"}/>
-                <SpecProducts className={"product"}/>
+                <SpecSubstrates className={"substrate"} index={numberOfExistentNodes}/>
+                <SpecProducts className={"product"} index={numberOfExistentNodes}/>
                 <SpecReaction className={"reaction"}/>
                 <SpecKoEc className={"koAndEc"}/>
                 <SpecTaxonomy className={"taxonomy"}/>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import Modal from "@material-ui/core/Modal";
 import {makeStyles} from "@material-ui/core";
@@ -37,9 +37,9 @@ const AbundantNodeConfig = () => {
                 abundantLinks.map((link, index) => {
                     console.log(index)
                     if(link.source===comp){
-                        nodes.push({id: `${index}__${link.source}`, color: "darkgreen", opacity: 0.4})
+                        nodes.push({id: `${index}__${link.source}`, color: "darkgreen", opacity: 0.4, x:0, y:0})
                     }else{
-                        nodes.push({id: `${index}__${link.target}`, color: "darkgreen", opacity: 0.4})
+                        nodes.push({id: `${index}__${link.target}`, color: "darkgreen", opacity: 0.4, x:0, y:0})
                     }
                     return null
                 })
@@ -106,13 +106,17 @@ const AbundantNodeConfig = () => {
 
 export default AbundantNodeConfig
 
+
+
 const Compound = () => {
     const graphState = useSelector(state => state.graph)
+    console.log(graphState.abundantCompoundOptions)
     return (<Field
         // className={"compound"}
         dispatchType={"SETABUNDANTCOMPOUND"}
         id={"Abundantompound"}
+        boolean={true}
         dispatchTypeOptions={"SETABUNDANTCOMPOUNDOPTIONS"}
-        options={graphState.abundantCompoundOptions}
+        options={graphState.data.nodes.map(node => node.id)}
         compound={graphState.abundantCompound}/>)
 }

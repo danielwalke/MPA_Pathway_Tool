@@ -5,20 +5,29 @@ import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import "./SpecProduct.css"
 import {isRequestValid} from "../request/RequestValidation";
+import PopOverButton from "./PopOverButton";
+import {getCompoundId} from "../upload/sbmlParser/SbmlReader/ReaderFunctions";
 
-const SpecProducts = () => {
+const SpecProducts = (props) => {
     const dispatch = useDispatch()
     const state = useSelector(state => state.specificReaction)
 
     return (
         <div className={"productContainerSpec"}>
+            {state.isSpecificCompoundInputProduct ?
+                <TextField className={"product"} size={"small"} value={state.specProduct}
+                           onChange={e => dispatch({type: "SETSPECIFICPRODUCT", payload: e.target.value})}
+                           type={"text"}
+                           label={"product"} id={"spec product"}/> :
             <Field
                 className={"product"}
                 dispatchType={"SETSPECIFICPRODUCT"}
                 id={"product"}
                 dispatchTypeOptions={"SETSPECIFICOPTIONSPRODUCT"}
                 options={state.specOptionsProduct}
-                compound={state.specProduct}/>
+                compound={state.specProduct}/>}
+            <PopOverButton text={" not found? :-(\n" +
+            "                Don't worry! Click here :)"} className={"notFoundButton"}  dispatchType={"SWITCHISSPECCOMPOUNDINPUTPRODUCT"}/>
                 <TextField
                     size={"small"}
                     className={"productSc"}
@@ -36,8 +45,8 @@ const SpecProducts = () => {
                     variant="filled"
                 />
             <button className={"addProduct"}
-                    disabled={!isRequestValid(state.specProduct)}
-                    onClick={(e) => handleAddProduct(e, dispatch, state)}>Add Product</button>
+                    // disabled={!isRequestValid(state.specProduct)}
+                    onClick={(e) => handleAddProduct(e, dispatch, state, props.index)}>Add Product</button>
         </div>
     )
 }

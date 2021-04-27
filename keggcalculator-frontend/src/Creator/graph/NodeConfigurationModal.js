@@ -7,6 +7,7 @@ import Abbreviations from "./Abbreviations";
 import AbundantNodeConfig from "./AbundantNodeConfig";
 import PathwayTaxonomy from "./PathwayTaxonomy";
 import NodeCoordinates from "./NodeCoordinates";
+import MergeNodesModal from "./MergeNodesModal";
 
 const NodeConfigurationModal = () => {
     const classes = useStyles()
@@ -30,6 +31,10 @@ const NodeConfigurationModal = () => {
                 <button className={"downloadButton"} onClick={() => dispatch({type: "SWITCHSHOWABUNDANTNODECONFIG"})
                 }>split nodes
                 </button>
+            </div>
+            <div>
+                <MergeNodesModal/>
+                <button className={"downloadButton"} onClick={()=>dispatch({type:"SWITCHSHOWMERGENODESMODAL"})}>merge nodes</button>
             </div>
             <div>
                 <PathwayTaxonomy/>

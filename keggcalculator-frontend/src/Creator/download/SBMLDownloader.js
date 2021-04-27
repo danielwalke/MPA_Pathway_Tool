@@ -9,6 +9,7 @@ const handleSBMLDownload = (state, dispatch) => {
     // console.log(element)
     // const elementXML = ReactDomServer.renderToStaticMarkup(element)
     // console.log(elementXML)
+
     console.log(state.general.reactionsInSelectArray)
     const pathwayName = "pathway" //TODO add user interface for text input
     const listOfReactionsObject = []

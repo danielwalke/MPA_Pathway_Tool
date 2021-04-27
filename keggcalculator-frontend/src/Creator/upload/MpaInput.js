@@ -22,7 +22,7 @@ const MpaInput = () => {
             reader.readAsText(files[0])
             console.log("start")
             reader.onload = e => {
-                const result = e.target.result
+                const result = e.target.result.trim()
 
                 const lines = result.split("\n")
                 const header = lines[0]

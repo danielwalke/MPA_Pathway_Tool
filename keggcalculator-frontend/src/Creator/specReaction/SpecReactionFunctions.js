@@ -1,3 +1,5 @@
+import {getCompoundId} from "../upload/sbmlParser/SbmlReader/ReaderFunctions";
+
 export const getStochiometrySubstratesString = (state) => {
     const object = {}
     state.specSubstrates.map((substrate, index) => {
@@ -9,7 +11,7 @@ export const getStochiometrySubstratesString = (state) => {
 }
 
 export const getStochiometryProductsString = (state) =>{
-    const object = new Map()
+    const object = {}
     state.specProducts.map((product, index) => {
         const productId = product.substring(product.length-6, product.length)
         object[`${productId}`] = state.specProductsCoeff[index].toString()
@@ -42,21 +44,20 @@ export const getReaction = (state) => {
 }
 
 
-export const handleAddSubstrate = (e, dispatch, state) => {
+export const handleAddSubstrate = (e, dispatch, state, index) => {
     e.preventDefault()
-    dispatch({type: "ADDSPECIFICSUBSTRATE", payload: state.specSubstrate})
+    dispatch({type: "ADDSPECIFICSUBSTRATE", payload: state.specSubstrate.concat(" " + getCompoundId(index))})
     dispatch({type: "ADDSPECIFICSUBSTRATECOEFF", payload: state.specSubstrateCoeff})
 }
 
-export const handleAddProduct = (e, dispatch, state) => {
+export const handleAddProduct = (e, dispatch, state, index) => {
     e.preventDefault()
-    dispatch({type: "ADDSPECIFICPRODUCT", payload: state.specProduct})
+    dispatch({type: "ADDSPECIFICPRODUCT", payload: state.specProduct.concat(" " + getCompoundId(index))})
     dispatch({type: "ADDSPECIFICPRODUCTCOEFF", payload: state.specProductCoeff})
 }
 
 
-export const getUserReactionId = (state) => {
-    const reactionLength = state.reactionsInSelectArray.length
+export const getUserReactionId = (reactionLength) => {
     if (reactionLength < 10) {
         return "0000".concat(reactionLength.toString());
     } else if (reactionLength >= 10 && reactionLength < 100) {

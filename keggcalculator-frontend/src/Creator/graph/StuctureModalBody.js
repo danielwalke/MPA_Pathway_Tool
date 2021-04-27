@@ -19,8 +19,11 @@ export const getTaxaList = (reactionTaxa) => {
 export const getStructureBody = (state, dispatch, generalState) => {
     const compound = typeof state.data.nodes.filter(node => node.id === state.doubleClickNode)[0] === "undefined" ? {} : state.data.nodes.filter(node => node.id === state.doubleClickNode)[0]
     const compoundClone = clonedeep(compound)
+    console.log(state.doubleClickNode)
     const nodeId = state.doubleClickNode.substring(state.doubleClickNode.length - 6, state.doubleClickNode.length)
     const reaction = nodeId.match(/[R,U]/) ? generalState.reactionsInSelectArray.filter(r => r.reactionName === state.doubleClickNode)[0] : {}
+    console.log(generalState.reactionsInSelectArray)
+    console.log(reaction)
     const reactionName = nodeId.match(/[R,U]/) ? reaction.reactionName : {}
 
     const handleDelete = () => {

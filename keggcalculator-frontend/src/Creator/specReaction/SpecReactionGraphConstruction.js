@@ -25,7 +25,6 @@ export const handleSpecSubmit = (e, graphStates, specReactionStates, dispatch) =
             data.links.push({source: reaction, target: prod, opacity: 0.4})
         }
     }
-
     // specReactionStates.specTaxonomies = specReactionStates.specTaxonomies.length === 0 ? [""] : specReactionStates.specTaxonomies
     dispatch({type: "SETDATA", payload: data})
     dispatch({type: "RESETSPECIFICREACTION"})

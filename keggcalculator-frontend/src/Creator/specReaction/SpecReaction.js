@@ -7,7 +7,8 @@ import TaxonomicRank from "../graph/TaxonomicRank";
 
 const SpecReaction = () => {
     const dispatch = useDispatch()
-    const generalState = useSelector(state => state.general)
+    const graphState = useSelector(state => state.graph)
+    const reactionList = graphState.data.nodes.filter(node => node.symbolType === "diamond")
     return (
         <div className={"reactionContainerSpec"}>
             <TextField
@@ -19,7 +20,7 @@ const SpecReaction = () => {
                 id="reaction"
                 onChange={(e) => dispatch({
                     type: "SETSPECIFICREACTION",
-                    payload: e.target.value.concat(` U${getUserReactionId(generalState)}`)
+                    payload: e.target.value.concat(` U${getUserReactionId(reactionList.length)}`)
                 })}
             />
         </div>

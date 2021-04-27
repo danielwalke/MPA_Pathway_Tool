@@ -37,10 +37,9 @@ public class ModuleFileParser {
 		for (String file : this.fileList) {
 			if(file.endsWith(".csv")) {
 				parseCsv(file, keggdataUser);
-				System.out.println("csv file");
+			
 			}
 			if(file.endsWith(".json")) {
-				System.out.println("json file");
 				parseJson(file, keggdataUser);
 			}
 			if(file.endsWith(".xml")) {
@@ -89,9 +88,7 @@ public class ModuleFileParser {
 			for(Entry<String, String> taxonEntry : jsonReaction.getTaxa().entrySet()) {
 //				String[] taxonEntries = rawTaxon.split(":");
 				String taxonomicRank = taxonEntry.getValue();
-				System.out.println(taxonomicRank + " " + taxonomicRank.length());
 				String taxon = taxonEntry.getKey();
-				System.out.println(taxon + " " + taxon.length());
 				reaction.addTaxonomy(taxon, taxonomicRank);
 			}
 			for(JSONCompound substrate : jsonReaction.getSubstrates()) {

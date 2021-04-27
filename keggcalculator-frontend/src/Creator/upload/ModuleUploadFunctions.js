@@ -101,23 +101,29 @@ export const handleReactionListUpload = (rows) => {
         const taxa = {}
         if (taxonomiesString.includes("&&")) { //if more than one taxonomy added -> split them
             const taxonomies = taxonomiesString.split("&&")
-            for (const taxonomy of taxonomies) {
-                const taxonomyEntries = taxonomy.split(":")
+            if(taxonomies.length>1){
+                for (const taxonomy of taxonomies) {
+                    const taxonomyEntries = taxonomy.split(":")
+                    const taxonomicRank = taxonomyEntries[0]
+                    const taxon = taxonomyEntries[1]
+                    taxa[`${taxon}`] = taxonomicRank
+                    // if (taxonomy.includes(",")) { //if taxonomy entries contains more than one entry (superkingdom, kingdom,etc... split them and store the last item in an array)
+                    //     const taxonomyEntries = taxonomy.split(",")
+                    //     taxonomyList.push(taxonomyEntries[taxonomyEntries.length - 1])
+                    // } else { //only one entry -> store only this entry (corresponds to last entry)
+                    //     taxonomyList.push(taxonomy)
+                    // }
+                }
+            }
+
+        } else {
+            if(taxonomiesString.length>1){
+                const taxonomyEntries = taxonomiesString.split(":")
                 const taxonomicRank = taxonomyEntries[0]
                 const taxon = taxonomyEntries[1]
                 taxa[`${taxon}`] = taxonomicRank
-                // if (taxonomy.includes(",")) { //if taxonomy entries contains more than one entry (superkingdom, kingdom,etc... split them and store the last item in an array)
-                //     const taxonomyEntries = taxonomy.split(",")
-                //     taxonomyList.push(taxonomyEntries[taxonomyEntries.length - 1])
-                // } else { //only one entry -> store only this entry (corresponds to last entry)
-                //     taxonomyList.push(taxonomy)
-                // }
             }
-        } else {
-            const taxonomyEntries = taxonomiesString.split(":")
-            const taxonomicRank = taxonomyEntries[0]
-            const taxon = taxonomyEntries[1]
-            taxa[`${taxon}`] = taxonomicRank
+
             // if (taxonomiesString.includes(",")) { //only one taxonomy with more entries (superkingdom,kingdom etc)-> split and store last entry
             //     const taxonomyEntries = taxonomiesString.split(",")
             //     taxonomyList.push(taxonomyEntries[taxonomyEntries.length - 1])

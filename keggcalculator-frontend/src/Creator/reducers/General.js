@@ -24,12 +24,38 @@ const defaultState = {
     specialProteinKoNumbers: [],
     specialProteinEcNumbers: [],
     specialProteins: [],
-
+    headerHeight:0,
+    compoundId2Name: {},
+    reactions: [],
+    listOfSpecies:[], /*from sbml [     {
+                sbmlId: sbmlId,
+                sbmlName: sbmlName,
+                keggId: keggId,
+                keggName: keggName
+            }]*/
+    listOfReactions:[], /*
+    [{
+                sbmlId: sbmlId,
+                sbmlName: sbmlName,
+                keggId: keggId,
+                ecNumbers: ecNumbers,
+                koNumbers:koNumbers,
+                substrates: substrates,
+                products: products
+            }]
+    */
+    isMissingAnnotations: false, //boolean, which checks whether there are unannotated compounds in the given sbml file
+    isAnnotationPurpose: false, //boolean, which checks whether the user intents to make annotation for the compounds in the given sbml-file
+    annotation: "",
+    moduleFileNameSbml:"",
+    isShowingReactionTable: false, //shows final table with all reactions in the sbml file
 }
 
 export const generalReducer = (state = defaultState, action) => {
     const {type, payload} = action;
     switch (type) {
+        case "SETCOMPOUNDID2NAME":
+            return {...state, compoundId2Name: payload}
         case "SETCOMPOUNDLIST":
             return {...state, compoundList: payload};
         case "SETCOMPMAP":
@@ -41,6 +67,8 @@ export const generalReducer = (state = defaultState, action) => {
         case "ADDREACTIONSTOARRAY":
             payload.map(reaction => state.reactionsInSelectArray.push(reaction))
             return {...state, reactionsInSelectArray: state.reactionsInSelectArray}
+        case "SETREACTIONSINARRAY":
+            return {...state, reactionsInSelectArray: payload}
         case "SWITCHSHOWSPECIFICREACTION":
             return {...state, showSpecificReaction: !state.showSpecificReaction}
         case "SWITCHSHOWKEGGREACTION":
@@ -125,7 +153,24 @@ export const generalReducer = (state = defaultState, action) => {
                     ecNumbers: state.specialProteinEcNumbers
                 }]
             }
-
+        case "SETHEADERHEIGHT":
+            return {...state, headerHeight: payload}
+        case "SETKEGGREACTIONS":
+            return {...state, reactions: payload}
+        case "SETLISTOFSPECIES":
+            return {...state, listOfSpecies: payload}
+        case "SETLISTOFREACTIONS":
+            return {...state, listOfReactions: payload}
+        case "SETISMISSINGANNOTATIONS":
+            return {...state, isMissingAnnotations: payload}
+        case "SETANNOTATION":
+            return {...state, annotation: payload}
+        case "SETMODULEFILENAMESBML":
+            return {...state, moduleFileNameSbml: payload}
+        case "SETISANNOTATIONPURPOSE":
+            return {...state, isAnnotationPurpose: payload}
+        case "SETISSHOWINGREACTIONTABLE":
+            return {...state, isShowingReactionTable: payload}
         default:
             return state;
     }

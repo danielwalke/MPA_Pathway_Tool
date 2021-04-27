@@ -9,6 +9,7 @@ const KoAndEcLists = () => {
     const generalState = useSelector(state => state.general)
     const nodeId = graphState.chosenNode
     generalState.reactionsInSelectArray.map(r =>{
+        console.log(nodeId + "\t" +  r.reactionId)
         if(r.reactionId === nodeId){
             koNumbers = r.koNumbersString
             ecNumbers = r.ecNumbersString

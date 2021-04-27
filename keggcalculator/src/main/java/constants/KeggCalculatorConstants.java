@@ -47,5 +47,9 @@ public class KeggCalculatorConstants {
 	public static final String LEVEL2 = "http://www.sbml.org/sbml/level3/version1/core";//according to devops depractated
 	public static final String LEVEL3 = "http://www.sbml.org/sbml/level3";
 	
+	//NCBI taxonomy files
+	public static final String TAXONOMY_NAMES = "src/main/resources/essentialfiles/names.dmp";
+	public static final String TAXONOMY_NODES = "src/main/resources/essentialfiles/nodes.dmp";
+	public static final String TAXONOMY_TREE = "src/main/resources/essentialfiles/ncbiTaxonomy.csv";
 
 }

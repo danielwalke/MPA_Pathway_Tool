@@ -1,6 +1,6 @@
 .mainContainerSpec {
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 0.75fr;
+    grid-template-rows: 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.375fr;
     grid-template-areas: "substrate"
 "product"
 "reaction"

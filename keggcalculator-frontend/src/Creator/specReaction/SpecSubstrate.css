@@ -1,7 +1,20 @@
 .substrateContainerSpec{
     display: grid;
-    grid-template-columns: 6fr 1.2fr 2fr;
-    grid-template-areas: "substrate substrateSc addSubstrate";
+    grid-template-columns: 5fr 1fr 1.2fr 2fr;
+    grid-template-areas: "substrate notFound substrateSc addSubstrate";
+}
+
+.notFoundButton{
+    grid-area: notFound;
+    background-color: rgb(150, 25, 130);
+    border-radius: 0.8vw;
+    color: white;
+    transition: all 400ms ease-in-out;
+    text-transform: uppercase;
+    font-size: clamp(4px, 0.8vw, 10px);;
+    font-family: Roboto;
+    margin: 2px;
+    padding: 4px;
 }
 
 .substrate{

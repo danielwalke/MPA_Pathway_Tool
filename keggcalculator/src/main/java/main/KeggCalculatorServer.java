@@ -13,9 +13,13 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import com.google.gson.Gson;
+
 import constants.KeggCalculatorConstants;
 import model.KeggCompound;
 import model.KeggDataObject;
+import model.KeggECObject;
+import model.KeggKOObject;
 import model.KeggReaction;
 import model.KeggReactionObject;
 import rest.KeggHandleRequests;
@@ -282,7 +286,30 @@ public class KeggCalculatorServer {
                     return "{\"message\":\"internal server error\"}";
             }
     });
-
+    
+    get("/keggcreator/reactions", (req, res)->{
+    	try {
+    		res.status(201);
+    		HashSet<KeggReaction> reactions =new HashSet<>();
+    		for(KeggReactionObject reactionObject : creator.cloneKeggData().getReactions()) {
+    			   KeggReaction reaction = new KeggReaction(reactionObject.getReactionId(), reactionObject.getReactionName(), reactionObject.isForwardReaction());
+    		        for(KeggECObject ec : reactionObject.getEcnumbers()) {
+    		        	reaction.addEcNumberString(ec.getEcId());
+    		        }
+    		        for(KeggKOObject ko : reactionObject.getKonumbers()) {
+    		        	reaction.addKONumberString(ko.getKoId());
+    		        }
+    		        reaction.setStochiometrySubstratesString(reactionObject.getStochiometrySubstrates());
+    		        reaction.setStochiometryProductsString(reactionObject.getStochiometryProducts());
+    		        reactions.add(reaction);
+    		}
+    		return creator.gson.toJson(reactions); 
+    	}catch (Exception e) {
+            // this is an unexpected exception!
+            res.status(500);
+            return "{\"message\":\"internal server error\"}";
+    }
+    });
 
 	}
 

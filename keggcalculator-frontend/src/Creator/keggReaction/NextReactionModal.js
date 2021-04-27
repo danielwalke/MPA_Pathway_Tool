@@ -35,7 +35,10 @@ const NextReactionModal = () => {
 
     return(
         <Modal className={classes.modal} open={state.showNextReaction}
-               onClose={() => dispatch({type: "SWITCHSHOWNEXTREACTION"})}>
+               onClose={() => {
+                   dispatch({type: "SWITCHSHOWNEXTREACTION"})
+                   dispatch({type:"SETLOADING", payload:false})
+               }}>
             {body}
         </Modal>
     )
