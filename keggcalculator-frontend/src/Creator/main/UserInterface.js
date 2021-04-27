@@ -11,7 +11,8 @@ import IconButton from "@material-ui/core/IconButton";
 import clsx from "clsx";
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
-import SpecialproteinsModal from "./SpecialproteinsModal";
+import StoichiometricMatrix from "../stochiometricMatrix/StoichiometricMatrix";
+
 
 const UserInterface = () => {
     const [open, setOpen] = React.useState(true)
@@ -127,12 +128,6 @@ const UserInterface = () => {
                         </button>
                     </div>
                     <div>
-                        <SpecialproteinsModal/>
-                        <button className={"downloadButton"} onClick={()=> {
-                            dispatch({type: "SWITCHSHOWSPECIALPROTEINSMODAL"})
-                        }}>protein without metabolites</button>
-                    </div>
-                    <div>
                         <button className={"downloadButton"}
                                 onClick={() => dispatch({type: "SWITCHMULTIREACTIONMODAL"})}>import multiple reactions
                         </button>
@@ -146,6 +141,7 @@ const UserInterface = () => {
                         </div>
                         <DonwloadModal/>
                     </div>
+                    <div><StoichiometricMatrix/></div>
                     {graphState.doubleClickNode.length > 0 && <div style={{width:"15vw", height:"25vh", overflow:"auto", margin:"3px"}}>
                         {compound.id}
                         <div>x:</div>
