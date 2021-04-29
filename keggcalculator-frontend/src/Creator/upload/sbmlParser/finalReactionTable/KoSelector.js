@@ -36,8 +36,8 @@ const KoSelector = (props) => {
                                 variant={"outlined"} type={"text"}/><AddCircleIcon className={"CircleIcon"}
                                                                                    onClick={() => {
                                                                                        setEditingMode(false)
-                                                                                       dispatch({type:"SET_KO_NUMBERS", payload:[...koNumbers, newKoNumber]})
-                                                                                       // setKoNumbers([...koNumbers, newKoNumber])
+                                                                                       // dispatch({type:"SET_KO_NUMBERS", payload:[...koNumbers, newKoNumber]})
+                                                                                       setKoNumbers([...koNumbers, newKoNumber])
                                                                                    }}/></div>
                 : <div><FormControl className={classes.formControl}>
                     <InputLabel id="koNumberInput">ko Number</InputLabel>
