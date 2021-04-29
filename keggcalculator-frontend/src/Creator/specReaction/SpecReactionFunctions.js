@@ -43,16 +43,24 @@ export const getReaction = (state) => {
     return reaction;
 }
 
+const checkCompooundId = (compound, index) =>{
+    const compoundId = compound.length>5?compound.substring(compound.length-6, compound.length) : getCompoundId(index)
+    if(compoundId.match(/[C,G][0-9][0-9][0-9][0-9][0-9]/)){
+        return ""
+    }else{
+        return ` ${getCompoundId(index)}`
+    }
+}
 
 export const handleAddSubstrate = (e, dispatch, state, index) => {
     e.preventDefault()
-    dispatch({type: "ADDSPECIFICSUBSTRATE", payload: state.specSubstrate.concat(" " + getCompoundId(index))})
+    dispatch({type: "ADDSPECIFICSUBSTRATE", payload: state.specSubstrate.concat(checkCompooundId(state.specSubstrate, index))})
     dispatch({type: "ADDSPECIFICSUBSTRATECOEFF", payload: state.specSubstrateCoeff})
 }
 
 export const handleAddProduct = (e, dispatch, state, index) => {
     e.preventDefault()
-    dispatch({type: "ADDSPECIFICPRODUCT", payload: state.specProduct.concat(" " + getCompoundId(index))})
+    dispatch({type: "ADDSPECIFICPRODUCT", payload: state.specProduct.concat(checkCompooundId(state.specProduct, index))})
     dispatch({type: "ADDSPECIFICPRODUCTCOEFF", payload: state.specProductCoeff})
 }
 
