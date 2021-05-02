@@ -45,7 +45,7 @@ const SpecUserReaction = () => {
                 <div className={"submitSpecReaction"}>
                     <button className={"buttonShowReaction"} onClick={()=> dispatch({type:"SWITCHSHOWREACTIONDETAILS"})}>show Reaction</button>
                     <button className={"buttonSpec"}
-                            disabled={specReactionStates.specSubstrates.length < 1 || specReactionStates.specProducts < 1 || specReactionStates.specReaction.length < 1}
+                            disabled={specReactionStates.specReaction.length < 1}
                             onClick={(e) => handleSpecSubmit(e, graphStates, specReactionStates, dispatch)}>Submit
                     </button>
                 </div>

@@ -5,6 +5,7 @@ import AddCircleIcon from "@material-ui/icons/AddCircle";
 import {FormControl, InputLabel, MenuItem, Select} from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import {useStylesSelector} from "./Styles";
+import Checkbox from "@material-ui/core/Checkbox";
 
 const KoSelector = (props) => {
     const state = useSelector(state => state)
@@ -14,10 +15,13 @@ const KoSelector = (props) => {
     const [editingMode, setEditingMode] = React.useState(false)
     const [koNumbers, setKoNumbers] = React.useState([])
     const [newKoNumber, setNewKoNumber] = React.useState("")
+    const [isChanged, setIsChanged] = React.useState(false)
+    const [oldKoNumbers, setOldKoNumbers] = React.useState([])
     const dispatch = useDispatch()
 
     useEffect(()=>{
         setKoNumbers(props.koNumbers)
+        setOldKoNumbers(props.koNumbers)
     },[props, state.general.listOfReactions])
 
     const handleChanges = () =>{
@@ -27,6 +31,7 @@ const KoSelector = (props) => {
             }
             return reaction
         })
+        setIsChanged(true)
         dispatch({type:"SETLISTOFREACTIONS", payload: listOfReactions})
     }
     return (
@@ -39,7 +44,9 @@ const KoSelector = (props) => {
                                                                                        // dispatch({type:"SET_KO_NUMBERS", payload:[...koNumbers, newKoNumber]})
                                                                                        setKoNumbers([...koNumbers, newKoNumber])
                                                                                    }}/></div>
-                : <div><FormControl className={classes.formControl}>
+                : <div>
+                    {koNumbers.map((ko, index) => <div key={"koNumberList" + index}><Checkbox checked={isChanged || oldKoNumbers.includes(ko)}/>{ko}</div>)}
+                    <FormControl className={classes.formControl}>
                     <InputLabel id="koNumberInput">ko Number</InputLabel>
                     <Select
                         labelId="ko Number"
@@ -50,14 +57,17 @@ const KoSelector = (props) => {
                         value={koNumber}
                         onChange={(e) => setKoNumber(e.target.value)}
                     >
-                        <MenuItem onClick={() => setEditingMode(true)} value={"addRequest"}><AddCircleIcon/></MenuItem>
+                        <MenuItem onClick={() => {
+                            setEditingMode(true)
+                            setIsChanged(false)
+                        }} value={"addRequest"}><AddCircleIcon/></MenuItem>
                         {koNumbers.map((ko, index) => <MenuItem  className={"CircleIcon"} onClick={() => {
                             koNumbers.splice(index, 1)
                             setKoNumbers(koNumbers)
                         }} key={index.toString().concat(ko)} value={ko}><DeleteIcon/>{ko}
                         </MenuItem>)}
                     </Select>
-                </FormControl><button className={"downloadButton"} onClick={()=> handleChanges()}>submit changes</button></div>}
+                </FormControl><button style={{width:"10vw"}} className={"downloadButton"} onClick={()=> handleChanges()}>submit changes</button></div>}
         </div>
     )
 }

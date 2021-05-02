@@ -14,6 +14,7 @@ import {
     useResetCache
 } from "../KeggCompoundAutoCompleteList";
 import {VariableSizeList} from "react-window";
+import Checkbox from "@material-ui/core/Checkbox";
 
 
 // Adapter for react-window
@@ -59,10 +60,13 @@ const SubstrateSelector = (props) => {
     const [newSubstrateName, setNewSubstrateName] = React.useState("") //setting sbml name
     const [newStoichiometry, setNewStoichiometry] = React.useState(1)
     const [newKeggName, setNewKeggName] = React.useState("")
+    const [isChanged, setIsChanged] = React.useState(false)
+    const [oldSubstrates, setOldSubstrates] = React.useState([])
     const dispatch = useDispatch()
 
     useEffect(() => {
         setSubstrates(props.substrates)
+        setOldSubstrates(props.substrates)
     }, [props, state.general.listOfReactions])
 
     const handleChanges = () => {
@@ -72,6 +76,7 @@ const SubstrateSelector = (props) => {
             }
             return reaction
         })
+        setIsChanged(true)
         dispatch({type: "SETLISTOFREACTIONS", payload: listOfReactions})
     }
 
@@ -106,7 +111,7 @@ const SubstrateSelector = (props) => {
                     <Autocomplete
                         onChange={(event,value)=> setNewKeggName(value)}
                         id="keggAnnotation"
-                        style={{width: "200%"}}
+                        style={{width: "100%"}}
                         label={"optional: "}
                         disableListWrap
                         value={newKeggName}
@@ -122,6 +127,7 @@ const SubstrateSelector = (props) => {
                         }}/>
                 </div>
                 : <div>
+                    {substrates.map((subst, index) => <div key={"SubstrateList" + index}><Checkbox checked={isChanged || oldSubstrates.includes(subst)}/>{subst.sbmlId};{subst.sbmlName}:{subst.stoichiometry}</div>)}
                     <FormControl className={classes.formControl}>
                     <InputLabel id="substratesInput">substrates</InputLabel>
                     <Select
@@ -133,7 +139,10 @@ const SubstrateSelector = (props) => {
                         value={substrate.sbmlId}
                         onChange={(e) => setSubstrate(e.target.value)}
                     >
-                        <MenuItem onClick={() => setEditingMode(true)} value={"addRequest"}><AddCircleIcon/></MenuItem>
+                        <MenuItem onClick={() => {
+                            setEditingMode(true)
+                            setIsChanged(false)
+                        }} value={"addRequest"}><AddCircleIcon/></MenuItem>
                         {substrates.map((subst, index) => <MenuItem className={"CircleIcon"} onClick={() => {
                             substrates.splice(index, 1)
                             setSubstrates(substrates)
@@ -141,7 +150,7 @@ const SubstrateSelector = (props) => {
                         </MenuItem>)}
                     </Select>
                 </FormControl>
-                    <button className={"downloadButton"} onClick={() => handleChanges()}>submit changes</button>
+                    <button style={{width:"10vw"}} className={"downloadButton"} onClick={() => handleChanges()}>submit changes</button>
                 </div>}
         </div>
     )

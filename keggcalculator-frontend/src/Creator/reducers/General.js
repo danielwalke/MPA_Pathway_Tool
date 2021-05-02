@@ -49,6 +49,7 @@ const defaultState = {
     annotation: "",
     moduleFileNameSbml:"",
     isShowingReactionTable: false, //shows final table with all reactions in the sbml file
+    showMultipleKeggReactionModal: false //show modal for chosing multiple reactions from KEGG
 }
 
 export const generalReducer = (state = defaultState, action) => {
@@ -171,6 +172,8 @@ export const generalReducer = (state = defaultState, action) => {
             return {...state, isAnnotationPurpose: payload}
         case "SETISSHOWINGREACTIONTABLE":
             return {...state, isShowingReactionTable: payload}
+        case "SWITCHSHOWMULTIPLEKEGGREACTIONS":
+            return {...state, showMultipleKeggReactionModal: !state.showMultipleKeggReactionModal}
         default:
             return state;
     }

@@ -22,7 +22,7 @@ export const handleGraphUpload = (rows, dispatch, state) => {
                     x: +reactionX,
                     y: +reactionY,
                     color: "black",
-                    symbolType: "square",
+                    symbolType: "diamond",
                     opacity: 1
                 }
                 nodes.push(reactionNode)

@@ -24,6 +24,21 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+//used for drawing nodes in graph
+export const handleDrawGraph = (reaction, state, dispatch, graphState) =>{
+    const data = graphState.data
+    const substrates = Object.keys(reaction.stochiometrySubstratesString)
+    const products = Object.keys(reaction.stochiometryProductsString)
+    const substratesName = substrates.map(substrate => state.compoundId2Name[substrate])
+    const productsName = products.map(product => state.compoundId2Name[product])
+    substratesName.map(substrate => data.nodes.push({id:substrate, color: "darkgreen", opacity: 1,x:0,y:0}))
+    productsName.map(product => data.nodes.push({id:product, color: "darkgreen", opacity: 1,x:0,y:0}))
+    data.nodes.push({id:`${reaction.reactionName} ${reaction.reactionId}`, color: "black", opacity: 1, symbolType: "diamond",x:0,y:0})
+    substratesName.map(substrate => data.links.push({source: substrate, target: `${reaction.reactionName} ${reaction.reactionId}`}))
+    productsName.map(product => data.links.push({source: `${reaction.reactionName} ${reaction.reactionId}`, target: product}))
+    dispatch({type: "SETDATA", payload: data})
+}
+
 const EcReactions = () => {
 
     const dispatch = useDispatch()
@@ -45,26 +60,14 @@ const EcReactions = () => {
         dispatch({type: "ADDREACTIONSTOARRAY", payload: [reaction]})
     }
 
-    const handleDrawGraph = (reaction) =>{
-        const data = graphState.data
-        const substrates = Object.keys(reaction.stochiometrySubstratesString)
-        const products = Object.keys(reaction.stochiometryProductsString)
-        const substratesName = substrates.map(substrate => state.compoundId2Name[substrate])
-        const productsName = products.map(product => state.compoundId2Name[product])
-        substratesName.map(substrate => data.nodes.push({id:substrate, color: "darkgreen", opacity: 1,x:0,y:0}))
-        productsName.map(product => data.nodes.push({id:product, color: "darkgreen", opacity: 1,x:0,y:0}))
-        data.nodes.push({id:`${reaction.reactionName} ${reaction.reactionId}`, color: "black", opacity: 1, symbolType: "diamond",x:0,y:0})
-        substratesName.map(substrate => data.links.push({source: substrate, target: `${reaction.reactionName} ${reaction.reactionId}`}))
-        productsName.map(product => data.links.push({source: `${reaction.reactionName} ${reaction.reactionId}`, target: product}))
-        dispatch({type: "SETDATA", payload: data})
-    }
+
 
     const handleReactionSubmit = () => {
         const reactionId = state.reactionOfEc.substring(state.reactionOfEc.length-6, state.reactionOfEc.length).toString()
         requestGenerator("POST", reactionUrl, {reactionId: reactionId}, "", "")
             .then(response => {
                 const reaction  = response.data;
-                handleDrawGraph(reaction);
+                handleDrawGraph(reaction, state, dispatch,graphState);
                 handleAddReaction(reaction);
                 return null;
             })
@@ -121,7 +124,7 @@ const EcReactions = () => {
                 <button className={"downloadButton"} onClick={()=> dispatch({type:"SETECNUMBERSREQUEST", payload: state.ecNumbersRequestText})}>set ec numbers</button>
             </div>
             <div style={{display:"grid", gridTemplateColumns:"8fr 2fr"}}>
-                {console.log(state.ecNumberSet)}
+
                 <div><Autocomplete
                     size={"small"}
                     id="combo-box-demo"

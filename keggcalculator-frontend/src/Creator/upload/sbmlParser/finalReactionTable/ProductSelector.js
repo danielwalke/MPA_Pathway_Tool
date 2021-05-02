@@ -14,6 +14,7 @@ import {
     useResetCache
 } from "../KeggCompoundAutoCompleteList";
 import {VariableSizeList} from "react-window";
+import Checkbox from "@material-ui/core/Checkbox";
 
 
 // Adapter for react-window
@@ -59,10 +60,13 @@ const ProductSelector = (props) => {
     const [newProductName, setNewProductName] = React.useState("") //setting sbml name
     const [newStoichiometry, setNewStoichiometry] = React.useState(1)
     const [newKeggName, setNewKeggName] = React.useState("")
+    const [isChanged, setIsChanged] = React.useState(false)
+    const [oldProducts, setOldProducts] = React.useState([])
     const dispatch = useDispatch()
 
     useEffect(() => {
         setProducts(props.products)
+        setOldProducts(props.products)
     }, [props, state.general.listOfReactions])
 
     const handleChanges = () => {
@@ -72,6 +76,7 @@ const ProductSelector = (props) => {
             }
             return reaction
         })
+        setIsChanged(true)
         dispatch({type: "SETLISTOFREACTIONS", payload: listOfReactions})
     }
 
@@ -106,7 +111,7 @@ const ProductSelector = (props) => {
                     <Autocomplete
                         onChange={(event,value)=> setNewKeggName(value)}
                         id="keggAnnotation"
-                        style={{width: "200%"}}
+                        style={{width: "100%"}}
                         label={"optional: "}
                         disableListWrap
                         value={newKeggName}
@@ -122,6 +127,7 @@ const ProductSelector = (props) => {
                         }}/>
                 </div>
                 : <div>
+                    {products.map((prod, index) => <div key={"productList" + index}><Checkbox checked={isChanged || oldProducts.includes(prod)}/>{prod.sbmlId};{prod.sbmlName}:{prod.stoichiometry}</div>)}
                     <FormControl className={classes.formControl}>
                         <InputLabel id="productInput">products</InputLabel>
                         <Select
@@ -133,7 +139,10 @@ const ProductSelector = (props) => {
                             value={product.sbmlId}
                             onChange={(e) => setProduct(e.target.value)}
                         >
-                            <MenuItem onClick={() => setEditingMode(true)} value={"addRequest"}><AddCircleIcon/></MenuItem>
+                            <MenuItem onClick={() => {
+                                setEditingMode(true)
+                                setIsChanged(false)
+                            }} value={"addRequest"}><AddCircleIcon/></MenuItem>
                             {products.map((prod, index) => <MenuItem className={"CircleIcon"} onClick={() => {
                                 products.splice(index, 1)
                                 setProducts(products)
@@ -141,7 +150,7 @@ const ProductSelector = (props) => {
                             </MenuItem>)}
                         </Select>
                     </FormControl>
-                    <button className={"downloadButton"} onClick={() => handleChanges()}>submit changes</button>
+                    <button style={{width:"10vw"}} className={"downloadButton"} onClick={() => handleChanges()}>submit changes</button>
                 </div>}
         </div>
     )
