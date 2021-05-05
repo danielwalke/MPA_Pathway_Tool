@@ -3,11 +3,11 @@ import React from "react";
 const MakeSpeciesGlyphObjList = (speciesRaw) => {
     const speciesGlyphObjList = speciesRaw.map(species => {
 
-        const name = species.name.substring(0, species.name.length - 7).replace(/ /g, "_")
+        const name = species.name.substring(0, species.name.length - 7).replace(/ /g, "_").replace(/^[\d\W_]*/,"")
 
         const speciesGlyphObj = {
             '@': {
-             'layout:id': ['SpeciesGlyph_', name].join(""),
+             'layout:id': ['speciesGlyph_', name].join(""),
              'layout:species': name},
             '#': {
                 'layout:boundingBox': {

@@ -14,6 +14,7 @@ import MakeReactionObjList from "./MakeReactionObjList";
 import MakeSpeciesObjList from "./MakeSpeciesObjList";
 import MakeReactionGlyphObjList from "./MakeReactionGlyphObjList";
 import MakeSpeciesGlyphObjList from "./MakeSpeciesGlyphObjList";
+import MakeCompartmentObjList from "./MakeCompartmentObjList";
 
 const SBMLDownloader = () => {
     const state = clonedeep(useSelector(state => state))
@@ -30,10 +31,17 @@ const SBMLDownloader = () => {
         const pathwayName = "pathway" //TODO add user interface for text input
 
         const reactionsRaw = MakeReactionList(graphState, reactionObjects, reactionsRawList)
-        const speciesRaw = MakeSpeciesList(reactionsRaw)
+        const [speciesRaw, speciesPosRaw ,compartmentsRaw] = MakeSpeciesList(reactionsRaw)
+
+        console.log(speciesRaw)
+        console.log(speciesPosRaw)
+        console.log(compartmentsRaw)
+        console.log(reactionsRaw)
+
 
         const reaction = MakeReactionObjList(reactionsRaw)
         const species = MakeSpeciesObjList(speciesRaw)
+        const compartments = MakeCompartmentObjList(compartmentsRaw)
 
         const reactionGlyphObj = MakeReactionGlyphObjList(reactionsRaw)
         const speciesGlyphObj = MakeSpeciesGlyphObjList(speciesRaw)
@@ -56,6 +64,7 @@ const SBMLDownloader = () => {
                     '#': {
                         listOfSpecies: {species},
                         listOfReactions: {reaction},
+                        listOfCompartments: {compartment: compartments},
                         'layout:listOfLayouts': {
                             '@': {
                                 'xmlns:xsi': "http://www.w3.org/2001/XMLSchema-instance",
@@ -66,7 +75,7 @@ const SBMLDownloader = () => {
                                     '@': {'layout:id': "Layout1"},
                                     '#': {
                                         'layout:dimensions': {'@': {'layout:width':"400", 'layout:height':"230"}},
-                                        'layout:ListOfReactionGlyphs': {reactionGlyph: reactionGlyphObj},
+                                        'layout:listOfReactionGlyphs': {reactionGlyph: reactionGlyphObj},
                                         'layout:listOfSpeciesGlyphs': {speciesGlyph: speciesGlyphObj}
                                     }
                                 }
@@ -78,9 +87,9 @@ const SBMLDownloader = () => {
 
         }
 
-        console.log(objectToXML(obj))
-        // let blob = new Blob(new Array(objectToXML(obj).trim()), {type: "text/plain;charset=utf-8"});
-        // saveAs(blob, "ModuleGraph.xml")
+        // console.log(objectToXML(obj))
+        let blob = new Blob(new Array(objectToXML(obj).trim()), {type: "text/plain;charset=utf-8"});
+        saveAs(blob, "ModuleGraph.xml")
     }
 
     return (

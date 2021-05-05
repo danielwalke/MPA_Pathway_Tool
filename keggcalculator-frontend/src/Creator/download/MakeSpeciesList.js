@@ -8,29 +8,56 @@ const MakeSpeciesList = (reactionArrayProcessed) => {
      * objects with necessary abbreviation, x and y props
      * */
 
+    let compounds = []
+
+    let speciesPosArray = []
     let speciesArray = []
+    let compartmentArray = []
     for(const rxn of reactionArrayProcessed) {
-        const prods = rxn.products.map(
-            item => {
-                return {
-                    name: item.abbreviation,
-                    x: item.x,
-                    y: item.y
-                }
-            })
-        speciesArray.push(...prods)
-        const subs = rxn.substrates.map(
-            item => {
-                return {
-                    name: item.abbreviation,
-                    x: item.x,
-                    y: item.y
-                }
-            })
-        speciesArray.push(...subs)
+        compounds.push(...rxn.products)
+        compounds.push(...rxn.substrates)
     }
 
-    return Array.from(new Set(speciesArray))
+        compounds.map(
+            item => {
+                const compoundsForSpeciesArray = {
+                    name: item.abbreviation,
+                    compartment: "c",
+                    compartmentName: "cytosol",    //extend functionality for multiple compartments
+                    hasOnlySubstanceUnits: "true", //might be changed by User
+                    boundaryCondition: "false",    //might be changed by User
+                    constant: "false"              //might be changed by User
+                    // maybe addition of sboTerm
+                }
+                speciesArray.push(compoundsForSpeciesArray)
+
+                const compoundPositions = {
+                    name: item.abbreviation,
+                    compartment: "c",
+                    compartmentName: "cytosol",
+                    x: item.x,
+                    y: item.y
+                }
+                speciesPosArray.push(compoundPositions)
+
+                const compartments = {
+                    compartment: "c",
+                    compartmentName: "cytosol",
+                    constant: "true"
+                }
+                compartmentArray.push(compartments)
+            })
+
+    const uniqueSpeciesArrayStr = Array.from(new Set(speciesArray.map(item => JSON.stringify(item))))
+    const uniqueSpeciesArray = uniqueSpeciesArrayStr.map(item => JSON.parse(item))
+
+    const uniqueSpeciesPosArrayStr = Array.from(new Set(speciesPosArray.map(item => JSON.stringify(item))))
+    const uniqueSpeciesPosArray = uniqueSpeciesPosArrayStr.map(item => JSON.parse(item))
+
+    const uniqueCompartmentsArrayStr = Array.from(new Set(compartmentArray.map(item => JSON.stringify(item))))
+    const uniqueCompartmentsArray = uniqueCompartmentsArrayStr.map(item => JSON.parse(item))
+
+    return [uniqueSpeciesArray, uniqueSpeciesPosArray, uniqueCompartmentsArray]
 }
 
 export default MakeSpeciesList
