@@ -146,7 +146,6 @@ public class CalculatorOutputList {
 					String koNumbers = protein.getKoNumberIds().toString().replace("[", "").replace("]", "").replace(" ", "").replace(",", "|");
 					String ecNumbers = protein.getEcNumberIds().toString().replace("[", "").replace("]", "").replace(" ", "").replace(",", "|");
 					String quants = protein.getQuants().toString().replace("[", "").replace("]", "").replace(" ", "").replace(",","\t");
-					System.out.println(koNumbers);
 					br.write(name);
 					br.write("\t");
 					br.write(koNumbers);
