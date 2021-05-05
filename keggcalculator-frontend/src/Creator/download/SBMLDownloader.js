@@ -13,6 +13,7 @@ import MakeReactionList from "./MakeReactionList";
 import MakeReactionObjList from "./MakeReactionObjList";
 import MakeSpeciesObjList from "./MakeSpeciesObjList";
 import MakeReactionGlyphObjList from "./MakeReactionGlyphObjList";
+import MakeSpeciesGlyphObjList from "./MakeSpeciesGlyphObjList";
 
 const SBMLDownloader = () => {
     const state = clonedeep(useSelector(state => state))
@@ -35,6 +36,7 @@ const SBMLDownloader = () => {
         const species = MakeSpeciesObjList(speciesRaw)
 
         const reactionGlyphObj = MakeReactionGlyphObjList(reactionsRaw)
+        const speciesGlyphObj = MakeSpeciesGlyphObjList(speciesRaw)
 
 
         const obj = {
@@ -64,7 +66,8 @@ const SBMLDownloader = () => {
                                     '@': {'layout:id': "Layout1"},
                                     '#': {
                                         'layout:dimensions': {'@': {'layout:width':"400", 'layout:height':"230"}},
-                                        'layout:ListOfReactionGlyphs': {reactionGlyph: reactionGlyphObj}
+                                        'layout:ListOfReactionGlyphs': {reactionGlyph: reactionGlyphObj},
+                                        'layout:listOfSpeciesGlyphs': {speciesGlyph: speciesGlyphObj}
                                     }
                                 }
                             }
