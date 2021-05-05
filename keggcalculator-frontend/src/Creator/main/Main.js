@@ -15,7 +15,7 @@ import KeggReaction from "../keggReaction/KeggReaction";
 import SpecUserReaction from "../specReaction/SpecUserReaction";
 import UserInfo from "../graph/UserInfo";
 import UserCaptionThree from "../upload/UserCaptionThree";
-import ModuleListModal from "./ModuleListModal";
+import ModuleListModal from "../keggReaction/ModuleListModal";
 import {requestGenerator} from "../request/RequestGenerator";
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import {Drawer, makeStyles, Toolbar, useTheme} from "@material-ui/core";

@@ -26,7 +26,7 @@ const linkInData = (links, newLink) =>{
 }
 
 // return a node object
-const createNode = (id, color, symbolType, x, y, opacity) =>{
+const createNode = (id, color, symbolType, x, y, opacity, reversible) =>{
     return(
         {
             id: id,
@@ -34,18 +34,20 @@ const createNode = (id, color, symbolType, x, y, opacity) =>{
             symbolType: symbolType,
             x: x,
             y: y,
-            opacity: opacity
+            opacity: opacity,
+            reversible: reversible
         }
     )
 }
 
 //return a link object
-const createLink = (source, target, opacity) =>{
+const createLink = (source, target, opacity,isReversibleLink) =>{
     return(
         {
             source: source,
             target: target,
-            opacity: opacity
+            opacity: opacity,
+            isReversibleLink: isReversibleLink
         }
     )
 }
@@ -59,14 +61,14 @@ export const setReactionsAndCompoundsInStore = (state, listOfReactions) =>{
         const reactionY = 0;
         const reactionSymbolType ="diamond";
         const reactionColor= "black";
-        const reactionNode = createNode(reactionId, reactionColor, reactionSymbolType, reactionX, reactionY, reactionOpacity);
+        const reactionNode = createNode(reactionId, reactionColor, reactionSymbolType, reactionX, reactionY, reactionOpacity, reaction.reversible);
         const substrateNodes = reaction.substrates.map(substrate =>{
             const substrateId = substrate.sbmlId.concat(";" + substrate.sbmlName + " " + substrate.keggId); //retruns name like "M_pep_c;Phosphoenolpyruvate K/G/CXXXXX"
-            return createNode(substrateId, "green", "circle", 0, 0,1);
+            return createNode(substrateId, "green", "circle", 0, 0,1, null);
         })
         const productNodes = reaction.products.map(product =>{
             const productId = product.sbmlId.concat(";" + product.sbmlName + " " + product.keggId); //retruns name like "M_pep_c;Phosphoenolpyruvate K/G/CXXXXX"
-            return createNode(productId, "green", "circle", 0, 0,1);
+            return createNode(productId, "green", "circle", 0, 0,1, null);
         })
         //push reaction nodes in data
         if(!nodeInData(data.nodes, reactionNode)){
@@ -88,7 +90,11 @@ export const setReactionsAndCompoundsInStore = (state, listOfReactions) =>{
         })
         //push substrate links in data
         substrateNodes.map(substrate => {
-            const substrateLink = createLink(substrate.id, reactionNode.id, 1)
+            const substrateLink = createLink(substrate.id, reactionNode.id, 1, false)
+            if(reaction.reversible){
+                const substrateReverseLink = createLink(reactionNode.id, substrate.id, 1, true)
+                data.links.push(substrateReverseLink)
+            }
             if(!linkInData(data.links, substrateLink)){
                 data.links.push(substrateLink)
             }
@@ -96,7 +102,11 @@ export const setReactionsAndCompoundsInStore = (state, listOfReactions) =>{
         })
         //push product links in data
         productNodes.map(product => {
-            const productLink = createLink(reactionNode.id, product.id, 1)
+            const productLink = createLink(reactionNode.id, product.id, 1, false)
+            if(reaction.reversible){
+                const productReverseLink =createLink(product.id, reactionNode.id, 1, true)
+                data.links.push(productReverseLink)
+            }
             if(!linkInData(data.links, productLink)){
                 data.links.push(productLink)
             }

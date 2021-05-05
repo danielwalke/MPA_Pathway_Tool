@@ -33,9 +33,9 @@ export const handleDrawGraph = (reaction, state, dispatch, graphState) =>{
     const productsName = products.map(product => state.compoundId2Name[product])
     substratesName.map(substrate => data.nodes.push({id:substrate, color: "darkgreen", opacity: 1,x:0,y:0}))
     productsName.map(product => data.nodes.push({id:product, color: "darkgreen", opacity: 1,x:0,y:0}))
-    data.nodes.push({id:`${reaction.reactionName} ${reaction.reactionId}`, color: "black", opacity: 1, symbolType: "diamond",x:0,y:0})
-    substratesName.map(substrate => data.links.push({source: substrate, target: `${reaction.reactionName} ${reaction.reactionId}`}))
-    productsName.map(product => data.links.push({source: `${reaction.reactionName} ${reaction.reactionId}`, target: product}))
+    data.nodes.push({id:`${reaction.reactionName} ${reaction.reactionId}`, color: "black", opacity: 1, symbolType: "diamond",x:0,y:0, reversible:false})
+    substratesName.map(substrate => data.links.push({source: substrate, target: `${reaction.reactionName} ${reaction.reactionId}`, opacity:1,isReversibleLink: false}))
+    productsName.map(product => data.links.push({source: `${reaction.reactionName} ${reaction.reactionId}`, target: product, opacity:1,isReversibleLink: false}))
     dispatch({type: "SETDATA", payload: data})
 }
 

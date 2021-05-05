@@ -65,6 +65,7 @@ const readReactions = (dispatch, sbml) => {
     const listOfReactions = listOfReactionsElement.children.map((reaction, index) =>{
         const sbmlId = reaction.attributes.id;
         const sbmlName = typeof reaction.attributes.name === "string" ? reaction.attributes.name : reaction.attributes.id;
+        const reversible = typeof reaction.attributes.reversible === "string" ? reaction.attributes.reversible : false
         const annotations = reaction.getElementsByTagName("rdf:li").map(link => link.attributes["rdf:resource"])
         const keggAnnotations = annotations.filter(link => link.includes("kegg.reaction")) //returns one link like "http://identifiers.org/kegg.reaction/R00212", i.e. last 6 chars are respective kegg annotation
         //possibly more than one reaction annotations in one reaction
@@ -94,7 +95,8 @@ const readReactions = (dispatch, sbml) => {
             ecNumbers: ecNumbers,
             koNumbers:koNumbers,
             substrates: substrates,
-            products: products
+            products: products,
+            reversible: reversible
         };
 
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {saveAs} from "file-saver";
 import {useSelector} from "react-redux";
 import {getNodePosition} from "./NodePosition";
@@ -15,8 +15,9 @@ const CsvDownLoader = () => {
             const reactions = reactionNames.map(name => generalState.reactionsInSelectArray.filter(reaction => reaction.reactionName === name)[0])
             reactions.map(reaction => {
                 reaction.abbreviation = typeof graphState.abbreviationsObject[`${reaction.reactionName}`] === "undefined" ? reaction.reactionName : graphState.abbreviationsObject[`${reaction.reactionName}`]
-                reaction.opacity = clonedeep(graphState.data.nodes.filter(node => node.id = reaction.reactionName)[0].opacity)
-                reaction.reversible = "reversible"
+                reaction.opacity = graphState.data.nodes.filter(node => node.id === reaction.reactionName)[0].opacity
+                const reversible = graphState.data.nodes.filter(node => node.id === reaction.reactionName)[0].reversible
+                reaction.reversible = reversible ? "reversible" : "irreversible"
                 reaction.x = getNodePosition(reaction.reactionName).x
                 reaction.y = getNodePosition(reaction.reactionName).y
                 if(graphState.data.links.length===0){
@@ -58,10 +59,10 @@ const CsvDownLoader = () => {
             for(const reaction of reactions){
                 for(const substrate of reaction.substrates){
                     // console.log(substrate.stochiometry)
-                    output = addOutput(output, reaction, substrate, reactionCounter, compoundTypeSubstrate)
+                    output = addOutput(output, reaction, substrate, reactionCounter, compoundTypeSubstrate,reaction.reversible)
                 }
                 for(const product of reaction.products){
-                    output = addOutput(output, reaction, product, reactionCounter, compoundTypeProduct)
+                    output = addOutput(output, reaction, product, reactionCounter, compoundTypeProduct,reaction.reversible)
                 }
                 if(reaction.substrates.length===0 && reaction.products.length === 0){
                     output = addOutput(output, reaction, {stochiometry:"", name:"",x:"",y:"",opacity:"",abbreviation:""}, reactionCounter, "")

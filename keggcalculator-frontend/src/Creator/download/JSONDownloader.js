@@ -15,8 +15,9 @@ const JSONDownloader = () => {
             const reactions = reactionNames.map(name => generalState.reactionsInSelectArray.filter(reaction => reaction.reactionName === name)[0])
             reactions.map(reaction => {
                 reaction.abbreviation = typeof graphState.abbreviationsObject[`${reaction.reactionName}`] === "undefined" ? reaction.reactionName : graphState.abbreviationsObject[`${reaction.reactionName}`]
-                reaction.opacity = graphState.data.nodes.filter(node => node.id = reaction.reactionName)[0].opacity
-                reaction.reversible = "reversible"
+                reaction.opacity = graphState.data.nodes.filter(node => node.id === reaction.reactionName)[0].opacity
+                const reversible = graphState.data.nodes.filter(node => node.id === reaction.reactionName)[0].reversible
+                reaction.reversible = reversible ? "reversible" :"irreversible"
                 reaction.x = getNodePosition(reaction.reactionName).x
                 reaction.y = getNodePosition(reaction.reactionName).y
                 if (reaction.isForwardReaction) {

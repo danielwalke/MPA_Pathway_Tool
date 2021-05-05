@@ -15,6 +15,7 @@ export const handleGraphUpload = (rows, dispatch, state) => {
         const compoundAbbr = columns[14]
         const keyComp = columns[15]
         const opacity = keyComp === "true" ? 1 : 0.4
+        const reversible = columns[7] === "reversible"
         if(compoundName.length===0){
             if(!addedReactions.includes(reactionName)){
                 const reactionNode = {
@@ -23,7 +24,8 @@ export const handleGraphUpload = (rows, dispatch, state) => {
                     y: +reactionY,
                     color: "black",
                     symbolType: "diamond",
-                    opacity: 1
+                    opacity: 1,
+                    reversible: reversible
                 }
                 nodes.push(reactionNode)
             }
@@ -45,7 +47,8 @@ export const handleGraphUpload = (rows, dispatch, state) => {
                     y: +reactionY,
                     color: "black",
                     symbolType: "diamond",
-                    opacity: 1
+                    opacity: 1,
+                    reversible: columns[7] === "reversible"
                 }
                 nodes.push(reactionNode)
             }
@@ -54,10 +57,17 @@ export const handleGraphUpload = (rows, dispatch, state) => {
             state.abbreviationsObject[`${compoundName}`] = compoundAbbr
             let link = {}
             if (typeOfCompound === "substrate") {
-                link = {source: compoundName, target: reactionName, opacity: opacity}
+                link = {source: compoundName, target: reactionName, opacity: opacity,isReversibleLink: false}
+                if(reversible){
+                    links.push({source: reactionName, target: compoundName, opacity: opacity,isReversibleLink: true})
+                }
             } else {
-                link = {source: reactionName, target: compoundName, opacity: opacity}
+                link = {source: reactionName, target: compoundName, opacity: opacity,isReversibleLink: false}
+                if(reversible){
+                    links.push({source: compoundName, target: reactionName, opacity: opacity,isReversibleLink: true})
+                }
             }
+
             links.push(link)
             nodes.push(compoundNode)
         }

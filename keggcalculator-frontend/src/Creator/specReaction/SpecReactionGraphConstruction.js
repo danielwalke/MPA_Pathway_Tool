@@ -9,20 +9,20 @@ export const handleSpecSubmit = (e, graphStates, specReactionStates, dispatch) =
         const subst = specReactionStates.specSubstrates[i]
         if (i === 0) {
             data.nodes.push({id: subst, color: "darkgreen", opacity: 1, x: 0, y: 0})
-            data.links.push({source: subst, target: reaction, opacity: 1})
+            data.links.push({source: subst, target: reaction, opacity: 1,isReversibleLink: false })
         } else {
             data.nodes.push({id: subst, color: "darkgreen", opacity: 0.4, x: 0, y: 0})
-            data.links.push({source: subst, target: reaction, opacity: 0.4})
+            data.links.push({source: subst, target: reaction, opacity: 0.4,isReversibleLink: false})
         }
     }
     for (let i = 0; i < specReactionStates.specProducts.length; i++) {
         const prod = specReactionStates.specProducts[i]
         if (i === 0) {
             data.nodes.push({id: prod, color: "darkgreen", opacity: 1, x: 0, y: 0})
-            data.links.push({source: reaction, target: prod, opacity: 1})
+            data.links.push({source: reaction, target: prod, opacity: 1,isReversibleLink: false})
         } else {
             data.nodes.push({id: prod, color: "darkgreen", opacity: 0.4, x: 0, y: 0})
-            data.links.push({source: reaction, target: prod, opacity: 0.4})
+            data.links.push({source: reaction, target: prod, opacity: 0.4,isReversibleLink: false})
         }
     }
     // specReactionStates.specTaxonomies = specReactionStates.specTaxonomies.length === 0 ? [""] : specReactionStates.specTaxonomies
