@@ -20,7 +20,7 @@ const CsvDownLoader = () => {
                 reaction.reversible = reversible ? "reversible" : "irreversible"
                 reaction.x = getNodePosition(reaction.reactionName).x
                 reaction.y = getNodePosition(reaction.reactionName).y
-                if(graphState.data.links.length===0){
+                if(graphState.data.links.length===0){ //transport proteins only
                     reaction.substrates=[]
                     reaction.products = []
                 }else{

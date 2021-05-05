@@ -26,30 +26,30 @@ const MpaInput = () => {
 
                 const lines = result.split("\n")
                 const header = lines[0]
-                const headerEntries = header.split(";")
+                const headerEntries = header.split("\t")
                 const sampleNames = []
-                if (headerEntries[11].includes(",")) {
-                    const sampleNameEntries = headerEntries[11].split(",")
-                    sampleNameEntries.map(entry => sampleNames.push(entry))
+                for(let columnIterator = 12; columnIterator<headerEntries.length; columnIterator++){
+                    const sampleName= headerEntries[columnIterator]
+                    sampleNames.push(sampleName)
                 }
                 lines.shift();//ignore header
                 const proteinSet = new Set()
                 lines.map((line) => {
-                    const entries = line.split(";")
+                    const entries = line.split("\t")
                     let koAndEcSet = new Set()
                     let quantArray = []
                     let taxonomyArray = []
-                    if (entries[1].length > 0) {
-                        if (entries[1].includes(",")) {
-                            const kos = entries[1].split(",")
+                    if (entries[1].length > 0) { //ko numbers
+                        if (entries[1].includes("|")) {
+                            const kos = entries[1].split("|")
                             kos.map(ko => koAndEcSet.add(ko))
                         } else {
                             koAndEcSet.add(entries[1])
                         }
                     }
-                    if (entries[2].length > 2) {
+                    if (entries[2].length > 2) { // ec numbers
                         if (entries[2].includes(",")) {
-                            const ecs = entries[2].split(",")
+                            const ecs = entries[2].split("|")
                             ecs.map(ec => koAndEcSet.add(ec))
                         } else {
                             koAndEcSet.add(entries[2])
@@ -60,39 +60,39 @@ const MpaInput = () => {
                         const taxon = entries[3+index]
                         taxa[`${taxonomicRank}`] = taxon
                     })
-                    // if (entries[3].includes(",")) {
-                    //     const taxonomies = entries[3].split(",")
-                    //     taxonomies.map(taxonomy => {
-                    //         taxonomyArray.push(taxonomy)
+                    for(let columnIterator = 12; columnIterator< entries.length; columnIterator++){
+                        const quant = entries[columnIterator]
+                        if (quant.includes("/")) {
+                            const quantRatios = quant.split("/")
+                            const calcQuant = +quantRatios[0] / +quantRatios[1]
+                            quantArray.push(+calcQuant)
+                            allQuants.push(+calcQuant)
+                        } else {
+                            quantArray.push(+quant)
+                            allQuants.push(+quant)
+                        }
+                    }
+                    // if (entries[11].includes(",")) {
+                    //     const quants = entries[11].split(",")
+                    //     quants.map(quant => {
+                    //         if (quant.includes("/")) {
+                    //             const quantRatios = quant.split("/")
+                    //             const calcQuant = +quantRatios[0] / +quantRatios[1]
+                    //             quantArray.push(+calcQuant)
+                    //             allQuants.push(+calcQuant)
+                    //         } else {
+                    //             quantArray.push(+quant)
+                    //             allQuants.push(+quant)
+                    //         }
                     //         return null
                     //     })
                     // } else {
-                    //     if (entries[3].length > 0) {
-                    //         taxonomyArray.push(entries[3])
-                    //     }
+                    //     quantArray.push(+entries[11])
+                    //     allQuants.push(+entries[11])
                     // }
-                    if (entries[11].includes(",")) {
-                        const quants = entries[11].split(",")
-                        quants.map(quant => {
-                            if (quant.includes("/")) {
-                                const quantRatios = quant.split("/")
-                                const calcQuant = +quantRatios[0] / +quantRatios[1]
-                                quantArray.push(+calcQuant)
-                                allQuants.push(+calcQuant)
-                            } else {
-                                quantArray.push(+quant)
-                                allQuants.push(+quant)
-                            }
-                            return null
-                        })
-                    } else {
-                        quantArray.push(+entries[11])
-                        allQuants.push(+entries[11])
-                    }
                     const protein = {
                         name: entries[0],
                         koAndEcSet: koAndEcSet,
-                        //taxonomies: taxonomyArray,
                         taxa: taxa,
                         quants: quantArray
                     }

@@ -83,25 +83,25 @@ public class CalculatorOutputList {
 	public void writeCSV(File outputCSV) {
 		try {
 			BufferedWriter br = new BufferedWriter(new FileWriter(outputCSV));
-			br.write("Module,");
-			br.write("module-name,");
-			br.write("Steps found,");
-			br.write("Total steps module,");
-			br.write(getSampleHeaderString());
-			int numberOfSamples = getSampleHeaderString().split(",").length;
+			br.write("Module\t");
+			br.write("module-name\t");
+			br.write("Steps found\t");
+			br.write("Total steps module\t");
+			br.write(getSampleHeaderString().trim());
+			int numberOfSamples = getSampleHeaderString().split("\t").length;
 			br.write("\n");
 			for (CalculatorOutput calcOutput : this.calcOutputList) {
 //				int csvPatternInt = calcOutput.getModule().indexOf(".csv");
 //				br.write(calcOutput.getModule().substring(csvPatternInt - 6, csvPatternInt) + ",");
-				br.write(calcOutput.getModule().replace(",", ";") + ",");
-				br.write(calcOutput.getModuleName().replace(",", ";") + ",");
-				br.write(calcOutput.getStepMpa() + ",");
-				br.write(calcOutput.getStepTotal() + ",");
+				br.write(calcOutput.getModule().replace("\t", ";") + "\t");
+				br.write(calcOutput.getModuleName().replace("\t", ";") + "\t");
+				br.write(calcOutput.getStepMpa() + "\t");
+				br.write(calcOutput.getStepTotal() + "\t");
 				if (calcOutput.getQuantList().isEmpty()) {
 					for(int sampleIterator =0; sampleIterator<numberOfSamples;sampleIterator++) {
 						br.write("nd");
 						if(sampleIterator<numberOfSamples-1) {
-							br.write(",");
+							br.write("\t");
 						}
 					}
 				} else {
@@ -109,7 +109,7 @@ public class CalculatorOutputList {
 						double quant = calcOutput.getQuantList().get(quantIterator);
 						br.write(String.valueOf(quant));
 						if(quantIterator<calcOutput.getQuantList().size()-1) {
-							br.write(",");
+							br.write("\t");
 						}						
 					}
 //					br.write(calcOutput.getQuantList().toString().substring(1,
@@ -132,28 +132,32 @@ public class CalculatorOutputList {
 	}
 
 
-	public void wirteCSVUnmatchedProteins(File outputCSV) {
+	public void writeCSVUnmatchedProteins(File outputCSV) {
 		try {
 			BufferedWriter br = new BufferedWriter(new FileWriter(outputCSV));
-			br.write("name,");
-			br.write("KO- numebrs,");
-			br.write("EC- numbers,");
+			br.write("id\t");
+			br.write("KO-numbers\t");
+			br.write("EC-numbers\t");
 			br.write(getSampleHeaderString());
-			int numberOfSamples = getSampleHeaderString().split(",").length;
+//			int numberOfSamples = getSampleHeaderString().split("\t").length;
 			br.write("\n");
 				for(MpaProtein protein : this.unmatchedProteins) {
-					br.write(protein.getMetaProteinName());
-					br.write(";");
-					br.write(protein.getKoNumberIds().toString().replace("[", "").replace("]", "").replace(" ", ""));
-					br.write(";");
-					br.write(protein.getEcNumberIds().toString().replace("[", "").replace("]", "").replace(" ", ""));
-					br.write(";");
-					br.write(protein.getQuants().toString().replace("[", "").replace("]", "").replace(" ", ""));
+					String name = protein.getMetaProteinName();
+					String koNumbers = protein.getKoNumberIds().toString().replace("[", "").replace("]", "").replace(" ", "").replace(",", "|");
+					String ecNumbers = protein.getEcNumberIds().toString().replace("[", "").replace("]", "").replace(" ", "").replace(",", "|");
+					String quants = protein.getQuants().toString().replace("[", "").replace("]", "").replace(" ", "").replace(",","\t");
+					System.out.println(koNumbers);
+					br.write(name);
+					br.write("\t");
+					br.write(koNumbers);
+					br.write("\t");
+					br.write(ecNumbers);
+					br.write("\t");
+					br.write(quants);
 					br.write("\n");
 				}
 			br.flush();
 			br.close();
-			System.out.println(matchedProteins.size());
 		} catch (Exception e) {
 
 		}

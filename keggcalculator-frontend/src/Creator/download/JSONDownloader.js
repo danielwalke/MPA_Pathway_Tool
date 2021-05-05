@@ -20,29 +20,34 @@ const JSONDownloader = () => {
                 reaction.reversible = reversible ? "reversible" :"irreversible"
                 reaction.x = getNodePosition(reaction.reactionName).x
                 reaction.y = getNodePosition(reaction.reactionName).y
-                if (reaction.isForwardReaction) {
-                    reaction.substrates = reactionObjects[`${reaction.reactionName}`].substrates.map(substrate =>{
-                        const substrateId = substrate.name.substring(substrate.name.length-6, substrate.name.length)
-                        substrate.stochiometry = reaction.stochiometrySubstratesString[`${substrateId}`]
-                        return substrate
-                    })
-                    reaction.products = reactionObjects[`${reaction.reactionName}`].products.map(product =>{
-                        const productId = product.name.substring(product.name.length-6, product.name.length)
-                        product.stochiometry = reaction.stochiometryProductsString[`${productId}`]
-                        return product
-                    })
-                } else {
-                    reaction.substrates = reactionObjects[`${reaction.reactionName}`].substrates.map(substrate =>{
-                        const substrateId = substrate.name.substring(substrate.name.length-6, substrate.name.length)
-                        substrate.stochiometry = reaction.stochiometryProductsString[`${substrateId}`]
-                        return substrate
-                    })
-                    reaction.products = reactionObjects[`${reaction.reactionName}`].products.map(product =>{
-                        console.log(product.stochiometry)
-                        const productId = product.name.substring(product.name.length-6, product.name.length)
-                        product.stochiometry = reaction.stochiometrySubstratesString[`${productId}`]
-                        return product
-                    })
+                if(graphState.data.links.length===0){ //transport proteins only
+                    reaction.substrates=[]
+                    reaction.products = []
+                }else {
+                    if (reaction.isForwardReaction) {
+                        reaction.substrates = reactionObjects[`${reaction.reactionName}`].substrates.map(substrate => {
+                            const substrateId = substrate.name.substring(substrate.name.length - 6, substrate.name.length)
+                            substrate.stochiometry = reaction.stochiometrySubstratesString[`${substrateId}`]
+                            return substrate
+                        })
+                        reaction.products = reactionObjects[`${reaction.reactionName}`].products.map(product => {
+                            const productId = product.name.substring(product.name.length - 6, product.name.length)
+                            product.stochiometry = reaction.stochiometryProductsString[`${productId}`]
+                            return product
+                        })
+                    } else {
+                        reaction.substrates = reactionObjects[`${reaction.reactionName}`].substrates.map(substrate => {
+                            const substrateId = substrate.name.substring(substrate.name.length - 6, substrate.name.length)
+                            substrate.stochiometry = reaction.stochiometryProductsString[`${substrateId}`]
+                            return substrate
+                        })
+                        reaction.products = reactionObjects[`${reaction.reactionName}`].products.map(product => {
+                            console.log(product.stochiometry)
+                            const productId = product.name.substring(product.name.length - 6, product.name.length)
+                            product.stochiometry = reaction.stochiometrySubstratesString[`${productId}`]
+                            return product
+                        })
+                    }
                 }
                 // reaction["opacity"] = 1
                 return reaction
