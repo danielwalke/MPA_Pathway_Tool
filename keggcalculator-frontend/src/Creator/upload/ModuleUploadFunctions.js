@@ -15,6 +15,7 @@ export const handleGraphUpload = (rows, dispatch, state) => {
         const compoundAbbr = columns[14]
         const keyComp = columns[15]
         const opacity = keyComp === "true" ? 1 : 0.4
+        const reversible = columns[7] === "reversible"
         if(compoundName.length===0){
             if(!addedReactions.includes(reactionName)){
                 const reactionNode = {
@@ -22,8 +23,9 @@ export const handleGraphUpload = (rows, dispatch, state) => {
                     x: +reactionX,
                     y: +reactionY,
                     color: "black",
-                    symbolType: "square",
-                    opacity: 1
+                    symbolType: "diamond",
+                    opacity: 1,
+                    reversible: reversible
                 }
                 nodes.push(reactionNode)
             }
@@ -45,7 +47,8 @@ export const handleGraphUpload = (rows, dispatch, state) => {
                     y: +reactionY,
                     color: "black",
                     symbolType: "diamond",
-                    opacity: 1
+                    opacity: 1,
+                    reversible: columns[7] === "reversible"
                 }
                 nodes.push(reactionNode)
             }
@@ -54,10 +57,17 @@ export const handleGraphUpload = (rows, dispatch, state) => {
             state.abbreviationsObject[`${compoundName}`] = compoundAbbr
             let link = {}
             if (typeOfCompound === "substrate") {
-                link = {source: compoundName, target: reactionName, opacity: opacity}
+                link = {source: compoundName, target: reactionName, opacity: opacity,isReversibleLink: false}
+                if(reversible){
+                    links.push({source: reactionName, target: compoundName, opacity: opacity,isReversibleLink: true})
+                }
             } else {
-                link = {source: reactionName, target: compoundName, opacity: opacity}
+                link = {source: reactionName, target: compoundName, opacity: opacity,isReversibleLink: false}
+                if(reversible){
+                    links.push({source: compoundName, target: reactionName, opacity: opacity,isReversibleLink: true})
+                }
             }
+
             links.push(link)
             nodes.push(compoundNode)
         }
@@ -101,23 +111,29 @@ export const handleReactionListUpload = (rows) => {
         const taxa = {}
         if (taxonomiesString.includes("&&")) { //if more than one taxonomy added -> split them
             const taxonomies = taxonomiesString.split("&&")
-            for (const taxonomy of taxonomies) {
-                const taxonomyEntries = taxonomy.split(":")
+            if(taxonomies.length>1){
+                for (const taxonomy of taxonomies) {
+                    const taxonomyEntries = taxonomy.split(":")
+                    const taxonomicRank = taxonomyEntries[0]
+                    const taxon = taxonomyEntries[1]
+                    taxa[`${taxon}`] = taxonomicRank
+                    // if (taxonomy.includes(",")) { //if taxonomy entries contains more than one entry (superkingdom, kingdom,etc... split them and store the last item in an array)
+                    //     const taxonomyEntries = taxonomy.split(",")
+                    //     taxonomyList.push(taxonomyEntries[taxonomyEntries.length - 1])
+                    // } else { //only one entry -> store only this entry (corresponds to last entry)
+                    //     taxonomyList.push(taxonomy)
+                    // }
+                }
+            }
+
+        } else {
+            if(taxonomiesString.length>1){
+                const taxonomyEntries = taxonomiesString.split(":")
                 const taxonomicRank = taxonomyEntries[0]
                 const taxon = taxonomyEntries[1]
                 taxa[`${taxon}`] = taxonomicRank
-                // if (taxonomy.includes(",")) { //if taxonomy entries contains more than one entry (superkingdom, kingdom,etc... split them and store the last item in an array)
-                //     const taxonomyEntries = taxonomy.split(",")
-                //     taxonomyList.push(taxonomyEntries[taxonomyEntries.length - 1])
-                // } else { //only one entry -> store only this entry (corresponds to last entry)
-                //     taxonomyList.push(taxonomy)
-                // }
             }
-        } else {
-            const taxonomyEntries = taxonomiesString.split(":")
-            const taxonomicRank = taxonomyEntries[0]
-            const taxon = taxonomyEntries[1]
-            taxa[`${taxon}`] = taxonomicRank
+
             // if (taxonomiesString.includes(",")) { //only one taxonomy with more entries (superkingdom,kingdom etc)-> split and store last entry
             //     const taxonomyEntries = taxonomiesString.split(",")
             //     taxonomyList.push(taxonomyEntries[taxonomyEntries.length - 1])

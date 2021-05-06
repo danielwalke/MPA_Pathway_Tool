@@ -112,7 +112,7 @@ public class KeggCalculatorJob implements Runnable {
 			
 			//write output-file
 			outputList.writeCSV(new File(KeggCalculatorConstants.DOWNLOAD_DIR + this.job.jobID + ".csv"));
-			outputList.wirteCSVUnmatchedProteins(new File(KeggCalculatorConstants.DOWNLOAD_DIR + this.job.jobID + "_unmatchedProteins" + ".csv"));
+			outputList.writeCSVUnmatchedProteins(new File(KeggCalculatorConstants.DOWNLOAD_DIR + this.job.jobID + "_unmatchedProteins" + ".csv"));
 			
 			//old calculator
 //			ModuleLoop loop = new ModuleLoop();

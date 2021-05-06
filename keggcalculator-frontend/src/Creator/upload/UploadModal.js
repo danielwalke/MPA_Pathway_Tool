@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import MpaInput from "./MpaInput";
 import ModuleCsvFileInput from "./ModuleCsvFileInput";
 import ModuleJSONInput from "./ModuleJSONInput";
-import ModuleSBMLUpload from "./ModuleSBMLUpload";
+import SbmlReader from "./sbmlParser/SbmlReader/SbmlReader";
 
 
 const UploadModal = () =>{
@@ -17,7 +17,7 @@ const UploadModal = () =>{
             <MpaInput/>
             <ModuleCsvFileInput/>
             <ModuleJSONInput/>
-            <ModuleSBMLUpload/>
+            <SbmlReader/>
         </div>
     )
 

@@ -7,7 +7,7 @@ export const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
     },
     paper: {
-        backgroundColor: theme.palette.background.paper,
+        backgroundColor: "white",
         fontFamily: "Roboto",
         border: '2px solid rgb(150, 25, 130)',
         boxShadow: theme.shadows[5],

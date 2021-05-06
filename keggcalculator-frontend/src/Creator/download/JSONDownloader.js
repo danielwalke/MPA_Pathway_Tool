@@ -15,33 +15,39 @@ const JSONDownloader = () => {
             const reactions = reactionNames.map(name => generalState.reactionsInSelectArray.filter(reaction => reaction.reactionName === name)[0])
             reactions.map(reaction => {
                 reaction.abbreviation = typeof graphState.abbreviationsObject[`${reaction.reactionName}`] === "undefined" ? reaction.reactionName : graphState.abbreviationsObject[`${reaction.reactionName}`]
-                reaction.opacity = graphState.data.nodes.filter(node => node.id = reaction.reactionName)[0].opacity
-                reaction.reversible = "reversible"
+                reaction.opacity = graphState.data.nodes.filter(node => node.id === reaction.reactionName)[0].opacity
+                const reversible = graphState.data.nodes.filter(node => node.id === reaction.reactionName)[0].reversible
+                reaction.reversible = reversible ? "reversible" :"irreversible"
                 reaction.x = getNodePosition(reaction.reactionName).x
                 reaction.y = getNodePosition(reaction.reactionName).y
-                if (reaction.isForwardReaction) {
-                    reaction.substrates = reactionObjects[`${reaction.reactionName}`].substrates.map(substrate =>{
-                        const substrateId = substrate.name.substring(substrate.name.length-6, substrate.name.length)
-                        substrate.stochiometry = reaction.stochiometrySubstratesString[`${substrateId}`]
-                        return substrate
-                    })
-                    reaction.products = reactionObjects[`${reaction.reactionName}`].products.map(product =>{
-                        const productId = product.name.substring(product.name.length-6, product.name.length)
-                        product.stochiometry = reaction.stochiometryProductsString[`${productId}`]
-                        return product
-                    })
-                } else {
-                    reaction.substrates = reactionObjects[`${reaction.reactionName}`].substrates.map(substrate =>{
-                        const substrateId = substrate.name.substring(substrate.name.length-6, substrate.name.length)
-                        substrate.stochiometry = reaction.stochiometryProductsString[`${substrateId}`]
-                        return substrate
-                    })
-                    reaction.products = reactionObjects[`${reaction.reactionName}`].products.map(product =>{
-                        console.log(product.stochiometry)
-                        const productId = product.name.substring(product.name.length-6, product.name.length)
-                        product.stochiometry = reaction.stochiometrySubstratesString[`${productId}`]
-                        return product
-                    })
+                if(graphState.data.links.length===0){ //transport proteins only
+                    reaction.substrates=[]
+                    reaction.products = []
+                }else {
+                    if (reaction.isForwardReaction) {
+                        reaction.substrates = reactionObjects[`${reaction.reactionName}`].substrates.map(substrate => {
+                            const substrateId = substrate.name.substring(substrate.name.length - 6, substrate.name.length)
+                            substrate.stochiometry = reaction.stochiometrySubstratesString[`${substrateId}`]
+                            return substrate
+                        })
+                        reaction.products = reactionObjects[`${reaction.reactionName}`].products.map(product => {
+                            const productId = product.name.substring(product.name.length - 6, product.name.length)
+                            product.stochiometry = reaction.stochiometryProductsString[`${productId}`]
+                            return product
+                        })
+                    } else {
+                        reaction.substrates = reactionObjects[`${reaction.reactionName}`].substrates.map(substrate => {
+                            const substrateId = substrate.name.substring(substrate.name.length - 6, substrate.name.length)
+                            substrate.stochiometry = reaction.stochiometryProductsString[`${substrateId}`]
+                            return substrate
+                        })
+                        reaction.products = reactionObjects[`${reaction.reactionName}`].products.map(product => {
+                            console.log(product.stochiometry)
+                            const productId = product.name.substring(product.name.length - 6, product.name.length)
+                            product.stochiometry = reaction.stochiometrySubstratesString[`${productId}`]
+                            return product
+                        })
+                    }
                 }
                 // reaction["opacity"] = 1
                 return reaction

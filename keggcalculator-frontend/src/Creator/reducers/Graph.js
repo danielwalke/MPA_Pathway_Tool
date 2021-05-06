@@ -30,7 +30,13 @@ const defaultState = {
     y: "",
     oldData: {nodes:[],links:[]},
     chosenCompound: {},
-    showNodeCoordinatesModal: false
+    showNodeCoordinatesModal: false,
+     showMergeNodesModal : false,
+    mergeNode:"",
+    mergeNodes: [],
+    mergeNodesName: "",
+
+
 }
 
 export const graphReducer = (state = defaultState, action) => {
@@ -102,6 +108,17 @@ export const graphReducer = (state = defaultState, action) => {
             return {...state, y: payload}
         case "SWITCHSHOWNODECOORDINATESMODAL":
             return {...state, showNodeCoordinatesModal: !state.showNodeCoordinatesModal}
+        case "SWITCHSHOWMERGENODESMODAL":
+            return {...state, showMergeNodesModal: !state.showMergeNodesModal}
+        case "SETMERGENODE":
+            return {...state, mergeNode: payload}
+        case "ADDMERGENODE":
+            return {...state, mergeNodes: [...state.mergeNodes, state.mergeNode], mergeNode: ""}
+        case "SPLICEMERGENODES":
+            return {...state, mergeNodes: state.mergeNodes.filter(node => node !== payload)}
+        case "SETMERGENODESNAME":
+            return {...state, mergeNodesName: payload}
+
         default:
             return state;
     }

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Map.Entry;
 
 import com.google.gson.Gson;
 
@@ -36,6 +37,7 @@ public class ModuleFileParser {
 		for (String file : this.fileList) {
 			if(file.endsWith(".csv")) {
 				parseCsv(file, keggdataUser);
+			
 			}
 			if(file.endsWith(".json")) {
 				parseJson(file, keggdataUser);
@@ -83,10 +85,10 @@ public class ModuleFileParser {
 				KeggECObject ecNumber = new KeggECObject(ec, "");
 				reaction.addEcnumber(ecNumber);
 			}
-			for(String rawTaxon : jsonReaction.getTaxonomies()) {
-				String[] taxonEntries = rawTaxon.split(":");
-				String taxonomicRank = taxonEntries[0];
-				String taxon = taxonEntries[1];
+			for(Entry<String, String> taxonEntry : jsonReaction.getTaxa().entrySet()) {
+//				String[] taxonEntries = rawTaxon.split(":");
+				String taxonomicRank = taxonEntry.getValue();
+				String taxon = taxonEntry.getKey();
 				reaction.addTaxonomy(taxon, taxonomicRank);
 			}
 			for(JSONCompound substrate : jsonReaction.getSubstrates()) {

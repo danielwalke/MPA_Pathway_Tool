@@ -6,6 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import DeleteIcon from "@material-ui/icons/Delete";
 import {requestGenerator} from "../request/RequestGenerator";
+import {handleDrawGraph} from "./EcReactions";
 
 const reactionUrl = "http://127.0.0.1/keggcreator/getreaction"
 const koUrl = "http://127.0.0.1/keggcreator/getreactionlistbykolist"
@@ -61,27 +62,13 @@ const KoReactions = () => {
         dispatch({type: "ADDREACTIONSTOARRAY", payload: [reaction]})
     }
 
-    const handleDrawGraph = (reaction) =>{
-        const data = graphState.data
-        const substrates = Object.keys(reaction.stochiometrySubstratesString)
-        const products = Object.keys(reaction.stochiometryProductsString)
-        const substratesName = substrates.map(substrate => state.compoundId2Name[substrate])
-        const productsName = products.map(product => state.compoundId2Name[product])
-        substratesName.map(substrate => data.nodes.push({id:substrate, color: "darkgreen", opacity: 1,x:0,y:0}))
-        productsName.map(product => data.nodes.push({id:product, color: "darkgreen", opacity: 1,x:0,y:0}))
-        data.nodes.push({id:`${reaction.reactionName} ${reaction.reactionId}`, color: "black", opacity: 1, symbolType: "diamond",x:0,y:0})
-        substratesName.map(substrate => data.links.push({source: substrate, target: `${reaction.reactionName} ${reaction.reactionId}`}))
-        productsName.map(product => data.links.push({source: `${reaction.reactionName} ${reaction.reactionId}`, target: product}))
-        dispatch({type: "SETDATA", payload: data})
-    }
-
     const handleReactionSubmit = () => {
         const reactionId = state.reactionOfKo.substring(state.reactionOfKo.length - 6, state.reactionOfKo.length).toString()
         requestGenerator("POST", reactionUrl, {reactionId: reactionId}, "", "")
             .then(response => {
                 const reaction = response.data;
                 console.log(reaction)
-                handleDrawGraph(reaction);
+                handleDrawGraph(reaction, state, dispatch, graphState);
                 handleAddReaction(reaction);
                 return null;
             })

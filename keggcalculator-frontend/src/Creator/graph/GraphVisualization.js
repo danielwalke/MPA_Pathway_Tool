@@ -51,7 +51,7 @@ const GraphVisualization = () => {
 
     }
     const myConfig = {
-        height: 0.8*window.innerHeight,
+        height: 0.75*window.innerHeight,
         width:  0.95*window.innerWidth,
         nodeHighlightBehavior: true,
         directed: true,
@@ -112,7 +112,7 @@ const GraphVisualization = () => {
 
     if (graphState.data.nodes.length > 0) {
         return (
-            <div style={{height: 0.8 * window.innerHeight}}>
+            <div>
                 <Graph
                     bottom={0}
                     id="graph"
@@ -128,7 +128,7 @@ const GraphVisualization = () => {
     }
     return (
         <div>
-            <FadeLoader height={"2vh"} width={"2vh"} radius={"20vh"} margin={"20vh"} css={{marginRight: "40vw"}}/>
+            <FadeLoader height={"2vh"} width={"2vh"} radius={"20vh"} margin={"20vh"} css={{marginRight: "25vw", marginTop:"20vh"}}/>
         </div>
     )
 }

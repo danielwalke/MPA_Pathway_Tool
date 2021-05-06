@@ -11,6 +11,8 @@ import IconButton from "@material-ui/core/IconButton";
 import clsx from "clsx";
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
+import StoichiometricMatrix from "../stochiometricMatrix/StoichiometricMatrix";
+
 
 const UserInterface = () => {
     const [open, setOpen] = React.useState(true)

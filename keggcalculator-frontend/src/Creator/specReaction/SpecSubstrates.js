@@ -1,23 +1,36 @@
 import Field from "./Field";
 import TextField from "@material-ui/core/TextField";
 import {handleAddSubstrate} from "./SpecReactionFunctions";
-import React from "react";
+import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import "./SpecSubstrate.css"
-import {isRequestValid} from "../request/RequestValidation";
+import PopOverButton from "./PopOverButton";
+import {getCompoundId} from "../upload/sbmlParser/SbmlReader/ReaderFunctions";
 
-const SpecSubstrates = () => {
+
+
+const SpecSubstrates = (props) => {
     const state = useSelector(state => state.specificReaction)
+
     const dispatch = useDispatch()
+
     return (
         <div className={"substrateContainerSpec"}>
-            <Field
-                className={"substrate"}
-                dispatchType={"SETSPECIFICSUBSTRATE"}
-                id={"substrate"}
-                dispatchTypeOptions={"SETSPECIFICOPTIONSSUBSTRATE"}
-                options={state.specOptionsSubstrate}
-                compound={state.specSubstrate}/>
+            {state.isSpecificCompoundInputSubstrate ?
+                <TextField className={"substrate"} size={"small"} value={state.specSubstrate}
+                           onChange={e => dispatch({type: "SETSPECIFICSUBSTRATE", payload: e.target.value})}
+                           type={"text"}
+                           label={"substrate"} id={"spec substrate"}/> :
+                <Field
+                    className={"substrate"}
+                    dispatchType={"SETSPECIFICSUBSTRATE"}
+                    id={"substrate"}
+                    dispatchTypeOptions={"SETSPECIFICOPTIONSSUBSTRATE"}
+                    options={state.specOptionsSubstrate}
+                    compound={state.specSubstrate}/>
+            }
+            <PopOverButton text={" not found? :-(\n" +
+            "                Don't worry! Click here :)"} className={"notFoundButton"}  dispatchType={"SWITCHISSPECCOMPOUNDINPUTSUBSTRATE"}/>
             <TextField
                 size={"small"}
                 className={"substrateSc"}
@@ -35,9 +48,10 @@ const SpecSubstrates = () => {
                 }}
                 variant="filled"
             />
-            <button disabled={!isRequestValid(state.specSubstrate)}
-                className={"addSubstrate"}
-                    onClick={(e) => handleAddSubstrate(e, dispatch, state)}>Add Substrate</button>
+            {/*disabled={!isRequestValid(state.specSubstrate)}*/}
+            <button className={"addSubstrate"} disabled={!state.specSubstrate.length > 0}
+                    onClick={(e) => handleAddSubstrate(e, dispatch, state, props.index)}>Add Substrate
+            </button>
         </div>
     )
 }

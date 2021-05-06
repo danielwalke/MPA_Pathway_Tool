@@ -8,7 +8,8 @@ export const handleJSONGraphUpload = (reactions, dispatch, graphState) => { //ha
             symbolType: "diamond",
             opacity: reaction.opacity,
             x: +reaction.x,
-            y: +reaction.y
+            y: +reaction.y,
+            reversible: reaction.reversible ==="reversible"
         }
         nodes.push(reactionNode)
         reaction.substrates.map(substrate => {
@@ -24,6 +25,14 @@ export const handleJSONGraphUpload = (reactions, dispatch, graphState) => { //ha
                 source: substrate.name,
                 target: reaction.reactionName,
                 opacity: substrate.opacity
+            }
+            if(reactionNode.reversible){
+                links.push({
+                    source: reaction.reactionName,
+                    target: substrate.name,
+                    opacity: substrate.opacity,
+                    isReversibleLink: true
+                })
             }
             nodes.push(compoundNode)
             links.push(compoundLink)
@@ -45,6 +54,14 @@ export const handleJSONGraphUpload = (reactions, dispatch, graphState) => { //ha
                 source: reaction.reactionName,
                 target: product.name,
                 opacity: product.opacity
+            }
+            if(reactionNode.reversible){
+                links.push({
+                    source: product.name,
+                    target: reaction.reactionName,
+                    opacity: product.opacity,
+                    isReversibleLink: true
+                })
             }
             nodes.push(compoundNode)
             links.push(compoundLink)

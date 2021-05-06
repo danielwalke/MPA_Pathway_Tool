@@ -15,7 +15,7 @@ import KeggReaction from "../keggReaction/KeggReaction";
 import SpecUserReaction from "../specReaction/SpecUserReaction";
 import UserInfo from "../graph/UserInfo";
 import UserCaptionThree from "../upload/UserCaptionThree";
-import ModuleListModal from "./ModuleListModal";
+import ModuleListModal from "../keggReaction/ModuleListModal";
 import {requestGenerator} from "../request/RequestGenerator";
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import {Drawer, makeStyles, Toolbar, useTheme} from "@material-ui/core";
@@ -28,6 +28,7 @@ import CloseIcon from "@material-ui/icons/Close";
 const moduleUrl = "http://127.0.0.1/keggcreator/modulelist"
 const ecNumbersUrl = "http://127.0.0.1/keggcreator/ecnumberlist"
 const koNumbersUrl = "http://127.0.0.1/keggcreator/konumberlist"
+const reactionUrl= "http://127.0.0.1/keggcreator/reactions"
 export const taxonomicRanks = ["superkingdom", "kingdom", "phylum", "class", "order", "family", "genus", "species"]
 
 export const useStylesMain = makeStyles({
@@ -49,6 +50,7 @@ export const useStylesMain = makeStyles({
 
 const Main = () => {
     const [open, setOpen] = React.useState(false)
+
     const graphState = useSelector(state => state.graph)
     const dispatch = useDispatch()
     const proteinState = useSelector(state => state.mpaProteins)
@@ -68,6 +70,9 @@ const Main = () => {
                 type: "SETMODULELIST",
                 payload: response.data
             }))
+        requestGenerator("GET", reactionUrl, "","").then(resp=>{
+            dispatch({type:"SETKEGGREACTIONS", payload: resp.data})
+        })
             window.onbeforeunload = exit
         }, [dispatch]
     )
@@ -91,13 +96,15 @@ const Main = () => {
                 <div className={"graph"}>
                     <GraphVisualization dispatch={dispatch}/>
                 </div>
-                <div className={"footer"}>
+                <div className={open? "footer" :  ""}>
                     <Toolbar>
                         <IconButton
                             color="inherit"
                             edge={"end"}
                             aria-label="open drawer"
-                            onClick={() => setOpen(true)}
+                            onClick={() => {
+                                setOpen(true)
+                            }}
                             className={classes.icon}
 
                         >
@@ -117,7 +124,9 @@ const Main = () => {
                             {paper: classes.drawerPaper}
                         }
                     >
-                        <IconButton onClick={() => setOpen(false)}>
+                        <IconButton onClick={() => {
+                            setOpen(false)
+                        }}>
                             {<CloseIcon/>}
                         </IconButton>
                         <div>

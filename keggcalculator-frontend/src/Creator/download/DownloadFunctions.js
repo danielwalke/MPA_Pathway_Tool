@@ -5,7 +5,7 @@ import {getTaxaList} from "../graph/StuctureModalBody";
 export const getReactions = (graphState) =>{
     const reactionObjects = {}
     const reactionNames = []
-    const links = clonedeep(graphState.data.links)
+    const links = clonedeep(graphState.data.links.filter(link => !link.isReversibleLink))
     links.map(link => {
         if (link.source.match(/\s[R,U][0-9][0-9][0-9][0-9][0-9]/) !== null) {
             const reactionName = link.source
@@ -54,7 +54,7 @@ export const getReactions = (graphState) =>{
     return {reactionObjects, reactionNames}
 }
 
-export const addOutput = (output, reaction, compound,reactionCounter, compoundType) => {
+export const addOutput = (output, reaction, compound,reactionCounter, compoundType, reversible) => {
     output = output.concat(reactionCounter.toString(), ";") //step id
     output = output.concat(reaction.reactionName.replaceAll(";", "\t"), ";") //reaction name
     output = output.concat(reaction.koNumbersString, ";") //ko number ids
@@ -62,7 +62,7 @@ export const addOutput = (output, reaction, compound,reactionCounter, compoundTy
     output = output.concat(compound.stochiometry, ";") //stochiometric coeff
     output = output.concat(compound.name.replaceAll(";", "\t"), ";") //compound id
     output = output.concat(compoundType, ";") //type of compound
-    output = output.concat("reversible", ";") //reversibility
+    output = output.concat(reversible, ";") //reversibility
     let taxonomyCounter = 0
     if(getTaxaList(reaction.taxa).length === 0){
         output = output.concat(";")

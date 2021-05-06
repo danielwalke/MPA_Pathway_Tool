@@ -25,49 +25,43 @@ public class MpaFileParser2 {
 				lineCounter++;
 				//first row is a header
 				if(lineCounter==1) {
-					String[] splitLine = line.split(";");
-					String quantSampleHeader = splitLine[11]; //fourth entry contains header of samples-> will be added in output file for good overview abot samples 
+					String[] splitLine = line.split("\t");
+					String quantSampleHeader = ""; //contains header of samples-> will be added in output file for good overview about samples
+					for(int columnIt = 12; columnIt<splitLine.length; columnIt++) {
+						quantSampleHeader+=splitLine[columnIt];
+						quantSampleHeader+="\t";
+					}
 					proteins.setSampleHeaderString(quantSampleHeader);
 				}else {
 					//other rows contains measured metaproteins
-					String[] splitLine = line.split(";");
-					String proteinName = splitLine[0]; //name of metaprotein name
-					MpaProtein protein = new MpaProtein(proteinName);
+					String[] splitLine = line.split("\t");
+					String proteinIdentifier = splitLine[0]; //name of metaprotein name
+					MpaProtein protein = new MpaProtein(proteinIdentifier);
 					String koNumberIds = splitLine[1];
-					String[] splitKoNumber = koNumberIds.split(","); //splits ko number- separated by comma
+					String[] splitKoNumber = koNumberIds.split("\\|"); //splits ko number- separated by comma
 					for (String koId : splitKoNumber) {
 						if(koNumberIds.length()>0) {
 							protein.addKoNumberId(koId);
 						}
 					}
 					String ecNumberIds = splitLine[2];
-					String[] splitEcNumber = ecNumberIds.split(",");//splits ec number- separated by comma
+					String[] splitEcNumber = ecNumberIds.split("\\|");//splits ec number- separated by comma
 					for (String ecId : splitEcNumber) {
 						if(ecNumberIds.length()>0) {
 							protein.addecNumberId(ecId);
 						}
 						
 					}
-//					String superkingdomTax = splitLine[3];
-//					String kingdomTax = splitLine[4];
-//					String phylumTax = splitLine[5];
-//					String classTax = splitLine[6];
-//					String orderTax = splitLine[7];
-//					String familyTax = splitLine[8];
-//					String genusTax = splitLine[9];
-//					String speciesTax = splitLine[10];
-//					String[] splitTaxonomies = taxonomies.split(",");//splits taxonomies number- separated by comma
 					ArrayList<String> taxonomicRanks = getTaxonomicRanks(); //rückblickend wäre hier ein array sinnvoller gewesen 
 					for (int taxonIterator = 0; taxonIterator<taxonomicRanks.size(); taxonIterator++) {
 						String taxonomy = splitLine[taxonIterator+3];//splitTaxonomies[taxonIterator];
 						String taxonomicRank = taxonomicRanks.get(taxonIterator);
 						protein.addTaxonomy(taxonomy, taxonomicRank);						
 					}
-					String quantsString = splitLine[11];
-					String[] splitQuantsString = quantsString.split(",");//splits quantifications form sample separated by comma
-					for (String quantString : splitQuantsString) {
-						double quant = Double.parseDouble(quantString);
-						protein.addQuant(quant);
+					String description = splitLine[11]; //description where "\t are not allowed
+					for(int columnIt = 12; columnIt<splitLine.length; columnIt++) {
+						double quant = Double.parseDouble(splitLine[columnIt]);
+						protein.addQuant(quant); //adds quantifications to protein
 					}
 					proteins.addMpaProtein(protein);
 					calcOutputList.addProtein(protein);

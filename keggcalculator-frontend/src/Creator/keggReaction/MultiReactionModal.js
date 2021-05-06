@@ -4,6 +4,7 @@ import {useStyles} from "../ModalStyles/ModalStyles";
 import {useDispatch, useSelector} from "react-redux";
 import EcReactions from "./EcReactions";
 import KoReactions from "./KoReactions";
+import MultipleKeggReactions from "../main/MultipleKeggReactions";
 
 const MultiReactionModal = () => {
     const classes = useStyles()
@@ -23,6 +24,10 @@ const MultiReactionModal = () => {
             <div className={"koReactionContainer"}>
                 <KoReactions/>
                 <button className={"downloadButton"} onClick={()=> dispatch({type:"SWITCHSHOWKOMODAL"})}>import by K- numbers</button>
+            </div>
+            <div>
+                <MultipleKeggReactions/>
+                <button className={"downloadButton"} onClick={()=> dispatch({type:"SWITCHSHOWMULTIPLEKEGGREACTIONS"})}>import by reaction- numbers</button>
             </div>
         </div>
     )

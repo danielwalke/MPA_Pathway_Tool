@@ -6,7 +6,7 @@ const defaultState = {
     product: "",//keggReaction
     reactions: [],//keggReaction
     reaction: "",//keggReaction
-    showNextReaction: false,
+    showNextReaction: false, //shows NextReactionModal in KeggReaction
     showEcModal: false,
     ecNumberSet: [],
     ecNumberRequest: "",
@@ -25,7 +25,9 @@ const defaultState = {
     sbmlCompound: "",
     sbmlCompounds: [],
     sbmlSpecies: [],
-    showSbmlKeggConverter: false
+    showSbmlKeggConverter: false,
+    annotatedSbmlSpecies: [],
+    sbmlObject: {}
 }
 
 export const keggReactionReducer = (state = defaultState, action) => {
@@ -115,6 +117,10 @@ export const keggReactionReducer = (state = defaultState, action) => {
             return {...state, sbmlSpecies: payload}
         case "SWITCHSHOWSBMLKEGGCONVERTER":
             return {...state, showSbmlKeggConverter: !state.showSbmlKeggConverter}
+        case "SETANNOTATEDSPECIESLIST":
+            return {...state, annotatedSbmlSpecies: payload}
+        case "SETSBMLOBJECT":
+            return {...state, sbmlObject: payload}
         default:
             return state;
     }

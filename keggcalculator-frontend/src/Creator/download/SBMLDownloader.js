@@ -7,7 +7,6 @@ import {getReactions} from "./DownloadFunctions";
 import clonedeep from "lodash/cloneDeep";
 import {getNodePosition} from "./NodePosition";
 import {graphReducer} from "../reducers/Graph";
-
 import MakeSpeciesList from "./MakeSpeciesList";
 import MakeReactionList from "./MakeReactionList";
 import MakeReactionObjList from "./MakeReactionObjList";

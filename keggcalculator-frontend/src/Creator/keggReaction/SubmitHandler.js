@@ -80,11 +80,11 @@ const handleSideCompounds = (state, dispatch, substrateLink, productLink) => {
         for (let key of state.generalState.compMap.keys()) { //keys are compound with compound id -> "Compound CXXXXX"
             if (sideSubstrateIds.includes(key.substring(key.length - 6, key.length))) { //find compounds for sideSubstrateIds
                 sideNodes.push({id: key, color: "darkgreen", opacity: 0.4, x: 0,y:0}) //push side compounds as nodes
-                sideLinks.push({source: key, target: substrateLink.target,opacity: 0.4}) //push link with: side compound as source and reaction as target
+                sideLinks.push({source: key, target: substrateLink.target,opacity: 0.4,isReversibleLink: false}) //push link with: side compound as source and reaction as target
             }
             if (sideProductIds.includes(key.substring(key.length - 6, key.length))) {
                 sideNodes.push({id: key, color: "darkgreen", opacity: 0.4, x: 0,y:0}) //push side compounds as nodes
-                sideLinks.push({source: substrateLink.target, target: key,opacity: 0.4}) //push link with: reaction as source and side compound as target
+                sideLinks.push({source: substrateLink.target, target: key,opacity: 0.4,isReversibleLink: false}) //push link with: reaction as source and side compound as target
             }
         }
     } else {
@@ -93,11 +93,11 @@ const handleSideCompounds = (state, dispatch, substrateLink, productLink) => {
         for (let key of state.generalState.compMap.keys()) {
             if (sideProductIds.includes(key.substring(key.length - 6, key.length))) {
                 sideNodes.push({id: key, color: "darkgreen", opacity: 0.4, x: 0,y:0}) //push side compounds as nodes
-                sideLinks.push({source: substrateLink.target, target: key,opacity: 0.4}) //push link with: reaction as source and side compound as target
+                sideLinks.push({source: substrateLink.target, target: key,opacity: 0.4, isEssential: true,isReversibleLink: false}) //push link with: reaction as source and side compound as target
             }
             if (sideSubstrateIds.includes(key.substring(key.length - 6, key.length))) {
                 sideNodes.push({id: key, color: "darkgreen", opacity: 0.4, x: 0,y:0}) //push side compounds as nodes
-                sideLinks.push({source: key, target: substrateLink.target,opacity: 0.4})
+                sideLinks.push({source: key, target: substrateLink.target,opacity: 0.4, isEssential: true,isReversibleLink: false})
             }
         }
     }
@@ -108,17 +108,19 @@ export const handleSubmitReaction = (state, dispatch) => {
     const reactionLinkSubstrate = {
         source: state.keggState.substrate,
         target: state.keggState.reaction,
-        opacity: 1
+        opacity: 1,
+        isReversibleLink: false //important for checking which link should considered in download
     }
     const reactionLinkProduct = {
         source: state.keggState.reaction,
         target: state.keggState.product,
-        opacity: 1
+        opacity: 1,
+        isReversibleLink: false //important for checking which link should considered in download
     }
     const {sideNodes, sideLinks} = handleSideCompounds(state, dispatch, reactionLinkSubstrate, reactionLinkProduct)
     const nodes = [];
     const links = [];
-    nodes.push({id: state.keggState.reaction, symbolType: "diamond" ,color: "black",opacity:1, x: 0,y:0})
+    nodes.push({id: state.keggState.reaction, symbolType: "diamond" ,color: "black",opacity:1, x: 0,y:0,reversible: false})
     links.push(reactionLinkSubstrate)
     links.push(reactionLinkProduct)
     sideNodes.map(sideNode => nodes.push(sideNode))

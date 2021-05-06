@@ -24,7 +24,7 @@ const ReactionDetails = () => {
     }));
     const classes = useStyles()
     const body = (
-        <div style={{backgroundColor: "white", overflow: "auto"}}>
+        <div style={{backgroundColor: "white", overflow: "auto", height:"60vh", padding:"5px"}}>
             Substrates:
             <ul style={{listStyleType: "none"}}>
                 {state.specSubstrates.map((substrate, index) => <li key={substrate.concat(index.toString())}><DeleteIcon

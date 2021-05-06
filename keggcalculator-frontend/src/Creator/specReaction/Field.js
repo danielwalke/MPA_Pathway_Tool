@@ -24,7 +24,7 @@ const Field = (props) => {
 
     return (
         <div >
-            {component && component.length > 2 ?
+            {(component && component.length > 2) || props.boolean ?
                 <Autocomplete
                     size={"small"}
                     id={`combo-box-1 ${props.dispatchType}`}
