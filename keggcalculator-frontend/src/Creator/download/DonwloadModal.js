@@ -7,6 +7,7 @@ import GraphSvgExporter from "./GraphSvgExporter";
 import DownloadGraph from "./DownloadGraph";
 import JSONDownloader from "./JSONDownloader";
 import SBMLDownloader from "./SBMLDownloader";
+import StoichiometricMatrix from "../stochiometricMatrix/StoichiometricMatrix";
 
 const DonwloadModal = () =>{
     const classes = useStyles();
@@ -19,6 +20,7 @@ const DonwloadModal = () =>{
             <SBMLDownloader/>
             <GraphSvgExporter/>
             <HeatMapCsvExporter/>
+            <StoichiometricMatrix/>
         </div>
     )
     return(

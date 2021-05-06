@@ -141,7 +141,6 @@ const UserInterface = () => {
                         </div>
                         <DonwloadModal/>
                     </div>
-                    <div><StoichiometricMatrix/></div>
                     {graphState.doubleClickNode.length > 0 && <div style={{width:"15vw", height:"25vh", overflow:"auto", margin:"3px"}}>
                         {compound.id}
                         <div>x:</div>
