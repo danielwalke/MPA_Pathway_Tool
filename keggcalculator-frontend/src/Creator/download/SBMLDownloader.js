@@ -21,23 +21,15 @@ const SBMLDownloader = () => {
 
     const HandleSBMLDownload = () => {
 
-        const generalState = state.general
-        const graphState = state.graph
-        const {reactionObjects, reactionNames} = getReactions(graphState)
-        const reactionsRawList = reactionNames.map(
-            name => generalState.reactionsInSelectArray.filter(
-                reaction => reaction.reactionName === name)[0])
-
         const pathwayName = "pathway" //TODO add user interface for text input
 
-        const reactionsRaw = MakeReactionList(graphState, reactionObjects, reactionsRawList)
+        const reactionsRaw = MakeReactionList(state)
         const [speciesRaw, speciesPosRaw ,compartmentsRaw] = MakeSpeciesList(reactionsRaw)
 
         console.log(speciesRaw)
         console.log(speciesPosRaw)
         console.log(compartmentsRaw)
         console.log(reactionsRaw)
-
 
         const reaction = MakeReactionObjList(reactionsRaw)
         const species = MakeSpeciesObjList(speciesRaw)
@@ -87,9 +79,9 @@ const SBMLDownloader = () => {
 
         }
 
-        // console.log(objectToXML(obj))
-        let blob = new Blob(new Array(objectToXML(obj).trim()), {type: "text/plain;charset=utf-8"});
-        saveAs(blob, "ModuleGraph.xml")
+        console.log(objectToXML(obj))
+        // let blob = new Blob(new Array(objectToXML(obj).trim()), {type: "text/plain;charset=utf-8"});
+        // saveAs(blob, "ModuleGraph.xml")
     }
 
     return (

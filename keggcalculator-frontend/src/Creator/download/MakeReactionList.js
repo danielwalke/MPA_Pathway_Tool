@@ -4,7 +4,21 @@ import {getReactions} from "./DownloadFunctions"
 import clonedeep from "lodash/cloneDeep";
 import {getNodePosition} from "./NodePosition"
 
-const MakeReactionList = (graphState, reactionObjects, reactionsRaw) => {
+const MakeReactionList = (state) => {
+
+    const generalState = state.general
+    const graphState = state.graph
+    const {reactionObjects, reactionNames} = getReactions(graphState)
+
+    console.log(reactionObjects)
+    console.log(reactionNames)
+    console.log(graphState)
+
+    const reactionsRaw = reactionNames.map(
+        name => generalState.reactionsInSelectArray.filter(
+            reaction => reaction.reactionName === name)[0])
+
+    console.log(reactionsRaw)
 
     reactionsRaw.map(reaction => {
         reaction.abbreviation = typeof graphState.abbreviationsObject[`${reaction.reactionName}`] === "undefined" ? reaction.reactionName : graphState.abbreviationsObject[`${reaction.reactionName}`]
