@@ -83,8 +83,8 @@ public class CalculatorOutputList {
 	public void writeCSV(File outputCSV) {
 		try {
 			BufferedWriter br = new BufferedWriter(new FileWriter(outputCSV));
-			br.write("Module\t");
-			br.write("module-name\t");
+			br.write("pathway\t");
+//			br.write("module-name\t");
 			br.write("Steps found\t");
 			br.write("Total steps module\t");
 			br.write(getSampleHeaderString().trim());
@@ -94,7 +94,7 @@ public class CalculatorOutputList {
 //				int csvPatternInt = calcOutput.getModule().indexOf(".csv");
 //				br.write(calcOutput.getModule().substring(csvPatternInt - 6, csvPatternInt) + ",");
 				br.write(calcOutput.getModule().replace("\t", ";") + "\t");
-				br.write(calcOutput.getModuleName().replace("\t", ";") + "\t");
+//				br.write(calcOutput.getModuleName().replace("\t", ";") + "\t");
 				br.write(calcOutput.getStepMpa() + "\t");
 				br.write(calcOutput.getStepTotal() + "\t");
 				if (calcOutput.getQuantList().isEmpty()) {

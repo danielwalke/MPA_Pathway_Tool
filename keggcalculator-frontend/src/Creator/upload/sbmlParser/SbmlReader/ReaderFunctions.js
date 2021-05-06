@@ -149,4 +149,3 @@ export const onSBMLModuleFileChange = async (event, dispatch, state) => {
         }
     }
 }
-
