@@ -79,8 +79,8 @@ const SBMLDownloader = () => {
         }
 
         console.log(objectToXML(obj))
-        // let blob = new Blob(new Array(objectToXML(obj).trim()), {type: "text/plain;charset=utf-8"});
-        // saveAs(blob, "ModuleGraph.xml")
+        let blob = new Blob(new Array(objectToXML(obj).trim()), {type: "text/plain;charset=utf-8"});
+        saveAs(blob, "ModuleGraph.xml")
     }
 
     return (

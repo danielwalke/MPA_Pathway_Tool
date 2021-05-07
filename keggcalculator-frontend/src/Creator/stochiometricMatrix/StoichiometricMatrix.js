@@ -1,63 +1,71 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {saveAs} from "file-saver";
+import {getReactionObjects} from "./ReactionObject";
 
 const fetchStochiometricInformation = (state, dispatch) => {
+
+    //fetches all reactions and information
     const nodeIds = state.graph.data.nodes.map(node => node.id.substring(node.id.length-6, node.id.length))
-    const reactions = state.general.reactionsInSelectArray.filter(reaction => nodeIds.includes(reaction.reactionId))
-    const revisedReactions = []
+    const reactionIds = nodeIds.filter(id => id.match(/[R,U][0-9][0-9][0-9][0-9][0-9]/))
+    const reactions = state.general.reactionsInSelectArray.filter(reaction => reactionIds.includes(reaction.reactionId))
     const forwardReactions = reactions.filter(reaction => reaction.isForwardReaction)
-    forwardReactions.map(r => {
-        r.substrates = r.stochiometrySubstratesString
-        console.log(r.stochiometrySubstratesString)
-        r.products = r.stochiometryProductsString
-        console.log(r.stochiometryProductsString)
-        revisedReactions.push(r)
-        return null;
-    })
     const backwardReactions = reactions.filter(reaction => !reaction.isForwardReaction)
-    backwardReactions.map(r => {
-        r.substrates = r.stochiometryProductsString
-        r.products = r.stochiometrySubstratesString
-        revisedReactions.push(r)
+
+    const compoundSet = new Set()
+
+    //adds compound names to stoichiometric coefficients in each reactions
+    const reactionObjects = getReactionObjects(forwardReactions, backwardReactions, compoundSet, state)
+
+    //creates stoichiometric matrix
+    const compoundArray = Array.from(compoundSet)
+    const stoichiometricMatrix = []
+    const stoichiometricMatrixHeader = ["-"]
+    reactionObjects.map(reaction => stoichiometricMatrixHeader.push(reaction.reactionName))
+    stoichiometricMatrix.push(stoichiometricMatrixHeader)
+    compoundArray.map(compound =>{
+        const stoichiometricMatrixLine = []
+        stoichiometricMatrixLine.push(compound)
+        reactionObjects.map(reaction =>{
+            const filteredMetabolites = reaction.metabolites.filter(metabolite => metabolite.id === compound)
+            let sc
+            if(filteredMetabolites.length === 0){//considered compound is not in the considered reaction
+                sc = "0"
+            }else if(filteredMetabolites.length === 1){// considered compound is either on substrate side or on product side
+                const stoichiometricCoefficients = filteredMetabolites.map(metabolite => metabolite.stoichiometry)
+                stoichiometricCoefficients.map(coefficient => {
+                    sc = coefficient
+                    return null;
+                })
+            }else if(filteredMetabolites.length>1){ // considered compound is on substrate side and on product side
+                const stoichiometricCoefficients = filteredMetabolites.map(metabolite => +metabolite.stoichiometry)
+                const coefficientNumbers = stoichiometricCoefficients.filter(coefficient => !isNaN(coefficient))
+                if(coefficientNumbers.length === stoichiometricCoefficients.length){ //stoichiometric coefficients are both numbers
+                    sc = 0
+                    stoichiometricCoefficients.map(coefficient => sc+=coefficient)
+                    sc = sc.toString()
+                }else if(coefficientNumbers.length === 0){ //stoichiometric coefficients are both strings
+                    sc = ""
+                    filteredMetabolites.map(metabolite => sc+= metabolite.stoichiometry)
+                }else{ //stoichiometric coefficients are string and number
+                    sc = ""
+                    filteredMetabolites.map(metabolite => sc+= metabolite.stoichiometry)
+                }
+            }
+            stoichiometricMatrixLine.push(sc)
+            return sc
+
+        })
+        stoichiometricMatrix.push(stoichiometricMatrixLine)
+    })
+
+    let output =""
+    stoichiometricMatrix.map(line => {
+        line.map(item => output+=`${item}\t`)
+        output+="\n"
         return null;
     })
-    const substrateArrays = revisedReactions.map(r => Object.keys(r.substrates))
-    const compoundsSet = new Set()
-    substrateArrays.map(substrateArray => substrateArray.map(substrate=> compoundsSet.add(substrate)))
-    const productArrays = revisedReactions.map(r => Object.keys(r.products))
-    productArrays.map(productArray => productArray.map(product=> compoundsSet.add(product)))
-    const compounds = Array.from(compoundsSet)
-    let output = ""
-    revisedReactions.map(reaction => output+= `;${reaction.reactionName.replaceAll(";", ",")}`)
-    const stoichiometricMatrix = compounds.map(compound => {
-        output+="\n"
-        output+=compound
-        const stoichiometricArray = revisedReactions.map(reaction=>{
-            const substrates = reaction.substrates
-            const products = reaction.products
-            let sc = 0//compound is not on substrate neither on product side
-            if(typeof substrates[compound] !== "undefined" && typeof products[compound] !== "undefined"){ //compound on both sides of the reaction
-                const diff = +products[compound] - +substrates[compound]
-                sc = Number.isNaN(diff)? `${products[compound]}-${substrates[compound]}` : diff
-            }
-            if(typeof substrates[compound] !== "undefined" && typeof products[compound] === "undefined"){ //compound is only on substrate side
-                sc = `-${substrates[compound]}`
-            }
-            if(typeof substrates[compound] === "undefined" && typeof products[compound] !== "undefined"){//compound is only on product side
-                sc = products[compound]
-            }
-            console.log(compound + "\t" + reaction.reactionId + "\t" + sc )
-            output+=";"
-            output+=sc.toString()
-            return sc
-        })
-        return stoichiometricArray
-    })
-    console.log(stoichiometricMatrix)
-    console.log(compounds.map(compound=> compound))
-    console.log(revisedReactions.map(r=> r))
-    console.log(output)
+
     let blob = new Blob(new Array(output.trim()), {type: "text/plain;charset=utf-8"});
     saveAs(blob, "stoichiometricMatrix.csv")
 }
