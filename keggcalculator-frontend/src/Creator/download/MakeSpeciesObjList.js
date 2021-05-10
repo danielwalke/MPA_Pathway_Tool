@@ -3,14 +3,17 @@ import React from "react";
 const MakeSpeciesObjList = (speciesRaw) => {
     const speciesObj = speciesRaw.map(item => {
 
+        const keggCompound = item.name.substring(item.name.length - 6)
         const idWithoutSpaces = [item.name.substring(0, item.name.length - 7).replace(/ /g, "_").replace(/^[\d\W_]*/,"")].join("")
-        const cIdForRDF = ['#',item.name.substring(0, item.name.length - 7).replace(/ /g, "_").replace(/^[\d\W_]*/,"")].join("")
+        // const cIdForRDF = ['#',item.name.substring(0, item.name.length - 7).replace(/ /g, "_").replace(/^[\d\W_]*/,"")].join("")
+        const cIdForRDF = ['#',keggCompound].join("")
         const keggCompoundURI = ['http://identifiers.org/kegg.compound/',item.name.substring(item.name.length - 6)].join("")
 
         const speciesObject = {
             '@': {
-                id: idWithoutSpaces,
-                metaid: idWithoutSpaces,
+                id: keggCompound,
+                name: idWithoutSpaces,
+                metaid: keggCompound,
                 compartment: item.compartment,
                 hasOnlySubstanceUnits: item.hasOnlySubstanceUnits,
                 boundaryCondition: item.boundaryCondition,

@@ -35,7 +35,7 @@ const SBMLDownloader = () => {
         const compartments = MakeCompartmentObjList(compartmentsRaw)
 
         const reactionGlyphObj = MakeReactionGlyphObjList(reactionsRaw)
-        const speciesGlyphObj = MakeSpeciesGlyphObjList(speciesRaw)
+        const speciesGlyphObj = MakeSpeciesGlyphObjList(speciesPosRaw)
 
 
         const obj = {
@@ -43,7 +43,7 @@ const SBMLDownloader = () => {
             sbml: {
                 '@': {
                     xmlns: "http://www.sbml.org/sbml/level3/version2/core",
-                    'xmlns:layout': "http://www.sbml.org/sbml/level3/version1/layout/version1",
+                    'xmlns:layout': "http://www.sbml.org/sbml/level3/version2/layout/version1",
                     'layout:required': "false",
                     level: "3",
                     version: "2"
@@ -59,7 +59,7 @@ const SBMLDownloader = () => {
                         'layout:listOfLayouts': {
                             '@': {
                                 'xmlns:xsi': "http://www.w3.org/2001/XMLSchema-instance",
-                                'xmlns:layout':"http://www.sbml.org/sbml/level3/version1/layout/version1"
+                                'xmlns:layout':"http://www.sbml.org/sbml/level3/version2/layout/version1"
                             },
                             '#': {
                                 'layout:layout': {
@@ -79,8 +79,8 @@ const SBMLDownloader = () => {
         }
 
         console.log(objectToXML(obj))
-        // let blob = new Blob(new Array(objectToXML(obj).trim()), {type: "text/plain;charset=utf-8"});
-        // saveAs(blob, "ModuleGraph.xml")
+        let blob = new Blob(new Array(objectToXML(obj).trim()), {type: "text/plain;charset=utf-8"});
+        saveAs(blob, "ModuleGraph.xml")
     }
 
     return (

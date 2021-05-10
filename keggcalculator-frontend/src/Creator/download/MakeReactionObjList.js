@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import MakeSpeciesReferenceObj from "./MakeSpeciesReferenceObj";
 
 const MakeReactionObjectList = (reactionsRaw) => {
+
     const reactionObj = reactionsRaw.map(item => {
 
         const rIdForRDF = ['#',item.reactionId].join("")
@@ -20,7 +21,7 @@ const MakeReactionObjectList = (reactionsRaw) => {
             '@': {
                 id: item.reactionId,
                 reversible: item.reversible==="reversible" ? "true" : "false",
-                name: item.reactionId,
+                name: item.abbreviation.substring(0, item.abbreviation.length - 7),
                 metaid: item.reactionId},
             '#': {
                 listOfReactants: {'#': MakeSpeciesReferenceObj(item.substrates)},
