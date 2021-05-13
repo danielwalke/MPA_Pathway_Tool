@@ -6,6 +6,7 @@ import {addOutput, getReactions} from "./DownloadFunctions";
 import clonedeep from "lodash/cloneDeep";
 
 const CsvDownLoader = () => {
+
     const generalState = clonedeep(useSelector(state => state.general))
     const graphState = clonedeep(useSelector(state => state.graph))
 

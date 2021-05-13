@@ -8,6 +8,7 @@ import clonedeep from "lodash/cloneDeep"
 const JSONDownloader = () => {
     const generalState = clonedeep(useSelector(state => state.general))
     const graphState = clonedeep(useSelector(state => state.graph))
+
     const handleJsonDownload = () => {
         try{
             const {reactionObjects, reactionNames} = getReactions(graphState)
@@ -61,6 +62,7 @@ const JSONDownloader = () => {
 
         return console.log("download json")
     }
+
     return (
         <div>
             <button className={"downloadButton"} onClick={handleJsonDownload}>Download Json</button>

@@ -67,6 +67,7 @@ public class KeggCalculatorServer {
 		//module- creator
 		KeggCreatorService creator = new KeggCreatorService();
 		creator.parseKeggData();
+		creator.parseNcbiTaxonomy();
 
 		File downloadDir = new File(KeggCalculatorConstants.DOWNLOAD_DIR + "modules/");
 		if (!downloadDir.exists())
@@ -310,7 +311,36 @@ public class KeggCalculatorServer {
             return "{\"message\":\"internal server error\"}";
     }
     });
+    
+    get("keggcreator/taxonomylist",(req, res)->{
+    	try {
+    		res.status(201);
+    		return KeggHandleRequests.getTaxonomyList(creator);
+    	}catch(Exception e) {
+    		res.status(500);
+    		return "{\"message\":\"internal server error\"}";
+    	}
+    });
 
+    post("keggcreator/taxonomyId",(req, res)->{
+    	try {
+    		res.status(201);
+    		return KeggHandleRequests.getTaxonomyId(creator, req.queryParams("name"), req.queryParams("rank"));
+    	}catch(Exception e) {
+    		res.status(500);
+    		return "{\"message\":\"internal server error\"}";
+    	}
+    });
+    
+    post("keggcreator/taxonomy",(req, res)->{
+    	try {
+    		res.status(201);
+    		return KeggHandleRequests.getTaxonomy(creator, req.queryParams("id"));
+    	}catch(Exception e) {
+    		res.status(500);
+    		return "{\"message\":\"internal server error\"}";
+    	}
+    });
 	}
 
 }

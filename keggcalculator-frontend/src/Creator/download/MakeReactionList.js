@@ -4,10 +4,9 @@ import {getReactions} from "./DownloadFunctions"
 import clonedeep from "lodash/cloneDeep";
 import {getNodePosition} from "./NodePosition"
 
-const MakeReactionList = (state) => {
+const MakeReactionList = (generalState, graphState) => {
 
-    const generalState = state.general
-    const graphState = state.graph
+
     const {reactionObjects, reactionNames} = getReactions(graphState)
 
     console.log(reactionObjects)

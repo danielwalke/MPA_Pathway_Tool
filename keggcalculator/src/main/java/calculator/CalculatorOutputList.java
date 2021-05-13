@@ -86,7 +86,7 @@ public class CalculatorOutputList {
 			br.write("pathway\t");
 //			br.write("module-name\t");
 			br.write("Steps found\t");
-			br.write("Total steps module\t");
+			br.write("Total steps pathway\t");
 			br.write(getSampleHeaderString().trim());
 			int numberOfSamples = getSampleHeaderString().split("\t").length;
 			br.write("\n");

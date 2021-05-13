@@ -5,12 +5,12 @@ import "./Upload.css"
 import {handleGraphUpload, handleReactionListUpload} from "./ModuleUploadFunctions";
 
 const onModuleFileChange = async (event, dispatch, state) => {
+    try{
     let files = await event.target.files;
     let reader = new FileReader()
     reader.readAsText(files[0])
     reader.onload = e => {
         const result = e.target.result.trim()
-        try{
             const rows = result.split("\n")
             rows.shift() //header
             const {nodes, links} = handleGraphUpload(rows, dispatch, state.graph)
@@ -21,12 +21,12 @@ const onModuleFileChange = async (event, dispatch, state) => {
             dispatch({type: "SETDATALINKS", payload: links})
             dispatch({type: "ADDREACTIONSTOARRAY", payload: reactionList})
             dispatch({type: "SETMODULEFILENAME", payload: files[0].name})
-        }catch (e){
-            window.alert("Your file format is wrong.")
-            console.error(e)
         }
 
 
+    }catch (e){
+        window.alert("Your file format is either wrong or you have already imported a file.")
+        console.error(e)
     }
     dispatch({type: "SETLOADING", payload: false})
 }

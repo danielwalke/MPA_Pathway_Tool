@@ -3,9 +3,13 @@
     grid-template-columns: 80% 20%;
     grid-template-rows: 50% 50%;
 
-    grid-template-areas:'taxonomicRank addTaxonomy'
+    grid-template-areas:'taxonomicRank switch'
     'taxonomy addTaxonomy';
 
+}
+
+.switch{
+    grid-area: switch;
 }
 
 .taxonomicRank{

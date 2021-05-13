@@ -6,6 +6,8 @@ import "./StructureModalBody.css"
 import clonedeep from "lodash/cloneDeep";
 import TaxonomicRank from "./TaxonomicRank";
 import ReversibilityChange from "./ReversibilityChange";
+import TaxonomyNcbi from "../Taxonomy/TaxonomyNcbi";
+import {useStylesList} from "../upload/sbmlParser/KeggCompoundAutoCompleteList";
 
 export const getTaxaList = (reactionTaxa) => {
     const taxaList = []
@@ -17,12 +19,13 @@ export const getTaxaList = (reactionTaxa) => {
     return taxaList
 }
 
-export const getStructureBody = (state, dispatch, generalState) => {
+export const getStructureBody = (state, dispatch, generalState,isNcbiTaxonomy, setIsNcbiTaxonomy) => {
     const compound = typeof state.data.nodes.filter(node => node.id === state.doubleClickNode)[0] === "undefined" ? {} : state.data.nodes.filter(node => node.id === state.doubleClickNode)[0]
     const compoundClone = clonedeep(compound)
     const nodeId = state.doubleClickNode.substring(state.doubleClickNode.length - 6, state.doubleClickNode.length)
     const reaction = nodeId.match(/[R,U]/) ? generalState.reactionsInSelectArray.filter(r => r.reactionName === state.doubleClickNode)[0] : {}
     const reactionName = nodeId.match(/[R,U]/) ? reaction.reactionName : {}
+
 
     const body = (<div className={"structureBodyContainer"} style={{backgroundColor: "white", maxWidth: "95vw"}}>
         <div className={"nodeLabel"}>{compound.id}</div>
@@ -46,18 +49,21 @@ export const getStructureBody = (state, dispatch, generalState) => {
                     <ReversibilityChange nodeId={nodeId}/>
                     <br/>
                     <div style={{margin:"2px"}}><TaxonomicRank/>
-                        <TextField
-                            placeholder={"lowest taxonomic rank"}
-                            size={"small"}
-                            className={"taxonomy"}
-                            label="taxonomy"
-                            variant="outlined"
-                            id="Tax"
-                            onChange={(e) => dispatch({
-                                type: "SETTAXONOMY",
-                                payload: e.target.value.toString()
-                            })}
-                        />
+                        {!isNcbiTaxonomy? <TextField
+                                style={{width:"100%"}}
+                                placeholder={"lowest taxonomic rank"}
+                                size={"small"}
+                                className={"taxonomy"}
+                                label="taxonomy"
+                                variant="outlined"
+                                id="TaxReaction"
+                                onChange={(e) => dispatch({
+                                    type: "SETTAXONOMY",
+                                    payload: e.target.value.toString()
+                                })}
+                            />:
+                            <TaxonomyNcbi taxonomy={generalState.taxonomy} dispatchTaxonomy={"SETTAXONOMY"}/>}
+                        <button className={"downloadButton"} onClick={()=> setIsNcbiTaxonomy(!isNcbiTaxonomy)}>Switch</button>
                         <button className={"downloadButton"} style={{width: "20vw"}}
                                 onClick={() => dispatch({type: "ADDTAXONOMY", payload: reactionName})}>Add taxonomy
                         </button></div>

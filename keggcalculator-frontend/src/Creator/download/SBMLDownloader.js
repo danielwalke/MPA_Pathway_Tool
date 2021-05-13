@@ -3,10 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import ReactDomServer from "react-dom/server"
 import objectToXML from "object-to-xml"
 import {saveAs} from "file-saver";
-import {getReactions} from "./DownloadFunctions";
 import clonedeep from "lodash/cloneDeep";
-import {getNodePosition} from "./NodePosition";
-import {graphReducer} from "../reducers/Graph";
 import MakeSpeciesList from "./MakeSpeciesList";
 import MakeReactionList from "./MakeReactionList";
 import MakeReactionObjList from "./MakeReactionObjList";
@@ -16,13 +13,14 @@ import MakeSpeciesGlyphObjList from "./MakeSpeciesGlyphObjList";
 import MakeCompartmentObjList from "./MakeCompartmentObjList";
 
 const SBMLDownloader = () => {
-    const state = clonedeep(useSelector(state => state))
+    const generalState = clonedeep(useSelector(state => state.general))
+    const graphState = clonedeep(useSelector(state => state.graph))
 
     const HandleSBMLDownload = () => {
 
         const pathwayName = "pathway" //TODO add user interface for text input
 
-        const reactionsRaw = MakeReactionList(state)
+        const reactionsRaw = MakeReactionList(generalState, graphState)
         const [speciesRaw, speciesPosRaw ,compartmentsRaw] = MakeSpeciesList(reactionsRaw)
 
         console.log(speciesRaw)

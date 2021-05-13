@@ -1,11 +1,12 @@
 import Modal from "@material-ui/core/Modal";
-import React from "react";
+import React, {useState} from "react";
 import {useStyles} from "../ModalStyles/ModalStyles";
 import {useDispatch, useSelector} from "react-redux";
 import TextField from "@material-ui/core/TextField";
 import DeleteIcon from "@material-ui/icons/Delete";
 import TaxonomicRank from "./TaxonomicRank";
 import {getTaxaList} from "./StuctureModalBody";
+import TaxonomyNcbi from "../Taxonomy/TaxonomyNcbi";
 
 const PathwayTaxonomy = () => {
     const classes = useStyles()
@@ -18,6 +19,7 @@ const PathwayTaxonomy = () => {
     const pathwayTaxonomySet = new Set()
     reactions.map(reaction => getTaxaList(reaction.taxa).map(taxon => pathwayTaxonomySet.add(taxon)))
     const pathwayTaxonomies = Array.from(pathwayTaxonomySet)
+    const [isNcbiTaxonomy, setIsNcbiTaxonomy] = useState(true)
 
     const body = (
         <div className={classes.paper} style={{width: "80vw"}}>
@@ -35,7 +37,8 @@ const PathwayTaxonomy = () => {
                 </div>
                 <div>
                     <TaxonomicRank/>
-                    <TextField
+                    {!isNcbiTaxonomy? <TextField
+                        style={{width:"100%"}}
                         placeholder={"lowest taxonomic rank"}
                         size={"small"}
                         className={"taxonomy"}
@@ -46,7 +49,9 @@ const PathwayTaxonomy = () => {
                             type: "SETTAXONOMY",
                             payload: e.target.value.toString()
                         })}
-                    />
+                    />:
+                    <TaxonomyNcbi taxonomy={generalState.taxonomy} dispatchTaxonomy={"SETTAXONOMY"}/>}
+                    <button className={"downloadButton"} onClick={()=> setIsNcbiTaxonomy(!isNcbiTaxonomy)}>Switch</button>
                 </div>
                 <div>
                     <button className={"downloadButton"} onClick={() => dispatch({type: "ADDPATHWAYTAXONOMY"})}>add
@@ -78,18 +83,21 @@ const PathwayTaxonomy = () => {
                         <div>{reactionName}</div>
                         <div>
                             <TaxonomicRank/>
-                            <TextField
-                                placeholder={"lowest taxonomic rank"}
-                                size={"small"}
-                                className={"taxonomy"}
-                                label="taxonomy"
-                                variant="outlined"
-                                id="Tax"
-                                onChange={(e) => dispatch({
-                                    type: "SETTAXONOMY",
-                                    payload: e.target.value.toString()
-                                })}
-                            />
+                            {!isNcbiTaxonomy? <TextField
+                                    style={{width:"100%"}}
+                                    placeholder={"lowest taxonomic rank"}
+                                    size={"small"}
+                                    className={"taxonomy"}
+                                    label="taxonomy"
+                                    variant="outlined"
+                                    id="TaxReaction"
+                                    onChange={(e) => dispatch({
+                                        type: "SETTAXONOMY",
+                                        payload: e.target.value.toString()
+                                    })}
+                                />:
+                                <TaxonomyNcbi taxonomy={generalState.taxonomy} dispatchTaxonomy={"SETTAXONOMY"}/>}
+                            <button className={"downloadButton"} onClick={()=> setIsNcbiTaxonomy(!isNcbiTaxonomy)}>Switch</button>
                         </div>
                         <div>
                             <button className={"downloadButton"} style={{width: "20vw"}}

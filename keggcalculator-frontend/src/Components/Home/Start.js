@@ -1,7 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
+import Modal from "@material-ui/core/Modal";
+import {useStylesList} from "../../Creator/upload/sbmlParser/KeggCompoundAutoCompleteList";
+import {useStyles} from "../../Creator/ModalStyles/ModalStyles";
 
 const Start = () => {
     const titleLists = []
+    const [showVideos, setShowVideos] = useState(false)
+    const classes = useStyles()
     const firstRowTitles = ["getting an overview", "upload pathway", "add KEGG reaction"]
     const secondRowTitles = ["deleting nodes", "add user-defined reaction", "import KEGG MODULE"]
     const thirdRowTitles = ["import multiple reactions", "download pathway", "reverting reactions"]
@@ -23,6 +28,13 @@ const Start = () => {
     idLists.push(secondRowIds)
     idLists.push(secondRowIds)
     idLists.push(secondRowIds)
+
+    const videos = (
+        <div className={classes.paper} style={{width:"90vw",height:"80vh", overflow:"auto"}}>
+            <TutorialRows titleLists={titleLists} idLists={idLists}/>
+        </div>
+    )
+
     return (<div style={{ backgroundColor: "rgb(150, 25, 130)", margin: 0}}>
             <div style={{padding:"5px", width: "80vw", marginLeft: "10vw", backgroundColor: "white", zIndex: 1000, height: "100%", textAlign:"justify", hyphens:"auto"}}>
                 <h1 style={{marginLeft:"30vw"}}>Getting started</h1>
@@ -49,8 +61,10 @@ const Start = () => {
                     on multiple uploaded pathways.</p>
                 <h3>Tutorial</h3>
                 <p>You can find a detailed Tutorial on <a href={"https://www.youtube.com/"}>Youtube</a>.</p>
-                <TutorialRows titleLists={titleLists} idLists={idLists}/>
-
+                <Modal className={classes.modal} open={showVideos} onClose={() => setShowVideos(false)}>
+                    {videos}
+                </Modal>
+                <button className={"downloadButton"} style={{width:"30vw"}} onClick={()=> setShowVideos(true)}>Tutorial</button>
             </div>
         </div>
     )

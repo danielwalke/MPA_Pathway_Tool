@@ -29,6 +29,7 @@ const moduleUrl = "http://127.0.0.1/keggcreator/modulelist"
 const ecNumbersUrl = "http://127.0.0.1/keggcreator/ecnumberlist"
 const koNumbersUrl = "http://127.0.0.1/keggcreator/konumberlist"
 const reactionUrl= "http://127.0.0.1/keggcreator/reactions"
+const taxonomyListLink = "http://127.0.0.1/keggcreator/taxonomylist"
 export const taxonomicRanks = ["superkingdom", "kingdom", "phylum", "class", "order", "family", "genus", "species"]
 
 export const useStylesMain = makeStyles({
@@ -73,8 +74,11 @@ const Main = () => {
         requestGenerator("GET", reactionUrl, "","").then(resp=>{
             dispatch({type:"SETKEGGREACTIONS", payload: resp.data})
         })
+        requestGenerator("GET", taxonomyListLink, "","").then(resp=>{
+            dispatch({type:"SET_TAXONOMY_NCBI_LIST", payload: resp.data})
+        })
             window.onbeforeunload = exit
-        }, [dispatch]
+        }, []
     )
 
     const classes = useStylesMain()
