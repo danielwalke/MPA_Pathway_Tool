@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;Microcin C transport system substrate-binding protein U00000;K13893;;;;;irreversible;;0;0;;;Microcin C transport system substrate-binding protein U00000;;false

@@ -1,0 +1,4 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;TonB-dependent starch-binding outer membrane protein SusC U00000;K21573;;;;;irreversible;;0;0;;;TonB-dependent starch-binding outer membrane protein SusC U00000;;false
+1;Starch-binding outer membrane protein, SusD/RagB family U00001;K21572;;;;;irreversible;;0;36;;;Starch-binding outer membrane protein, SusD/RagB family U00001;;false
+2;Starch-binding outer membrane protein SusE/F U00002;K21571;;;;;irreversible;;2;76;;;Starch-binding outer membrane protein SusE/F U00002;;false

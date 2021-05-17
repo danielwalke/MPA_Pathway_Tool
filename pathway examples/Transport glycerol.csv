@@ -1,0 +1,3 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;Sn-glycerol 3-phosphate transport system substrate-binding protein U00000;K05813;;;;;irreversible;;0;0;;;Sn-glycerol 3-phosphate transport system substrate-binding protein U00000;;false
+1;Sn-glycerol 3-phosphate transport system ATP-binding protein U00001;K05816;;;;;irreversible;;0;0;;;Sn-glycerol 3-phosphate transport system ATP-binding protein U00001;;false

@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;Sulfonate transport system substrate-binding protein U00001;K15553;;;;;irreversible;;-5;102;;;Sulfonate transport system substrate-binding protein U00001;;false
