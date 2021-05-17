@@ -10,7 +10,6 @@ import model.KeggKOObject;
 import model.KeggReactionObject;
 import model.KeyComponent;
 import model.Reversibility;
-import model.Taxonomy;
 import model.TypeOfCompound;
 /**
  * class for finding all forward reactions from one compound to another
@@ -109,7 +108,7 @@ public class PathwayFinder {
 					else {
 						CsvContent+=KeyComponent.NOTKEY;
 					}
-					CsvContent+=(";" + Reversibility.REVERSIBLE + ";" + Taxonomy.LIVINGTHING + "\n");
+					CsvContent+=(";" + Reversibility.REVERSIBLE + ";" + "" + "\n");
 				}
 			}
 			this.csvContentList.add(CsvContent);

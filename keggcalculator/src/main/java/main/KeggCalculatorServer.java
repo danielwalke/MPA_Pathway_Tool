@@ -10,6 +10,8 @@ import static spark.Spark.staticFileLocation;
 import static spark.Spark.webSocketIdleTimeoutMillis;
 
 import java.io.File;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -63,10 +65,11 @@ public class KeggCalculatorServer {
 		File tmp = new File(KeggCalculatorConstants.UPLOAD_TEMP_DIR);
 		if (!tmp.exists())
 			tmp.mkdir();
-		
+
 		//module- creator
 		KeggCreatorService creator = new KeggCreatorService();
 		creator.parseKeggData();
+		creator.parseNcbiTaxonomy();
 
 		File downloadDir = new File(KeggCalculatorConstants.DOWNLOAD_DIR + "modules/");
 		if (!downloadDir.exists())
@@ -310,7 +313,36 @@ public class KeggCalculatorServer {
             return "{\"message\":\"internal server error\"}";
     }
     });
+    
+    get("keggcreator/taxonomylist",(req, res)->{
+    	try {
+    		res.status(201);
+    		return KeggHandleRequests.getTaxonomyList(creator);
+    	}catch(Exception e) {
+    		res.status(500);
+    		return "{\"message\":\"internal server error\"}";
+    	}
+    });
 
+    post("keggcreator/taxonomyId",(req, res)->{
+    	try {
+    		res.status(201);
+    		return KeggHandleRequests.getTaxonomyId(creator, req.queryParams("name"), req.queryParams("rank"));
+    	}catch(Exception e) {
+    		res.status(500);
+    		return "{\"message\":\"internal server error\"}";
+    	}
+    });
+    
+    post("keggcreator/taxonomy",(req, res)->{
+    	try {
+    		res.status(201);
+    		return KeggHandleRequests.getTaxonomy(creator, req.queryParams("id"));
+    	}catch(Exception e) {
+    		res.status(500);
+    		return "{\"message\":\"internal server error\"}";
+    	}
+    });
 	}
 
 }

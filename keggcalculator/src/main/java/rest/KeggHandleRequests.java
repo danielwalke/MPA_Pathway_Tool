@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.UUID;
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
@@ -39,6 +40,7 @@ import services.KeggCalculatorService;
 import services.KeggCreatorService;
 import spark.Request;
 import spark.Response;
+import model.TaxonomyNcbi;
 
 /**
  * handles requests for REST- server
@@ -341,5 +343,25 @@ public class KeggHandleRequests {
 	return creator.gson.toJson(reaction);
 		}
 	
+	
+	/**
+	 * 
+	 * @param creator	service for the creator
+	 * @return list of all taxonomy stored on ncbi
+	 */
+	public static String getTaxonomyList(KeggCreatorService creator){
+		Gson gson = creator.gson;
+		return gson.toJson(creator.getTaxonomyList());
+	}
+
+	public static String getTaxonomyId(KeggCreatorService creator, String taxonomicName, String taxonomicRank) {
+		String id = creator.getTaxonomyId(taxonomicName, taxonomicRank);
+		return id;
+	}
+
+	public static Object getTaxonomy(KeggCreatorService creator, String id) {
+		Gson gson = creator.gson;
+		return gson.toJson(creator.getTaxonomy(id));
+	}
 
 }

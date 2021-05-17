@@ -126,6 +126,8 @@ public class KeggCalculatorJob implements Runnable {
 			// TODO: handle output
 			this.job.message = "finished";
 			// outputFile should go to --> "download/outputfile.csv"
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			this.job.message = "failed";
@@ -139,8 +141,48 @@ public class KeggCalculatorJob implements Runnable {
 			// delete files
 			// copy results to appropriate place
 			System.out.println("job finished");
+			
 			// result expiration? --> after 24h
+			//delete files
+			try {
+				Thread.sleep(1000*60*60*24*7); //wait one week -> then delete all files
+				deleteFiles(this.job.jobID);
+				System.out.println("files deleted");
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
+	}
+
+	private void deleteFiles(String jobID) {
+		String downloadDir = "download/";
+		String uploadDir = "upload/";
+		ArrayList<String> filePaths = new ArrayList<>();
+		listFilesForFolder(new File(downloadDir), filePaths, jobID);
+		listFilesForFolder(new File(uploadDir), filePaths, jobID);
+		for(String filePath : filePaths) {
+			File file = new File(filePath);
+			System.out.println(file.getName() + "\t" + "deleted");
+			file.delete();
+		}
+	}
+	
+	public static void listFilesForFolder(File folder, ArrayList<String> filePaths, String jobId) {
+	    for (final File fileEntry : folder.listFiles()) {
+	        if (fileEntry.isDirectory()) {
+	       
+	            listFilesForFolder(fileEntry, filePaths, jobId);
+	        } else {
+		    	String fileName = fileEntry.getName();
+		    	String[] fileNameEnt = fileName.split("\\.");
+		    	if(fileEntry.getAbsolutePath().contains(jobId)) { //if file or directory contains UUID -> add files 
+		    		filePaths.add(fileEntry.getAbsolutePath());	
+		    	}
+	            
+	        }
+	    }
 	}
 
 }

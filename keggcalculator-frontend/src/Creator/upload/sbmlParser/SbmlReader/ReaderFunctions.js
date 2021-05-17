@@ -1,6 +1,6 @@
 import React from 'react';
 import xmlParser from "react-xml-parser/xmlParser";
-import {getUserReactionId} from "../../../specReaction/SpecReactionFunctions";
+import {getUserReactionId} from "../../../specReaction/functions/SpecReactionFunctions";
 import {addCompoundsToReactions} from "../ReactionCompoundsAdder";
 import {setReactionsInStore} from "../ReactionsSetter";
 import {setReactionsAndCompoundsInStore} from "../GraphDrawer";
@@ -56,6 +56,7 @@ const readSpecies =(dispatch, sbml, state)=> {
             }
         )
     })
+    console.log(listOfSpecies)
     return listOfSpecies
 }
 

@@ -1,26 +1,27 @@
 import React, {useEffect} from "react";
-import ReactionInfo from "../graph/ReactionInfo";
+import ReactionInfo from "../graph/click node/leftClick/ReactionInfo";
 import Loading from "../loading/Loading";
-import GraphVisualization from "../graph/GraphVisualization";
+import GraphVisualization from "../graph/graph visualization/GraphVisualization";
 import {handleSetCompoundList} from "../request/RequestHandling"
 import {useDispatch, useSelector} from "react-redux";
-import DeleteModal from "../delete/DeleteModal";
-import ReactionDetails from "../specReaction/ReactionDetails";
-import StructureModal from "../graph/StructureModal";
-import UserInterface from "./UserInterface";
+import DeleteModal from "../graph/click node/delete_rightClick/DeleteModal";
+import ReactionDetails from "../specReaction/reaction/ReactionDetails";
+import StructureModal from "../graph/double click node/StructureModal";
+import UserInterface from "./user-interface/UserInterface";
 import "./Main.css"
-import Sample from "../upload/Sample";
-import NextReactionModal from "../keggReaction/NextReactionModal";
-import KeggReaction from "../keggReaction/KeggReaction";
-import SpecUserReaction from "../specReaction/SpecUserReaction";
-import UserInfo from "../graph/UserInfo";
-import UserCaptionThree from "../upload/UserCaptionThree";
-import ModuleListModal from "../keggReaction/ModuleListModal";
+import Sample from "../data-mapping/Sample";
+import NextReactionModal from "../graph/click node/leftClick/NextReactionModal";
+import KeggReaction from "../keggReaction/main/KeggReaction";
+import SpecUserReaction from "../specReaction/main/SpecUserReaction";
+import UserInfo from "../graph/help/UserInfo";
+import UserCaptionThree from "../data-mapping/UserCaptionThree";
+import ModuleListModal from "../keggReaction/multiple reactions/ModuleListModal";
 import {requestGenerator} from "../request/RequestGenerator";
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import {Drawer, makeStyles, Toolbar, useTheme} from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
+import "../download/DownloadGraph.css"
 //main class for graph visualization and UI for modifying graph
 //BUG: API doppelt C00668 bei C00267 => einmal linke Seite, einmal Rechte vllt anpassen in meiner api
 //FILTER: in api filter after compounds who only have reactions-> others dont make sense
@@ -29,6 +30,7 @@ const moduleUrl = "http://127.0.0.1/keggcreator/modulelist"
 const ecNumbersUrl = "http://127.0.0.1/keggcreator/ecnumberlist"
 const koNumbersUrl = "http://127.0.0.1/keggcreator/konumberlist"
 const reactionUrl= "http://127.0.0.1/keggcreator/reactions"
+const taxonomyListLink = "http://127.0.0.1/keggcreator/taxonomylist"
 export const taxonomicRanks = ["superkingdom", "kingdom", "phylum", "class", "order", "family", "genus", "species"]
 
 export const useStylesMain = makeStyles({
@@ -73,8 +75,11 @@ const Main = () => {
         requestGenerator("GET", reactionUrl, "","").then(resp=>{
             dispatch({type:"SETKEGGREACTIONS", payload: resp.data})
         })
+        requestGenerator("GET", taxonomyListLink, "","").then(resp=>{
+            dispatch({type:"SET_TAXONOMY_NCBI_LIST", payload: resp.data})
+        })
             window.onbeforeunload = exit
-        }, [dispatch]
+        }, []
     )
 
     const classes = useStylesMain()

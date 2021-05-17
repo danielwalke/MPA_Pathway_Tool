@@ -1,0 +1,8 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;Methyl-galactoside transport system substrate-binding protein U00000;K10540;;;;;irreversible;;0;0;;;Methyl-galactoside transport system substrate-binding protein U00000;;false
+1;AI-2 transport system substrate-binding protein U00001;K10555;;;;;irreversible;;0;0;;;AI-2 transport system substrate-binding protein U00001;;false
+2;mannose PTS system EIID component U00002;K02796;;;;;irreversible;;0;0;;;mannose PTS system EIID component U00002;;false
+3;Ribose transport system substrate-binding protein U00003;K10439;;;;;irreversible;;0;0;;;Ribose transport system substrate-binding protein U00003;;false
+4;D-xylose transport system substrate-binding protein U00004;K10543;;;;;irreversible;;0;0;;;D-xylose transport system substrate-binding protein U00004;;false
+5;Simple sugar transport system substrate-binding protein U00005;K02058;;;;;irreversible;;0;0;;;Simple sugar transport system substrate-binding protein U00005;;false
+6;Glucose/mannose transport system substrate-binding protein U00006;K17315;;;;;irreversible;;0;0;;;Glucose/mannose transport system substrate-binding protein U00006;;false

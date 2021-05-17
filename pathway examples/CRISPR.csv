@@ -1,0 +1,8 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;CRISPR-associated protein Csh2 U00000;K19115;;;;;irreversible;;-5;-177;;;CRISPR-associated protein Csh2 U00000;;false
+1;CRISPR-associated protein Csb1 U00001;K19131;;;;;irreversible;;-2;-133;;;CRISPR-associated protein Csb1 U00001;;false
+2;CRISPR-associated protein Cmr4 U00002;K09000;;;;;irreversible;;-2;-89;;;CRISPR-associated protein Cmr4 U00002;;false
+3;CRISPR-associated protein Csh1 U00003;K19114;;;;;irreversible;;-1;-41;;;CRISPR-associated protein Csh1 U00003;;false
+4;CRISPR-associated endonuclease/helicase Cas3 [EC:3.1.-.- 3.6.4.-] U00004;K07012;;;;;irreversible;;0;10;;;CRISPR-associated endonuclease/helicase Cas3 [EC:3.1.-.- 3.6.4.-] U00004;;false
+5;CRISPR system Cascade subunit CasC U00005;K19124;;;;;irreversible;;2;56;;;CRISPR system Cascade subunit CasC U00005;;false
+6;CRISPR-associated protein Csm3 U00006;K09002;;;;;irreversible;;3;104;;;CRISPR-associated protein Csm3 U00006;;false

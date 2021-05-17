@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;Vitamin B12 transporter U00000;K16092;;;;;irreversible;;0;0;;;Vitamin B12 transporter U00000;;false

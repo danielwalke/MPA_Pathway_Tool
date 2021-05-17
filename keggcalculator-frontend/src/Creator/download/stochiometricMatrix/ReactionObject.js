@@ -1,0 +1,86 @@
+
+
+export const getReactionObjects = (forwardReactions, backwardReactions,compoundSet, state) =>{
+    //adds compound names to stoichiometric coefficients in each reactions
+    const reactionObjects = forwardReactions.map(reaction => { // correct direction
+        const reactionSubstrateLinks = state.graph.data.links.filter(link => link.target.includes(reaction.reactionId))
+        const reactionSubstrates = reactionSubstrateLinks.map(link => link.source)
+        reaction.metabolites = []
+        reaction.reactionSubstrates = reactionSubstrates.map(substrate => {
+            const id = substrate.substring(substrate.length-6, substrate.length)
+            const stoichiometry = reaction.stochiometrySubstratesString[id]
+            compoundSet.add(substrate)
+            reaction.metabolites.push({
+                id: substrate,
+                stoichiometry:  `${-stoichiometry}`
+            })
+            return(
+                {
+                    id: substrate,
+                    stoichiometry: stoichiometry
+                }
+            )
+        })
+        const reactionProductLinks = state.graph.data.links.filter(link => link.source.includes(reaction.reactionId))
+        const reactionProducts = reactionProductLinks.map(link => link.target)
+        reaction.reactionProducts = reactionProducts.map(product => {
+            const id = product.substring(product.length-6, product.length)
+            const stoichiometry = reaction.stochiometryProductsString[id]
+            compoundSet.add(product)
+            reaction.metabolites.push({
+                id: product,
+                stoichiometry: stoichiometry
+            })
+            return(
+                {
+                    id: product,
+                    stoichiometry: stoichiometry
+                }
+            )
+        })
+        return reaction
+    })
+
+    //adds compound names to stoichiometric coefficients in each reactions
+    backwardReactions.map(reaction => { // reversed direction -> user changed the directions of arrows
+        const reactionSubstrateLinks = state.graph.data.links.filter(link => link.target.includes(reaction.reactionId))
+        const reactionSubstrates = reactionSubstrateLinks.map(link => link.source)
+        reaction.metabolites = []
+        reaction.reactionSubstrates = reactionSubstrates.map(substrate => {
+            const id = substrate.substring(substrate.length-6, substrate.length)
+            const stoichiometry = reaction.stochiometryProductsString[id]
+            compoundSet.add(substrate)
+            reaction.metabolites.push({
+                id: substrate,
+                stoichiometry: `${-stoichiometry}`
+            })
+            return(
+                {
+                    id: substrate,
+                    stoichiometry: stoichiometry
+                }
+            )
+        })
+        const reactionProductLinks = state.graph.data.links.filter(link => link.source.includes(reaction.reactionId))
+        const reactionProducts = reactionProductLinks.map(link => link.target)
+        reaction.reactionProducts = reactionProducts.map(product => {
+            const id = product.substring(product.length-6, product.length)
+            const stoichiometry = reaction.stochiometrySubstratesString[id]
+            compoundSet.add(product)
+            reaction.metabolites.push({
+                id: product,
+                stoichiometry: stoichiometry
+            })
+            return(
+                {
+                    id: product,
+                    stoichiometry: stoichiometry
+                }
+            )
+        })
+        reactionObjects.push(reaction)
+        return reaction
+    })
+
+    return reactionObjects
+}
