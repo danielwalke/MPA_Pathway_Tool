@@ -2,12 +2,12 @@ import Modal from "@material-ui/core/Modal";
 import React from "react";
 import {useStyles} from "../ModalStyles/ModalStyles";
 import {useDispatch, useSelector} from "react-redux";
-import HeatMapCsvExporter from "../graph/HeatMapCsvExporter";
-import GraphSvgExporter from "./GraphSvgExporter";
-import DownloadGraph from "./DownloadGraph";
-import JSONDownloader from "./JSONDownloader";
-import SBMLDownloader from "./SBMLDownloader";
-import StoichiometricMatrix from "../stochiometricMatrix/StoichiometricMatrix";
+import HeatMapCsvExporter from "./heatmap download/HeatMapCsvExporter";
+import GraphSvgExporter from "./svg download/GraphSvgExporter";
+import JSONDownloader from "./json download/JSONDownloader";
+import SBMLDownloader from "./sbml download/SBMLDownloader";
+import StoichiometricMatrix from "./stochiometricMatrix/StoichiometricMatrix";
+import CsvDownLoader from "./csv download/CsvDownLoader";
 
 const DonwloadModal = () =>{
     const classes = useStyles();
@@ -15,7 +15,7 @@ const DonwloadModal = () =>{
     const dispatch = useDispatch();
     const body = (
         <div className={classes.paper}>
-            <DownloadGraph/>
+            <CsvDownLoader/>
             <JSONDownloader/>
             <SBMLDownloader/>
             <GraphSvgExporter/>

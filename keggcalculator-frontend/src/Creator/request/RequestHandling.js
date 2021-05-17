@@ -1,5 +1,5 @@
 import {requestGenerator} from "./RequestGenerator";
-import {getCompName} from "../keggReaction/CompName";
+import {getCompName} from "../keggReaction/substrate and products/substrate/CompName";
 
 export const compoundUrl = "http://127.0.0.1/keggcreator/compoundlist"; //URL for receiving compound list
 

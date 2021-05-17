@@ -1,6 +1,6 @@
 import {getNodePosition} from "./NodePosition";
 import clonedeep from "lodash/cloneDeep"
-import {getTaxaList} from "../graph/StuctureModalBody";
+import {getTaxaList} from "../graph/double click node/StuctureModalBody";
 
 export const getReactions = (graphState) =>{
     const reactionObjects = {}

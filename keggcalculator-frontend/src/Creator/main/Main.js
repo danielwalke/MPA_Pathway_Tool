@@ -1,26 +1,27 @@
 import React, {useEffect} from "react";
-import ReactionInfo from "../graph/ReactionInfo";
+import ReactionInfo from "../graph/click node/leftClick/ReactionInfo";
 import Loading from "../loading/Loading";
-import GraphVisualization from "../graph/GraphVisualization";
+import GraphVisualization from "../graph/graph visualization/GraphVisualization";
 import {handleSetCompoundList} from "../request/RequestHandling"
 import {useDispatch, useSelector} from "react-redux";
-import DeleteModal from "../delete/DeleteModal";
-import ReactionDetails from "../specReaction/ReactionDetails";
-import StructureModal from "../graph/StructureModal";
-import UserInterface from "./UserInterface";
+import DeleteModal from "../graph/click node/delete_rightClick/DeleteModal";
+import ReactionDetails from "../specReaction/reaction/ReactionDetails";
+import StructureModal from "../graph/double click node/StructureModal";
+import UserInterface from "./user-interface/UserInterface";
 import "./Main.css"
-import Sample from "../upload/Sample";
-import NextReactionModal from "../keggReaction/NextReactionModal";
-import KeggReaction from "../keggReaction/KeggReaction";
-import SpecUserReaction from "../specReaction/SpecUserReaction";
-import UserInfo from "../graph/UserInfo";
-import UserCaptionThree from "../upload/UserCaptionThree";
-import ModuleListModal from "../keggReaction/ModuleListModal";
+import Sample from "../data-mapping/Sample";
+import NextReactionModal from "../graph/click node/leftClick/NextReactionModal";
+import KeggReaction from "../keggReaction/main/KeggReaction";
+import SpecUserReaction from "../specReaction/main/SpecUserReaction";
+import UserInfo from "../graph/help/UserInfo";
+import UserCaptionThree from "../data-mapping/UserCaptionThree";
+import ModuleListModal from "../keggReaction/multiple reactions/ModuleListModal";
 import {requestGenerator} from "../request/RequestGenerator";
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import {Drawer, makeStyles, Toolbar, useTheme} from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
+import "../download/DownloadGraph.css"
 //main class for graph visualization and UI for modifying graph
 //BUG: API doppelt C00668 bei C00267 => einmal linke Seite, einmal Rechte vllt anpassen in meiner api
 //FILTER: in api filter after compounds who only have reactions-> others dont make sense
