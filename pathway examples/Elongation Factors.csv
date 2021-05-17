@@ -1,0 +1,7 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;elongation factor 1-alpha U00000;K03231;;;;;irreversible;;-9.425650596618652;-34.0408878326416;;;elongation factor 1-alpha U00000;;false
+1;elongation factor Tu U00001;K02358;;;;;irreversible;;-10;0;;;elongation factor Tu U00001;;false
+2;elongation factor G U00002;K02355;;;;;irreversible;;-8;30;;;elongation factor G U00002;;false
+3;elongation factor 2 U00003;K03234;;;;;irreversible;;-6;65;;;elongation factor 2 U00003;;false
+4;elongation factor Ts U00004;K02357;;;;;irreversible;;-7;99;;;elongation factor Ts U00004;;false
+5;elongation factor P U00005;K02356;;;;;irreversible;;-6;137;;;elongation factor P U00005;;false

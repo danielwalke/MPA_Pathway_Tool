@@ -1,0 +1,12 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;Peptide/nickel transport system substrate-binding protein U00000;K02035;;;;;irreversible;;0;0;;;Peptide/nickel transport system substrate-binding protein U00000;;false
+1;Dipeptide transport system substrate-binding protein U00001;K12368;;;;;irreversible;;0;0;;;Dipeptide transport system substrate-binding protein U00001;;false
+2;Peptide/nickel transport system ATP-binding protein U00002;K02032;;;;;irreversible;;0;0;;;Peptide/nickel transport system ATP-binding protein U00002;;false
+3;Cationic peptide transport system substrate-binding protein U00003;K19226;;;;;irreversible;;0;0;;;Cationic peptide transport system substrate-binding protein U00003;;false
+4;Oligopeptide transport system ATP-binding protein U00004;K15583;;;;;irreversible;;0;0;;;Oligopeptide transport system ATP-binding protein U00004;;false
+5;Peptide/nickel transport system ATP-binding protein U00005;K02031;;;;;irreversible;;0;0;;;Peptide/nickel transport system ATP-binding protein U00005;;false
+6;Peptide/nickel transport system permease protein U00006;K02033;;;;;irreversible;;0;0;;;Peptide/nickel transport system permease protein U00006;;false
+7;Polar amino acid transport system substrate-binding protein U00007;K02030;;;;;irreversible;;0;0;;;Polar amino acid transport system substrate-binding protein U00007;;false
+8;Glutathione transport system substrate-binding protein U00008;K13889;;;;;irreversible;;0;0;;;Glutathione transport system substrate-binding protein U00008;;false
+9;Oligopeptide transport system substrate-binding protein U00009;K15580;;;;;irreversible;;0;0;;;Oligopeptide transport system substrate-binding protein U00009;;false
+10;Branched-chain amino acid transport system substrate-binding protein U00010;K01999;;;;;irreversible;;0;0;;;Branched-chain amino acid transport system substrate-binding protein U00010;;false

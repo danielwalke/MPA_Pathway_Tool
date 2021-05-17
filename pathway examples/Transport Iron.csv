@@ -1,0 +1,4 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;Iron complex transport system substrate-binding protein U00000;K02016;;;;;irreversible;;0;0;;;Iron complex transport system substrate-binding protein U00000;;false
+1;iron(III) transport system ATP-binding protein [EC:7.2.2.7] U00001;K02010;;;;;irreversible;;0;0;;;iron(III) transport system ATP-binding protein [EC:7.2.2.7] U00001;;false
+2;Iron(III) transport system substrate-binding protein U00002;K02012;;;;;irreversible;;0;0;;;Iron(III) transport system substrate-binding protein U00002;;false

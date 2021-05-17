@@ -1,0 +1,16 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;Arabinogalactan oligomer / maltooligosaccharide transport system substrate-binding protein U00000;K15770;;;;;irreversible;;0;0;;;Arabinogalactan oligomer / maltooligosaccharide transport system substrate-binding protein U00000;;false
+1;Maltose/maltodextrin transport system substrate-binding protein U00001;K10108;;;;;irreversible;;0;0;;;Maltose/maltodextrin transport system substrate-binding protein U00001;;false
+2;Arabinosaccharide transport system substrate-binding protein U00002;K17234;;;;;irreversible;;0;0;;;Arabinosaccharide transport system substrate-binding protein U00002;;false
+3;Alpha-glucoside transport system substrate-binding protein U00003;K10232;;;;;irreversible;;0;0;;;Alpha-glucoside transport system substrate-binding protein U00003;;false
+4;Raffinose/stachyose/melibiose transport system substrate-binding protein U00004;K10117;;;;;irreversible;;0;0;;;Raffinose/stachyose/melibiose transport system substrate-binding protein U00004;;false
+5;Multiple sugar transport system ATP-binding protein U00005;K10112;;;;;irreversible;;0;0;;;Multiple sugar transport system ATP-binding protein U00005;;false
+6;Putative multiple sugar transport system ATP-binding protein [EC:7.5.2.-] U00006;K10548;;;;;irreversible;;0;0;;;Putative multiple sugar transport system ATP-binding protein [EC:7.5.2.-] U00006;;false
+7;Putative aldouronate transport system substrate-binding protein U00007;K17318;;;;;irreversible;;0;0;;;Putative aldouronate transport system substrate-binding protein U00007;;false
+8;Trehalose/maltose transport system substrate-binding protein U00008;K10236;;;;;irreversible;;0;0;;;Trehalose/maltose transport system substrate-binding protein U00008;;false
+9;Multiple sugar transport system substrate-binding protein U00009;K02027;;;;;irreversible;;0;0;;;Multiple sugar transport system substrate-binding protein U00009;;false
+10;Maltose/maltodextrin transport system permease protein U00010;K10109;;;;;irreversible;;0;0;;;Maltose/maltodextrin transport system permease protein U00010;;false
+11;Maltose/maltodextrin transport system permease protein U00011;K10110;;;;;irreversible;;0;0;;;Maltose/maltodextrin transport system permease protein U00011;;false
+12;Putative multiple sugar transport system substrate-binding protein U00012;K10546;;;;;irreversible;;0;0;;;Putative multiple sugar transport system substrate-binding protein U00012;;false
+13;lactose/L-arabinose transport system substrate-binding protein U00013;K10188;;;;;irreversible;;0;0;;;lactose/L-arabinose transport system substrate-binding protein U00013;;false
+14;Basic membrane protein A and related proteins U00014;K07335;;;;;irreversible;;0;0;;;Basic membrane protein A and related proteins U00014;;false

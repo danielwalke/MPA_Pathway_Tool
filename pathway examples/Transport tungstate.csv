@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;Tungstate transport system substrate-binding protein U00000;K05772;;;;;irreversible;;0;0;;;Tungstate transport system substrate-binding protein U00000;;false

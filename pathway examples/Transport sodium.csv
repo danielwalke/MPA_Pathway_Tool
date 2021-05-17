@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;Na+-translocating ferredoxin:NAD+ oxidoreductase subunit C U00000;K03615;7.2.1.2;;;;irreversible;;0;0;;;Na+-translocating ferredoxin:NAD+ oxidoreductase subunit C U00000;;false
