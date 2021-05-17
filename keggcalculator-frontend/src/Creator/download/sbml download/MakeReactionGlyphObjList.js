@@ -14,9 +14,10 @@ const MakeReactionGlyphObjList = (reactionsRaw) => {
                     '#': {'listOfCurveSegments': {
                             '#': {'layout:curveSegment': {
                                     '@': {
-                                        'xmlns:xsi': "http://www.w3.org/2001/XMLSchema-instance",
+                                        'xmlns:xsi':"http://www.w3.org/2001/XMLSchema-instance",
                                         'xsi:type':"LineSegment"},
                                     '#': {
+                                        //Todo: Set Start and Endpoints to substrate and product coordinates
                                         'layout:start': {'@': {'layout:x': item.x, 'layout:y': item.y}},
                                         'layout:end': {'@': {'layout:x': item.x, 'layout:y': item.y}}
                                     }}}}}},
