@@ -23,7 +23,7 @@ const handleSkipPurpose = (state, dispatch) =>{
     //set reactions
     const reactions = setReactionsInStore(state, newListOfReactions)
     //set data for the Graph
-    const data = setReactionsAndCompoundsInStore(state, newListOfReactions)
+    const data = setReactionsAndCompoundsInStore(state, newListOfReactions, dispatch)
     dispatch({type:"SETLISTOFREACTIONS", payload: newListOfReactions})
     dispatch({type:"SETREACTIONSINARRAY", payload: reactions})
     console.log(data);//check whether this is correct, then uncomment the next line

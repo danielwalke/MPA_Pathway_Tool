@@ -1,81 +1,28 @@
-export const handleGraphUpload = (rows, dispatch, state) => {
-    const nodes = []
-    const links = []
-    const addedReactions = []
-    for (let rowIndex = 0; rowIndex < rows.length; rowIndex++) {
-        const columns = rows[rowIndex].split(";")
-        const compoundX = columns[11]
-        const compoundY = columns[12]
-        const compoundName = columns[5].replaceAll("\t", ";")
-        const typeOfCompound = columns[6]
-        const reactionName = columns[1].replaceAll("\t", ";")
-        const reactionX = columns[9]
-        const reactionY = columns[10]
-        const reactionAbbr = columns[13]
-        const compoundAbbr = columns[14]
-        const keyComp = columns[15]
-        const opacity = keyComp === "true" ? 1 : 0.4
-        const reversible = columns[7] === "reversible"
-        if(compoundName.length===0){
-            if(!addedReactions.includes(reactionName)){
-                const reactionNode = {
-                    id: reactionName,
-                    x: +reactionX,
-                    y: +reactionY,
-                    color: "black",
-                    symbolType: "diamond",
-                    opacity: 1,
-                    reversible: reversible
-                }
-                nodes.push(reactionNode)
-            }
-            addedReactions.push(reactionName)
-            state.abbreviationsObject[`${reactionName}`] = reactionAbbr
-        }else{
-            const compoundNode = {
-                id: compoundName,
-                x: +compoundX,
-                y: +compoundY,
-                color: "darkgreen",
-                symbolType: "circle",
-                opacity: opacity
-            }
-            if(!addedReactions.includes(reactionName)){
-                const reactionNode = {
-                    id: reactionName,
-                    x: +reactionX,
-                    y: +reactionY,
-                    color: "black",
-                    symbolType: "diamond",
-                    opacity: 1,
-                    reversible: columns[7] === "reversible"
-                }
-                nodes.push(reactionNode)
-            }
-            addedReactions.push(reactionName)
-            state.abbreviationsObject[`${reactionName}`] = reactionAbbr
-            state.abbreviationsObject[`${compoundName}`] = compoundAbbr
-            let link = {}
-            if (typeOfCompound === "substrate") {
-                link = {source: compoundName, target: reactionName, opacity: opacity,isReversibleLink: false}
-                if(reversible){
-                    links.push({source: reactionName, target: compoundName, opacity: opacity,isReversibleLink: true})
-                }
-            } else {
-                link = {source: reactionName, target: compoundName, opacity: opacity,isReversibleLink: false}
-                if(reversible){
-                    links.push({source: compoundName, target: reactionName, opacity: opacity,isReversibleLink: true})
-                }
-            }
+import {handleJSONGraphUpload} from "../../json upload/ModuleUploadFunctionsJSON";
+import {CsvColumns} from "./CsvFile";
+import {getReaction} from "./CsvFile"
 
-            links.push(link)
-            nodes.push(compoundNode)
-        }
-        dispatch({type: "SETABBREVIATIONOBJECT", payload: state.abbreviationsObject})
+export const handleGraphUpload = (rows, dispatch, graphState) => {
+    let reactions = []
+    rows.forEach(row=>{
+        const columns = new CsvColumns(row)
+        const reaction = getReaction(reactions, columns)
+        const compound = columns.getCompound()
+        addCompound(reaction, compound)
+        addReactionToReactions(reactions, reaction)
+    })
+    return (handleJSONGraphUpload(reactions, dispatch, graphState))
+}
 
-
+const addCompound = (reaction, compound) =>{
+    const typeOfCompound = compound.typeOfCompound
+    if(compound.name.length !== 0){
+        typeOfCompound==="substrate"?  reaction.addSubstrate(compound) : reaction.addProduct(compound)
     }
-    return ({nodes, links})
+}
+
+const addReactionToReactions = (reactions, reaction) =>{
+    reactions.push(reaction)
 }
 
 export const handleReactionListUpload = (rows) => {
@@ -111,35 +58,22 @@ export const handleReactionListUpload = (rows) => {
         const taxa = {}
         if (taxonomiesString.includes("&&")) { //if more than one taxonomy added -> split them
             const taxonomies = taxonomiesString.split("&&")
-            if(taxonomies.length>1){
+            if (taxonomies.length > 1) {
                 for (const taxonomy of taxonomies) {
                     const taxonomyEntries = taxonomy.split(":")
                     const taxonomicRank = taxonomyEntries[0]
                     const taxon = taxonomyEntries[1]
                     taxa[`${taxon}`] = taxonomicRank
-                    // if (taxonomy.includes(",")) { //if taxonomy entries contains more than one entry (superkingdom, kingdom,etc... split them and store the last item in an array)
-                    //     const taxonomyEntries = taxonomy.split(",")
-                    //     taxonomyList.push(taxonomyEntries[taxonomyEntries.length - 1])
-                    // } else { //only one entry -> store only this entry (corresponds to last entry)
-                    //     taxonomyList.push(taxonomy)
-                    // }
                 }
             }
 
         } else {
-            if(taxonomiesString.length>1){
+            if (taxonomiesString.length > 1) {
                 const taxonomyEntries = taxonomiesString.split(":")
                 const taxonomicRank = taxonomyEntries[0]
                 const taxon = taxonomyEntries[1]
                 taxa[`${taxon}`] = taxonomicRank
             }
-
-            // if (taxonomiesString.includes(",")) { //only one taxonomy with more entries (superkingdom,kingdom etc)-> split and store last entry
-            //     const taxonomyEntries = taxonomiesString.split(",")
-            //     taxonomyList.push(taxonomyEntries[taxonomyEntries.length - 1])
-            // } else {
-            //     taxonomyList.push(taxonomiesString) //only on taxonomy with one entry
-            // }
         }
 
         const compoundName = columns[5].replaceAll("\t", ";")

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import UploadIcon from "../../../icons/uploadIconWhite.svg"
 import {useDispatch, useSelector} from "react-redux";
 import "../../main/Upload.css"
@@ -40,6 +40,7 @@ const ModuleCsvFileInput = () => {
         specificReaction: useSelector(state => state.specificReaction),
         mpaProteins: useSelector(state => state.mpaProteins),
     }
+
     return (
         <div>
             <label className={"uploadLabel"} htmlFor={"module-file"}>Upload pathway as CSV <img src={UploadIcon} style={{

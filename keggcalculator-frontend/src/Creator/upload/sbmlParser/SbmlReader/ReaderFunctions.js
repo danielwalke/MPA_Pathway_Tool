@@ -135,11 +135,10 @@ export const onSBMLModuleFileChange = async (event, dispatch, state) => {
                 //set reactions
                 const reactions = setReactionsInStore(state, newListOfReactions)
                 //set data for the Graph
-                const data=  setReactionsAndCompoundsInStore(state, newListOfReactions)
+                const data=  setReactionsAndCompoundsInStore(state, newListOfReactions, dispatch)
                 dispatch({type:"SETISSHOWINGREACTIONTABLE", payload: true})
                 dispatch({type:"SETLISTOFREACTIONS", payload: newListOfReactions})
                 dispatch({type:"SETREACTIONSINARRAY", payload: reactions})
-                console.log(data);//check whether this is correct, then uncomment the next line
                 dispatch({type: "SETDATA", payload: data})
                 dispatch({type:"SETLOADING", payload: false})
             }

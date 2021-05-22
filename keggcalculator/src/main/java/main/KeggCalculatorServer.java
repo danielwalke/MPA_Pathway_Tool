@@ -343,6 +343,20 @@ public class KeggCalculatorServer {
     		return "{\"message\":\"internal server error\"}";
     	}
     });
+    
+	//[{name:"", rank:""}]
+    post("keggcreator/taxonomyByArray",(req, res)->{
+    	try {
+    		res.status(201);
+    		return KeggHandleRequests.getTaxonomyList(creator, req.queryParams("taxonomyList"));
+    	}catch(Exception e) {
+    		res.status(500);
+    		return "{\"message\":\"internal server error\"}";
+    	}
+    });
+	
+    
 	}
+	
 
 }

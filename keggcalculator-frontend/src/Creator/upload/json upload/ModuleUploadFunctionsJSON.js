@@ -1,76 +1,84 @@
+import {
+    COMPOUND_NODE_COLOR,
+    COMPOUND_NODE_SYMBOL,
+    REACTION_NODE_COLOR,
+    REACTION_NODE_SYMBOL
+} from "../../graph/Constants";
+
 export const handleJSONGraphUpload = (reactions, dispatch, graphState) => { //handle upload of JSON for graph visualisation
     const nodes = []
     const links = []
-    reactions.map(reaction => {
-        const reactionNode = {
-            id: reaction.reactionName,
-            color: "black",
-            symbolType: "diamond",
-            opacity: reaction.opacity,
-            x: +reaction.x,
-            y: +reaction.y,
-            reversible: reaction.reversible ==="reversible"
-        }
-        nodes.push(reactionNode)
-        reaction.substrates.map(substrate => {
-            const compoundNode = {
-                id: substrate.name,
-                color: "darkgreen",
-                symbolType: "circle",
-                opacity: substrate.opacity,
-                x: +substrate.x,
-                y: +substrate.y
-            }
-            const compoundLink = {
-                source: substrate.name,
-                target: reaction.reactionName,
-                opacity: substrate.opacity
-            }
-            if(reactionNode.reversible){
-                links.push({
-                    source: reaction.reactionName,
-                    target: substrate.name,
-                    opacity: substrate.opacity,
-                    isReversibleLink: true
-                })
-            }
-            nodes.push(compoundNode)
-            links.push(compoundLink)
-            graphState.abbreviationsObject[`${reaction.reactionName}`] = reaction.abbreviation
-            graphState.abbreviationsObject[`${substrate.name}`] = substrate.abbreviation
-            return null
-        })
-
-        reaction.products.map(product => {
-            const compoundNode = {
-                id: product.name,
-                color: "darkgreen",
-                symbolType: "circle",
-                opacity: product.opacity,
-                x: +product.x,
-                y: +product.y
-            }
-            const compoundLink = {
-                source: reaction.reactionName,
-                target: product.name,
-                opacity: product.opacity
-            }
-            if(reactionNode.reversible){
-                links.push({
-                    source: product.name,
-                    target: reaction.reactionName,
-                    opacity: product.opacity,
-                    isReversibleLink: true
-                })
-            }
-            nodes.push(compoundNode)
-            links.push(compoundLink)
-            graphState.abbreviationsObject[`${reaction.reactionName}`] = reaction.abbreviation
-            graphState.abbreviationsObject[`${product.name}`] = product.abbreviation
-            return null
-        })
+    reactions.forEach(reaction => {
+        const reactionNode = createNode(reaction.reactionName, REACTION_NODE_COLOR, REACTION_NODE_SYMBOL, +reaction.x, +reaction.y, reaction.opacity, reaction.reversible)
+        addNode(nodes, reactionNode)
+        reaction.substrates.forEach(substrate =>addCompoundToData(substrate, reaction, reactionNode, links, nodes, graphState))
+        reaction.products.forEach(product => addCompoundToData(product, reaction, reactionNode, links, nodes, graphState))
         dispatch({type: "SETABBREVIATIONOBJECT", payload: graphState.abbreviationsObject})
-        return null;
     })
     return {nodes, links}
+}
+
+const nodeInData = (nodes, newNode) => {
+    return nodes.some(node => node.id === newNode.id)
+}
+
+//checks whether a specific link "newLink" is in the existent links
+const linkInData = (links, newLink) => {
+    return links.some(link => link.source === newLink.source && link.target === newLink.target)
+}
+
+// return a node object
+const createNode = (id, color, symbolType, x, y, opacity, reversible) => {
+    return (
+        {
+            id: id,
+            color: color,
+            symbolType: symbolType,
+            x: x,
+            y: y,
+            opacity: opacity,
+            reversible: reversible
+        }
+    )
+}
+
+//return a link object
+const createLink = (source, target, opacity, isReversibleLink) => {
+    return (
+        {
+            source: source,
+            target: target,
+            opacity: opacity,
+            isReversibleLink: isReversibleLink
+        }
+    )
+}
+
+const addLinks = (reactionNode, links, compoundLink, compoundLinkReversible) => {
+    if (reactionNode.reversible && !linkInData(links, compoundLinkReversible)) {
+        links.push(compoundLinkReversible)
+    }
+    if (!linkInData(links, compoundLink)) {
+        links.push(compoundLink)
+    }
+}
+
+const addNode = (nodes, compoundNode) => {
+    if (!nodeInData(nodes, compoundNode)) {
+        nodes.push(compoundNode)
+    }
+}
+
+const addAbbreviations = (graphState, reaction, compound) => {
+    graphState.abbreviationsObject[`${reaction.reactionName}`] = reaction.abbreviation
+    graphState.abbreviationsObject[`${compound.name}`] = compound.abbreviation
+}
+
+const addCompoundToData = (compound, reaction, reactionNode, links, nodes, graphState) => {
+    const compoundNode = createNode(compound.name, COMPOUND_NODE_COLOR, COMPOUND_NODE_SYMBOL, +compound.x, +compound.y, compound.opacity, reaction.reversible)
+    const compoundLink = createLink(compound.name, reaction.reactionName, compound.opacity, false)
+    const compoundLinkReversible = createLink(reaction.reactionName, compound.name, compound.opacity, true)
+    addLinks(reactionNode, links, compoundLink, compoundLinkReversible)
+    addNode(nodes, compoundNode)
+    addAbbreviations(graphState, reaction, compound)
 }

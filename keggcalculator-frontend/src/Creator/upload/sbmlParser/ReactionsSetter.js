@@ -41,6 +41,5 @@ export const setReactionsInStore = (state, listOfReactions) =>{
         )
 
     })
-    console.log(reactions); //check whether everything is fine here
     return reactions
 }

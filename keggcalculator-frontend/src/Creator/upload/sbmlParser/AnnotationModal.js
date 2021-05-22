@@ -40,7 +40,7 @@ const submit = (state, dispatch, listOfSpecies) =>{
     const reactions = setReactionsInStore(state, newListOfReactions)
     console.log(reactions)
     //set data for the Graph
-    const data = setReactionsAndCompoundsInStore(state, newListOfReactions)
+    const data = setReactionsAndCompoundsInStore(state, newListOfReactions, dispatch)
     dispatch({type:"SETLISTOFREACTIONS", payload: newListOfReactions})
     dispatch({type:"SETREACTIONSINARRAY", payload: reactions})
     dispatch({type:"SETISANNOTATIONPURPOSE", payload:false})
