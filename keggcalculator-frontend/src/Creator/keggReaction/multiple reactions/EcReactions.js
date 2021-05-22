@@ -6,6 +6,12 @@ import {useDispatch, useSelector} from "react-redux";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
 import DeleteIcon from "@material-ui/icons/Delete";
+import {
+    COMPOUND_NODE_COLOR,
+    COMPOUND_NODE_SYMBOL,
+    REACTION_NODE_COLOR,
+    REACTION_NODE_SYMBOL
+} from "../../graph/Constants";
 const reactionUrl = "http://127.0.0.1/keggcreator/getreaction"
 const ecUrl = "http://127.0.0.1/keggcreator/getreactionlistbyeclist"
 
@@ -31,9 +37,9 @@ export const handleDrawGraph = (reaction, state, dispatch, graphState) =>{
     const products = Object.keys(reaction.stochiometryProductsString)
     const substratesName = substrates.map(substrate => state.compoundId2Name[substrate])
     const productsName = products.map(product => state.compoundId2Name[product])
-    substratesName.map(substrate => data.nodes.push({id:substrate, color: "darkgreen", opacity: 1,x:0,y:0}))
-    productsName.map(product => data.nodes.push({id:product, color: "darkgreen", opacity: 1,x:0,y:0}))
-    data.nodes.push({id:`${reaction.reactionName} ${reaction.reactionId}`, color: "black", opacity: 1, symbolType: "diamond",x:0,y:0, reversible:false})
+    substratesName.map(substrate => data.nodes.push({id:substrate, color: COMPOUND_NODE_COLOR, opacity: 1,x:0,y:0, symbolType:COMPOUND_NODE_SYMBOL}))
+    productsName.map(product => data.nodes.push({id:product, color: COMPOUND_NODE_COLOR, opacity: 1,x:0,y:0,symbolType:COMPOUND_NODE_SYMBOL}))
+    data.nodes.push({id:`${reaction.reactionName} ${reaction.reactionId}`, color: REACTION_NODE_COLOR, opacity: 1, symbolType: REACTION_NODE_SYMBOL,x:0,y:0, reversible:false})
     substratesName.map(substrate => data.links.push({source: substrate, target: `${reaction.reactionName} ${reaction.reactionId}`, opacity:1,isReversibleLink: false}))
     productsName.map(product => data.links.push({source: `${reaction.reactionName} ${reaction.reactionId}`, target: product, opacity:1,isReversibleLink: false}))
     dispatch({type: "SETDATA", payload: data})

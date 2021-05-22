@@ -38,7 +38,6 @@ const MpaInput = () => {
                     const entries = line.split("\t")
                     let koAndEcSet = new Set()
                     let quantArray = []
-                    let taxonomyArray = []
                     if (entries[1].length > 0) { //ko numbers
                         if (entries[1].includes("|")) {
                             const kos = entries[1].split("|")
@@ -72,24 +71,6 @@ const MpaInput = () => {
                             allQuants.push(+quant)
                         }
                     }
-                    // if (entries[11].includes(",")) {
-                    //     const quants = entries[11].split(",")
-                    //     quants.map(quant => {
-                    //         if (quant.includes("/")) {
-                    //             const quantRatios = quant.split("/")
-                    //             const calcQuant = +quantRatios[0] / +quantRatios[1]
-                    //             quantArray.push(+calcQuant)
-                    //             allQuants.push(+calcQuant)
-                    //         } else {
-                    //             quantArray.push(+quant)
-                    //             allQuants.push(+quant)
-                    //         }
-                    //         return null
-                    //     })
-                    // } else {
-                    //     quantArray.push(+entries[11])
-                    //     allQuants.push(+entries[11])
-                    // }
                     const protein = {
                         name: entries[0],
                         koAndEcSet: koAndEcSet,
