@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import Modal from "@material-ui/core/Modal";
-import {useStylesList} from "../../Creator/upload/sbmlParser/KeggCompoundAutoCompleteList";
 import {useStyles} from "../../Creator/ModalStyles/ModalStyles";
 
 const Start = () => {

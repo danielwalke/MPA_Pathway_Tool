@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import UploadIcon from "../../../icons/uploadIconWhite.svg"
 import {useDispatch, useSelector} from "react-redux";
 import "../../main/Upload.css"
