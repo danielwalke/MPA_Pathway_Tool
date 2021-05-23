@@ -35,7 +35,7 @@ const Start = () => {
         </div>
     )
 
-    return (<div style={{ backgroundColor: "rgb(150, 25, 130)", margin: 0}}>
+    return (<div style={{ backgroundColor: "rgb(150, 25, 130)", margin: 0, minHeight:"80vh"}}>
             <div style={{padding:"5px", width: "80vw", marginLeft: "10vw", backgroundColor: "white", zIndex: 1000, height: "100%", textAlign:"justify", hyphens:"auto"}}>
                 <h1 style={{marginLeft:"30vw"}}>Getting started</h1>
                 <h3>Overview</h3>
