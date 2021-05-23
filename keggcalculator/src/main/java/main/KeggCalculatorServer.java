@@ -68,6 +68,7 @@ public class KeggCalculatorServer {
 
 		//module- creator
 		KeggCreatorService creator = new KeggCreatorService();
+		creator.initRequestMap();
 		creator.parseKeggData();
 		creator.parseNcbiTaxonomy();
 
@@ -111,28 +112,34 @@ public class KeggCalculatorServer {
 		 */
 		
 		post("/keggcalculator/startJob", (req, res) -> {
+			creator.requestAccess.get("startJob").add(creator.getAccessDate());
 			return KeggHandleRequests.startJob(req, res, calculator);
 		});
 
 		post("/keggcalculator/csvMPA", (req, res) -> {
+			creator.requestAccess.get("csvMPA").add(creator.getAccessDate());
 			return KeggHandleRequests.handleCSVMPA(req, res, calculator, req.queryParams("jobid"));
 		});
 
 		post("/keggcalculator/csvModule", (req, res) -> {
+			creator.requestAccess.get("csvModule").add(creator.getAccessDate());
 			return KeggHandleRequests.handleCSVModule(req, res, calculator, req.queryParams("jobid"));
 		});
 
 		// the download link
 		get("/keggcalculator/status", (req, res) -> {
+			creator.requestAccess.get("status").add(creator.getAccessDate());
 			return KeggHandleRequests.status(req, res, calculator, req.queryParams("jobid"));
 		});
 
 		get("/keggcalculator/download/:name", (req, res) -> {
+			creator.requestAccess.get("download").add(creator.getAccessDate());
 			// UUID jobID = UUID.fromString(req.queryParams("jobid"));
 			return KeggHandleRequests.download(req, res, calculator, req.params("name"));
 		});
 		
 		get("/keggcalculator/downloadunmatchedproteins/:name", (req, res) -> {
+			creator.requestAccess.get("downloadunmatchedproteins").add(creator.getAccessDate());
 			// UUID jobID = UUID.fromString(req.queryParams("jobid"));
 			return KeggHandleRequests.downloadUnmatchedroteins(req, res, calculator, req.params("name"));
 		});
@@ -141,7 +148,8 @@ public class KeggCalculatorServer {
 		 * Module creator endpoints
 		 */
 		get("/keggcreator/compoundlist", (req, res) -> {
-			try {
+			creator.requestAccess.get("compoundlist").add(creator.getAccessDate());
+			try {		
 				// TODO: Exception handling --> compound not found
 				// --> input: nothing
 				// --> output: full curated compound list (exclude 00-20, exclude glycans?)
@@ -159,6 +167,7 @@ public class KeggCalculatorServer {
 
 		get("/keggcreator/modulelist", (req, res) -> {
 			try {
+				creator.requestAccess.get("modulelist").add(creator.getAccessDate());
 				HashSet<String> moduleSet = creator.getModuleSet();
 				res.status(201);
 				return creator.gson.toJson(moduleSet);
@@ -176,7 +185,8 @@ public class KeggCalculatorServer {
 			// --> output: all reactions/following products for this compound
 			// --> transform to json
 			// TODO: request input substrate, return all possible reactions and products
-			try {				
+			try {	
+				creator.requestAccess.get("module").add(creator.getAccessDate());
 				res.status(201);
 				return KeggHandleRequests.getModuleFile(req, res, creator, req.queryParams("moduleId"));
 			} catch (Exception e) {
@@ -192,7 +202,8 @@ public class KeggCalculatorServer {
 			// --> output: all reactions/following products for this compound
 			// --> transform to json
 			// TODO: request input substrate, return all possible reactions and products
-			try {				
+			try {		
+				creator.requestAccess.get("reactiondatabysubstrate").add(creator.getAccessDate());
 				res.status(201);
 				return KeggHandleRequests.reactionDataBySubstrate(req, res, creator, req.queryParams("substrateId"));
 			} catch (Exception e) {
@@ -228,6 +239,7 @@ public class KeggCalculatorServer {
 		
 		get("/keggcreator/konumberlist", (req, res) -> {
             try {
+				creator.requestAccess.get("konumberlist").add(creator.getAccessDate());
                     // TODO: Exception handling --> compound not found
                     // --> input: nothing
                     // --> output: full curated compound list (exclude 00-20, exclude glycans?)
@@ -245,6 +257,7 @@ public class KeggCalculatorServer {
 
     get("/keggcreator/ecnumberlist", (req, res) -> {
             try {
+				creator.requestAccess.get("ecnumberlist").add(creator.getAccessDate());
                     // TODO: Exception handling --> compound not found
                     // --> input: nothing
                     // --> output: full curated compound list (exclude 00-20, exclude glycans?)
@@ -262,6 +275,7 @@ public class KeggCalculatorServer {
 
     post("/keggcreator/getreactionlistbyeclist", (req, res) -> {
             try {
+				creator.requestAccess.get("getreactionlistbyeclist").add(creator.getAccessDate());
             	return KeggHandleRequests.reactionlistbyec(req, res, creator, req.queryParams("ecNumbers"));
             } catch (Exception e) {
                     // this is an unexpected exception!
@@ -272,6 +286,7 @@ public class KeggCalculatorServer {
     
     post("/keggcreator/getreactionlistbykolist", (req, res) -> {
         try {
+			creator.requestAccess.get("getreactionlistbykolist").add(creator.getAccessDate());
         	return KeggHandleRequests.reactionlistbyko(req, res, creator, req.queryParams("koNumbers"));
         } catch (Exception e) {
                 // this is an unexpected exception!
@@ -282,6 +297,7 @@ public class KeggCalculatorServer {
 
     post("/keggcreator/getreaction", (req, res) -> {
             try {
+    			creator.requestAccess.get("getreaction").add(creator.getAccessDate());
                     return KeggHandleRequests.getReaction(req, res, creator, req.queryParams("reactionId"));
             } catch (Exception e) {
                     // this is an unexpected exception!
@@ -292,6 +308,7 @@ public class KeggCalculatorServer {
     
     get("/keggcreator/reactions", (req, res)->{
     	try {
+			creator.requestAccess.get("reactions").add(creator.getAccessDate());
     		res.status(201);
     		HashSet<KeggReaction> reactions =new HashSet<>();
     		for(KeggReactionObject reactionObject : creator.cloneKeggData().getReactions()) {
@@ -316,6 +333,7 @@ public class KeggCalculatorServer {
     
     get("keggcreator/taxonomylist",(req, res)->{
     	try {
+			creator.requestAccess.get("taxonomylist").add(creator.getAccessDate());
     		res.status(201);
     		return KeggHandleRequests.getTaxonomyList(creator);
     	}catch(Exception e) {
@@ -326,6 +344,7 @@ public class KeggCalculatorServer {
 
     post("keggcreator/taxonomyId",(req, res)->{
     	try {
+			creator.requestAccess.get("taxonomyId").add(creator.getAccessDate());
     		res.status(201);
     		return KeggHandleRequests.getTaxonomyId(creator, req.queryParams("name"), req.queryParams("rank"));
     	}catch(Exception e) {
@@ -336,6 +355,7 @@ public class KeggCalculatorServer {
     
     post("keggcreator/taxonomy",(req, res)->{
     	try {
+			creator.requestAccess.get("taxonomy").add(creator.getAccessDate());
     		res.status(201);
     		return KeggHandleRequests.getTaxonomy(creator, req.queryParams("id"));
     	}catch(Exception e) {
@@ -347,6 +367,7 @@ public class KeggCalculatorServer {
 	//[{name:"", rank:""}]
     post("keggcreator/taxonomyByArray",(req, res)->{
     	try {
+			creator.requestAccess.get("taxonomyByArray").add(creator.getAccessDate());
     		res.status(201);
     		return KeggHandleRequests.getTaxonomyList(creator, req.queryParams("taxonomyList"));
     	}catch(Exception e) {
@@ -356,6 +377,17 @@ public class KeggCalculatorServer {
     });
 	
     
+    /**
+     * method that returns a CSV file with all accessdates
+     */
+    get("keggcreator/requestAccesscsv",(req, res)->{
+    	try {
+    		return KeggHandleRequests.getRequestAccess(creator);
+    	}catch(Exception e) {
+    		res.status(500);
+    		return "{\"message\":\"internal server error\"}";
+    	}
+    });
 	}
 	
 

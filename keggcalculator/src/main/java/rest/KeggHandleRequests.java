@@ -186,100 +186,7 @@ public class KeggHandleRequests {
 	
 
 	public static String getModuleFile(Request req, Response res, KeggCreatorService creator, String moduleId) {
-		KeggDataObject keggData = creator.cloneKeggData();
-		KeggModuleObject module = keggData.getModule(moduleId);
-		String outputString = "stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp\n";
-		int stepId =1;
-		for(KeggReactionObject reaction : module.getReactions()) {
-				for(Entry<String, String> entry : reaction.getStochiometrySubstrates().entrySet()) {
-					outputString = outputString.concat(String.valueOf(stepId) +";");
-					outputString = outputString.concat(reaction.getReactionName().replaceAll(";", "\t").concat(" " + reaction.getReactionId() + ";"));
-					int koIt= 0;
-					for(KeggKOObject ko : reaction.getKonumbers()) {
-						outputString += ko.getKoId();
-						if(koIt<reaction.getKonumbers().size()-1) {
-							outputString += ",";
-						}
-						koIt++;
-					}
-					outputString+=";";
-					int ecIt= 0;
-					for(KeggECObject ec : reaction.getEcnumbers()) {
-						outputString += ec.getEcId();
-						if(ecIt<reaction.getEcnumbers().size()-1) {
-							outputString += ",";
-						}
-						ecIt++;
-					}
-					outputString+=";";
-					String stochCoeff = entry.getValue();
-					String substString = entry.getKey();
-					outputString += stochCoeff;
-					outputString += ";";
-					KeggCompoundObject subst = reaction.getSubstrate(substString);
-					outputString+= subst.getCompoundName().replaceAll(";", "\t");
-					outputString += " ";
-					outputString += subst.getCompoundId();	
-					outputString += ";";
-					outputString += "substrate;";
-					outputString += "reversible;";
-					outputString += ";";//tax
-					outputString += ";";//reactionX
-					outputString += ";";//reactionY
-					outputString += ";";//compX
-					outputString += ";"; //compY
-					outputString += reaction.getReactionName().replaceAll(";", "\t").concat(" " + reaction.getReactionId() + ";");
-					outputString +=	subst.getCompoundName().replaceAll(";", "\t").concat(" " + subst.getCompoundId());
-					outputString+= ";"; 
-					outputString += "true;";
-					outputString+= "\n";
-				}	
-				for(Entry<String, String> entry : reaction.getStochiometryProducts().entrySet()) {
-					outputString = outputString.concat(String.valueOf(stepId) +";");
-					outputString = outputString.concat(reaction.getReactionName().replaceAll(";", "\t").concat(" " + reaction.getReactionId() + ";"));
-					int koIt= 0;
-					for(KeggKOObject ko : reaction.getKonumbers()) {
-						outputString += ko.getKoId();
-						if(koIt<reaction.getKonumbers().size()-1) {
-							outputString += ",";
-						}
-						koIt++;
-					}
-					outputString+=";";
-					int ecIt= 0;
-					for(KeggECObject ec : reaction.getEcnumbers()) {
-						outputString += ec.getEcId();
-						if(ecIt<reaction.getEcnumbers().size()-1) {
-							outputString += ",";
-						}
-						ecIt++;
-					}
-					outputString+=";";
-					String stochCoeff = entry.getValue();
-					String prodString = entry.getKey();
-					outputString += stochCoeff;
-					outputString += ";";
-					KeggCompoundObject prod = reaction.getProduct(prodString);
-					outputString+= prod.getCompoundName().replaceAll(";", "\t");
-					outputString += " ";
-					outputString += prod.getCompoundId();	
-					outputString += ";";
-					outputString += "product;";
-					outputString += "reversible;";
-					outputString += ";";//tax
-					outputString += ";";//reactionX
-					outputString += ";";//reactionY
-					outputString += ";";//compX
-					outputString += ";"; //compY
-					outputString += reaction.getReactionName().replaceAll(";", "\t").concat(" " + reaction.getReactionId() + ";");
-					outputString +=	prod.getCompoundName().replaceAll(";", "\t").concat(" " + prod.getCompoundId());
-					outputString+= ";"; 
-					outputString += "true;";
-					outputString+= "\n";
-				}
-		
-				stepId++;
-		}
+		String outputString = creator.getModuleFile(creator, moduleId);
 		try {
 			BufferedWriter br = new BufferedWriter(new FileWriter(new File("src/main/resources/Methanogenese.csv")));
 			br.write(outputString.trim());
@@ -374,6 +281,11 @@ public class KeggHandleRequests {
 			System.out.println(taxonomy.getRank());
 		}
 		return null;
+	}
+
+	public static String getRequestAccess(KeggCreatorService creator) {
+		creator.getRequestAccess();
+		return "saves request access as CSV";
 	}
 
 }
