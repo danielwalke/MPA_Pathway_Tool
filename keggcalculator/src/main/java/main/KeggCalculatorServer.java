@@ -12,6 +12,7 @@ import static spark.Spark.webSocketIdleTimeoutMillis;
 import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -105,6 +106,7 @@ public class KeggCalculatorServer {
 
 		// to test server health
 		get("/hello", (req, res) -> "Hello World!!");
+		
 
 		/*
 		 * Calculator endpoints
@@ -323,7 +325,7 @@ public class KeggCalculatorServer {
     		return "{\"message\":\"internal server error\"}";
     	}
     });
-
+    
     post("keggcreator/taxonomyId",(req, res)->{
     	try {
     		res.status(201);
@@ -334,6 +336,16 @@ public class KeggCalculatorServer {
     	}
     });
     
+    post("keggcreator/taxonomyIdList",(req, res)->{
+    	try {
+    		res.status(201);
+    		return KeggHandleRequests.getTaxonomyIdList(creator, req.queryParams("taxonomyList"));
+    	}catch(Exception e) {
+    		res.status(500);
+    		return "{\"message\":\"internal server error\"}";
+    	}
+    });
+      
     post("keggcreator/taxonomy",(req, res)->{
     	try {
     		res.status(201);

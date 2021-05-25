@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -23,7 +24,10 @@ import model.KeggModuleObject;
 import model.KeggReaction;
 import model.KeggReactionObject;
 import model.SortedReactions;
+import model.TaxonomyList;
+import model.TaxonomyListObject;
 import model.TaxonomyNcbi;
+import model.TaxonomyResponseListObj;
 import parser.KeggDataParser;
 
 /**
@@ -76,7 +80,7 @@ public class KeggCreatorService {
 	// returns set of all possible substrates the user can send to the creator
 	public HashSet<KeggCompound> getSubstrateSet() {
 //		KeggCalculatorServer server = new KeggCalculatorServer();
-//		KeggData keggData = server.cloneKeggData();
+//		KeggData keggData = server.cloneKeggData();+
 		KeggDataObject keggDataClone = cloneKeggData();
 		HashSet<KeggCompoundObject> substrateSet = keggDataClone.getCompounds();
 		// exclude all compounds with ID C00001- C00020-> excessive occurence in
@@ -360,6 +364,28 @@ public class KeggCreatorService {
 			}
 		}
 		return id;
+	}
+	
+	public ArrayList<TaxonomyResponseListObj> getTaxonomyIdList(TaxonomyList taxonomyObjectList) {
+		int listLength = taxonomyObjectList.size();
+		int countFindings = 0;
+		ArrayList<TaxonomyResponseListObj> ids = new ArrayList<TaxonomyResponseListObj>();
+		
+		for(TaxonomyNcbi taxonomy : this.taxonomyList) {
+			for(TaxonomyListObject taxonomyObject : taxonomyObjectList.getTaxonomyObjectList()) {
+				String name = taxonomyObject.getName();
+				String id = taxonomy.getId();
+				if(taxonomy.getTaxonomicName().equals(taxonomyObject.getName()) &&
+						taxonomy.getTaxonomicRank().equals(taxonomyObject.getRank())) {
+					ids.add(new TaxonomyResponseListObj(name, id));
+					
+					countFindings += 1;
+					break;
+				}
+			}
+		}
+		
+		return ids;
 	}
 
 	public TaxonomyNcbi getTaxonomy(String id) {

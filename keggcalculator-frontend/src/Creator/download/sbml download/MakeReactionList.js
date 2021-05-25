@@ -17,7 +17,7 @@ const MakeReactionList = (generalState, graphState) => {
         name => generalState.reactionsInSelectArray.filter(
             reaction => reaction.reactionName === name)[0])
 
-    console.log(reactionsRaw)
+    console.log(generalState)
 
     reactionsRaw.map(reaction => {
         reaction.abbreviation = typeof graphState.abbreviationsObject[`${reaction.reactionName}`] === "undefined" ? reaction.reactionName : graphState.abbreviationsObject[`${reaction.reactionName}`]
