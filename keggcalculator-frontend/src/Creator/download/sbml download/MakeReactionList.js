@@ -6,18 +6,13 @@ import {getNodePosition} from "../NodePosition"
 
 const MakeReactionList = (generalState, graphState) => {
 
-
     const {reactionObjects, reactionNames} = getReactions(graphState)
-
-    console.log(reactionObjects)
-    console.log(reactionNames)
-    console.log(graphState)
 
     const reactionsRaw = reactionNames.map(
         name => generalState.reactionsInSelectArray.filter(
             reaction => reaction.reactionName === name)[0])
 
-    console.log(generalState)
+    const requestList = []
 
     reactionsRaw.map(reaction => {
         reaction.abbreviation = typeof graphState.abbreviationsObject[`${reaction.reactionName}`] === "undefined" ? reaction.reactionName : graphState.abbreviationsObject[`${reaction.reactionName}`]
@@ -53,11 +48,20 @@ const MakeReactionList = (generalState, graphState) => {
                 })
             }
         }
+
+        const requestListObj = {}
+        const taxaProp = Object.getOwnPropertyNames(reaction.taxa)[0]
+
+        requestListObj.name = taxaProp
+        requestListObj.rank = reaction.taxa[taxaProp]
+
+        requestList.push(requestListObj)
+
         // reaction["opacity"] = 1
         // let output = outputCsv.concat("stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp", "\n")
         return reaction})
 
-    return reactionsRaw
+    return [reactionsRaw, requestList]
 }
 
 export default MakeReactionList

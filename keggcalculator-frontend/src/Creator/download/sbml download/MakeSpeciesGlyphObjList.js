@@ -5,8 +5,6 @@ const MakeSpeciesGlyphObjList = (speciesRaw) => {
 
         const name = species.name.substring(0, species.name.length - 7).replace(/ /g, "_").replace(/^[\d\W_]*/,"")
 
-        console.log(species)
-
         const speciesGlyphObj = {
             '@': {
              'layout:id': ['speciesGlyph_', name].join(""),

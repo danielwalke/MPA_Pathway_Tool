@@ -367,19 +367,20 @@ public class KeggCreatorService {
 	}
 	
 	public ArrayList<TaxonomyResponseListObj> getTaxonomyIdList(TaxonomyList taxonomyObjectList) {
-		int listLength = taxonomyObjectList.size();
-		int countFindings = 0;
+		
 		ArrayList<TaxonomyResponseListObj> ids = new ArrayList<TaxonomyResponseListObj>();
 		
 		for(TaxonomyNcbi taxonomy : this.taxonomyList) {
 			for(TaxonomyListObject taxonomyObject : taxonomyObjectList.getTaxonomyObjectList()) {
+				
 				String name = taxonomyObject.getName();
+				String rank = taxonomyObject.getRank();
 				String id = taxonomy.getId();
-				if(taxonomy.getTaxonomicName().equals(taxonomyObject.getName()) &&
-						taxonomy.getTaxonomicRank().equals(taxonomyObject.getRank())) {
-					ids.add(new TaxonomyResponseListObj(name, id));
+				
+				if(taxonomy.getTaxonomicName().equals(name) &&
+						taxonomy.getTaxonomicRank().equals(rank)) {
+					ids.add(new TaxonomyResponseListObj(name, rank, id));
 					
-					countFindings += 1;
 					break;
 				}
 			}
