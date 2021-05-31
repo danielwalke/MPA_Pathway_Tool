@@ -75,7 +75,7 @@ const Main = () => {
         requestGenerator("GET", reactionUrl, "","").then(resp=>{
             dispatch({type:"SETKEGGREACTIONS", payload: resp.data})
         })
-        requestGenerator("GET", taxonomyListLink, "","").then(resp=>{
+        requestGenerator("POST", taxonomyListLink, "","").then(resp=>{
             dispatch({type:"SET_TAXONOMY_NCBI_LIST", payload: resp.data})
         })
             window.onbeforeunload = exit

@@ -1,4 +1,10 @@
 import {requestGenerator} from "../../request/RequestGenerator";
+import {
+    COMPOUND_NODE_COLOR,
+    COMPOUND_NODE_SYMBOL,
+    REACTION_NODE_COLOR,
+    REACTION_NODE_SYMBOL
+} from "../../graph/Constants";
 const productUrl = "http://127.0.0.1/keggcreator/reactiondatabysubstrate"
 
 export const handleSubmit = (substrateId, graphState, keggState, dispatch) => {
@@ -23,7 +29,7 @@ export const handleSubmit = (substrateId, graphState, keggState, dispatch) => {
         })
     //graph
     let newData = {
-            nodes: [...graphState.data.nodes, {id: keggState.substrate, color: "darkgreen",opacity:1, x: 0,y:0}],
+            nodes: [...graphState.data.nodes, {id: keggState.substrate, color: COMPOUND_NODE_COLOR ,opacity:1, x: 0,y:0, symbolType:COMPOUND_NODE_SYMBOL,isReversibleLink:false}],
             links: graphState.data.links
         }
 
@@ -40,7 +46,7 @@ export const handleSubmitProduct = (productId, graphState, keggState, dispatch) 
     //graph
 
     let newData = {
-        nodes: [...graphState.data.nodes, {id: keggState.product, color: "darkgreen",opacity:1, x: 0,y:0}],
+        nodes: [...graphState.data.nodes, {id: keggState.product, color: COMPOUND_NODE_COLOR,opacity:1, x: 0,y:0, symbolType:COMPOUND_NODE_SYMBOL}],
         links: graphState.data.links
     }
     dispatch({type: "SETDATA", payload: newData})
@@ -79,11 +85,11 @@ const handleSideCompounds = (state, dispatch, substrateLink, productLink) => {
         const sideProductIds = productIds.filter(id => id !== mainProductId)
         for (let key of state.generalState.compMap.keys()) { //keys are compound with compound id -> "Compound CXXXXX"
             if (sideSubstrateIds.includes(key.substring(key.length - 6, key.length))) { //find compounds for sideSubstrateIds
-                sideNodes.push({id: key, color: "darkgreen", opacity: 0.4, x: 0,y:0}) //push side compounds as nodes
+                sideNodes.push({id: key, color: COMPOUND_NODE_COLOR, opacity: 0.4, x: 0,y:0,symbolType: COMPOUND_NODE_SYMBOL}) //push side compounds as nodes
                 sideLinks.push({source: key, target: substrateLink.target,opacity: 0.4,isReversibleLink: false}) //push link with: side compound as source and reaction as target
             }
             if (sideProductIds.includes(key.substring(key.length - 6, key.length))) {
-                sideNodes.push({id: key, color: "darkgreen", opacity: 0.4, x: 0,y:0}) //push side compounds as nodes
+                sideNodes.push({id: key, color: COMPOUND_NODE_COLOR, opacity: 0.4, x: 0,y:0,symbolType: COMPOUND_NODE_SYMBOL}) //push side compounds as nodes
                 sideLinks.push({source: substrateLink.target, target: key,opacity: 0.4,isReversibleLink: false}) //push link with: reaction as source and side compound as target
             }
         }
@@ -92,11 +98,11 @@ const handleSideCompounds = (state, dispatch, substrateLink, productLink) => {
         const sideSubstrateIds = productIds.filter(id => id !== mainSubstrateId)
         for (let key of state.generalState.compMap.keys()) {
             if (sideProductIds.includes(key.substring(key.length - 6, key.length))) {
-                sideNodes.push({id: key, color: "darkgreen", opacity: 0.4, x: 0,y:0}) //push side compounds as nodes
+                sideNodes.push({id: key, color: COMPOUND_NODE_COLOR, opacity: 0.4, x: 0,y:0,symbolType: COMPOUND_NODE_SYMBOL}) //push side compounds as nodes
                 sideLinks.push({source: substrateLink.target, target: key,opacity: 0.4, isEssential: true,isReversibleLink: false}) //push link with: reaction as source and side compound as target
             }
             if (sideSubstrateIds.includes(key.substring(key.length - 6, key.length))) {
-                sideNodes.push({id: key, color: "darkgreen", opacity: 0.4, x: 0,y:0}) //push side compounds as nodes
+                sideNodes.push({id: key, color:COMPOUND_NODE_COLOR, opacity: 0.4, x: 0,y:0,symbolType: COMPOUND_NODE_SYMBOL}) //push side compounds as nodes
                 sideLinks.push({source: key, target: substrateLink.target,opacity: 0.4, isEssential: true,isReversibleLink: false})
             }
         }
@@ -120,7 +126,7 @@ export const handleSubmitReaction = (state, dispatch) => {
     const {sideNodes, sideLinks} = handleSideCompounds(state, dispatch, reactionLinkSubstrate, reactionLinkProduct)
     const nodes = [];
     const links = [];
-    nodes.push({id: state.keggState.reaction, symbolType: "diamond" ,color: "black",opacity:1, x: 0,y:0,reversible: false})
+    nodes.push({id: state.keggState.reaction, symbolType: REACTION_NODE_SYMBOL,color: REACTION_NODE_COLOR,opacity:1, x: 0,y:0,reversible: false})
     links.push(reactionLinkSubstrate)
     links.push(reactionLinkProduct)
     sideNodes.map(sideNode => nodes.push(sideNode))

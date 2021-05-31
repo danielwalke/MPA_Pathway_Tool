@@ -10,7 +10,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {FixedSizeList as List} from "react-window";
 import KeggCompoundAutoCompleteList from "./KeggCompoundAutoCompleteList";
 import clonedeep from "lodash/cloneDeep";
-import DeleteIcon from "@material-ui/icons/Delete";
 import {addCompoundsToReactions} from "./ReactionCompoundsAdder";
 import {setReactionsAndCompoundsInStore} from "./GraphDrawer";
 import {setReactionsInStore} from "./ReactionsSetter";
@@ -40,13 +39,11 @@ const submit = (state, dispatch, listOfSpecies) =>{
     const reactions = setReactionsInStore(state, newListOfReactions)
     console.log(reactions)
     //set data for the Graph
-    const data = setReactionsAndCompoundsInStore(state, newListOfReactions)
+    // const data = setReactionsAndCompoundsInStore(state, newListOfReactions, dispatch,state.general.listOfReactionGlyphs)
     dispatch({type:"SETLISTOFREACTIONS", payload: newListOfReactions})
     dispatch({type:"SETREACTIONSINARRAY", payload: reactions})
     dispatch({type:"SETISANNOTATIONPURPOSE", payload:false})
-    console.log(data);//check whether this is correct, then uncomment the next line
-    console.log(data.links.filter(link => link.source.includes("R_CYTBD")||link.target.includes("R_CYTBD") ))
-    dispatch({type: "SETDATA", payload: data})
+    // dispatch({type: "SETDATA", payload: data})
     dispatch({type:"SETLOADING", payload: false})
     dispatch({type:"SETISSHOWINGREACTIONTABLE", payload: true})
 }

@@ -8,7 +8,8 @@ import AbundantNodeConfig from "./split nodes/AbundantNodeConfig";
 import PathwayTaxonomy from "./taxonomy/PathwayTaxonomy";
 import NodeCoordinates from "./node coordinates/NodeCoordinates";
 import MergeNodesModal from "./merge nodes/MergeNodesModal";
-
+import AddLinkModal from "./addLinks/AddLinkModal";
+import NodeModifModal from "./nodeModification/NodeModifModal";
 const NodeConfigurationModal = () => {
     const classes = useStyles()
     const state = useSelector(state => state.general)
@@ -19,6 +20,14 @@ const NodeConfigurationModal = () => {
             <div className={"configForceContainer"}>
                 <Checkbox style={{color: "rgb(150, 25, 130)"}} size={"small"} checked={!graphState.isForceDisabled}
                           onClick={() => dispatch({type: "SWITCHDISABLEFORCE"})}/>force enabled
+            </div>
+            <div>
+                <NodeModifModal/>
+                <button onClick={()=> dispatch({type:"SWITCH_NODE_MODIFICATION_MODAL"})} className={"downloadButton"}>node modification</button>
+            </div>
+            <div>
+                <AddLinkModal/>
+                <button className={"downloadButton"} onClick={()=> dispatch({type:"SWITCHSHOWADDLINKMODAL"})}>add link</button>
             </div>
             <div className={"abbreviationWrapper"}>
                 <Abbreviations/>

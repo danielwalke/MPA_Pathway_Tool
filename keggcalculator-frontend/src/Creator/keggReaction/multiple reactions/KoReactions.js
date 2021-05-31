@@ -67,7 +67,6 @@ const KoReactions = () => {
         requestGenerator("POST", reactionUrl, {reactionId: reactionId}, "", "")
             .then(response => {
                 const reaction = response.data;
-                console.log(reaction)
                 handleDrawGraph(reaction, state, dispatch, graphState);
                 handleAddReaction(reaction);
                 return null;

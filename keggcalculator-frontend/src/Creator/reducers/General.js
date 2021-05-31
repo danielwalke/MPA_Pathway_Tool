@@ -50,6 +50,8 @@ const defaultState = {
     moduleFileNameSbml:"",
     isShowingReactionTable: false, //shows final table with all reactions in the sbml file
     showMultipleKeggReactionModal: false, //show modal for chosing multiple reactions from KEGG
+    addLinkModal: false, //modal for adding new links useful for signaling pathway
+    listOfReactionGlyphs: [] //positons of nodes in sbml file
 }
 
 export const generalReducer = (state = defaultState, action) => {
@@ -174,6 +176,10 @@ export const generalReducer = (state = defaultState, action) => {
             return {...state, isShowingReactionTable: payload}
         case "SWITCHSHOWMULTIPLEKEGGREACTIONS":
             return {...state, showMultipleKeggReactionModal: !state.showMultipleKeggReactionModal}
+        case "SWITCHSHOWADDLINKMODAL":
+            return {...state, addLinkModal: !state.addLinkModal}
+        case "SET_LIST_OF_REACTION_GLYPHS":
+            return {...state, listOfReactionGlyphs: payload}
         default:
             return state;
     }

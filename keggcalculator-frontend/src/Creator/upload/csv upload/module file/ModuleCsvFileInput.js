@@ -4,27 +4,30 @@ import {useDispatch, useSelector} from "react-redux";
 import "../../main/Upload.css"
 import {handleGraphUpload, handleReactionListUpload} from "./ModuleUploadFunctions";
 
-const onModuleFileChange = async (event, dispatch, state) => {
-    try{
-    let files = await event.target.files;
-    let reader = new FileReader()
-    reader.readAsText(files[0])
-    reader.onload = e => {
-        const result = e.target.result.trim()
-            const rows = result.split("\n")
-            rows.shift() //header
-            const {nodes, links} = handleGraphUpload(rows, dispatch, state.graph)
-            const reactionList = handleReactionListUpload(rows)
-            const data = {nodes: nodes, links: links}
-            dispatch({type: "SETDATA", payload: data})
-            dispatch({type: "SWITCHISMODULEIMPORT"})
-            dispatch({type: "SETDATALINKS", payload: links})
-            dispatch({type: "ADDREACTIONSTOARRAY", payload: reactionList})
-            dispatch({type: "SETMODULEFILENAME", payload: files[0].name})
+const onModuleFileChange = (event, dispatch, state) => {
+    try {
+        let files = event.target.files;
+        let reader = new FileReader()
+        reader.readAsText(files[0])
+        reader.onload = e => {
+            try{
+                const result = e.target.result.trim()
+                const rows = result.split("\n")
+                rows.shift() //header
+                const {nodes, links} = handleGraphUpload(rows, dispatch, state.graph)
+                const reactionList = handleReactionListUpload(rows)
+                const data = {nodes: nodes, links: links}
+                dispatch({type: "SETDATA", payload: data})
+                dispatch({type: "SWITCHISMODULEIMPORT"})
+                dispatch({type: "SETDATALINKS", payload: links})
+                dispatch({type: "ADDREACTIONSTOARRAY", payload: reactionList})
+                dispatch({type: "SETMODULEFILENAME", payload: files[0].name})
+            }catch (e) {
+                window.alert("Your file format is either wrong or you have already imported a file.")
+                console.error(e)
+            }
         }
-
-
-    }catch (e){
+    } catch (e) {
         window.alert("Your file format is either wrong or you have already imported a file.")
         console.error(e)
     }
@@ -40,14 +43,16 @@ const ModuleCsvFileInput = () => {
         specificReaction: useSelector(state => state.specificReaction),
         mpaProteins: useSelector(state => state.mpaProteins),
     }
+
     return (
         <div>
-            <label className={"uploadLabel"} htmlFor={"module-file"}>Upload pathway as CSV <img src={UploadIcon} style={{
-                width: `clamp(6px, 1.7vw, 12px)`,
-                transform: "translate(0,0.2vw)"
-            }} alt={""}/></label>
+            <label className={"uploadLabel"} htmlFor={"module-file"}>Upload pathway as CSV <img src={UploadIcon}
+                                                                                                style={{
+                                                                                                    width: `clamp(6px, 1.7vw, 12px)`,
+                                                                                                    transform: "translate(0,0.2vw)"
+                                                                                                }} alt={""}/></label>
             <input className={"moduleInput"} style={{display: "none"}} id={"module-file"}
-                   onClick={() => dispatch({type: "SETLOADING",payload: true})} type={"file"}
+                   onClick={() => dispatch({type: "SETLOADING", payload: true})} type={"file"}
                    name={"module-file"}
                    onChange={(event) => onModuleFileChange(event, dispatch, state)}/>
             <br/>

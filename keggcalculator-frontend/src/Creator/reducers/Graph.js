@@ -35,7 +35,9 @@ const defaultState = {
     mergeNode:"",
     mergeNodes: [],
     mergeNodesName: "",
-
+    nodeModificationModal: false,
+    nodeSize: 150,
+    compoundNodeColor: "#FF8000"
 
 }
 
@@ -118,7 +120,12 @@ export const graphReducer = (state = defaultState, action) => {
             return {...state, mergeNodes: state.mergeNodes.filter(node => node !== payload)}
         case "SETMERGENODESNAME":
             return {...state, mergeNodesName: payload}
-
+        case "SWITCH_NODE_MODIFICATION_MODAL":
+            return {...state, nodeModificationModal: !state.nodeModificationModal}
+        case"SET_NODE_SIZE":
+            return {...state, nodeSize: payload}
+        case "SET_COMPOUND_NODE_COLOR":
+            return {...state, compoundNodeColor: payload}
         default:
             return state;
     }

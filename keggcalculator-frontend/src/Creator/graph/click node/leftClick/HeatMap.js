@@ -50,21 +50,21 @@ const HeatMap = () => {
                         <tbody>
                         <tr style={{height: "5vh"}}>
                             <td style={{height: "5vh"}}><ProteinName proteinName={protein.name}/></td>
-                            {protein.quants.map((quant, index) => {
+                            {protein.quants.map((quant) => {
                                 let color;
                                 if(+quant<proteinState.midQuantUserReaction3){
-                                    const g = ((+quant - proteinState.minQuantUserReaction3) / (proteinState.midQuantUserReaction3 - proteinState.minQuantUserReaction3)) * 255
+                                    const b = ((+quant - proteinState.minQuantUserReaction3) / (proteinState.midQuantUserReaction3 - proteinState.minQuantUserReaction3)) * 255
                                     color = {
                                         r: 255,
-                                        g: g,
-                                        b: 0
+                                        g: 0,
+                                        b: b
                                     }
                                 }else{
                                     const r = 255 - ((+quant - proteinState.midQuantUserReaction3) / (proteinState.maxQuantUserReaction3 - proteinState.midQuantUserReaction3)) * 255
                                     color = {
                                         r: r,
-                                        g: 255,
-                                        b: 0
+                                        g: 0,
+                                        b: 255
                                     }
                                 }
 

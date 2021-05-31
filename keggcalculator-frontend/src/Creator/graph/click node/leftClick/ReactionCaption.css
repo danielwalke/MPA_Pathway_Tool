@@ -10,7 +10,7 @@
 }
 .userCaptionReaction{
     grid-area: heatReaction;
-    background: linear-gradient(90deg, rgb(255,0,0),rgb(255,255,0),rgb(0,255,0));
+    background: linear-gradient(90deg, rgb(255,0,0),rgb(255,0,255),rgb(0,0,255));
     height: 10px;
 }
 

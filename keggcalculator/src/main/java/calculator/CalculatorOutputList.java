@@ -3,8 +3,11 @@ package calculator;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map.Entry;
 
 import model.MpaProtein;
 
@@ -29,6 +32,10 @@ public class CalculatorOutputList {
 		this.unmatchedProteins = new HashSet<>();
 		this.allMatchedEcAndKoNumbers = new HashSet<>();
 		this.matchedProteins = new HashSet<>();
+	}
+	
+	public HashSet<MpaProtein> getMatchedProteins(){
+		return this.matchedProteins;
 	}
 	
 	public void addMatchedProtein(MpaProtein protein) {
@@ -122,7 +129,7 @@ public class CalculatorOutputList {
 			br.flush();
 			br.close();
 		} catch (Exception e) {
-
+e.printStackTrace();
 		}
 	}
 
@@ -138,6 +145,15 @@ public class CalculatorOutputList {
 			br.write("id\t");
 			br.write("KO-numbers\t");
 			br.write("EC-numbers\t");
+			br.write("superkingdom\t");
+			br.write("kingdom\t");
+			br.write("phylum\t");
+			br.write("class\t");
+			br.write("order\t");
+			br.write("family\t");
+			br.write("genus\t");
+			br.write("species\t");
+			br.write("description\t");
 			br.write(getSampleHeaderString());
 //			int numberOfSamples = getSampleHeaderString().split("\t").length;
 			br.write("\n");
@@ -152,14 +168,39 @@ public class CalculatorOutputList {
 					br.write("\t");
 					br.write(ecNumbers);
 					br.write("\t");
+					writeTaxa(br, protein.getTaxa());
+					writeDescription(br, protein.getDescription());
 					br.write(quants);
 					br.write("\n");
 				}
 			br.flush();
 			br.close();
 		} catch (Exception e) {
-
+e.printStackTrace();
 		}
+	}
+
+	private void writeDescription(BufferedWriter br, String description) {
+		try {
+			br.write(description.concat("\t"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
+	}
+
+	private void writeTaxa(BufferedWriter br, HashMap<String, String> taxa) {
+		try {
+			br.write(taxa.get("superkingdom").concat("\t"));
+			br.write(taxa.get("kingdom").concat("\t"));
+			br.write(taxa.get("phylum").concat("\t"));
+			br.write(taxa.get("class").concat("\t"));
+			br.write(taxa.get("order").concat("\t"));
+			br.write(taxa.get("family").concat("\t"));
+			br.write(taxa.get("genus").concat("\t"));
+			br.write(taxa.get("species").concat("\t"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
 	}
 
 }

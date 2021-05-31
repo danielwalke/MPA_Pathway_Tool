@@ -1,13 +1,18 @@
 package services;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
+
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map.Entry;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -42,12 +47,37 @@ public class KeggCreatorService {
 	private KeggDataObject keggData;
 	public HashMap<String, KeggCreatorJobJSON> currentJobs;
 	private List<TaxonomyNcbi> taxonomyList;
+	public HashMap<String, ArrayList<String>> requestAccess = new HashMap<>();
 
 	public KeggCreatorService() {
 		this.gson = new Gson();
 		this.currentJobs = new HashMap<>();
 		this.keggData = new KeggDataObject();
 		this.taxonomyList = new ArrayList<>();
+	}
+	
+	public void initRequestMap() {
+		this.requestAccess.put("startJob", new ArrayList<>());
+		this.requestAccess.put("csvMPA", new ArrayList<>());
+		this.requestAccess.put("csvModule", new ArrayList<>());
+		this.requestAccess.put("status", new ArrayList<>());
+		this.requestAccess.put("download", new ArrayList<>());
+		this.requestAccess.put("downloadunmatchedproteins", new ArrayList<>());
+		this.requestAccess.put("compoundlist", new ArrayList<>());
+		this.requestAccess.put("modulelist", new ArrayList<>());
+		this.requestAccess.put("module", new ArrayList<>());
+		this.requestAccess.put("reactiondatabysubstrate", new ArrayList<>());
+		this.requestAccess.put("konumberlist", new ArrayList<>());
+		this.requestAccess.put("ecnumberlist", new ArrayList<>());
+		this.requestAccess.put("getreactionlistbyeclist", new ArrayList<>());
+		this.requestAccess.put("getreactionlistbykolist", new ArrayList<>());
+		this.requestAccess.put("getreaction", new ArrayList<>());
+		this.requestAccess.put("reactions", new ArrayList<>());
+		this.requestAccess.put("taxonomyId", new ArrayList<>());
+		this.requestAccess.put("taxonomy", new ArrayList<>());
+		this.requestAccess.put("taxonomyByArray", new ArrayList<>());
+		this.requestAccess.put("taxonomylist", new ArrayList<>());
+		
 	}
 
 	// parse all data from kegg and store them in graph KeggData
@@ -396,6 +426,130 @@ public class KeggCreatorService {
 			}
 		}
 		return null;
+	}
+
+	public String getModuleFile(KeggCreatorService creator, String moduleId) {
+		KeggDataObject keggData = creator.cloneKeggData();
+		KeggModuleObject module = keggData.getModule(moduleId);
+		String outputString = "stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp\n";
+		int stepId =1;
+		for(KeggReactionObject reaction : module.getReactions()) {
+				for(Entry<String, String> entry : reaction.getStochiometrySubstrates().entrySet()) {
+					outputString = outputString.concat(String.valueOf(stepId) +";");
+					outputString = outputString.concat(reaction.getReactionName().replaceAll(";", "\t").concat(" " + reaction.getReactionId() + ";"));
+					int koIt= 0;
+					for(KeggKOObject ko : reaction.getKonumbers()) {
+						outputString += ko.getKoId();
+						if(koIt<reaction.getKonumbers().size()-1) {
+							outputString += ",";
+						}
+						koIt++;
+					}
+					outputString+=";";
+					int ecIt= 0;
+					for(KeggECObject ec : reaction.getEcnumbers()) {
+						outputString += ec.getEcId();
+						if(ecIt<reaction.getEcnumbers().size()-1) {
+							outputString += ",";
+						}
+						ecIt++;
+					}
+					outputString+=";";
+					String stochCoeff = entry.getValue();
+					String substString = entry.getKey();
+					outputString += stochCoeff;
+					outputString += ";";
+					KeggCompoundObject subst = reaction.getSubstrate(substString);
+					outputString+= subst.getCompoundName().replaceAll(";", "\t");
+					outputString += " ";
+					outputString += subst.getCompoundId();	
+					outputString += ";";
+					outputString += "substrate;";
+					outputString += "reversible;";
+					outputString += ";";//tax
+					outputString += ";";//reactionX
+					outputString += ";";//reactionY
+					outputString += ";";//compX
+					outputString += ";"; //compY
+					outputString += reaction.getReactionName().replaceAll(";", "\t").concat(" " + reaction.getReactionId() + ";");
+					outputString +=	subst.getCompoundName().replaceAll(";", "\t").concat(" " + subst.getCompoundId());
+					outputString+= ";"; 
+					outputString += "true;";
+					outputString+= "\n";
+				}	
+				for(Entry<String, String> entry : reaction.getStochiometryProducts().entrySet()) {
+					outputString = outputString.concat(String.valueOf(stepId) +";");
+					outputString = outputString.concat(reaction.getReactionName().replaceAll(";", "\t").concat(" " + reaction.getReactionId() + ";"));
+					int koIt= 0;
+					for(KeggKOObject ko : reaction.getKonumbers()) {
+						outputString += ko.getKoId();
+						if(koIt<reaction.getKonumbers().size()-1) {
+							outputString += ",";
+						}
+						koIt++;
+					}
+					outputString+=";";
+					int ecIt= 0;
+					for(KeggECObject ec : reaction.getEcnumbers()) {
+						outputString += ec.getEcId();
+						if(ecIt<reaction.getEcnumbers().size()-1) {
+							outputString += ",";
+						}
+						ecIt++;
+					}
+					outputString+=";";
+					String stochCoeff = entry.getValue();
+					String prodString = entry.getKey();
+					outputString += stochCoeff;
+					outputString += ";";
+					KeggCompoundObject prod = reaction.getProduct(prodString);
+					outputString+= prod.getCompoundName().replaceAll(";", "\t");
+					outputString += " ";
+					outputString += prod.getCompoundId();	
+					outputString += ";";
+					outputString += "product;";
+					outputString += "irreversible;";
+					outputString += ";";//tax
+					outputString += ";";//reactionX
+					outputString += ";";//reactionY
+					outputString += ";";//compX
+					outputString += ";"; //compY
+					outputString += reaction.getReactionName().replaceAll(";", "\t").concat(" " + reaction.getReactionId() + ";");
+					outputString +=	prod.getCompoundName().replaceAll(";", "\t").concat(" " + prod.getCompoundId());
+					outputString+= ";"; 
+					outputString += "true;";
+					outputString+= "\n";
+				}
+		
+				stepId++;
+		}
+		return outputString;
+	}
+	
+	public static String getAccessDate() {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+	    Date date = new Date();  
+	    String dateString = formatter.format(date);
+	    return dateString;
+	}
+
+	public void getRequestAccess() {
+		try {
+			String requestsOutput = "Endpoint\tAccess-Dates\n";
+			for(Entry<String, ArrayList<String>> entry : this.requestAccess.entrySet()) {
+				requestsOutput += entry.getKey();
+				requestsOutput += "\t";
+				requestsOutput += entry.getValue().toString().replace("[", "").replace("]", "");
+				requestsOutput +="\n";
+			}
+			BufferedWriter writer = new BufferedWriter(new FileWriter(new File(KeggCalculatorConstants.REQUEST_ACCESS_FILE)));
+			writer.write(requestsOutput.trim());
+			writer.flush();
+			writer.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }

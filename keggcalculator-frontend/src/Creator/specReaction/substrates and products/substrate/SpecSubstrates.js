@@ -1,11 +1,10 @@
 import Field from "../Field";
 import TextField from "@material-ui/core/TextField";
 import {handleAddSubstrate} from "../../functions/SpecReactionFunctions";
-import React, {useState} from "react";
+import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import "./SpecSubstrate.css"
 import PopOverButton from "../PopOverButton";
-import {getCompoundId} from "../../../upload/sbmlParser/SbmlReader/ReaderFunctions";
 
 
 

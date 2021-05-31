@@ -51,5 +51,8 @@ public class KeggCalculatorConstants {
 	public static final String TAXONOMY_NAMES = "src/main/resources/essentialfiles/names.dmp";
 	public static final String TAXONOMY_NODES = "src/main/resources/essentialfiles/nodes.dmp";
 	public static final String TAXONOMY_TREE = "src/main/resources/essentialfiles/ncbiTaxonomy.csv";
+	
+	//output-file for requests
+	public static final String REQUEST_ACCESS_FILE="src/main/resources/KEGG/essentialFiles/RequestAccess.csv";
 
 }

@@ -27,20 +27,16 @@ const ReactionTableList = () =>
     const [listOfReactions, setListOfReactions] = useState([]);
     const [listOfReactionsClone, setListOfReactionsClone] = useState([])
 
-
-    useEffect(()=>{
-console.log(state.general.listOfReactions)
-    })
-
     useEffect(()=>{
         setListOfReactions(state.general.listOfReactions)
     },[state.general.listOfReactions])
+
 
     const handleFinish = ()=>{
         //set reactions
         const reactions = setReactionsInStore(state, state.general.listOfReactions)
         //set data for the Graph
-        const data=  setReactionsAndCompoundsInStore(state, state.general.listOfReactions)
+        const data=  setReactionsAndCompoundsInStore(state, state.general.listOfReactions,dispatch)
         dispatch({type:"SETISSHOWINGREACTIONTABLE", payload: false})
         dispatch({type:"SETREACTIONSINARRAY", payload: reactions})
         dispatch({type: "SETDATA", payload: data})
@@ -67,15 +63,12 @@ console.log(state.general.listOfReactions)
 
     useEffect(()=>{
         setListOfReactionsClone(clonedeep(state.general.listOfReactions))
-        console.log("aktualisier die geclonte Liste")
-        console.log(state.general.listOfReactions)
     },[state.general.isShowingReactionTable])
 
     const reactionTable = (
         <div className={classes.paper} style={{width: "95vw", height: "80vh", overflow: "auto"}}>
             {listOfReactions.map((reaction, index) => {
                 const reactionClone = clonedeep(listOfReactionsClone[index])
-                if(reactionClone.keggId === "U00000"){console.log(reactionClone)}
                 return (
                     <div style={{
                         display: "grid",

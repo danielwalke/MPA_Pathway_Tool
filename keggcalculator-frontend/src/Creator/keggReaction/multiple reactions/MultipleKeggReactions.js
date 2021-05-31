@@ -4,7 +4,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {useStyles} from "../../ModalStyles/ModalStyles";
 import TextField from "@material-ui/core/TextField";
 import {requestGenerator} from "../../request/RequestGenerator";
-import {getCompName} from "../substrate and products/substrate/CompName";
 import {handleDrawGraph} from "./EcReactions";
 import clonedeep from "lodash/cloneDeep";
 

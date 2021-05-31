@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React from "react"
 import {useDispatch, useSelector} from "react-redux";
 import "./Sample.css"
 import {filterTaxon} from "./TaxonomyFilter";
@@ -60,16 +60,14 @@ const handleSample = (e, index, state, dispatch) => {
         const reaction = reactions.filter(r => node.id === r.nodeId)[0]
         if (reaction.hasMatchedProtein) {
             if (+reaction.quantSum < state.mpaProteins.midQuantUser3) {
-                const g = ((+reaction.quantSum - state.mpaProteins.minQuantUser3) / (state.mpaProteins.midQuantUser3 - state.mpaProteins.minQuantUser3)) * 255
-                node.color = `rgb(255,${g},0)`
-                console.log(node)
+                const b = ((+reaction.quantSum - state.mpaProteins.minQuantUser3) / (state.mpaProteins.midQuantUser3 - state.mpaProteins.minQuantUser3)) * 255
+                node.color = `rgb(255,0,${b})`
             } else {
                 const r = 255 - ((+reaction.quantSum - state.mpaProteins.midQuantUser3) / (state.mpaProteins.maxQuantUser3 - state.mpaProteins.midQuantUser3)) * 255;
-                node.color = `rgb(${r},255,0)`
-                console.log(node)
+                node.color = `rgb(${r},0,255)`
             }
         } else {
-            node.color = `rgb(170, 170, 170)`
+            node.color = `rgb(110, 110, 110)`
         }
         return node
     })

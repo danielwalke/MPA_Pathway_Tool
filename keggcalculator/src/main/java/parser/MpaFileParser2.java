@@ -58,7 +58,8 @@ public class MpaFileParser2 {
 						String taxonomicRank = taxonomicRanks.get(taxonIterator);
 						protein.addTaxonomy(taxonomy, taxonomicRank);						
 					}
-					String description = splitLine[11]; //description where "\t are not allowed
+					String description = splitLine[11];
+					protein.setDescription(description);
 					for(int columnIt = 12; columnIt<splitLine.length; columnIt++) {
 						double quant = Double.parseDouble(splitLine[columnIt]);
 						protein.addQuant(quant); //adds quantifications to protein

@@ -56,7 +56,7 @@ const GraphVisualization = () => {
         nodeHighlightBehavior: true,
         directed: true,
         node: {
-            size: 150,
+            size: graphState.nodeSize,
             highlightStrokeColor: "blue",
             labelProperty: labelCallbackNodes
         },

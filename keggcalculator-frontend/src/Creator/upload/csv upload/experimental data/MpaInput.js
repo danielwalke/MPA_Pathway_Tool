@@ -4,7 +4,7 @@ import UploadIcon from "../../../icons/uploadIconWhite.svg";
 import "../../main/Upload.css"
 import {getMax, getMin} from "../../../usefulFunctions/Math";
 import {taxonomicRanks} from "../../../main/Main";
-
+import {saveAs} from "file-saver";
 const MpaInput = () => {
     const dispatch = useDispatch()
     const state = {
@@ -14,102 +14,123 @@ const MpaInput = () => {
         specificReaction: useSelector(state => state.specificReaction),
         mpaProteins: useSelector(state => state.mpaProteins),
     }
-    const onFileChange = async (event, dispatch) => {
+
+    const getFile = (files) => files[0]
+    const getFileSize = file => file.size
+    const needChunks =  fileSize => fileSize>500000000
+    const getChunks = (file, start, chunks) => {
+        const chunk = file.slice(start,start+500000000)
+        chunks.push(chunk)
+        start += 500000000
+        if(start < getFileSize(file)){
+            getChunks(file, start, chunks)
+        }
+
+    }
+    const onFileChange = (event, dispatch) => {
+        // event.preventDefault()
+        // const files = event.target.files;
+        // const file = getFile(files)
+        // const fileSize = getFileSize(file)
+        // const chunks = []
+        // if(needChunks(fileSize)){
+        //     getChunks(file, 0, chunks)
+        //     chunks.forEach(chunk =>{
+        //         const reader = new FileReader()
+        //         reader.onload = e => {
+        //             let blob = new Blob(new Array(reader.result.trim()), {type: "text/plain;charset=utf-8"});
+        //             saveAs(blob, "ModuleGraph.csv")
+        //         }
+        //         reader.readAsText(chunk)
+        //
+        //     })
+        // }else{
+        //     const reader = new FileReader()
+        //     reader.onload = e => console.log(reader.result.length)
+        //     reader.readAsText(file)
+        // }
+
         try {
-            let files = await event.target.files;
+            event.preventDefault()
+            let files = event.target.files;
             let reader = new FileReader()
             const allQuants = []
             reader.readAsText(files[0])
-            console.log("start")
             reader.onload = e => {
-                const result = e.target.result.trim()
-
-                const lines = result.split("\n")
-                const header = lines[0]
-                const headerEntries = header.split("\t")
-                const sampleNames = []
-                for(let columnIterator = 12; columnIterator<headerEntries.length; columnIterator++){
-                    const sampleName= headerEntries[columnIterator]
-                    sampleNames.push(sampleName)
-                }
-                lines.shift();//ignore header
-                const proteinSet = new Set()
-                lines.map((line) => {
-                    const entries = line.split("\t")
-                    let koAndEcSet = new Set()
-                    let quantArray = []
-                    let taxonomyArray = []
-                    if (entries[1].length > 0) { //ko numbers
-                        if (entries[1].includes("|")) {
-                            const kos = entries[1].split("|")
-                            kos.map(ko => koAndEcSet.add(ko))
-                        } else {
-                            koAndEcSet.add(entries[1])
-                        }
+                e.preventDefault()
+                try {
+                    const result = reader.result.trim()
+                    const lines = result.split("\n")
+                    const header = lines[0]
+                    const headerEntries = header.split("\t")
+                    const sampleNames = []
+                    for (let columnIterator = 12; columnIterator < headerEntries.length; columnIterator++) {
+                        const sampleName = headerEntries[columnIterator]
+                        sampleNames.push(sampleName)
                     }
-                    if (entries[2].length > 2) { // ec numbers
-                        if (entries[2].includes(",")) {
-                            const ecs = entries[2].split("|")
-                            ecs.map(ec => koAndEcSet.add(ec))
-                        } else {
-                            koAndEcSet.add(entries[2])
+                    lines.shift();//ignore header
+                    const proteinSet = new Set()
+                    lines.map((line) => {
+                        const entries = line.trim().split("\t")
+                        let koAndEcSet = new Set()
+                        let quantArray = []
+                        if (entries[1].length > 0) { //ko numbers
+                            if (entries[1].includes("|")) {
+                                const kos = entries[1].split("|")
+                                kos.map(ko => koAndEcSet.add(ko))
+                            } else {
+                                koAndEcSet.add(entries[1])
+                            }
                         }
-                    }
-                    const taxa = {}
-                    taxonomicRanks.map((taxonomicRank,index) =>{
-                        const taxon = entries[3+index]
-                        taxa[`${taxonomicRank}`] = taxon
+                        if (entries[2].length > 2) { // ec numbers
+                            if (entries[2].includes(",")) {
+                                const ecs = entries[2].split("|")
+                                ecs.map(ec => koAndEcSet.add(ec))
+                            } else {
+                                koAndEcSet.add(entries[2])
+                            }
+                        }
+                        const taxa = {}
+                        taxonomicRanks.map((taxonomicRank, index) => {
+                            const taxon = entries[3 + index]
+                            taxa[`${taxonomicRank}`] = taxon
+                        })
+                        for (let columnIterator = 12; columnIterator < entries.length; columnIterator++) {
+                            const quant = entries[columnIterator]
+                            if (quant.includes("/")) {
+                                const quantRatios = quant.split("/")
+                                const calcQuant = +quantRatios[0] / +quantRatios[1]
+                                quantArray.push(+calcQuant)
+                                allQuants.push(+calcQuant)
+                            } else {
+                                quantArray.push(+quant)
+                                allQuants.push(+quant)
+                            }
+                        }
+                        const protein = {
+                            name: entries[0],
+                            koAndEcSet: koAndEcSet,
+                            taxa: taxa,
+                            quants: quantArray
+                        }
+                        proteinSet.add(protein)
+                        return null
                     })
-                    for(let columnIterator = 12; columnIterator< entries.length; columnIterator++){
-                        const quant = entries[columnIterator]
-                        if (quant.includes("/")) {
-                            const quantRatios = quant.split("/")
-                            const calcQuant = +quantRatios[0] / +quantRatios[1]
-                            quantArray.push(+calcQuant)
-                            allQuants.push(+calcQuant)
-                        } else {
-                            quantArray.push(+quant)
-                            allQuants.push(+quant)
-                        }
-                    }
-                    // if (entries[11].includes(",")) {
-                    //     const quants = entries[11].split(",")
-                    //     quants.map(quant => {
-                    //         if (quant.includes("/")) {
-                    //             const quantRatios = quant.split("/")
-                    //             const calcQuant = +quantRatios[0] / +quantRatios[1]
-                    //             quantArray.push(+calcQuant)
-                    //             allQuants.push(+calcQuant)
-                    //         } else {
-                    //             quantArray.push(+quant)
-                    //             allQuants.push(+quant)
-                    //         }
-                    //         return null
-                    //     })
-                    // } else {
-                    //     quantArray.push(+entries[11])
-                    //     allQuants.push(+entries[11])
-                    // }
-                    const protein = {
-                        name: entries[0],
-                        koAndEcSet: koAndEcSet,
-                        taxa: taxa,
-                        quants: quantArray
-                    }
-                    proteinSet.add(protein)
-                    return null
-                })
-                const minQuant = getMin(allQuants)
-                const maxQuant = getMax(allQuants)
-                dispatch({type: "SETPROTEINSET", payload: proteinSet})
-                dispatch({type: "SETMAXQUANTUSERREACTION3", payload: +maxQuant})
-                dispatch({type: "SETMINQUANTUSERREACTION3", payload: +minQuant})
-                dispatch({type: "SETMIDQUANTUSERREACTION3", payload: +(+minQuant + (+maxQuant - +minQuant) / 2)})
-                dispatch({type: "SETMAXQUANTUSER3", payload: maxQuant})
-                dispatch({type: "SETMINQUANTUSER3", payload: minQuant})
-                dispatch({type: "SETMIDQUANTUSER3", payload: (+minQuant + (+maxQuant - +minQuant) / 2)})
-                dispatch({type: "SETSAMPLENAMES", payload: sampleNames})
-                dispatch({type: "SETMPAFILENAME", payload: files[0].name})
+                    const minQuant = getMin(allQuants)
+                    const maxQuant = getMax(allQuants)
+                    dispatch({type: "SETPROTEINSET", payload: proteinSet})
+                    dispatch({type: "SETMAXQUANTUSERREACTION3", payload: +maxQuant})
+                    dispatch({type: "SETMINQUANTUSERREACTION3", payload: +minQuant})
+                    dispatch({type: "SETMIDQUANTUSERREACTION3", payload: +(+minQuant + (+maxQuant - +minQuant) / 2)})
+                    dispatch({type: "SETMAXQUANTUSER3", payload: maxQuant})
+                    dispatch({type: "SETMINQUANTUSER3", payload: minQuant})
+                    dispatch({type: "SETMIDQUANTUSER3", payload: (+minQuant + (+maxQuant - +minQuant) / 2)})
+                    dispatch({type: "SETSAMPLENAMES", payload: sampleNames})
+                    dispatch({type: "SETMPAFILENAME", payload: files[0].name})
+                }catch (e){
+                    window.alert("Your file format is wrong.")
+                    console.error(e)
+                }
             }
         } catch(e) {
             window.alert("Your file format is wrong.")
