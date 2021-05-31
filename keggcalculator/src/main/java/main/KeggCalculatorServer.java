@@ -102,6 +102,7 @@ public class KeggCalculatorServer {
 
 		// to test server health
 		get("/hello", (req, res) -> "Hello World!!");
+		
 
 		/*
 		 * Calculator endpoints
@@ -242,6 +243,7 @@ public class KeggCalculatorServer {
 		 * returns list of K-numbers
 		 */
 		get("/keggcreator/konumberlist", (req, res) -> {
+
 			creator.requestAccess.get("konumberlist").add(creator.getAccessDate());
 			try {
 				HashSet<String> koSet = creator.getKoNumberSet();
@@ -375,16 +377,15 @@ public class KeggCalculatorServer {
 		});
 
 		// [{name:"", rank:""}]
-		post("keggcreator/taxonomyByArray", (req, res) -> {
-			try {
-				creator.requestAccess.get("taxonomyByArray").add(creator.getAccessDate());
-				res.status(201);
-				return KeggHandleRequests.getTaxonomyList(creator, req.queryParams("taxonomyList"));
-			} catch (Exception e) {
-				res.status(500);
-				return "{\"message\":\"internal server error\"}";
-			}
-		});
+		post("keggcreator/taxonomyIdList",(req, res)->{
+    	try {
+    		res.status(201);
+    		return KeggHandleRequests.getTaxonomyIdList(creator, req.queryParams("taxonomyList"));
+    	}catch(Exception e) {
+    		res.status(500);
+    		return "{\"message\":\"internal server error\"}";
+    	}
+    });
 
 		/**
 		 * method that returns a CSV file with all accessdates
