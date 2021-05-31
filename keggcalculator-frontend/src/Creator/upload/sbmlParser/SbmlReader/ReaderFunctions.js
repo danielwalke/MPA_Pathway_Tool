@@ -4,6 +4,8 @@ import {getUserReactionId} from "../../../specReaction/functions/SpecReactionFun
 import {addCompoundsToReactions} from "../ReactionCompoundsAdder";
 import {setReactionsInStore} from "../ReactionsSetter";
 import {setReactionsAndCompoundsInStore} from "../GraphDrawer";
+import {readListOfReactionGlyphs} from "../nodePositions/SbmlNodePositions";
+import clonedeep from "lodash/cloneDeep";
 
 //get specific compound id in the appropriate format
 export const getCompoundId = (index) => {
@@ -122,10 +124,12 @@ export const onSBMLModuleFileChange = async (event, dispatch, state) => {
             const result = e.target.result.trim()
             const parser = new xmlParser()
             const sbml = parser.parseFromString(result)
+            const listOfReactionGlyphs = readListOfReactionGlyphs(sbml)
             const listOfSpecies = readSpecies(dispatch, sbml, state)
             const listOfReactions = readReactions(dispatch, sbml)
             const isMissingAnnotations = checkMissingAnnotations(listOfSpecies, dispatch)
             dispatch({type: "SETMODULEFILENAMESBML", payload: file.name})
+            dispatch({type:"SET_LIST_OF_REACTION_GLYPHS", payload: listOfReactionGlyphs})
             dispatch({type:"SETLISTOFSPECIES", payload: listOfSpecies})
             dispatch({type:"SETLISTOFREACTIONS", payload: listOfReactions})
             dispatch({type:"SETISMISSINGANNOTATIONS", payload: isMissingAnnotations}) //if true, annotationWarningModal will show up
@@ -135,15 +139,13 @@ export const onSBMLModuleFileChange = async (event, dispatch, state) => {
                 //set reactions
                 const reactions = setReactionsInStore(state, newListOfReactions)
                 //set data for the Graph
-                const data=  setReactionsAndCompoundsInStore(state, newListOfReactions, dispatch)
+                // const data=  setReactionsAndCompoundsInStore(state, newListOfReactions, dispatch, listOfReactionGlyphs)
                 dispatch({type:"SETISSHOWINGREACTIONTABLE", payload: true})
                 dispatch({type:"SETLISTOFREACTIONS", payload: newListOfReactions})
                 dispatch({type:"SETREACTIONSINARRAY", payload: reactions})
-                dispatch({type: "SETDATA", payload: data})
+                // dispatch({type: "SETDATA", payload: data})
                 dispatch({type:"SETLOADING", payload: false})
             }
-
-
         }catch{
             window.alert("can't read the file")
         }

@@ -10,12 +10,7 @@ import static spark.Spark.staticFileLocation;
 import static spark.Spark.webSocketIdleTimeoutMillis;
 
 import java.io.File;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 import java.util.HashSet;
-
-import com.google.gson.Gson;
 
 import constants.KeggCalculatorConstants;
 import model.KeggCompound;
@@ -27,6 +22,7 @@ import model.KeggReactionObject;
 import rest.KeggHandleRequests;
 import services.KeggCalculatorService;
 import services.KeggCreatorService;
+
 /**
  * 
  * starts Rest- server
@@ -40,20 +36,20 @@ public class KeggCalculatorServer {
 		this.keggData = keggData;
 	}
 
-	//starts server
+	// starts server
 	public static void main(String[] args) {
 		setupRESTServer();
 	}
 
-	//clones kegg- Data
+	// clones kegg- Data
 	public synchronized KeggDataObject cloneKeggData() {
 		return this.keggData.cloneData();
 	}
-	
-	//REST- server
+
+	// REST- server
 	public static void setupRESTServer() {
-		
-		//Calculator
+
+		// Calculator
 		KeggCalculatorService calculator = new KeggCalculatorService();
 
 		File dl = new File(KeggCalculatorConstants.DOWNLOAD_DIR);
@@ -66,7 +62,7 @@ public class KeggCalculatorServer {
 		if (!tmp.exists())
 			tmp.mkdir();
 
-		//module- creator
+		// module- creator
 		KeggCreatorService creator = new KeggCreatorService();
 		creator.initRequestMap();
 		creator.parseKeggData();
@@ -75,7 +71,7 @@ public class KeggCalculatorServer {
 		File downloadDir = new File(KeggCalculatorConstants.DOWNLOAD_DIR + "modules/");
 		if (!downloadDir.exists())
 			downloadDir.mkdir();
-		// TODO: put dist folder	 from angular project in the static folder, and test if
+		// TODO: put dist folder from angular project in the static folder, and test if
 		// the website is available
 		staticFileLocation("web");
 
@@ -110,7 +106,7 @@ public class KeggCalculatorServer {
 		/*
 		 * Calculator endpoints
 		 */
-		
+
 		post("/keggcalculator/startJob", (req, res) -> {
 			creator.requestAccess.get("startJob").add(creator.getAccessDate());
 			return KeggHandleRequests.startJob(req, res, calculator);
@@ -137,7 +133,7 @@ public class KeggCalculatorServer {
 			// UUID jobID = UUID.fromString(req.queryParams("jobid"));
 			return KeggHandleRequests.download(req, res, calculator, req.params("name"));
 		});
-		
+
 		get("/keggcalculator/downloadunmatchedproteins/:name", (req, res) -> {
 			creator.requestAccess.get("downloadunmatchedproteins").add(creator.getAccessDate());
 			// UUID jobID = UUID.fromString(req.queryParams("jobid"));
@@ -147,14 +143,13 @@ public class KeggCalculatorServer {
 		/*
 		 * Module creator endpoints
 		 */
+
+		/**
+		 * returns list of compounds
+		 */
 		get("/keggcreator/compoundlist", (req, res) -> {
 			creator.requestAccess.get("compoundlist").add(creator.getAccessDate());
-			try {		
-				// TODO: Exception handling --> compound not found
-				// --> input: nothing
-				// --> output: full curated compound list (exclude 00-20, exclude glycans?)
-				// --> transform to json
-				// TODO: return a list of all compounds (exclude 00-20, without glycans?)
+			try {
 				HashSet<KeggCompound> substrateSet = creator.getSubstrateSet();
 				res.status(201);
 				return creator.gson.toJson(substrateSet);
@@ -165,6 +160,9 @@ public class KeggCalculatorServer {
 			}
 		});
 
+		/**
+		 * returns list of modules in KEGG database
+		 */
 		get("/keggcreator/modulelist", (req, res) -> {
 			try {
 				creator.requestAccess.get("modulelist").add(creator.getAccessDate());
@@ -177,7 +175,7 @@ public class KeggCalculatorServer {
 				return "{\"message\":\"internal server error\"}";
 			}
 		});
-		
+
 		post("/keggcreator/module", (req, res) -> {
 //			calculator.gson.fromJson(req.body(), KeggCalculatorJobJSON.class)
 			// TODO: Exception handling --> compound not found
@@ -185,7 +183,7 @@ public class KeggCalculatorServer {
 			// --> output: all reactions/following products for this compound
 			// --> transform to json
 			// TODO: request input substrate, return all possible reactions and products
-			try {	
+			try {
 				creator.requestAccess.get("module").add(creator.getAccessDate());
 				res.status(201);
 				return KeggHandleRequests.getModuleFile(req, res, creator, req.queryParams("moduleId"));
@@ -194,7 +192,7 @@ public class KeggCalculatorServer {
 				return "{\"message\":\"internal server error\"}";
 			}
 		});
-		
+
 		post("/keggcreator/reactiondatabysubstrate", (req, res) -> {
 //			calculator.gson.fromJson(req.body(), KeggCalculatorJobJSON.class)
 			// TODO: Exception handling --> compound not found
@@ -202,7 +200,7 @@ public class KeggCalculatorServer {
 			// --> output: all reactions/following products for this compound
 			// --> transform to json
 			// TODO: request input substrate, return all possible reactions and products
-			try {		
+			try {
 				creator.requestAccess.get("reactiondatabysubstrate").add(creator.getAccessDate());
 				res.status(201);
 				return KeggHandleRequests.reactionDataBySubstrate(req, res, creator, req.queryParams("substrateId"));
@@ -212,8 +210,11 @@ public class KeggCalculatorServer {
 			}
 		});
 
+		/**
+		 * returns pathway absed on given substrate and product -> incomplete
+		 */
 		post("/keggcreator/pathwaysearch", (req, res) -> {
-			
+
 			// TODO: Exception handling --> product/substrate not found
 			// --> input: substrate+product
 			// --> output: list of pathways (pathways need to be formatted like KeggCreator
@@ -229,166 +230,173 @@ public class KeggCalculatorServer {
 			// TODO: OR only return shortest pathway, shortest X pathways?
 			try {
 				res.status(201);
-				return KeggHandleRequests.pathwaySearch(req, res, creator.cloneKeggData(), req.queryParams("substrateId"),
-						req.queryParams("productId"));
+				return KeggHandleRequests.pathwaySearch(req, res, creator.cloneKeggData(),
+						req.queryParams("substrateId"), req.queryParams("productId"));
 			} catch (Exception e) {
 				res.status(500);
 				return "{\"message\":\"internal server error\"}";
 			}
 		});
-		
+
+		/**
+		 * returns list of K-numbers
+		 */
 		get("/keggcreator/konumberlist", (req, res) -> {
-            try {
-				creator.requestAccess.get("konumberlist").add(creator.getAccessDate());
-                    // TODO: Exception handling --> compound not found
-                    // --> input: nothing
-                    // --> output: full curated compound list (exclude 00-20, exclude glycans?)
-                    // --> transform to json
-                    // TODO: return a list of all compounds (exclude 00-20, without glycans?)
-                    HashSet<String> koSet = creator.getKoNumberSet();
-                    res.status(201);
-                    return creator.gson.toJson(koSet);
-            } catch (Exception e) {
-                    // this is an unexpected exception!
-                    res.status(500);
-                    return "{\"message\":\"internal server error\"}";
-            }
-    });
+			creator.requestAccess.get("konumberlist").add(creator.getAccessDate());
+			try {
+				HashSet<String> koSet = creator.getKoNumberSet();
+				res.status(201);
+				return creator.gson.toJson(koSet);
+			} catch (Exception e) {
+				// this is an unexpected exception!
+				res.status(500);
+				return "{\"message\":\"internal server error\"}";
+			}
+		});
 
-    get("/keggcreator/ecnumberlist", (req, res) -> {
-            try {
+		/**
+		 * returns list of EC-numbers
+		 */
+		get("/keggcreator/ecnumberlist", (req, res) -> {
+			try {
 				creator.requestAccess.get("ecnumberlist").add(creator.getAccessDate());
-                    // TODO: Exception handling --> compound not found
-                    // --> input: nothing
-                    // --> output: full curated compound list (exclude 00-20, exclude glycans?)
-                    // --> transform to json
-                    // TODO: return a list of all compounds (exclude 00-20, without glycans?)
-                    HashSet<String> ecSet = creator.getEcNumberSet();
-                    res.status(201);
-                    return creator.gson.toJson(ecSet);
-            } catch (Exception e) {
-                    // this is an unexpected exception!
-                    res.status(500);
-                    return "{\"message\":\"internal server error\"}";
-            }
-    });
+				HashSet<String> ecSet = creator.getEcNumberSet();
+				res.status(201);
+				return creator.gson.toJson(ecSet);
+			} catch (Exception e) {
+				// this is an unexpected exception!
+				res.status(500);
+				return "{\"message\":\"internal server error\"}";
+			}
+		});
 
-    post("/keggcreator/getreactionlistbyeclist", (req, res) -> {
-            try {
+		/**
+		 * returns list of reactions associated with given EC- number 1.1.1.-
+		 */
+		post("/keggcreator/getreactionlistbyeclist", (req, res) -> {
+			try {
 				creator.requestAccess.get("getreactionlistbyeclist").add(creator.getAccessDate());
-            	return KeggHandleRequests.reactionlistbyec(req, res, creator, req.queryParams("ecNumbers"));
-            } catch (Exception e) {
-                    // this is an unexpected exception!
-                    res.status(500);
-                    return "{\"message\":\"internal server error\"}";
-            }
-    });
-    
-    post("/keggcreator/getreactionlistbykolist", (req, res) -> {
-        try {
-			creator.requestAccess.get("getreactionlistbykolist").add(creator.getAccessDate());
-        	return KeggHandleRequests.reactionlistbyko(req, res, creator, req.queryParams("koNumbers"));
-        } catch (Exception e) {
-                // this is an unexpected exception!
-                res.status(500);
-                return "{\"message\":\"internal server error\"}";
-        }
-});
+				return KeggHandleRequests.reactionlistbyec(req, res, creator, req.queryParams("ecNumbers"));
+			} catch (Exception e) {
+				// this is an unexpected exception!
+				res.status(500);
+				return "{\"message\":\"internal server error\"}";
+			}
+		});
 
-    post("/keggcreator/getreaction", (req, res) -> {
-            try {
-    			creator.requestAccess.get("getreaction").add(creator.getAccessDate());
-                    return KeggHandleRequests.getReaction(req, res, creator, req.queryParams("reactionId"));
-            } catch (Exception e) {
-                    // this is an unexpected exception!
-                    res.status(500);
-                    return "{\"message\":\"internal server error\"}";
-            }
-    });
-    
-    get("/keggcreator/reactions", (req, res)->{
-    	try {
-			creator.requestAccess.get("reactions").add(creator.getAccessDate());
-    		res.status(201);
-    		HashSet<KeggReaction> reactions =new HashSet<>();
-    		for(KeggReactionObject reactionObject : creator.cloneKeggData().getReactions()) {
-    			   KeggReaction reaction = new KeggReaction(reactionObject.getReactionId(), reactionObject.getReactionName(), reactionObject.isForwardReaction());
-    		        for(KeggECObject ec : reactionObject.getEcnumbers()) {
-    		        	reaction.addEcNumberString(ec.getEcId());
-    		        }
-    		        for(KeggKOObject ko : reactionObject.getKonumbers()) {
-    		        	reaction.addKONumberString(ko.getKoId());
-    		        }
-    		        reaction.setStochiometrySubstratesString(reactionObject.getStochiometrySubstrates());
-    		        reaction.setStochiometryProductsString(reactionObject.getStochiometryProducts());
-    		        reactions.add(reaction);
-    		}
-    		return creator.gson.toJson(reactions); 
-    	}catch (Exception e) {
-            // this is an unexpected exception!
-            res.status(500);
-            return "{\"message\":\"internal server error\"}";
-    }
-    });
-    
-    get("keggcreator/taxonomylist",(req, res)->{
-    	try {
-			creator.requestAccess.get("taxonomylist").add(creator.getAccessDate());
-    		res.status(201);
-    		return KeggHandleRequests.getTaxonomyList(creator);
-    	}catch(Exception e) {
-    		res.status(500);
-    		return "{\"message\":\"internal server error\"}";
-    	}
-    });
+		/**
+		 * returns list of reactions associated with given K- number K00000
+		 */
+		post("/keggcreator/getreactionlistbykolist", (req, res) -> {
+			try {
+				creator.requestAccess.get("getreactionlistbykolist").add(creator.getAccessDate());
+				return KeggHandleRequests.reactionlistbyko(req, res, creator, req.queryParams("koNumbers"));
+			} catch (Exception e) {
+				// this is an unexpected exception!
+				res.status(500);
+				return "{\"message\":\"internal server error\"}";
+			}
+		});
 
-    post("keggcreator/taxonomyId",(req, res)->{
-    	try {
-			creator.requestAccess.get("taxonomyId").add(creator.getAccessDate());
-    		res.status(201);
-    		return KeggHandleRequests.getTaxonomyId(creator, req.queryParams("name"), req.queryParams("rank"));
-    	}catch(Exception e) {
-    		res.status(500);
-    		return "{\"message\":\"internal server error\"}";
-    	}
-    });
-    
-    post("keggcreator/taxonomy",(req, res)->{
-    	try {
-			creator.requestAccess.get("taxonomy").add(creator.getAccessDate());
-    		res.status(201);
-    		return KeggHandleRequests.getTaxonomy(creator, req.queryParams("id"));
-    	}catch(Exception e) {
-    		res.status(500);
-    		return "{\"message\":\"internal server error\"}";
-    	}
-    });
-    
-	//[{name:"", rank:""}]
-    post("keggcreator/taxonomyByArray",(req, res)->{
-    	try {
-			creator.requestAccess.get("taxonomyByArray").add(creator.getAccessDate());
-    		res.status(201);
-    		return KeggHandleRequests.getTaxonomyList(creator, req.queryParams("taxonomyList"));
-    	}catch(Exception e) {
-    		res.status(500);
-    		return "{\"message\":\"internal server error\"}";
-    	}
-    });
-	
-    
-    /**
-     * method that returns a CSV file with all accessdates
-     */
-    get("keggcreator/requestAccesscsv",(req, res)->{
-    	try {
-    		return KeggHandleRequests.getRequestAccess(creator);
-    	}catch(Exception e) {
-    		res.status(500);
-    		return "{\"message\":\"internal server error\"}";
-    	}
-    });
+		/**
+		 * returns reaction associated with given reaction- number R00000
+		 */
+		post("/keggcreator/getreaction", (req, res) -> {
+			try {
+				creator.requestAccess.get("getreaction").add(creator.getAccessDate());
+				return KeggHandleRequests.getReaction(req, res, creator, req.queryParams("reactionId"));
+			} catch (Exception e) {
+				// this is an unexpected exception!
+				res.status(500);
+				return "{\"message\":\"internal server error\"}";
+			}
+		});
+
+		get("/keggcreator/reactions", (req, res) -> {
+			try {
+				creator.requestAccess.get("reactions").add(creator.getAccessDate());
+				res.status(201);
+				HashSet<KeggReaction> reactions = new HashSet<>();
+				for (KeggReactionObject reactionObject : creator.cloneKeggData().getReactions()) {
+					KeggReaction reaction = new KeggReaction(reactionObject.getReactionId(),
+							reactionObject.getReactionName(), reactionObject.isForwardReaction());
+					for (KeggECObject ec : reactionObject.getEcnumbers()) {
+						reaction.addEcNumberString(ec.getEcId());
+					}
+					for (KeggKOObject ko : reactionObject.getKonumbers()) {
+						reaction.addKONumberString(ko.getKoId());
+					}
+					reaction.setStochiometrySubstratesString(reactionObject.getStochiometrySubstrates());
+					reaction.setStochiometryProductsString(reactionObject.getStochiometryProducts());
+					reactions.add(reaction);
+				}
+				return creator.gson.toJson(reactions);
+			} catch (Exception e) {
+				// this is an unexpected exception!
+				res.status(500);
+				return "{\"message\":\"internal server error\"}";
+			}
+		});
+
+		/**
+		 * returns list of existent taxa
+		 */
+		post("keggcreator/taxonomylist", (req, res) -> {
+			try {
+				creator.requestAccess.get("taxonomylist").add(creator.getAccessDate());
+				res.status(201);
+				return KeggHandleRequests.getTaxonomyList(creator);
+			} catch (Exception e) {
+				res.status(500);
+				return "{\"message\":\"internal server error\"}";
+			}
+		});
+
+		post("keggcreator/taxonomyId", (req, res) -> {
+			try {
+				creator.requestAccess.get("taxonomyId").add(creator.getAccessDate());
+				res.status(201);
+				return KeggHandleRequests.getTaxonomyId(creator, req.queryParams("name"), req.queryParams("rank"));
+			} catch (Exception e) {
+				res.status(500);
+				return "{\"message\":\"internal server error\"}";
+			}
+		});
+
+		post("keggcreator/taxonomy", (req, res) -> {
+			try {
+				creator.requestAccess.get("taxonomy").add(creator.getAccessDate());
+				res.status(201);
+				return KeggHandleRequests.getTaxonomy(creator, req.queryParams("id"));
+			} catch (Exception e) {
+				res.status(500);
+				return "{\"message\":\"internal server error\"}";
+			}
+		});
+
+		// [{name:"", rank:""}]
+		post("keggcreator/taxonomyByArray", (req, res) -> {
+			try {
+				creator.requestAccess.get("taxonomyByArray").add(creator.getAccessDate());
+				res.status(201);
+				return KeggHandleRequests.getTaxonomyList(creator, req.queryParams("taxonomyList"));
+			} catch (Exception e) {
+				res.status(500);
+				return "{\"message\":\"internal server error\"}";
+			}
+		});
+
+		/**
+		 * method that returns a CSV file with all accessdates
+		 */
+		get("keggcreator/requestAccesscsv", (req, res) -> {
+			try {
+				return KeggHandleRequests.getRequestAccess(creator);
+			} catch (Exception e) {
+				res.status(500);
+				return "{\"message\":\"internal server error\"}";
+			}
+		});
 	}
-	
 
 }

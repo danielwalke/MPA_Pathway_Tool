@@ -8,6 +8,7 @@ import JSONDownloader from "./json download/JSONDownloader";
 import SBMLDownloader from "./sbml download/SBMLDownloader";
 import StoichiometricMatrix from "./stochiometricMatrix/StoichiometricMatrix";
 import CsvDownLoader from "./csv download/CsvDownLoader";
+import CsvDownloader from "./csv download/new/CSVDownloader";
 
 const DonwloadModal = () =>{
     const classes = useStyles();
@@ -15,6 +16,7 @@ const DonwloadModal = () =>{
     const dispatch = useDispatch();
     const body = (
         <div className={classes.paper}>
+            <CsvDownloader/>
             <CsvDownLoader/>
             <JSONDownloader/>
             <SBMLDownloader/>

@@ -5,6 +5,7 @@ export class Compound{
     _y
     _abbreviation
     _typeOfCompound
+
     constructor(name){
         this.name = name
     }

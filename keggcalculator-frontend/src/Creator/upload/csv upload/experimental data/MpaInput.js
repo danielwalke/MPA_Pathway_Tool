@@ -4,7 +4,7 @@ import UploadIcon from "../../../icons/uploadIconWhite.svg";
 import "../../main/Upload.css"
 import {getMax, getMin} from "../../../usefulFunctions/Math";
 import {taxonomicRanks} from "../../../main/Main";
-
+import {saveAs} from "file-saver";
 const MpaInput = () => {
     const dispatch = useDispatch()
     const state = {
@@ -14,17 +14,53 @@ const MpaInput = () => {
         specificReaction: useSelector(state => state.specificReaction),
         mpaProteins: useSelector(state => state.mpaProteins),
     }
+
+    const getFile = (files) => files[0]
+    const getFileSize = file => file.size
+    const needChunks =  fileSize => fileSize>500000000
+    const getChunks = (file, start, chunks) => {
+        const chunk = file.slice(start,start+500000000)
+        chunks.push(chunk)
+        start += 500000000
+        if(start < getFileSize(file)){
+            getChunks(file, start, chunks)
+        }
+
+    }
     const onFileChange = (event, dispatch) => {
+        // event.preventDefault()
+        // const files = event.target.files;
+        // const file = getFile(files)
+        // const fileSize = getFileSize(file)
+        // const chunks = []
+        // if(needChunks(fileSize)){
+        //     getChunks(file, 0, chunks)
+        //     chunks.forEach(chunk =>{
+        //         const reader = new FileReader()
+        //         reader.onload = e => {
+        //             let blob = new Blob(new Array(reader.result.trim()), {type: "text/plain;charset=utf-8"});
+        //             saveAs(blob, "ModuleGraph.csv")
+        //         }
+        //         reader.readAsText(chunk)
+        //
+        //     })
+        // }else{
+        //     const reader = new FileReader()
+        //     reader.onload = e => console.log(reader.result.length)
+        //     reader.readAsText(file)
+        // }
+
         try {
+            event.preventDefault()
             let files = event.target.files;
             let reader = new FileReader()
             const allQuants = []
             reader.readAsText(files[0])
             reader.onload = e => {
+                e.preventDefault()
                 try {
-                    const result = e.target.result.trim()
+                    const result = reader.result.trim()
                     const lines = result.split("\n")
-                    console.log(lines)
                     const header = lines[0]
                     const headerEntries = header.split("\t")
                     const sampleNames = []
@@ -35,7 +71,7 @@ const MpaInput = () => {
                     lines.shift();//ignore header
                     const proteinSet = new Set()
                     lines.map((line) => {
-                        const entries = line.split("\t")
+                        const entries = line.trim().split("\t")
                         let koAndEcSet = new Set()
                         let quantArray = []
                         if (entries[1].length > 0) { //ko numbers

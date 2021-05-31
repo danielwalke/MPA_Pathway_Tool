@@ -8,6 +8,62 @@ export class Reaction{
     _products
     _reversible
 
+    //added
+    _linkedTo
+    _ecList
+    _koList
+    _substrateObjects
+    _productObjects
+    _taxonomy
+
+    constructor(name) {
+        this._reactionName = name
+        this._products = []
+        this._substrates = []
+        this._linkedTo = []
+        this._ecList = []
+        this._koList = []
+        this._substrateObjects = []
+        this._productObjects = []
+        this._taxonomy = []
+    }
+
+    addTaxonomy(taxon){
+        this._taxonomy.push(taxon)
+    }
+
+    addProductObject(compound, coefficient){
+        const product = {
+            compound: compound,
+            coefficient: coefficient
+        }
+        this._productObjects.push(product)
+    }
+
+    addSubstrateObject(compound, coefficient){
+        const substrate = {
+            compound: compound,
+            coefficient: coefficient
+        }
+        this._substrateObjects.push(substrate)
+    }
+
+    get ecList() {
+        return this._ecList;
+    }
+
+    set ecList(value) {
+        this._ecList = value;
+    }
+
+    get koList() {
+        return this._koList;
+    }
+
+    set koList(value) {
+        this._koList = value;
+    }
+
     addSubstrate = (substrate) =>{
         this._substrates.push(substrate)
     }
@@ -16,12 +72,13 @@ export class Reaction{
         this._products.push(product)
     }
 
-    constructor(name) {
-        this._reactionName = name
-        this._products = []
-        this._substrates = []
+    addLinkToReaction = (nodeId) =>{
+        this._linkedTo.push(nodeId)
     }
 
+    get linkedTo(){
+        return this._linkedTo
+    }
     /**
      *
      * @returns reactionName

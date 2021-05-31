@@ -93,6 +93,7 @@ export const handleReactionListUpload = (rows) => {
             stochiometryProductsString: productMap,
             // taxonomies: taxonomyList,
             taxa: taxa,
+            reversible: columns[7] === "reversible",
             isForwardReaction: true
         }
         const nextColumns = rowIndex < rows.length - 1 ? rows[rowIndex + 1].split(";") : [rowIndex + 1]

@@ -29,7 +29,7 @@ export const handleSubmit = (substrateId, graphState, keggState, dispatch) => {
         })
     //graph
     let newData = {
-            nodes: [...graphState.data.nodes, {id: keggState.substrate, color: COMPOUND_NODE_COLOR ,opacity:1, x: 0,y:0, symbolType:COMPOUND_NODE_SYMBOL}],
+            nodes: [...graphState.data.nodes, {id: keggState.substrate, color: COMPOUND_NODE_COLOR ,opacity:1, x: 0,y:0, symbolType:COMPOUND_NODE_SYMBOL,isReversibleLink:false}],
             links: graphState.data.links
         }
 

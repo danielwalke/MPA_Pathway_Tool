@@ -72,6 +72,8 @@ public class KeggCreatorService {
 		this.requestAccess.put("taxonomyId", new ArrayList<>());
 		this.requestAccess.put("taxonomy", new ArrayList<>());
 		this.requestAccess.put("taxonomyByArray", new ArrayList<>());
+		this.requestAccess.put("taxonomylist", new ArrayList<>());
+		
 	}
 
 	// parse all data from kegg and store them in graph KeggData

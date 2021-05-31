@@ -1,4 +1,3 @@
-export const COMPOUND_NODE_SIZE = 200
 export const COMPOUND_NODE_COLOR = "#FF8000"
 export const COMPOUND_NODE_SYMBOL = "circle"
 export const KEY_COMPOUND_OPACITY = 1

@@ -3,16 +3,12 @@ package rest;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.UUID;
 import java.util.Map.Entry;
-import java.util.regex.Matcher;
+import java.util.regex.Matcher;	
 import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletResponse;
@@ -21,16 +17,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 
-import calculator.CalculatorOutput;
 import constants.KeggCalculatorConstants;
 import json.KeggCalculatorJobJSON;
 import json.KeggCreatorJobJSON;
-import model.KeggCompound;
-import model.KeggCompoundObject;
 import model.KeggDataObject;
 import model.KeggECObject;
 import model.KeggKOObject;
-import model.KeggModuleObject;
 import model.KeggReaction;
 import model.KeggReactionObject;
 import model.SortedReactions;
@@ -42,7 +34,6 @@ import services.KeggCalculatorService;
 import services.KeggCreatorService;
 import spark.Request;
 import spark.Response;
-import model.TaxonomyNcbi;
 
 /**
  * handles requests for REST- server
@@ -254,7 +245,6 @@ public class KeggHandleRequests {
 	
 	
 	/**
-	 * 
 	 * @param creator	service for the creator
 	 * @return list of all taxonomy stored on ncbi
 	 */

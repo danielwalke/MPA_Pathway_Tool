@@ -31,11 +31,12 @@ const ReactionTableList = () =>
         setListOfReactions(state.general.listOfReactions)
     },[state.general.listOfReactions])
 
+
     const handleFinish = ()=>{
         //set reactions
         const reactions = setReactionsInStore(state, state.general.listOfReactions)
         //set data for the Graph
-        const data=  setReactionsAndCompoundsInStore(state, state.general.listOfReactions, dispatch)
+        const data=  setReactionsAndCompoundsInStore(state, state.general.listOfReactions,dispatch)
         dispatch({type:"SETISSHOWINGREACTIONTABLE", payload: false})
         dispatch({type:"SETREACTIONSINARRAY", payload: reactions})
         dispatch({type: "SETDATA", payload: data})

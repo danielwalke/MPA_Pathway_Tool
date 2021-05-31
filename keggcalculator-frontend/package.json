@@ -19,6 +19,7 @@
     "mobx-react": "^6.3.0",
     "node-gyp": "^7.1.2",
     "object-to-xml": "^2.0.0",
+    "papaparse": "^5.3.1",
     "react": "^16.8.6",
     "react-d3-graph": "2.5.0",
     "react-dom": "^16.13.1",

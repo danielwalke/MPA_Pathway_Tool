@@ -18,6 +18,7 @@ public class MpaProtein {
 	private final ArrayList<Double> quants;
 	private final HashMap<HashSet<String>, ArrayList<Double>> quantMap;
 	private final HashMap<String, String> taxa;
+	private String description;
 	
 	public MpaProtein(String proteinName) {
 		this.metaProteinName = proteinName;
@@ -81,6 +82,15 @@ public class MpaProtein {
 	public HashMap<String, String> getTaxa() {
 		return taxa;
 	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 
 	
 	

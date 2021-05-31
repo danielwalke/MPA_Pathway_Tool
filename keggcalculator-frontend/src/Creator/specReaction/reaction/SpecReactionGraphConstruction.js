@@ -10,7 +10,7 @@ export const handleSpecSubmit = (e, graphStates, specReactionStates, dispatch) =
     e.preventDefault();
     const data = graphStates.data;
     const reaction = specReactionStates.specReaction
-    data.nodes.push({id: reaction, symbolType: REACTION_NODE_SYMBOL, color: REACTION_NODE_COLOR, opacity: 1, x: 0, y: 0})
+    data.nodes.push({id: reaction, symbolType: REACTION_NODE_SYMBOL, color: REACTION_NODE_COLOR, opacity: 1, x: 0, y: 0,isReversibleLink:false})
     for (let i = 0; i < specReactionStates.specSubstrates.length; i++) {
         const subst = specReactionStates.specSubstrates[i]
         if (i === 0) {
