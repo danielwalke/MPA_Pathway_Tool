@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.UUID;
@@ -26,13 +27,16 @@ import model.KeggKOObject;
 import model.KeggReaction;
 import model.KeggReactionObject;
 import model.SortedReactions;
-import model.Taxonomy;
+import model.TaxonomyList;
+import model.TaxonomyListObject;
 import model.testparser.PathwayFinder;
 import model.testparser.PathwayFinderReverse;
 import services.KeggCalculatorService;
 import services.KeggCreatorService;
 import spark.Request;
 import spark.Response;
+import model.TaxonomyNcbi;
+import model.TaxonomyResponseListObj;
 
 /**
  * handles requests for REST- server
@@ -257,11 +261,16 @@ public class KeggHandleRequests {
 		return id;
 	}
 
+	public static String getTaxonomyIdList(KeggCreatorService creator, String taxonomyList) {
+		TaxonomyList taxonomyObject = creator.gson.fromJson(taxonomyList, TaxonomyList.class);
+		ArrayList<TaxonomyResponseListObj> ids = creator.getTaxonomyIdList(taxonomyObject);
+		return creator.gson.toJson(ids);
+	}
+
 	public static Object getTaxonomy(KeggCreatorService creator, String id) {
 		Gson gson = creator.gson;
 		return gson.toJson(creator.getTaxonomy(id));
 	}
-
 
 	public static String getRequestAccess(KeggCreatorService creator) {
 		creator.getRequestAccess();

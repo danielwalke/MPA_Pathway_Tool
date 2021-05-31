@@ -242,6 +242,7 @@ public class KeggCalculatorServer {
 		 * returns list of K-numbers
 		 */
 		get("/keggcreator/konumberlist", (req, res) -> {
+
 			creator.requestAccess.get("konumberlist").add(creator.getAccessDate());
 			try {
 				HashSet<String> koSet = creator.getKoNumberSet();
@@ -373,6 +374,17 @@ public class KeggCalculatorServer {
 				return "{\"message\":\"internal server error\"}";
 			}
 		});
+
+		// [{name:"", rank:""}]
+		post("keggcreator/taxonomyIdList",(req, res)->{
+    	try {
+    		res.status(201);
+    		return KeggHandleRequests.getTaxonomyIdList(creator, req.queryParams("taxonomyList"));
+    	}catch(Exception e) {
+    		res.status(500);
+    		return "{\"message\":\"internal server error\"}";
+    	}
+    });
 
 		/**
 		 * method that returns a CSV file with all accessdates

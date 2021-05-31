@@ -1,0 +1,1393 @@
+2021-05-06 11:27:10,118 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-06 11:27:10,143 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1091ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-06 11:27:10,172 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-06 11:27:10,172 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-06 11:27:10,174 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-06 11:27:10,202 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-06 11:27:10,203 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-06 11:27:10,246 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-06 11:27:10,334 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@5a42c7d9{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-06 11:27:10,334 INFO o.e.j.s.Server [Thread-0] Started @1284ms
+2021-05-06 11:27:40,351 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-06 11:27:40,374 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1040ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-06 11:27:40,401 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-06 11:27:40,401 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-06 11:27:40,402 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-06 11:27:40,427 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-06 11:27:40,428 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-06 11:27:40,430 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-06 11:27:40,439 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-05-07 08:29:14,810 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-07 08:29:14,913 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @2325ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-07 08:29:15,000 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-07 08:29:15,000 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-07 08:29:15,002 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-07 08:29:15,027 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-07 08:29:15,027 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-07 08:29:15,029 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-07 08:29:15,115 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@60a41449{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-07 08:29:15,116 INFO o.e.j.s.Server [Thread-0] Started @2528ms
+2021-05-10 13:48:14,330 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-10 13:48:14,368 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1564ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-10 13:48:14,411 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-10 13:48:14,411 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-10 13:48:14,413 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-10 13:48:14,445 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-10 13:48:14,445 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-10 13:48:14,448 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-10 13:48:14,521 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@4d1a37bb{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-10 13:48:14,521 INFO o.e.j.s.Server [Thread-0] Started @1719ms
+2021-05-12 10:09:32,613 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-12 10:09:32,641 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1106ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-12 10:09:32,676 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-12 10:09:32,677 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-12 10:09:32,679 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-12 10:09:32,705 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-12 10:09:32,705 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-12 10:09:32,707 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-12 10:09:32,770 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@5a42c7d9{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-12 10:09:32,770 INFO o.e.j.s.Server [Thread-0] Started @1237ms
+2021-05-14 09:02:46,058 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-14 09:02:46,085 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1398ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-14 09:02:46,121 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-14 09:02:46,121 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-14 09:02:46,123 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-14 09:02:46,150 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-14 09:02:46,151 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-14 09:02:46,154 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-14 09:02:46,219 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@5a42c7d9{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-14 09:02:46,219 INFO o.e.j.s.Server [Thread-0] Started @1534ms
+2021-05-14 09:37:58,243 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-14 09:37:58,262 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @859ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-14 09:37:58,287 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-14 09:37:58,288 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-14 09:37:58,289 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-14 09:37:58,311 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-14 09:37:58,311 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-14 09:37:58,313 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-14 09:37:58,320 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-05-14 09:38:25,856 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-14 09:38:25,874 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @825ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-14 09:38:25,900 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-14 09:38:25,900 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-14 09:38:25,901 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-14 09:38:25,923 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-14 09:38:25,923 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-14 09:38:25,925 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-14 09:38:25,932 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-05-14 09:48:42,242 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-14 09:48:42,263 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @881ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-14 09:48:42,290 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-14 09:48:42,290 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-14 09:48:42,292 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-14 09:48:42,314 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-14 09:48:42,314 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-14 09:48:42,317 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-14 09:48:42,324 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-05-16 09:12:52,144 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-16 09:12:52,170 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1172ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-16 09:12:52,207 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-16 09:12:52,207 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-16 09:12:52,209 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-16 09:12:52,234 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-16 09:12:52,234 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-16 09:12:52,236 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-16 09:12:52,289 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@4d1a37bb{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-16 09:12:52,289 INFO o.e.j.s.Server [Thread-0] Started @1292ms
+2021-05-18 14:35:23,347 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-18 14:35:23,375 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1278ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-18 14:35:23,403 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-18 14:35:23,403 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-18 14:35:23,404 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-18 14:35:23,433 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-18 14:35:23,433 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-18 14:35:23,436 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-18 14:35:23,524 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@ab41e89{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-18 14:35:23,525 INFO o.e.j.s.Server [Thread-0] Started @1429ms
+2021-05-18 15:01:24,356 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-18 15:01:24,381 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1968ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-18 15:01:24,408 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-18 15:01:24,408 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-18 15:01:24,410 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-18 15:01:24,434 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-18 15:01:24,434 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-18 15:01:24,435 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-18 15:01:24,445 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-05-18 15:11:39,576 INFO s.h.m.MatcherFilter [qtp758930446-44] The requested route [/favicon.ico] has not been mapped in Spark for Accept: [image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8]
+2021-05-18 15:13:19,531 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-18 15:13:19,551 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1876ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-18 15:13:19,576 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-18 15:13:19,576 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-18 15:13:19,577 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-18 15:13:19,600 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-18 15:13:19,600 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-18 15:13:19,601 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-18 15:13:19,660 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@3505278d{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-18 15:13:19,661 INFO o.e.j.s.Server [Thread-0] Started @1986ms
+2021-05-19 10:59:42,932 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 10:59:42,977 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @3768ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 10:59:43,030 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 10:59:43,030 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 10:59:43,033 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 10:59:43,067 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 10:59:43,067 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 10:59:43,070 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-19 10:59:43,143 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@3c2ce474{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-19 10:59:43,144 INFO o.e.j.s.Server [Thread-0] Started @3936ms
+2021-05-19 12:43:30,801 INFO s.h.m.MatcherFilter [qtp779320580-128] The requested route [/favicon.ico] has not been mapped in Spark for Accept: [image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8]
+2021-05-19 12:46:30,555 INFO s.h.m.MatcherFilter [qtp779320580-131] The requested route [/keggcalculator/hello] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 12:46:42,162 INFO s.h.m.MatcherFilter [qtp779320580-132] The requested route [/keggcreator/hello] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 12:48:02,380 INFO s.h.m.MatcherFilter [qtp779320580-132] The requested route [/keggcreator/taxonomylist] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 12:53:07,981 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 12:53:08,004 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @2405ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 12:53:08,030 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 12:53:08,030 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 12:53:08,031 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 12:53:08,054 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 12:53:08,054 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 12:53:08,057 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-19 12:53:08,188 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@ab41e89{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-19 12:53:08,188 INFO o.e.j.s.Server [Thread-0] Started @2589ms
+2021-05-19 12:54:42,674 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 12:54:42,696 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1813ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 12:54:42,726 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 12:54:42,726 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 12:54:42,728 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 12:54:42,754 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 12:54:42,754 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 12:54:42,756 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-19 12:54:42,816 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@35a5c9f0{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-19 12:54:42,816 INFO o.e.j.s.Server [Thread-0] Started @1934ms
+2021-05-19 12:55:22,803 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 12:55:22,825 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1747ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 12:55:22,851 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 12:55:22,851 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 12:55:22,853 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 12:55:22,876 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 12:55:22,877 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 12:55:22,878 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-19 12:55:22,885 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-05-19 12:56:49,306 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 12:56:49,334 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @2013ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 12:56:49,372 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 12:56:49,372 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 12:56:49,375 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 12:56:49,402 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 12:56:49,402 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 12:56:49,404 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-19 12:56:49,412 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-05-19 12:56:56,026 INFO s.h.m.MatcherFilter [qtp737803239-21] The requested route [/keggcreator/taxonomylist] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 12:59:54,978 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 12:59:55,011 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1911ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 12:59:55,050 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 12:59:55,050 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 12:59:55,054 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 12:59:55,083 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 12:59:55,083 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 12:59:55,086 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-19 12:59:55,099 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-05-19 13:12:08,567 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 13:12:08,596 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @2138ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 13:12:08,628 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 13:12:08,628 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 13:12:08,630 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 13:12:08,665 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 13:12:08,666 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 13:12:08,668 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-19 13:12:08,678 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-05-19 13:12:41,648 INFO s.h.m.MatcherFilter [qtp737803239-40] The requested route [/keggcreator/taxonomyIdList] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:13:17,077 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 13:13:17,103 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @2097ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 13:13:17,136 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 13:13:17,137 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 13:13:17,141 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 13:13:17,182 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 13:13:17,182 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 13:13:17,185 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-19 13:13:17,194 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-05-19 13:13:20,201 INFO s.h.m.MatcherFilter [qtp737803239-41] The requested route [/keggcreator/taxonomyIdList] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:13:40,623 INFO s.h.m.MatcherFilter [qtp737803239-45] The requested route [/keggcreator/taxonomyIdList] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:13:50,648 INFO s.h.m.MatcherFilter [qtp737803239-46] The requested route [/keggcreator/taxonomyIdList] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:14:15,019 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 13:14:15,046 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @2137ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 13:14:15,081 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 13:14:15,082 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 13:14:15,084 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 13:14:15,114 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 13:14:15,114 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 13:14:15,116 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-19 13:14:15,126 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-05-19 13:14:22,312 INFO s.h.m.MatcherFilter [qtp737803239-40] The requested route [/keggcreator/taxonomyIdList] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:15:49,401 INFO s.h.m.MatcherFilter [qtp737803239-41] The requested route [/keggcreator/taxonomyId] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:17:11,433 INFO s.h.m.MatcherFilter [qtp737803239-47] The requested route [/keggcreator/taxonomyId] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:17:20,093 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 13:17:20,117 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @2140ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 13:17:20,156 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 13:17:20,156 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 13:17:20,158 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 13:17:20,183 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 13:17:20,184 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 13:17:20,186 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-19 13:17:20,195 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-05-19 13:17:22,975 INFO s.h.m.MatcherFilter [qtp737803239-40] The requested route [/keggcreator/taxonomyId] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:17:59,511 INFO s.h.m.MatcherFilter [qtp737803239-49] The requested route [/keggcreator/taxonomyId] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:18:21,593 INFO s.h.m.MatcherFilter [qtp737803239-50] The requested route [/keggcreator/taxonomyId] has not been mapped in Spark for Accept: [text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9]
+2021-05-19 13:19:28,493 INFO s.h.m.MatcherFilter [qtp737803239-47] The requested route [/keggcreator/taxonomyId] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:19:40,907 INFO s.h.m.MatcherFilter [qtp737803239-40] The requested route [/keggcreator/taxonomyId] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:20:32,271 INFO s.h.m.MatcherFilter [qtp737803239-25] The requested route [/keggcreator/taxonomyId] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:21:31,344 INFO s.h.m.MatcherFilter [qtp737803239-47] The requested route [/keggcreator/taxonomyId] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:21:39,980 INFO s.h.m.MatcherFilter [qtp737803239-40] The requested route [/taxonomyId] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:21:50,917 INFO s.h.m.MatcherFilter [qtp737803239-52] The requested route [/taxonomyId] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:21:59,871 INFO s.h.m.MatcherFilter [qtp737803239-47] The requested route [/taxonomyId] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:23:11,444 INFO s.h.m.MatcherFilter [qtp737803239-29] The requested route [/keggcreator/taxonomyId] has not been mapped in Spark for Accept: [text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9]
+2021-05-19 13:25:20,398 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 13:25:20,420 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1896ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 13:25:20,445 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 13:25:20,445 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 13:25:20,447 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 13:25:20,468 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 13:25:20,469 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 13:25:20,471 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-19 13:25:20,480 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-05-19 13:25:21,828 INFO s.h.m.MatcherFilter [qtp737803239-24] The requested route [/keggcreator/taxonomyId] has not been mapped in Spark for Accept: [text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9]
+2021-05-19 13:25:28,020 INFO s.h.m.MatcherFilter [qtp737803239-34] The requested route [/keggcreator/taxonomyId] has not been mapped in Spark for Accept: [text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9]
+2021-05-19 13:25:31,180 INFO s.h.m.MatcherFilter [qtp737803239-53] The requested route [/taxonomyId] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:26:08,609 INFO s.h.m.MatcherFilter [qtp737803239-24] The requested route [/taxonomyId] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:26:35,667 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 13:26:35,692 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1935ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 13:26:35,723 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 13:26:35,723 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 13:26:35,724 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 13:26:35,752 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 13:26:35,752 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 13:26:35,754 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-19 13:26:35,762 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-05-19 13:26:51,147 INFO s.h.m.MatcherFilter [qtp737803239-40] The requested route [/keggcreator/taxonomyIdList] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:28:48,996 INFO s.h.m.MatcherFilter [qtp737803239-24] The requested route [/keggcreator/taxonomyIdList] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:29:50,552 INFO s.h.m.MatcherFilter [qtp737803239-56] The requested route [/keggcreator/taxonomyIdList] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:31:06,467 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 13:31:06,491 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1988ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 13:31:06,518 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 13:31:06,518 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 13:31:06,521 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 13:31:06,545 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 13:31:06,545 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 13:31:06,547 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-19 13:31:06,556 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-05-19 13:31:09,655 INFO s.h.m.MatcherFilter [qtp737803239-40] The requested route [/keggcreator/tax] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:31:14,855 INFO s.h.m.MatcherFilter [qtp737803239-24] The requested route [/keggcreator/tax] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:31:16,011 INFO s.h.m.MatcherFilter [qtp737803239-59] The requested route [/keggcreator/tax] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:31:22,729 INFO s.h.m.MatcherFilter [qtp737803239-60] The requested route [/keggcreator/hello] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:31:23,731 INFO s.h.m.MatcherFilter [qtp737803239-40] The requested route [/keggcreator/hello] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:31:24,490 INFO s.h.m.MatcherFilter [qtp737803239-24] The requested route [/keggcreator/hello] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:31:51,207 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 13:31:51,232 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1973ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 13:31:51,264 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 13:31:51,264 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 13:31:51,267 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 13:31:51,291 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 13:31:51,291 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 13:31:51,294 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-19 13:31:51,302 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-05-19 13:31:56,099 INFO s.h.m.MatcherFilter [qtp737803239-40] The requested route [/tax] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:31:57,228 INFO s.h.m.MatcherFilter [qtp737803239-24] The requested route [/tax] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:31:57,820 INFO s.h.m.MatcherFilter [qtp737803239-59] The requested route [/tax] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:31:58,399 INFO s.h.m.MatcherFilter [qtp737803239-60] The requested route [/tax] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:41:41,796 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 13:41:41,822 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1910ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 13:41:41,857 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 13:41:41,857 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 13:41:41,859 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 13:41:41,887 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 13:41:41,887 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 13:41:41,889 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-19 13:41:41,899 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-05-19 13:41:43,347 INFO s.h.m.MatcherFilter [qtp737803239-61] The requested route [/keggcreator/taxonomyId] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:42:41,317 INFO s.h.m.MatcherFilter [qtp737803239-69] The requested route [/keggcreator/tax] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:44:41,101 INFO s.h.m.MatcherFilter [qtp737803239-70] The requested route [/tax] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:45:39,544 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 13:45:39,565 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1800ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 13:45:39,593 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 13:45:39,593 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 13:45:39,595 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 13:45:39,618 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 13:45:39,618 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 13:45:39,620 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-19 13:45:39,627 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-05-19 13:45:41,196 INFO s.h.m.MatcherFilter [qtp737803239-61] The requested route [/tax] has not been mapped in Spark for Accept: [*/*]
+2021-05-19 13:56:41,050 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 13:56:41,070 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1726ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 13:56:41,097 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 13:56:41,098 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 13:56:41,146 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 13:56:41,171 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 13:56:41,171 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 13:56:41,173 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-19 13:56:41,179 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-05-19 13:56:52,195 INFO s.h.m.MatcherFilter [qtp737803239-20] The requested route [/keggcreator/test] has not been mapped in Spark for Accept: [text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9]
+2021-05-19 13:57:22,118 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 13:57:22,138 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1614ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 13:57:22,163 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 13:57:22,164 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 13:57:22,165 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 13:57:22,188 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 13:57:22,189 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 13:57:22,190 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-19 13:57:22,198 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-05-19 13:57:26,717 INFO s.h.m.MatcherFilter [qtp737803239-84] The requested route [/keggcreator/test] has not been mapped in Spark for Accept: [text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9]
+2021-05-19 13:57:28,921 INFO s.h.m.MatcherFilter [qtp737803239-55] The requested route [/keggcreator/test] has not been mapped in Spark for Accept: [text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9]
+2021-05-19 13:57:39,293 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 13:57:39,314 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1657ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 13:57:39,341 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 13:57:39,341 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 13:57:39,344 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 13:57:39,366 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 13:57:39,367 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 13:57:39,369 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-19 13:57:39,376 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-05-19 13:57:41,086 INFO s.h.m.MatcherFilter [qtp737803239-37] The requested route [/keggcreator/test] has not been mapped in Spark for Accept: [text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9]
+2021-05-19 13:57:48,809 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 13:57:48,828 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1650ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 13:57:48,853 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 13:57:48,853 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 13:57:48,855 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 13:57:48,876 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 13:57:48,876 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 13:57:48,878 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-19 13:57:48,885 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-05-19 13:57:50,166 INFO s.h.m.MatcherFilter [qtp737803239-85] The requested route [/keggcreator/test] has not been mapped in Spark for Accept: [text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9]
+2021-05-19 13:57:57,754 INFO s.h.m.MatcherFilter [qtp737803239-20] The requested route [/keggcreator/test] has not been mapped in Spark for Accept: [text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9]
+2021-05-19 13:58:58,261 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 13:58:58,280 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @2361ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 13:58:58,305 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 13:58:58,305 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 13:58:58,307 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 13:58:58,328 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 13:58:58,328 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 13:58:58,330 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-19 13:58:58,386 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@38f11413{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-19 13:58:58,386 INFO o.e.j.s.Server [Thread-0] Started @2468ms
+2021-05-19 13:58:58,974 INFO s.h.m.MatcherFilter [qtp2094196079-19] The requested route [/keggcreator/test] has not been mapped in Spark for Accept: [text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9]
+2021-05-19 13:59:21,686 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 13:59:21,754 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1719ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 13:59:21,779 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 13:59:21,779 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 13:59:21,781 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 13:59:21,805 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 13:59:21,805 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 13:59:21,807 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-19 13:59:21,814 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-05-19 13:59:29,755 INFO s.h.m.MatcherFilter [qtp2094196079-29] The requested route [/keggcreator/test] has not been mapped in Spark for Accept: [text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9]
+2021-05-19 14:00:06,911 INFO s.h.m.MatcherFilter [qtp2094196079-25] The requested route [/keggcreator/test] has not been mapped in Spark for Accept: [text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9]
+2021-05-19 14:00:13,018 INFO s.h.m.MatcherFilter [qtp2094196079-19] The requested route [/keggcreator/test] has not been mapped in Spark for Accept: [text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9]
+2021-05-19 14:00:23,647 INFO s.h.m.MatcherFilter [qtp2094196079-27] The requested route [/keggcreator/test] has not been mapped in Spark for Accept: [text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9]
+2021-05-19 14:23:18,504 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 14:23:18,524 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1589ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 14:23:18,548 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 14:23:18,548 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 14:23:18,550 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 14:23:18,570 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 14:23:18,571 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 14:23:18,572 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-19 14:23:18,580 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-05-19 14:24:28,122 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 14:24:28,163 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @2280ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 14:24:28,213 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 14:24:28,213 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 14:24:28,217 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 14:24:28,250 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 14:24:28,250 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 14:24:28,253 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-19 14:24:28,265 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-05-19 14:25:25,564 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 14:25:25,584 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1741ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 14:25:25,609 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 14:25:25,609 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 14:25:25,611 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 14:25:25,633 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 14:25:25,633 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 14:25:25,635 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-19 14:25:25,694 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@47583c04{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-19 14:25:25,694 INFO o.e.j.s.Server [Thread-0] Started @1852ms
+2021-05-19 14:25:25,760 INFO s.h.m.MatcherFilter [qtp1422554985-18] The requested route [/test] has not been mapped in Spark for Accept: [text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9]
+2021-05-19 14:27:10,412 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 14:27:10,431 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1673ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 14:27:10,456 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 14:27:10,456 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 14:27:10,458 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 14:27:10,479 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 14:27:10,479 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 14:27:10,481 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-19 14:27:10,542 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@47583c04{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-19 14:27:10,543 INFO o.e.j.s.Server [Thread-0] Started @1785ms
+2021-05-19 14:29:23,380 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 14:29:23,400 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1621ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 14:29:23,425 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 14:29:23,425 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 14:29:23,427 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 14:29:23,449 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 14:29:23,449 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 14:29:23,451 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-19 14:29:23,505 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@ab41e89{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-19 14:29:23,505 INFO o.e.j.s.Server [Thread-0] Started @1727ms
+2021-05-19 14:35:59,574 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 14:35:59,602 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @2061ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 14:35:59,640 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 14:35:59,641 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 14:35:59,643 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 14:35:59,669 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 14:35:59,670 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 14:35:59,672 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-19 14:35:59,742 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@38f11413{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-19 14:35:59,742 INFO o.e.j.s.Server [Thread-0] Started @2203ms
+2021-05-19 14:39:45,926 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 14:39:45,944 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1655ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 14:39:45,968 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 14:39:45,969 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 14:39:45,970 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 14:39:45,994 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 14:39:45,994 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 14:39:45,996 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-19 14:39:46,058 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@38f11413{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-19 14:39:46,059 INFO o.e.j.s.Server [Thread-0] Started @1769ms
+2021-05-19 14:40:27,491 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 14:40:27,512 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1611ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 14:40:27,537 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 14:40:27,538 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 14:40:27,539 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 14:40:27,562 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 14:40:27,562 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 14:40:27,564 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-19 14:40:27,676 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@38f11413{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-19 14:40:27,677 INFO o.e.j.s.Server [Thread-0] Started @1777ms
+2021-05-19 14:41:02,353 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 14:41:02,372 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1627ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 14:41:02,397 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 14:41:02,398 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 14:41:02,399 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 14:41:02,424 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 14:41:02,425 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 14:41:02,426 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-19 14:41:02,483 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@4a10bcfc{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-19 14:41:02,484 INFO o.e.j.s.Server [Thread-0] Started @1740ms
+2021-05-19 14:43:42,643 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 14:43:42,664 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1613ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 14:43:42,691 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 14:43:42,692 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 14:43:42,693 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 14:43:42,716 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 14:43:42,716 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 14:43:42,718 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-19 14:43:42,779 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@7b742b3d{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-19 14:43:42,779 INFO o.e.j.s.Server [Thread-0] Started @1729ms
+2021-05-19 14:44:18,284 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 14:44:18,303 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1615ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 14:44:18,328 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 14:44:18,328 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 14:44:18,330 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 14:44:18,352 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 14:44:18,352 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 14:44:18,354 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-19 14:44:18,411 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@ab41e89{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-19 14:44:18,411 INFO o.e.j.s.Server [Thread-0] Started @1723ms
+2021-05-19 14:49:04,286 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-19 14:49:04,305 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1585ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-19 14:49:04,330 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-19 14:49:04,330 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-19 14:49:04,332 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-19 14:49:04,353 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-19 14:49:04,353 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-19 14:49:04,355 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-19 14:49:04,410 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@4a10bcfc{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-19 14:49:04,410 INFO o.e.j.s.Server [Thread-0] Started @1690ms
+2021-05-20 10:30:36,413 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 10:30:36,443 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1817ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 10:30:36,468 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 10:30:36,468 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 10:30:36,470 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 10:30:36,492 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 10:30:36,493 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 10:30:36,494 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-20 10:30:36,552 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@47583c04{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 10:30:36,552 INFO o.e.j.s.Server [Thread-0] Started @1927ms
+2021-05-20 10:40:19,849 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 10:40:19,869 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1629ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 10:40:19,896 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 10:40:19,896 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 10:40:19,897 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 10:40:19,919 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 10:40:19,919 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 10:40:19,920 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-20 10:40:19,978 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@38f11413{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 10:40:19,979 INFO o.e.j.s.Server [Thread-0] Started @1739ms
+2021-05-20 10:56:26,782 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 10:56:26,801 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1563ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 10:56:26,831 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 10:56:26,831 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 10:56:26,832 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 10:56:26,856 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 10:56:26,856 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 10:56:26,858 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-20 10:56:26,965 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@5659f4bf{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 10:56:26,965 INFO o.e.j.s.Server [Thread-0] Started @1727ms
+2021-05-20 10:59:30,251 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 10:59:30,276 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1612ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 10:59:30,305 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 10:59:30,305 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 10:59:30,307 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 10:59:30,330 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 10:59:30,330 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 10:59:30,332 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-20 10:59:30,394 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@19a57303{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 10:59:30,394 INFO o.e.j.s.Server [Thread-0] Started @1732ms
+2021-05-20 10:59:57,709 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 10:59:57,728 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1601ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 10:59:57,752 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 10:59:57,752 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 10:59:57,754 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 10:59:57,774 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 10:59:57,775 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 10:59:57,776 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-20 10:59:57,833 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@19a57303{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 10:59:57,833 INFO o.e.j.s.Server [Thread-0] Started @1706ms
+2021-05-20 11:00:34,081 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 11:00:34,100 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1592ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 11:00:34,125 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 11:00:34,125 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 11:00:34,127 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 11:00:34,148 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 11:00:34,148 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 11:00:34,150 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-20 11:00:34,202 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@e1eb94f{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 11:00:34,203 INFO o.e.j.s.Server [Thread-0] Started @1696ms
+2021-05-20 11:01:02,740 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 11:01:02,760 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1609ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 11:01:02,785 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 11:01:02,785 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 11:01:02,787 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 11:01:02,812 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 11:01:02,812 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 11:01:02,814 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-20 11:01:02,870 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@e1eb94f{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 11:01:02,870 INFO o.e.j.s.Server [Thread-0] Started @1721ms
+2021-05-20 11:01:18,000 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 11:01:18,020 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1592ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 11:01:18,046 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 11:01:18,046 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 11:01:18,047 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 11:01:18,071 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 11:01:18,071 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 11:01:18,073 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-20 11:01:18,178 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@5659f4bf{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 11:01:18,178 INFO o.e.j.s.Server [Thread-0] Started @1751ms
+2021-05-20 11:02:50,109 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 11:02:50,129 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1596ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 11:02:50,153 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 11:02:50,153 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 11:02:50,155 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 11:02:50,178 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 11:02:50,178 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 11:02:50,179 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-20 11:02:50,235 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@e1eb94f{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 11:02:50,235 INFO o.e.j.s.Server [Thread-0] Started @1704ms
+2021-05-20 11:18:00,487 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 11:18:00,508 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1792ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 11:18:00,535 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 11:18:00,535 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 11:18:00,537 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 11:18:00,558 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 11:18:00,558 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 11:18:00,560 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-20 11:18:00,643 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@e1eb94f{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 11:18:00,644 INFO o.e.j.s.Server [Thread-0] Started @1929ms
+2021-05-20 11:19:03,363 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 11:19:03,383 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1580ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 11:19:03,410 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 11:19:03,410 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 11:19:03,411 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 11:19:03,498 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 11:19:03,499 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 11:19:03,501 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-20 11:19:03,575 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@19a57303{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 11:19:03,575 INFO o.e.j.s.Server [Thread-0] Started @1773ms
+2021-05-20 11:19:43,029 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 11:19:43,048 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1591ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 11:19:43,079 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 11:19:43,080 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 11:19:43,084 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 11:19:43,113 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 11:19:43,114 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 11:19:43,116 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-20 11:19:43,173 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@19a57303{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 11:19:43,173 INFO o.e.j.s.Server [Thread-0] Started @1717ms
+2021-05-20 11:20:07,700 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 11:20:07,721 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1579ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 11:20:07,747 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 11:20:07,747 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 11:20:07,749 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 11:20:07,821 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 11:20:07,821 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 11:20:07,823 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-20 11:20:07,879 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@19a57303{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 11:20:07,879 INFO o.e.j.s.Server [Thread-0] Started @1738ms
+2021-05-20 11:32:01,410 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 11:32:01,429 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1630ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 11:32:01,455 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 11:32:01,455 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 11:32:01,456 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 11:32:01,479 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 11:32:01,479 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 11:32:01,481 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-20 11:32:01,538 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@19a57303{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 11:32:01,538 INFO o.e.j.s.Server [Thread-0] Started @1741ms
+2021-05-20 11:40:20,855 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 11:40:20,875 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1624ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 11:40:20,900 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 11:40:20,901 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 11:40:20,902 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 11:40:20,924 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 11:40:20,924 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 11:40:20,926 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-20 11:40:20,987 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@e1eb94f{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 11:40:20,988 INFO o.e.j.s.Server [Thread-0] Started @1737ms
+2021-05-20 11:40:44,038 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 11:40:44,073 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1651ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 11:40:44,101 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 11:40:44,101 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 11:40:44,158 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 11:40:44,189 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 11:40:44,189 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 11:40:44,191 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-20 11:40:44,266 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@632b015e{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 11:40:44,266 INFO o.e.j.s.Server [Thread-0] Started @1845ms
+2021-05-20 11:41:27,400 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 11:41:27,477 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1643ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 11:41:27,505 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 11:41:27,505 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 11:41:27,507 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 11:41:27,529 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 11:41:27,529 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 11:41:27,531 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-20 11:41:27,586 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@e1eb94f{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 11:41:27,587 INFO o.e.j.s.Server [Thread-0] Started @1754ms
+2021-05-20 11:42:15,926 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 11:42:15,956 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1658ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 11:42:15,985 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 11:42:15,986 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 11:42:15,989 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 11:42:16,016 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 11:42:16,016 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 11:42:16,019 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-20 11:42:16,078 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@e1eb94f{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 11:42:16,079 INFO o.e.j.s.Server [Thread-0] Started @1782ms
+2021-05-20 11:43:16,722 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 11:43:16,742 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1591ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 11:43:16,768 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 11:43:16,769 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 11:43:16,771 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 11:43:16,794 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 11:43:16,794 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 11:43:16,796 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-20 11:43:16,857 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@e1eb94f{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 11:43:16,857 INFO o.e.j.s.Server [Thread-0] Started @1707ms
+2021-05-20 11:44:28,762 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 11:44:28,784 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1596ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 11:44:28,812 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 11:44:28,812 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 11:44:28,870 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 11:44:28,892 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 11:44:28,892 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 11:44:28,894 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-20 11:44:28,949 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@e1eb94f{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 11:44:28,950 INFO o.e.j.s.Server [Thread-0] Started @1763ms
+2021-05-20 15:32:26,892 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 15:32:26,913 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1651ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 15:32:26,939 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 15:32:26,939 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 15:32:26,941 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 15:32:26,964 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 15:32:26,964 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 15:32:26,966 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-20 15:32:27,020 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@e1eb94f{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 15:32:27,021 INFO o.e.j.s.Server [Thread-0] Started @1760ms
+2021-05-20 15:59:08,622 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 15:59:08,641 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1571ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 15:59:08,665 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 15:59:08,666 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 15:59:08,667 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 15:59:08,689 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 15:59:08,690 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 15:59:08,691 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-20 15:59:08,751 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@e1eb94f{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 15:59:08,751 INFO o.e.j.s.Server [Thread-0] Started @1682ms
+2021-05-20 16:00:06,998 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 16:00:07,018 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1583ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 16:00:07,047 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 16:00:07,047 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 16:00:07,049 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 16:00:07,072 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 16:00:07,072 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 16:00:07,074 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-20 16:00:07,132 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@5659f4bf{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 16:00:07,132 INFO o.e.j.s.Server [Thread-0] Started @1698ms
+2021-05-20 16:12:05,429 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 16:12:05,448 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1642ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 16:12:05,474 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 16:12:05,474 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 16:12:05,475 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 16:12:05,498 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 16:12:05,498 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 16:12:05,500 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-20 16:12:05,557 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@5659f4bf{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 16:12:05,558 INFO o.e.j.s.Server [Thread-0] Started @1752ms
+2021-05-20 16:13:18,393 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 16:13:18,413 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1559ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 16:13:18,440 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 16:13:18,441 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 16:13:18,442 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 16:13:18,465 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 16:13:18,465 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 16:13:18,467 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-20 16:13:18,522 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@e1eb94f{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 16:13:18,522 INFO o.e.j.s.Server [Thread-0] Started @1669ms
+2021-05-20 16:15:49,064 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 16:15:49,086 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1599ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 16:15:49,115 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 16:15:49,115 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 16:15:49,117 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 16:15:49,138 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 16:15:49,138 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 16:15:49,140 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-20 16:15:49,194 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@e1eb94f{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 16:15:49,195 INFO o.e.j.s.Server [Thread-0] Started @1709ms
+2021-05-20 16:24:25,840 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 16:24:25,861 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1575ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 16:24:25,887 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 16:24:25,887 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 16:24:25,939 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 16:24:25,962 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 16:24:25,962 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 16:24:25,964 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-20 16:24:26,019 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@5659f4bf{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 16:24:26,019 INFO o.e.j.s.Server [Thread-0] Started @1734ms
+2021-05-20 16:31:33,107 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 16:31:33,131 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1733ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 16:31:33,164 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 16:31:33,165 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 16:31:33,167 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 16:31:33,192 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 16:31:33,192 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 16:31:33,194 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-20 16:31:33,255 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@e1eb94f{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 16:31:33,255 INFO o.e.j.s.Server [Thread-0] Started @1858ms
+2021-05-20 16:31:55,523 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 16:31:55,544 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1669ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 16:31:55,572 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 16:31:55,572 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 16:31:55,573 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 16:31:55,598 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 16:31:55,598 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 16:31:55,599 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-20 16:31:55,663 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@5659f4bf{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 16:31:55,663 INFO o.e.j.s.Server [Thread-0] Started @1790ms
+2021-05-20 16:32:13,656 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 16:32:13,676 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1582ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 16:32:13,700 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 16:32:13,700 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 16:32:13,702 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 16:32:13,723 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 16:32:13,723 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 16:32:13,725 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-20 16:32:13,779 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@e1eb94f{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 16:32:13,780 INFO o.e.j.s.Server [Thread-0] Started @1688ms
+2021-05-20 16:32:59,754 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 16:32:59,774 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1585ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 16:32:59,798 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 16:32:59,798 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 16:32:59,800 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 16:32:59,821 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 16:32:59,822 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 16:32:59,823 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-20 16:32:59,882 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@5659f4bf{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 16:32:59,882 INFO o.e.j.s.Server [Thread-0] Started @1695ms
+2021-05-20 16:33:46,118 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 16:33:46,139 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1619ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 16:33:46,165 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 16:33:46,166 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 16:33:46,168 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 16:33:46,190 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 16:33:46,190 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 16:33:46,192 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-20 16:33:46,258 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@e1eb94f{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 16:33:46,258 INFO o.e.j.s.Server [Thread-0] Started @1739ms
+2021-05-20 16:43:18,563 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 16:43:18,582 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1609ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 16:43:18,607 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 16:43:18,607 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 16:43:18,608 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 16:43:18,630 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 16:43:18,630 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 16:43:18,632 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-20 16:43:18,687 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@5659f4bf{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 16:43:18,688 INFO o.e.j.s.Server [Thread-0] Started @1715ms
+2021-05-20 17:09:27,781 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 17:09:27,802 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1680ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 17:09:27,828 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 17:09:27,829 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 17:09:27,831 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 17:09:27,854 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 17:09:27,854 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 17:09:27,855 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-20 17:09:27,913 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@632b015e{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 17:09:27,913 INFO o.e.j.s.Server [Thread-0] Started @1792ms
+2021-05-20 17:11:05,409 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 17:11:05,436 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1818ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 17:11:05,465 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 17:11:05,465 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 17:11:05,468 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 17:11:05,493 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 17:11:05,494 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 17:11:05,496 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-20 17:11:05,562 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@e1eb94f{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 17:11:05,562 INFO o.e.j.s.Server [Thread-0] Started @1946ms
+2021-05-20 17:14:36,304 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 17:14:36,324 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1634ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 17:14:36,350 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 17:14:36,350 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 17:14:36,352 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 17:14:36,374 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 17:14:36,374 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 17:14:36,376 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-20 17:14:36,434 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@5659f4bf{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 17:14:36,435 INFO o.e.j.s.Server [Thread-0] Started @1745ms
+2021-05-20 17:24:10,585 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 17:24:10,605 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1582ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 17:24:10,631 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 17:24:10,631 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 17:24:10,632 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 17:24:10,654 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 17:24:10,654 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 17:24:10,656 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-20 17:24:10,710 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@22826a0b{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 17:24:10,711 INFO o.e.j.s.Server [Thread-0] Started @1689ms
+2021-05-20 17:24:34,622 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 17:24:34,645 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1689ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 17:24:34,673 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 17:24:34,674 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 17:24:34,675 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 17:24:34,701 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 17:24:34,701 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 17:24:34,703 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-20 17:24:34,762 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@22826a0b{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 17:24:34,762 INFO o.e.j.s.Server [Thread-0] Started @1807ms
+2021-05-20 17:26:21,855 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-20 17:26:21,875 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1619ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-20 17:26:21,900 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-20 17:26:21,900 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-20 17:26:21,902 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-20 17:26:21,970 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-20 17:26:21,971 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-20 17:26:21,972 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-20 17:26:22,027 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@22826a0b{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-20 17:26:22,028 INFO o.e.j.s.Server [Thread-0] Started @1772ms
+2021-05-20 17:29:22,579 INFO s.h.m.MatcherFilter [qtp1714107265-29] The requested route [/favicon.ico] has not been mapped in Spark for Accept: [image/webp,*/*]
+2021-05-25 16:47:30,095 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-25 16:47:30,123 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @2247ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-25 16:47:30,161 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-25 16:47:30,161 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-25 16:47:30,163 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-25 16:47:30,190 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-25 16:47:30,191 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-25 16:47:30,193 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-25 16:47:30,252 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@22826a0b{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-25 16:47:30,252 INFO o.e.j.s.Server [Thread-0] Started @2377ms
+2021-05-25 16:48:14,175 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-25 16:48:14,198 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1794ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-25 16:48:14,224 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-25 16:48:14,225 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-25 16:48:14,226 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-25 16:48:14,250 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-25 16:48:14,250 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-25 16:48:14,252 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-25 16:48:14,311 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@4ac6ce1{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-25 16:48:14,312 INFO o.e.j.s.Server [Thread-0] Started @1909ms
+2021-05-25 16:51:05,270 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-25 16:51:05,293 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1819ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-25 16:51:05,320 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-25 16:51:05,320 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-25 16:51:05,322 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-25 16:51:05,345 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-25 16:51:05,345 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-25 16:51:05,349 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-25 16:51:05,413 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@22826a0b{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-25 16:51:05,414 INFO o.e.j.s.Server [Thread-0] Started @1940ms
+2021-05-25 17:17:19,648 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-25 17:17:19,672 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1702ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-25 17:17:19,701 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-25 17:17:19,701 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-25 17:17:19,754 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-25 17:17:19,780 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-25 17:17:19,781 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-25 17:17:19,783 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-25 17:17:19,842 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@73498627{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-25 17:17:19,842 INFO o.e.j.s.Server [Thread-0] Started @1874ms
+2021-05-25 17:22:32,896 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-25 17:22:32,920 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1835ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-25 17:22:32,956 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-25 17:22:32,956 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-25 17:22:32,958 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-25 17:22:32,998 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-25 17:22:32,998 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-25 17:22:33,001 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-25 17:22:33,058 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@73498627{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-25 17:22:33,058 INFO o.e.j.s.Server [Thread-0] Started @1975ms
+2021-05-25 17:23:04,036 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-25 17:23:04,060 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1856ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-25 17:23:04,089 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-25 17:23:04,089 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-25 17:23:04,091 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-25 17:23:04,114 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-25 17:23:04,114 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-25 17:23:04,116 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-25 17:23:04,183 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@2272bd70{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-25 17:23:04,184 INFO o.e.j.s.Server [Thread-0] Started @1980ms
+2021-05-25 17:24:29,703 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-25 17:24:29,727 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1800ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-25 17:24:29,756 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-25 17:24:29,756 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-25 17:24:29,758 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-25 17:24:29,785 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-25 17:24:29,785 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-25 17:24:29,787 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-25 17:24:29,847 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@2272bd70{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-25 17:24:29,848 INFO o.e.j.s.Server [Thread-0] Started @1922ms
+2021-05-25 17:25:36,626 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-25 17:25:36,648 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1790ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-25 17:25:36,677 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-25 17:25:36,677 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-25 17:25:36,679 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-25 17:25:36,702 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-25 17:25:36,702 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-25 17:25:36,704 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-25 17:25:36,763 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@73498627{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-25 17:25:36,763 INFO o.e.j.s.Server [Thread-0] Started @1906ms
+2021-05-25 17:26:30,753 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-25 17:26:30,777 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1729ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-25 17:26:30,806 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-25 17:26:30,806 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-25 17:26:30,808 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-25 17:26:30,842 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-25 17:26:30,842 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-25 17:26:30,845 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-25 17:26:30,908 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@73498627{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-25 17:26:30,909 INFO o.e.j.s.Server [Thread-0] Started @1862ms
+2021-05-25 17:27:04,767 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-25 17:27:04,790 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1785ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-25 17:27:04,817 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-25 17:27:04,818 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-25 17:27:04,820 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-25 17:27:04,842 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-25 17:27:04,843 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-25 17:27:04,845 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-25 17:27:04,906 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@2272bd70{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-25 17:27:04,907 INFO o.e.j.s.Server [Thread-0] Started @1904ms
+2021-05-25 17:29:01,104 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-25 17:29:01,126 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1795ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-25 17:29:01,157 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-25 17:29:01,157 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-25 17:29:01,159 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-25 17:29:01,187 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-25 17:29:01,187 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-25 17:29:01,189 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-25 17:29:01,259 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@4a7c17a5{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-25 17:29:01,260 INFO o.e.j.s.Server [Thread-0] Started @1929ms
+2021-05-25 17:29:19,495 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-25 17:29:19,517 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1817ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-25 17:29:19,545 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-25 17:29:19,545 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-25 17:29:19,547 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-25 17:29:19,570 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-25 17:29:19,570 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-25 17:29:19,572 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-25 17:29:19,629 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@4a7c17a5{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-25 17:29:19,629 INFO o.e.j.s.Server [Thread-0] Started @1930ms
+2021-05-25 17:29:38,265 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-25 17:29:38,336 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1875ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-25 17:29:38,362 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-25 17:29:38,363 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-25 17:29:38,365 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-25 17:29:38,387 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-25 17:29:38,388 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-25 17:29:38,389 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-25 17:29:38,448 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@4a7c17a5{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-25 17:29:38,449 INFO o.e.j.s.Server [Thread-0] Started @1989ms
+2021-05-25 17:32:58,561 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-25 17:32:58,584 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1772ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-25 17:32:58,617 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-25 17:32:58,617 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-25 17:32:58,620 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-25 17:32:58,645 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-25 17:32:58,646 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-25 17:32:58,647 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-05-25 17:32:58,711 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@73498627{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-25 17:32:58,711 INFO o.e.j.s.Server [Thread-0] Started @1900ms
+2021-05-25 17:34:13,430 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-05-25 17:34:13,452 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1900ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-05-25 17:34:13,481 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-05-25 17:34:13,481 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-05-25 17:34:13,483 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-05-25 17:34:13,506 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-05-25 17:34:13,506 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-05-25 17:34:13,508 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-05-25 17:34:13,568 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@2272bd70{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-05-25 17:34:13,569 INFO o.e.j.s.Server [Thread-0] Started @2017ms

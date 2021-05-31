@@ -1,6 +1,6 @@
 import React from "react";
 
-const MakeCompartmentObjList = (compartmentsRaw) =>{
+const MakeCompartmentObjList = (compartmentsRaw) => {
     return compartmentsRaw.map(compartment => {
         return {'@': {
                 id: compartment.compartment,
