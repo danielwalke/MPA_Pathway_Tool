@@ -374,18 +374,6 @@ public class KeggCalculatorServer {
 			}
 		});
 
-		// [{name:"", rank:""}]
-		post("keggcreator/taxonomyByArray", (req, res) -> {
-			try {
-				creator.requestAccess.get("taxonomyByArray").add(creator.getAccessDate());
-				res.status(201);
-				return KeggHandleRequests.getTaxonomyList(creator, req.queryParams("taxonomyList"));
-			} catch (Exception e) {
-				res.status(500);
-				return "{\"message\":\"internal server error\"}";
-			}
-		});
-
 		/**
 		 * method that returns a CSV file with all accessdates
 		 */

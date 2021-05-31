@@ -27,7 +27,6 @@ import model.KeggReaction;
 import model.KeggReactionObject;
 import model.SortedReactions;
 import model.Taxonomy;
-import model.TaxonomyList;
 import model.testparser.PathwayFinder;
 import model.testparser.PathwayFinderReverse;
 import services.KeggCalculatorService;
@@ -263,15 +262,6 @@ public class KeggHandleRequests {
 		return gson.toJson(creator.getTaxonomy(id));
 	}
 
-	public static Object getTaxonomyList(KeggCreatorService creator, String taxonomyList) {
-		System.out.println(taxonomyList);
-		TaxonomyList taxonomies = creator.gson.fromJson(taxonomyList, TaxonomyList.class);
-		for(Taxonomy taxonomy : taxonomies.getTaxonomies()) {
-			System.out.println(taxonomy.getName());
-			System.out.println(taxonomy.getRank());
-		}
-		return null;
-	}
 
 	public static String getRequestAccess(KeggCreatorService creator) {
 		creator.getRequestAccess();
