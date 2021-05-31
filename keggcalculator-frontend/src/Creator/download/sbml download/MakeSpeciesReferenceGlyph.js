@@ -5,13 +5,13 @@ const MakeSpeciesReferenceGlyph = (props) => {
     const speciesReferenceGlyph = []
     props[0].map(
         item => {
-            const abbreviation = item.abbreviation.substring(0, item.abbreviation.length - 7).replace(/ /g, "_")
+            // const abbreviation = item.abbreviation.substring(0, item.abbreviation.length - 7).replace(/ /g, "_")
 
             const subGlyph = {
                 '@': {
-                    'layout:id':["SpeciesReferenceGlyph_",abbreviation].join(""),
-                    'layout:speciesReference':["SpeciesReference_",abbreviation].join(""),
-                    'layout:speciesGlyph':["SpeciesGlyph_",abbreviation].join(""),
+                    'layout:id':["SpeciesReferenceGlyph_",item.id].join(""),
+                    // 'layout:speciesReference':["SpeciesReference_",item.id].join(""),
+                    'layout:speciesGlyph':["SpeciesGlyph_",item.id].join(""),
                     'layout:role':"substrate"
                 },
                 '#': {
@@ -31,13 +31,13 @@ const MakeSpeciesReferenceGlyph = (props) => {
 
     props[1].map(
         item => {
-            const abbreviation = item.abbreviation.substring(0, item.abbreviation.length - 7).replace(/ /g, "_")
+            // const abbreviation = item.abbreviation.substring(0, item.abbreviation.length - 7).replace(/ /g, "_")
 
             const prodGlyph = {
                 '@': {
-                    'layout:id':["SpeciesReferenceGlyph_",abbreviation].join(""),
-                    'layout:speciesReference':["SpeciesReference_",abbreviation].join(""),
-                    'layout:speciesGlyph':["SpeciesGlyph_",abbreviation].join(""),
+                    'layout:id':["SpeciesReferenceGlyph_",item.id].join(""),
+                    // 'layout:speciesReference':["SpeciesReference_",item.id].join(""),
+                    'layout:speciesGlyph':["SpeciesGlyph_",item.id].join(""),
                     'layout:role':"product"
                 },
                 '#': {

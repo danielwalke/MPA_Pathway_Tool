@@ -4,10 +4,12 @@ import MakeSpeciesReferenceGlyph from "./MakeSpeciesReferenceGlyph";
 const MakeReactionGlyphObjList = (reactionsRaw) => {
 
     const reactionGlyphObjList = reactionsRaw.map(item => {
+
         const reactionGlyphObject = {
             '@': {
                 'layout:id': ['glyph_', item.reactionId].join(""),
-                'layout:reaction': item.reactionId
+                'layout:reaction': item.reactionId,
+                'render:objectRole': item.opacity === 1 ? "keyCompound" : "nonKeyCompound"
             },
             '#': {
                 'layout:curve': {

@@ -13,40 +13,44 @@ const MakeSpeciesList = (reactionArrayProcessed) => {
     let speciesPosArray = []
     let speciesArray = []
     let compartmentArray = []
+
     for(const rxn of reactionArrayProcessed) {
         compounds.push(...rxn.products)
         compounds.push(...rxn.substrates)
     }
 
-        compounds.map(
-            item => {
-                const compoundsForSpeciesArray = {
-                    name: item.abbreviation,
-                    compartment: "c",
-                    compartmentName: "cytosol",    //extend functionality for multiple compartments
-                    hasOnlySubstanceUnits: "true", //might be changed by User
-                    boundaryCondition: "false",    //might be changed by User
-                    constant: "false"              //might be changed by User
-                    // maybe addition of sboTerm
-                }
-                speciesArray.push(compoundsForSpeciesArray)
+    for (const comp of compounds) {
 
-                const compoundPositions = {
-                    name: item.abbreviation,
-                    compartment: "c",
-                    compartmentName: "cytosol",
-                    x: item.x,
-                    y: item.y
-                }
-                speciesPosArray.push(compoundPositions)
+        const compoundsForSpeciesArray = {
+            name: comp.abbreviation,
+            id: comp.id,
+            compartment: "c",
+            compartmentName: "cytosol",    //extend functionality for multiple compartments
+            hasOnlySubstanceUnits: "true",
+            boundaryCondition: "false",
+            constant: "false",
+            // maybe addition of sboTerm
+        }
+        speciesArray.push(compoundsForSpeciesArray)
 
-                const compartments = {
-                    compartment: "c",
-                    compartmentName: "cytosol",
-                    constant: "true"
-                }
-                compartmentArray.push(compartments)
-            })
+        const compoundPositions = {
+            name: comp.abbreviation,
+            id: comp.id,
+            compartment: "c",
+            compartmentName: "cytosol",
+            x: comp.x,
+            y: comp.y,
+            opacity: comp.opacity
+        }
+        speciesPosArray.push(compoundPositions)
+
+        const compartments = {
+            compartment: "c",
+            compartmentName: "cytosol",
+            constant: "true"
+        }
+        compartmentArray.push(compartments)
+    }
 
     const uniqueSpeciesArrayStr = Array.from(new Set(speciesArray.map(item => JSON.stringify(item))))
     const uniqueSpeciesArray = uniqueSpeciesArrayStr.map(item => JSON.parse(item))

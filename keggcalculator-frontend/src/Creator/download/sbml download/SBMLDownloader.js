@@ -13,6 +13,7 @@ import MakeSpeciesGlyphObjList from "./MakeSpeciesGlyphObjList";
 import MakeCompartmentObjList from "./MakeCompartmentObjList";
 import {requestGenerator} from "../../request/RequestGenerator";
 import {compoundUrl} from "../../request/RequestHandling";
+import MakeRenderInformationObj from "./MakeRenderInformationObj";
 
 const SBMLDownloader = () => {
 
@@ -26,17 +27,13 @@ const SBMLDownloader = () => {
         const [reactionsRaw, requestList] = MakeReactionList(generalState, graphState)
         const [speciesRaw, speciesPosRaw, compartmentsRaw] = MakeSpeciesList(reactionsRaw)
 
+        console.log(speciesRaw)
         console.log(reactionsRaw)
-        console.log(requestList)
 
         const taxonomyUrl = "http://127.0.0.1/keggcreator/taxonomyIdList"
 
         requestGenerator("POST", taxonomyUrl, {
             taxonomyList: {"taxonomyList": requestList}}, "").then(response => {
-
-                const taxonomyIdArray = response.data
-
-            console.log(taxonomyIdArray)
 
                 const reaction = MakeReactionObjList(reactionsRaw, response.data)
                 const species = MakeSpeciesObjList(speciesRaw)
@@ -45,17 +42,19 @@ const SBMLDownloader = () => {
                 const reactionGlyphObj = MakeReactionGlyphObjList(reactionsRaw)
                 const speciesGlyphObj = MakeSpeciesGlyphObjList(speciesPosRaw)
 
+                const renderInformationObj = MakeRenderInformationObj
+
                     const obj = {
                         "?xml version=\"1.0\" encoding=\"UTF-8\"?": null,
                             sbml: {
                                 '@': {
                                     xmlns: "http://www.sbml.org/sbml/level3/version2/core",
+                                    level: "3",
+                                    version: "2",
                                     'xmlns:layout': "http://www.sbml.org/sbml/level3/version2/layout/version1",
                                     'layout:required': "false",
-                                    level: "3",
-                                    version: "2"
-                                    //    Optional: metaID, SBOterm (sysbio semantics declaring type of model elements), package namespaces and
-                                    //    required attribute
+                                    'xmlns:render': "http://www.sbml.org/sbml/level3/version1/render/version1",
+                                    'render:required': "false"
                                 },
                                 model: {
                                     '@': {id: pathwayName},
@@ -72,9 +71,10 @@ const SBMLDownloader = () => {
                                                 'layout:layout': {
                                                     '@': {'layout:id': "Layout1"},
                                                     '#': {
-                                                        'layout:dimensions': {'@': {'layout:width':"400", 'layout:height':"230"}},
+                                                        'layout:dimensions': {'@': {'layout:width':0.95*window.innerWidth, 'layout:height':0.75*window.innerHeight}},
                                                         'layout:listOfReactionGlyphs': {reactionGlyph: reactionGlyphObj},
-                                                        'layout:listOfSpeciesGlyphs': {speciesGlyph: speciesGlyphObj}
+                                                        'layout:listOfSpeciesGlyphs': {speciesGlyph: speciesGlyphObj},
+                                                        'render:listOfRenderInformation': renderInformationObj
                                                     }
                                                 }
                                             }
@@ -85,8 +85,8 @@ const SBMLDownloader = () => {
 
         console.log(objectToXML(obj))
 
-        // let blob = new Blob(new Array(objectToXML(obj).trim()), {type: "text/plain;charset=utf-8"});
-        // saveAs(blob, "ModuleGraph.xml"))
+        let blob = new Blob(new Array(objectToXML(obj).trim()), {type: "text/plain;charset=utf-8"});
+        saveAs(blob, "ModuleGraph.xml")
         })}
 
         return (
