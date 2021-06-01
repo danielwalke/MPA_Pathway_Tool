@@ -36,7 +36,7 @@ export const setReactionsInStore = (state, listOfReactions) =>{
                 koNumbersString: koNumbersString,
                 stochiometrySubstratesString: stochiometrySubstratesString,
                 stochiometryProductsString: stochiometryProductsString,
-                taxa:{}
+                taxa:reaction.taxonomy
             }
         )
 

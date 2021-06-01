@@ -47,7 +47,7 @@ public class KeggHandleRequests {
 
 	// handles requests from calculator
 	// starts calculator- generates user specific UUID, waits and process thread
-	public static String startJob(Request req, Response res, KeggCalculatorService calculator) {
+	public static String startJob(Request req, Response res, KeggCalculatorService calculator, KeggCreatorService creator) {
 		// parse JSON object
 		try {
 			KeggCalculatorJobJSON jobObject = calculator.gson.fromJson(req.body(), KeggCalculatorJobJSON.class);

@@ -2,14 +2,16 @@ import {useDispatch, useSelector} from "react-redux";
 import React from "react";
 import {saveAs} from "file-saver";
 import {filterTaxon} from "../../data-mapping/TaxonomyFilter";
+import clonedeep from "lodash/cloneDeep"
 
-const HeatMapCsvExporter = () => {
-    const proteinState = useSelector(state => state.mpaProteins)
-    const generalState = useSelector(state => state.general)
-    const graphState = useSelector(state => state.graph)
+const HeatMapCsvExporter = (props) => {
+    let proteinState = useSelector(state => state.mpaProteins)
+
     const dispatch = useDispatch()
 
     const handleHeatMapExport = () => {
+        proteinState = clonedeep(proteinState)
+        const {generalState, graphState} = clonedeep(props)
         console.time("HeatMap")
         dispatch({type: "SETLOADING", payload: true})
         const graphReactionObjects = graphState.data.nodes.filter(node => node.id.match(/\s[R,U][0-9][0-9][0-9][0-9][0-9]/))
@@ -50,7 +52,7 @@ const HeatMapCsvExporter = () => {
     return (
         <div>
             <button className={"downloadButton"}
-                    disabled={!graphState.data.nodes.length > 0 || !proteinState.proteinSet.size > 0}
+                    disabled={!props.graphState.data.nodes.length > 0 || !proteinState.proteinSet.size > 0}
                     onClick={() => handleHeatMapExport()}>Download Data
             </button>
         </div>

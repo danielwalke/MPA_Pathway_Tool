@@ -4,8 +4,9 @@ import {getUserReactionId} from "../../../specReaction/functions/SpecReactionFun
 import {addCompoundsToReactions} from "../ReactionCompoundsAdder";
 import {setReactionsInStore} from "../ReactionsSetter";
 import {setReactionsAndCompoundsInStore} from "../GraphDrawer";
-import {readListOfReactionGlyphs} from "../nodePositions/SbmlNodePositions";
-import clonedeep from "lodash/cloneDeep";
+import {readListOfReactionGlyphs} from "../nodePositionsAndOpacity/SbmlNodePositionsAndOpacity";
+import {readListOfSpeciesGlyphs} from "../nodePositionsAndOpacity/SpeciesGlyphReader"
+import {requestGenerator} from "../../../request/RequestGenerator";
 
 //get specific compound id in the appropriate format
 export const getCompoundId = (index) => {
@@ -63,7 +64,7 @@ const readSpecies =(dispatch, sbml, state)=> {
 }
 
 //read reactions from sbml file
-const readReactions = (dispatch, sbml) => {
+const readReactions = (dispatch, sbml,state) => {
     const listOfReactionsElement = sbml.getElementsByTagName("listOfReactions")[0]
     const listOfReactions = listOfReactionsElement.children.map((reaction, index) =>{
         const sbmlId = reaction.attributes.id;
@@ -99,12 +100,31 @@ const readReactions = (dispatch, sbml) => {
             koNumbers:koNumbers,
             substrates: substrates,
             products: products,
-            reversible: reversible
+            reversible: reversible,
+            taxonomy: getTaxonomyFromSbml(annotations,state)
         };
 
 
     })
     return listOfReactions
+}
+
+const getTaxonomyNumber = (annotations) =>{
+    const taxonomyLinks = annotations.filter(link => link.includes("taxonomy"))
+    return taxonomyLinks.map(link => {
+        const items = link.split("/")
+        return items[items.length-1]
+    })
+}
+
+const getTaxonomyFromSbml = (annotations, state) =>{
+    const taxonomyNumbers = getTaxonomyNumber(annotations)
+    const taxonomyObject = {}
+     taxonomyNumbers.forEach(taxonomyNumber =>{
+        const taxonomy = state.taxonomy.taxonomyNcbiList.find(taxon => taxon.id === taxonomyNumber)
+         taxonomyObject[taxonomy.taxonomicName] = taxonomy.taxonomicRank
+    })
+    return taxonomyObject
 }
 
 //checks if ListOfSpecies contains missing compound annotaations
@@ -124,9 +144,10 @@ export const onSBMLModuleFileChange = async (event, dispatch, state) => {
             const result = e.target.result.trim()
             const parser = new xmlParser()
             const sbml = parser.parseFromString(result)
-            const listOfReactionGlyphs = readListOfReactionGlyphs(sbml)
+            const listOfSpeciesGlyphs = readListOfSpeciesGlyphs(sbml)
+            const listOfReactionGlyphs = readListOfReactionGlyphs(sbml,listOfSpeciesGlyphs)
             const listOfSpecies = readSpecies(dispatch, sbml, state)
-            const listOfReactions = readReactions(dispatch, sbml)
+            const listOfReactions = readReactions(dispatch, sbml,state)
             const isMissingAnnotations = checkMissingAnnotations(listOfSpecies, dispatch)
             dispatch({type: "SETMODULEFILENAMESBML", payload: file.name})
             dispatch({type:"SET_LIST_OF_REACTION_GLYPHS", payload: listOfReactionGlyphs})
@@ -146,7 +167,8 @@ export const onSBMLModuleFileChange = async (event, dispatch, state) => {
                 // dispatch({type: "SETDATA", payload: data})
                 dispatch({type:"SETLOADING", payload: false})
             }
-        }catch{
+        }catch(e){
+            console.error(e)
             window.alert("can't read the file")
         }
     }

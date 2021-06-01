@@ -17,6 +17,7 @@ import model.KeggReactionObject;
 import pathwayJsonModel.JSONCompound;
 import pathwayJsonModel.JSONPathway;
 import pathwayJsonModel.JSONReaction;
+import services.KeggCreatorService;
 
 /**
  * parse module files from user format: stepID: reaction-number-Id,
@@ -51,8 +52,10 @@ public class ModuleFileParser {
 	}
 
 	private void parseSbml(String file, KeggDataObject keggdataUser) {
-		// TODO Auto-generated method stub
-		
+		 KeggCreatorService creator = new KeggCreatorService();
+		 creator.parseNcbiTaxonomy();
+		KeggModuleObject module = SbmlParser.parseSbmlFile(new File(file), creator);
+		keggdataUser.addModule(module);
 	}
 
 	private void parseJson(String file, KeggDataObject keggdataUser) {

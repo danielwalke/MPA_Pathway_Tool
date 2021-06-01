@@ -1,6 +1,7 @@
 class SpeciesReferenceGlyph{
     #_layoutId
     #_layoutRole //typeOfCompound
+    #_speciesGlyph
     #_layOutStartX
     #_layOutStartY
     #_layOutEndX
@@ -13,8 +14,17 @@ class SpeciesReferenceGlyph{
         this.#_layOutEndX = 0
         this.#_layOutEndY = 0
         this.#_layoutId = layoutId;
+        this.#_speciesGlyph = ""
     }
 
+
+    get speciesGlyph() {
+        return this.#_speciesGlyph;
+    }
+
+    set speciesGlyph(value) {
+        this.#_speciesGlyph = value;
+    }
 
     get layoutRole() {
         return this.#_layoutRole;

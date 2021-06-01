@@ -79,6 +79,7 @@ class UploadPanel extends Component {
         console.log(moduleFileNames);
         let body = { jobID: "", mpaCSVFile: MPAFileName, moduleFiles: moduleFileNames, message: "", downloadLink: "" };
         requestGenerator("POST", RequestURL.endpoint_fetchUUID,"","", body).then( response => {
+            console.log(response)
             if(response.status === 200) {
                 const {jobID, message} = response.data;
                 this.setState({jobID: jobID})
@@ -89,6 +90,7 @@ class UploadPanel extends Component {
                 // let body = {"Content-Type": "multipart/form-data", "uploaded_file":this.props.CalculatorStore.getMPAFile[0]}
                 this.props.CalculatorStore.setJobIDAndMessage(jobID, message);
                 requestGenerator("POST", RequestURL.endpoint_uploadMPAFile, {jobid: jobID}, header, formData).then(response => {
+                    console.log(response)
                     if(response.status !== 200){
                         this.props.CalculatorStore.setErrorMessage("MPA file processing failed");
                     }
@@ -99,8 +101,10 @@ class UploadPanel extends Component {
                     formData.append("uploaded_file", moduleFile);
                     // body = {"Content-Type": "multipart/form-data", "uploaded_file": moduleFile};
                     requestGenerator("POST", RequestURL.endpoint_uploadModuleFiles, {jobid: jobID}, header, formData).then(response => {
+                        console.log(response)
                         if(response.status !== 200){
                             this.props.CalculatorStore.setErrorMessage("Module file processing failed");
+
                         }
                     })
                     return null

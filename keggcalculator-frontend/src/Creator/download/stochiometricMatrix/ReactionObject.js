@@ -1,9 +1,9 @@
 
 
-export const getReactionObjects = (forwardReactions, backwardReactions,compoundSet, state) =>{
+export const getReactionObjects = (forwardReactions, backwardReactions,compoundSet, graphState) =>{
     //adds compound names to stoichiometric coefficients in each reactions
     const reactionObjects = forwardReactions.map(reaction => { // correct direction
-        const reactionSubstrateLinks = state.graph.data.links.filter(link => link.target.includes(reaction.reactionId))
+        const reactionSubstrateLinks = graphState.data.links.filter(link => link.target.includes(reaction.reactionId))
         const reactionSubstrates = reactionSubstrateLinks.map(link => link.source)
         reaction.metabolites = []
         reaction.reactionSubstrates = reactionSubstrates.map(substrate => {
@@ -21,7 +21,7 @@ export const getReactionObjects = (forwardReactions, backwardReactions,compoundS
                 }
             )
         })
-        const reactionProductLinks = state.graph.data.links.filter(link => link.source.includes(reaction.reactionId))
+        const reactionProductLinks = graphState.data.links.filter(link => link.source.includes(reaction.reactionId))
         const reactionProducts = reactionProductLinks.map(link => link.target)
         reaction.reactionProducts = reactionProducts.map(product => {
             const id = product.substring(product.length-6, product.length)
@@ -43,7 +43,7 @@ export const getReactionObjects = (forwardReactions, backwardReactions,compoundS
 
     //adds compound names to stoichiometric coefficients in each reactions
     backwardReactions.map(reaction => { // reversed direction -> user changed the directions of arrows
-        const reactionSubstrateLinks = state.graph.data.links.filter(link => link.target.includes(reaction.reactionId))
+        const reactionSubstrateLinks = graphState.data.links.filter(link => link.target.includes(reaction.reactionId))
         const reactionSubstrates = reactionSubstrateLinks.map(link => link.source)
         reaction.metabolites = []
         reaction.reactionSubstrates = reactionSubstrates.map(substrate => {
@@ -61,7 +61,7 @@ export const getReactionObjects = (forwardReactions, backwardReactions,compoundS
                 }
             )
         })
-        const reactionProductLinks = state.graph.data.links.filter(link => link.source.includes(reaction.reactionId))
+        const reactionProductLinks = graphState.data.links.filter(link => link.source.includes(reaction.reactionId))
         const reactionProducts = reactionProductLinks.map(link => link.target)
         reaction.reactionProducts = reactionProducts.map(product => {
             const id = product.substring(product.length-6, product.length)

@@ -15,13 +15,10 @@ import {requestGenerator} from "../../request/RequestGenerator";
 import {compoundUrl} from "../../request/RequestHandling";
 import MakeRenderInformationObj from "./MakeRenderInformationObj";
 
-const SBMLDownloader = () => {
-
-    const generalState = clonedeep(useSelector(state => state.general))
-    const graphState = clonedeep(useSelector(state => state.graph))
+const SBMLDownloader = (props) => {
 
     const HandleSBMLDownload = () => {
-
+        const {generalState, graphState} = clonedeep(props)
         const pathwayName = "pathway" //TODO add user interface for text input
 
         const [reactionsRaw, requestList] = MakeReactionList(generalState, graphState)
@@ -91,7 +88,7 @@ const SBMLDownloader = () => {
 
         return (
         <div>
-            <button className={"downloadButton"} onClick={HandleSBMLDownload}>Download SBML
+            <button disabled={!props.graphState.data.nodes.length>0} className={"downloadButton"} onClick={HandleSBMLDownload}>Download SBML
             </button>
         </div>)
 

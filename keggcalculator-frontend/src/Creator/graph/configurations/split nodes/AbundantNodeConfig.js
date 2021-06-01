@@ -6,6 +6,7 @@ import Field from "../../../specReaction/substrates and products/Field";
 import {isRequestValid} from "../../../request/RequestValidation";
 import DeleteIcon from "@material-ui/icons/Delete";
 import "./AbundantNodeConfig.css"
+import {COMPOUND_NODE_COLOR} from "../../Constants"
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -35,15 +36,13 @@ const AbundantNodeConfig = () => {
                 nodes = graphState.data.nodes
                 const abundantLinks = graphState.data.links.filter(link => link.source === comp || link.target === comp)
                 abundantLinks.map((link, index) => {
-                    console.log(index)
                     if(link.source===comp){
-                        nodes.push({id: `${index}__${link.source}`, color: "darkgreen", opacity: 0.4, x:0, y:0})
+                        nodes.push({id: `${index}__${link.source}`, color: COMPOUND_NODE_COLOR, opacity: 0.4, x:0, y:0})
                     }else{
-                        nodes.push({id: `${index}__${link.target}`, color: "darkgreen", opacity: 0.4, x:0, y:0})
+                        nodes.push({id: `${index}__${link.target}`, color: COMPOUND_NODE_COLOR, opacity: 0.4, x:0, y:0})
                     }
                     return null
                 })
-                console.log(nodes)
                 abundantLinks.map((link, index) => {
                     if(link.source===comp){
                         link.source = `${index}__${link.source}`

@@ -2,20 +2,21 @@ import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {saveAs} from "file-saver";
 import {getReactionObjects} from "./ReactionObject";
+import clonedeep from "lodash/cloneDeep"
 
-const fetchStochiometricInformation = (state, dispatch) => {
-
+const fetchStochiometricInformation = (dispatch, props) => {
+    const {generalState, graphState} = clonedeep(props)
     //fetches all reactions and information
-    const nodeIds = state.graph.data.nodes.map(node => node.id.substring(node.id.length-6, node.id.length))
+    const nodeIds = graphState.data.nodes.map(node => node.id.substring(node.id.length-6, node.id.length))
     const reactionIds = nodeIds.filter(id => id.match(/[R,U][0-9][0-9][0-9][0-9][0-9]/))
-    const reactions = state.general.reactionsInSelectArray.filter(reaction => reactionIds.includes(reaction.reactionId))
+    const reactions = generalState.reactionsInSelectArray.filter(reaction => reactionIds.includes(reaction.reactionId))
     const forwardReactions = reactions.filter(reaction => reaction.isForwardReaction)
     const backwardReactions = reactions.filter(reaction => !reaction.isForwardReaction)
 
     const compoundSet = new Set()
 
     //adds compound names to stoichiometric coefficients in each reactions
-    const reactionObjects = getReactionObjects(forwardReactions, backwardReactions, compoundSet, state)
+    const reactionObjects = getReactionObjects(forwardReactions, backwardReactions, compoundSet, graphState)
 
     //creates stoichiometric matrix
     const compoundArray = Array.from(compoundSet)
@@ -70,11 +71,10 @@ const fetchStochiometricInformation = (state, dispatch) => {
     saveAs(blob, "stoichiometricMatrix.csv")
 }
 
-const StoichiometricMatrix = () => {
-    const state = useSelector(state=> state);
+const StoichiometricMatrix = (props) => {
     const dispatch = useDispatch();
     return (<div>
-            <button className={"downloadButton"} onClick={()=>fetchStochiometricInformation(state, dispatch)}>stochiometric matrix</button>
+            <button disabled={!props.graphState.data.nodes.length>0}  className={"downloadButton"} onClick={()=>fetchStochiometricInformation(dispatch, props)}>stochiometric matrix</button>
         </div>
     );
 };

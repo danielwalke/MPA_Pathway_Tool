@@ -3,19 +3,16 @@ package jobs;
 import java.io.File;
 import java.util.ArrayList;
 
-import calculator.CalculatorOutput;
 import calculator.CalculatorOutputList;
 import constants.KeggCalculatorConstants;
 import json.KeggCalculatorJobJSON;
 import model.KeggDataObject;
-import model.KeggModuleObject;
-import model.KeggReactionObject;
-import model.MpaProtein;
 import model.MpaProteine;
 import parser.Calculator2;
 import parser.KeggDataParser;
 import parser.ModuleFileParser;
 import parser.MpaFileParser2;
+import services.KeggCreatorService;
 
 /**
  * executes each job for KeggCalculator
@@ -36,7 +33,6 @@ public class KeggCalculatorJob implements Runnable {
 
 	@Override
 	public void run() {
-		System.out.println("Job started");
 		this.job.message = "started";
 		// timeout counter
 		int count = 0;

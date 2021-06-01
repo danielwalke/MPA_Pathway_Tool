@@ -3,7 +3,7 @@ import {Graph} from "react-d3-graph";
 import FadeLoader from "react-spinners/FadeLoader";
 import {useDispatch, useSelector} from "react-redux";
 import {handleSubmit} from "../../keggReaction/substrate and products/SubmitHandler";
-import clonedeep from "lodash/cloneDeep";
+import clonedeep from "lodash/cloneDeep"
 
 const onClickNode = (nodeId, dispatch, graphState, keggState) => {
     const setProducts = ({productList, prodReactionsMap}) => {
@@ -128,7 +128,7 @@ const GraphVisualization = () => {
     }
     return (
         <div>
-            <FadeLoader height={"2vh"} width={"2vh"} radius={"20vh"} margin={"20vh"} css={{marginRight: "25vw", marginTop:"20vh"}}/>
+            <h3>upload or build network</h3>
         </div>
     )
 }

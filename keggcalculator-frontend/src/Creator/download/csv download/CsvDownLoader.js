@@ -5,13 +5,12 @@ import {getNodePosition} from "../NodePosition";
 import {addOutput, getReactions} from "../DownloadFunctions";
 import clonedeep from "lodash/cloneDeep";
 
-const CsvDownLoader = () => {
-
-    const generalState = clonedeep(useSelector(state => state.general))
-    const graphState = clonedeep(useSelector(state => state.graph))
+const CsvDownLoader = (props) => {
 
     const handleDownloadCsv = () => {
+
         try{
+            const {generalState, graphState} = clonedeep(props)
             const {reactionObjects, reactionNames} = getReactions(graphState)
             const reactions = reactionNames.map(name => generalState.reactionsInSelectArray.filter(reaction => reaction.reactionName === name)[0])
             reactions.map(reaction => {
@@ -80,7 +79,7 @@ const CsvDownLoader = () => {
 
     return (
         <div>
-            <button disabled={graphState.data.nodes.length < 1} className={"downloadButton"}
+            <button disabled={props.graphState.data.nodes.length < 1} className={"downloadButton"}
                     onClick={handleDownloadCsv}>Download Csv
             </button>
         </div>

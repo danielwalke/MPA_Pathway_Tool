@@ -108,8 +108,9 @@ public class KeggCalculatorServer {
 		 */
 
 		post("/keggcalculator/startJob", (req, res) -> {
+			System.out.println("start job request");
 			creator.requestAccess.get("startJob").add(creator.getAccessDate());
-			return KeggHandleRequests.startJob(req, res, calculator);
+			return KeggHandleRequests.startJob(req, res, calculator, creator);
 		});
 
 		post("/keggcalculator/csvMPA", (req, res) -> {

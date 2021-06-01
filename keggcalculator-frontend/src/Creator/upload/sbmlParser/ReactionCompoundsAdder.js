@@ -29,6 +29,5 @@ export const addCompoundsToReactions = (state, listOfReactions, listOfSpecies) =
         })
         return reaction;
     })
-    console.log(newListOfReactions); //if this is all object by reference it will work fine and substrates and products are filled with additional necessary information
     return newListOfReactions
 }

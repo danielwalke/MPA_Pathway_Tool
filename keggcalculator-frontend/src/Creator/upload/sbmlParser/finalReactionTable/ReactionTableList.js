@@ -58,9 +58,6 @@ const ReactionTableList = () =>
         setListOfReactions(newListOfReactions)
     }
 
-    const handleSubmit = () =>{
-    }
-
     useEffect(()=>{
         setListOfReactionsClone(clonedeep(state.general.listOfReactions))
     },[state.general.isShowingReactionTable])

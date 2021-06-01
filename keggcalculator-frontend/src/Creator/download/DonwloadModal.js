@@ -10,24 +10,26 @@ import StoichiometricMatrix from "./stochiometricMatrix/StoichiometricMatrix";
 import CsvDownLoader from "./csv download/CsvDownLoader";
 import CsvDownloader from "./csv download/new/CSVDownloader";
 
+
 const DonwloadModal = () =>{
     const classes = useStyles();
-    const state = useSelector(state => state.general)
+    const generalState = useSelector(state => state.general)
+    const graphState = useSelector(state => state.graph)
     const dispatch = useDispatch();
     const body = (
         <div className={classes.paper}>
-            <CsvDownloader/>
-            <CsvDownLoader/>
-            <JSONDownloader/>
-            <SBMLDownloader/>
-            <GraphSvgExporter/>
-            <HeatMapCsvExporter/>
-            <StoichiometricMatrix/>
+            {/*<CsvDownloader/>*/}
+            <CsvDownLoader generalState={generalState} graphState={graphState}/>
+            <JSONDownloader generalState={generalState} graphState={graphState}/>
+            <SBMLDownloader generalState={generalState} graphState={graphState}/>
+            <GraphSvgExporter graphState={graphState}/>
+            <HeatMapCsvExporter generalState={generalState} graphState={graphState}/>
+            <StoichiometricMatrix generalState={generalState} graphState={graphState}/>
         </div>
     )
     return(
         <div>
-            <Modal className={classes.modal} open={state.downloadModal} onClose={() => dispatch({type: "SWITCHDOWNLOADMODAL"})}>
+            <Modal className={classes.modal} open={generalState.downloadModal} onClose={() => dispatch({type: "SWITCHDOWNLOADMODAL"})}>
                 {body}
             </Modal>
         </div>

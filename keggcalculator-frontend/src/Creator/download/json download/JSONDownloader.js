@@ -5,12 +5,13 @@ import {getNodePosition} from "../NodePosition";
 import {saveAs} from "file-saver";
 import clonedeep from "lodash/cloneDeep"
 
-const JSONDownloader = () => {
-    const generalState = clonedeep(useSelector(state => state.general))
-    const graphState = clonedeep(useSelector(state => state.graph))
+const JSONDownloader = (props) => {
+
 
     const handleJsonDownload = () => {
+
         try{
+            const {generalState, graphState} = clonedeep(props)
             const {reactionObjects, reactionNames} = getReactions(graphState)
 
             const reactions = reactionNames.map(name => generalState.reactionsInSelectArray.filter(reaction => reaction.reactionName === name)[0])
@@ -65,7 +66,7 @@ const JSONDownloader = () => {
 
     return (
         <div>
-            <button className={"downloadButton"} onClick={handleJsonDownload}>Download Json</button>
+            <button disabled={!props.graphState.data.nodes.length>0}  className={"downloadButton"} onClick={handleJsonDownload}>Download Json</button>
         </div>
     )
 }
