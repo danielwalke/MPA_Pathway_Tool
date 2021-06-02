@@ -2,6 +2,7 @@ package model;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map.Entry;
 /**
  * class that allows easy access to all data from KEGG
  * contains modules, reactions, ec- numbers, ko- numbers and compounds
@@ -16,7 +17,8 @@ public class KeggDataObject extends KeggData {
 	private final HashMap<String, KeggECObject> ecnumberMap;
 	private final HashMap<String, KeggKOObject> koNumberMap;
 	private final HashMap<String, KeggCompoundObject> compoundMap;
-
+	protected final HashMap<String, KeggHsaObject> hsaMap;
+	
 	public KeggDataObject() {
 		super();
 		this.keyCompounds = new HashSet<>();
@@ -25,13 +27,17 @@ public class KeggDataObject extends KeggData {
 		this.ecnumberMap = new HashMap<String, KeggECObject>();
 		this.koNumberMap = new HashMap<String, KeggKOObject>();
 		this.compoundMap = new HashMap<String, KeggCompoundObject>();
+		this.hsaMap = new HashMap<>();
 	}
 
 	
 	//clones all data stored in keggData
 	public KeggDataObject cloneData() {
 		KeggDataObject clonedData = new KeggDataObject();
-
+		for(Entry<String, KeggHsaObject> hsa : getHsaMap().entrySet()) {
+			KeggHsaObject hsaEntity = new KeggHsaObject(hsa.getValue().getHsaId(), hsa.getValue().getHsaName());
+			clonedData.addHsa(hsaEntity);
+		}
 		// initialize new objects for cloning  
 		for (KeggReactionObject reaction : getReactions()) {
 			//set all reactions in cloned data
@@ -254,5 +260,23 @@ public class KeggDataObject extends KeggData {
 		this.compounds.add(c);
 		this.compoundMap.put(c.getCompoundId(), c);
 	}
+	public void addHsa(KeggHsaObject hsa) {
+		this.hsaEntities.add(hsa);
+		this.hsaMap.put(hsa.getHsaId(),hsa);
+	}
 
+
+	public KeggHsaObject getHsaEntitie(String hsaId) {
+		return this.hsaMap.get(hsaId);
+	}
+
+
+	public HashMap<String, KeggHsaObject> getHsaMap() {
+		return this.hsaMap;
+	}
+	
+	public HashSet<KeggHsaObject> getHsaEntities(){
+		return this.hsaEntities;
+	}
+	
 }

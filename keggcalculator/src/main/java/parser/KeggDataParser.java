@@ -7,6 +7,7 @@ import java.io.FileReader;
 import model.KeggCompoundObject;
 import model.KeggDataObject;
 import model.KeggECObject;
+import model.KeggHsaObject;
 import model.KeggKOObject;
 import model.KeggModuleObject;
 import model.KeggReactionObject;
@@ -439,6 +440,26 @@ public class KeggDataParser {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static void parseHsa2HsaName(KeggDataObject keggData, String file) {
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(new File(file)));
+			String line = br.readLine();
+			line = br.readLine(); // skip header
+			while (line != null) {
+				String[] splitLine = line.split("\t");
+				String hsaId = splitLine[0];
+				String hsaName = splitLine[1];
+				KeggHsaObject hsaEntity = new KeggHsaObject(hsaId, hsaName);
+				keggData.addHsa(hsaEntity);
+				line = br.readLine();
+			}
+			br.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }

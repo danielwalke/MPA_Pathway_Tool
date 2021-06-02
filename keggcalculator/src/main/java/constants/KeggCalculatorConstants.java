@@ -25,7 +25,8 @@ public class KeggCalculatorConstants {
 	public static final String KO_NUMBER_LIST_DIR = "src/main/resources/KEGG/essentialFiles/kegg_list_ko_2020_09_30.csv";
 	public static final String COMPOUND_NUMBER_LIST_DIR = "src/main/resources/KEGG/essentialFiles/kegg_list_compounds_2020_09_30.csv";
 	public static final String GLYCAN_NUMBER_LIST_DIR = "src/main/resources/KEGG/essentialFiles/kegg_list_glycans_2020_09_30.csv";
-	
+	public static final String HSA_NUMBER_LIST_DIR = "src/main/resources/KEGG/essentialFiles/kegg_list_hsa_060621.csv";
+
 	//connections KEGG
 	public static final String MODULE_TO_REACTION_DIR = "src/main/resources/KEGG/essentialFiles/kegg_connection_module2reaction_2020_09_30.csv";
 	public static final String MODULE_TO_KO_NUMBER_DIR = "src/main/resources/KEGG/essentialFiles/kegg_connection_module2ko_2020_09_30.csv";

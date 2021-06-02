@@ -98,6 +98,7 @@ public class KeggCreatorService {
 		KeggDataParser.parseSubstrate2Reaction(keggData, KeggCalculatorConstants.SUBSTRATE_TO_REACTION_DIR);
 		KeggDataParser.parseProduct2Reaction(keggData, KeggCalculatorConstants.PRODUCT_TO_REACTION_DIR);
 		KeggDataParser.parseKo2EcNumber(keggData, KeggCalculatorConstants.KO_TO_EC_DIR);
+		KeggDataParser.parseHsa2HsaName(keggData, KeggCalculatorConstants.HSA_NUMBER_LIST_DIR);
 //		KeggCalculatorServer server = new KeggCalculatorServer();
 //		server.setKeggData(this.keggData);
 	}

@@ -141,7 +141,7 @@ public class KeggCalculatorJob implements Runnable {
 			// result expiration? --> after 24h
 			//delete files
 			try {
-				Thread.sleep(1000*60*60*24*7); //wait one week -> then delete all files
+				Thread.sleep(1000*60*30); //wait 30 min -> then delete all files
 				deleteFiles(this.job.jobID);
 				System.out.println("files deleted");
 			} catch (InterruptedException e) {

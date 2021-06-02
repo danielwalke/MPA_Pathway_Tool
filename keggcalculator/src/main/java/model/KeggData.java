@@ -9,6 +9,7 @@ public class KeggData {
 	protected final HashSet<KeggECObject> ecnumbers;
 	protected final HashSet<KeggKOObject> koNumbers;
 	protected final HashSet<KeggCompoundObject> compounds;
+	protected final HashSet<KeggHsaObject> hsaEntities;
 	
 	public KeggData() {
 		this.modules = new HashSet<KeggModuleObject>();
@@ -16,6 +17,7 @@ public class KeggData {
 		this.ecnumbers = new HashSet<KeggECObject>();
 		this.koNumbers = new HashSet<KeggKOObject>();
 		this.compounds = new HashSet<KeggCompoundObject>();
+		this.hsaEntities = new HashSet<KeggHsaObject>();
 		
 	}
 
