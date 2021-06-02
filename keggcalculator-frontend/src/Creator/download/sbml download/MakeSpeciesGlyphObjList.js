@@ -7,7 +7,7 @@ const MakeSpeciesGlyphObjList = (speciesRaw) => {
 
         const speciesGlyphObj = {
             '@': {
-                'layout:id': ['SpeciesGlyph_', species.id].join(""),
+                'layout:id': ['SpeciesGlyph_', species.glyphId].join(""),
                 'layout:species': species.id,
                 'render:objectRole': species.opacity === 1 ? "keyCompound" : "nonKeyCompound"
             },

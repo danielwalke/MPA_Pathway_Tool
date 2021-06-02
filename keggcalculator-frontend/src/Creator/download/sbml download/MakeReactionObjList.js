@@ -37,7 +37,7 @@ const MakeReactionObjectList = (reactionsRaw, taxonomyIdArray) => {
             '#': {
                 listOfReactants: {'#': MakeSpeciesReferenceObj(item.substrates)},
                 listOfProducts: {'#': MakeSpeciesReferenceObj(item.products)},
-                'sbml:annotation': {
+                'annotation': {
                     '@': {'xmlns:sbml': "http://www.sbml.org/sbml/level3/version1/core"},
                     '#': {
                         'rdf:RDF': {

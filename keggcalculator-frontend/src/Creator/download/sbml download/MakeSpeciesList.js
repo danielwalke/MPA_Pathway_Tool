@@ -35,6 +35,7 @@ const MakeSpeciesList = (reactionArrayProcessed) => {
 
         const compoundPositions = {
             name: comp.abbreviation,
+            glyphId: comp.glyphId,
             id: comp.id,
             compartment: "c",
             compartmentName: "cytosol",
