@@ -4746,3 +4746,519 @@ java.nio.channels.ClosedSelectorException
 2021-06-01 13:20:10,284 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
 2021-06-01 13:20:10,340 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@2ee04861{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
 2021-06-01 13:20:10,340 INFO o.e.j.s.Server [Thread-0] Started @1776ms
+2021-06-01 21:21:49,441 INFO s.h.m.MatcherFilter [qtp1524503057-71] The requested route [//rest.kegg.jp/list/hsa] has not been mapped in Spark for Accept: [application/json, text/plain, */*]
+2021-06-01 21:21:49,456 INFO s.h.m.MatcherFilter [qtp1524503057-508] The requested route [//rest.kegg.jp/list/hsa] has not been mapped in Spark for Accept: [application/json, text/plain, */*]
+2021-06-01 21:21:53,447 INFO s.h.m.MatcherFilter [qtp1524503057-509] The requested route [//rest.kegg.jp/list/hsa] has not been mapped in Spark for Accept: [application/json, text/plain, */*]
+2021-06-02 09:55:03,071 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-06-02 09:55:03,095 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @3025ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-06-02 09:55:03,125 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-06-02 09:55:03,125 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-06-02 09:55:03,127 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-06-02 09:55:03,151 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-06-02 09:55:03,151 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-06-02 09:55:03,153 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-06-02 09:55:03,220 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@19badbb8{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-06-02 09:55:03,220 INFO o.e.j.s.Server [Thread-0] Started @3150ms
+2021-06-02 11:34:41,444 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-06-02 11:34:41,510 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1637ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-06-02 11:34:41,533 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-06-02 11:34:41,534 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-06-02 11:34:41,535 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-06-02 11:34:41,555 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-06-02 11:34:41,555 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-06-02 11:34:41,556 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-06-02 11:34:41,610 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@4fc93e0e{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-06-02 11:34:41,610 INFO o.e.j.s.Server [Thread-0] Started @1738ms
+2021-06-02 11:46:52,825 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-06-02 11:46:52,844 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1618ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-06-02 11:46:52,867 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-06-02 11:46:52,867 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-06-02 11:46:52,869 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-06-02 11:46:52,889 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-06-02 11:46:52,889 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-06-02 11:46:52,891 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-06-02 11:46:52,946 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@4fc93e0e{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-06-02 11:46:52,946 INFO o.e.j.s.Server [Thread-0] Started @1721ms
+2021-06-02 12:23:26,476 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-2] The type of String '' on the element 'annotation' is unknown! Some data might be lost
+2021-06-02 12:23:26,478 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-2] The type of String '' on the element 'annotation' is unknown! Some data might be lost
+2021-06-02 12:23:26,478 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-2] The type of String '' on the element 'annotation' is unknown! Some data might be lost
+2021-06-02 12:23:26,479 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-2] The type of String '' on the element 'annotation' is unknown! Some data might be lost
+2021-06-02 12:23:26,480 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-2] The type of String '' on the element 'annotation' is unknown! Some data might be lost
+2021-06-02 12:23:26,481 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-2] The type of String '' on the element 'annotation' is unknown! Some data might be lost
+2021-06-02 12:23:26,482 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-2] The type of String '' on the element 'annotation' is unknown! Some data might be lost
+2021-06-02 12:23:26,482 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-2] The type of String '' on the element 'annotation' is unknown! Some data might be lost
+2021-06-02 12:23:26,483 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-2] The type of String '' on the element 'annotation' is unknown! Some data might be lost
+2021-06-02 12:23:26,484 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-2] The type of String '' on the element 'annotation' is unknown! Some data might be lost
+2021-06-02 12:23:26,484 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-2] The type of String '' on the element 'annotation' is unknown! Some data might be lost
+2021-06-02 12:23:26,485 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-2] The type of String '' on the element 'annotation' is unknown! Some data might be lost
+2021-06-02 12:23:26,486 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-2] The type of String '' on the element 'annotation' is unknown! Some data might be lost
+2021-06-02 12:23:26,486 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-2] The type of String '' on the element 'annotation' is unknown! Some data might be lost
+2021-06-02 12:23:26,487 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-2] The type of String '' on the element 'annotation' is unknown! Some data might be lost
+2021-06-02 12:23:26,488 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-2] The type of String '' on the element 'annotation' is unknown! Some data might be lost
+2021-06-02 12:23:26,489 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-2] The type of String '' on the element 'annotation' is unknown! Some data might be lost
+2021-06-02 12:23:26,489 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-2] The type of String '' on the element 'annotation' is unknown! Some data might be lost
+2021-06-02 12:23:26,490 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-2] The type of String '' on the element 'annotation' is unknown! Some data might be lost
+2021-06-02 12:23:26,491 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-2] The type of String '' on the element 'annotation' is unknown! Some data might be lost
+2021-06-02 12:23:26,492 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-2] The type of String '' on the element 'annotation' is unknown! Some data might be lost
+2021-06-02 12:23:26,494 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-2] The type of String '' on the element 'annotation' is unknown! Some data might be lost
+2021-06-02 12:23:26,495 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-2] The type of String '' on the element 'annotation' is unknown! Some data might be lost
+2021-06-02 12:23:26,497 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-2] The type of String '' on the element 'annotation' is unknown! Some data might be lost
+2021-06-02 12:23:26,498 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-2] The type of String '' on the element 'annotation' is unknown! Some data might be lost
+2021-06-02 12:23:26,500 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-2] The type of String '' on the element 'annotation' is unknown! Some data might be lost
+2021-06-02 12:23:26,500 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-2] The type of String '' on the element model (Model) is unknown! Some data might be lost.
+2021-06-02 12:23:26,501 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element reactionGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,501 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,501 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,502 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,502 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,503 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,503 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,504 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,504 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element reactionGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,504 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,505 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,505 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,506 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,506 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,507 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element reactionGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,507 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,507 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,508 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,508 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,508 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,509 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element reactionGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,509 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,509 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,509 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,510 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,510 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,511 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,511 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,511 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element reactionGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,511 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,512 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,512 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,512 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,513 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,513 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,514 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element reactionGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,514 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,514 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,514 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,515 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,515 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,516 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,516 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,516 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,516 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,517 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,517 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,517 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,517 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,518 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,518 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,518 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,519 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,519 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,519 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,519 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,519 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,520 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,520 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,520 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,520 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,521 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,521 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,521 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,521 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'id' on the element colorDefinition is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,522 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'value' on the element colorDefinition is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,522 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'id' on the element colorDefinition is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,522 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'value' on the element colorDefinition is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,522 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'id' on the element colorDefinition is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,522 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'value' on the element colorDefinition is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,522 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'id' on the element colorDefinition is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,522 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'value' on the element colorDefinition is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,522 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'id' on the element style is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,522 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'roleList' on the element style is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,522 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'stroke' on the element g is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,523 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'id' on the element style is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,523 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'roleList' on the element style is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,523 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'stroke' on the element g is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,523 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'id' on the element style is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,523 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'roleList' on the element style is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,523 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'stroke' on the element g is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,523 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'id' on the element style is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,523 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'roleList' on the element style is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,523 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-2] processAttribute: The attribute 'stroke' on the element g is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:23:26,525 WARN o.s.j.x.p.SBMLCoreParser [pool-1-thread-2] No Species matches the speciesID '00080"' of speciesReference ''.
+2021-06-02 12:26:56,422 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-06-02 12:26:56,442 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1665ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-06-02 12:26:56,469 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-06-02 12:26:56,470 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-06-02 12:26:56,471 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-06-02 12:26:56,496 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-06-02 12:26:56,496 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-06-02 12:26:56,498 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-06-02 12:26:56,562 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@2ee04861{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-06-02 12:26:56,562 INFO o.e.j.s.Server [Thread-0] Started @1786ms
+2021-06-02 12:27:11,199 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-1] The type of String 'annotation' on the element model (Model) is unknown! Some data might be lost.
+2021-06-02 12:27:11,199 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element reactionGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,200 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,200 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,200 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,201 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,201 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,202 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,202 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,202 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element reactionGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,202 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,203 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,203 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,204 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,204 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,204 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element reactionGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,204 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,205 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,205 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,205 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,206 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,206 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element reactionGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,206 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,207 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,207 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,207 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,208 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,208 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,209 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,209 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element reactionGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,209 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,209 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,210 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,210 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,211 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,211 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,211 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element reactionGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,211 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,212 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,212 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,212 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,213 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,213 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,213 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,213 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,213 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,214 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,214 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,214 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,214 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,215 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,215 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,215 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,215 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,216 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,216 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,216 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,216 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,217 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,217 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,217 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,218 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,218 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,218 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,218 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,218 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'id' on the element colorDefinition is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,218 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'value' on the element colorDefinition is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,219 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'id' on the element colorDefinition is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,219 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'value' on the element colorDefinition is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,219 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'id' on the element colorDefinition is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,219 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'value' on the element colorDefinition is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,219 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'id' on the element colorDefinition is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,219 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'value' on the element colorDefinition is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,219 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'id' on the element style is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,219 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'roleList' on the element style is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,220 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'stroke' on the element g is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,220 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'id' on the element style is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,220 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'roleList' on the element style is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,220 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'stroke' on the element g is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,220 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'id' on the element style is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,220 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'roleList' on the element style is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,220 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'stroke' on the element g is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,220 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'id' on the element style is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,220 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'roleList' on the element style is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,221 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'stroke' on the element g is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:27:11,222 WARN o.s.j.x.p.SBMLCoreParser [pool-1-thread-1] No Species matches the speciesID '00080"' of speciesReference ''.
+2021-06-02 12:30:38,597 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-06-02 12:30:38,616 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1607ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-06-02 12:30:38,640 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-06-02 12:30:38,640 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-06-02 12:30:38,641 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-06-02 12:30:38,661 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-06-02 12:30:38,661 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-06-02 12:30:38,663 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-06-02 12:30:38,717 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@2ee04861{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-06-02 12:30:38,717 INFO o.e.j.s.Server [Thread-0] Started @1709ms
+2021-06-02 12:30:59,225 WARN o.s.j.x.p.XMLNodeReader [pool-1-thread-1] The type of String 'annotation' on the element model (Model) is unknown! Some data might be lost.
+2021-06-02 12:30:59,226 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element reactionGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,226 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,227 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,227 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,227 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,228 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,228 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,229 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,229 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element reactionGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,229 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,229 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,230 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,230 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,230 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,231 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element reactionGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,231 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,231 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,232 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,232 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,232 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,233 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element reactionGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,233 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,233 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,233 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,234 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,234 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,234 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,235 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,235 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element reactionGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,235 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,235 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,236 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,236 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,236 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,237 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,237 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element reactionGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,237 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,237 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,238 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,238 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,238 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,238 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'type' on the element curveSegment is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,239 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,239 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,239 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,239 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,240 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,240 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,240 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,240 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,241 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,241 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,241 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,242 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,242 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,242 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,242 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,242 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,243 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,243 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,243 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,243 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,244 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,244 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'objectRole' on the element speciesGlyph is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,244 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'id' on the element colorDefinition is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,244 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'value' on the element colorDefinition is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,244 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'id' on the element colorDefinition is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,244 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'value' on the element colorDefinition is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,244 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'id' on the element colorDefinition is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,245 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'value' on the element colorDefinition is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,245 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'id' on the element colorDefinition is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,245 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'value' on the element colorDefinition is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,245 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'id' on the element style is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,245 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'roleList' on the element style is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,245 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'stroke' on the element g is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,245 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'id' on the element style is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,245 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'roleList' on the element style is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,245 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'stroke' on the element g is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,245 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'id' on the element style is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,246 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'roleList' on the element style is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,246 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'stroke' on the element g is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,246 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'id' on the element style is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,246 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'roleList' on the element style is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,246 WARN o.s.j.x.p.AbstractReaderWriter [pool-1-thread-1] processAttribute: The attribute 'stroke' on the element g is not part of the SBML specifications (XMLNode) or has an invalid value.
+2021-06-02 12:30:59,247 WARN o.s.j.x.p.SBMLCoreParser [pool-1-thread-1] No Species matches the speciesID '00080"' of speciesReference ''.
+2021-06-02 13:36:39,375 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-06-02 13:36:39,394 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1665ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-06-02 13:36:39,420 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-06-02 13:36:39,420 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-06-02 13:36:39,422 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-06-02 13:36:39,443 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-06-02 13:36:39,443 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-06-02 13:36:39,445 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-06-02 13:36:39,502 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@6de9e4b4{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-06-02 13:36:39,502 INFO o.e.j.s.Server [Thread-0] Started @1773ms
+2021-06-02 13:50:00,992 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-06-02 13:50:01,010 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1642ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-06-02 13:50:01,034 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-06-02 13:50:01,034 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-06-02 13:50:01,035 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-06-02 13:50:01,054 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-06-02 13:50:01,055 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-06-02 13:50:01,056 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-06-02 13:50:01,062 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-06-02 13:50:49,117 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-06-02 13:50:49,135 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1558ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-06-02 13:50:49,158 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-06-02 13:50:49,158 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-06-02 13:50:49,159 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-06-02 13:50:49,179 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-06-02 13:50:49,179 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-06-02 13:50:49,180 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-06-02 13:50:49,186 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-06-02 13:51:21,979 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-06-02 13:51:21,998 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1595ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-06-02 13:51:22,020 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-06-02 13:51:22,020 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-06-02 13:51:22,022 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-06-02 13:51:22,041 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-06-02 13:51:22,041 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-06-02 13:51:22,042 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-06-02 13:51:22,048 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-06-02 13:51:40,026 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-06-02 13:51:40,044 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1586ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-06-02 13:51:40,068 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-06-02 13:51:40,068 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-06-02 13:51:40,069 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-06-02 13:51:40,089 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-06-02 13:51:40,089 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-06-02 13:51:40,091 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-06-02 13:51:40,097 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-06-02 16:08:51,506 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-06-02 16:08:51,525 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1689ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-06-02 16:08:51,548 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-06-02 16:08:51,548 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-06-02 16:08:51,549 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-06-02 16:08:51,568 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-06-02 16:08:51,569 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-06-02 16:08:51,570 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 600000ms
+2021-06-02 16:08:51,577 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-06-02 16:08:57,700 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-06-02 16:08:57,719 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1592ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-06-02 16:08:57,742 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-06-02 16:08:57,743 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-06-02 16:08:57,744 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-06-02 16:08:57,763 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-06-02 16:08:57,764 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-06-02 16:08:57,765 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-06-02 16:08:57,771 ERROR s.Service [Thread-0] ignite failed
+java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method) ~[?:?]
+	at java.base/sun.nio.ch.Net.bind(Net.java:550) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:249) ~[?:?]
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:88) ~[?:?]
+	at org.eclipse.jetty.server.ServerConnector.open(ServerConnector.java:298) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:80) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:236) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.server.Server.doStart(Server.java:431) ~[jetty-server-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68) ~[jetty-util-9.4.4.v20170414.jar:9.4.4.v20170414]
+	at spark.embeddedserver.jetty.EmbeddedJettyServer.ignite(EmbeddedJettyServer.java:130) ~[spark-core-2.6.0.jar:?]
+	at spark.Service.lambda$init$2(Service.java:504) ~[spark-core-2.6.0.jar:?]
+	at java.base/java.lang.Thread.run(Thread.java:832) [?:?]
+2021-06-02 16:09:31,395 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-06-02 16:09:31,414 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1881ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-06-02 16:09:31,439 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-06-02 16:09:31,439 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-06-02 16:09:31,440 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-06-02 16:09:31,461 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-06-02 16:09:31,461 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-06-02 16:09:31,463 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-06-02 16:09:31,517 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@32b868a6{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-06-02 16:09:31,517 INFO o.e.j.s.Server [Thread-0] Started @1985ms
+2021-06-02 16:11:50,156 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-06-02 16:11:50,175 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1701ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-06-02 16:11:50,198 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-06-02 16:11:50,198 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-06-02 16:11:50,200 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-06-02 16:11:50,219 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-06-02 16:11:50,219 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-06-02 16:11:50,221 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-06-02 16:11:50,275 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@31ba7ee4{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-06-02 16:11:50,275 INFO o.e.j.s.Server [Thread-0] Started @1802ms
+2021-06-02 16:11:55,792 INFO s.h.m.MatcherFilter [qtp1231033482-21] The requested route [/favicon.ico] has not been mapped in Spark for Accept: [image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8]
+2021-06-02 16:24:19,855 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-06-02 16:24:19,874 INFO o.e.j.u.l.Log [Thread-0] Logging initialized @1608ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-06-02 16:24:19,897 INFO s.e.j.EmbeddedJettyServer [Thread-0] == Spark has ignited ...
+2021-06-02 16:24:19,897 INFO s.e.j.EmbeddedJettyServer [Thread-0] >> Listening on 0.0.0.0:80
+2021-06-02 16:24:19,898 INFO o.e.j.s.Server [Thread-0] jetty-9.4.4.v20170414
+2021-06-02 16:24:19,917 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] DefaultSessionIdManager workerName=node0
+2021-06-02 16:24:19,917 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-0] No SessionScavenger set, using defaults
+2021-06-02 16:24:19,918 INFO o.e.j.s.s.HouseKeeper [Thread-0] Scavenging every 660000ms
+2021-06-02 16:24:19,974 INFO o.e.j.s.AbstractConnector [Thread-0] Started ServerConnector@31ba7ee4{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-06-02 16:24:19,975 INFO o.e.j.s.Server [Thread-0] Started @1710ms

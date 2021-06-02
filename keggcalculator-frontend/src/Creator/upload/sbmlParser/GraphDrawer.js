@@ -14,14 +14,11 @@ export const setReactionsAndCompoundsInStore = (state, listOfReactions, dispatch
     const reactions = listOfReactions.map(reaction => {
         const reactionId = reaction.sbmlId.concat(";" + reaction.sbmlName + " " + reaction.keggId); //retruns name like "R_PFK;Phosphofructokinase UXXXXX"
         const r = new Reaction(reactionId)
-        // console.log(listOfReactionGlyphs)
-        // const reactionGlyphs = typeof listOfReactionGlyphs === "undefined" ? state.general.listOfReactionGlyphs : listOfReactionGlyphs
-        // console.log(reactionGlyphs)
         const reactionGlyph = findReactionGlyph(state.general.listOfReactionGlyphs, reaction.keggId)
-        r._x = getReactionXPositionFromSbml(reactionGlyph)
-        r._y = getReactionYPositionFromSbml(reactionGlyph)
-        r._opacity = getReactionOpacity(reactionGlyph)
-        r._reversible = reaction.reversible
+        r._x =  typeof reactionGlyph === "object" &&reactionGlyph !== null ? getReactionXPositionFromSbml(reactionGlyph) : 0
+        r._y = typeof reactionGlyph === "object" &&reactionGlyph !== null? getReactionYPositionFromSbml(reactionGlyph) : 0
+        r._opacity = typeof reactionGlyph === "object" &&reactionGlyph !== null? getReactionOpacity(reactionGlyph) : 1
+        r._reversible = typeof reaction.reversible !== "undefined"? reaction.reversible : true
         reaction.substrates.forEach(substrate => {
             const compound = getSbmlCompound(substrate, "substrate", reactionGlyph)
             r.addSubstrate(compound)
@@ -46,12 +43,12 @@ const getReactionYPositionFromSbml = (reactionGlyph) => reactionGlyph.layoutY
 const getSbmlCompound = (sbmlCompound, typeOfCompound, reactionGlyph) => {
     const productId = sbmlCompound.sbmlId.concat(";" + sbmlCompound.sbmlName + " " + sbmlCompound.keggId); //retruns name like "M_pep_c;Phosphoenolpyruvate K/G/CXXXXX"
     const compound = new Compound(productId)
-    const speciesGlyph = getSpeciesGlyph(sbmlCompound.sbmlId, reactionGlyph)
-    compound._x = typeof speciesGlyph === "object" ? getSpeciesXPositionFromSbml(typeOfCompound, speciesGlyph) : 0
-    compound._y =typeof speciesGlyph === "object" ? getSpeciesYPositionFromSbml(typeOfCompound, speciesGlyph) : 0
+    const speciesGlyph =typeof reactionGlyph === "object" && reactionGlyph!=="null" ? getSpeciesGlyph(sbmlCompound.sbmlId, reactionGlyph) : null
+    compound._x = typeof speciesGlyph === "object" &&speciesGlyph !== null? getSpeciesXPositionFromSbml(typeOfCompound, speciesGlyph) : 0
+    compound._y =typeof speciesGlyph === "object" &&speciesGlyph !== null? getSpeciesYPositionFromSbml(typeOfCompound, speciesGlyph) : 0
     compound._abbreviation = productId
     compound._typeOfCompound = typeOfCompound
-    compound._opacity = getCompoundOpacity(speciesGlyph)
+    compound._opacity = typeof speciesGlyph === "object" &&speciesGlyph !== null? getCompoundOpacity(speciesGlyph) : 1
     return compound
 }
 

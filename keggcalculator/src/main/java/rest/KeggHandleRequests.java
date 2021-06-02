@@ -23,6 +23,7 @@ import json.KeggCalculatorJobJSON;
 import json.KeggCreatorJobJSON;
 import model.KeggDataObject;
 import model.KeggECObject;
+import model.KeggHsaObject;
 import model.KeggKOObject;
 import model.KeggReaction;
 import model.KeggReactionObject;
@@ -275,6 +276,11 @@ public class KeggHandleRequests {
 	public static String getRequestAccess(KeggCreatorService creator) {
 		creator.getRequestAccess();
 		return "saves request access as CSV";
+	}
+
+	public static Object getHsaEntities(KeggCreatorService creator) {
+		HashSet<KeggHsaObject> hsaEntities = creator.cloneKeggData().getHsaEntities();
+		return creator.gson.toJson(hsaEntities);
 	}
 
 }

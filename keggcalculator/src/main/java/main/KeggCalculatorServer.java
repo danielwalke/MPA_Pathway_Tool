@@ -108,7 +108,6 @@ public class KeggCalculatorServer {
 		 */
 
 		post("/keggcalculator/startJob", (req, res) -> {
-			System.out.println("start job request");
 			creator.requestAccess.get("startJob").add(creator.getAccessDate());
 			return KeggHandleRequests.startJob(req, res, calculator, creator);
 		});
@@ -393,6 +392,19 @@ public class KeggCalculatorServer {
 		get("keggcreator/requestAccesscsv", (req, res) -> {
 			try {
 				return KeggHandleRequests.getRequestAccess(creator);
+			} catch (Exception e) {
+				res.status(500);
+				return "{\"message\":\"internal server error\"}";
+			}
+		});
+		
+		
+		/**
+		 * return list of http://rest.kegg.jp/list/T01001
+		 */
+		get("keggcreator/getHsaEntities", (req, res) -> {
+			try {
+				return KeggHandleRequests.getHsaEntities(creator);
 			} catch (Exception e) {
 				res.status(500);
 				return "{\"message\":\"internal server error\"}";

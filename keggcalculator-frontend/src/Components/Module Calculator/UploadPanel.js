@@ -1,4 +1,4 @@
-import React,{Component} from "react";
+import React, {Component} from "react";
 import DropZone from "./DropZone";
 import Button from "@material-ui/core/Button";
 import {inject, observer} from "mobx-react";
@@ -104,7 +104,6 @@ class UploadPanel extends Component {
                         console.log(response)
                         if(response.status !== 200){
                             this.props.CalculatorStore.setErrorMessage("Module file processing failed");
-
                         }
                     })
                     return null

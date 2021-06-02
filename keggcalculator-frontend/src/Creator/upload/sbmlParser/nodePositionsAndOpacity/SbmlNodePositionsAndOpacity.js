@@ -5,16 +5,22 @@ export const readListOfReactionGlyphs = (sbml, listOfSpeciesGlyphs) =>{
     const listOfReactionGlyphs = []
     const listOfReactionGlyphsTag = sbml.getElementsByTagName("layout:listOfReactionGlyphs")[0]
     const reactionGlyphTags = listOfReactionGlyphsTag.children
-    reactionGlyphTags.forEach(reactionGlyphTag => addNewReactionGlyph(reactionGlyphTag, listOfReactionGlyphs,listOfSpeciesGlyphs))
+    reactionGlyphTags.forEach(reactionGlyphTag => {
+        if(reactionGlyphTag.getElementsByTagName("layout:curveSegment").length>0){
+            addNewReactionGlyph(reactionGlyphTag, listOfReactionGlyphs,listOfSpeciesGlyphs)
+        }
+    })
     return listOfReactionGlyphs
 }
 
 const addNewReactionGlyph = (reactionGlyphTag, listOfReactionGlyphs,listOfSpeciesGlyphs) =>{
-    const curveSegmentTag = reactionGlyphTag.getElementsByTagName("layout:curveSegment")[0]
+    const curveSegmentTag =reactionGlyphTag.getElementsByTagName("layout:curveSegment")[0]
     const reactionGlyph = createNewReactionGlyph(reactionGlyphTag, curveSegmentTag)
-    const listOfSpeciesReferenceGlyphsTag =  reactionGlyphTag.getElementsByTagName("layout:listOfSpeciesReferenceGlyphs")[0]
-    const speciesReferenceGlyphTags = listOfSpeciesReferenceGlyphsTag.children
-    speciesReferenceGlyphTags.forEach(speciesReferenceGlyphTag => addNewSpeciesReferenceGlyph(speciesReferenceGlyphTag, reactionGlyph,listOfSpeciesGlyphs))
+    if(reactionGlyphTag.getElementsByTagName("layout:listOfSpeciesReferenceGlyphs").length >0 ){
+        const listOfSpeciesReferenceGlyphsTag =  reactionGlyphTag.getElementsByTagName("layout:listOfSpeciesReferenceGlyphs")[0]
+        const speciesReferenceGlyphTags = listOfSpeciesReferenceGlyphsTag.children
+        speciesReferenceGlyphTags.forEach(speciesReferenceGlyphTag => addNewSpeciesReferenceGlyph(speciesReferenceGlyphTag, reactionGlyph,listOfSpeciesGlyphs))
+    }
     listOfReactionGlyphs.push(reactionGlyph)
 }
 

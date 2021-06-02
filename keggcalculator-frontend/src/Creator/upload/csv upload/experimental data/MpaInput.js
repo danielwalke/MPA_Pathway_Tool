@@ -83,7 +83,7 @@ const MpaInput = () => {
                             }
                         }
                         if (entries[2].length > 2) { // ec numbers
-                            if (entries[2].includes(",")) {
+                            if (entries[2].includes("|")) {
                                 const ecs = entries[2].split("|")
                                 ecs.map(ec => koAndEcSet.add(ec))
                             } else {

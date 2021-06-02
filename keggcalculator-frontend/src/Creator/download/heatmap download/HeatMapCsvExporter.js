@@ -40,7 +40,9 @@ const HeatMapCsvExporter = (props) => {
             const quantSums = proteinState.sampleNames.map(sample => 0)
             matchedMetaProteins.map((protein) => protein.quants.map((quant, index) => quantSums[index] += +quant))
             const matchedMetaProteinNames = matchedMetaProteins.map(protein => protein.name)
-            outputString += `${reaction.reactionName.replaceAll(";", "\t")};${reaction.koNumbersString};${reaction.ecNumbersString};${matchedMetaProteinNames};${quantSums.toString().replaceAll(",", ";")}\n`
+            let metaProteinsString = ""
+            matchedMetaProteinNames.forEach(protein => metaProteinsString+=protein.concat("|"))
+            outputString += `${reaction.reactionName.replaceAll(";", "\t")};${reaction.koNumbersString};${reaction.ecNumbersString};${metaProteinsString};${quantSums.toString().replaceAll(",", ";")}\n`
         })
         let blob = new Blob(new Array(outputString.trim()), {type: "text/plain;charset=utf-8"});
         saveAs(blob, "Reactions.csv")

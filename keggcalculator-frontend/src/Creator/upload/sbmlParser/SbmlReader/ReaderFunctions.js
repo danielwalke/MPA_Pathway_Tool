@@ -80,7 +80,7 @@ const readReactions = (dispatch, sbml,state) => {
             const len = ecAnnotationItems.length
             return ecAnnotationItems[len-1] //returns last item of each annotation, i.e. the respective ec number
         });
-        const koAnnotations = annotations.filter(link => link.includes("kegg.orthology")) //"http://identifiers.org/kegg.orthology/K00001"
+        const koAnnotations = annotations.filter(link => link.includes("kegg.jp/entry/K")) //"http://identifiers.org/kegg.orthology/K00001"
         const koNumbers = koAnnotations.map(koAnnotation => {
             const koAnnotationItems = koAnnotation.split("/")
             const len = koAnnotationItems.length
@@ -144,8 +144,8 @@ export const onSBMLModuleFileChange = async (event, dispatch, state) => {
             const result = e.target.result.trim()
             const parser = new xmlParser()
             const sbml = parser.parseFromString(result)
-            const listOfSpeciesGlyphs = readListOfSpeciesGlyphs(sbml)
-            const listOfReactionGlyphs = readListOfReactionGlyphs(sbml,listOfSpeciesGlyphs)
+            const listOfSpeciesGlyphs = sbml.getElementsByTagName("layout:listOfSpeciesGlyphs").length>0 ? readListOfSpeciesGlyphs(sbml) : []
+            const listOfReactionGlyphs = sbml.getElementsByTagName("layout:listOfReactionGlyphs").length>0 ? readListOfReactionGlyphs(sbml,listOfSpeciesGlyphs) : []
             const listOfSpecies = readSpecies(dispatch, sbml, state)
             const listOfReactions = readReactions(dispatch, sbml,state)
             const isMissingAnnotations = checkMissingAnnotations(listOfSpecies, dispatch)
