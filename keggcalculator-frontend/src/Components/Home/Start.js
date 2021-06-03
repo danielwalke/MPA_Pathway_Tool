@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Modal from "@material-ui/core/Modal";
 import {useStyles} from "../../Creator/ModalStyles/ModalStyles";
-
+import FaqContainer from "./FAQ/FAQContainer";
 const Start = () => {
     const titleLists = []
     const [showVideos, setShowVideos] = useState(false)
@@ -58,6 +58,9 @@ const Start = () => {
                 <p>The "Calculator" consists of two upload zones, one for experimental data and another for
                     multiple pathway files (as CSV, JSON or SBML). The Calculator performs mapping of experimental data
                     on multiple uploaded pathways.</p>
+                <FaqContainer/>
+
+
                 <h3>Tutorial</h3>
                 <p>You can find a detailed Tutorial on <a href={"https://www.youtube.com/"}>Youtube</a>.</p>
                 <Modal className={classes.modal} open={showVideos} onClose={() => setShowVideos(false)}>
