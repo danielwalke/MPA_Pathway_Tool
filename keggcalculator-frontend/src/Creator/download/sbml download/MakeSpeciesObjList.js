@@ -19,7 +19,7 @@ const MakeSpeciesObjList = (speciesRaw) => {
                 constant: item.constant
             },
             '#': {
-                'sbml:annotation': {
+                'annotation': {
                     '@': {'xmlns:sbml': "http://www.sbml.org/sbml/level3/version1/core"},
                     '#': {
                         'rdf:RDF': {

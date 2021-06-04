@@ -9,9 +9,9 @@ const MakeSpeciesReferenceGlyph = (props) => {
 
             const subGlyph = {
                 '@': {
-                    'layout:id':["SpeciesReferenceGlyph_",item.id].join(""),
-                    // 'layout:speciesReference':["SpeciesReference_",item.id].join(""),
-                    'layout:speciesGlyph':["SpeciesGlyph_",item.id].join(""),
+                    'layout:id':["SpeciesReferenceGlyph_",item.glyphId].join(""),
+                    'layout:speciesReference':item.id,
+                    'layout:speciesGlyph':["SpeciesGlyph_",item.glyphId].join(""),
                     'layout:role':"substrate"
                 },
                 '#': {
@@ -35,9 +35,9 @@ const MakeSpeciesReferenceGlyph = (props) => {
 
             const prodGlyph = {
                 '@': {
-                    'layout:id':["SpeciesReferenceGlyph_",item.id].join(""),
-                    // 'layout:speciesReference':["SpeciesReference_",item.id].join(""),
-                    'layout:speciesGlyph':["SpeciesGlyph_",item.id].join(""),
+                    'layout:id':["SpeciesReferenceGlyph_",item.glyphId].join(""),
+                    'layout:speciesReference':["SpeciesReference_",item.id].join(""),
+                    'layout:speciesGlyph':["SpeciesGlyph_",item.glyphId].join(""),
                     'layout:role':"product"
                 },
                 '#': {
