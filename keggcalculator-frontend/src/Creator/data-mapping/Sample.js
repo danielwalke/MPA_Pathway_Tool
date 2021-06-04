@@ -76,7 +76,6 @@ compoundNodes.map(node => nodes.push(node))
     data.nodes = nodes
     dispatch({type: "SETDATA", payload: data})
     dispatch({type:"SETLOADING", payload:false})
-    console.log(reactions)
     console.timeEnd("calc")
 }
 

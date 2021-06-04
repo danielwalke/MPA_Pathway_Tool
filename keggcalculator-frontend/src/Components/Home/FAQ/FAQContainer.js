@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import FAQ from "./FAQ";
+import {Card, CardContent} from "@material-ui/core";
 
 const FaqContainer = () => {
     const [creatorQuestionList, setCreatorQuestionList] = useState([])
@@ -21,8 +22,8 @@ const FaqContainer = () => {
 
     return (
             <div style={{width:"100%", display:"grid", gridTemplateColumns: "1fr 1fr", gap:"5px"}}>
-                <div><FAQ name={"Pathway-Creator"} questionList={creatorQuestionList}/></div>
-                <div><FAQ name={"Pathway-Calculator"} questionList={calculatorQuestionList}/></div>
+                <Card><CardContent><FAQ name={"Pathway-Creator"} questionList={creatorQuestionList}/></CardContent></Card>
+                <Card><CardContent><FAQ name={"Pathway-Calculator"} questionList={calculatorQuestionList}/></CardContent></Card>
             </div>
     );
 };

@@ -57,7 +57,7 @@ class Home extends Component {
                                 <Switch>
                                     {this.state.reload? <Redirect to={"/home"}/> : null}
                                     {/*<div><h3 style={{margin: "5% 0 0 0"}}>Under Construction</h3> <img style={{width: "70%", padding: "3%"}} src={underConstruction}/></div>*/}
-                                    <Route path={"/home"}><Start/></Route>
+                                    <Route path={"/home"}><Start changeState={this.changeState}/></Route>
                                     <Route path={"/creator"}><App/></Route>
                                     <Route path={"/calculator"}> <UploadPanel/> </Route>
                                 </Switch>

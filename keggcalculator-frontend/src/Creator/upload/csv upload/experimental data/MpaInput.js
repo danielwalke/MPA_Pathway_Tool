@@ -113,6 +113,7 @@ const MpaInput = () => {
                             taxa: taxa,
                             quants: quantArray
                         }
+                        console.log(protein)
                         proteinSet.add(protein)
                         return null
                     })

@@ -34,6 +34,7 @@ public class KeggCalculatorJob implements Runnable {
 	@Override
 	public void run() {
 		this.job.message = "started";
+		System.out.println("job started");
 		// timeout counter
 		int count = 0;
 		// wait for files
