@@ -401,9 +401,6 @@ public class KeggCreatorService {
 		
 		ArrayList<TaxonomyResponseListObj> ids = new ArrayList<TaxonomyResponseListObj>();
 		
-		
-		
-		
 		for(TaxonomyListObject taxonomyObject : taxonomyObjectList.getTaxonomyObjectList()) {
 				
 			String reactionId = taxonomyObject.getReactionId();

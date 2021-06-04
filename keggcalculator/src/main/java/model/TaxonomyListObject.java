@@ -2,12 +2,14 @@ package model;
 
 public class TaxonomyListObject {
 	
+	private String reactionId;
 	private String name;
 	private String rank;
 
 	public TaxonomyListObject() {
-		String name = this.name;
-		String rank = this.rank;
+		this.reactionId = "";
+		this.name = "";
+		this.rank = "";
 	}
 	
 	public String getName() {
@@ -16,5 +18,9 @@ public class TaxonomyListObject {
 	
 	public String getRank() {
 		return rank;
+	}
+	
+	public String getReactionId() {
+		return reactionId;
 	}
 }
