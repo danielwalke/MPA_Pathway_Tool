@@ -30,6 +30,7 @@ const SBMLDownloader = () => {
         console.log(speciesRaw)
         console.log(reactionsRaw)
         console.log(speciesPosRaw)
+        console.log(requestList)
 
 
         const taxonomyUrl = "http://127.0.0.1/keggcreator/taxonomyIdList"

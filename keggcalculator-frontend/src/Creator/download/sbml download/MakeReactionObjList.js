@@ -3,16 +3,11 @@ import MakeSpeciesReferenceObj from "./MakeSpeciesReferenceObj";
 
 const MakeReactionObjectList = (reactionsRaw, taxonomyIdArray) => {
 
-
     const reactionObj = reactionsRaw.map(item => {
 
-        const taxaProp = Object.getOwnPropertyNames(item.taxa)[0]
+        const taxonomyIds = taxonomyIdArray.filter(taxon => item.reactionId == taxon.reactionId)
 
-        const taxonomyIdx = taxonomyIdArray.findIndex(
-            x => x.name === taxaProp && x.rank === item.taxa[taxaProp])
         const rIdForRDF = ['#',item.reactionId].join("")
-
-        console.log(taxonomyIdx)
 
         const references = {'rdf:li':[]}
         if(item.reactionId != ""){
@@ -23,9 +18,10 @@ const MakeReactionObjectList = (reactionsRaw, taxonomyIdArray) => {
         if(item.ecNumbersString.length != 0){
             item.ecNumbersString.map(ec => {
                 references['rdf:li'].push({'@': {'rdf:resource': ['http://identifiers.org/ec-code/', ec].join("")}})})}
-        if(taxonomyIdx != -1){
-            references['rdf:li'].push({'@': {'rdf:resource': ['https://www.uniprot.org/taxonomy/', taxonomyIdArray[taxonomyIdx].id].join("")}})
-            // test.splice(taxonomyIdx,1)
+        if(taxonomyIds.length > 0){
+            taxonomyIds.map(id => {
+                references['rdf:li'].push({'@': {'rdf:resource': ['https://www.uniprot.org/taxonomy/', id.id].join("")}})
+            })
         }
 
         const reactionObject = {

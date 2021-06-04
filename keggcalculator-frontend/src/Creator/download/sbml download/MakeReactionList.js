@@ -105,13 +105,17 @@ const MakeReactionList = (generalState, graphState) => {
             }
         }
 
-        const requestListObj = {}
-        const taxaProp = Object.getOwnPropertyNames(reaction.taxa)[0]
+        for(const taxon of Object.entries(reaction.taxa)) {
 
-        requestListObj.name = taxaProp
-        requestListObj.rank = reaction.taxa[taxaProp]
+            const requestListObj = {
+                reactionId: reaction.reactionId,
+                name: taxon[0],
+                rank: taxon[1]
+            }
+            requestList.push(requestListObj)
+        }
 
-        requestList.push(requestListObj)
+        // const taxaProp = Object.getOwnPropertyNames(reaction.taxa)[0]
 
         // reaction["opacity"] = 1
         // let output = outputCsv.concat("stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp", "\n")
