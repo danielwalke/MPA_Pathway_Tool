@@ -1,12 +1,23 @@
 class SpeciesGlyph{
     _layoutId
     _layoutSpecies
+    _layoutSpeciesReference
     _isKeyCompound
 
     constructor(layoutId, layoutSpecies) {
         this._isKeyCompound = true
         this._layoutSpecies = layoutSpecies;
         this._layoutId = layoutId;
+        this._layoutSpeciesReference = ""
+    }
+
+
+    get layoutSpeciesReference() {
+        return this._layoutSpeciesReference;
+    }
+
+    set layoutSpeciesReference(value) {
+        this._layoutSpeciesReference = value;
     }
 
     get isKeyCompound(){

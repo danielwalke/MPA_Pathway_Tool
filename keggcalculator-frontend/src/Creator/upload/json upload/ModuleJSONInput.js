@@ -16,7 +16,6 @@ const ModuleJSONInput = () =>{
             const result = e.target.result.trim()
             try{
                 const reactions = JSON.parse(result)
-                console.log(reactions)
                 const {nodes, links} = handleJSONGraphUpload(reactions, dispatch, state.graph)
                 const data = {nodes: nodes, links: links}
                 dispatch({type: "SETDATA", payload: data})

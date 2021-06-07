@@ -36,6 +36,7 @@ const addSpeciesReferencePositions = (speciesReferenceGlyph, speciesReferenceGly
 const addNewSpeciesReferenceGlyph = (speciesReferenceGlyphTag,reactionGlyph,listOfSpeciesGlyphs) =>{
     const speciesReferenceGlyph = new SpeciesReferenceGlyph(speciesReferenceGlyphTag.attributes["layout:id"], speciesReferenceGlyphTag.attributes["layout:role"])
     speciesReferenceGlyph.speciesGlyph = speciesReferenceGlyphTag.attributes["layout:speciesGlyph"]
+    speciesReferenceGlyph.layoutSpeciesReference = speciesReferenceGlyphTag.attributes["layout:speciesReference"]
     addSpeciesReferencePositions(speciesReferenceGlyph, speciesReferenceGlyphTag)
     addSpeciesIsKeyCompound(speciesReferenceGlyph, listOfSpeciesGlyphs)
     reactionGlyph.addSpeciesReferenceGlyph(speciesReferenceGlyph)

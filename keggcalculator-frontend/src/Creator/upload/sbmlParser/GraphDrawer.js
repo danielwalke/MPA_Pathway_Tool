@@ -9,6 +9,7 @@ source:"", target:"", opacity:1}]}
 import {handleJSONGraphUpload} from "../json upload/ModuleUploadFunctionsJSON";
 import {Reaction} from "../model/Reaction";
 import {Compound} from "../model/Compound";
+import {getLastItemOfList} from "../../usefulFunctions/Arrays";
 
 export const setReactionsAndCompoundsInStore = (state, listOfReactions, dispatch, listOfReactionGlyphs) => {
     const reactions = listOfReactions.map(reaction => {
@@ -19,6 +20,7 @@ export const setReactionsAndCompoundsInStore = (state, listOfReactions, dispatch
         r._y = typeof reactionGlyph === "object" &&reactionGlyph !== null? getReactionYPositionFromSbml(reactionGlyph) : 0
         r._opacity = typeof reactionGlyph === "object" &&reactionGlyph !== null? getReactionOpacity(reactionGlyph) : 1
         r._reversible = typeof reaction.reversible !== "undefined"? reaction.reversible : true
+        r._abbreviation = reaction.sbmlName
         reaction.substrates.forEach(substrate => {
             const compound = getSbmlCompound(substrate, "substrate", reactionGlyph)
             r.addSubstrate(compound)
@@ -41,20 +43,23 @@ const getReactionXPositionFromSbml = (reactionGlyph) => reactionGlyph.layoutX
 const getReactionYPositionFromSbml = (reactionGlyph) => reactionGlyph.layoutY
 
 const getSbmlCompound = (sbmlCompound, typeOfCompound, reactionGlyph) => {
-    const productId = sbmlCompound.sbmlId.concat(";" + sbmlCompound.sbmlName + " " + sbmlCompound.keggId); //retruns name like "M_pep_c;Phosphoenolpyruvate K/G/CXXXXX"
-    const compound = new Compound(productId)
     const speciesGlyph =typeof reactionGlyph === "object" && reactionGlyph!=="null" ? getSpeciesGlyph(sbmlCompound.sbmlId, reactionGlyph) : null
+    const compoundId = `${sbmlCompound.sbmlId}_${getSpeciesGlyphIndex(speciesGlyph)};${sbmlCompound.sbmlName} ${sbmlCompound.keggId}`; //retruns name like "M_pep_c;Phosphoenolpyruvate K/G/CXXXXX"
+    const compound = new Compound(compoundId)
     compound._x = typeof speciesGlyph === "object" &&speciesGlyph !== null? getSpeciesXPositionFromSbml(typeOfCompound, speciesGlyph) : 0
     compound._y =typeof speciesGlyph === "object" &&speciesGlyph !== null? getSpeciesYPositionFromSbml(typeOfCompound, speciesGlyph) : 0
-    compound._abbreviation = productId
+    compound._abbreviation = sbmlCompound.sbmlName
     compound._typeOfCompound = typeOfCompound
     compound._opacity = typeof speciesGlyph === "object" &&speciesGlyph !== null? getCompoundOpacity(speciesGlyph) : 1
+    console.log(compound)
     return compound
 }
 
+const getSpeciesGlyphIndex = (speciesGlyph) => speciesGlyph.layoutId.split("_")[getLastItemOfList(speciesGlyph.layoutId.split("_"))]
+
 const getCompoundOpacity = speciesGlyph => speciesGlyph.isKeyCompound? 1: 0.4
 
-const getSpeciesGlyph = (sbmlId, reactionGlyph) => reactionGlyph.listOfSpeciesReferenceGlyphs.find(speciesGlyph => getSpeciesIdOfSpeciesGlyph(speciesGlyph.layoutId) === sbmlId)
+const getSpeciesGlyph = (sbmlId, reactionGlyph) => reactionGlyph.listOfSpeciesReferenceGlyphs.find(speciesGlyph => speciesGlyph.layoutSpeciesReference === sbmlId)
 
 const getSpeciesIdOfSpeciesGlyph = (layoutId) => {
     return layoutId.split("SpeciesReferenceGlyph_")[1]

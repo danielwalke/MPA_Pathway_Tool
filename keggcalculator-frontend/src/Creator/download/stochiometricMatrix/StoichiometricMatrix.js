@@ -11,7 +11,9 @@ const fetchStochiometricInformation = (dispatch, props) => {
     const reactionIds = nodeIds.filter(id => id.match(/[R,U][0-9][0-9][0-9][0-9][0-9]/))
     const reactions = generalState.reactionsInSelectArray.filter(reaction => reactionIds.includes(reaction.reactionId))
     const forwardReactions = reactions.filter(reaction => reaction.isForwardReaction)
+
     const backwardReactions = reactions.filter(reaction => !reaction.isForwardReaction)
+
 
     const compoundSet = new Set()
 

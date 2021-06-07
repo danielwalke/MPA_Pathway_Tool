@@ -1,6 +1,5 @@
 import React from "react";
 import {Graph} from "react-d3-graph";
-import FadeLoader from "react-spinners/FadeLoader";
 import {useDispatch, useSelector} from "react-redux";
 import {handleSubmit} from "../../keggReaction/substrate and products/SubmitHandler";
 import clonedeep from "lodash/cloneDeep"

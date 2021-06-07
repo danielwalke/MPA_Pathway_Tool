@@ -13,6 +13,7 @@ const FaqContainer = () => {
     useEffect(() => {
         const creatorQuestions= []
         const calculatorQuestions= []
+        addNewCreatorQuestion("My taxonomy wasn't added to the downloaded SBML-file", "Probably you have added a taxonomy, which is not defined by the NCBI-taxonomy.",creatorQuestions)
         addNewCreatorQuestion("My file was imported but I can't see the data-samples", "You can try another browser. Some browsers have limits for specific files, e.g. Google Chrome with 500MB.",creatorQuestions)
         addNewCreatorQuestion("Where can I find help?", "You can find a tutorial below, and a help-section in the Pathway-Creator",creatorQuestions)
         addNewCalculatorQuestion("I cant download my file.", "You might exceeded the access time of 30 minutes. You need to restart the calculation.",calculatorQuestions)

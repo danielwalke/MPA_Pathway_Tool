@@ -19,7 +19,7 @@ const JSONDownloader = (props) => {
                 reaction.abbreviation = typeof graphState.abbreviationsObject[`${reaction.reactionName}`] === "undefined" ? reaction.reactionName : graphState.abbreviationsObject[`${reaction.reactionName}`]
                 reaction.opacity = graphState.data.nodes.filter(node => node.id === reaction.reactionName)[0].opacity
                 const reversible = graphState.data.nodes.filter(node => node.id === reaction.reactionName)[0].reversible
-                reaction.reversible = reversible ? "reversible" :"irreversible"
+                reaction.reversible = reversible
                 reaction.x = getNodePosition(reaction.reactionName).x
                 reaction.y = getNodePosition(reaction.reactionName).y
                 if(graphState.data.links.length===0){ //transport proteins only
