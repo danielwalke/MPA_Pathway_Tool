@@ -27,7 +27,7 @@ const MakeReactionObjectList = (reactionsRaw, taxonomyIdArray) => {
         const reactionObject = {
             '@': {
                 id: item.reactionId,
-                reversible: item.reversible==="reversible" ? "true" : "false",
+                reversible: item.reversible.toString(),
                 name: item.abbreviation.substring(0, item.abbreviation.length - 7),
                 metaid: item.reactionId},
             '#': {

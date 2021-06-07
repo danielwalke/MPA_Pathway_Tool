@@ -24,10 +24,10 @@ const SBMLDownloader = (props) => {
         const [reactionsRaw, requestList] = MakeReactionList(generalState, graphState)
         const [speciesRaw, speciesPosRaw, compartmentsRaw] = MakeSpeciesList(reactionsRaw)
 
-        console.log(speciesRaw)
-        console.log(reactionsRaw)
-        console.log(speciesPosRaw)
-        console.log(requestList)
+        // console.log(speciesRaw)
+        // console.log(reactionsRaw)
+        // console.log(speciesPosRaw)
+        // console.log(requestList)
 
 
         const taxonomyUrl = "http://127.0.0.1/keggcreator/taxonomyIdList"

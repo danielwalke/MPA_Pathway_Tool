@@ -51,16 +51,16 @@ const MakeReactionList = (generalState, graphState) => {
 
     const {reactionObjects, reactionNames} = getReactions(graphState)
 
-    const reactionsRaw = reactionNames.map(
+    const filteredReactions = reactionNames.map(
         name => generalState.reactionsInSelectArray.filter(
             reaction => reaction.reactionName === name)[0])
 
     const requestList = []
 
-    reactionsRaw.map(reaction => {
+    const reactionsRaw = filteredReactions.map(reaction => {
         reaction.abbreviation = typeof graphState.abbreviationsObject[`${reaction.reactionName}`] === "undefined" ? reaction.reactionName : graphState.abbreviationsObject[`${reaction.reactionName}`]
         reaction.opacity = clonedeep(graphState.data.nodes.filter(node => node.id = reaction.reactionName)[0].opacity)
-        reaction.reversible = "reversible"
+        reaction.reversible = reaction.reversible
         reaction.x = getNodePosition(reaction.reactionName).x
         reaction.y = getNodePosition(reaction.reactionName).y
 
