@@ -219,9 +219,25 @@ public class KeggCreatorService {
 		for (KeggReactionObject reactionRevRaw : reactionSetRevRaw) {
 			KeggReaction reactionRev = new KeggReaction(reactionRevRaw.getReactionId(),
 					reactionRevRaw.getReactionName(), false);
+			System.out.println("ursprung "+reactionRev.getStochiometryProductsString());
+			HashMap<String, String> stoichiometryProductsStringClone = cloneMap(reactionRev.getStochiometryProductsString());
+			HashMap<String, String> stoichiometrySubstratesString = cloneMap(reactionRev.getStochiometrySubstratesString());
+			System.out.println("products: " +stoichiometryProductsStringClone);
+			System.out.println(stoichiometrySubstratesString);
+			reactionRev.setStochiometrySubstratesString(stoichiometryProductsStringClone);
+			reactionRev.setStochiometryProductsString(stoichiometrySubstratesString);
+			System.out.println("new substrates: "+ reactionRev.getStochiometrySubstratesString() );
 			reactionSetRev.add(reactionRev);
 		}
 		return reactionSetRev;
+	}
+	
+	private HashMap<String, String> cloneMap(HashMap<String, String> map) {
+		HashMap<String, String> clonedMap = new HashMap<>();
+		for(Entry<String, String> entry : map.entrySet()) {
+			clonedMap.put(entry.getKey(), entry.getValue());
+		}
+		return clonedMap;
 	}
 
 	// return all possible backward reactions for a substrate and sort them

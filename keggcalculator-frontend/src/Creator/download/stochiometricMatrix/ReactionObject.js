@@ -43,12 +43,12 @@ export const getReactionObjects = (forwardReactions, backwardReactions,compoundS
 
     //adds compound names to stoichiometric coefficients in each reactions
     backwardReactions.map(reaction => { // reversed direction -> user changed the directions of arrows
-        const reactionSubstrateLinks = graphState.data.links.filter(link => link.target.includes(reaction.reactionId) && !link.isReversibleLink)
-        const reactionSubstrates = reactionSubstrateLinks.map(link => link.source)
+        const reactionSubstrateLinks = graphState.data.links.filter(link => link.source.includes(reaction.reactionId) && !link.isReversibleLink)
+        const reactionSubstrates = reactionSubstrateLinks.map(link => link.target)
         reaction.metabolites = []
         reaction.reactionSubstrates = reactionSubstrates.map(substrate => {
             const id = substrate.substring(substrate.length-6, substrate.length)
-            const stoichiometry = reaction.stochiometryProductsString[id]
+            const stoichiometry = reaction.stochiometrySubstratesString[id]
             compoundSet.add(substrate)
             reaction.metabolites.push({
                 id: substrate,
@@ -61,11 +61,11 @@ export const getReactionObjects = (forwardReactions, backwardReactions,compoundS
                 }
             )
         })
-        const reactionProductLinks = graphState.data.links.filter(link => link.source.includes(reaction.reactionId))
-        const reactionProducts = reactionProductLinks.map(link => link.target && !link.isReversibleLink)
+        const reactionProductLinks = graphState.data.links.filter(link => link.target.includes(reaction.reactionId) && !link.isReversibleLink)
+        const reactionProducts = reactionProductLinks.map(link => link.source)
         reaction.reactionProducts = reactionProducts.map(product => {
             const id = product.substring(product.length-6, product.length)
-            const stoichiometry = reaction.stochiometrySubstratesString[id]
+            const stoichiometry = reaction.stochiometryProductsString[id]
             compoundSet.add(product)
             reaction.metabolites.push({
                 id: product,
