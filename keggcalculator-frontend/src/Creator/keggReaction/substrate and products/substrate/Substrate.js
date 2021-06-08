@@ -27,7 +27,6 @@ const Substrate = () => {
             {state.substrate && state.substrate.length > 2 ?
                 <Autocomplete
                     size={"small"}
-                    id="combo-box-demo"
                     options={state.options}
                     className={"substrate"}
                     name={"substrate"}

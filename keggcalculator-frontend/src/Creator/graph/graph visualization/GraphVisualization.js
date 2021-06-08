@@ -72,7 +72,6 @@ const GraphVisualization = () => {
     };
 
     React.useEffect(()=> {
-        console.log("update")
         myConfig.node.labelProperty = labelCallbackNodes
     },[graphState.abbreviationsObject, graphState.data.nodes])
 

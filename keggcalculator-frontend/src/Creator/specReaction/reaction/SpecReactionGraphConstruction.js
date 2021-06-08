@@ -10,24 +10,24 @@ export const handleSpecSubmit = (e, graphStates, specReactionStates, dispatch) =
     e.preventDefault();
     const data = graphStates.data;
     const reaction = specReactionStates.specReaction
-    data.nodes.push({id: reaction, symbolType: REACTION_NODE_SYMBOL, color: REACTION_NODE_COLOR, opacity: 1, x: 0, y: 0,isReversibleLink:false})
+    data.nodes.push({id: reaction, symbolType: REACTION_NODE_SYMBOL, color: REACTION_NODE_COLOR, opacity: 1, x: 0, y: 0,reversible:false})
     for (let i = 0; i < specReactionStates.specSubstrates.length; i++) {
         const subst = specReactionStates.specSubstrates[i]
         if (i === 0) {
-            data.nodes.push({id: subst, color:COMPOUND_NODE_COLOR, opacity: 1, x: 0, y: 0,symbolType: COMPOUND_NODE_SYMBOL})
+            data.nodes.push({id: subst, color:COMPOUND_NODE_COLOR, opacity: 1, x: 0, y: 0,symbolType: COMPOUND_NODE_SYMBOL,reversible:false})
             data.links.push({source: subst, target: reaction, opacity: 1,isReversibleLink: false })
         } else {
-            data.nodes.push({id: subst, color: COMPOUND_NODE_COLOR, opacity: 0.4, x: 0, y: 0,symbolType: COMPOUND_NODE_SYMBOL})
+            data.nodes.push({id: subst, color: COMPOUND_NODE_COLOR, opacity: 0.4, x: 0, y: 0,symbolType: COMPOUND_NODE_SYMBOL,reversible:false})
             data.links.push({source: subst, target: reaction, opacity: 0.4,isReversibleLink: false})
         }
     }
     for (let i = 0; i < specReactionStates.specProducts.length; i++) {
         const prod = specReactionStates.specProducts[i]
         if (i === 0) {
-            data.nodes.push({id: prod, color: COMPOUND_NODE_COLOR, opacity: 1, x: 0, y: 0,symbolType: COMPOUND_NODE_SYMBOL})
+            data.nodes.push({id: prod, color: COMPOUND_NODE_COLOR, opacity: 1, x: 0, y: 0,symbolType: COMPOUND_NODE_SYMBOL,reversible:false})
             data.links.push({source: reaction, target: prod, opacity: 1,isReversibleLink: false})
         } else {
-            data.nodes.push({id: prod, color: COMPOUND_NODE_COLOR, opacity: 0.4, x: 0, y: 0,symbolType: COMPOUND_NODE_SYMBOL})
+            data.nodes.push({id: prod, color: COMPOUND_NODE_COLOR, opacity: 0.4, x: 0, y: 0,symbolType: COMPOUND_NODE_SYMBOL,reversible:false})
             data.links.push({source: reaction, target: prod, opacity: 0.4,isReversibleLink: false})
         }
     }

@@ -1,12 +1,11 @@
+import clonedeep from "lodash/cloneDeep"
 export const handleSubmitDirection = (state, dispatch, generalState) =>{
 
-    const linkClone = clone(state.data.links)
-console.log(state.doubleClickNode)
+    const linkClone = clonedeep(state.data.links)
     const linkReactionIsSource = linkClone.filter(link => {
         const linkSourceId = link.source
         return(linkSourceId===state.doubleClickNode)
     })
-    console.log(linkReactionIsSource)
     const linkSources = linkReactionIsSource.map(link => clone(link.target))
     const reaction = state.data.nodes.filter(node => node.id===state.doubleClickNode)[0]
     const linkReactionIsTarget = linkClone.filter(link => {
@@ -32,14 +31,13 @@ console.log(state.doubleClickNode)
     linkReactionIsSource.map(link => otherLinks.push(link)) //might set data
     linkReactionIsTarget.map(link => otherLinks.push(link)) //might set data
     const data = {nodes:state.data.nodes, links: otherLinks}
-    console.log(data)
     generalState.reactionsInSelectArray.map(reaction => {
         if(reaction.reactionName === state.doubleClickNode){
             reaction.isForwardReaction = !reaction.isForwardReaction
         }
         return null;
     })
-    dispatch({type:"SETDATA", payload: data})
+    dispatch({type:"SETDATA", payload: clonedeep(data)})
 }
 
 export const clone= (object)=>{
