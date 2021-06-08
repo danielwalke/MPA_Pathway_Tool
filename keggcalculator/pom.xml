@@ -5,9 +5,12 @@
 	<groupId>de.ovgu.mpa</groupId>
 	<artifactId>keggcalculator</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-
+	<!-- Force Eclipse and Maven to use a Java 8 JDK compiler -->
+	<properties>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+	</properties>
 	<dependencies>
-
 		<!-- Webserver -->
 		<dependency>
 			<groupId>com.sparkjava</groupId>
@@ -20,11 +23,11 @@
 			<version>3.14.1</version>
 		</dependency>
 		<!-- JSBML repos -->
-		    <dependency>
-      <groupId>org.sbml.jsbml</groupId>
-      <artifactId>jsbml</artifactId>
-      <version>1.5</version>
-    </dependency>
+		<dependency>
+			<groupId>org.sbml.jsbml</groupId>
+			<artifactId>jsbml</artifactId>
+			<version>1.5</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
@@ -33,17 +36,17 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/javax.xml/jaxb-impl -->
 		<dependency>
-    		<groupId>javax.xml</groupId>
-    		<artifactId>jaxb-impl</artifactId>
-    		<version>2.1</version>
+			<groupId>javax.xml</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>2.1</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.glassfish.jaxb/jaxb-core -->
-<dependency>
-    <groupId>org.glassfish.jaxb</groupId>
-    <artifactId>jaxb-core</artifactId>
-    <version>3.0.0</version>
-</dependency>
-		
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-core</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
 		<!-- Util -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
