@@ -2,6 +2,8 @@
 
 export const getReactionObjects = (forwardReactions, backwardReactions,compoundSet, graphState) =>{
     //adds compound names to stoichiometric coefficients in each reactions
+    console.log(forwardReactions)
+    console.log(backwardReactions)
     const reactionObjects = forwardReactions.map(reaction => { // correct direction
         const reactionSubstrateLinks = graphState.data.links.filter(link => link.target.includes(reaction.reactionId) && !link.isReversibleLink)
         const reactionSubstrates = reactionSubstrateLinks.map(link => link.source)

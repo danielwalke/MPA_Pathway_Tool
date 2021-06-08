@@ -18,15 +18,15 @@ export const setReactionsInStore = (state, listOfReactions) =>{
         const reactionName = reaction.sbmlId.concat(";" + reaction.sbmlName + " " + reaction.keggId);
         const ecNumbersString = reaction.ecNumbers;
         const koNumbersString= reaction.koNumbers;
-        const stochiometrySubstratesString = {}
-        reaction.substrates.map(substrate =>{
+        const stochiometrySubstratesString = new Map()
+        reaction.substrates.forEach(substrate =>{
             stochiometrySubstratesString[`${substrate.keggId}`] = substrate.stoichiometry;
-            return null;
+            // stochiometrySubstratesString.set(substrate.keggId, substrate.stoichiometry)
         })
-        const stochiometryProductsString = {}
-        reaction.products.map(product => {
+        const stochiometryProductsString = new Map()
+        reaction.products.forEach(product => {
             stochiometryProductsString[`${product.keggId}`] = product.stoichiometry;
-            return null;
+            // stochiometryProductsString.set(product.keggId, product.stoichiometry)
         })
         return(
             {
@@ -36,7 +36,8 @@ export const setReactionsInStore = (state, listOfReactions) =>{
                 koNumbersString: koNumbersString,
                 stochiometrySubstratesString: stochiometrySubstratesString,
                 stochiometryProductsString: stochiometryProductsString,
-                taxa:reaction.taxonomy
+                taxa:reaction.taxonomy,
+                isForwardReaction: true
             }
         )
 

@@ -16,9 +16,8 @@ const StructureModal = () => {
 
     return (
         <div>
-            <Modal style={{width: "90vw", marginLeft: "5vw", maxHeight:"80vh", overflow:"auto", marginTop: "10vh"}} open={state.showStructure}
+            <Modal style={{width: "70vw", marginLeft: "5vw", maxHeight:"80vh",height:"80vh",  marginTop: "10vh",overflow:"auto"}} open={state.showStructure}
                    onClose={() => dispatch({type: "SWITCHSHOWSTRUCTURE"})}>
-
                 {body}
             </Modal>
         </div>

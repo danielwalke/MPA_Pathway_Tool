@@ -56,7 +56,7 @@ export const getStructureBody = (state, dispatch, generalState, isNcbiTaxonomy, 
         dispatch({type: "SETDATA", payload: data})
     }
 
-    const body = (<div className={"structureBodyContainer"} style={{backgroundColor: "white", maxWidth: "95vw"}}>
+    const body = (<div className={"structureBodyContainer"} style={{backgroundColor: "white", width:"75vw",overflow:"auto", maxHeight:"80vh",height:"80vh"}}>
         <div className={"nodeLabel"}><h3 style={{padding: "2px"}}>ID: {compound.id}</h3></div>
         <div className={"keyCompoundChoice"}>
             <KeyCompoundChanger compound={compound} handleIsNotKeyCompound={handleIsNotKeyCompound}
@@ -64,9 +64,9 @@ export const getStructureBody = (state, dispatch, generalState, isNcbiTaxonomy, 
         </div>
         <div className={"details"}>
             {nodeId.match(/[C]/) &&
-            <img src={`https://www.genome.jp/Fig/compound/${nodeId}.gif`} alt={state.doubleClickNode}/>}
+            <img style={{maxWidth:"75vw"}} src={`https://www.genome.jp/Fig/compound/${nodeId}.gif`} alt={state.doubleClickNode}/>}
             {nodeId.match(/[G]/) &&
-            <img src={`https://www.genome.jp/Fig/glycan/${nodeId}.gif`} alt={state.doubleClickNode}/>}
+            <img style={{maxWidth:"75vw"}} src={`https://www.genome.jp/Fig/glycan/${nodeId}.gif`} alt={state.doubleClickNode}/>}
             {nodeId.match(/[R,U]/) && (
                 <div style={{display: "grid", gridAutoRows: "auto"}}>
                     <div style={{display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10vw"}}>
@@ -113,7 +113,7 @@ export const getStructureBody = (state, dispatch, generalState, isNcbiTaxonomy, 
                                     style={{transform: "translate(0,4px)"}}/>{taxon}</li>)}
                         </ul>
                     </div>
-                    <div><img src={`https://www.genome.jp/Fig/reaction/${nodeId}.gif`}
+                    <div><img style={{maxWidth:"75vw"}} src={`https://www.genome.jp/Fig/reaction/${nodeId}.gif`}
                               alt={state.doubleClickNode}/></div>
                 </div>
             )}

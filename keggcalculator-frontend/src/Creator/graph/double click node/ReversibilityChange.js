@@ -44,7 +44,13 @@ const ReversibilityChange = (props) => {
         }
         const data = {nodes: nodes, links: links}
         setReversible(!reversible)
+        changeReversibilityInReactions()
         dispatch({type: "SETDATA", payload: data})
+    }
+
+    const changeReversibilityInReactions = ()=>{
+        const reaction = state.general.reactionsInSelectArray.find(reaction => reaction.reactionId === node.id.substring(node.id.length-6, node.id.length))
+        reaction.reversible = !reaction.reversible
     }
 
     return (

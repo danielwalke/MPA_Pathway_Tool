@@ -1,5 +1,6 @@
 import clonedeep from "lodash/cloneDeep";
 import {taxonomicRanks} from "../main/Main";
+import {clone} from "../graph/double click node/DirectionsChanger";
 
 const defaultState = {
     compoundList: [],//mount?
@@ -97,10 +98,13 @@ export const generalReducer = (state = defaultState, action) => {
         case "ADDTAXONOMY":
             const reactionsClone = clonedeep(state.reactionsInSelectArray)
             const reactions = reactionsClone.map(reaction => {
+                const reactionTaxa = clonedeep(reaction.taxa)
                 if (reaction.reactionName === payload) {
-                    console.log(reaction)
-                    reaction.taxa[`${state.taxonomy}`] = state.taxonomicRank
+                    reactionTaxa[`${state.taxonomy}`] = state.taxonomicRank
+                    reaction.taxa = reactionTaxa
                     // reaction.taxonomies.push(`${state.taxonomicRank}:${state.taxonomy}`)
+                }else{
+                    reaction.taxa = reactionTaxa
                 }
                 return reaction
             })

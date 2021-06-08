@@ -54,7 +54,8 @@ public class ModuleFileParser {
 	private void parseSbml(String file, KeggDataObject keggdataUser) {
 		 KeggCreatorService creator = new KeggCreatorService();
 		 creator.parseNcbiTaxonomy();
-		KeggModuleObject module = SbmlParser.parseSbmlFile(new File(file), creator);
+		 System.out.println(file);
+		KeggModuleObject module = SbmlParser.parseSbmlFile(creator, file);
 		keggdataUser.addModule(module);
 	}
 

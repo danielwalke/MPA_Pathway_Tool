@@ -34,18 +34,20 @@ import services.KeggCreatorService;
 //K numbers-> guessed only the respective link, but didnt found any sbml file which contains a k number
 //delete R numbers
 public class SbmlParser {
-	//"C:\\Users\\danie\\Downloads\\MODEL1011010000_url.xml"; // MODEL5662377562_url
+	// "C:\\Users\\danie\\Downloads\\MODEL1011010000_url.xml"; //
+	// MODEL5662377562_url
 	// //BIOMD0000000064_url (2)
-	public static KeggModuleObject parseSbmlFile(File file, KeggCreatorService creator){
+	public static KeggModuleObject parseSbmlFile(KeggCreatorService creator, String fileName) {
+		File file = new File(fileName);
 		SBMLReader reader = new SBMLReader();
 		List<SBMLTReaction> sbmlReactions = new ArrayList<>();
 		try {
-			//read sbml
+			// read sbml
 			@SuppressWarnings("AbstractReaderWriter.java:111")
-			SBMLDocument sbml = reader.readSBML(file.getPath());		
+			SBMLDocument sbml = reader.readSBML(file.getPath());
 			HashMap<String, String> globalTaxa = getTaxa(sbml, creator);
 			String moduleName = file.getName();
-			String moduleId = sbml.getModel().getId();
+			String moduleId = file.getName();
 			ListOf<Reaction> reactions = sbml.getModel().getListOfReactions();
 			for (Reaction reaction : reactions) {
 				String id = reaction.getId();
@@ -59,7 +61,7 @@ public class SbmlParser {
 			}
 
 			// fill sbml reaction with ec numbers and ko Numbers
-			for (SBMLTReaction sbmlReaction : sbmlReactions) { 
+			for (SBMLTReaction sbmlReaction : sbmlReactions) {
 				HashSet<String> ecNumbers = getEcNumbers(sbmlReaction.getIdentifiers());
 				for (String ecNumber : ecNumbers) {
 					sbmlReaction.addEcNumber(ecNumber);
@@ -69,10 +71,10 @@ public class SbmlParser {
 					sbmlReaction.addKoNumber(koNumber);
 				}
 				HashSet<String> taxonomyNumbers = getReactionTaxonomyNumbers(sbmlReaction.getIdentifiers());
-				for(String id : taxonomyNumbers) {
+				for (String id : taxonomyNumbers) {
 					TaxonomyNcbi taxonomy = creator.getTaxonomy(id);
 					sbmlReaction.addTaxonomy(taxonomy.getTaxonomicName(), taxonomy.getTaxonomicRank());
-				}			
+				}
 			}
 
 			// add to Module
@@ -90,20 +92,16 @@ public class SbmlParser {
 					KeggKOObject koNumber = new KeggKOObject(ko, "");
 					reaction.addKonumber(koNumber);
 				}
-				if(!globalTaxa.isEmpty()) {
-					for(Entry<String, String> taxon : globalTaxa.entrySet()) {
-						reaction.addTaxonomy(taxon.getKey(), taxon.getValue());
-					}
+				for (Entry<String, String> taxon : globalTaxa.entrySet()) {
+					reaction.addTaxonomy(taxon.getKey(), taxon.getValue());
 				}
-				if(globalTaxa.isEmpty()) {
-					for(Entry<String, String> taxon : sbmlReaction.getTaxonomy().entrySet()) {
-						reaction.addTaxonomy(taxon.getKey(), taxon.getValue());
-					}
-				}		
+				for (Entry<String, String> taxon : sbmlReaction.getTaxonomy().entrySet()) {
+					reaction.addTaxonomy(taxon.getKey(), taxon.getValue());
+				}
 				module.addReaction(reactionCounter, reaction);
 				reactionCounter++;
 			}
-			for(KeggReactionObject reaction : module.getReactions()) {
+			for (KeggReactionObject reaction : module.getReactions()) {
 				System.out.println(reaction.getReactionName());
 				System.out.println(reaction.getKoAndEcNumberIds());
 				System.out.println(reaction.getTaxa());
@@ -116,16 +114,16 @@ public class SbmlParser {
 		} catch (IOException e) {
 			e.printStackTrace();
 			return new KeggModuleObject("", "");
-		}		
+		}
 	}
 
 	private static HashMap<String, String> getTaxa(SBMLDocument sbml, KeggCreatorService creator) throws IOException {
 		HashMap<String, String> taxa = new HashMap();
 		Annotation annotaion = sbml.getModel().getAnnotation();
 		List<String> taxonomyIdentifiers = getTaxonomyIdentifier(annotaion);
-		for(String identifier: taxonomyIdentifiers) {
+		for (String identifier : taxonomyIdentifiers) {
 			String[] identifierElements = identifier.split("\\/");
-			String taxonomyId = identifierElements[identifierElements.length-1].trim();
+			String taxonomyId = identifierElements[identifierElements.length - 1].trim();
 			TaxonomyNcbi taxonomy = creator.getTaxonomy(taxonomyId);
 			taxa.put(taxonomy.getTaxonomicName(), taxonomy.getTaxonomicRank());
 		}
@@ -137,23 +135,23 @@ public class SbmlParser {
 		getTreeNode(annotaion, taxonomyIdentifiers, "taxonomy");
 		return taxonomyIdentifiers;
 	}
-	
+
 	private static void getTreeNode(TreeNode annotation, List<String> list, String condition) {
 		for (int annotationChildIt = 0; annotationChildIt < annotation.getChildCount(); annotationChildIt++) {
 			TreeNode annotationChild = annotation.getChildAt(annotationChildIt);
-			if (annotationChild.getChildCount()>0) {
-				getTreeNode(annotationChild,list, condition);
-			}else {
+			if (annotationChild.getChildCount() > 0) {
+				getTreeNode(annotationChild, list, condition);
+			} else {
 				String childString = annotationChild.toString();
-				if(childString.contains(condition)) {
+				if (childString.contains(condition)) {
 					list.add(childString);
 				}
 			}
 		}
-		
+
 	}
 
-	private static HashSet<String> getKoNumbers(List<String> identifiers){
+	private static HashSet<String> getKoNumbers(List<String> identifiers) {
 		HashSet<String> koNumbers = new HashSet<>();
 		for (String identifier : identifiers) {
 			if (identifier.contains("kegg.jp/entry/K")) {
@@ -164,7 +162,7 @@ public class SbmlParser {
 		}
 		return koNumbers;
 	}
-	
+
 	private static HashSet<String> getEcNumbers(List<String> identifiers) {
 		HashSet<String> ecNumbers = new HashSet<>();
 		for (String identifier : identifiers) {
@@ -176,7 +174,7 @@ public class SbmlParser {
 		}
 		return ecNumbers;
 	}
-	
+
 	private static HashSet<String> getReactionTaxonomyNumbers(List<String> identifiers) {
 		HashSet<String> taxonomyNumbers = new HashSet<>();
 		for (String identifier : identifiers) {
@@ -188,7 +186,5 @@ public class SbmlParser {
 		}
 		return taxonomyNumbers;
 	}
-
-
 
 }

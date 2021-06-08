@@ -22,7 +22,7 @@ const PathwayTaxonomy = () => {
     const [isNcbiTaxonomy, setIsNcbiTaxonomy] = useState(true)
 
     const body = (
-        <div className={classes.paper} style={{width: "80vw"}}>
+        <div className={classes.paper} style={{width: "90vw"}}>
             <div style={{
                 margin: "2px",
                 padding: "3px",
@@ -127,7 +127,7 @@ const PathwayTaxonomy = () => {
 
     return (
         <div>
-            <Modal style={{width: "90vw", margin: "5vw", overflow: "auto"}}
+            <Modal style={{width: "85vw", margin: "5vw", overflow: "auto"}}
                    open={graphState.showPathwayTaxonomy}
                    onClose={() => dispatch({type: "SWITCHSHOWPATHWAYTAXONOMY"})}>
                 {body}

@@ -43,27 +43,23 @@ const getReactionXPositionFromSbml = (reactionGlyph) => reactionGlyph.layoutX
 const getReactionYPositionFromSbml = (reactionGlyph) => reactionGlyph.layoutY
 
 const getSbmlCompound = (sbmlCompound, typeOfCompound, reactionGlyph) => {
-    const speciesGlyph =typeof reactionGlyph === "object" && reactionGlyph!=="null" ? getSpeciesGlyph(sbmlCompound.sbmlId, reactionGlyph) : null
-    const compoundId = `${sbmlCompound.sbmlId}_${getSpeciesGlyphIndex(speciesGlyph)};${sbmlCompound.sbmlName} ${sbmlCompound.keggId}`; //retruns name like "M_pep_c;Phosphoenolpyruvate K/G/CXXXXX"
+    const speciesGlyph =typeof reactionGlyph === "object" && reactionGlyph!==null ? getSpeciesGlyph(sbmlCompound.sbmlId, reactionGlyph) : null
+    const compoundId = typeof speciesGlyph === "object" && speciesGlyph!==null ? `${sbmlCompound.sbmlId}_${getSpeciesGlyphIndex(speciesGlyph)};${sbmlCompound.sbmlName} ${sbmlCompound.keggId}`:
+        `${sbmlCompound.sbmlId};${sbmlCompound.sbmlName} ${sbmlCompound.keggId}`; //retruns name like "M_pep_c;Phosphoenolpyruvate K/G/CXXXXX"
     const compound = new Compound(compoundId)
     compound._x = typeof speciesGlyph === "object" &&speciesGlyph !== null? getSpeciesXPositionFromSbml(typeOfCompound, speciesGlyph) : 0
     compound._y =typeof speciesGlyph === "object" &&speciesGlyph !== null? getSpeciesYPositionFromSbml(typeOfCompound, speciesGlyph) : 0
     compound._abbreviation = sbmlCompound.sbmlName
     compound._typeOfCompound = typeOfCompound
     compound._opacity = typeof speciesGlyph === "object" &&speciesGlyph !== null? getCompoundOpacity(speciesGlyph) : 1
-    console.log(compound)
     return compound
 }
 
-const getSpeciesGlyphIndex = (speciesGlyph) => speciesGlyph.layoutId.split("_")[getLastItemOfList(speciesGlyph.layoutId.split("_"))]
+const getSpeciesGlyphIndex = (speciesGlyph) => typeof speciesGlyph.layoutId === "undefined"? "" : getLastItemOfList(speciesGlyph.layoutId.split("_"))
 
 const getCompoundOpacity = speciesGlyph => speciesGlyph.isKeyCompound? 1: 0.4
 
 const getSpeciesGlyph = (sbmlId, reactionGlyph) => reactionGlyph.listOfSpeciesReferenceGlyphs.find(speciesGlyph => speciesGlyph.layoutSpeciesReference === sbmlId)
-
-const getSpeciesIdOfSpeciesGlyph = (layoutId) => {
-    return layoutId.split("SpeciesReferenceGlyph_")[1]
-}
 
 const getSpeciesXPositionFromSbml = (typeOfCompound, speciesGlyph) => typeOfCompound === "substrate" ? speciesGlyph.layOutStartX : speciesGlyph.layOutEndX
 

@@ -3,11 +3,10 @@ import xmlParser from "react-xml-parser/xmlParser";
 import {getUserReactionId} from "../../../specReaction/functions/SpecReactionFunctions";
 import {addCompoundsToReactions} from "../ReactionCompoundsAdder";
 import {setReactionsInStore} from "../ReactionsSetter";
-import {setReactionsAndCompoundsInStore} from "../GraphDrawer";
 import {readListOfReactionGlyphs} from "../nodePositionsAndOpacity/SbmlNodePositionsAndOpacity";
 import {readListOfSpeciesGlyphs} from "../nodePositionsAndOpacity/SpeciesGlyphReader"
-import {requestGenerator} from "../../../request/RequestGenerator";
-
+import {getLastItemOfList} from "../../../usefulFunctions/Arrays";
+import clonedeep from "lodash/cloneDeep"
 //get specific compound id in the appropriate format
 export const getCompoundId = (index) => {
     if (index < 10) {
@@ -40,12 +39,15 @@ const getSpeciesFromReaction = (speciesRefsElement) =>{
     return compounds
 }
 
+const replaceXmlCharacters = (string) => string.replaceAll("&lt;", "<").replaceAll("&gt;",">")
+
+
 //read species from sbml file
 const readSpecies =(dispatch, sbml, state)=> {
     const listOfSpeciesElement = sbml.getElementsByTagName("listOfSpecies")[0]
     const listOfSpecies = listOfSpeciesElement.children.map((species, index)=>{
-        const sbmlName = typeof species.attributes.name === "string" ? species.attributes.name : species.attributes.id
-        const sbmlId = species.attributes.id
+        const sbmlName = typeof species.attributes.name === "string" ? replaceXmlCharacters(species.attributes.name) : replaceXmlCharacters(species.attributes.id)
+        const sbmlId = replaceXmlCharacters(species.attributes.id)
         const annotations = species.getElementsByTagName("rdf:li").map(link => link.attributes["rdf:resource"])
         const keggAnnotations = annotations.filter(link => link.includes("kegg.compound")) //returns one link like "http://identifiers.org/kegg.compound/C00031", i.e. last 6 chars are respective kegg annotation
         const keggId = keggAnnotations.length>0? keggAnnotations[0].substring(keggAnnotations[0].length-6, keggAnnotations[0].length) : getCompoundId(index);
@@ -64,12 +66,12 @@ const readSpecies =(dispatch, sbml, state)=> {
 }
 
 //read reactions from sbml file
-const readReactions = (dispatch, sbml,state) => {
+const readReactions = (dispatch, sbml,state,globalTaxa) => {
     const listOfReactionsElement = sbml.getElementsByTagName("listOfReactions")[0]
     const listOfReactions = listOfReactionsElement.children.map((reaction, index) =>{
-        const sbmlId = reaction.attributes.id;
-        const sbmlName = typeof reaction.attributes.name === "string" ? reaction.attributes.name : reaction.attributes.id;
-        const reversible = typeof reaction.attributes.reversible === "string" ? reaction.attributes.reversible : false
+        const sbmlId = replaceXmlCharacters(reaction.attributes.id);
+        const sbmlName = typeof reaction.attributes.name === "string" ? replaceXmlCharacters(reaction.attributes.name) : replaceXmlCharacters(reaction.attributes.id);
+        const reversible = typeof reaction.attributes.reversible === "string" ? reaction.attributes.reversible : "true"
         const annotations = reaction.getElementsByTagName("rdf:li").map(link => link.attributes["rdf:resource"])
         const keggAnnotations = annotations.filter(link => link.includes("kegg.reaction")) //returns one link like "http://identifiers.org/kegg.reaction/R00212", i.e. last 6 chars are respective kegg annotation
         //possibly more than one reaction annotations in one reaction
@@ -100,8 +102,8 @@ const readReactions = (dispatch, sbml,state) => {
             koNumbers:koNumbers,
             substrates: substrates,
             products: products,
-            reversible: reversible,
-            taxonomy: getTaxonomyFromSbml(annotations,state)
+            reversible: reversible === "reversible",
+            taxonomy: getTaxonomyFromSbml(annotations,state,globalTaxa)
         };
 
 
@@ -117,14 +119,18 @@ const getTaxonomyNumber = (annotations) =>{
     })
 }
 
-const getTaxonomyFromSbml = (annotations, state) =>{
-    const taxonomyNumbers = getTaxonomyNumber(annotations)
-    const taxonomyObject = {}
-     taxonomyNumbers.forEach(taxonomyNumber =>{
+const getTaxonomyObject = (taxonomyNumbers,taxonomyObject,state) =>{
+    taxonomyNumbers.forEach(taxonomyNumber =>{
         const taxonomy = state.taxonomy.taxonomyNcbiList.find(taxon => taxon.id === taxonomyNumber)
-         taxonomyObject[taxonomy.taxonomicName] = taxonomy.taxonomicRank
+        taxonomyObject[taxonomy.taxonomicName] = taxonomy.taxonomicRank
     })
     return taxonomyObject
+}
+
+const getTaxonomyFromSbml = (annotations, state,taxa) =>{
+    const globalTaxa = clonedeep(taxa)
+    const taxonomyNumbers = getTaxonomyNumber(annotations)
+    return getTaxonomyObject(taxonomyNumbers,globalTaxa,state)
 }
 
 //checks if ListOfSpecies contains missing compound annotaations
@@ -132,6 +138,39 @@ const checkMissingAnnotations = (listOfSpecies, dispatch) =>{
     const unAnnotatedIds = listOfSpecies.filter(species => species.keggId.match(/[K][0-9][0-9][0-9][0-9][0-9]/));
     const isMissingAnnotations = unAnnotatedIds.length > 0;
     return isMissingAnnotations
+}
+
+const passChildrenTillAnnotationTag = (children,annotation) =>{
+    for(const child of children){
+        if(child.name==="annotation"){
+            annotation.push(child)
+            break;
+        }
+        else if(child.name === "listOfSpecies"){
+            break;
+        }
+        else if(child.name === "listOfReactions"){
+            break;
+        }else{
+            passChildrenTillAnnotationTag(child.children,annotation)
+        }
+    }
+}
+
+const getGlobalTaxa = (annotation, state) =>{
+    const rdfLiList = annotation.getElementsByTagName("rdf:li")
+    const filteredRdfLiList = rdfLiList.filter(rdfLi=> typeof rdfLi.attributes["rdf:resource"] !== "undefined")
+    const taxonomyTags = filteredRdfLiList.filter(rdfLi=> rdfLi.attributes["rdf:resource"].includes("taxonomy"))
+    const taxonomyNumbers = taxonomyTags.map(taxonomyTag=>getLastItemOfList(taxonomyTag.attributes["rdf:resource"].split("/")))
+    const taxonomyObject = {}
+    return getTaxonomyObject(taxonomyNumbers, taxonomyObject, state)
+}
+
+const findGlobalTaxa = (sbml, state) => {
+    const annotation = []
+    passChildrenTillAnnotationTag(sbml.children,annotation)
+    const annotationGlobalTaxa = annotation.length>0 ? annotation[0] : null
+    return annotationGlobalTaxa !== null ? getGlobalTaxa(annotationGlobalTaxa, state) : null
 }
 
 //input complete state -> all states from index
@@ -144,10 +183,12 @@ export const onSBMLModuleFileChange = async (event, dispatch, state) => {
             const result = e.target.result.trim()
             const parser = new xmlParser()
             const sbml = parser.parseFromString(result)
+            const globalTaxa = findGlobalTaxa(sbml, state) !== null? findGlobalTaxa(sbml, state) : {}
+            console.log(globalTaxa)
             const listOfSpeciesGlyphs = sbml.getElementsByTagName("layout:listOfSpeciesGlyphs").length>0 ? readListOfSpeciesGlyphs(sbml) : []
             const listOfReactionGlyphs = sbml.getElementsByTagName("layout:listOfReactionGlyphs").length>0 ? readListOfReactionGlyphs(sbml,listOfSpeciesGlyphs) : []
             const listOfSpecies = readSpecies(dispatch, sbml, state)
-            const listOfReactions = readReactions(dispatch, sbml,state)
+            const listOfReactions = readReactions(dispatch, sbml,state,globalTaxa)
             const isMissingAnnotations = checkMissingAnnotations(listOfSpecies, dispatch)
             dispatch({type: "SETMODULEFILENAMESBML", payload: file.name})
             dispatch({type:"SET_LIST_OF_REACTION_GLYPHS", payload: listOfReactionGlyphs})
