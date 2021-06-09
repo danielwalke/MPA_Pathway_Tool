@@ -50,7 +50,6 @@ export const getReactions = (graphState) =>{
     if(graphState.data.links.length === 0){
         graphState.data.nodes.map(specialProtein => reactionNames.push(specialProtein.id))
     }
-    console.log(reactionObjects)
     return {reactionObjects, reactionNames}
 }
 

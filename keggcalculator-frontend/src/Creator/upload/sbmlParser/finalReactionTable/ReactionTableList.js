@@ -34,11 +34,10 @@ const ReactionTableList = () =>
 
     const handleFinish = ()=>{
         //set reactions
-        const reactions = setReactionsInStore(state, state.general.listOfReactions)
+        // const reactions = setReactionsInStore(state, state.general.listOfReactions)
         //set data for the Graph
         const data=  setReactionsAndCompoundsInStore(state, state.general.listOfReactions,dispatch)
         dispatch({type:"SETISSHOWINGREACTIONTABLE", payload: false})
-        dispatch({type:"SETREACTIONSINARRAY", payload: reactions})
         dispatch({type: "SETDATA", payload: data})
         dispatch({type:"SETLOADING", payload: false})
     }
@@ -57,10 +56,6 @@ const ReactionTableList = () =>
         })
         setListOfReactions(newListOfReactions)
     }
-
-    useEffect(()=>{
-        setListOfReactionsClone(clonedeep(state.general.listOfReactions))
-    },[state.general.isShowingReactionTable])
 
     const reactionTable = (
         <div className={classes.paper} style={{width: "95vw", height: "80vh", overflow: "auto"}}>

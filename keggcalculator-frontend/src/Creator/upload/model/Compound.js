@@ -5,9 +5,28 @@ export class Compound{
     _y
     _abbreviation
     _typeOfCompound
+    _stoichiometry
+    _id
 
     constructor(name){
         this.name = name
+    }
+
+
+    get id() {
+        return this._id;
+    }
+
+    set id(value) {
+        this._id = value;
+    }
+
+    get stoichiometry() {
+        return this._stoichiometry;
+    }
+
+    set stoichiometry(value) {
+        this._stoichiometry = value;
     }
 
     get opacity() {

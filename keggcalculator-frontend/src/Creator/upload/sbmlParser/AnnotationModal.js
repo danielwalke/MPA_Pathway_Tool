@@ -32,16 +32,13 @@ const submitAnnotation = (compound, annotation, dispatch, setUnAnnotatedCompound
 
 const submit = (state, dispatch, listOfSpecies) =>{
     //add additional information to each reaction
-    console.log(listOfSpecies)
     const newListOfReactions = addCompoundsToReactions(state, state.general.listOfReactions, listOfSpecies)
     //set reactions
-    console.log(setReactionsInStore(state, newListOfReactions))
-    const reactions = setReactionsInStore(state, newListOfReactions)
-    console.log(reactions)
+    // const reactions = setReactionsInStore(state, newListOfReactions)
     //set data for the Graph
     // const data = setReactionsAndCompoundsInStore(state, newListOfReactions, dispatch,state.general.listOfReactionGlyphs)
     dispatch({type:"SETLISTOFREACTIONS", payload: newListOfReactions})
-    dispatch({type:"SETREACTIONSINARRAY", payload: reactions})
+    // dispatch({type:"SETREACTIONSINARRAY", payload: reactions})
     dispatch({type:"SETISANNOTATIONPURPOSE", payload:false})
     // dispatch({type: "SETDATA", payload: data})
     dispatch({type:"SETLOADING", payload: false})

@@ -18,6 +18,7 @@ export class Reaction{
 
     constructor(name) {
         this._reactionName = name
+        this._reversible= false
         this._products = []
         this._substrates = []
         this._linkedTo = []
@@ -25,11 +26,7 @@ export class Reaction{
         this._koList = []
         this._substrateObjects = []
         this._productObjects = []
-        this._taxonomy = []
-    }
-
-    addTaxonomy(taxon){
-        this._taxonomy.push(taxon)
+        this._taxonomy = {}
     }
 
     addProductObject(compound, coefficient){

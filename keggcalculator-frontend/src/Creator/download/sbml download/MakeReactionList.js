@@ -1,5 +1,4 @@
-import React, {useState} from "react"
-import {useDispatch, useSelector} from "react-redux"
+import React from "react"
 import {getReactions} from "../DownloadFunctions"
 import clonedeep from "lodash/cloneDeep";
 import {getNodePosition} from "../NodePosition"
@@ -50,10 +49,12 @@ const MakeReactionList = (generalState, graphState) => {
     }
 
     const {reactionObjects, reactionNames} = getReactions(graphState)
-
+    console.log(generalState.reactionsInSelectArray)
     const filteredReactions = reactionNames.map(
         name => generalState.reactionsInSelectArray.filter(
             reaction => reaction.reactionName === name)[0])
+    console.log(filteredReactions)
+
     const requestList = []
 
     const reactionsRaw = filteredReactions.map(reaction => {

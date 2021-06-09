@@ -1,5 +1,5 @@
 import Modal from "@material-ui/core/Modal";
-import React from "react";
+import React, {useEffect} from "react";
 import {useStyles} from "../ModalStyles/ModalStyles";
 import {useDispatch, useSelector} from "react-redux";
 import HeatMapCsvExporter from "./heatmap download/HeatMapCsvExporter";
@@ -15,6 +15,7 @@ const DonwloadModal = () =>{
     const generalState = useSelector(state => state.general)
     const graphState = useSelector(state => state.graph)
     const dispatch = useDispatch();
+
     const body = (
         <div className={classes.paper}>
             {/*<CsvDownloader/>*/}

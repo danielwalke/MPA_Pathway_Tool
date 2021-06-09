@@ -184,7 +184,6 @@ export const onSBMLModuleFileChange = async (event, dispatch, state) => {
             const parser = new xmlParser()
             const sbml = parser.parseFromString(result)
             const globalTaxa = findGlobalTaxa(sbml, state) !== null? findGlobalTaxa(sbml, state) : {}
-            console.log(globalTaxa)
             const listOfSpeciesGlyphs = sbml.getElementsByTagName("layout:listOfSpeciesGlyphs").length>0 ? readListOfSpeciesGlyphs(sbml) : []
             const listOfReactionGlyphs = sbml.getElementsByTagName("layout:listOfReactionGlyphs").length>0 ? readListOfReactionGlyphs(sbml,listOfSpeciesGlyphs) : []
             const listOfSpecies = readSpecies(dispatch, sbml, state)
@@ -199,12 +198,12 @@ export const onSBMLModuleFileChange = async (event, dispatch, state) => {
                 //add additional information to each reaction
                 const newListOfReactions = addCompoundsToReactions(state, listOfReactions, listOfSpecies)
                 //set reactions
-                const reactions = setReactionsInStore(state, newListOfReactions)
+                // const reactions = setReactionsInStore(state, newListOfReactions)
                 //set data for the Graph
                 // const data=  setReactionsAndCompoundsInStore(state, newListOfReactions, dispatch, listOfReactionGlyphs)
                 dispatch({type:"SETISSHOWINGREACTIONTABLE", payload: true})
                 dispatch({type:"SETLISTOFREACTIONS", payload: newListOfReactions})
-                dispatch({type:"SETREACTIONSINARRAY", payload: reactions})
+                // dispatch({type:"SETREACTIONSINARRAY", payload: reactions})
                 // dispatch({type: "SETDATA", payload: data})
                 dispatch({type:"SETLOADING", payload: false})
             }

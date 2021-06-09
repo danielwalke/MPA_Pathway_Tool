@@ -22,11 +22,11 @@ const handleSkipPurpose = (state, dispatch) =>{
     //add additional information to each reaction
     const newListOfReactions = addCompoundsToReactions(state, state.general.listOfReactions, state.general.listOfSpecies)
     //set reactions
-    const reactions = setReactionsInStore(state, newListOfReactions)
+    // const reactions = setReactionsInStore(state, newListOfReactions)
     //set data for the Graph
     // const data = setReactionsAndCompoundsInStore(state, newListOfReactions, dispatch)
     dispatch({type:"SETLISTOFREACTIONS", payload: newListOfReactions})
-    dispatch({type:"SETREACTIONSINARRAY", payload: reactions})
+    // dispatch({type:"SETREACTIONSINARRAY", payload: reactions})
     // console.log(data);//check whether this is correct, then uncomment the next line
     // dispatch({type: "SETDATA", payload: data})
     dispatch({type:"SETLOADING", payload: false})
