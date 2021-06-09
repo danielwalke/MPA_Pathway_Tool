@@ -54,7 +54,6 @@ const MakeReactionList = (generalState, graphState) => {
     const filteredReactions = reactionNames.map(
         name => generalState.reactionsInSelectArray.filter(
             reaction => reaction.reactionName === name)[0])
-
     const requestList = []
 
     const reactionsRaw = filteredReactions.map(reaction => {

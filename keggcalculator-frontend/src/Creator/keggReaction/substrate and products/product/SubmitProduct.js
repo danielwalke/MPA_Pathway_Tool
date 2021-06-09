@@ -15,7 +15,7 @@ const SubmitProduct = () => {
             className={"submitButtonProduct"}
             onClick={(event) => {
                 event.preventDefault()
-                const reactionList = handleSubmitProduct(productId, graphState, keggState, dispatch)
+                const reactionList = handleSubmitProduct(productId,keggState)
                 dispatch({type: "SETREACTIONS", payload: reactionList})
                 dispatch({type: "ADDREACTIONSTOARRAY", payload: reactionList})
             }}> Submit Product</button>

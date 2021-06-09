@@ -7,7 +7,6 @@ import "./Substrate.css"
 
 
 const  SubmitSubstrate = () => {
-    const graphState = useSelector(state=> state.graph)
     const keggState = useSelector(state => state.keggReaction)
     const dispatch = useDispatch()
 
@@ -24,7 +23,7 @@ const  SubmitSubstrate = () => {
             onClick={(event) => {
                 event.preventDefault()
                 dispatch({type: "SWITCHLOADING"})
-                handleSubmit(substrateId, graphState, keggState, dispatch)
+                handleSubmit(substrateId)
                     .then(({productList, prodReactionsMap}) => setProducts({productList, prodReactionsMap}))
                     .then(() => dispatch({type: "SWITCHLOADING"}))
 

@@ -7,6 +7,7 @@ const defaultState = {
     compMap: new Map(),//mount
     loading: false,//general
     reactionsInSelectArray: [],//all reactions
+    keggReactions:[],
     showKeggReaction: false,
     showSpecificReaction: false,
     showUserInfo: false,
@@ -184,6 +185,8 @@ export const generalReducer = (state = defaultState, action) => {
             return {...state, addLinkModal: !state.addLinkModal}
         case "SET_LIST_OF_REACTION_GLYPHS":
             return {...state, listOfReactionGlyphs: payload}
+        case "ADD_KEGG_REACTION":
+            return {...state, keggReactions: [...state.keggReactions, payload]}
         default:
             return state;
     }

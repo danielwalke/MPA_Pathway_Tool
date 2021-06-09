@@ -1,6 +1,4 @@
 import React, {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import ReactDomServer from "react-dom/server"
 import objectToXML from "object-to-xml"
 import {saveAs} from "file-saver";
 import clonedeep from "lodash/cloneDeep";
@@ -12,7 +10,6 @@ import MakeReactionGlyphObjList from "./MakeReactionGlyphObjList";
 import MakeSpeciesGlyphObjList from "./MakeSpeciesGlyphObjList";
 import MakeCompartmentObjList from "./MakeCompartmentObjList";
 import {requestGenerator} from "../../request/RequestGenerator";
-import {compoundUrl} from "../../request/RequestHandling";
 import MakeRenderInformationObj from "./MakeRenderInformationObj";
 
 const SBMLDownloader = (props) => {
