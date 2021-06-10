@@ -1,50 +1,47 @@
 import {getStochiometryProductsString, getStochiometrySubstratesString} from "../functions/SpecReactionFunctions";
-import {
-    COMPOUND_NODE_COLOR,
-    COMPOUND_NODE_SYMBOL,
-    REACTION_NODE_COLOR,
-    REACTION_NODE_SYMBOL
-} from "../../graph/Constants";
+import {getLengthMinusNFirstChars, getNLastChars} from "../../usefulFunctions/Strings";
+import {handleJSONGraphUpload} from "../../upload/json upload/ModuleUploadFunctionsJSON";
 
-export const handleSpecSubmit = (e, graphStates, specReactionStates, dispatch) => {
-    e.preventDefault();
-    const data = graphStates.data;
-    const reaction = specReactionStates.specReaction
-    data.nodes.push({id: reaction, symbolType: REACTION_NODE_SYMBOL, color: REACTION_NODE_COLOR, opacity: 1, x: 0, y: 0,reversible:false})
-    for (let i = 0; i < specReactionStates.specSubstrates.length; i++) {
-        const subst = specReactionStates.specSubstrates[i]
-        if (i === 0) {
-            data.nodes.push({id: subst, color:COMPOUND_NODE_COLOR, opacity: 1, x: 0, y: 0,symbolType: COMPOUND_NODE_SYMBOL,reversible:false})
-            data.links.push({source: subst, target: reaction, opacity: 1,isReversibleLink: false })
-        } else {
-            data.nodes.push({id: subst, color: COMPOUND_NODE_COLOR, opacity: 0.4, x: 0, y: 0,symbolType: COMPOUND_NODE_SYMBOL,reversible:false})
-            data.links.push({source: subst, target: reaction, opacity: 0.4,isReversibleLink: false})
-        }
-    }
-    for (let i = 0; i < specReactionStates.specProducts.length; i++) {
-        const prod = specReactionStates.specProducts[i]
-        if (i === 0) {
-            data.nodes.push({id: prod, color: COMPOUND_NODE_COLOR, opacity: 1, x: 0, y: 0,symbolType: COMPOUND_NODE_SYMBOL,reversible:false})
-            data.links.push({source: reaction, target: prod, opacity: 1,isReversibleLink: false})
-        } else {
-            data.nodes.push({id: prod, color: COMPOUND_NODE_COLOR, opacity: 0.4, x: 0, y: 0,symbolType: COMPOUND_NODE_SYMBOL,reversible:false})
-            data.links.push({source: reaction, target: prod, opacity: 0.4,isReversibleLink: false})
-        }
-    }
-    // specReactionStates.specTaxonomies = specReactionStates.specTaxonomies.length === 0 ? [""] : specReactionStates.specTaxonomies
-    dispatch({type: "SETDATA", payload: data})
-    dispatch({type: "RESETSPECIFICREACTION"})
-    dispatch({
-        type: "ADDREACTIONSTOARRAY",
-        payload: [{
-            reactionId: reaction.substring(reaction.length - 6, reaction.length),
-            reactionName: reaction,
-            koNumbersString: specReactionStates.specKoNumbers,
-            ecNumbersString: specReactionStates.ecNumbers,
-            stochiometrySubstratesString: getStochiometrySubstratesString(specReactionStates),
-            stochiometryProductsString: getStochiometryProductsString(specReactionStates),
-            taxa: specReactionStates.specTaxonomies,
-            isForwardReaction: true
-        }]
+const addReactionDetails = (reaction, specReactionStates) => {
+    const reactionName = specReactionStates.specReaction
+    reaction.reactionId = getNLastChars(reactionName, 6)
+    reaction.reactionName = reactionName
+    reaction.koNumbersString = specReactionStates.specKoNumbers
+    reaction.ecNumbersString = specReactionStates.ecNumbers
+    reaction.stochiometrySubstratesString = getStochiometrySubstratesString(specReactionStates)
+    reaction.stochiometryProductsString = getStochiometryProductsString(specReactionStates)
+    reaction.taxa = specReactionStates.specTaxonomies
+    reaction.isForwardReaction = true
+    reaction.reversible = false
+    reaction.opacity = 1
+    reaction.x = 0
+    reaction.y = 0
+    reaction.abbreviation = getLengthMinusNFirstChars(reactionName, 6)
+    reaction.substrates = getSubstrates(specReactionStates.specSubstrates,getStochiometrySubstratesString(specReactionStates))
+    reaction.products = getSubstrates(specReactionStates.specProducts,getStochiometryProductsString(specReactionStates))
+}
+
+const getSubstrates = (compounds, stoichiometryCompoundsObject) =>{
+    return compounds.map((compound, index) =>{
+        return(
+            {
+                x:0,
+                y:0,
+                name: compound,
+                abbreviation: getLengthMinusNFirstChars(compound, 6),
+                opacity: index===1? 1:0.4,
+                stochiometry:stoichiometryCompoundsObject[getNLastChars(compound,6)]
+            }
+        )
     })
+}
+
+export const handleSpecSubmit = (e, graphStates, specReactionStates, dispatch, generalState) => {
+    e.preventDefault();
+    const reaction = {}
+    addReactionDetails(reaction, specReactionStates)
+    const data = handleJSONGraphUpload([...generalState.keggReactions, reaction],dispatch, graphStates)
+    dispatch({type:"SETDATA", payload: data})
+    dispatch({type:"ADDREACTIONSTOARRAY",payload:[reaction]})
+    dispatch({type: "RESETSPECIFICREACTION"})
 }

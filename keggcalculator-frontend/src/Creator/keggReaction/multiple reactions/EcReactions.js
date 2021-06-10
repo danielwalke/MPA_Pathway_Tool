@@ -12,6 +12,8 @@ import {
     REACTION_NODE_COLOR,
     REACTION_NODE_SYMBOL
 } from "../../graph/Constants";
+import {getLengthMinusNFirstChars} from "../../usefulFunctions/Strings";
+import {handleJSONGraphUpload} from "../../upload/json upload/ModuleUploadFunctionsJSON";
 const reactionUrl = "http://127.0.0.1/keggcreator/getreaction"
 const ecUrl = "http://127.0.0.1/keggcreator/getreactionlistbyeclist"
 
@@ -30,24 +32,57 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+const getCompoundNameById = (compoundId2Name, compoundId)=>compoundId2Name[compoundId]
+
+const addCompound = (compounds, compoundId, stoichiometry,compoundId2Name) =>{
+    const compound= {}
+    compound.x = 0
+    compound.y = 0
+    compound.stochiometry = stoichiometry
+    compound.opacity = 1
+    compound.name = getCompoundNameById(compoundId2Name, compoundId)
+    compound.abbreviation = getLengthMinusNFirstChars(getCompoundNameById(compoundId2Name, compoundId), 6)
+    compounds.push(compound)
+}
+
+const addCompounds = (stoichiometryCompounds, compoundId2Name) => {
+    const compounds = []
+    if(stoichiometryCompounds instanceof Map){
+        for(const [compoundId, stoichiometry] of stoichiometryCompounds.entries()){
+            addCompound(compounds, compoundId, stoichiometry,compoundId2Name)
+        }
+    }
+    else{
+        Object.keys(stoichiometryCompounds).forEach(key =>{
+            const compoundId = key
+            const stoichiometry = stoichiometryCompounds[key]
+            addCompound(compounds, compoundId, stoichiometry,compoundId2Name)
+        })
+    }
+    return compounds
+}
+
 //used for drawing nodes in graph
-export const handleDrawGraph = (reaction, state, dispatch, graphState) =>{
-    const data = graphState.data
-    const substrates = Object.keys(reaction.stochiometrySubstratesString)
-    const products = Object.keys(reaction.stochiometryProductsString)
-    const substratesName = substrates.map(substrate => state.compoundId2Name[substrate])
-    const productsName = products.map(product => state.compoundId2Name[product])
-    substratesName.map(substrate => data.nodes.push({id:substrate, color: COMPOUND_NODE_COLOR, opacity: 1,x:0,y:0, symbolType:COMPOUND_NODE_SYMBOL}))
-    productsName.map(product => data.nodes.push({id:product, color: COMPOUND_NODE_COLOR, opacity: 1,x:0,y:0,symbolType:COMPOUND_NODE_SYMBOL}))
-    data.nodes.push({id:`${reaction.reactionName} ${reaction.reactionId}`, color: REACTION_NODE_COLOR, opacity: 1, symbolType: REACTION_NODE_SYMBOL,x:0,y:0, reversible:false})
-    substratesName.map(substrate => data.links.push({source: substrate, target: `${reaction.reactionName} ${reaction.reactionId}`, opacity:1,isReversibleLink: false}))
-    productsName.map(product => data.links.push({source: `${reaction.reactionName} ${reaction.reactionId}`, target: product, opacity:1,isReversibleLink: false}))
+export const handleDrawGraph = (reaction, state, dispatch, graphState,generalState) =>{
+    reaction.opacity = 1
+    reaction.reactionName = `${reaction.reactionName} ${reaction.reactionId}`
+    reaction.taxa = {}
+    reaction.isForwardReaction = true
+    reaction.abbreviation = getLengthMinusNFirstChars(reaction.reactionName, 6)
+    reaction.reversible = false
+    reaction.x = 0
+    reaction.y = 0
+    reaction.substrates = addCompounds(reaction.stochiometrySubstratesString, state.compoundId2Name)
+    reaction.products = addCompounds(reaction.stochiometryProductsString, state.compoundId2Name)
+    const data = handleJSONGraphUpload([...generalState.keggReactions, reaction],dispatch, graphState)
+    dispatch({type:"ADDREACTIONSTOARRAY", payload:[reaction]})
     dispatch({type: "SETDATA", payload: data})
 }
 
 const EcReactions = () => {
 
     const dispatch = useDispatch()
+    const generalState = useSelector(state => state.general)
     const state = useSelector(state => state.keggReaction)
     const classes = useStyles()
     const graphState = useSelector(state => state.graph)
@@ -61,20 +96,12 @@ const EcReactions = () => {
         dispatch({type:"SETREACTIONOFEC", payload: e.target.value})
     }
 
-    const handleAddReaction = (reaction) => {
-        reaction.reactionName = reaction.reactionName.concat(" " + reaction.reactionId)
-        dispatch({type: "ADDREACTIONSTOARRAY", payload: [reaction]})
-    }
-
-
-
     const handleReactionSubmit = () => {
         const reactionId = state.reactionOfEc.substring(state.reactionOfEc.length-6, state.reactionOfEc.length).toString()
         requestGenerator("POST", reactionUrl, {reactionId: reactionId}, "", "")
             .then(response => {
                 const reaction  = response.data;
-                handleDrawGraph(reaction, state, dispatch,graphState);
-                handleAddReaction(reaction);
+                handleDrawGraph(reaction, state, dispatch,graphState,generalState);
                 return null;
             })
     }
@@ -88,8 +115,6 @@ const EcReactions = () => {
         }
         requestGenerator("POST", ecUrl, {ecNumbers: ecString.trim()}, "", "")
             .then(response => {
-                console.log(response.data)
-                console.log(state.ecNumberRequest)
                 dispatch({type: "SETECTOREACTIONOBJECT", payload: response.data})
                 dispatch({type: "SWITCHLOADING"})
                 return null;

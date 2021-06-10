@@ -7,7 +7,7 @@ const defaultState = {
     compMap: new Map(),//mount
     loading: false,//general
     reactionsInSelectArray: [],//all reactions
-    keggReactions:[],
+    keggReactions: [],
     showKeggReaction: false,
     showSpecificReaction: false,
     showUserInfo: false,
