@@ -28,7 +28,7 @@ const MakeReactionObjectList = (reactionsRaw, taxonomyIdArray) => {
             '@': {
                 id: item.reactionId,
                 reversible: item.reversible.toString(),
-                name: item.abbreviation.substring(0, item.abbreviation.length - 7),
+                name: item.abbreviation,
                 metaid: item.reactionId},
             '#': {
                 listOfReactants: {'#': MakeSpeciesReferenceObj(item.substrates)},

@@ -49,12 +49,9 @@ const MakeReactionList = (generalState, graphState) => {
     }
 
     const {reactionObjects, reactionNames} = getReactions(graphState)
-    console.log(generalState.reactionsInSelectArray)
-    console.log(clonedeep(reactionObjects))
     const filteredReactions = reactionNames.map(
         name => generalState.reactionsInSelectArray.filter(
             reaction => reaction.reactionName === name)[0])
-    console.log(filteredReactions)
 
     const requestList = []
 

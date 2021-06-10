@@ -8,7 +8,8 @@ export const getReactionObjects = (forwardReactions, backwardReactions,compoundS
         reaction.metabolites = []
         reaction.reactionSubstrates = reactionSubstrates.map(substrate => {
             const id = substrate.substring(substrate.length-6, substrate.length)
-            const stoichiometry = reaction.stochiometrySubstratesString[id]
+            const stoichiometry =reaction.stochiometrySubstratesString instanceof Map? reaction.stochiometrySubstratesString.get(id) :
+                reaction.stochiometrySubstratesString[id]
             compoundSet.add(substrate)
             reaction.metabolites.push({
                 id: substrate,
@@ -25,7 +26,8 @@ export const getReactionObjects = (forwardReactions, backwardReactions,compoundS
         const reactionProducts = reactionProductLinks.map(link => link.target)
         reaction.reactionProducts = reactionProducts.map(product => {
             const id = product.substring(product.length-6, product.length)
-            const stoichiometry = reaction.stochiometryProductsString[id]
+            const stoichiometry =reaction.stochiometryProductsString instanceof Map? reaction.stochiometryProductsString.get(id) :
+                reaction.stochiometryProductsString[id]
             compoundSet.add(product)
             reaction.metabolites.push({
                 id: product,
@@ -48,7 +50,8 @@ export const getReactionObjects = (forwardReactions, backwardReactions,compoundS
         reaction.metabolites = []
         reaction.reactionSubstrates = reactionSubstrates.map(substrate => {
             const id = substrate.substring(substrate.length-6, substrate.length)
-            const stoichiometry = reaction.stochiometrySubstratesString[id]
+            const stoichiometry =reaction.stochiometrySubstratesString instanceof Map? reaction.stochiometrySubstratesString.get(id) :
+                reaction.stochiometrySubstratesString[id]
             compoundSet.add(substrate)
             reaction.metabolites.push({
                 id: substrate,
@@ -65,7 +68,8 @@ export const getReactionObjects = (forwardReactions, backwardReactions,compoundS
         const reactionProducts = reactionProductLinks.map(link => link.source)
         reaction.reactionProducts = reactionProducts.map(product => {
             const id = product.substring(product.length-6, product.length)
-            const stoichiometry = reaction.stochiometryProductsString[id]
+            const stoichiometry = reaction.stochiometryProductsString instanceof Map? reaction.stochiometryProductsString.get(id) :
+                reaction.stochiometryProductsString[id]
             compoundSet.add(product)
             reaction.metabolites.push({
                 id: product,

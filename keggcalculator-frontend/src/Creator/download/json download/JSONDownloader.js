@@ -27,26 +27,29 @@ const JSONDownloader = (props) => {
                     reaction.products = []
                 }else {
                     if (reaction.isForwardReaction) {
-                        reaction.substrates = reactionObjects[`${reaction.reactionName}`].substrates.map(substrate => {
-                            const substrateId = substrate.name.substring(substrate.name.length - 6, substrate.name.length)
-                            substrate.stochiometry = reaction.stochiometrySubstratesString[`${substrateId}`]
+                        reaction.substrates = reactionObjects[`${reaction.reactionName}`].substrates.map(substrate =>{
+                            const substrateId = substrate.name.substring(substrate.name.length-6, substrate.name.length)
+                            substrate.stochiometry = reaction.stochiometrySubstratesString instanceof Map? reaction.stochiometrySubstratesString.get(substrateId) :
+                                reaction.stochiometrySubstratesString[substrateId]
                             return substrate
                         })
-                        reaction.products = reactionObjects[`${reaction.reactionName}`].products.map(product => {
-                            const productId = product.name.substring(product.name.length - 6, product.name.length)
-                            product.stochiometry = reaction.stochiometryProductsString[`${productId}`]
+                        reaction.products = reactionObjects[`${reaction.reactionName}`].products.map(product =>{
+                            const productId = product.name.substring(product.name.length-6, product.name.length)
+                            product.stochiometry =reaction.stochiometryProductsString instanceof Map? reaction.stochiometryProductsString.get(productId) :
+                                reaction.stochiometryProductsString[productId]
                             return product
                         })
                     } else {
-                        reaction.substrates = reactionObjects[`${reaction.reactionName}`].substrates.map(substrate => {
-                            const substrateId = substrate.name.substring(substrate.name.length - 6, substrate.name.length)
-                            substrate.stochiometry = reaction.stochiometryProductsString[`${substrateId}`]
+                        reaction.substrates = reactionObjects[`${reaction.reactionName}`].substrates.map(substrate =>{
+                            const substrateId = substrate.name.substring(substrate.name.length-6, substrate.name.length)
+                            substrate.stochiometry = reaction.stochiometryProductsString instanceof Map? reaction.stochiometryProductsString.get(substrateId) :
+                                reaction.stochiometryProductsString[substrateId]
                             return substrate
                         })
-                        reaction.products = reactionObjects[`${reaction.reactionName}`].products.map(product => {
-                            console.log(product.stochiometry)
-                            const productId = product.name.substring(product.name.length - 6, product.name.length)
-                            product.stochiometry = reaction.stochiometrySubstratesString[`${productId}`]
+                        reaction.products = reactionObjects[`${reaction.reactionName}`].products.map(product =>{
+                            const productId = product.name.substring(product.name.length-6, product.name.length)
+                            product.stochiometry =  reaction.stochiometrySubstratesString instanceof Map? reaction.stochiometrySubstratesString.get(productId) :
+                                reaction.stochiometrySubstratesString[productId]
                             return product
                         })
                     }

@@ -12,9 +12,6 @@ const fetchStochiometricInformation = (dispatch, props) => {
     const reactions = generalState.reactionsInSelectArray.filter(reaction => reactionIds.includes(reaction.reactionId))
     const forwardReactions = reactions.filter(reaction => reaction.isForwardReaction)
     const backwardReactions = reactions.filter(reaction => !reaction.isForwardReaction)
-
-console.log(forwardReactions)
-    console.log(backwardReactions)
     const compoundSet = new Set()
 
     //adds compound names to stoichiometric coefficients in each reactions

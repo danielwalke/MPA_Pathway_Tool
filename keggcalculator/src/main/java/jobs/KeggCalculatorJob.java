@@ -1,7 +1,6 @@
 package jobs;
 
 import java.io.File;
-import java.util.ArrayList;
 
 import calculator.CalculatorOutputList;
 import constants.KeggCalculatorConstants;
@@ -12,7 +11,6 @@ import parser.Calculator2;
 import parser.KeggDataParser;
 import parser.ModuleFileParser;
 import parser.MpaFileParser2;
-import services.KeggCreatorService;
 
 /**
  * executes each job for KeggCalculator
@@ -71,7 +69,6 @@ public class KeggCalculatorJob implements Runnable {
 			count++;
 		}
 		// start calculator
-		// TODO: make this configurable
 		try {
 			KeggDataObject keggData = new KeggDataObject();
 			KeggDataParser.parseModule2ModuleName(keggData, KeggCalculatorConstants.MODULE_LIST_DIR);
@@ -111,13 +108,6 @@ public class KeggCalculatorJob implements Runnable {
 			outputList.writeCSV(new File(KeggCalculatorConstants.DOWNLOAD_DIR + this.job.jobID + ".csv"));
 			outputList.writeCSVUnmatchedProteins(new File(KeggCalculatorConstants.DOWNLOAD_DIR + this.job.jobID + "_unmatchedProteins" + ".csv"));
 			
-			//old calculator
-//			ModuleLoop loop = new ModuleLoop();
-//			loop.addModuleFiles(KeggCalculatorConstants.UPLOAD_DIR + this.job.jobID + "/modules/");
-//			loop.addModuleFiles("src/main/resources/keggdefaultmodules/");
-//			loop.setMpaFile("upload/" + this.job.jobID + "/" + this.job.mpaCSVFile);
-//			loop.loopModules();
-//			loop.getCalcOutputList().writeCSV(new File(KeggCalculatorConstants.DOWNLOAD_DIR + this.job.jobID + ".csv"));
 			System.out.println("Done");
 			
 			// TODO: handle output
@@ -134,24 +124,7 @@ public class KeggCalculatorJob implements Runnable {
 			// wrap up
 			this.job.downloadLink = KeggCalculatorConstants.WEB_URL + "/keggcalculator/download/" + this.job.jobID;
 			this.job.downloadLinkUnmatchedProteinFile = KeggCalculatorConstants.WEB_URL + "/keggcalculator/download/unmatchedproteins/" + this.job.jobID;
-			// TODO
-			// delete files
-			// copy results to appropriate place
-			System.out.println("job finished");
-			
-			// result expiration? --> after 24h
-			//delete files
-			// TODO: cleanup
-			try {
-				//Thread.sleep(1000*60*30); //wait 30 min -> then delete all files
-				
-				System.out.println("files not deleted :)");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+			System.out.println("job finished");			
 		}
 	}
-
 }
