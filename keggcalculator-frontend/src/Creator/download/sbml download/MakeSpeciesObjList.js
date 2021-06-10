@@ -6,12 +6,12 @@ const MakeSpeciesObjList = (speciesRaw) => {
         // const idWithoutSpaces = [item.name.substring(0, item.name.length - 7).replace(/ /g, "_").replace(/^[\d\W_]*/,"")].join("")
         // const cIdForRDF = ['#',item.name.substring(0, item.name.length - 7).replace(/ /g, "_").replace(/^[\d\W_]*/,"")].join("")
         const cIdForRDF = ['#',item.id].join("")
-        const keggCompoundURI = ['http://identifiers.org/kegg.compound/',item.name.substring(item.name.length - 6)].join("")
-
+        const keggCompoundURI = ['http://identifiers.org/kegg.compound/',item.keggId].join("")
+console.log("itemname "+item.name)
         const speciesObject = {
             '@': {
                 id: item.id,
-                name: item.name.substring(0, item.name.length - 7),
+                name: item.name,
                 metaid: item.id,
                 compartment: item.compartment,
                 hasOnlySubstanceUnits: item.hasOnlySubstanceUnits,
