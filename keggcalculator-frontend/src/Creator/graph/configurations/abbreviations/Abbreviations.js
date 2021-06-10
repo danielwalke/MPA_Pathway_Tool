@@ -49,6 +49,7 @@ const Abbreviation = () => {
 
     const handleSubmitAbbreviation = (e, node, defValue) => {
         // const node = state.abbreviation.node
+        console.log(defValue)
         const nodeAbbr = typeof state.abbreviation.abbreviation === "undefined" ? `${defValue}` : `${state.abbreviation.abbreviation}`
         if (e.target.name === "otherNodes") {
             if (typeof state.abbreviation.node !== "undefined") {
@@ -56,15 +57,13 @@ const Abbreviation = () => {
             } else {
                 state.abbreviationsObject[`${node}`] = nodeAbbr
             }
-            dispatch({type: "SETABBREVIATIONOBJECT", payload: state.abbreviationsObject})
         } else {
             const filteredAbundantNodes = abundantNodes.filter(abundantNode => abundantNode.includes(node))
-            filteredAbundantNodes.map(filteredNode => {
+            filteredAbundantNodes.forEach(filteredNode => {
                 state.abbreviationsObject[`${filteredNode}`] = nodeAbbr
-                return null
             })
-            dispatch({type: "SETABBREVIATIONOBJECT", payload: state.abbreviationsObject})
         }
+        dispatch({type: "SETABBREVIATIONOBJECT", payload: state.abbreviationsObject})
 
     }
 
