@@ -141,45 +141,17 @@ public class KeggCalculatorJob implements Runnable {
 			
 			// result expiration? --> after 24h
 			//delete files
+			// TODO: cleanup
 			try {
-				Thread.sleep(1000*60*30); //wait 30 min -> then delete all files
-				deleteFiles(this.job.jobID);
-				System.out.println("files deleted");
-			} catch (InterruptedException e) {
+				//Thread.sleep(1000*60*30); //wait 30 min -> then delete all files
+				
+				System.out.println("files not deleted :)");
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
 		}
-	}
-
-	private void deleteFiles(String jobID) {
-		String downloadDir = "download/";
-		String uploadDir = "upload/";
-		ArrayList<String> filePaths = new ArrayList<>();
-		listFilesForFolder(new File(downloadDir), filePaths, jobID);
-		listFilesForFolder(new File(uploadDir), filePaths, jobID);
-		for(String filePath : filePaths) {
-			File file = new File(filePath);
-			System.out.println(file.getName() + "\t" + "deleted");
-			file.delete();
-		}
-	}
-	
-	public static void listFilesForFolder(File folder, ArrayList<String> filePaths, String jobId) {
-	    for (final File fileEntry : folder.listFiles()) {
-	        if (fileEntry.isDirectory()) {
-	       
-	            listFilesForFolder(fileEntry, filePaths, jobId);
-	        } else {
-		    	String fileName = fileEntry.getName();
-		    	String[] fileNameEnt = fileName.split("\\.");
-		    	if(fileEntry.getAbsolutePath().contains(jobId)) { //if file or directory contains UUID -> add files 
-		    		filePaths.add(fileEntry.getAbsolutePath());	
-		    	}
-	            
-	        }
-	    }
 	}
 
 }

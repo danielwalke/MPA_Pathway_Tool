@@ -18,6 +18,7 @@ import javax.servlet.http.Part;
 import com.google.gson.Gson;
 
 import constants.KeggCalculatorConstants;
+import jobs.DeleteThread;
 import jobs.KeggCalculatorJob;
 import json.KeggCalculatorJobJSON;
 import spark.Request;
@@ -37,7 +38,8 @@ public class KeggCalculatorService {
 	public KeggCalculatorService() {
 		this.gson = new Gson();
 		this.currentJobs = new HashMap<>();
-		this.threadPool = Executors.newFixedThreadPool(2);
+		this.threadPool = Executors.newFixedThreadPool(3);
+		this.threadPool.execute(new Thread(new DeleteThread()));
 	}
 	
 	//starts thread for calculator
