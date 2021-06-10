@@ -32,6 +32,7 @@ public class KeggCalculatorService {
 
 	public Gson gson;
 	public HashMap<String, KeggCalculatorJobJSON> currentJobs;
+	private DeleteThread deleteThread;
 	
 	private ExecutorService threadPool;
 
@@ -39,12 +40,14 @@ public class KeggCalculatorService {
 		this.gson = new Gson();
 		this.currentJobs = new HashMap<>();
 		this.threadPool = Executors.newFixedThreadPool(3);
-		this.threadPool.execute(new Thread(new DeleteThread()));
+		this.deleteThread = new DeleteThread();
+		this.threadPool.execute(new Thread(this.deleteThread));
 	}
 	
 	//starts thread for calculator
 	public void submitJob(String jobID) {
 		this.threadPool.execute(new KeggCalculatorJob(currentJobs.get(jobID)));
+		this.deleteThread.addJob(jobID);
 	}
 	
 	public synchronized void modifyJob(String jobID, KeggCalculatorJobJSON jobObject) {
