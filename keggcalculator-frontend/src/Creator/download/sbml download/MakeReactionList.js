@@ -10,9 +10,9 @@ const MakeReactionList = (generalState, graphState) => {
 
     const glyphCompoundList = {}
 
-    const checkForUniqueSpeciesAbbreviations = (abbreviation) => {
+    const checkForUniqueSpeciesAbbreviations = (abbreviation, compoundId) => {
 
-        const keggCompound = abbreviation.substring(abbreviation.length - 6)
+        const keggCompound = compoundId
 
         if (abbreviationList[abbreviation] === undefined) {
             abbreviationList[abbreviation] = {}
@@ -50,6 +50,7 @@ const MakeReactionList = (generalState, graphState) => {
 
     const {reactionObjects, reactionNames} = getReactions(graphState)
     console.log(generalState.reactionsInSelectArray)
+    console.log(clonedeep(reactionObjects))
     const filteredReactions = reactionNames.map(
         name => generalState.reactionsInSelectArray.filter(
             reaction => reaction.reactionName === name)[0])
@@ -71,9 +72,10 @@ const MakeReactionList = (generalState, graphState) => {
             if (reaction.isForwardReaction) {
                 reaction.substrates = reactionObjects[`${reaction.reactionName}`].substrates.map(substrate =>{
                     const substrateId = substrate.name.substring(substrate.name.length-6, substrate.name.length)
+                    console.warn(substrateId)
                     substrate.stochiometry = reaction.stochiometrySubstratesString[`${substrateId}`]
 
-                    substrate.id = checkForUniqueSpeciesAbbreviations(substrate.abbreviation)
+                    substrate.id = checkForUniqueSpeciesAbbreviations(substrate.abbreviation, substrateId)
                     substrate.glyphId = makeUniqueGlyphId(substrate.abbreviation)
                     return substrate
                 })
@@ -81,7 +83,7 @@ const MakeReactionList = (generalState, graphState) => {
                     const productId = product.name.substring(product.name.length-6, product.name.length)
                     product.stochiometry = reaction.stochiometryProductsString[`${productId}`]
 
-                    product.id = checkForUniqueSpeciesAbbreviations(product.abbreviation)
+                    product.id = checkForUniqueSpeciesAbbreviations(product.abbreviation, productId)
                     product.glyphId = makeUniqueGlyphId(product.abbreviation)
                     return product
                 })
@@ -90,7 +92,7 @@ const MakeReactionList = (generalState, graphState) => {
                     const substrateId = substrate.name.substring(substrate.name.length-6, substrate.name.length)
                     substrate.stochiometry = reaction.stochiometryProductsString[`${substrateId}`]
 
-                    substrate.id = checkForUniqueSpeciesAbbreviations(substrate.abbreviation)
+                    substrate.id = checkForUniqueSpeciesAbbreviations(substrate.abbreviation, substrateId)
                     substrate.glyphId = makeUniqueGlyphId(substrate.abbreviation)
                     return substrate
                 })
@@ -98,7 +100,7 @@ const MakeReactionList = (generalState, graphState) => {
                     const productId = product.name.substring(product.name.length-6, product.name.length)
                     product.stochiometry = reaction.stochiometrySubstratesString[`${productId}`]
 
-                    product.id = checkForUniqueSpeciesAbbreviations(product.abbreviation)
+                    product.id = checkForUniqueSpeciesAbbreviations(product.abbreviation, productId)
                     product.glyphId = makeUniqueGlyphId(product.abbreviation)
                     return product
                 })

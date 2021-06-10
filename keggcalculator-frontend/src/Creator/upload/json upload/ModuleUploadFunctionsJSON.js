@@ -15,6 +15,7 @@ export const handleJSONGraphUpload = (reactions, dispatch, graphState) => { //ha
         reaction.substrates.forEach(substrate =>addCompoundToData(substrate, reaction, reactionNode, links, nodes, graphState,true))
         reaction.products.forEach(product => addCompoundToData(product, reaction, reactionNode, links, nodes, graphState,false))
         dispatch({type: "SETABBREVIATIONOBJECT", payload: graphState.abbreviationsObject})
+        console.log(graphState.abbreviationsObject)
     })
     return {nodes, links}
 }

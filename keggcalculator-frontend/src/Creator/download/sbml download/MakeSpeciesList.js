@@ -1,5 +1,8 @@
 import React from "react"
 
+const getKeggId = comp => comp.name.substring(comp.name.length-6, comp.name.length)
+
+
 const MakeSpeciesList = (reactionArrayProcessed) => {
     /**
      * Takes an Array of reaction objects, extracts information on reaction substrates/products and corresponding graph
@@ -18,11 +21,12 @@ const MakeSpeciesList = (reactionArrayProcessed) => {
         compounds.push(...rxn.products)
         compounds.push(...rxn.substrates)
     }
-
     for (const comp of compounds) {
+
 
         const compoundsForSpeciesArray = {
             name: comp.abbreviation,
+            keggId: getKeggId(comp),
             id: comp.id,
             compartment: "c",
             compartmentName: "cytosol",    //extend functionality for multiple compartments
