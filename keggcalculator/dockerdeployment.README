@@ -1,0 +1,12 @@
+Docker deployment auf mpa2-Server: 141.44.141.132 auf port 9090
+
+Jar mit maven assembly-plugin erstellen: assembly:single@pathwaytool
+Name des containers: mpacloud/pathwaytool
+Ordner auf mpa2: /mnt/pathwaytool
+Die jar und alle files in "resources" müssen vorhanden sein
+
+Hilfreich:
+
+sudo docker build -t mpacloud/pathwaytool .
+(sudo docker push mpacloud/pathwaytool)
+sudo docker run -d -p 9090:80 mpacloud/pathwaytool
