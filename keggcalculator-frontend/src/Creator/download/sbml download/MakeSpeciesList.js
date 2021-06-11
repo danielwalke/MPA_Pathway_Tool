@@ -23,7 +23,6 @@ const MakeSpeciesList = (reactionArrayProcessed) => {
     }
     for (const comp of compounds) {
 
-
         const compoundsForSpeciesArray = {
             name: comp.abbreviation,
             keggId: getKeggId(comp),
@@ -38,7 +37,6 @@ const MakeSpeciesList = (reactionArrayProcessed) => {
         speciesArray.push(compoundsForSpeciesArray)
 
         const compoundPositions = {
-            name: comp.abbreviation,
             glyphId: comp.glyphId,
             id: comp.id,
             compartment: "c",

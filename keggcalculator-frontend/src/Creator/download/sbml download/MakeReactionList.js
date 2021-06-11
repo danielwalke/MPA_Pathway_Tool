@@ -8,8 +8,6 @@ const MakeReactionList = (generalState, graphState) => {
     const abbreviationList = {}
     const compoundList = {}
 
-    const glyphCompoundList = {}
-
     const checkForUniqueSpeciesAbbreviations = (abbreviation, compoundId) => {
 
         const keggCompound = compoundId
@@ -31,21 +29,28 @@ const MakeReactionList = (generalState, graphState) => {
 
         return abbreviationList[abbreviation].id
     }
-    const makeUniqueGlyphId = (abbreviation) => {
 
-        const keggCompound = abbreviation.substring(abbreviation.length - 6)
-        let uniqueGlyphId
+    const glyphCompoundList = {}
 
-        if (glyphCompoundList[keggCompound] === undefined) {
-            glyphCompoundList[keggCompound] = {}
-            glyphCompoundList[keggCompound] = 1
+    const makeUniqueGlyphId = (compoundId, x, y, stoichiometry, index) => {
+
+        let glyphId = [compoundId,"_",index].join("")
+        let count = parseInt(glyphId.substring(glyphId.length-1))
+
+        if (glyphCompoundList[glyphId] === undefined
+        ) {
+            glyphCompoundList[glyphId] = {x: x, y: y, stoichiometry: stoichiometry}
+            return glyphId
+        } else if (glyphCompoundList[glyphId].x === x &&
+            glyphCompoundList[glyphId].y === y &&
+            glyphCompoundList[glyphId].stoichiometry === stoichiometry
+        ) {
+            return glyphId
         } else {
-            glyphCompoundList[keggCompound] += 1
+            // start next recursion
+            let newGlyph = glyphId.substring(0, glyphId.length - 2)
+            return makeUniqueGlyphId(newGlyph, x, y, stoichiometry, count + 1)
         }
-
-        uniqueGlyphId = [keggCompound,"_",glyphCompoundList[keggCompound]].join("")
-
-        return uniqueGlyphId
     }
 
     const {reactionObjects, reactionNames} = getReactions(graphState)
@@ -73,7 +78,7 @@ const MakeReactionList = (generalState, graphState) => {
                     substrate.stochiometry = reaction.stochiometrySubstratesString[`${substrateId}`]
 
                     substrate.id = checkForUniqueSpeciesAbbreviations(substrate.abbreviation, substrateId)
-                    substrate.glyphId = makeUniqueGlyphId(substrate.abbreviation)
+                    substrate.glyphId = makeUniqueGlyphId(substrateId, substrate.x, substrate.y, substrate.stochiometry, 0)
                     return substrate
                 })
                 reaction.products = reactionObjects[`${reaction.reactionName}`].products.map(product =>{
@@ -81,7 +86,7 @@ const MakeReactionList = (generalState, graphState) => {
                     product.stochiometry = reaction.stochiometryProductsString[`${productId}`]
 
                     product.id = checkForUniqueSpeciesAbbreviations(product.abbreviation, productId)
-                    product.glyphId = makeUniqueGlyphId(product.abbreviation)
+                    product.glyphId = makeUniqueGlyphId(productId, product.x, product.y, product.stochiometry, 0)
                     return product
                 })
             } else {
@@ -90,7 +95,7 @@ const MakeReactionList = (generalState, graphState) => {
                     substrate.stochiometry = reaction.stochiometryProductsString[`${substrateId}`]
 
                     substrate.id = checkForUniqueSpeciesAbbreviations(substrate.abbreviation, substrateId)
-                    substrate.glyphId = makeUniqueGlyphId(substrate.abbreviation)
+                    substrate.glyphId = makeUniqueGlyphId(substrateId, substrate.x, substrate.y, substrate.stochiometry, 0)
                     return substrate
                 })
                 reaction.products = reactionObjects[`${reaction.reactionName}`].products.map(product =>{
@@ -98,7 +103,7 @@ const MakeReactionList = (generalState, graphState) => {
                     product.stochiometry = reaction.stochiometrySubstratesString[`${productId}`]
 
                     product.id = checkForUniqueSpeciesAbbreviations(product.abbreviation, productId)
-                    product.glyphId = makeUniqueGlyphId(product.abbreviation)
+                    product.glyphId = makeUniqueGlyphId(productId, product.x, product.y, product.stochiometry, 0)
                     return product
                 })
             }
