@@ -404,7 +404,7 @@
           </rdf:RDF>
         </annotation>
       </reaction>
-      <reaction id="R10243" reversible="false" name="Tetrahydrofolate + Acetyl-CoA &lt;=&gt; 5-Methyltetrahydrofolate + CoA + CO" metaid="R10243">
+      <reaction id="R10243" reversible="false" name="Tetrahydrofolate + Acetyl-CoA &lt;=&gt; 5-Methyltetrahydrofolate + CoA + CO R10243" metaid="R10243">
         <listOfReactants>
           <speciesReference species="C00010" stoichiometry="1" constant="true" />
           <speciesReference species="C00237" stoichiometry="1" constant="true" />
@@ -467,7 +467,7 @@
     </listOfCompartments>
     <layout:listOfLayouts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:layout="http://www.sbml.org/sbml/level3/version2/layout/version1">
       <layout:layout layout:id="Layout1">
-        <layout:dimensions layout:width="1824" layout:height="684" />
+        <layout:dimensions layout:width="1216" layout:height="414" />
         <layout:listOfReactionGlyphs>
           <reactionGlyph layout:id="glyph_R00943" layout:reaction="R00943" render:objectRole="keyCompound">
             <layout:curve>
@@ -479,7 +479,7 @@
               </listOfCurveSegments>
             </layout:curve>
             <layout:listOfSpeciesReferenceGlyphs>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_ATP_1" layout:speciesReference="C00002" layout:speciesGlyph="SpeciesGlyph_ATP_1" layout:role="substrate">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00002_0" layout:speciesReference="C00002" layout:speciesGlyph="SpeciesGlyph_C00002_0" layout:role="substrate">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -489,7 +489,7 @@
                   </layout:listOfCurveSegments>
                 </layout:curve>
               </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_folate_1" layout:speciesReference="C00101" layout:speciesGlyph="SpeciesGlyph_folate_1" layout:role="substrate">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00101_0" layout:speciesReference="C00101" layout:speciesGlyph="SpeciesGlyph_C00101_0" layout:role="substrate">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -499,7 +499,7 @@
                   </layout:listOfCurveSegments>
                 </layout:curve>
               </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_ormate_1" layout:speciesReference="C00058" layout:speciesGlyph="SpeciesGlyph_ormate_1" layout:role="substrate">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00058_0" layout:speciesReference="C00058" layout:speciesGlyph="SpeciesGlyph_C00058_0" layout:role="substrate">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -509,7 +509,7 @@
                   </layout:listOfCurveSegments>
                 </layout:curve>
               </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_ADP_1" layout:speciesReference="C00008" layout:speciesGlyph="SpeciesGlyph_ADP_1" layout:role="product">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00008_0" layout:speciesReference="C00008" layout:speciesGlyph="SpeciesGlyph_C00008_0" layout:role="product">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -520,7 +520,7 @@
                   </layout:listOfCurveSegments>
                 </layout:curve>
               </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_sphate_1" layout:speciesReference="C00009" layout:speciesGlyph="SpeciesGlyph_sphate_1" layout:role="product">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00009_0" layout:speciesReference="C00009" layout:speciesGlyph="SpeciesGlyph_C00009_0" layout:role="product">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -531,7 +531,7 @@
                   </layout:listOfCurveSegments>
                 </layout:curve>
               </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_folate_2" layout:speciesReference="C00234" layout:speciesGlyph="SpeciesGlyph_folate_2" layout:role="product">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00234_0" layout:speciesReference="C00234" layout:speciesGlyph="SpeciesGlyph_C00234_0" layout:role="product">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -554,7 +554,7 @@
               </listOfCurveSegments>
             </layout:curve>
             <layout:listOfSpeciesReferenceGlyphs>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_0__H+_1" layout:speciesReference="C00080" layout:speciesGlyph="SpeciesGlyph_0__H+_1" layout:role="substrate">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00080_0" layout:speciesReference="C00080" layout:speciesGlyph="SpeciesGlyph_C00080_0" layout:role="substrate">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -564,7 +564,7 @@
                   </layout:listOfCurveSegments>
                 </layout:curve>
               </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_folate_3" layout:speciesReference="C00234" layout:speciesGlyph="SpeciesGlyph_folate_3" layout:role="substrate">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00234_0" layout:speciesReference="C00234" layout:speciesGlyph="SpeciesGlyph_C00234_0" layout:role="substrate">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -574,7 +574,7 @@
                   </layout:listOfCurveSegments>
                 </layout:curve>
               </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_0__H2O_1" layout:speciesReference="C00001" layout:speciesGlyph="SpeciesGlyph_0__H2O_1" layout:role="product">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00001_0" layout:speciesReference="C00001" layout:speciesGlyph="SpeciesGlyph_C00001_0" layout:role="product">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -585,7 +585,7 @@
                   </layout:listOfCurveSegments>
                 </layout:curve>
               </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_folate_4" layout:speciesReference="C00445" layout:speciesGlyph="SpeciesGlyph_folate_4" layout:role="product">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00445_0" layout:speciesReference="C00445" layout:speciesGlyph="SpeciesGlyph_C00445_0" layout:role="product">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -608,7 +608,7 @@
               </listOfCurveSegments>
             </layout:curve>
             <layout:listOfSpeciesReferenceGlyphs>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_NADPH_1" layout:speciesReference="C00005" layout:speciesGlyph="SpeciesGlyph_NADPH_1" layout:role="substrate">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00005_0" layout:speciesReference="C00005" layout:speciesGlyph="SpeciesGlyph_C00005_0" layout:role="substrate">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -618,7 +618,7 @@
                   </layout:listOfCurveSegments>
                 </layout:curve>
               </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_folate_5" layout:speciesReference="C00445" layout:speciesGlyph="SpeciesGlyph_folate_5" layout:role="substrate">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00445_0" layout:speciesReference="C00445" layout:speciesGlyph="SpeciesGlyph_C00445_0" layout:role="substrate">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -628,7 +628,7 @@
                   </layout:listOfCurveSegments>
                 </layout:curve>
               </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_NADP+_1" layout:speciesReference="C00006" layout:speciesGlyph="SpeciesGlyph_NADP+_1" layout:role="product">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00006_0" layout:speciesReference="C00006" layout:speciesGlyph="SpeciesGlyph_C00006_0" layout:role="product">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -639,7 +639,7 @@
                   </layout:listOfCurveSegments>
                 </layout:curve>
               </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_folate_6" layout:speciesReference="C00143" layout:speciesGlyph="SpeciesGlyph_folate_6" layout:role="product">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00143_0" layout:speciesReference="C00143" layout:speciesGlyph="SpeciesGlyph_C00143_0" layout:role="product">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -662,7 +662,7 @@
               </listOfCurveSegments>
             </layout:curve>
             <layout:listOfSpeciesReferenceGlyphs>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_edoxin_1" layout:speciesReference="C00138" layout:speciesGlyph="SpeciesGlyph_edoxin_1" layout:role="substrate">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00138_0" layout:speciesReference="C00138" layout:speciesGlyph="SpeciesGlyph_C00138_0" layout:role="substrate">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -672,7 +672,7 @@
                   </layout:listOfCurveSegments>
                 </layout:curve>
               </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_3__H+_1" layout:speciesReference="C00080_1" layout:speciesGlyph="SpeciesGlyph_3__H+_1" layout:role="substrate">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00080_1" layout:speciesReference="C00080_1" layout:speciesGlyph="SpeciesGlyph_C00080_1" layout:role="substrate">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -682,7 +682,7 @@
                   </layout:listOfCurveSegments>
                 </layout:curve>
               </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_CO2_1" layout:speciesReference="C00011" layout:speciesGlyph="SpeciesGlyph_CO2_1" layout:role="substrate">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00011_0" layout:speciesReference="C00011" layout:speciesGlyph="SpeciesGlyph_C00011_0" layout:role="substrate">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -692,7 +692,7 @@
                   </layout:listOfCurveSegments>
                 </layout:curve>
               </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_1__H2O_1" layout:speciesReference="C00001_1" layout:speciesGlyph="SpeciesGlyph_1__H2O_1" layout:role="product">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00001_1" layout:speciesReference="C00001_1" layout:speciesGlyph="SpeciesGlyph_C00001_1" layout:role="product">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -703,7 +703,7 @@
                   </layout:listOfCurveSegments>
                 </layout:curve>
               </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_edoxin_2" layout:speciesReference="C00139" layout:speciesGlyph="SpeciesGlyph_edoxin_2" layout:role="product">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00139_0" layout:speciesReference="C00139" layout:speciesGlyph="SpeciesGlyph_C00139_0" layout:role="product">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -714,7 +714,7 @@
                   </layout:listOfCurveSegments>
                 </layout:curve>
               </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_CO_1" layout:speciesReference="C00237" layout:speciesGlyph="SpeciesGlyph_CO_1" layout:role="product">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00237_0" layout:speciesReference="C00237" layout:speciesGlyph="SpeciesGlyph_C00237_0" layout:role="product">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -737,7 +737,7 @@
               </listOfCurveSegments>
             </layout:curve>
             <layout:listOfSpeciesReferenceGlyphs>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_CoA_1" layout:speciesReference="C00010" layout:speciesGlyph="SpeciesGlyph_CoA_1" layout:role="substrate">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00010_0" layout:speciesReference="C00010" layout:speciesGlyph="SpeciesGlyph_C00010_0" layout:role="substrate">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -747,7 +747,7 @@
                   </layout:listOfCurveSegments>
                 </layout:curve>
               </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_CO_2" layout:speciesReference="C00237" layout:speciesGlyph="SpeciesGlyph_CO_2" layout:role="substrate">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00237_0" layout:speciesReference="C00237" layout:speciesGlyph="SpeciesGlyph_C00237_0" layout:role="substrate">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -757,7 +757,7 @@
                   </layout:listOfCurveSegments>
                 </layout:curve>
               </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_folate_7" layout:speciesReference="C00440" layout:speciesGlyph="SpeciesGlyph_folate_7" layout:role="substrate">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00440_0" layout:speciesReference="C00440" layout:speciesGlyph="SpeciesGlyph_C00440_0" layout:role="substrate">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -767,7 +767,7 @@
                   </layout:listOfCurveSegments>
                 </layout:curve>
               </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_folate_8" layout:speciesReference="C00101" layout:speciesGlyph="SpeciesGlyph_folate_8" layout:role="product">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00101_0" layout:speciesReference="C00101" layout:speciesGlyph="SpeciesGlyph_C00101_0" layout:role="product">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -778,7 +778,7 @@
                   </layout:listOfCurveSegments>
                 </layout:curve>
               </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_yl-CoA_1" layout:speciesReference="C00024" layout:speciesGlyph="SpeciesGlyph_yl-CoA_1" layout:role="product">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00024_0" layout:speciesReference="C00024" layout:speciesGlyph="SpeciesGlyph_C00024_0" layout:role="product">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -801,7 +801,7 @@
               </listOfCurveSegments>
             </layout:curve>
             <layout:listOfSpeciesReferenceGlyphs>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_NADPH_2" layout:speciesReference="C00005" layout:speciesGlyph="SpeciesGlyph_NADPH_2" layout:role="substrate">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00005_0" layout:speciesReference="C00005" layout:speciesGlyph="SpeciesGlyph_C00005_0" layout:role="substrate">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -811,7 +811,7 @@
                   </layout:listOfCurveSegments>
                 </layout:curve>
               </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_H+_1" layout:speciesReference="C00080_2" layout:speciesGlyph="SpeciesGlyph_H+_1" layout:role="substrate">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00080_2" layout:speciesReference="C00080_2" layout:speciesGlyph="SpeciesGlyph_C00080_2" layout:role="substrate">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -821,7 +821,7 @@
                   </layout:listOfCurveSegments>
                 </layout:curve>
               </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_folate_9" layout:speciesReference="C00143" layout:speciesGlyph="SpeciesGlyph_folate_9" layout:role="substrate">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00143_0" layout:speciesReference="C00143" layout:speciesGlyph="SpeciesGlyph_C00143_0" layout:role="substrate">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -831,7 +831,7 @@
                   </layout:listOfCurveSegments>
                 </layout:curve>
               </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_NADP+_2" layout:speciesReference="C00006" layout:speciesGlyph="SpeciesGlyph_NADP+_2" layout:role="product">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00006_0" layout:speciesReference="C00006" layout:speciesGlyph="SpeciesGlyph_C00006_0" layout:role="product">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -842,7 +842,7 @@
                   </layout:listOfCurveSegments>
                 </layout:curve>
               </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_folate_10" layout:speciesReference="C00440" layout:speciesGlyph="SpeciesGlyph_folate_10" layout:role="product">
+              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00440_0" layout:speciesReference="C00440" layout:speciesGlyph="SpeciesGlyph_C00440_0" layout:role="product">
                 <layout:curve>
                   <layout:listOfCurveSegments>
                     <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
@@ -857,183 +857,135 @@
           </reactionGlyph>
         </layout:listOfReactionGlyphs>
         <layout:listOfSpeciesGlyphs>
-          <speciesGlyph layout:id="SpeciesGlyph_ADP_1" layout:species="C00008" render:objectRole="nonKeyCompound">
+          <speciesGlyph layout:id="SpeciesGlyph_C00008_0" layout:species="C00008" render:objectRole="nonKeyCompound">
             <layout:boundingBox layout:id="bb2">
               <layout:position layout:x="1100" layout:y="200" />
               <layout:dimensions layout:width="20" layout:height="20" />
             </layout:boundingBox>
           </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_sphate_1" layout:species="C00009" render:objectRole="nonKeyCompound">
+          <speciesGlyph layout:id="SpeciesGlyph_C00009_0" layout:species="C00009" render:objectRole="nonKeyCompound">
             <layout:boundingBox layout:id="bb2">
               <layout:position layout:x="1200" layout:y="200" />
               <layout:dimensions layout:width="20" layout:height="20" />
             </layout:boundingBox>
           </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_folate_2" layout:species="C00234" render:objectRole="keyCompound">
+          <speciesGlyph layout:id="SpeciesGlyph_C00234_0" layout:species="C00234" render:objectRole="keyCompound">
             <layout:boundingBox layout:id="bb2">
               <layout:position layout:x="1150" layout:y="250" />
               <layout:dimensions layout:width="20" layout:height="20" />
             </layout:boundingBox>
           </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_ATP_1" layout:species="C00002" render:objectRole="nonKeyCompound">
+          <speciesGlyph layout:id="SpeciesGlyph_C00002_0" layout:species="C00002" render:objectRole="nonKeyCompound">
             <layout:boundingBox layout:id="bb2">
               <layout:position layout:x="1000" layout:y="50" />
               <layout:dimensions layout:width="20" layout:height="20" />
             </layout:boundingBox>
           </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_folate_1" layout:species="C00101" render:objectRole="keyCompound">
+          <speciesGlyph layout:id="SpeciesGlyph_C00101_0" layout:species="C00101" render:objectRole="keyCompound">
             <layout:boundingBox layout:id="bb2">
               <layout:position layout:x="800" layout:y="100" />
               <layout:dimensions layout:width="20" layout:height="20" />
             </layout:boundingBox>
           </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_ormate_1" layout:species="C00058" render:objectRole="keyCompound">
+          <speciesGlyph layout:id="SpeciesGlyph_C00058_0" layout:species="C00058" render:objectRole="keyCompound">
             <layout:boundingBox layout:id="bb2">
               <layout:position layout:x="900" layout:y="50" />
               <layout:dimensions layout:width="20" layout:height="20" />
             </layout:boundingBox>
           </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_0__H2O_1" layout:species="C00001" render:objectRole="nonKeyCompound">
+          <speciesGlyph layout:id="SpeciesGlyph_C00001_0" layout:species="C00001" render:objectRole="nonKeyCompound">
             <layout:boundingBox layout:id="bb2">
               <layout:position layout:x="1150" layout:y="400" />
               <layout:dimensions layout:width="20" layout:height="20" />
             </layout:boundingBox>
           </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_folate_4" layout:species="C00445" render:objectRole="keyCompound">
+          <speciesGlyph layout:id="SpeciesGlyph_C00445_0" layout:species="C00445" render:objectRole="keyCompound">
             <layout:boundingBox layout:id="bb2">
               <layout:position layout:x="1000" layout:y="450" />
               <layout:dimensions layout:width="20" layout:height="20" />
             </layout:boundingBox>
           </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_0__H+_1" layout:species="C00080" render:objectRole="nonKeyCompound">
+          <speciesGlyph layout:id="SpeciesGlyph_C00080_0" layout:species="C00080" render:objectRole="nonKeyCompound">
             <layout:boundingBox layout:id="bb2">
               <layout:position layout:x="1100" layout:y="300" />
               <layout:dimensions layout:width="20" layout:height="20" />
             </layout:boundingBox>
           </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_folate_3" layout:species="C00234" render:objectRole="keyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="1150" layout:y="250" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_NADP+_1" layout:species="C00006" render:objectRole="nonKeyCompound">
+          <speciesGlyph layout:id="SpeciesGlyph_C00006_0" layout:species="C00006" render:objectRole="nonKeyCompound">
             <layout:boundingBox layout:id="bb2">
               <layout:position layout:x="450" layout:y="450" />
               <layout:dimensions layout:width="20" layout:height="20" />
             </layout:boundingBox>
           </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_folate_6" layout:species="C00143" render:objectRole="keyCompound">
+          <speciesGlyph layout:id="SpeciesGlyph_C00143_0" layout:species="C00143" render:objectRole="keyCompound">
             <layout:boundingBox layout:id="bb2">
               <layout:position layout:x="550" layout:y="450" />
               <layout:dimensions layout:width="20" layout:height="20" />
             </layout:boundingBox>
           </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_NADPH_1" layout:species="C00005" render:objectRole="nonKeyCompound">
+          <speciesGlyph layout:id="SpeciesGlyph_C00005_0" layout:species="C00005" render:objectRole="nonKeyCompound">
             <layout:boundingBox layout:id="bb2">
               <layout:position layout:x="350" layout:y="450" />
               <layout:dimensions layout:width="20" layout:height="20" />
             </layout:boundingBox>
           </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_folate_5" layout:species="C00445" render:objectRole="keyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="1000" layout:y="450" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_1__H2O_1" layout:species="C00001_1" render:objectRole="nonKeyCompound">
+          <speciesGlyph layout:id="SpeciesGlyph_C00001_1" layout:species="C00001_1" render:objectRole="nonKeyCompound">
             <layout:boundingBox layout:id="bb2">
               <layout:position layout:x="250" layout:y="200" />
               <layout:dimensions layout:width="20" layout:height="20" />
             </layout:boundingBox>
           </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_edoxin_2" layout:species="C00139" render:objectRole="nonKeyCompound">
+          <speciesGlyph layout:id="SpeciesGlyph_C00139_0" layout:species="C00139" render:objectRole="nonKeyCompound">
             <layout:boundingBox layout:id="bb2">
               <layout:position layout:x="295" layout:y="89" />
               <layout:dimensions layout:width="20" layout:height="20" />
             </layout:boundingBox>
           </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_CO_1" layout:species="C00237" render:objectRole="keyCompound">
+          <speciesGlyph layout:id="SpeciesGlyph_C00237_0" layout:species="C00237" render:objectRole="keyCompound">
             <layout:boundingBox layout:id="bb2">
               <layout:position layout:x="450" layout:y="150" />
               <layout:dimensions layout:width="20" layout:height="20" />
             </layout:boundingBox>
           </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_edoxin_1" layout:species="C00138" render:objectRole="nonKeyCompound">
+          <speciesGlyph layout:id="SpeciesGlyph_C00138_0" layout:species="C00138" render:objectRole="nonKeyCompound">
             <layout:boundingBox layout:id="bb2">
               <layout:position layout:x="50" layout:y="200" />
               <layout:dimensions layout:width="20" layout:height="20" />
             </layout:boundingBox>
           </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_3__H+_1" layout:species="C00080_1" render:objectRole="nonKeyCompound">
+          <speciesGlyph layout:id="SpeciesGlyph_C00080_1" layout:species="C00080_1" render:objectRole="nonKeyCompound">
             <layout:boundingBox layout:id="bb2">
               <layout:position layout:x="50" layout:y="100" />
               <layout:dimensions layout:width="20" layout:height="20" />
             </layout:boundingBox>
           </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_CO2_1" layout:species="C00011" render:objectRole="keyCompound">
+          <speciesGlyph layout:id="SpeciesGlyph_C00011_0" layout:species="C00011" render:objectRole="keyCompound">
             <layout:boundingBox layout:id="bb2">
               <layout:position layout:x="50" layout:y="150" />
               <layout:dimensions layout:width="20" layout:height="20" />
             </layout:boundingBox>
           </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_folate_8" layout:species="C00101" render:objectRole="keyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="800" layout:y="100" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_yl-CoA_1" layout:species="C00024" render:objectRole="keyCompound">
+          <speciesGlyph layout:id="SpeciesGlyph_C00024_0" layout:species="C00024" render:objectRole="keyCompound">
             <layout:boundingBox layout:id="bb2">
               <layout:position layout:x="600" layout:y="100" />
               <layout:dimensions layout:width="20" layout:height="20" />
             </layout:boundingBox>
           </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_CoA_1" layout:species="C00010" render:objectRole="nonKeyCompound">
+          <speciesGlyph layout:id="SpeciesGlyph_C00010_0" layout:species="C00010" render:objectRole="nonKeyCompound">
             <layout:boundingBox layout:id="bb2">
               <layout:position layout:x="500" layout:y="100" />
               <layout:dimensions layout:width="20" layout:height="20" />
             </layout:boundingBox>
           </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_CO_2" layout:species="C00237" render:objectRole="keyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="450" layout:y="150" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_folate_7" layout:species="C00440" render:objectRole="keyCompound">
+          <speciesGlyph layout:id="SpeciesGlyph_C00440_0" layout:species="C00440" render:objectRole="keyCompound">
             <layout:boundingBox layout:id="bb2">
               <layout:position layout:x="500" layout:y="250" />
               <layout:dimensions layout:width="20" layout:height="20" />
             </layout:boundingBox>
           </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_NADP+_2" layout:species="C00006" render:objectRole="nonKeyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="450" layout:y="450" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_folate_10" layout:species="C00440" render:objectRole="keyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="500" layout:y="250" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_NADPH_2" layout:species="C00005" render:objectRole="nonKeyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="350" layout:y="450" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_H+_1" layout:species="C00080_2" render:objectRole="nonKeyCompound">
+          <speciesGlyph layout:id="SpeciesGlyph_C00080_2" layout:species="C00080_2" render:objectRole="nonKeyCompound">
             <layout:boundingBox layout:id="bb2">
               <layout:position layout:x="400" layout:y="300" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_folate_9" layout:species="C00143" render:objectRole="keyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="550" layout:y="450" />
               <layout:dimensions layout:width="20" layout:height="20" />
             </layout:boundingBox>
           </speciesGlyph>
