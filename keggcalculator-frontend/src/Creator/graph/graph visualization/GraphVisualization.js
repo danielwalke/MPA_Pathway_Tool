@@ -32,6 +32,18 @@ const onRightClickNode = (e, nodeId, dispatch, graphState) => {
 
 }
 
+const handleNodePositionChange = (graphState, x, y, nodeId,dispatch)=>{
+    const nodes = graphState.data.nodes.map(node => {
+        if(node.id === nodeId){
+            node.x = +x
+            node.y = +y
+        }
+        return node
+    })
+    const data = {nodes: nodes, links: graphState.data.links}
+    dispatch({type:"SETDATA", payload: data})
+}
+
 const GraphVisualization = () => {
     const graphState = useSelector(state => state.graph)
     const keggState = useSelector(state => state.keggReaction)
@@ -120,6 +132,7 @@ const GraphVisualization = () => {
                     onRightClickNode={(event, nodeId) => onRightClickNode(event, nodeId, dispatch, graphState)}
                     onDoubleClickNode={(node) => handleDoubleClick(node)}
                     onClickLink={(source,target)=> handleClickLink(source,target)}
+                    onNodePositionChange={(id,x,y)=> handleNodePositionChange(graphState, x, y, id,dispatch)}
                 />
             </div>
         )
