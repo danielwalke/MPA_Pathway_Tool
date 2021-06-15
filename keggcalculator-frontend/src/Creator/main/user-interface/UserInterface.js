@@ -29,24 +29,35 @@ const UserInterface = () => {
     const handleShowKeggReaction = () => {
         dispatch({type: "SWITCHSHOWKEGGREACTION"})
     }
-    const handleDelete = () => {
-        const newDataNodes = graphState.data.nodes.filter(node => node.id !== compound.id)
-        const sourceLinks = graphState.data.links.filter(links => links.source !== compound.id)
-        const newLinks = sourceLinks.filter(links => links.target !== compound.id)
-        const newData = {nodes: newDataNodes, links: newLinks}
-        dispatch({type: "SETDATA", payload: newData})
-    }
-    const handleXChange = () => {
+
+    const handleXChange = async(value) => {
+        await dispatch({type: "SETDATA", payload: {nodes:[], links:[]}})
         graphState.data.nodes.push({
             id: `${graphState.chosenCompound.id}`,
             opacity: graphState.chosenCompound.opacity,
             symbolType: graphState.chosenCompound.symbolType,
             color: graphState.chosenCompound.color,
-            x: +graphState.x,
-            y: +graphState.y
+            x: +value,
+            y: +graphState.chosenCompound.y,
+            reversible: graphState.chosenCompound.reversible
         })
         const data = {nodes: graphState.data.nodes, links: graphState.oldData.links}
-        dispatch({type: "SETDATA", payload: data})
+        await dispatch({type: "SETDATA", payload: data})
+    }
+
+    const handleYChange = async(value) => {
+        await dispatch({type: "SETDATA", payload: {nodes:[], links:[]}})
+        graphState.data.nodes.push({
+            id: `${graphState.chosenCompound.id}`,
+            opacity: graphState.chosenCompound.opacity,
+            symbolType: graphState.chosenCompound.symbolType,
+            color: graphState.chosenCompound.color,
+            x: +graphState.chosenCompound.x,
+            y: +value,
+            reversible: graphState.chosenCompound.reversible
+        })
+        const data = {nodes: graphState.data.nodes, links: graphState.oldData.links}
+        await dispatch({type: "SETDATA", payload: data})
     }
     const compound = typeof graphState.data.nodes.filter(node => node.id === graphState.doubleClickNode)[0] === "undefined" ? {} : graphState.data.nodes.filter(node => node.id === graphState.doubleClickNode)[0]
     const theme = useTheme()
@@ -135,20 +146,19 @@ const UserInterface = () => {
                     {graphState.doubleClickNode.length > 0 && <div style={{width:"15vw", height:"25vh", overflow:"auto", margin:"3px"}}>
                         {compound.id}
                         <div>x:</div>
-                        <TextField type={"text"} id={"x coordinates"}
+                        <TextField type={"number"} id={"x coordinates"}
                                    defaultValue={graphState.chosenCompound.x.toString()}
                                    onChange={(e) => {
-                                       handleDelete()
-                                       dispatch({type: "SETX", payload: e.target.value})
+                                       handleXChange(e.target.value)
+                                       // dispatch({type: "SETX", payload: e.target.value})
                                    }}/>
                         <div>y:</div>
-                        <TextField type={"text"} id={"y coordinates"}
+                        <TextField type={"number"} id={"y coordinates"}
                                    defaultValue={graphState.chosenCompound.y.toString()}
                                    onChange={(e) => {
-                                       handleDelete()
-                                       dispatch({type: "SETY", payload: e.target.value})
+                                       handleYChange(e.target.value)
+                                       // dispatch({type: "SETY", payload: e.target.value})
                                    }}/>
-                        <button className={"downloadButton"} onClick={() => handleXChange()}>submit coordinates</button>
                     </div>}
                 </div>
             </Drawer>

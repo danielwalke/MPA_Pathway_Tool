@@ -15,11 +15,11 @@ const NodeCoordinates = () => {
         const sourceLinks = graphState.data.links.filter(links => links.source !== node.id)
         const newLinks = sourceLinks.filter(links => links.target !== node.id)
         const newData = {nodes: newDataNodes, links: newLinks}
-        console.log(newData)
         dispatch({type: "SETDATA", payload: newData})
     }
 
-    const handleCoordinateChange = (node) => {
+    const handleCoordinateChange = async(node) => {
+        await dispatch({type: "SETDATA", payload: {nodes:[], links:graphState.data.links}})
         graphState.data.nodes.push({
             id: `${node.id}`,
             opacity: node.opacity,
@@ -29,7 +29,7 @@ const NodeCoordinates = () => {
             y: +graphState.y
         })
         const data = {nodes: graphState.data.nodes, links: graphState.oldData.links}
-        dispatch({type: "SETDATA", payload: data})
+        await dispatch({type: "SETDATA", payload: data})
     }
     const body = (
         <div className={classes.paper} style={{width: "80vw"}}>
@@ -39,14 +39,14 @@ const NodeCoordinates = () => {
                         <div>x: <TextField type={"text"} id={"x coordinates"}
                                            defaultValue={node.x.toString()}
                                            onChange={(e) => {
-                                               handleDelete(node)
+                                               // handleDelete(node)
                                                dispatch({type: "SETX", payload: e.target.value})
                                            }}/></div>
                         <div>
                             y: <TextField type={"text"} id={"y coordinates"}
                                           defaultValue={node.y.toString()}
                                           onChange={(e) => {
-                                              handleDelete(node)
+                                              // handleDelete(node)
                                               dispatch({type: "SETY", payload: e.target.value})
                                           }}/>
                         </div>

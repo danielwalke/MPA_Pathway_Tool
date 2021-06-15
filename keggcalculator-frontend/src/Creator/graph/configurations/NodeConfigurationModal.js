@@ -10,6 +10,7 @@ import NodeCoordinates from "./node coordinates/NodeCoordinates";
 import MergeNodesModal from "./merge nodes/MergeNodesModal";
 import AddLinkModal from "./addLinks/AddLinkModal";
 import NodeModifModal from "./nodeModification/NodeModifModal";
+import Align from "./align/Align";
 const NodeConfigurationModal = () => {
     const classes = useStyles()
     const state = useSelector(state => state.general)
@@ -49,12 +50,15 @@ const NodeConfigurationModal = () => {
                 <PathwayTaxonomy/>
                 <button className={"downloadButton"} onClick={()=> dispatch({type:"SWITCHSHOWPATHWAYTAXONOMY"})}>add Taxonomy</button>
             </div>
+            {/*<div>*/}
+            {/*    <NodeCoordinates/>*/}
+            {/*    <button className={"downloadButton"} onClick={()=> {*/}
+            {/*        dispatch({type:"SETOLDDATA", payload: graphState.data})*/}
+            {/*        dispatch({type: "SWITCHSHOWNODECOORDINATESMODAL"})*/}
+            {/*    }}>change node coordinates</button>*/}
+            {/*</div>*/}
             <div>
-                <NodeCoordinates/>
-                <button className={"downloadButton"} onClick={()=> {
-                    dispatch({type:"SETOLDDATA", payload: graphState.data})
-                    dispatch({type: "SWITCHSHOWNODECOORDINATESMODAL"})
-                }}>change node coordinates</button>
+                <Align/>
             </div>
         </div>
     )
