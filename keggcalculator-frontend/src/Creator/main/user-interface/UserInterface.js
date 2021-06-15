@@ -16,13 +16,21 @@ import "../../download/DownloadGraph.css"
 const UserInterface = () => {
     const [open, setOpen] = React.useState(true)
     const [drawerOffSet, setDrawerOffset] = React.useState(0)
+    const [coordinates, setCoordinates] = React.useState({x:0, y:0})
     const graphState = useSelector(state => state.graph)
     const dispatch = useDispatch()
+
     useEffect(()=>{
         const headerHeight = document.getElementsByClassName('MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary MuiPaper-elevation4')[0].clientHeight;
         const tabHeight = document.getElementsByClassName("MuiTabs-root")[0].clientHeight
         setDrawerOffset(tabHeight+headerHeight)
     },[])
+
+    useEffect(()=>{
+        setCoordinates({x: graphState.chosenCompound.x,y: graphState.chosenCompound.y})
+    },[graphState.chosenCompound])
+
+
     const handleShowSpecReaction = () => {
         dispatch({type: "SWITCHSHOWSPECIFICREACTION"})
     }
@@ -41,6 +49,7 @@ const UserInterface = () => {
             y: +graphState.chosenCompound.y,
             reversible: graphState.chosenCompound.reversible
         })
+        setCoordinates(prevCoordinates => ({x: value, y: prevCoordinates.y}))
         const data = {nodes: graphState.data.nodes, links: graphState.oldData.links}
         await dispatch({type: "SETDATA", payload: data})
     }
@@ -57,9 +66,11 @@ const UserInterface = () => {
             reversible: graphState.chosenCompound.reversible
         })
         const data = {nodes: graphState.data.nodes, links: graphState.oldData.links}
+        setCoordinates(prevCoordinates => ({x: prevCoordinates.x, y: value}))
         await dispatch({type: "SETDATA", payload: data})
     }
-    const compound = typeof graphState.data.nodes.filter(node => node.id === graphState.doubleClickNode)[0] === "undefined" ? {} : graphState.data.nodes.filter(node => node.id === graphState.doubleClickNode)[0]
+    // const compound = typeof graphState.data.nodes.filter(node => node.id === graphState.doubleClickNode)[0] === "undefined" ? {} : graphState.data.nodes.filter(node => node.id === graphState.doubleClickNode)[0]
+
     const theme = useTheme()
     const useStyles = makeStyles({
         drawerPaper: {
@@ -69,6 +80,7 @@ const UserInterface = () => {
 
         }
     });
+
     const classes = useStyles()
     return (
         <div>
@@ -144,17 +156,16 @@ const UserInterface = () => {
                         <DonwloadModal/>
                     </div>
                     {graphState.doubleClickNode.length > 0 && <div style={{width:"15vw", height:"25vh", overflow:"auto", margin:"3px"}}>
-                        {compound.id}
+                        {graphState.chosenCompound.id}
                         <div>x:</div>
                         <TextField type={"number"} id={"x coordinates"}
-                                   defaultValue={graphState.chosenCompound.x.toString()}
+                                   value={coordinates.x}
                                    onChange={(e) => {
                                        handleXChange(e.target.value)
-                                       // dispatch({type: "SETX", payload: e.target.value})
                                    }}/>
                         <div>y:</div>
                         <TextField type={"number"} id={"y coordinates"}
-                                   defaultValue={graphState.chosenCompound.y.toString()}
+                                   value={coordinates.y}
                                    onChange={(e) => {
                                        handleYChange(e.target.value)
                                        // dispatch({type: "SETY", payload: e.target.value})
