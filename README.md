@@ -1,7 +1,7 @@
 # MPA_Pathway_Tool
 
 ##### Table of Contents  
-[description](## description)
+[description](##description)
 
 <a name="description"/>
 ## description
