@@ -4,11 +4,11 @@
 |content                          |
 |---------------------------------|
 |[1. Overview](#overview)     |
-|[1.1 Description](#description)     |
-|[1.2 Motivation](#motivation)     |
-|[1.3 Structure of the MPA_Pathway_Tool](#structure)       |
-|[1.3.1 Pathway-Creator](#pathwayCreator)       |
-|[1.3.2 Pathway-Calculator](#pathwayCalculator)       |
+|[  1.1 Description](#description)     |
+|[  1.2 Motivation](#motivation)     |
+|[  1.3 Structure of the MPA_Pathway_Tool](#structure)       |
+|[    1.3.1 Pathway-Creator](#pathwayCreator)       |
+|[    1.3.2 Pathway-Calculator](#pathwayCalculator)       |
 |[2. Installation](#installation) |
 |[3. Versions](#versions)           |
 |[4. Implementation](#implementation)           |
