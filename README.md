@@ -2,6 +2,7 @@
 
 ##### Table of Contents  
 [description](##description)
+[versions](##versions)
 
 ## description
 - allows user-friendly creation of user-defined pathways and mapping of experimental data on them
@@ -27,7 +28,7 @@ npm install
 ```bash
 npm start
 ```
-## versions
+##versions
 MPA_Pathway-Tool version 0.8:
   - unofficial initial version
   - allows creation of user- defined pathways
