@@ -3,26 +3,27 @@
 ## Table of Contents 
 |content                          |
 |---------------------------------|
-|[1. description](#description)     |
-|[2. structure](#structure)       |
+|[1. Description](#description)     |
+|[2. Structure](#structure)       |
 |[2.1 Pathway-Creator](#pathwayCreator)       |
 |[2.2 Pathway-Calculator](#pathwayCalculator)       |
-|[3. getting started](#gettingStarted) |
-|[4. versions](#versions)           |
-|[5. tutorial](#tutorial)           |
-|[6. credits](#credits)            |
-|[7. fundings](#fundings)           |
-|[8. competing intrests](#competingIntrests) |
+|[3. Getting started](#gettingStarted) |
+|[4. Versions](#versions)           |
+|[5. Tutorial](#tutorial)           |
+|[6. Publication](#publiction)           |
+|[7. Credits](#credits)            |
+|[8. Fundings](#fundings)           |
+|[9. Competing intrests](#competingIntrests) |
 
 <a name="description"/>
 
-## 1. description
+## 1. Description
 The MPA_Pathway_Tool is implemented in Java and ReactJS. It is freely available on http://www.mpa_pathway_tool.ovgu.de/. 
 - allows **user-friendly creation of user-defined pathways** and **mapping of experimental data** on them
 
 <a name="structure"/>
 
-## 2. structure 
+## 2. Structure 
 The MPA_Pathway_Tool consists of the ["Pathway-Creator"](#pathwayCreator) and the ["Pathway-Calculator"](#pathwayCalculator).
 
 <a name="pathwayCreator"/>
@@ -43,7 +44,7 @@ The “Pathway-Calculator” consists of two upload zones, one for **experimenta
 
 <a name="gettingStarted"/>
 
-## 3. getting started
+## 3. Getting started
 1. clone the complete project
 2. import the [server-side](https://github.com/danielwalke/MPA_Pathway_Tool/tree/main/keggcalculator) as a maven project
 3. start the server by running the [server](https://github.com/danielwalke/MPA_Pathway_Tool/blob/main/keggcalculator/src/main/java/main/KeggCalculatorServer.java) as a Java Application
@@ -65,7 +66,7 @@ npm start
 
 <a name="versions"/>
 
-## 4. versions
+## 4. Versions
 MPA_Pathway-Tool version 0.8:
   - unofficial initial version
   - allows creation of user- defined pathways
@@ -74,21 +75,26 @@ MPA_Pathway-Tool version 0.8:
 
 <a name="tutorial"/>
 
-## 5. tutorial
+## 5. Tutorial
+
+<a name="publication"/>
+
+## 6. Publication
+You will find the official publication "MPA_Pathway_Tool: User-friendly, automatic assignment of microbial community data on metabolic pathways" on "".
 
 <a name="credits"/>
 
-## 6. credits
+## 7. Credits
 this project is collaboration by by [Daniel Walke](https://github.com/danielwalke), [Emanuel Lange](https://github.com/voidsailor) , [Kay Schallert](https://github.com/kayschallert), Prasanna Ramesh, Dr. Dirk Benndorf, Prof. Udo Reichl, and Dr. Robert Heyer
 
 
 <a name="fundings"/>
 
-## 7. fundings
+## 8. Fundings
 This work was supported by the German Federal Ministry of Education and Research (de.NBI network. project MetaProtServ. grant no. 031L0103). We highly appreciate their funding.
 
 
 <a name="competingIntrests"/>
 
-## 8. competing intrests
+## 9. Competing intrests
 The authors declare that they have no competing interests.
