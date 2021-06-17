@@ -87,7 +87,7 @@ npm start
   + function for changing coordiantes of nodes
   + function for auto-aligning nodes 
 
-##### version 0.9:
+##### version 0.9.0:
   + implemented home page with example files and tutorial
   + supported file formats: CSV, JSON, and [SBML](http://model.caltech.edu/)
   + taxonomy filter implemented
