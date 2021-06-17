@@ -83,11 +83,11 @@ npm start
 
 ## 3. Versions
 
-###### version 0.9.1:
+###### version 0.9.1 (15.06.2021):
   + function for changing coordiantes of nodes
   + function for auto-aligning nodes 
 
-##### version 0.9.0:
+##### version 0.9.0 (11.06.2021):
   + implemented home page with example files and tutorial
   + supported file formats: CSV, JSON, and [SBML](http://model.caltech.edu/)
   + taxonomy filter implemented
@@ -105,7 +105,7 @@ npm start
   + function for changing opacity of nodes
   + function for adding force to created nodes with links
 
-##### version 0.8:
+##### version 0.8 (01.02.2021):
   + unofficial initial version
   + allows creation of user- defined pathways
   + allows automated mapping of experimental data on pathways
