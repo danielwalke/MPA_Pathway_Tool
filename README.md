@@ -5,11 +5,11 @@
 |---------------------------------|
 |[description](#description)     |
 |[structure](#structure)       |
-|[getting started](#getting started) |
+|[getting started](#gettingStarted) |
 |[versions](#versions)           |
 |[credits](#credits)            |
 |[fundings](#fundings)           |
-|[competing intrests](#competing intrests) |
+|[competing intrests](#competingIntrests) |
 
 <a name="description"/>
 
@@ -23,7 +23,7 @@
 - consists of the "Pathway-Creator" and the "Pathway-Calculator"
 
 
-<a name="getting started"/>
+<a name="gettingStarted"/>
 
 ## getting started
 1. clone the complete project
@@ -67,7 +67,7 @@ this project is collaboration by by [Daniel Walke](https://github.com/danielwalk
 This work was supported by the German Federal Ministry of Education and Research (de.NBI network. project MetaProtServ. grant no. 031L0103). We highly appreciate their funding.
 
 
-<a name="competing intrests"/>
+<a name="competingIntrests"/>
 
 ## competing intrests
 The authors declare that they have no competing interests.
