@@ -28,7 +28,7 @@ npm install
 ```bash
 npm start
 ```
-##versions
+## versions
 MPA_Pathway-Tool version 0.8:
   - unofficial initial version
   - allows creation of user- defined pathways
