@@ -18,12 +18,12 @@
 <a name="description"/>
 
 ## 1. Description
-The MPA_Pathway_Tool is implemented in Java and ReactJS. It is freely available on http://www.mpa_pathway_tool.ovgu.de/. 
+The MPA_Pathway_Tool is a user-friendly, stand-alone web application.It was implemented in Java and ReactJS. It is freely available on http://www.mpa_pathway_tool.ovgu.de/. 
 - allows **user-friendly creation of user-defined pathways** and **mapping of experimental data** on them
 
 <a name="structure"/>
 
-## 2. Structure 
+## 2. Structure of the MPA_Pathway_Tool
 The MPA_Pathway_Tool consists of the ["Pathway-Creator"](#pathwayCreator) and the ["Pathway-Calculator"](#pathwayCalculator).
 
 <a name="pathwayCreator"/>
