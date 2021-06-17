@@ -19,6 +19,7 @@ export const handleJSONGraphUpload = (reactions, dispatch, graphState) => { //ha
         dispatch({type:"ADD_KEGG_REACTION", payload: reaction})
         const reactionNode = createNode(reaction.reactionName, REACTION_NODE_COLOR, REACTION_NODE_SYMBOL, +reaction.x, +reaction.y, reaction.opacity, reaction.reversible)
         addNode(nodes, reactionNode)
+        addReactionAbbreviations(graphState, reaction)
         reaction.substrates.forEach(substrate =>addCompoundToData(substrate, reaction, reactionNode, links, nodes, graphState,true))
         reaction.products.forEach(product => addCompoundToData(product, reaction, reactionNode, links, nodes, graphState,false))
         dispatch({type: "SETABBREVIATIONOBJECT", payload: graphState.abbreviationsObject})
@@ -77,9 +78,12 @@ const addNode = (nodes, compoundNode) => {
     }
 }
 
-const addAbbreviations = (graphState, reaction, compound) => {
-    graphState.abbreviationsObject[`${reaction.reactionName}`] = reaction.abbreviation
+const addCompoundAbbreviations = (graphState, compound) => {
     graphState.abbreviationsObject[`${compound.name}`] = compound.abbreviation
+}
+
+const addReactionAbbreviations = (graphState, reaction) => {
+    graphState.abbreviationsObject[`${reaction.reactionName}`] = reaction.abbreviation
 }
 
 const addCompoundToData = (compound, reaction, reactionNode, links, nodes, graphState, isSubstrate) => {
@@ -90,5 +94,5 @@ const addCompoundToData = (compound, reaction, reactionNode, links, nodes, graph
         createLink(compound.name, reaction.reactionName, compound.opacity, true)
     addLinks(reactionNode, links, compoundLink, compoundLinkReversible)
     addNode(nodes, compoundNode)
-    addAbbreviations(graphState, reaction, compound)
+    addCompoundAbbreviations(graphState, compound)
 }
