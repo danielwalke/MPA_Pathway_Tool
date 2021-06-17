@@ -3,7 +3,7 @@
 ## Table of Contents 
 |content                          |
 |---------------------------------|
-|[description](##description)     |
+|[description](#description)     |
 |[structure](##description)       |
 |[getting started](##description) |
 |[versions](##versions)           |
@@ -11,6 +11,7 @@
 |[fundings](##versions)           |
 |[competing intrests](##versions) |
 
+<a name="description"/>
 ## description
 - allows user-friendly creation of user-defined pathways and mapping of experimental data on them
 
