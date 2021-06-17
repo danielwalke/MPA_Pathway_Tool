@@ -4,12 +4,12 @@
 |content                          |
 |---------------------------------|
 |[1. Overview](#overview)     |
-|[1.1 Description](#description)     |
-|[1.2 Motivation](#motivation)     |
-|[1.3 Structure of the MPA_Pathway_Tool](#structure)       |
-|[1.3.1 Pathway-Creator](#pathwayCreator)       |
-|[1.3.2 Pathway-Calculator](#pathwayCalculator)       |
-|[2. Getting started](#gettingStarted) |
+|[  1.1 Description](#description)     |
+|[  1.2 Motivation](#motivation)     |
+|[  1.3 Structure of the MPA_Pathway_Tool](#structure)       |
+|[    1.3.1 Pathway-Creator](#pathwayCreator)       |
+|[    1.3.2 Pathway-Calculator](#pathwayCalculator)       |
+|[2. Installation](#installation) |
 |[3. Versions](#versions)           |
 |[4. Implementation](#implementation)           |
 |[5. Tutorial](#tutorial)           |
@@ -26,7 +26,7 @@
 <a name="description"/>
 
 ### 1.1 Description
-The MPA_Pathway_Tool is a user-friendly, stand-alone web application.It was implemented in Java and ReactJS. It is freely available on http://www.mpa_pathway_tool.ovgu.de/. 
+The MPA_Pathway_Tool is a user-friendly, stand-alone web application.It was implemented in Java and ReactJS. It will be freely available on http://www.mpa_pathway_tool.ovgu.de/. 
 - allows **user-friendly creation of user-defined pathways** and **mapping of experimental data** on them
 - Keywords: __omics__, __pathway creation__, __pathway analysis__
 
@@ -57,9 +57,9 @@ The “Pathway-Calculator” consists of two upload zones, one for **experimenta
 **Figure 2: Screenshot of the “Pathway-Calculator” of the MPA_Pathway_Tool.**
 
 
-<a name="gettingStarted"/>
+<a name="installation"/>
 
-## 2. Getting started
+## 2. Installation
 1. clone the complete project
 2. import the [server-side](https://github.com/danielwalke/MPA_Pathway_Tool/tree/main/keggcalculator) as a maven project
 3. start the server by running the [server](https://github.com/danielwalke/MPA_Pathway_Tool/blob/main/keggcalculator/src/main/java/main/KeggCalculatorServer.java) as a Java Application
@@ -82,11 +82,34 @@ npm start
 <a name="versions"/>
 
 ## 3. Versions
-MPA_Pathway-Tool version 0.8:
-  - unofficial initial version
-  - allows creation of user- defined pathways
-  - allows automated mapping of experimental data on pathways
-  - already supported fomats: CSV and JSON
+
+###### version 0.9.1 (15.06.2021):
+  + function for changing coordiantes of nodes
+  + function for auto-aligning nodes 
+
+##### version 0.9.0 (11.06.2021):
+  + implemented home page with example files and tutorial
+  + supported file formats: CSV, JSON, and [SBML](http://model.caltech.edu/)
+  + taxonomy filter implemented
+  + download of unmatched features (e.g. proteins) with "Pathway-Calculator" possible
+  + function for adding taxonomy
+  + function for setting reversibility on reaction
+  + function for changing direction of reactions
+  + function for importing multiple reactions at once (complete KEGG-MODULE, SBML-file, importing KEGG-reactions by [EC-numbers](https://www.genome.jp/kegg/annotation/enzyme.html) and [K-numbers](https://www.genome.jp/kegg/ko.html) and [R-numbers](https://www.genome.jp/kegg/reaction/))
+  + function for downloading pathway as image (SVG)
+  + function for downloading a stoichiometrix matrix
+  + function for setting abbreviations
+  + function for splitting nodes
+  + function for merging nodes
+  + fucntion for deleting nodes
+  + function for changing opacity of nodes
+  + function for adding force to created nodes with links
+
+##### version 0.8 (01.02.2021):
+  + unofficial initial version
+  + allows creation of user- defined pathways
+  + allows automated mapping of experimental data on pathways
+  + already supported fomats: CSV and JSON
 
 
 <a name="implementation"/>
