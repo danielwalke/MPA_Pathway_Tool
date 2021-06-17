@@ -1,8 +1,10 @@
 # CAZY- Directory
 
-## description
+## Description
  - files and information related to [CAZYmes](http://www.cazy.org/)
- - contains:
+
+
+## Content
  + python file
  + plToEc.csv (pl family to ec number)
  + ghToEc.csv (gh family to ec number)
