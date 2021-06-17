@@ -6,9 +6,7 @@ import {Checkbox} from "@material-ui/core";
 import Abbreviations from "./abbreviations/Abbreviations";
 import AbundantNodeConfig from "./split nodes/AbundantNodeConfig";
 import PathwayTaxonomy from "./taxonomy/PathwayTaxonomy";
-import NodeCoordinates from "./node coordinates/NodeCoordinates";
 import MergeNodesModal from "./merge nodes/MergeNodesModal";
-import AddLinkModal from "./addLinks/AddLinkModal";
 import NodeModifModal from "./nodeModification/NodeModifModal";
 import Align from "./align/Align";
 const NodeConfigurationModal = () => {
@@ -26,10 +24,10 @@ const NodeConfigurationModal = () => {
                 <NodeModifModal/>
                 <button onClick={()=> dispatch({type:"SWITCH_NODE_MODIFICATION_MODAL"})} className={"downloadButton"}>node modification</button>
             </div>
-            <div>
-                <AddLinkModal/>
-                <button className={"downloadButton"} onClick={()=> dispatch({type:"SWITCHSHOWADDLINKMODAL"})}>add link</button>
-            </div>
+            {/*<div>*/}
+            {/*    <AddLinkModal/>*/}
+            {/*    <button className={"downloadButton"} onClick={()=> dispatch({type:"SWITCHSHOWADDLINKMODAL"})}>add link</button>*/}
+            {/*</div>*/}
             <div className={"abbreviationWrapper"}>
                 <Abbreviations/>
                 <button className={"downloadButton"} onClick={() => dispatch({type: "SWITCHSHOWABBREVIATIONS"})
