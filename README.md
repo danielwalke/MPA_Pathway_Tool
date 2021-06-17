@@ -30,6 +30,9 @@ The first part of the MPA_Pathway_Tool is the “Pathway-Creator” (figure 1). 
 
 ### 2.2 Pathway-Calcualtor
 The “Pathway-Calculator” consists of two upload zones, one for **experimental data (CSV)** and another for **multiple pathway files (as CSV, JSON, or SBML)**. The “Pathway-Calculator” performs **mapping of experimental data on multiple uploaded pathways**. After uploading all previously created pathways (CSV) and the experimental data in the “Pathway-Calculator”, the calculation starts. Subsequently, the **result table** can be exported as CSV. Furthermore, **a list with all unmatched features (e.g., proteins)** can be downloaded. 
+!["Pathway-Calculator"](https://github.com/danielwalke/MPA_Pathway_Tool/blob/main/images/Figure%202_Screenshot%20of%20the%20%E2%80%9CPathway-Calculator%E2%80%9D%20of%20the%20MPA_Pathway_Tool.png "Figure 2: Screenshot of the “Pathway-Calculator” of the MPA_Pathway_Tool")
+**Figure 2: Screenshot of the “Pathway-Calculator” of the MPA_Pathway_Tool.**
+
 
 <a name="gettingStarted"/>
 
