@@ -4,20 +4,26 @@
 |content                          |
 |---------------------------------|
 |[description](#description)     |
-|[structure](##description)       |
-|[getting started](##description) |
-|[versions](##versions)           |
-|[credits](##versions)            |
-|[fundings](##versions)           |
-|[competing intrests](##versions) |
+|[structure](#structure)       |
+|[getting started](#getting started) |
+|[versions](#versions)           |
+|[credits](#credits)            |
+|[fundings](#fundings)           |
+|[competing intrests](#competing intrests) |
 
 <a name="description"/>
 
 ## description
 - allows user-friendly creation of user-defined pathways and mapping of experimental data on them
 
+
+<a name="structure"/>
+
 ## structure 
 - consists of the "Pathway-Creator" and the "Pathway-Calculator"
+
+
+<a name="getting started"/>
 
 ## getting started
 1. clone the complete project
@@ -37,6 +43,10 @@ npm install
 ```bash
 npm start
 ```
+
+
+<a name="versions"/>
+
 ## versions
 MPA_Pathway-Tool version 0.8:
   - unofficial initial version
@@ -44,11 +54,20 @@ MPA_Pathway-Tool version 0.8:
   - allows automated mapping of experimental data on pathways
   - already supported fomats: CSV and JSON
 
+
+<a name="credits"/>
+
 ## credits
 this project is collaboration by by [Daniel Walke](https://github.com/danielwalke), [Emanuel Lange](https://github.com/voidsailor) , [Kay Schallert](https://github.com/kayschallert), Prasanna Ramesh, Dr. Dirk Benndorf, Prod. Udo Reichl, and Dr. Robert Heyer
 
+
+<a name="fundings"/>
+
 ## fundings
 This work was supported by the German Federal Ministry of Education and Research (de.NBI network. project MetaProtServ. grant no. 031L0103). We highly appreciate their funding.
+
+
+<a name="competing intrests"/>
 
 ## competing intrests
 The authors declare that they have no competing interests.
