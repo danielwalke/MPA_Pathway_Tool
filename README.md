@@ -1,10 +1,15 @@
 # MPA_Pathway_Tool
 
 ## Table of Contents 
-|content                      |
-|-----------------------------|
-|[description](##description) |
-|[versions](##versions)       |
+|content                          |
+|---------------------------------|
+|[description](##description)     |
+|[structure](##description)       |
+|[getting started](##description) |
+|[versions](##versions)           |
+|[credits](##versions)            |
+|[fundings](##versions)           |
+|[competing intrests](##versions) |
 
 ## description
 - allows user-friendly creation of user-defined pathways and mapping of experimental data on them
