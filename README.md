@@ -3,29 +3,29 @@
 ## Table of Contents 
 |content                          |
 |---------------------------------|
-|[description](#description)     |
-|[structure](#structure)       |
-|[getting started](#gettingStarted) |
-|[versions](#versions)           |
-|[credits](#credits)            |
-|[fundings](#fundings)           |
-|[competing intrests](#competingIntrests) |
+|[1. description](#description)     |
+|[2. structure](#structure)       |
+|[3. getting started](#gettingStarted) |
+|[4. versions](#versions)           |
+|[5. credits](#credits)            |
+|[6. fundings](#fundings)           |
+|[7. competing intrests](#competingIntrests) |
 
 <a name="description"/>
 
-## description
+## 1. description
 - allows user-friendly creation of user-defined pathways and mapping of experimental data on them
 
 
 <a name="structure"/>
 
-## structure 
+## 2. structure 
 - consists of the "Pathway-Creator" and the "Pathway-Calculator"
 
 
 <a name="gettingStarted"/>
 
-## getting started
+## 3. getting started
 1. clone the complete project
 2. import the [server-side](https://github.com/danielwalke/MPA_Pathway_Tool/tree/main/keggcalculator) as a maven project
 3. start the server by running the [server](https://github.com/danielwalke/MPA_Pathway_Tool/blob/main/keggcalculator/src/main/java/main/KeggCalculatorServer.java) as a Java Application
@@ -47,7 +47,7 @@ npm start
 
 <a name="versions"/>
 
-## versions
+## 4. versions
 MPA_Pathway-Tool version 0.8:
   - unofficial initial version
   - allows creation of user- defined pathways
@@ -57,17 +57,17 @@ MPA_Pathway-Tool version 0.8:
 
 <a name="credits"/>
 
-## credits
+## 5. credits
 this project is collaboration by by [Daniel Walke](https://github.com/danielwalke), [Emanuel Lange](https://github.com/voidsailor) , [Kay Schallert](https://github.com/kayschallert), Prasanna Ramesh, Dr. Dirk Benndorf, Prod. Udo Reichl, and Dr. Robert Heyer
 
 
 <a name="fundings"/>
 
-## fundings
+## 6. fundings
 This work was supported by the German Federal Ministry of Education and Research (de.NBI network. project MetaProtServ. grant no. 031L0103). We highly appreciate their funding.
 
 
 <a name="competingIntrests"/>
 
-## competing intrests
+## 7. competing intrests
 The authors declare that they have no competing interests.
