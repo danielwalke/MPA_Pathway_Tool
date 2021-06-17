@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;alpha-amylase	 glycogenase	 alpha amylase	 endoamylase	 Taka-amylase A	 1,4-alpha-D-glucan glucanohydrolase U00000;;3.2.1.1;;;;irreversible;;0;0;;;alpha-amylase;;true

@@ -1,0 +1,3 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;mannuronate-specific alginate lyase	 alginate lyase I	 alginate lyase	 alginase I	 alginase II	 alginase	 poly(beta-D-1,4-mannuronide) lyase	 poly(beta-D-mannuronate) lyase	 aly (gene name) (ambiguous)	 poly[(1->4)-beta-D-mannuronide] lyase U00000;;4.2.2.3;;;;irreversible;;0;0;;;mannuronate-specific alginate lyase;;true
+1;glucuronan lyase	 (1,4)-beta-D-glucuronan lyase U00001;;4.2.2.14;;;;irreversible;;0;50;;;glucuronan lyase;;true

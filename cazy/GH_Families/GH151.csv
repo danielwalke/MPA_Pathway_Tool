@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;alpha-L-fucosidase	 alpha-fucosidase U00000;;3.2.1.51;;;;irreversible;;0;0;;;alpha-L-fucosidase;;true

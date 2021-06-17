@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;p-benzoquinone reductase (NADPH) U00000;;1.6.5.6;;;;irreversible;;0;0;;;p-benzoquinone reductase (NADPH);;true

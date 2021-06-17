@@ -1,0 +1,4 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;4.2.2.- U00000;;4.2.2.-;;;;irreversible;;0;0;;;4.2.2.-;;true
+1;chondroitin-sulfate-ABC endolyase	 chondroitinase (ambiguous)	 chondroitin ABC eliminase (ambiguous)	 chondroitinase ABC (ambiguous)	 chondroitin ABC lyase (ambiguous)	 chondroitin sulfate ABC lyase (ambiguous)	 ChS ABC lyase (ambiguous)	 chondroitin sulfate ABC endoeliminase	 chondroitin sulfate ABC endolyase	 ChS ABC lyase I U00001;;4.2.2.20;;;;irreversible;;0;50;;;chondroitin-sulfate-ABC endolyase;;true
+2;heparin-sulfate lyase	 heparin-sulfate eliminase	 heparitin-sulfate lyase	 heparitinase I	 heparitinase II U00002;;4.2.2.8;;;;irreversible;;0;100;;;heparin-sulfate lyase;;true

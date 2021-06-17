@@ -1,0 +1,6 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;3.2.1.- U00000;;3.2.1.-;;;;irreversible;;0;0;;;3.2.1.-;;true
+1;baicalin-beta-D-glucuronidase	 baicalinase U00001;;3.2.1.167;;;;irreversible;;0;50;;;baicalin-beta-D-glucuronidase;;true
+2;hyaluronoglucuronidase	 hyaluronidase	 glucuronoglucosaminoglycan hyaluronate lyase	 orgelase U00002;;3.2.1.36;;;;irreversible;;0;100;;;hyaluronoglucuronidase;;true
+3;heparanase	 Hpa1 heparanase	 Hpa1	 heparanase 1	 heparanase-1	 C1A heparanase	 HPSE U00003;;3.2.1.166;;;;irreversible;;0;150;;;heparanase;;true
+4;beta-glucuronidase	 beta-glucuronide glucuronohydrolase glucuronidase	 exo-beta-D-glucuronidase	 ketodase U00004;;3.2.1.31;;;;irreversible;;0;200;;;beta-glucuronidase;;true

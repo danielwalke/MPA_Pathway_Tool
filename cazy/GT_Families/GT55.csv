@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;mannosyl-3-phosphoglycerate synthase	 MPG synthase	 GDP-mannose:3-phosphoglycerate 3-alpha-D-mannosyltransferase U00000;;2.4.1.217;;;;irreversible;;0;0;;;mannosyl-3-phosphoglycerate synthase;;true

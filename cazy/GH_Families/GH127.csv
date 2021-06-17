@@ -1,0 +1,3 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;3.2.1.- U00000;;3.2.1.-;;;;irreversible;;0;0;;;3.2.1.-;;true
+1;non-reducing end beta-L-arabinofuranosidase	 HypBA1 U00001;;3.2.1.185;;;;irreversible;;0;50;;;non-reducing end beta-L-arabinofuranosidase;;true

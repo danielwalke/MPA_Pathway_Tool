@@ -1,0 +1,3 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;3.2.1.- U00000;;3.2.1.-;;;;irreversible;;0;0;;;3.2.1.-;;true
+1;xylan alpha-1,2-glucuronosidase	 1,2-alpha-glucuronidase	 alpha-(1->2)-glucuronidase	 xylan alpha-D-1,2-(4-O-methyl)glucuronohydrolase U00001;;3.2.1.131;;;;irreversible;;0;50;;;xylan alpha-1,2-glucuronosidase;;true

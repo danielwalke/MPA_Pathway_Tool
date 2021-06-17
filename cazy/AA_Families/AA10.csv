@@ -1,0 +1,5 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;lytic cellulose monooxygenase (C4-dehydrogenating) U00000;;1.14.99.56;;;;irreversible;;0;0;;;lytic cellulose monooxygenase (C4-dehydrogenating);;true
+1;1.14.99.- U00001;;1.14.99.-;;;;irreversible;;0;50;;;1.14.99.-;;true
+2;lytic chitin monooxygenase	 LPMO (ambiguous)	 CBP21	 chitin oxidohydrolase U00002;;1.14.99.53;;;;irreversible;;0;100;;;lytic chitin monooxygenase;;true
+3;lytic cellulose monooxygenase (C1-hydroxylating)	 lytic polysaccharide monooxygenase (ambiguous)	 LPMO (ambiguous)	 LPMO9A U00003;;1.14.99.54;;;;irreversible;;0;150;;;lytic cellulose monooxygenase (C1-hydroxylating);;true

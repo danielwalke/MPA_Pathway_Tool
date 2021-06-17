@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;chitobiosyldiphosphodolichol beta-mannosyltransferase	 guanosine diphosphomannose-dolichol diphosphochitobiose mannosyltransferase	 GDP-mannose-dolichol diphosphochitobiose mannosyltransferase	 GDP-mannose:chitobiosyldiphosphodolichol beta-D-mannosyltransferase U00000;;2.4.1.142;;;;irreversible;;0;0;;;chitobiosyldiphosphodolichol beta-mannosyltransferase;;true

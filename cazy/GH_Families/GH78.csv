@@ -1,0 +1,4 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;3.2.1.- U00000;;3.2.1.-;;;;irreversible;;0;0;;;3.2.1.-;;true
+1;alpha-L-rhamnosidase	 alpha-L-rhamnosidase T	 alpha-L-rhamnosidase N U00001;;3.2.1.40;;;;irreversible;;0;50;;;alpha-L-rhamnosidase;;true
+2;rhamnogalacturonan rhamnohydrolase	 RG-rhamnohydrolase	 RG alpha-L-rhamnopyranohydrolase U00002;;3.2.1.174;;;;irreversible;;0;100;;;rhamnogalacturonan rhamnohydrolase;;true

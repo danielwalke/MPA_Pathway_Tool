@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;mannan endo-1,4-beta-mannosidase	 endo-1,4-beta-mannanase	 endo-beta-1,4-mannase	 beta-mannanase B	 beta-1,4-mannan 4-mannanohydrolase	 endo-beta-mannanase	 beta-D-mannanase	 1,4-beta-D-mannan mannanohydrolase U00000;;3.2.1.78;;;;irreversible;;0;0;;;mannan endo-1,4-beta-mannosidase;;true

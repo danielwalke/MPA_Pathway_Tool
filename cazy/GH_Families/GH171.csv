@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;peptidoglycan beta-N-acetylmuramidase	 exo-beta-N-acetylmuramidase	 exo-beta-acetylmuramidase	 beta-2-acetamido-3-O-(D-1-carboxyethyl)-2-deoxy-D-glucoside acetamidodeoxyglucohydrolase U00000;;3.2.1.92;;;;irreversible;;0;0;;;peptidoglycan beta-N-acetylmuramidase;;true

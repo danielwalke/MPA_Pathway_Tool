@@ -1,0 +1,3 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;cutinase U00000;;3.1.1.74;;;;irreversible;;0;0;;;cutinase;;true
+1;acetylxylan esterase U00001;;3.1.1.72;;;;irreversible;;0;50;;;acetylxylan esterase;;true

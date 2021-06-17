@@ -1,0 +1,24 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;4-hydroxy-7-methoxy-3-oxo-3,4-dihydro-2H-1,4-benzoxazin-2-yl glucoside beta-D-glucosidase	 DIMBOAGlc hydrolase	 DIMBOA glucosidase U00000;;3.2.1.182;;;;irreversible;;0;0;;;4-hydroxy-7-methoxy-3-oxo-3,4-dihydro-2H-1,4-benzoxazin-2-yl glucoside beta-D-glucosidase;;true
+1;3.2.1.- U00001;;3.2.1.-;;;;irreversible;;0;50;;;3.2.1.-;;true
+2;3.-.-.- U00002;;3.-.-.-;;;;irreversible;;0;100;;;3.-.-.-;;true
+3;beta-D-glucopyranosyl abscisate beta-glucosidase	 AtBG1	 ABA-beta-D-glucosidase	 ABA-specific beta-glucosidase	 ABA-GE hydrolase	 beta-D-glucopyranosyl abscisate hydrolase U00003;;3.2.1.175;;;;irreversible;;0;150;;;beta-D-glucopyranosyl abscisate beta-glucosidase;;true
+4;beta-apiosyl-beta-glucosidase	 isoflavonoid-7-O-beta[D-apiosyl-(1->6)-beta-D-glucoside] disaccharidase	 isoflavonoid 7-O-beta-apiosyl-glucoside beta-glucosidase	 furcatin hydrolase U00004;;3.2.1.161;;;;irreversible;;0;200;;;beta-apiosyl-beta-glucosidase;;true
+5;prunasin beta-glucosidase	 prunasin hydrolase U00005;;3.2.1.118;;;;irreversible;;0;250;;;prunasin beta-glucosidase;;true
+6;lactase	 lactase-phlorizin hydrolase U00006;;3.2.1.108;;;;irreversible;;0;300;;;lactase;;true
+7;vicianin beta-glucosidase	 vicianin hydrolase U00007;;3.2.1.119;;;;irreversible;;0;350;;;vicianin beta-glucosidase;;true
+8;xylan 1,4-beta-xylosidase	 xylobiase	 beta-xylosidase	 exo-1,4-beta-xylosidase	 beta-D-xylopyranosidase	 beta-xylosidase	 beta-xylosidase	 exo-1,4-xylosidase	 exo-1,4-beta-D-xylosidase	 1,4-beta-D-xylan xylohydrolase U00008;;3.2.1.37;;;;irreversible;;0;400;;;xylan 1,4-beta-xylosidase;;true
+9;3alpha(S)-strictosidine beta-glucosidase U00009;;3.2.1.105;;;;irreversible;;0;450;;;3alpha(S)-strictosidine beta-glucosidase;;true
+10;beta-primeverosidase U00010;;3.2.1.149;;;;irreversible;;0;500;;;beta-primeverosidase;;true
+11;beta-D-fucosidase	 beta-fucosidase U00011;;3.2.1.38;;;;irreversible;;0;550;;;beta-D-fucosidase;;true
+12;amygdalin beta-glucosidase	 amygdalase	 amygdalinase	 amygdalin hydrolase	 amygdalin glucosidase U00012;;3.2.1.117;;;;irreversible;;0;600;;;amygdalin beta-glucosidase;;true
+13;raucaffricine beta-glucosidase	 raucaffricine beta-D-glucosidase	 raucaffricine glucosidase U00013;;3.2.1.125;;;;irreversible;;0;650;;;raucaffricine beta-glucosidase;;true
+14;thioglucosidase	 myrosinase	 sinigrinase	 sinigrase U00014;;3.2.1.147;;;;irreversible;;0;700;;;thioglucosidase;;true
+15;beta-galactosidase	 lactase (ambiguous)	 beta-lactosidase	 maxilact	 hydrolact	 beta-D-lactosidase	 S 2107	 lactozym	 trilactase	 beta-D-galactanase	 oryzatym	 sumiklat U00015;;3.2.1.23;;;;irreversible;;0;750;;;beta-galactosidase;;true
+16;beta-mannosidase	 mannanase	 mannase	 beta-D-mannosidase	 beta-mannoside mannohydrolase	 exo-beta-D-mannanase U00016;;3.2.1.25;;;;irreversible;;0;800;;;beta-mannosidase;;true
+17;glycosylceramidase	 phlorizin hydrolase	 phloretin-glucosidase	 glycosyl ceramide glycosylhydrolase	 cerebrosidase	 phloridzin beta-glucosidase	 lactase-phlorizin hydrolase	 phloridzin glucosidase U00017;;3.2.1.62;;;;irreversible;;0;850;;;glycosylceramidase;;true
+18;glucan 1,4-beta-glucosidase	 exo-1,4-beta-glucosidase	 exocellulase	 exo-beta-1,4-glucosidase	 exo-beta-1,4-glucanase	 beta-1,4-beta-glucanase	 beta-glucosidase	 exo-1,4-beta-glucanase	 1,4-beta-D-glucan glucohydrolase U00018;;3.2.1.74;;;;irreversible;;0;900;;;glucan 1,4-beta-glucosidase;;true
+19;6-phospho-beta-galactosidase	 phospho-beta-galactosidase	 beta-D-phosphogalactoside galactohydrolase	 phospho-beta-D-galactosidase	 6-phospho-beta-D-galactosidase U00019;;3.2.1.85;;;;irreversible;;0;950;;;6-phospho-beta-galactosidase;;true
+20;beta-glucuronidase	 beta-glucuronide glucuronohydrolase glucuronidase	 exo-beta-D-glucuronidase	 ketodase U00020;;3.2.1.31;;;;irreversible;;0;1000;;;beta-glucuronidase;;true
+21;6-phospho-beta-glucosidase	 phospho-beta-glucosidase A	 phospho-beta-glucosidase	 phosphocellobiase	 6-phospho-beta-D-glucosyl-(1,4)-D-glucose glucohydrolase U00021;;3.2.1.86;;;;irreversible;;0;1050;;;6-phospho-beta-glucosidase;;true
+22;beta-glucosidase	 gentiobiase	 cellobiase	 emulsin	 elaterase	 aryl-beta-glucosidase	 beta-D-glucosidase	 beta-glucoside glucohydrolase	 arbutinase	 amygdalinase	 p-nitrophenyl beta-glucosidase	 primeverosidase	 amygdalase	 linamarase	 salicilinase	 beta-1,6-glucosidase U00022;;3.2.1.21;;;;irreversible;;0;1100;;;beta-glucosidase;;true

@@ -1,0 +1,3 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;heparin lyase	 heparin eliminase	 heparinase U00000;;4.2.2.7;;;;irreversible;;0;0;;;heparin lyase;;true
+1;heparin-sulfate lyase	 heparin-sulfate eliminase	 heparitin-sulfate lyase	 heparitinase I	 heparitinase II U00001;;4.2.2.8;;;;irreversible;;0;50;;;heparin-sulfate lyase;;true

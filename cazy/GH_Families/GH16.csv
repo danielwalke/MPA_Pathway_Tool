@@ -1,0 +1,14 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;galactan endo-beta-1,3-galactanase	 endo-beta-1,3-galactanase U00000;;3.2.1.181;;;;irreversible;;0;0;;;galactan endo-beta-1,3-galactanase;;true
+1;beta-agarase	 agarase (ambiguous)	 AgaA	 AgaB	 endo-beta-agarase	 agarose 3-glycanohydrolase (incorrect) U00001;;3.2.1.81;;;;irreversible;;0;50;;;beta-agarase;;true
+2;kappa-carrageenase	 kappa-carrageenan 4-beta-D-glycanohydrolase U00002;;3.2.1.83;;;;irreversible;;0;100;;;kappa-carrageenase;;true
+3;3.2.1.- U00003;;3.2.1.-;;;;irreversible;;0;150;;;3.2.1.-;;true
+4;beta-porphyranase	 porphyranase	 PorA	 PorB	 endo-beta-porphyranase U00004;;3.2.1.178;;;;irreversible;;0;200;;;beta-porphyranase;;true
+5;xyloglucan-specific endo-beta-1,4-glucanase	 XEG	 xyloglucan endo-beta-1,4-glucanase	 xyloglucanase	 xyloglucanendohydrolase	 XH	 1,4-beta-D-glucan glucanohydrolase U00005;;3.2.1.151;;;;irreversible;;0;250;;;xyloglucan-specific endo-beta-1,4-glucanase;;true
+6;endo-1,3(4)-beta-glucanase	 endo-1,3-beta-D-glucanase	 laminarinase	 laminaranase	 beta-1,3-glucanase	 beta-1,3-1,4-glucanase	 endo-1,3-beta-glucanase	 endo-beta-1,3(4)-glucanase	 endo-beta-1,3-1,4-glucanase	 endo-beta-(1->3)-D-glucanase	 endo-1,3-1,4-beta-D-glucanase	 endo-beta-(1-3)-D-glucanase	 endo-beta-1,3-glucanase IV	 endo-1,3-beta-D-glucanase	 1,3-(1,3	1,4)-beta-D-glucan 3(4)-glucanohydrolase U00006;;3.2.1.6;;;;irreversible;;0;300;;;endo-1,3(4)-beta-glucanase;;true
+7;keratan-sulfate endo-1,4-beta-galactosidase	 endo-beta-galactosidase (ambiguous)	 keratan sulfate endogalactosidase	 keratanase	 keratan-sulfate 1,4-beta-D-galactanohydrolase U00007;;3.2.1.103;;;;irreversible;;0;350;;;keratan-sulfate endo-1,4-beta-galactosidase;;true
+8;glucan endo-1,3-beta-D-glucosidase	 endo-1,3-beta-glucanase	 laminarinase	 laminaranase	 oligo-1,3-glucosidase	 endo-1,3-beta-glucanase	 callase	 beta-1,3-glucanase	 kitalase	 1,3-beta-D-glucan 3-glucanohydrolase	 endo-(1,3)-beta-D-glucanase	 (1->3)-beta-glucan 3-glucanohydrolase	 endo-1,3-beta-D-glucanase	 endo-1,3-beta-glucosidase	 1,3-beta-D-glucan glucanohydrolase U00008;;3.2.1.39;;;;irreversible;;0;400;;;glucan endo-1,3-beta-D-glucosidase;;true
+9;xyloglucan:xyloglucosyl transferase	 endo-xyloglucan transferase	 xyloglucan endotransglycosylase U00009;;2.4.1.207;;;;irreversible;;0;450;;;xyloglucan:xyloglucosyl transferase;;true
+10;hyaluronoglucosaminidase	 hyaluronidase	 hyaluronoglucosidase	 chondroitinase	 chondroitinase I U00010;;3.2.1.35;;;;irreversible;;0;500;;;hyaluronoglucosaminidase;;true
+11;licheninase	 lichenase	 beta-(1->4)-D-glucan 4-glucanohydrolase	 1,3	1,4-beta-glucan endohydrolase	 1,3	1,4-beta-glucan 4-glucanohydrolase	 1,3-1,4-beta-D-glucan 4-glucanohydrolase U00011;;3.2.1.73;;;;irreversible;;0;550;;;licheninase;;true
+12;2.4.1.- U00012;;2.4.1.-;;;;irreversible;;0;600;;;2.4.1.-;;true

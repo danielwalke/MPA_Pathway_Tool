@@ -1,0 +1,4 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;beta-fructofuranosidase	 invertase	 saccharase	 glucosucrase	 beta-h-fructosidase	 beta-fructosidase	 invertin	 sucrase	 maxinvert L 1000	 fructosylinvertase	 alkaline invertase	 acid invertase U00000;;3.2.1.26;;;;irreversible;;0;0;;;beta-fructofuranosidase;;true
+1;levansucrase	 sucrose 6-fructosyltransferase	 beta-2,6-fructosyltransferase	 beta-2,6-fructan:D-glucose 1-fructosyltransferase	 sucrose:2,6-beta-D-fructan 6-beta-D-fructosyltransferase	 sucrose:(2->6)-beta-D-fructan 6-beta-D-fructosyltransferase U00001;;2.4.1.10;;;;irreversible;;0;50;;;levansucrase;;true
+2;inulosucrase	 sucrose 1-fructosyltransferase	 sucrose:2,1-beta-D-fructan 1-beta-D-fructosyltransferase U00002;;2.4.1.9;;;;irreversible;;0;100;;;inulosucrase;;true

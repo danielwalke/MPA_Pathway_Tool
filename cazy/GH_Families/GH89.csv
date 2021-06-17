@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;alpha-N-acetylglucosaminidase	 alpha-acetylglucosaminidase	 N-acetyl-alpha-D-glucosaminidase	 N-acetyl-alpha-glucosaminidase	 alpha-D-2-acetamido-2-deoxyglucosidase U00000;;3.2.1.50;;;;irreversible;;0;0;;;alpha-N-acetylglucosaminidase;;true

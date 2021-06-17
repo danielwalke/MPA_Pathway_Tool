@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;beta-mannosidase	 mannanase	 mannase	 beta-D-mannosidase	 beta-mannoside mannohydrolase	 exo-beta-D-mannanase U00000;;3.2.1.25;;;;irreversible;;0;0;;;beta-mannosidase;;true

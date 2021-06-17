@@ -1,0 +1,4 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;chitin deacetylase U00000;;3.5.1.41;;;;irreversible;;0;0;;;chitin deacetylase;;true
+1;3.5.1.- U00001;;3.5.1.-;;;;irreversible;;0;50;;;3.5.1.-;;true
+2;acetylxylan esterase U00002;;3.1.1.72;;;;irreversible;;0;100;;;acetylxylan esterase;;true

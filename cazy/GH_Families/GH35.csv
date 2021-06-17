@@ -1,0 +1,4 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;3.2.1.- U00000;;3.2.1.-;;;;irreversible;;0;0;;;3.2.1.-;;true
+1;beta-galactosidase	 lactase (ambiguous)	 beta-lactosidase	 maxilact	 hydrolact	 beta-D-lactosidase	 S 2107	 lactozym	 trilactase	 beta-D-galactanase	 oryzatym	 sumiklat U00001;;3.2.1.23;;;;irreversible;;0;50;;;beta-galactosidase;;true
+2;exo-1,4-beta-D-glucosaminidase	 CsxA	 GlcNase	 exochitosanase	 GlmA	 exo-beta-D-glucosaminidase	 chitosan exo-1,4-beta-D-glucosaminidase U00002;;3.2.1.165;;;;irreversible;;0;100;;;exo-1,4-beta-D-glucosaminidase;;true

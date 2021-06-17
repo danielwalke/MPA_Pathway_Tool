@@ -1,0 +1,4 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;alpha-galactosidase	 melibiase	 alpha-D-galactosidase	 alpha-galactosidase A	 alpha-galactoside galactohydrolase U00000;;3.2.1.22;;;;irreversible;;0;0;;;alpha-galactosidase;;true
+1;glucan 1,4-alpha-glucosidase	 glucoamylase	 amyloglucosidase	 gamma-amylase	 lysosomal alpha-glucosidase	 acid maltase	 exo-1,4-alpha-glucosidase	 glucose amylase	 gamma-1,4-glucan glucohydrolase	 acid maltase	 1,4-alpha-D-glucan glucohydrolase U00001;;3.2.1.3;;;;irreversible;;0;50;;;glucan 1,4-alpha-glucosidase;;true
+2;alpha-glucosidase	 maltase	 glucoinvertase	 glucosidosucrase	 maltase-glucoamylase	 alpha-glucopyranosidase	 glucosidoinvertase	 alpha-D-glucosidase	 alpha-glucoside hydrolase	 alpha-1,4-glucosidase U00002;;3.2.1.20;;;;irreversible;;0;100;;;alpha-glucosidase;;true

@@ -1,0 +1,3 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;lysozyme	 muramidase	 globulin G	 mucopeptide glucohydrolase	 globulin G1	 N,O-diacetylmuramidase	 lysozyme g	 L-7001	 1,4-N-acetylmuramidase	 mucopeptide N-acetylmuramoylhydrolase	 PR1-lysozyme U00000;;3.2.1.17;;;;irreversible;;0;0;;;lysozyme;;true
+1;chitinase	 ChiC	 chitodextrinase (ambiguous)	 1,4-beta-poly-N-acetylglucosaminidase	 poly-beta-glucosaminidase	 beta-1,4-poly-N-acetyl glucosamidinase	 poly[1,4-(N-acetyl-beta-D-glucosaminide)] glycanohydrolase U00001;;3.2.1.14;;;;irreversible;;0;50;;;chitinase;;true

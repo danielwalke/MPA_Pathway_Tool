@@ -1,0 +1,4 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;glucosyl-3-phosphoglycerate synthase	 GpgS protein	 GPG synthase	 glucosylphosphoglycerate synthase U00000;;2.4.1.266;;;;irreversible;;0;0;;;glucosyl-3-phosphoglycerate synthase;;true
+1;mannosyl-3-phosphoglycerate synthase	 MPG synthase	 GDP-mannose:3-phosphoglycerate 3-alpha-D-mannosyltransferase U00001;;2.4.1.217;;;;irreversible;;0;50;;;mannosyl-3-phosphoglycerate synthase;;true
+2;2.4.1.- U00002;;2.4.1.-;;;;irreversible;;0;100;;;2.4.1.-;;true

@@ -1,0 +1,7 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;1.11.1.- U00000;;1.11.1.-;;;;irreversible;;0;0;;;1.11.1.-;;true
+1;L-ascorbate peroxidase	 L-ascorbic acid peroxidase	 L-ascorbic acid-specific peroxidase	 ascorbate peroxidase	 ascorbic acid peroxidase U00001;;1.11.1.11;;;;irreversible;;0;50;;;L-ascorbate peroxidase;;true
+2;cytochrome-c peroxidase	 cytochrome peroxidase	 cytochrome c-551 peroxidase	 apocytochrome c peroxidase	 mesocytochrome c peroxidase azide	 mesocytochrome c peroxidase cyanide	 mesocytochrome c peroxidase cyanate	 cytochrome c-H2O oxidoreductase	 cytochrome c peroxidase U00002;;1.11.1.5;;;;irreversible;;0;100;;;cytochrome-c peroxidase;;true
+3;lignin peroxidase	 diarylpropane oxygenase	 ligninase I	 diarylpropane peroxidase	 LiP	 diarylpropane:oxygen,hydrogen-peroxide oxidoreductase (C-C-bond-cleaving)	 1,2-bis(3,4-dimethoxyphenyl)propane-1,3-diol:hydrogen-peroxide oxidoreductase (incorrect)	 (3,4-dimethoxyphenyl)methanol:hydrogen-peroxide oxidoreductase U00003;;1.11.1.14;;;;irreversible;;0;150;;;lignin peroxidase;;true
+4;manganese peroxidase	 peroxidase-M2	 Mn-dependent (NADH-oxidizing) peroxidase U00004;;1.11.1.13;;;;irreversible;;0;200;;;manganese peroxidase;;true
+5;versatile peroxidase	 VP	 hybrid peroxidase	 polyvalent peroxidase	 reactive-black-5:hydrogen-peroxide oxidoreductase U00005;;1.11.1.16;;;;irreversible;;0;250;;;versatile peroxidase;;true

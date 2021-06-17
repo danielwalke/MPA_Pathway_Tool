@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;beta-fructofuranosidase	 invertase	 saccharase	 glucosucrase	 beta-h-fructosidase	 beta-fructosidase	 invertin	 sucrase	 maxinvert L 1000	 fructosylinvertase	 alkaline invertase	 acid invertase U00000;;3.2.1.26;;;;irreversible;;0;0;;;beta-fructofuranosidase;;true

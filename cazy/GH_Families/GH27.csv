@@ -1,0 +1,6 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;glucan 1,6-alpha-isomaltosidase	 exo-isomaltohydrolase	 isomalto-dextranase	 isomaltodextranase	 G2-dextranase	 1,6-alpha-D-glucan isomaltohydrolase U00000;;3.2.1.94;;;;irreversible;;0;0;;;glucan 1,6-alpha-isomaltosidase;;true
+1;alpha-N-acetylgalactosaminidase	 alpha-acetylgalactosaminidase	 N-acetyl-alpha-D-galactosaminidase	 N-acetyl-alpha-galactosaminidase	 alpha-NAGAL	 alpha-NAGA	 alpha-GalNAcase U00001;;3.2.1.49;;;;irreversible;;0;50;;;alpha-N-acetylgalactosaminidase;;true
+2;alpha-galactosidase	 melibiase	 alpha-D-galactosidase	 alpha-galactosidase A	 alpha-galactoside galactohydrolase U00002;;3.2.1.22;;;;irreversible;;0;100;;;alpha-galactosidase;;true
+3;non-reducing end beta-L-arabinopyranosidase	 vicianosidase	 beta-L-arabinosidase (ambiguous)	 beta-L-arabinoside arabinohydrolase (ambiguous) U00003;;3.2.1.88;;;;irreversible;;0;150;;;non-reducing end beta-L-arabinopyranosidase;;true
+4;2.4.1.- U00004;;2.4.1.-;;;;irreversible;;0;200;;;2.4.1.-;;true

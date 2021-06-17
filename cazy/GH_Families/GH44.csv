@@ -1,0 +1,3 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;cellulase	 endo-1,4-beta-D-glucanase	 beta-1,4-glucanase	 beta-1,4-endoglucan hydrolase	 celluase A	 cellulosin AP	 endoglucanase D	 alkali cellulase	 cellulase A 3	 celludextrinase	 9.5 cellulase	 avicelase	 pancellase SS	 1,4-(1,3	1,4)-beta-D-glucan 4-glucanohydrolase U00000;;3.2.1.4;;;;irreversible;;0;0;;;cellulase;;true
+1;xyloglucan-specific endo-beta-1,4-glucanase	 XEG	 xyloglucan endo-beta-1,4-glucanase	 xyloglucanase	 xyloglucanendohydrolase	 XH	 1,4-beta-D-glucan glucanohydrolase U00001;;3.2.1.151;;;;irreversible;;0;50;;;xyloglucan-specific endo-beta-1,4-glucanase;;true

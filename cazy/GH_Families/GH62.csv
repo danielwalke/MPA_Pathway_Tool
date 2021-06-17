@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;non-reducing end alpha-L-arabinofuranosidase	 arabinosidase (ambiguous)	 alpha-arabinosidase	 alpha-L-arabinosidase	 alpha-arabinofuranosidase	 polysaccharide alpha-L-arabinofuranosidase	 alpha-L-arabinofuranoside hydrolase	 L-arabinosidase (ambiguous)	 alpha-L-arabinanase U00000;;3.2.1.55;;;;irreversible;;0;0;;;non-reducing end alpha-L-arabinofuranosidase;;true

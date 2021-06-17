@@ -1,0 +1,6 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;cellobionic acid phosphorylase U00000;;2.4.1.321;;;;irreversible;;0;0;;;cellobionic acid phosphorylase;;true
+1;cellobiose phosphorylase U00001;;2.4.1.20;;;;irreversible;;0;50;;;cellobiose phosphorylase;;true
+2;laminaribiose phosphorylase U00002;;2.4.1.31;;;;irreversible;;0;100;;;laminaribiose phosphorylase;;true
+3;cellodextrin phosphorylase	 beta-1,4-oligoglucan:orthophosphate glucosyltransferase	 1,4-beta-D-oligo-D-glucan:phosphate alpha-D-glucosyltransferase U00003;;2.4.1.49;;;;irreversible;;0;150;;;cellodextrin phosphorylase;;true
+4;2.4.1.- U00004;;2.4.1.-;;;;irreversible;;0;200;;;2.4.1.-;;true

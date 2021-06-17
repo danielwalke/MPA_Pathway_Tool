@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;N-acetylglucosaminyl-diphospho-decaprenol L-rhamnosyltransferase	 WbbL U00000;;2.4.1.289;;;;irreversible;;0;0;;;N-acetylglucosaminyl-diphospho-decaprenol L-rhamnosyltransferase;;true

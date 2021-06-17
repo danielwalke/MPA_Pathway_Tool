@@ -1,0 +1,5 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;3.2.1.- U00000;;3.2.1.-;;;;irreversible;;0;0;;;3.2.1.-;;true
+1;dextranase	 dextran hydrolase	 endodextranase	 dextranase DL 2	 DL 2	 endo-dextranase	 alpha-D-1,6-glucan-6-glucanohydrolase	 1,6-alpha-D-glucan 6-glucanohydrolase U00001;;3.2.1.11;;;;irreversible;;0;50;;;dextranase;;true
+2;isopullulanase U00002;;3.2.1.57;;;;irreversible;;0;100;;;isopullulanase;;true
+3;dextran 1,6-alpha-isomaltotriosidase	 exo-isomaltotriohydrolase	 1,6-alpha-D-glucan isomaltotriohydrolase U00003;;3.2.1.95;;;;irreversible;;0;150;;;dextran 1,6-alpha-isomaltotriosidase;;true

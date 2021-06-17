@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;DNA beta-glucosyltransferase	 T4-HMC-beta-glucosyl transferase	 T4-beta-glucosyl transferase	 T4 phage beta-glucosyltransferase	 UDP glucose-DNA beta-glucosyltransferase	 uridine diphosphoglucose-deoxyribonucleate beta-glucosyltransferase	 UDP-glucose:DNA beta-D-glucosyltransferase U00000;;2.4.1.27;;;;irreversible;;0;0;;;DNA beta-glucosyltransferase;;true

@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;rhamnogalacturonan exolyase	 YesX U00000;;4.2.2.24;;;;irreversible;;0;0;;;rhamnogalacturonan exolyase;;true

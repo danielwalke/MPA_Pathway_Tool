@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;acetylesterase	 C-esterase (in animal tissues)	 acetic ester hydrolase	 chloroesterase	 p-nitrophenyl acetate esterase	 Citrus acetylesterase U00000;;3.1.1.6;;;;irreversible;;0;0;;;acetylesterase;;true

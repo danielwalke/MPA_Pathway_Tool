@@ -1,0 +1,3 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;mannan endo-1,6-alpha-mannosidase	 endo-alpha-1->6-D-mannanase	 endo-1,6-beta-mannanase	 mannan endo-1,6-beta-mannosidase	 1,6-alpha-D-mannan mannanohydrolase U00000;;3.2.1.101;;;;irreversible;;0;0;;;mannan endo-1,6-alpha-mannosidase;;true
+1;alpha-glucosidase	 maltase	 glucoinvertase	 glucosidosucrase	 maltase-glucoamylase	 alpha-glucopyranosidase	 glucosidoinvertase	 alpha-D-glucosidase	 alpha-glucoside hydrolase	 alpha-1,4-glucosidase U00001;;3.2.1.20;;;;irreversible;;0;50;;;alpha-glucosidase;;true

@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;amylo-alpha-1,6-glucosidase	 amylo-1,6-glucosidase	 dextrin 6-alpha-D-glucosidase	 amylopectin 1,6-glucosidase	 dextrin-1,6-glucosidase	 glycogen phosphorylase-limit dextrin alpha-1,6-glucohydrolase U00000;;3.2.1.33;;;;irreversible;;0;0;;;amylo-alpha-1,6-glucosidase;;true

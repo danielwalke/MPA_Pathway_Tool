@@ -1,0 +1,4 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;2.4.2.- U00000;;2.4.2.-;;;;irreversible;;0;0;;;2.4.2.-;;true
+1;procollagen galactosyltransferase	 hydroxylysine galactosyltransferase	 collagen galactosyltransferase	 collagen hydroxylysyl galactosyltransferase	 UDP galactose-collagen galactosyltransferase	 uridine diphosphogalactose-collagen galactosyltransferase	 UDPgalactose:5-hydroxylysine-collagen galactosyltransferase	 UDP-galactose:procollagen-5-hydroxy-L-lysine D-galactosyltransferase	 UDP-alpha-D-galactose:procollagen-5-hydroxy-L-lysine D-galactosyltransferase U00001;;2.4.1.50;;;;irreversible;;0;50;;;procollagen galactosyltransferase;;true
+2;2.4.1.- U00002;;2.4.1.-;;;;irreversible;;0;100;;;2.4.1.-;;true

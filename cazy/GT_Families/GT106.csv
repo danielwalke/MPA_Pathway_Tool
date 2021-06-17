@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;rhamnogalacturonan I rhamnosyltransferase	 RRT	 RG I rhamnosyltransferase U00000;;2.4.1.351;;;;irreversible;;0;0;;;rhamnogalacturonan I rhamnosyltransferase;;true

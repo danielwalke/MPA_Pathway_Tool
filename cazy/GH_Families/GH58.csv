@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;endo-alpha-sialidase	 endo-N-acylneuraminidase	 endoneuraminidase	 endo-N-acetylneuraminidase	 poly(alpha-2,8-sialosyl) endo-N-acetylneuraminidase	 poly(alpha-2,8-sialoside) alpha-2,8-sialosylhydrolase	 endosialidase	 endo-N U00000;;3.2.1.129;;;;irreversible;;0;0;;;endo-alpha-sialidase;;true

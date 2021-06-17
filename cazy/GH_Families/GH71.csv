@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;glucan endo-1,3-alpha-glucosidase	 endo-1,3-alpha-glucanase	 mutanase	 endo-(1->3)-alpha-glucanase	 cariogenase	 cariogenanase	 endo-1,3-alpha-D-glucanase	 1,3(1,3	1,4)-alpha-D-glucan 3-glucanohydrolase U00000;;3.2.1.59;;;;irreversible;;0;0;;;glucan endo-1,3-alpha-glucosidase;;true

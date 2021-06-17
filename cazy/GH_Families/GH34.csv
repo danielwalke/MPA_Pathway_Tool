@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;exo-alpha-sialidase	 neuraminidase	 sialidase	 alpha-neuraminidase	 acetylneuraminidase U00000;;3.2.1.18;;;;irreversible;;0;0;;;exo-alpha-sialidase;;true

@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;glucuronosyl-N-acetylglucosaminyl-proteoglycan 4-alpha-N-acetylglucosaminyltransferase	 alpha-N-acetylglucosaminyltransferase II glucuronyl-N-acetylglucosaminylproteoglycan alpha-1,4-N-acetylglucosaminyltransferase U00000;;2.4.1.224;;;;irreversible;;0;0;;;glucuronosyl-N-acetylglucosaminyl-proteoglycan 4-alpha-N-acetylglucosaminyltransferase;;true

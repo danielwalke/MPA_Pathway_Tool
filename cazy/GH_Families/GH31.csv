@@ -1,0 +1,13 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;sucrose alpha-glucosidase	 sucrose alpha-glucohydrolase	 sucrase	 sucrase-isomaltase	 sucrose.alpha.-glucohydrolase	 intestinal sucrase	 sucrase(invertase) U00000;;3.2.1.48;;;;irreversible;;0;0;;;sucrose alpha-glucosidase;;true
+1;alpha-N-acetylgalactosaminidase	 alpha-acetylgalactosaminidase	 N-acetyl-alpha-D-galactosaminidase	 N-acetyl-alpha-galactosaminidase	 alpha-NAGAL	 alpha-NAGA	 alpha-GalNAcase U00001;;3.2.1.49;;;;irreversible;;0;50;;;alpha-N-acetylgalactosaminidase;;true
+2;oligosaccharide 4-alpha-D-glucosyltransferase	 amylase III	 1,4-alpha-glucan:1,4-alpha-glucan 4-alpha-glucosyltransferase	 1,4-alpha-D-glucan:1,4-alpha-D-glucan 4-alpha-D-glucosyltransferase	 alpha-1,4-transglucosylase U00002;;2.4.1.161;;;;irreversible;;0;100;;;oligosaccharide 4-alpha-D-glucosyltransferase;;true
+3;alpha-galactosidase	 melibiase	 alpha-D-galactosidase	 alpha-galactosidase A	 alpha-galactoside galactohydrolase U00003;;3.2.1.22;;;;irreversible;;0;150;;;alpha-galactosidase;;true
+4;exo-(1->4)-alpha-D-glucan lyase	 alpha-(1->4)-glucan 1,5-anhydro-D-fructose eliminase	 alpha-1,4-glucan exo-lyase	 alpha-1,4-glucan lyase	 GLase U00004;;4.2.2.13;;;;irreversible;;0;200;;;exo-(1->4)-alpha-D-glucan lyase;;true
+5;alpha-mannosidase	 alpha-D-mannosidase	 p-nitrophenyl-alpha-mannosidase	 alpha-D-mannopyranosidase	 1,2-alpha-mannosidase	 1,2-alpha-D-mannosidase	 exo-alpha-mannosidase U00005;;3.2.1.24;;;;irreversible;;0;250;;;alpha-mannosidase;;true
+6;alpha-D-xyloside xylohydrolase	 alpha-xylosidase U00006;;3.2.1.177;;;;irreversible;;0;300;;;alpha-D-xyloside xylohydrolase;;true
+7;sulfoquinovosidase	 yihQ (gene name) U00007;;3.2.1.199;;;;irreversible;;0;350;;;sulfoquinovosidase;;true
+8;glucan 1,3-alpha-glucosidase	 exo-1,3-alpha-glucanase	 glucosidase II	 1,3-alpha-D-glucan 3-glucohydrolase U00008;;3.2.1.84;;;;irreversible;;0;400;;;glucan 1,3-alpha-glucosidase;;true
+9;alpha-glucosidase	 maltase	 glucoinvertase	 glucosidosucrase	 maltase-glucoamylase	 alpha-glucopyranosidase	 glucosidoinvertase	 alpha-D-glucosidase	 alpha-glucoside hydrolase	 alpha-1,4-glucosidase U00009;;3.2.1.20;;;;irreversible;;0;450;;;alpha-glucosidase;;true
+10;oligo-1,6-glucosidase	 limit dextrinase (erroneous)	 isomaltase	 sucrase-isomaltase	 exo-oligo-1,6-glucosidase	 dextrin 6alpha-glucanohydrolase	 alpha-limit dextrinase	 dextrin 6-glucanohydrolase	 oligosaccharide alpha-1,6-glucohydrolase	 alpha-methylglucosidase U00010;;3.2.1.10;;;;irreversible;;0;500;;;oligo-1,6-glucosidase;;true
+11;2.4.1.- U00011;;2.4.1.-;;;;irreversible;;0;550;;;2.4.1.-;;true

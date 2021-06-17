@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;xylan 1,4-beta-xylosidase	 xylobiase	 beta-xylosidase	 exo-1,4-beta-xylosidase	 beta-D-xylopyranosidase	 beta-xylosidase	 beta-xylosidase	 exo-1,4-xylosidase	 exo-1,4-beta-D-xylosidase	 1,4-beta-D-xylan xylohydrolase U00000;;3.2.1.37;;;;irreversible;;0;0;;;xylan 1,4-beta-xylosidase;;true

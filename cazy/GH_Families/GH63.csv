@@ -1,0 +1,6 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;mannosylglycerate hydrolase	 MgH U00000;;3.2.1.170;;;;irreversible;;0;0;;;mannosylglycerate hydrolase;;true
+1;glucosylglycerate hydrolase	 GG hydrolase	 GgH U00001;;3.2.1.208;;;;irreversible;;0;50;;;glucosylglycerate hydrolase;;true
+2;mannosyl-oligosaccharide glucosidase	 Glc3Man9NAc2 oligosaccharide glucosidase	 trimming glucosidase I	 CWH41 (gene name)	 MOGS (gene name)	 mannosyl-oligosaccharide glucohydrolase U00002;;3.2.1.106;;;;irreversible;;0;100;;;mannosyl-oligosaccharide glucosidase;;true
+3;glucan 1,3-alpha-glucosidase	 exo-1,3-alpha-glucanase	 glucosidase II	 1,3-alpha-D-glucan 3-glucohydrolase U00003;;3.2.1.84;;;;irreversible;;0;150;;;glucan 1,3-alpha-glucosidase;;true
+4;alpha-glucosidase	 maltase	 glucoinvertase	 glucosidosucrase	 maltase-glucoamylase	 alpha-glucopyranosidase	 glucosidoinvertase	 alpha-D-glucosidase	 alpha-glucoside hydrolase	 alpha-1,4-glucosidase U00004;;3.2.1.20;;;;irreversible;;0;200;;;alpha-glucosidase;;true

@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;beta-galactosidase	 lactase (ambiguous)	 beta-lactosidase	 maxilact	 hydrolact	 beta-D-lactosidase	 S 2107	 lactozym	 trilactase	 beta-D-galactanase	 oryzatym	 sumiklat U00000;;3.2.1.23;;;;irreversible;;0;0;;;beta-galactosidase;;true

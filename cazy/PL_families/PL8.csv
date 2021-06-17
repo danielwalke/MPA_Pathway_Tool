@@ -1,0 +1,7 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;hyaluronate lyase	 hyaluronidase (ambiguous)	 glucuronoglycosaminoglycan lyase (ambiguous)	 spreading factor	 mucinase (ambiguous) U00000;;4.2.2.1;;;;irreversible;;0;0;;;hyaluronate lyase;;true
+1;mannuronate-specific alginate lyase	 alginate lyase I	 alginate lyase	 alginase I	 alginase II	 alginase	 poly(beta-D-1,4-mannuronide) lyase	 poly(beta-D-mannuronate) lyase	 aly (gene name) (ambiguous)	 poly[(1->4)-beta-D-mannuronide] lyase U00001;;4.2.2.3;;;;irreversible;;0;50;;;mannuronate-specific alginate lyase;;true
+2;chondroitin AC lyase	 chondroitinase (ambiguous)	 chondroitin sulfate lyase	 chondroitin AC eliminase	 chondroitinase AC	 ChnAC U00002;;4.2.2.5;;;;irreversible;;0;100;;;chondroitin AC lyase;;true
+3;heparin lyase	 heparin eliminase	 heparinase U00003;;4.2.2.7;;;;irreversible;;0;150;;;heparin lyase;;true
+4;chondroitin-sulfate-ABC endolyase	 chondroitinase (ambiguous)	 chondroitin ABC eliminase (ambiguous)	 chondroitinase ABC (ambiguous)	 chondroitin ABC lyase (ambiguous)	 chondroitin sulfate ABC lyase (ambiguous)	 ChS ABC lyase (ambiguous)	 chondroitin sulfate ABC endoeliminase	 chondroitin sulfate ABC endolyase	 ChS ABC lyase I U00004;;4.2.2.20;;;;irreversible;;0;200;;;chondroitin-sulfate-ABC endolyase;;true
+5;xanthan lyase U00005;;4.2.2.12;;;;irreversible;;0;250;;;xanthan lyase;;true

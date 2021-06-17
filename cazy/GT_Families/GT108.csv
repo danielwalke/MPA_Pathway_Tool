@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;beta-1,2-mannooligosaccharide synthase	 MTP1 (gene name)	 MTP2 (gene name) U00000;;2.4.1.374;;;;irreversible;;0;0;;;beta-1,2-mannooligosaccharide synthase;;true

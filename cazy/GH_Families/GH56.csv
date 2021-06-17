@@ -1,0 +1,3 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;3.2.1.- U00000;;3.2.1.-;;;;irreversible;;0;0;;;3.2.1.-;;true
+1;hyaluronoglucosaminidase	 hyaluronidase	 hyaluronoglucosidase	 chondroitinase	 chondroitinase I U00001;;3.2.1.35;;;;irreversible;;0;50;;;hyaluronoglucosaminidase;;true

@@ -1,0 +1,6 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;pyranose oxidase	 glucose 2-oxidase	 pyranose-2-oxidase U00000;;1.1.3.10;;;;irreversible;;0;0;;;pyranose oxidase;;true
+1;alcohol oxidase	 ethanol oxidase	 alcohol:oxygen oxidoreductase U00001;;1.1.3.13;;;;irreversible;;0;50;;;alcohol oxidase;;true
+2;cellobiose dehydrogenase (acceptor)	 cellobiose dehydrogenase	 cellobiose oxidoreductase	 Phanerochaete chrysosporium cellobiose oxidoreductase	 CBOR	 cellobiose oxidase	 cellobiose:oxygen 1-oxidoreductase	 CDH	 cellobiose:(acceptor) 1-oxidoreductase U00002;;1.1.99.18;;;;irreversible;;0;100;;;cellobiose dehydrogenase (acceptor);;true
+3;glucose oxidase	 glucose oxyhydrase	 corylophyline	 penatin	 glucose aerodehydrogenase	 microcid	 beta-D-glucose oxidase	 D-glucose oxidase	 D-glucose-1-oxidase	 beta-D-glucose:quinone oxidoreductase	 glucose oxyhydrase	 deoxin-1	 GOD U00003;;1.1.3.4;;;;irreversible;;0;150;;;glucose oxidase;;true
+4;aryl-alcohol oxidase	 aryl alcohol oxidase	 veratryl alcohol oxidase	 arom. alcohol oxidase U00004;;1.1.3.7;;;;irreversible;;0;200;;;aryl-alcohol oxidase;;true

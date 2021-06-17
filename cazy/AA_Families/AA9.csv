@@ -1,0 +1,3 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;lytic cellulose monooxygenase (C4-dehydrogenating) U00000;;1.14.99.56;;;;irreversible;;0;0;;;lytic cellulose monooxygenase (C4-dehydrogenating);;true
+1;lytic cellulose monooxygenase (C1-hydroxylating)	 lytic polysaccharide monooxygenase (ambiguous)	 LPMO (ambiguous)	 LPMO9A U00001;;1.14.99.54;;;;irreversible;;0;50;;;lytic cellulose monooxygenase (C1-hydroxylating);;true

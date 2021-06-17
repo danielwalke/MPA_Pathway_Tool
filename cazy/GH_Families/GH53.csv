@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;arabinogalactan endo-beta-1,4-galactanase	 endo-1,4-beta-galactanase	 galactanase (ambiguous)	 arabinogalactanase	 ganB (gene name) U00000;;3.2.1.89;;;;irreversible;;0;0;;;arabinogalactan endo-beta-1,4-galactanase;;true

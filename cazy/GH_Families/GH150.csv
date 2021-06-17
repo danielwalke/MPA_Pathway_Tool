@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;lambda-carrageenase	 endo-beta-1,4-carrageenose 2,6,2'-trisulfate-hydrolase U00000;;3.2.1.162;;;;irreversible;;0;0;;;lambda-carrageenase;;true

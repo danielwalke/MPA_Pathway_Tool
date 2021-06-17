@@ -1,0 +1,3 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;3.5.1.- U00000;;3.5.1.-;;;;irreversible;;0;0;;;3.5.1.-;;true
+1;N-acetylglucosaminylphosphatidylinositol deacetylase	 N-acetyl-D-glucosaminylphosphatidylinositol acetylhydrolase	 N-acetylglucosaminylphosphatidylinositol de-N-acetylase	 GlcNAc-PI de-N-acetylase	 GlcNAc-PI deacetylase	 acetylglucosaminylphosphatidylinositol deacetylase U00001;;3.5.1.89;;;;irreversible;;0;50;;;N-acetylglucosaminylphosphatidylinositol deacetylase;;true

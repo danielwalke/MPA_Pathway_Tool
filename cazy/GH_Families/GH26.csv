@@ -1,0 +1,6 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;3.2.1.- U00000;;3.2.1.-;;;;irreversible;;0;0;;;3.2.1.-;;true
+1;mannan endo-1,4-beta-mannosidase	 endo-1,4-beta-mannanase	 endo-beta-1,4-mannase	 beta-mannanase B	 beta-1,4-mannan 4-mannanohydrolase	 endo-beta-mannanase	 beta-D-mannanase	 1,4-beta-D-mannan mannanohydrolase U00001;;3.2.1.78;;;;irreversible;;0;50;;;mannan endo-1,4-beta-mannosidase;;true
+2;mannan 1,4-mannobiosidase	 1,4-beta-D-mannan mannobiohydrolase	 exo-beta-mannanase	 exo-1,4-beta-mannobiohydrolase U00002;;3.2.1.100;;;;irreversible;;0;100;;;mannan 1,4-mannobiosidase;;true
+3;licheninase	 lichenase	 beta-(1->4)-D-glucan 4-glucanohydrolase	 1,3	1,4-beta-glucan endohydrolase	 1,3	1,4-beta-glucan 4-glucanohydrolase	 1,3-1,4-beta-D-glucan 4-glucanohydrolase U00003;;3.2.1.73;;;;irreversible;;0;150;;;licheninase;;true
+4;endo-1,3-beta-xylanase	 xylanase (ambiguous)	 endo-1,3-beta-xylosidase (misleading)	 1,3-beta-xylanase	 1,3-xylanase	 beta-1,3-xylanase	 endo-beta-1,3-xylanase	 1,3-beta-D-xylan xylanohydrolase	 xylan endo-1,3-beta-xylosidase U00004;;3.2.1.32;;;;irreversible;;0;200;;;endo-1,3-beta-xylanase;;true

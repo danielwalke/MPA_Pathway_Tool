@@ -1,0 +1,3 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;1.10.3.- U00000;;1.10.3.-;;;;irreversible;;0;0;;;1.10.3.-;;true
+1;laccase	 urishiol oxidase	 urushiol oxidase	 p-diphenol oxidase U00001;;1.10.3.2;;;;irreversible;;0;50;;;laccase;;true

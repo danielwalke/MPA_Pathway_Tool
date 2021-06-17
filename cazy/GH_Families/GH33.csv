@@ -1,0 +1,5 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;3.2.1.- U00000;;3.2.1.-;;;;irreversible;;0;0;;;3.2.1.-;;true
+1;exo-alpha-sialidase	 neuraminidase	 sialidase	 alpha-neuraminidase	 acetylneuraminidase U00001;;3.2.1.18;;;;irreversible;;0;50;;;exo-alpha-sialidase;;true
+2;anhydrosialidase	 anhydroneuraminidase	 sialglycoconjugate N-acylneuraminylhydrolase (2,7-cyclizing)	 sialidase L U00002;;4.2.2.15;;;;irreversible;;0;100;;;anhydrosialidase;;true
+3;2.4.1.- U00003;;2.4.1.-;;;;irreversible;;0;150;;;2.4.1.-;;true

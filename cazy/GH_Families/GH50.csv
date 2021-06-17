@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;beta-agarase	 agarase (ambiguous)	 AgaA	 AgaB	 endo-beta-agarase	 agarose 3-glycanohydrolase (incorrect) U00000;;3.2.1.81;;;;irreversible;;0;0;;;beta-agarase;;true

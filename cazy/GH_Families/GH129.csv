@@ -1,0 +1,3 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;3.2.1.- U00000;;3.2.1.-;;;;irreversible;;0;0;;;3.2.1.-;;true
+1;alpha-N-acetylgalactosaminidase	 alpha-acetylgalactosaminidase	 N-acetyl-alpha-D-galactosaminidase	 N-acetyl-alpha-galactosaminidase	 alpha-NAGAL	 alpha-NAGA	 alpha-GalNAcase U00001;;3.2.1.49;;;;irreversible;;0;50;;;alpha-N-acetylgalactosaminidase;;true

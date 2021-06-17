@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;glucuronan lyase	 (1,4)-beta-D-glucuronan lyase U00000;;4.2.2.14;;;;irreversible;;0;0;;;glucuronan lyase;;true

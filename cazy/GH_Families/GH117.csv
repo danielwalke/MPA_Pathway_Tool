@@ -1,0 +1,3 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;alpha-neoagaro-oligosaccharide hydrolase	 alpha-neoagarooligosaccharide hydrolase	 alpha-NAOS hydrolase U00000;;3.2.1.159;;;;irreversible;;0;0;;;alpha-neoagaro-oligosaccharide hydrolase;;true
+1;beta-galactofuranosidase	 exo-beta-galactofuranosidase	 exo-beta-D-galactofuranosidase	 beta-D-galactofuranosidase U00001;;3.2.1.146;;;;irreversible;;0;50;;;beta-galactofuranosidase;;true

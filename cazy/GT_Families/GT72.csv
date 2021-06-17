@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;DNA alpha-glucosyltransferase	 uridine diphosphoglucose-deoxyribonucleate alpha-glucosyltransferase	 UDP-glucose-DNA alpha-glucosyltransferase	 uridine diphosphoglucose-deoxyribonucleate alpha-glucosyltransferase	 T2-HMC-alpha-glucosyl transferase	 T4-HMC-alpha-glucosyl transferase	 T6-HMC-alpha-glucosyl transferase U00000;;2.4.1.26;;;;irreversible;;0;0;;;DNA alpha-glucosyltransferase;;true

@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;rhamnogalacturonan endolyase	 rhamnogalacturonase B	 alpha-L-rhamnopyranosyl-(1->4)-alpha-D-galactopyranosyluronide lyase	 Rgase B	 rhamnogalacturonan alpha-L-rhamnopyranosyl-(1,4)-alpha-D-galactopyranosyluronide lyase	 RG-lyase	 YesW	 RGL4	 Rgl11A	 Rgl11Y	 RhiE U00000;;4.2.2.23;;;;irreversible;;0;0;;;rhamnogalacturonan endolyase;;true

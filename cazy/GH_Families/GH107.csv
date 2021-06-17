@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;endo-(1->4)-fucoidanase	 alpha-L-fucosidase (incorrect)	 poly(1,4-alpha-L-fucoside-2/3-sulfate) glycanohydrolase U00000;;3.2.1.212;;;;irreversible;;0;0;;;endo-(1->4)-fucoidanase;;true

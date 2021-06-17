@@ -1,0 +1,2 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;beta-amylase	 saccharogen amylase	 glycogenase	 beta amylase	 1,4-alpha-D-glucan maltohydrolase U00000;;3.2.1.2;;;;irreversible;;0;0;;;beta-amylase;;true

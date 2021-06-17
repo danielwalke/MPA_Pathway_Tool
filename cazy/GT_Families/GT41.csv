@@ -1,0 +1,4 @@
+stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp
+0;peptide-O-fucosyltransferase	 GDP-L-fucose:polypeptide fucosyltransferase	 GDP-fucose protein O-fucosyltransferase	 GDP-fucose:polypeptide fucosyltransferase U00000;;2.4.1.221;;;;irreversible;;0;0;;;peptide-O-fucosyltransferase;;true
+1;protein O-GlcNAc transferase	 O-GlcNAc transferase	 OGTase	 O-linked N-acetylglucosaminyltransferase	 uridine diphospho-N-acetylglucosamine:polypeptide beta-N-acetylglucosaminyltransferase	 protein O-linked beta-N-acetylglucosamine transferase U00001;;2.4.1.255;;;;irreversible;;0;50;;;protein O-GlcNAc transferase;;true
+2;2.4.1.- U00002;;2.4.1.-;;;;irreversible;;0;100;;;2.4.1.-;;true
