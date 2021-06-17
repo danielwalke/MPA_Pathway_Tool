@@ -33,17 +33,17 @@ The MPA_Pathway_Tool is a user-friendly, stand-alone web application.It was impl
 
 <a name="motivation"/>
 
-## 1.2 Motivation
+### 1.2 Motivation
 Taxonomic and functional characterization of microbial communities from diverse environments such as the human gut or biogas plants by multi-omics methods plays an ever more important role.  Researchers assign all identified genes, transcripts, or proteins to biological pathways to better understand the function of single species and microbial communities. However, due to the versatility of microbial metabolism and a still increasing number of new biological pathways, linkage to standard pathway maps such as the KEGG (Kyoto Encyclopedia of Genes and Genomes) central carbon metabolism is often problematic.
 
 <a name="structure"/>
 
-## 1.3 Structure of the MPA_Pathway_Tool
+### 1.3 Structure of the MPA_Pathway_Tool
 The MPA_Pathway_Tool consists of the ["Pathway-Creator"](#pathwayCreator) and the ["Pathway-Calculator"](#pathwayCalculator).
 
 <a name="pathwayCreator"/>
 
-### 1.3.1 Pathway-Creator
+#### 1.3.1 Pathway-Creator
 The first part of the MPA_Pathway_Tool is the “Pathway-Creator” (figure 1). It enables the **creation of user-defined pathways** by adding reactions iteratively and linking omics data to this specific pathway. The left side of the “Pathway-Creator” contains a list of buttons for **uploading experimental data** and **pathways (as CSV, JSON, and SBML)**, adding **new reactions** from KEGG, adding user-defined reactions, importing **multiple reactions**, and **downloading created pathways (as CSV, SBML, JSON, and Scalable Vector Graphics (SVG))** and **mapped data (as CSV)**. The right side contains a **graph for visualizing the created pathway**. Circular-shaped nodes are metabolites (in KEGG referred to as compounds), and diamond-shaped nodes are reactions. Nodes are connected by edges, which display the direction of a metabolic reaction. After uploading experimental data, a further user interface emerges, showing the mapping of the data set to the pathway. After sample selection, by clicking on the respective button on the bottom of the tool, **reaction nodes are colored dependent on their abundance in the sample** and the color settings. Information about abundances in all samples for a specific reaction is available by clicking on the respective reaction- node.
 !["Pathway-Creator"](https://github.com/danielwalke/MPA_Pathway_Tool/blob/main/images/Figure%201_Screenshots%20of%20the%20%E2%80%9CPathway-Creator%E2%80%9D%20of%20the%20MPA_Pathway_Tool.png "Figure 1: Screenshot of the “Pathway-Creator” of the MPA_Pathway_Tool")
 **Figure 1: Screenshot of the “Pathway-Creator” of the MPA_Pathway_Tool**
@@ -51,7 +51,7 @@ The first part of the MPA_Pathway_Tool is the “Pathway-Creator” (figure 1). 
 
 <a name="pathwayCalculator"/>
 
-### 1.3.2 Pathway-Calcualtor
+#### 1.3.2 Pathway-Calcualtor
 The “Pathway-Calculator” consists of two upload zones, one for **experimental data (CSV)** and another for **multiple pathway files (as CSV, JSON, or SBML)**. The “Pathway-Calculator” performs **mapping of experimental data on multiple uploaded pathways**. After uploading all previously created pathways (CSV) and the experimental data in the “Pathway-Calculator”, the calculation starts. Subsequently, the **result table** can be exported as CSV. Furthermore, **a list with all unmatched features (e.g., proteins)** can be downloaded. 
 !["Pathway-Calculator"](https://github.com/danielwalke/MPA_Pathway_Tool/blob/main/images/Figure%202_Screenshot%20of%20the%20%E2%80%9CPathway-Calculator%E2%80%9D%20of%20the%20MPA_Pathway_Tool..png "Figure 2: Screenshot of the “Pathway-Calculator” of the MPA_Pathway_Tool")
 **Figure 2: Screenshot of the “Pathway-Calculator” of the MPA_Pathway_Tool.**
