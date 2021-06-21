@@ -29,28 +29,28 @@
     "isForwardReaction": true,
     "abbreviation": "Formate:tetrahydrofolate ligase (ADP-forming) R00943",
     "opacity": 1,
-    "x": "1000",
-    "y": "150",
+    "x": "300",
+    "y": "350",
     "substrates": [
       {
-        "x": "1000",
-        "y": "50",
+        "x": "150",
+        "y": "325",
         "name": "ATP; Adenosine 5'-triphosphate C00002",
         "opacity": 0.4,
         "abbreviation": "ATP C00002",
         "stochiometry": "1"
       },
       {
-        "x": "800",
-        "y": "100",
+        "x": "450",
+        "y": "300",
         "name": "Tetrahydrofolate; 5,6,7,8-Tetrahydrofolate; Tetrahydrofolic acid; THF; (6S)-Tetrahydrofolate; (6S)-Tetrahydrofolic acid; (6S)-THFA C00101",
         "opacity": 1,
         "abbreviation": "Tetrahydrofolate C00101",
         "stochiometry": "1"
       },
       {
-        "x": "900",
-        "y": "50",
+        "x": "300",
+        "y": "300",
         "name": "Formate; Methanoic acid; Formic acid C00058",
         "opacity": 1,
         "abbreviation": "Formate C00058",
@@ -59,24 +59,24 @@
     ],
     "products": [
       {
-        "x": "1100",
-        "y": "200",
+        "x": "450",
+        "y": "375",
         "name": "ADP; Adenosine 5'-diphosphate C00008",
         "opacity": 0.4,
         "abbreviation": "ADP C00008",
         "stochiometry": "1"
       },
       {
-        "x": "1200",
-        "y": "200",
+        "x": "150",
+        "y": "375",
         "name": "Orthophosphate; Phosphate; Phosphoric acid; Orthophosphoric acid C00009",
         "opacity": 0.4,
         "abbreviation": "Phosphate C00009",
         "stochiometry": "1"
       },
       {
-        "x": "1150",
-        "y": "250",
+        "x": "300",
+        "y": "400",
         "name": "10-Formyltetrahydrofolate; 10-Formyl-THF C00234",
         "opacity": 1,
         "abbreviation": "10-Formyltetrahydrofolate C00234",
@@ -113,20 +113,20 @@
     "isForwardReaction": true,
     "abbreviation": "5,10-Methenyltetrahydrofolate 5-hydrolase R01655",
     "opacity": 1,
-    "x": "1150",
-    "y": "350",
+    "x": "300",
+    "y": "450",
     "substrates": [
       {
-        "x": "1100",
-        "y": "300",
+        "x": "150",
+        "y": "425",
         "name": "0__H+; Hydron C00080",
         "opacity": 0.4,
         "abbreviation": "H+ C00080",
         "stochiometry": "1"
       },
       {
-        "x": "1150",
-        "y": "250",
+        "x": "300",
+        "y": "400",
         "name": "10-Formyltetrahydrofolate; 10-Formyl-THF C00234",
         "opacity": 1,
         "abbreviation": "10-Formyltetrahydrofolate C00234",
@@ -135,16 +135,16 @@
     ],
     "products": [
       {
-        "x": "1150",
-        "y": "400",
+        "x": "150",
+        "y": "475",
         "name": "0__H2O; Water C00001",
         "opacity": 0.4,
         "abbreviation": "H2O C00001",
         "stochiometry": "1"
       },
       {
-        "x": "1000",
-        "y": "450",
+        "x": "300",
+        "y": "500",
         "name": "5,10-Methenyltetrahydrofolate C00445",
         "opacity": 1,
         "abbreviation": "5,10-Methenyltetrahydrofolate C00445",
@@ -180,20 +180,20 @@
     "isForwardReaction": true,
     "abbreviation": "5,10-methylenetetrahydrofolate:NADP+ oxidoreductase R01220",
     "opacity": 1,
-    "x": "800",
-    "y": "500",
+    "x": "300",
+    "y": "550",
     "substrates": [
       {
-        "x": "350",
-        "y": "450",
+        "x": "0",
+        "y": "600",
         "name": "NADPH; TPNH; Reduced nicotinamide adenine dinucleotide phosphate C00005",
         "opacity": 0.4,
         "abbreviation": "NADPH C00005",
         "stochiometry": "1"
       },
       {
-        "x": "1000",
-        "y": "450",
+        "x": "300",
+        "y": "500",
         "name": "5,10-Methenyltetrahydrofolate C00445",
         "opacity": 1,
         "abbreviation": "5,10-Methenyltetrahydrofolate C00445",
@@ -202,16 +202,16 @@
     ],
     "products": [
       {
-        "x": "450",
-        "y": "450",
+        "x": "150",
+        "y": "600",
         "name": "NADP+; NADP; Nicotinamide adenine dinucleotide phosphate; beta-Nicotinamide adenine dinucleotide phosphate; TPN; Triphosphopyridine nucleotide; beta-NADP+ C00006",
         "opacity": 0.4,
         "abbreviation": "NADP+ C00006",
         "stochiometry": "1"
       },
       {
-        "x": "550",
-        "y": "450",
+        "x": "300",
+        "y": "600",
         "name": "5,10-Methylenetetrahydrofolate; (6R)-5,10-Methylenetetrahydrofolate; 5,10-Methylene-THF C00143",
         "opacity": 1,
         "abbreviation": "5,10-Methylenetetrahydrofolate C00143",
@@ -250,28 +250,28 @@
     "isForwardReaction": true,
     "abbreviation": "carbon-monoxide-oxidoreductase R07157",
     "opacity": 1,
-    "x": "150",
-    "y": "150",
+    "x": "600",
+    "y": "100",
     "substrates": [
       {
-        "x": "50",
-        "y": "200",
+        "x": "750",
+        "y": "50",
         "name": "Reduced ferredoxin; Reduced ferredoxin [iron-sulfur] cluster C00138",
         "opacity": 0.4,
         "abbreviation": "Reduced ferredoxin C00138",
         "stochiometry": "2"
       },
       {
-        "x": "50",
-        "y": "100",
+        "x": "450",
+        "y": "50",
         "name": "3__H+; Hydron C00080",
         "opacity": 0.4,
         "abbreviation": "H+ C00080",
         "stochiometry": "2"
       },
       {
-        "x": "50",
-        "y": "150",
+        "x": "600",
+        "y": "50",
         "name": "CO2; Carbon dioxide C00011",
         "opacity": 1,
         "abbreviation": "CO2 C00011",
@@ -280,23 +280,23 @@
     ],
     "products": [
       {
-        "x": "250",
-        "y": "200",
+        "x": "750",
+        "y": "125",
         "name": "1__H2O; Water C00001",
         "opacity": 0.4,
         "abbreviation": "H2O C00001",
         "stochiometry": "1"
       },
       {
-        "x": "295",
-        "y": "89",
+        "x": "450",
+        "y": "125",
         "name": "Oxidized ferredoxin; Oxidized ferredoxin [iron-sulfur] cluster C00139",
         "opacity": 0.4,
         "abbreviation": "Oxidized ferredoxin C00139",
         "stochiometry": "2"
       },
       {
-        "x": "450",
+        "x": "600",
         "y": "150",
         "name": "CO; Carbon monoxide C00237",
         "opacity": 1,
@@ -337,18 +337,18 @@
     "abbreviation": "Tetrahydrofolate + Acetyl-CoA <=> 5-Methyltetrahydrofolate + CoA + CO R10243",
     "opacity": 1,
     "x": "600",
-    "y": "150",
+    "y": "200",
     "substrates": [
       {
-        "x": "500",
-        "y": "100",
+        "x": "750",
+        "y": "175",
         "name": "CoA; Coenzyme A; CoA-SH C00010",
         "opacity": 0.4,
         "abbreviation": "Coenzyme A C00010",
         "stochiometry": "1"
       },
       {
-        "x": "450",
+        "x": "600",
         "y": "150",
         "name": "CO; Carbon monoxide C00237",
         "opacity": 1,
@@ -356,8 +356,8 @@
         "stochiometry": "1"
       },
       {
-        "x": "500",
-        "y": "250",
+        "x": "600",
+        "y": "650",
         "name": "5-Methyltetrahydrofolate C00440",
         "opacity": 1,
         "abbreviation": "5-Methyltetrahydrofolate C00440",
@@ -366,16 +366,16 @@
     ],
     "products": [
       {
-        "x": "800",
-        "y": "100",
+        "x": "450",
+        "y": "300",
         "name": "Tetrahydrofolate; 5,6,7,8-Tetrahydrofolate; Tetrahydrofolic acid; THF; (6S)-Tetrahydrofolate; (6S)-Tetrahydrofolic acid; (6S)-THFA C00101",
         "opacity": 1,
         "abbreviation": "Tetrahydrofolate C00101",
         "stochiometry": "1"
       },
       {
-        "x": "600",
-        "y": "100",
+        "x": "750",
+        "y": "225",
         "name": "Acetyl-CoA; Acetyl coenzyme A C00024",
         "opacity": 1,
         "abbreviation": "Acetyl-CoA C00024",
@@ -411,28 +411,28 @@
     "isForwardReaction": true,
     "abbreviation": "5-methyltetrahydrofolate:NADP+ oxidoreductase R01224",
     "opacity": 1,
-    "x": "500",
-    "y": "350",
+    "x": "300",
+    "y": "650",
     "substrates": [
       {
-        "x": "350",
-        "y": "450",
+        "x": "0",
+        "y": "600",
         "name": "NADPH; TPNH; Reduced nicotinamide adenine dinucleotide phosphate C00005",
         "opacity": 0.4,
         "abbreviation": "NADPH C00005",
         "stochiometry": "1"
       },
       {
-        "x": "400",
-        "y": "300",
+        "x": "150",
+        "y": "650",
         "name": "H+; Hydron C00080",
         "opacity": 0.4,
         "abbreviation": "H+\t Hydron C00080",
         "stochiometry": "1"
       },
       {
-        "x": "550",
-        "y": "450",
+        "x": "300",
+        "y": "600",
         "name": "5,10-Methylenetetrahydrofolate; (6R)-5,10-Methylenetetrahydrofolate; 5,10-Methylene-THF C00143",
         "opacity": 1,
         "abbreviation": "5,10-Methylenetetrahydrofolate C00143",
@@ -441,16 +441,16 @@
     ],
     "products": [
       {
-        "x": "450",
-        "y": "450",
+        "x": "150",
+        "y": "600",
         "name": "NADP+; NADP; Nicotinamide adenine dinucleotide phosphate; beta-Nicotinamide adenine dinucleotide phosphate; TPN; Triphosphopyridine nucleotide; beta-NADP+ C00006",
         "opacity": 0.4,
         "abbreviation": "NADP+ C00006",
         "stochiometry": "1"
       },
       {
-        "x": "500",
-        "y": "250",
+        "x": "600",
+        "y": "650",
         "name": "5-Methyltetrahydrofolate C00440",
         "opacity": 1,
         "abbreviation": "5-Methyltetrahydrofolate C00440",

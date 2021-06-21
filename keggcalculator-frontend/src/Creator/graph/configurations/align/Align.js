@@ -3,8 +3,8 @@ import {useDispatch, useSelector} from "react-redux";
 
 const getAlignedNodes = (graphState)=>{
     return graphState.data.nodes.map(node => {
-        node.x = Math.round(node.x/25)*25
-        node.y = Math.round(node.y/25)*25
+        node.x = Math.round(node.x/50)*50
+        node.y = Math.round(node.y/50)*50
         return node
     })
 }
