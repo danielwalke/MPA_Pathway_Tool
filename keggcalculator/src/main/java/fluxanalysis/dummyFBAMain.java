@@ -1,4 +1,4 @@
-package model;
+package fluxanalysis;
 
 public class dummyFBAMain {
 	private DummyFBAArray dummyFBA;

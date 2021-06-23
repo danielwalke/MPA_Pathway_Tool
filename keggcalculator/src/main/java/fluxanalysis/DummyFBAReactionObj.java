@@ -1,4 +1,4 @@
-package model;
+package fluxanalysis;
 
 public class DummyFBAReactionObj {
 

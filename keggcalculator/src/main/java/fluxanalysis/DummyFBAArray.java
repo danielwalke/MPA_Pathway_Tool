@@ -1,4 +1,4 @@
-package model;
+package fluxanalysis;
 
 import java.util.ArrayList;
 

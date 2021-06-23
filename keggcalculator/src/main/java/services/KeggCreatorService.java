@@ -13,15 +13,16 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Random;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 
 import constants.KeggCalculatorConstants;
+import fluxanalysis.DummyFBAArray;
+import fluxanalysis.DummyFBAReactionObj;
+import fluxanalysis.DummyFBAResultObj;
 import json.KeggCreatorJobJSON;
-import model.DummyFBAArray;
-import model.DummyFBAReactionObj;
-import model.DummyFBAResultObj;
 import model.KeggCompound;
 import model.KeggCompoundObject;
 import model.KeggDataObject;
@@ -560,11 +561,14 @@ public class KeggCreatorService {
 	}
 
 	public ArrayList<DummyFBAResultObj> getDummyFBA(DummyFBAArray reactionsArray) {
-		System.out.println(reactionsArray.getDummyFBAArray().size());
-		System.out.println("Hello from creator service");
+			
+		Random r = new Random();
+		
+		
 			for(DummyFBAReactionObj reaction : reactionsArray.getDummyFBAArray()) {
-				System.out.println("hier löppt");
+				
 				System.out.println(reaction.getReactionId());
+				System.out.println(r.nextGaussian()*1000);
 			}
 		return null;
 	}
