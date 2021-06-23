@@ -21,7 +21,7 @@ import com.google.gson.JsonElement;
 import constants.KeggCalculatorConstants;
 import fluxanalysis.DummyFBAArray;
 import fluxanalysis.DummyFBAReactionObj;
-import fluxanalysis.DummyFBAResultObj;
+import fluxanalysis.DummyFBAResponseObj;
 import json.KeggCreatorJobJSON;
 import model.KeggCompound;
 import model.KeggCompoundObject;
@@ -560,17 +560,23 @@ public class KeggCreatorService {
 		
 	}
 
-	public ArrayList<DummyFBAResultObj> getDummyFBA(DummyFBAArray reactionsArray) {
+	public ArrayList<DummyFBAResponseObj> getDummyFBA(DummyFBAArray reactionsArray) {
 			
 		Random r = new Random();
-		
+		ArrayList<DummyFBAResponseObj> dummyFluxes = new ArrayList<DummyFBAResponseObj>();
 		
 			for(DummyFBAReactionObj reaction : reactionsArray.getDummyFBAArray()) {
+				double flux = r.nextGaussian()*1000;
 				
-				System.out.println(reaction.getReactionId());
-				System.out.println(r.nextGaussian()*1000);
+				if (flux > 1000) {
+					flux = 1000;
+				} else if (flux < -1000) {
+					flux = -1000;
+				}
+				
+				dummyFluxes.add(new DummyFBAResponseObj(reaction.getReactionId(), flux));
 			}
-		return null;
+		return dummyFluxes;
 	}
 
 }

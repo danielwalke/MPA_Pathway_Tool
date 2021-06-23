@@ -20,7 +20,7 @@ import com.google.gson.JsonSyntaxException;
 
 import constants.KeggCalculatorConstants;
 import fluxanalysis.DummyFBAArray;
-import fluxanalysis.DummyFBAResultObj;
+import fluxanalysis.DummyFBAResponseObj;
 import fluxanalysis.dummyFBAMain;
 import json.KeggCalculatorJobJSON;
 import json.KeggCreatorJobJSON;
@@ -287,10 +287,9 @@ public class KeggHandleRequests {
 	}
 
 	public static String getDummyFBA(KeggCreatorService creator, String reactionsString) {
-		System.out.println(reactionsString);
 		dummyFBAMain reactionsArray = creator.gson.fromJson(reactionsString, dummyFBAMain.class);
-		ArrayList<DummyFBAResultObj> results = creator.getDummyFBA(reactionsArray.getDummyFBAMain());
-		return "Hello from Handle request";
+		ArrayList<DummyFBAResponseObj> results = creator.getDummyFBA(reactionsArray.getDummyFBAMain());
+		return creator.gson.toJson(results);
 	}
 
 }
