@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import React from 'react';
+import {useDispatch} from "react-redux";
 import {saveAs} from "file-saver";
 import {getReactionObjects} from "./ReactionObject";
 import clonedeep from "lodash/cloneDeep"

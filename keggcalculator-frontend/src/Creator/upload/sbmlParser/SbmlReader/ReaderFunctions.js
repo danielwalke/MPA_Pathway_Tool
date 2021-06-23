@@ -2,7 +2,6 @@ import React from 'react';
 import xmlParser from "react-xml-parser/xmlParser";
 import {getUserReactionId} from "../../../specReaction/functions/SpecReactionFunctions";
 import {addCompoundsToReactions} from "../ReactionCompoundsAdder";
-import {setReactionsInStore} from "../ReactionsSetter";
 import {readListOfReactionGlyphs} from "../nodePositionsAndOpacity/SbmlNodePositionsAndOpacity";
 import {readListOfSpeciesGlyphs} from "../nodePositionsAndOpacity/SpeciesGlyphReader"
 import {getLastItemOfList} from "../../../usefulFunctions/Arrays";

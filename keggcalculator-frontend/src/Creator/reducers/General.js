@@ -1,6 +1,4 @@
 import clonedeep from "lodash/cloneDeep";
-import {taxonomicRanks} from "../main/Main";
-import {clone} from "../graph/double click node/DirectionsChanger";
 
 const defaultState = {
     compoundList: [],//mount?

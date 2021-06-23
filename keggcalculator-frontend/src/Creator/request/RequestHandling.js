@@ -1,7 +1,8 @@
 import {requestGenerator} from "./RequestGenerator";
 import {getCompName} from "../keggReaction/substrate and products/substrate/CompName";
+import {endpoint_getCompoundList} from "../../App Configurations/RequestURLCollection";
 
-export const compoundUrl = "http://127.0.0.1/keggcreator/compoundlist"; //URL for receiving compound list
+export const compoundUrl = endpoint_getCompoundList; //URL for receiving compound list
 
 export const handleSetCompoundList = (dispatch) =>{
     const compMap = new Map()

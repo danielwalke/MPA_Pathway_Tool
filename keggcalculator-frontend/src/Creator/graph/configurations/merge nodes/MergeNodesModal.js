@@ -2,7 +2,6 @@ import Modal from "@material-ui/core/Modal";
 import React from "react";
 import {useStyles} from "../../../ModalStyles/ModalStyles";
 import {useDispatch, useSelector} from "react-redux";
-import Field from "../../../specReaction/substrates and products/Field";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import DeleteIcon from "@material-ui/icons/Delete";

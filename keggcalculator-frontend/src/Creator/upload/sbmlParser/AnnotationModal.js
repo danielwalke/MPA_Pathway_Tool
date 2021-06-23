@@ -9,10 +9,7 @@ import {useStyles} from "../../ModalStyles/ModalStyles";
 import {useDispatch, useSelector} from "react-redux";
 import {FixedSizeList as List} from "react-window";
 import KeggCompoundAutoCompleteList from "./KeggCompoundAutoCompleteList";
-import clonedeep from "lodash/cloneDeep";
 import {addCompoundsToReactions} from "./ReactionCompoundsAdder";
-import {setReactionsAndCompoundsInStore} from "./GraphDrawer";
-import {setReactionsInStore} from "./ReactionsSetter";
 
 const exchangeAt = (index, item, array) => {
     const lastItems = array.filter((item,arrayIndex)=> arrayIndex>index)

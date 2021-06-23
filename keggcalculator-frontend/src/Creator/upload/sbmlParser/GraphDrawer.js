@@ -10,7 +10,6 @@ import {handleJSONGraphUpload} from "../json upload/ModuleUploadFunctionsJSON";
 import {Reaction} from "../model/Reaction";
 import {Compound} from "../model/Compound";
 import {getLastItemOfList} from "../../usefulFunctions/Arrays";
-import {getStochiometrySubstratesString} from "../../specReaction/functions/SpecReactionFunctions";
 
 
 export const setReactionsAndCompoundsInStore = (state, listOfReactions, dispatch, listOfReactionGlyphs) => {

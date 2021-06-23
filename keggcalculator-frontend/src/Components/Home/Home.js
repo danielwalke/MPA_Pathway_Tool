@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, useEffect} from "react";
 import NavigationBar from "../Header/NavigationBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -13,6 +13,7 @@ import {inject, observer} from "mobx-react";
 import App from "../../Creator/main/App"
 import Start from "./Start";
 import {makeStyles} from "@material-ui/core";
+import {getLastItemOfList} from "../../Creator/usefulFunctions/Arrays";
 
 // const styles = theme =>({
 //     indicator:{
@@ -24,18 +25,24 @@ class Home extends Component {
 
     constructor(props) {
         super(props);
+        const lastTab = this.getLastTab(window.location.href)
         this.state = {
-            selectedTab: "/home",
+            selectedTab: `/${lastTab}`,
             reload: true,
         }
         this.changeState = this.changeState.bind(this)
+        this.getLastTab = this.getLastTab.bind(this)
+    }
+
+    getLastTab= (url)=> {
+        const urlEntries = url.split("/")
+        return getLastItemOfList(urlEntries)
     }
 
     componentDidMount() {
         requestGenerator("GET", endpoint_getCompoundList, "", "").then(response => {
             this.props.ModuleStore.addCompounds(response.data);
         })
-        // this.changeState("selectedTab", "/home")
         this.changeState("reload", false)
     }
 
@@ -55,11 +62,11 @@ class Home extends Component {
                             <BrowserRouter>
                                 <CustomTabs state={this.state} changeState={this.changeState}/>
                                 <Switch>
-                                    {this.state.reload? <Redirect to={"/home"}/> : null}
+                                    {/*{this.state.reload? <Redirect to={"/home"}/> : null}*/}
                                     {/*<div><h3 style={{margin: "5% 0 0 0"}}>Under Construction</h3> <img style={{width: "70%", padding: "3%"}} src={underConstruction}/></div>*/}
                                     <Route path={"/home"}><Start changeState={this.changeState}/></Route>
-                                    <Route path={"/creator"}><App/></Route>
-                                    <Route path={"/calculator"}> <UploadPanel/> </Route>
+                                    <Route path={"/creator"}><App changeState={this.changeState}/></Route>
+                                    <Route path={"/calculator"}> <UploadPanel changeState={this.changeState}/> </Route>
                                 </Switch>
                             </BrowserRouter>
                         </div>

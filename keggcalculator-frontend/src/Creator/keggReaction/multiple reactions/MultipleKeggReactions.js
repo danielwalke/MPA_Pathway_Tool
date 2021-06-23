@@ -6,8 +6,9 @@ import TextField from "@material-ui/core/TextField";
 import {requestGenerator} from "../../request/RequestGenerator";
 import {handleDrawGraph} from "./EcReactions";
 import clonedeep from "lodash/cloneDeep";
+import {endpoint_getReactionUrl} from "../../../App Configurations/RequestURLCollection";
 
-const reactionUrl = "http://127.0.0.1/keggcreator/getreaction"
+const reactionUrl = endpoint_getReactionUrl
 
 const MultipleKeggReactions = () => {
     const state = useSelector(state => state)
@@ -19,12 +20,15 @@ const MultipleKeggReactions = () => {
 
     const handleKeggReactionRequest = () =>{
         const keggReactions = keggReactionsString.split(";").filter(reaction => reaction.match(/[R][0-9][0-9][0-9][0-9][0-9]/))
+        const reactions = state.general.keggReactions
         for(const keggReaction of keggReactions){
             requestGenerator("POST", reactionUrl, {reactionId: keggReaction}, "").then(response => {
                 const reaction = clonedeep(response.data)
                 reaction.reactionName = reaction.reactionName.concat(" " + reaction.reactionId)
                 dispatch({type: "ADDREACTIONSTOARRAY", payload: [reaction]})
-                handleDrawGraph(response.data, state.general, dispatch, state.graph)
+                dispatch({type:"ADD_KEGG_REACTION", payload: reaction})
+                reactions.push(reaction)
+                handleDrawGraph(reaction, state.keggReaction,  dispatch, state.graph,state.general, reactions)
             })
         }
     }

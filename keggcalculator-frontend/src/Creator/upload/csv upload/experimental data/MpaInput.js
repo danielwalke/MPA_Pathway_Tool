@@ -4,7 +4,6 @@ import UploadIcon from "../../../icons/uploadIconWhite.svg";
 import "../../main/Upload.css"
 import {getMax, getMin} from "../../../usefulFunctions/Math";
 import {taxonomicRanks} from "../../../main/Main";
-import {saveAs} from "file-saver";
 const MpaInput = () => {
     const dispatch = useDispatch()
     const state = {
@@ -15,9 +14,7 @@ const MpaInput = () => {
         mpaProteins: useSelector(state => state.mpaProteins),
     }
 
-    const getFile = (files) => files[0]
     const getFileSize = file => file.size
-    const needChunks =  fileSize => fileSize>500000000
     const getChunks = (file, start, chunks) => {
         const chunk = file.slice(start,start+500000000)
         chunks.push(chunk)

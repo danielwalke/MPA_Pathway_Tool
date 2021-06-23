@@ -9,7 +9,6 @@ import {
     renderRow,
     useResetCache, useStylesList
 } from "../upload/sbmlParser/KeggCompoundAutoCompleteList";
-import {getCompName} from "../keggReaction/substrate and products/substrate/CompName";
 
 
 const TaxonomyNcbi = (props) => {
@@ -47,7 +46,7 @@ const TaxonomyNcbi = (props) => {
                         ref={gridRef}
                         outerElementType={OuterElementType}
                         innerElementType="ul"
-                        itemSize={(index) => 50}
+                        itemSize={() => 50}
                         overscanCount={5}
                         itemCount={itemCount}
                     >
