@@ -82,6 +82,7 @@ const Main = () => {
         })
         requestGenerator("POST", taxonomyListLink, "","").then(resp=>{
             dispatch({type:"SET_TAXONOMY_NCBI_LIST", payload: resp.data})
+            dispatch({type: "SWITCHLOADING"})
         })
             window.onbeforeunload = exit
         }, []

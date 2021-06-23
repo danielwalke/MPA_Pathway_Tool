@@ -20,6 +20,5 @@ export const handleSetCompoundList = (dispatch) =>{
         dispatch({type: "SETCOMPMAP", payload: compMap})
         dispatch({type: "SETCOMPOUNDID2NAME", payload: compoundId2Name})
         dispatch({type: "SETOPTIONS", payload: getCompName(compMap)})
-        dispatch({type: "SWITCHLOADING"})
     })
 }
