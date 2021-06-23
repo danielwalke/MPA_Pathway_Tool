@@ -410,6 +410,21 @@ public class KeggCalculatorServer {
 				return "{\"message\":\"internal server error\"}";
 			}
 		});
+		
+		/**
+		 * returns list of random dummy values between -1000 and 1000 for each provided reaction
+		 */
+		
+		post("fluxanalysis/fbaDummy", (req, res) -> {
+			try {
+				return KeggHandleRequests.getDummyFBA(creator, req.queryParams("dummyFBA"));
+			} catch (Exception e) {
+				res.status(500);
+				e.printStackTrace();
+				return "{\"message\":\"internal server error\"}";
+			} 
+		});
+		
 	}
 
 }

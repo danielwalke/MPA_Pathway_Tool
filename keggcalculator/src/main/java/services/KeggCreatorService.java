@@ -19,6 +19,9 @@ import com.google.gson.JsonElement;
 
 import constants.KeggCalculatorConstants;
 import json.KeggCreatorJobJSON;
+import model.DummyFBAArray;
+import model.DummyFBAReactionObj;
+import model.DummyFBAResultObj;
 import model.KeggCompound;
 import model.KeggCompoundObject;
 import model.KeggDataObject;
@@ -554,6 +557,16 @@ public class KeggCreatorService {
 			e.printStackTrace();
 		}
 		
+	}
+
+	public ArrayList<DummyFBAResultObj> getDummyFBA(DummyFBAArray reactionsArray) {
+		System.out.println(reactionsArray.getDummyFBAArray().size());
+		System.out.println("Hello from creator service");
+			for(DummyFBAReactionObj reaction : reactionsArray.getDummyFBAArray()) {
+				System.out.println("hier löppt");
+				System.out.println(reaction.getReactionId());
+			}
+		return null;
 	}
 
 }

@@ -21,6 +21,8 @@ import com.google.gson.JsonSyntaxException;
 import constants.KeggCalculatorConstants;
 import json.KeggCalculatorJobJSON;
 import json.KeggCreatorJobJSON;
+import model.DummyFBAArray;
+import model.DummyFBAResultObj;
 import model.KeggDataObject;
 import model.KeggECObject;
 import model.KeggHsaObject;
@@ -38,6 +40,7 @@ import spark.Request;
 import spark.Response;
 import model.TaxonomyNcbi;
 import model.TaxonomyResponseListObj;
+import model.dummyFBAMain;
 
 /**
  * handles requests for REST- server
@@ -281,6 +284,16 @@ public class KeggHandleRequests {
 	public static Object getHsaEntities(KeggCreatorService creator) {
 		HashSet<KeggHsaObject> hsaEntities = creator.cloneKeggData().getHsaEntities();
 		return creator.gson.toJson(hsaEntities);
+	}
+
+	public static String getDummyFBA(KeggCreatorService creator, String reactionsString) {
+		System.out.println(reactionsString);
+		dummyFBAMain reactionsArray = creator.gson.fromJson(reactionsString, dummyFBAMain.class);
+		System.out.println(reactionsArray.getDummyFBAMain());
+//		ArrayList<DummyFBAResultObj> results = creator.getDummyFBA(reactionsArray);
+//		System.out.println(Arrays.toString(reactionsArray));
+//		return creator.gson.toJson(reactionsArray);
+		return "Hello from Handle request";
 	}
 
 }
