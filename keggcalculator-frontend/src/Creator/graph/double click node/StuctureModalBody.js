@@ -56,7 +56,7 @@ export const getStructureBody = (state, dispatch, generalState, isNcbiTaxonomy, 
         dispatch({type: "SETDATA", payload: data})
     }
 
-    const body = (<div className={"structureBodyContainer"} style={{backgroundColor: "white", width:"75vw",overflow:"auto", maxHeight:"80vh",height:"80vh"}}>
+    const body = (<div className={"structureBodyContainer"} style={{backgroundColor: "white", width:"75vw",overflow:"auto", maxHeight:"80vh"}}>
         <div className={"nodeLabel"}><h3 style={{padding: "2px"}}>ID: {compound.id}</h3></div>
         <div className={"keyCompoundChoice"}>
             <KeyCompoundChanger compound={compound} handleIsNotKeyCompound={handleIsNotKeyCompound}
