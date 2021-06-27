@@ -5,7 +5,7 @@ import Tab from "@material-ui/core/Tab";
 import SvgIcon from "@material-ui/core/SvgIcon";
 import CreateIcon from '@material-ui/icons/Create';
 import HomeIcon from '@material-ui/icons/Home';
-import {BrowserRouter, NavLink, Route,Redirect, Switch} from "react-router-dom"
+import {BrowserRouter, NavLink, Route, Switch} from "react-router-dom"
 import UploadPanel from "../Module Calculator/UploadPanel";
 import {requestGenerator} from "../../Request Generator/RequestGenerator";
 import {endpoint_getCompoundList} from "../../App Configurations/RequestURLCollection";
