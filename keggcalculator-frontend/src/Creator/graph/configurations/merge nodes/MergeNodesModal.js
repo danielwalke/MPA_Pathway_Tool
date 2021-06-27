@@ -92,6 +92,7 @@ const mergeNodes = (graphState, dispatch) => {
     mergeNodes.push({id: graphState.mergeNodesName, opacity: 1, symbolType: symbolType, x:0, y:0, color: color})
     const data = {nodes: mergeNodes, links: mergeLinks}
     dispatch({type:"SETDATA", payload: data})
+    dispatch({type:"EMPTY_MERGE_NODES"})
 }
 
 export default MergeNodesModal
