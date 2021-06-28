@@ -425,6 +425,16 @@ public class KeggCalculatorServer {
 			} 
 		});
 		
+		post("fluxanalysis/fba", (req, res) -> {
+			try {
+				return KeggHandleRequests.getFBA(creator, req.queryParams("FBA"));
+			} catch (Exception e) {
+				res.status(500);
+				e.printStackTrace();
+				return "{\"message\":\"internal server error\"}";
+			} 
+		});
+		
 	}
 
 }

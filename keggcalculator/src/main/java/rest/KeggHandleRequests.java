@@ -21,7 +21,8 @@ import com.google.gson.JsonSyntaxException;
 import constants.KeggCalculatorConstants;
 import fluxanalysis.DummyFBAArray;
 import fluxanalysis.DummyFBAResponseObj;
-import fluxanalysis.dummyFBAMain;
+import fluxanalysis.FBAObj;
+import fluxanalysis.DummyFBAMain;
 import json.KeggCalculatorJobJSON;
 import json.KeggCreatorJobJSON;
 import model.KeggDataObject;
@@ -41,6 +42,7 @@ import spark.Request;
 import spark.Response;
 import model.TaxonomyNcbi;
 import model.TaxonomyResponseListObj;
+import fluxAnalysisProcessBuilder.PythonFBAProcess;
 
 /**
  * handles requests for REST- server
@@ -287,9 +289,16 @@ public class KeggHandleRequests {
 	}
 
 	public static String getDummyFBA(KeggCreatorService creator, String reactionsString) {
-		dummyFBAMain reactionsArray = creator.gson.fromJson(reactionsString, dummyFBAMain.class);
+		System.out.println(reactionsString);
+		DummyFBAMain reactionsArray = creator.gson.fromJson(reactionsString, DummyFBAMain.class);
 		ArrayList<DummyFBAResponseObj> results = creator.getDummyFBA(reactionsArray.getDummyFBAMain());
 		return creator.gson.toJson(results);
+	}
+	
+	public static String getFBA(KeggCreatorService creator, String containerString) {
+		String fbaResults = creator.startPythonProcess(containerString);
+		System.out.println(fbaResults);
+		return null; 
 	}
 
 }

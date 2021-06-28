@@ -3,17 +3,17 @@ package fluxanalysis;
 import java.util.ArrayList;
 
 public class DummyFBAArray {
-	ArrayList<DummyFBAReactionObj> dummyReactionList;
+	ArrayList<DummyFBAReactionObj> reactionList;
 	
 	public DummyFBAArray() {
-		this.dummyReactionList = new ArrayList<DummyFBAReactionObj>();
+		this.reactionList = new ArrayList<DummyFBAReactionObj>();
 	}
 	
 	public ArrayList<DummyFBAReactionObj> getDummyFBAArray() {
-		return this.dummyReactionList;
+		return this.reactionList;
 	}
 	
 	public int size() {
-		return this.dummyReactionList.size();
+		return this.reactionList.size();
 	}
 }
