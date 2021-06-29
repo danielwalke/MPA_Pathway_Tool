@@ -7,25 +7,12 @@ import {endpoint_getFilteredTaxonomicNames} from "../../App Configurations/Reque
 
 
 const TaxonomyNcbi = (props) => {
-    const [taxonomyListNcbiFiltered, setTaxonomyListNcbiFiltered] = useState([]);
     const [options, setOptions] = useState([])
     const state = useSelector(state => state)
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        const taxonomyNcbiList = state.taxonomy.taxonomyNcbiList
-        const taxonomicRank = state.general.taxonomicRank
-        const filteredTaxonomyListFiltered = taxonomyNcbiList.filter(taxonomy => taxonomy.taxonomicRank === taxonomicRank)
-        setTaxonomyListNcbiFiltered(filteredTaxonomyListFiltered)
-    },[state.taxonomy.taxonomyNcbiList, state.general.taxonomicRank])
-
-    // const handleAutoChange = (e) => {
-    //     const {value} = e.target
-    //     dispatch({type: props.dispatchTaxonomy, payload: value})
-    //      setTaxonomyListNcbiFiltered(taxonomyListNcbiFiltered.filter(taxonomy => taxonomy.taxonomicName.toLowerCase().indexOf(value.toLowerCase()) > -1))
-    //     }
-
-    useEffect(()=>{
+        state.general.taxonomicNames.push("Type another letter for more names")
         setOptions(state.general.taxonomicNames)
     },[state.general.taxonomicRank, state.general.taxonomicNames])
 
@@ -34,17 +21,14 @@ const TaxonomyNcbi = (props) => {
         dispatch({type: props.dispatchTaxonomy, payload: e.target.value})
         requestGenerator("POST", endpoint_getFilteredTaxonomicNames, {rank: state.general.taxonomicRank, subName: e.target.value},"","").then( //endpoint: sends max. 100 taxonomic names
                 resp => {
+                    resp.data.push("Type another letter for more names")
+                    console.log(resp.data)
                     setOptions(resp.data)
                 }
         )
     }
     return (
         <div>
-            {/*{state.general.taxonomicRank !== "species" || props.taxonomy.length>4?
-                       :
-                 <TextField type={"text"} onChange={(event) => handleAutoChange(event)} style={{width:"100%"}}
-                //            value={props.taxonomy} label={"type in 5 letters of your species"}/>
-            }*/}
                 <Autocomplete
                     size={"small"}
                     id={`taxonomySearch`}
