@@ -12,7 +12,9 @@ const TaxonomyNcbi = (props) => {
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        state.general.taxonomicNames.push("Type another letter for more names")
+        if(state.general.taxonomicNames.length>100){
+            state.general.taxonomicNames.push("Type another letter for more names")
+        }
         setOptions(state.general.taxonomicNames)
     },[state.general.taxonomicRank, state.general.taxonomicNames])
 
@@ -21,8 +23,9 @@ const TaxonomyNcbi = (props) => {
         dispatch({type: props.dispatchTaxonomy, payload: e.target.value})
         requestGenerator("POST", endpoint_getFilteredTaxonomicNames, {rank: state.general.taxonomicRank, subName: e.target.value},"","").then( //endpoint: sends max. 100 taxonomic names
                 resp => {
-                    resp.data.push("Type another letter for more names")
-                    console.log(resp.data)
+                    if(resp.data.length>100){
+                        resp.data.push("Type another letter for more names")
+                    }
                     setOptions(resp.data)
                 }
         )
