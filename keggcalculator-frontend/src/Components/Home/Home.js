@@ -1,4 +1,4 @@
-import React, {Component, useEffect} from "react";
+import React, {Component} from "react";
 import NavigationBar from "../Header/NavigationBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -14,18 +14,13 @@ import App from "../../Creator/main/App"
 import Start from "./Start";
 import {makeStyles} from "@material-ui/core";
 import {getLastItemOfList} from "../../Creator/usefulFunctions/Arrays";
-
-// const styles = theme =>({
-//     indicator:{
-//         backgroundColor: "red"
-//     }
-// })
+import { Redirect } from 'react-router'
 
 class Home extends Component {
 
     constructor(props) {
         super(props);
-        const lastTab = this.getLastTab(window.location.href)
+        const lastTab = "home"//this.getLastTab(window.location.href)
         this.state = {
             selectedTab: `/${lastTab}`,
             reload: true,
@@ -62,7 +57,7 @@ class Home extends Component {
                             <BrowserRouter>
                                 <CustomTabs state={this.state} changeState={this.changeState}/>
                                 <Switch>
-                                    {/*{this.state.reload? <Redirect to={"/home"}/> : null}*/}
+                                    {this.state.reload? <Redirect to={"/home"}/> : null}
                                     {/*<div><h3 style={{margin: "5% 0 0 0"}}>Under Construction</h3> <img style={{width: "70%", padding: "3%"}} src={underConstruction}/></div>*/}
                                     <Route path={"/home"}><Start changeState={this.changeState}/></Route>
                                     <Route path={"/creator"}><App changeState={this.changeState}/></Route>

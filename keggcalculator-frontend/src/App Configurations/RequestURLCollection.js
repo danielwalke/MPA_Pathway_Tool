@@ -38,3 +38,7 @@ export const endpoint_getReactionList =  host + ":" + portNumber + "/keggcreator
 
 export const endpoint_getTaxonomyList =  host + ":" + portNumber + "/keggcreator/taxonomylist";
 
+export const endpoint_TaxonomyById = host + ":" + portNumber + "/keggcreator/taxonomy";
+
+export const endpoint_TaxonomyScientificNames = host + ":" + portNumber + "keggcreator/taxonomy";
+

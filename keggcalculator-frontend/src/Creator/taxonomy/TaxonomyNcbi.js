@@ -27,7 +27,6 @@ const TaxonomyNcbi = (props) => {
         const {value} = e.target
         dispatch({type: props.dispatchTaxonomy, payload: value})
          setTaxonomyListNcbiFiltered(taxonomyListNcbiFiltered.filter(taxonomy => taxonomy.taxonomicName.toLowerCase().indexOf(value.toLowerCase()) > -1))
-
         }
 
 

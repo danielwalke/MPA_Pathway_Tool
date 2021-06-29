@@ -6,6 +6,8 @@ import {readListOfReactionGlyphs} from "../nodePositionsAndOpacity/SbmlNodePosit
 import {readListOfSpeciesGlyphs} from "../nodePositionsAndOpacity/SpeciesGlyphReader"
 import {getLastItemOfList} from "../../../usefulFunctions/Arrays";
 import clonedeep from "lodash/cloneDeep"
+import {requestGenerator} from "../../../request/RequestGenerator";
+import {endpoint_TaxonomyById} from "../../../../App Configurations/RequestURLCollection";
 //get specific compound id in the appropriate format
 export const getCompoundId = (index) => {
     if (index < 10) {
@@ -65,7 +67,7 @@ const readSpecies =(dispatch, sbml, state)=> {
 }
 
 //read reactions from sbml file
-const readReactions = (dispatch, sbml,state,globalTaxa) => {
+const readReactions = (dispatch, sbml,globalTaxa) => {
     const listOfReactionsElement = sbml.getElementsByTagName("listOfReactions")[0]
     const listOfReactions = listOfReactionsElement.children.map((reaction, index) =>{
         const sbmlId = replaceXmlCharacters(reaction.attributes.id);
@@ -102,7 +104,7 @@ const readReactions = (dispatch, sbml,state,globalTaxa) => {
             substrates: substrates,
             products: products,
             reversible: reversible === "reversible",
-            taxonomy: getTaxonomyFromSbml(annotations,state,globalTaxa)
+            taxonomy: getTaxonomyFromSbml(annotations,globalTaxa)
         };
 
 
@@ -118,18 +120,23 @@ const getTaxonomyNumber = (annotations) =>{
     })
 }
 
-const getTaxonomyObject = (taxonomyNumbers,taxonomyObject,state) =>{
-    taxonomyNumbers.forEach(taxonomyNumber =>{
-        const taxonomy = state.taxonomy.taxonomyNcbiList.find(taxon => taxon.id === taxonomyNumber)
-        taxonomyObject[taxonomy.taxonomicName] = taxonomy.taxonomicRank
-    })
+const getTaxonomyObject = (taxonomyNumbers,taxonomyObject) =>{
+    for(const taxonomyNumber of taxonomyNumbers){
+        requestGenerator("POST", endpoint_TaxonomyById, {id: taxonomyNumber}, "").then(
+            resp => {
+                return resp.data
+            }
+        ).then(taxonomy => {
+            taxonomyObject[taxonomy.taxonomicName] = taxonomy.taxonomicRank
+        })
+    }
     return taxonomyObject
 }
 
-const getTaxonomyFromSbml = (annotations, state,taxa) =>{
+const getTaxonomyFromSbml = (annotations,taxa) =>{
     const globalTaxa = clonedeep(taxa)
     const taxonomyNumbers = getTaxonomyNumber(annotations)
-    return getTaxonomyObject(taxonomyNumbers,globalTaxa,state)
+    return getTaxonomyObject(taxonomyNumbers,globalTaxa)
 }
 
 //checks if ListOfSpecies contains missing compound annotaations
@@ -156,20 +163,20 @@ const passChildrenTillAnnotationTag = (children,annotation) =>{
     }
 }
 
-const getGlobalTaxa = (annotation, state) =>{
+const getGlobalTaxa = (annotation) =>{
     const rdfLiList = annotation.getElementsByTagName("rdf:li")
     const filteredRdfLiList = rdfLiList.filter(rdfLi=> typeof rdfLi.attributes["rdf:resource"] !== "undefined")
     const taxonomyTags = filteredRdfLiList.filter(rdfLi=> rdfLi.attributes["rdf:resource"].includes("taxonomy"))
     const taxonomyNumbers = taxonomyTags.map(taxonomyTag=>getLastItemOfList(taxonomyTag.attributes["rdf:resource"].split("/")))
     const taxonomyObject = {}
-    return getTaxonomyObject(taxonomyNumbers, taxonomyObject, state)
+    return getTaxonomyObject(taxonomyNumbers, taxonomyObject)
 }
 
-const findGlobalTaxa = (sbml, state) => {
+const findGlobalTaxa = (sbml) => {
     const annotation = []
     passChildrenTillAnnotationTag(sbml.children,annotation)
     const annotationGlobalTaxa = annotation.length>0 ? annotation[0] : null
-    return annotationGlobalTaxa !== null ? getGlobalTaxa(annotationGlobalTaxa, state) : null
+    return annotationGlobalTaxa !== null ? getGlobalTaxa(annotationGlobalTaxa) : null
 }
 
 //input complete state -> all states from index
@@ -182,11 +189,11 @@ export const onSBMLModuleFileChange = async (event, dispatch, state) => {
             const result = e.target.result.trim()
             const parser = new xmlParser()
             const sbml = parser.parseFromString(result)
-            const globalTaxa = findGlobalTaxa(sbml, state) !== null? findGlobalTaxa(sbml, state) : {}
+            const globalTaxa = findGlobalTaxa(sbml) !== null? findGlobalTaxa(sbml) : {}
             const listOfSpeciesGlyphs = sbml.getElementsByTagName("layout:listOfSpeciesGlyphs").length>0 ? readListOfSpeciesGlyphs(sbml) : []
             const listOfReactionGlyphs = sbml.getElementsByTagName("layout:listOfReactionGlyphs").length>0 ? readListOfReactionGlyphs(sbml,listOfSpeciesGlyphs) : []
             const listOfSpecies = readSpecies(dispatch, sbml, state)
-            const listOfReactions = readReactions(dispatch, sbml,state,globalTaxa)
+            const listOfReactions = readReactions(dispatch, sbml,globalTaxa)
             const isMissingAnnotations = checkMissingAnnotations(listOfSpecies, dispatch)
             dispatch({type: "SETMODULEFILENAMESBML", payload: file.name})
             dispatch({type:"SET_LIST_OF_REACTION_GLYPHS", payload: listOfReactionGlyphs})
