@@ -579,4 +579,26 @@ public class KeggCreatorService {
 		return dummyFluxes;
 	}
 
+	public HashSet<String> getTaxonomicNames(String rank) {
+		HashSet<String> names = new HashSet<>();
+		for(TaxonomyNcbi taxonomy : this.taxonomyList) {
+			if(taxonomy.getTaxonomicRank().equals(rank) && names.size()<101) {
+				names.add(taxonomy.getTaxonomicName());
+			}
+			
+		}
+		return names;
+	}
+
+	public HashSet<String> getFilteredTaxonomicNames(String rank, String subName) {
+		HashSet<String> names = new HashSet<>();
+		for(TaxonomyNcbi taxonomy : this.taxonomyList) {
+			if(taxonomy.getTaxonomicRank().equals(rank) && taxonomy.getTaxonomicName().contains(subName)&& names.size()<101) {
+				names.add(taxonomy.getTaxonomicName());
+			}
+			
+		}
+		return names;
+	}
+
 }

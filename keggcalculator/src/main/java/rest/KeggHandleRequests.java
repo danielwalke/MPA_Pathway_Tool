@@ -273,6 +273,8 @@ public class KeggHandleRequests {
 
 	public static Object getTaxonomy(KeggCreatorService creator, String id) {
 		Gson gson = creator.gson;
+		System.out.println(id);
+		System.out.println(creator.getTaxonomy(id));
 		return gson.toJson(creator.getTaxonomy(id));
 	}
 
@@ -290,6 +292,16 @@ public class KeggHandleRequests {
 		dummyFBAMain reactionsArray = creator.gson.fromJson(reactionsString, dummyFBAMain.class);
 		ArrayList<DummyFBAResponseObj> results = creator.getDummyFBA(reactionsArray.getDummyFBAMain());
 		return creator.gson.toJson(results);
+	}
+
+	public static Object getTaxonomicNames(KeggCreatorService creator, String rank) {
+		return creator.gson.toJson(creator.getTaxonomicNames(rank));
+	}
+
+	public static Object getFilteredTaxonomicNames(KeggCreatorService creator, String rank,
+			String subName) {
+		// TODO Auto-generated method stub
+		return creator.gson.toJson(creator.getFilteredTaxonomicNames(rank, subName));
 	}
 
 }

@@ -40,5 +40,6 @@ export const endpoint_getTaxonomyList =  host + ":" + portNumber + "/keggcreator
 
 export const endpoint_TaxonomyById = host + ":" + portNumber + "/keggcreator/taxonomy";
 
-export const endpoint_TaxonomyScientificNames = host + ":" + portNumber + "keggcreator/taxonomy";
+export const endpoint_getTaxonomicNames = host + ":" + portNumber + "/keggcreator/taxonomicNames";
 
+export const endpoint_getFilteredTaxonomicNames = host + ":" + portNumber + "/keggcreator/filteredtaxonomicNames";

@@ -374,6 +374,28 @@ public class KeggCalculatorServer {
 				return "{\"message\":\"internal server error\"}";
 			}
 		});
+		
+		post("keggcreator/taxonomicNames", (req, res) -> {
+			try {
+				creator.requestAccess.get("taxonomy").add(creator.getAccessDate());
+				res.status(201);
+				return KeggHandleRequests.getTaxonomicNames(creator, req.queryParams("rank"));
+			} catch (Exception e) {
+				res.status(500);
+				return "{\"message\":\"internal server error\"}";
+			}
+		});
+		
+		post("keggcreator/filteredtaxonomicNames", (req, res) -> {
+			try {
+				creator.requestAccess.get("taxonomy").add(creator.getAccessDate());
+				res.status(201);
+				return KeggHandleRequests.getFilteredTaxonomicNames(creator, req.queryParams("rank"),req.queryParams("subName"));
+			} catch (Exception e) {
+				res.status(500);
+				return "{\"message\":\"internal server error\"}";
+			}
+		});
 
 		// [{name:"", rank:""}]
 		post("keggcreator/taxonomyIdList",(req, res)->{
