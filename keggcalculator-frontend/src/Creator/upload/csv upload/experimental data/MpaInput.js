@@ -48,6 +48,7 @@ const MpaInput = () => {
         // }
 
         try {
+            dispatch({type:"SETLOADING", payload:true})
             event.preventDefault()
             let files = event.target.files;
             let reader = new FileReader()
@@ -110,7 +111,6 @@ const MpaInput = () => {
                             taxa: taxa,
                             quants: quantArray
                         }
-                        console.log(protein)
                         proteinSet.add(protein)
                         return null
                     })
@@ -134,9 +134,7 @@ const MpaInput = () => {
             window.alert("Your file format is wrong.")
             console.error(e)
         }
-
-
-        dispatch({type: "SWITCHLOADING"})
+        dispatch({type:"SETLOADING", payload:false})
     }
 
     return (
