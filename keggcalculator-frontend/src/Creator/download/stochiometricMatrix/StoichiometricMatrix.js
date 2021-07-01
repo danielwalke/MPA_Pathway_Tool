@@ -73,7 +73,7 @@ const fetchStochiometricInformation = (dispatch, props) => {
 const StoichiometricMatrix = (props) => {
     const dispatch = useDispatch();
     return (<div>
-            <button disabled={!props.graphState.data.nodes.length>0}  className={"downloadButton"} onClick={()=>fetchStochiometricInformation(dispatch, props)}>stochiometric matrix</button>
+            <button disabled={!props.graphState.data.nodes.length>0}  className={"downloadButton"} onClick={()=>fetchStochiometricInformation(dispatch, props)}>stoichiometric matrix</button>
         </div>
     );
 };

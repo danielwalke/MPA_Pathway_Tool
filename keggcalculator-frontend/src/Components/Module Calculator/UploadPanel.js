@@ -48,7 +48,7 @@ class UploadPanel extends Component {
         requestGenerator("GET", this.props.CalculatorStore.downloadLink, "", "", "").then(response => {
             if(response.status === 200) {
                 let blob = new Blob(new Array(response.data), {type: "text/plain;charset=utf-8"});
-                saveAs(blob, "KeggCalculator.csv")
+                saveAs(blob, "PathwayCalculator.csv")
             }
             else {
                 this.props.CalculatorStore.setErrorMessage("Failed to Download");
