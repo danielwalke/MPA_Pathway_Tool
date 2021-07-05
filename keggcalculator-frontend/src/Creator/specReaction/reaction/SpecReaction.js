@@ -3,7 +3,6 @@ import {getUserReactionId} from "../functions/SpecReactionFunctions";
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import "./SpecReaction.css"
-import TaxonomicRank from "../../graph/double click node/TaxonomicRank";
 
 const SpecReaction = () => {
     const dispatch = useDispatch()
