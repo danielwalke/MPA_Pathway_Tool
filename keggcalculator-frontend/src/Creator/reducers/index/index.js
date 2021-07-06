@@ -4,7 +4,6 @@ import {specificReactionReducer} from "../SpecificReaction";
 import {generalReducer} from "../General";
 import {keggReactionReducer} from "../KeggReaction";
 import {graphReducer} from "../Graph";
-import {taxonomyReducer} from "../TaxonomyList";
 
 export const allReducers = combineReducers({
     general: generalReducer,
@@ -12,5 +11,4 @@ export const allReducers = combineReducers({
     graph: graphReducer,
     specificReaction:specificReactionReducer,
     mpaProteins: mpaProteinReducer,
-    taxonomy: taxonomyReducer,
 })

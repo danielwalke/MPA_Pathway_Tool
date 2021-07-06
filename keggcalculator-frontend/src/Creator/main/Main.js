@@ -79,10 +79,7 @@ const Main = () => {
             }))
         requestGenerator("GET", reactionUrl, "","").then(resp=>{
             dispatch({type:"SETKEGGREACTIONS", payload: resp.data})
-        })
-        requestGenerator("POST", taxonomyListLink, "","").then(resp=>{
-            dispatch({type:"SET_TAXONOMY_NCBI_LIST", payload: resp.data})
-            dispatch({type: "SWITCHLOADING"})
+
         })
             window.onbeforeunload = exit
         }, []

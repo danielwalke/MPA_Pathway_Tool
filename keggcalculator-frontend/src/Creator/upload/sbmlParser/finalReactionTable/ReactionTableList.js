@@ -29,6 +29,7 @@ const ReactionTableList = () =>
 
     useEffect(()=>{
         setListOfReactions(state.general.listOfReactions)
+        setListOfReactionsClone(state.general.listOfReactions)
     },[state.general.listOfReactions])
 
 

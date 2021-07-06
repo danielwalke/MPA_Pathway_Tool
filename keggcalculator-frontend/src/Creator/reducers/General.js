@@ -51,7 +51,8 @@ const defaultState = {
     isShowingReactionTable: false, //shows final table with all reactions in the sbml file
     showMultipleKeggReactionModal: false, //show modal for chosing multiple reactions from KEGG
     addLinkModal: false, //modal for adding new links useful for signaling pathway
-    listOfReactionGlyphs: [] //positons of nodes in sbml file
+    listOfReactionGlyphs: [], //positons of nodes in sbml file
+    taxonomicNames:[] //taxonomic names received from server after submitting taxonomic rank
 }
 
 export const generalReducer = (state = defaultState, action) => {
@@ -185,6 +186,8 @@ export const generalReducer = (state = defaultState, action) => {
             return {...state, listOfReactionGlyphs: payload}
         case "ADD_KEGG_REACTION":
             return {...state, keggReactions: [...state.keggReactions, payload]}
+        case "SET_TAXONOMIC_NAMES":
+            return {...state, taxonomicNames: payload}
         default:
             return state;
     }
