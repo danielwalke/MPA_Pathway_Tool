@@ -593,7 +593,7 @@ public class KeggCreatorService {
 	public HashSet<String> getFilteredTaxonomicNames(String rank, String subName) {
 		HashSet<String> names = new HashSet<>();
 		for(TaxonomyNcbi taxonomy : this.taxonomyList) {
-			if(taxonomy.getTaxonomicRank().equals(rank) && taxonomy.getTaxonomicName().contains(subName)&& names.size()<101) {
+			if(taxonomy.getTaxonomicRank().equals(rank) && taxonomy.getTaxonomicName().toLowerCase().contains(subName)&& names.size()<101) {
 				names.add(taxonomy.getTaxonomicName());
 			}
 			
