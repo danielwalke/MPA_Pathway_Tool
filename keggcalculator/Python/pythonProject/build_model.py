@@ -7,15 +7,12 @@ def build_model(model_json):
 
     Keyword arguments:
     model_name -- name of the model
-    reactions_json -- json object to contain an array of reaction objects
-    metabolites_json -- json object to contain an array of metabolite objects
+    model_json -- json string containing reactions and metabolites Arrays
     """
-
     model_dict = json.loads(model_json)
+    # model_dict = demjson.decode(model_json)
     metabolites_array = model_dict['metabolites']
     reactions_array = model_dict['reactions']
-
-    print(metabolites_array)
 
     # initialize model
     model = cobra.Model("model_name")
@@ -75,8 +72,5 @@ def build_model(model_json):
         # set objective coefficient for reaction
         getattr(model.reactions, reaction_el['reactionId']).objective_coefficient = reaction_el['objectiveCoefficient']
 
-    solution = model.optimize()
-    print(model.reactions)
-    print(solution.fluxes)
-    print(model.objective)
+    return model
 

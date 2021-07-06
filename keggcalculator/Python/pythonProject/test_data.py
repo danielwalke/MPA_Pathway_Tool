@@ -3,7 +3,7 @@ test_data = """{
     "reactions": [
         {"reactionId": "R00001",
          "reactionName": "Reaction 1",
-         "lowerBound": 0.0,
+         "lowerBound": -1000.0,
          "upperBound": 1000.0,
          "objectiveCoefficient": 0,
          "exchangeReaction": false,
@@ -23,7 +23,7 @@ test_data = """{
          }},
         {"reactionId": "R00002",
          "reactionName": "Reaction 2",
-         "lowerBound": 0.0,
+         "lowerBound": -1000.0,
          "upperBound": 1000.0,
          "objectiveCoefficient": 1,
          "exchangeReaction": false,

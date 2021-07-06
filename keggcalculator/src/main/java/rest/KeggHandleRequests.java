@@ -42,7 +42,6 @@ import spark.Request;
 import spark.Response;
 import model.TaxonomyNcbi;
 import model.TaxonomyResponseListObj;
-import fluxAnalysisProcessBuilder.PythonFBAProcess;
 
 /**
  * handles requests for REST- server
@@ -289,7 +288,6 @@ public class KeggHandleRequests {
 	}
 
 	public static String getDummyFBA(KeggCreatorService creator, String reactionsString) {
-		System.out.println(reactionsString);
 		DummyFBAMain reactionsArray = creator.gson.fromJson(reactionsString, DummyFBAMain.class);
 		ArrayList<DummyFBAResponseObj> results = creator.getDummyFBA(reactionsArray.getDummyFBAMain());
 		return creator.gson.toJson(results);
@@ -297,8 +295,7 @@ public class KeggHandleRequests {
 	
 	public static String getFBA(KeggCreatorService creator, String containerString) {
 		String fbaResults = creator.startPythonProcess(containerString);
-		System.out.println(fbaResults);
-		return null; 
+		return fbaResults; 
 	}
 
 }

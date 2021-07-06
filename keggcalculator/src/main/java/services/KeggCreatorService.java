@@ -15,6 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -594,25 +595,27 @@ public class KeggCreatorService {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 			
             String line = "";
-            System.out.println("Running Python starts: " + line);
+            System.out.println("Running Python starts");
             
             int exitCode = process.waitFor();
-            System.out.println("Exit Code : "+exitCode);
-            line = reader.readLine();
-            System.out.println("First Line: " + line);
-            
-            while ((line = reader.readLine()) != null){
-                System.out.println("Python Output: " + line);
-                }
+            System.out.println("Exit Code : "+ exitCode);
+//            line = reader.readLine();
+//				System.out.println("First Line: " + line);
+//			while ((line = reader.readLine()) != null){
+//				System.out.println("Python Output: " + line);
+//			}
 			
-			System.out.println("Done");
+            return reader.lines().collect(Collectors.joining());
 			
 			} catch (RuntimeException e) {
 	            e.printStackTrace();
+	            return "";
 	        } catch (Exception e) {
 	            e.printStackTrace();
-		}
-		return "this works";
+	            return "";
+	        } finally {
+	            System.out.println("Done");
+	        }
 	}
 
 }

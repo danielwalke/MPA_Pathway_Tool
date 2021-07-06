@@ -1,0 +1,4 @@
+pip==21.1.2
+setuptools==57.0.0
+future==0.18.2
+cobra==0.22.0

@@ -1,19 +1,18 @@
 import sys
 import cobra
 from test_data import test_data
-import fba
+import build_model
+import perform_fba
 from os.path import join
 
-# def readsbml(modelpath):
-#     model = cobra.io.read_sbml_model(join(modelpath))
-#     model.optimize()
-#     print("______________________________________________________________________________")
-#     print(model.summary())
-#     print("______________________________________________________________________________")
-#     print(model.metabolites.atp_c.summary())
+def run_process(test_data):
+    model = build_model.build_model(test_data)
+    solution = perform_fba.optimize(model)
+
+    print(solution)
 
 
 if __name__ == '__main__':
     # readsbml(sys.argv[1])
     # summation(sys.argv[1], sys.argv[2])
-    fba.build_model(test_data)
+    run_process(sys.argv[1])
