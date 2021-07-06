@@ -32,8 +32,8 @@ const TaxonomicRank = ()=>{
     const generalState = useSelector(state => state.general)
     const classes = useStyles()
     return(
-        <FormControl size="small" variant="outlined" className={classes.formControl}>
-            <InputLabel id="taxonomicRankInput">taxonomic rank</InputLabel>
+        <FormControl style={{margin:"2px 0"}} size="small" variant="outlined" className={classes.formControl}>
+            {generalState.taxonomicRank.length===0 && <InputLabel id="taxonomicRankInput">taxonomic rank</InputLabel>}
             <Select
                 labelId="taxonomic rank"
                 value={generalState.taxonomicRank}

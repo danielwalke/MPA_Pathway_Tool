@@ -21,7 +21,7 @@ const TaxonomyNcbi = (props) => {
 
     const handleChange = (e) =>{
         dispatch({type: props.dispatchTaxonomy, payload: e.target.value})
-        requestGenerator("POST", endpoint_getFilteredTaxonomicNames, {rank: state.general.taxonomicRank, subName: e.target.value},"","").then( //endpoint: sends max. 100 taxonomic names
+        requestGenerator("POST", endpoint_getFilteredTaxonomicNames, {rank: state.general.taxonomicRank, subName: e.target.value.toLowerCase()},"","").then( //endpoint: sends max. 100 taxonomic names
                 resp => {
                     if(resp.data.length>100){
                         resp.data.push("Type another letter for more names")
@@ -31,7 +31,7 @@ const TaxonomyNcbi = (props) => {
         )
     }
     return (
-        <div>
+        <div style={{margin:"2px 0"}}>
                 <Autocomplete
                     size={"small"}
                     id={`taxonomySearch`}
