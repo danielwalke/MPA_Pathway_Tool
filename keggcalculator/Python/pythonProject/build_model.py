@@ -2,15 +2,18 @@ import json
 import cobra
 
 
-def build_model(model_json):
+def build_model(temp_model_path: str):
     """returns a cobra model for flux analysis
 
     Keyword arguments:
     model_name -- name of the model
     model_json -- json string containing reactions and metabolites Arrays
     """
-    model_dict = json.loads(model_json)
-    # model_dict = demjson.decode(model_json)
+
+    temp_file = open(temp_model_path, "r")
+    model_string = temp_file.read()
+
+    model_dict = json.loads(model_string)
     metabolites_array = model_dict['metabolites']
     reactions_array = model_dict['reactions']
 

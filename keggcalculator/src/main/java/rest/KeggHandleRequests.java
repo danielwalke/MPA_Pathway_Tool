@@ -21,7 +21,6 @@ import com.google.gson.JsonSyntaxException;
 import constants.KeggCalculatorConstants;
 import fluxanalysis.DummyFBAArray;
 import fluxanalysis.DummyFBAResponseObj;
-import fluxanalysis.FBAObj;
 import fluxanalysis.DummyFBAMain;
 import json.KeggCalculatorJobJSON;
 import json.KeggCreatorJobJSON;

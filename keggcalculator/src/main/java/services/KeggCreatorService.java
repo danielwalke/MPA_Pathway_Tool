@@ -24,6 +24,7 @@ import constants.KeggCalculatorConstants;
 import fluxanalysis.DummyFBAArray;
 import fluxanalysis.DummyFBAReactionObj;
 import fluxanalysis.DummyFBAResponseObj;
+import fluxanalysis.TempFile;
 import json.KeggCreatorJobJSON;
 import model.KeggCompound;
 import model.KeggCompoundObject;
@@ -582,30 +583,35 @@ public class KeggCreatorService {
 	}
 	
 	public String startPythonProcess(String modelContainer) {
+		String results;
 		
 		try {
+			TempFile.createTempFile();
+			TempFile.writeModelToTempFile(modelContainer);
+			
 			ProcessBuilder builder = new ProcessBuilder(Arrays.asList(
 					"C:\\Python39\\python",
 					"C:\\Users\\Emanu\\OneDrive\\Masterarbeit\\MPA Pathway Tool\\MPA_Pathway_Tool\\keggcalculator\\Python\\pythonProject\\main.py",
-					modelContainer));
+					"temp\\tempModel.txt"));
 
 			builder.redirectErrorStream(true); // print Errors from Python
 			Process process = builder.start();
 			
 			BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+			StringBuilder strBuilder = new StringBuilder();
 			
-            String line = "";
+			String line;
+			
+			while((line=reader.readLine())!=null) strBuilder.append(line);
+			
             System.out.println("Running Python starts");
             
             int exitCode = process.waitFor();
+            System.out.println(strBuilder.toString());
             System.out.println("Exit Code : "+ exitCode);
-//            line = reader.readLine();
-//				System.out.println("First Line: " + line);
-//			while ((line = reader.readLine()) != null){
-//				System.out.println("Python Output: " + line);
-//			}
-			
-            return reader.lines().collect(Collectors.joining());
+			results = TempFile.readTempFile("temp/tempResults.txt");
+            
+            return results;
 			
 			} catch (RuntimeException e) {
 	            e.printStackTrace();
@@ -614,6 +620,8 @@ public class KeggCreatorService {
 	            e.printStackTrace();
 	            return "";
 	        } finally {
+	            TempFile.deleteTempFile("temp/tempModel.txt");
+	            TempFile.deleteTempFile("temp/tempResults.txt");
 	            System.out.println("Done");
 	        }
 	}
