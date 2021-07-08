@@ -15,7 +15,8 @@ const FAQ = (props) => {
             <Typography style={{margin:"2px 0"}} variant="h7" component="h3">{name}</Typography>
             {listOfQuestions.map((question, index) => <Question index={index+1} panelId={"panel".concat((index+1).toString())}
                                                                 question={question.question}
-                                                                answer={question.answer}/>)}
+                                                                answer={question.answer}
+            link={question.link}/>)}
         </div>
     );
 };
