@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project name="spark-consumer" default="deploy">
+
+	<!-- server vars -->
+	<property name="server.name" value="deploymentuser" />
+	<property name="server.url" value="141.44.141.132" />
+	<property name="key.file" value="mpaserver2" />
+
+	<target name="deploy">
+		
+		<!-- unzip zip file on server -->
+		<echo message="zip the file deployment.zip on server" />
+		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="echo 12345 | sudo -S mkdir /raid/pathwaytool/testdir/"/>
+		
+		<!-- zip files for transport -->
+		<echo message="zip docker Folder into deployment.zip" />
+		<zip destfile="deployment.zip" basedir="docker/backend" update="true" />	
+
+		<!-- scp zip file -->
+		<echo message="copy docker/backend.zip to /raid/pathwaytool/" />
+		<scp port="22" file="deployment.zip" todir="${server.name}@${server.url}:/raid/pathwaytool/" keyfile="${key.file}" trust="true"/>
+
+		<!-- unzip zip file on server -->
+		<echo message="unzip the file deployment.zip on server" />
+		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="sudo unzip -o /raid/pathwaytool/deployment.zip -d /raid/pathwaytool/backend/"/>
+
+		<!-- delete local zip -->
+		<echo message="delete the file deployment.zip locally" />
+		<delete file="deployment.zip" />
+		
+		<!-- delete zip file on server --> 
+		<echo message="delete the file deployment.zip on server" />
+		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="sudo rm ./raid/pathwaytool/deployment.zip"/>
+
+	</target>
+
+</project>

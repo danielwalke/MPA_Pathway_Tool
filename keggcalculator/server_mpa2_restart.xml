@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project name="spark-consumer" default="deploy">
+
+	<!-- server vars -->
+	<property name="bootstrap.server.name" value="centos" />
+	<property name="bootstrap.server.port" value="7000" />
+	<property name="server.url" value="129.70.51.126" />
+	<property name="key.file" value="cloud" />
+
+	<target name="deploy">
+		
+		<!-- execute restart sh script --> 
+		<echo message="delete the file ${docker.zip.file} on ${server.url} server" />
+		<sshexec host="${server.url}" port="7000" username="${bootstrap.server.name}" keyfile="${key.file}" trust="true" command="sudo bash ./mpa-cloud-deployment/restart-website.sh" />
+		
+	</target>
+
+</project>
