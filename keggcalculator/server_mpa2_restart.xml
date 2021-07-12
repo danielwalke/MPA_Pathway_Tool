@@ -2,16 +2,44 @@
 <project name="spark-consumer" default="deploy">
 
 	<!-- server vars -->
-	<property name="bootstrap.server.name" value="centos" />
-	<property name="bootstrap.server.port" value="7000" />
-	<property name="server.url" value="129.70.51.126" />
-	<property name="key.file" value="cloud" />
+	<property name="server.name" value="deploymentuser" />
+	<property name="server.url" value="141.44.141.132" />
+	<property name="key.file" value="mpaserver2" />
 
 	<target name="deploy">
 		
-		<!-- execute restart sh script --> 
-		<echo message="delete the file ${docker.zip.file} on ${server.url} server" />
-		<sshexec host="${server.url}" port="7000" username="${bootstrap.server.name}" keyfile="${key.file}" trust="true" command="sudo bash ./mpa-cloud-deployment/restart-website.sh" />
+		<!-- execute restart sh script  
+		<echo message="dockerlogin" />
+		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="sudo bash /raid/pathwaytool/docker-login.sh" />
+		-->
+		
+		<!--pull new version to docker frontend-->
+		<echo message="pulled new version frontend" />
+		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="echo 12345 | sudo -S docker pull mpacloud/pathwaytool_frontend" />
+		
+		<!--pull new version to docker backend-->
+		<echo message="pulled new version frontend" />
+		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="echo 12345 | sudo -S docker pull mpacloud/pathwaytool_backend" />
+
+		<!-- stop current docker container frontend --> 
+		<echo message="stopped current docker container frontend" />
+		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="echo 12345 | sudo -S docker container stop pathway_frontend" />
+		
+		<!-- stop current docker container backend -->
+		<echo message="stopped current docker container frontend" />
+		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="echo 12345 | sudo -S docker container stop pathway_backend" />
+		
+		<!--container prune-->
+		<echo message="pulled new version frontend" />
+		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="echo 12345 | sudo -S docker container prune -f" />
+		
+		<!-- starts docker container frontend -->
+		<echo message="started the docker container frontend" />
+		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="echo 12345 | sudo -S docker run --name pathway_frontend -d -p 9001:80 mpacloud/pathwaytool_frontend" />
+		
+		<!-- starts docker container backend -->
+		<echo message="started the docker container frontend" />
+		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="echo 12345 | sudo -S docker run --name pathway_backend -d -p 9005:80 mpacloud/pathwaytool_backend" />
 		
 	</target>
 

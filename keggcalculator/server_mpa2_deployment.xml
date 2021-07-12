@@ -8,49 +8,70 @@
 
 	<target name="deploy">
 
-		<!-- unzip zip file on server -->
-		<echo message="zip the file deployment.zip on server" />
-		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="echo 12345 | sudo -S mkdir /raid/pathwaytool/testdir/" />
+		<!-- zip file for transfer to server -->
+		<!-- echo message="zip the file deployment.zip for transfer to server" />
+		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="echo 12345 | sudo -S mkdir /raid/pathwaytool/testdir/" /-->
 
-		<!-- zip files for transport -->
-		<echo message="zip docker Folder into deployment.zip" />
-		<zip destfile="deployment.zip" basedir="docker/backend" update="true" />
-
-		<!-- scp zip file -->
-		<echo message="copy docker/backend.zip to /raid/pathwaytool/" />
-		<scp port="22" file="deployment.zip" todir="${server.name}@${server.url}:/raid/pathwaytool/" keyfile="${key.file}" trust="true" />
-
-		<!-- unzip zip file on server -->
-		<echo message="unzip the file deployment.zip on server" />
-		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="echo 12345 | sudo unzip -o /raid/pathwaytool/deployment.zip -d /raid/pathwaytool/backend/" />
-
-		<!-- delete local zip -->
-		<echo message="delete the file deployment.zip locally" />
-		<delete file="deployment.zip" />
-
-		<!-- delete zip file on server -->
-		<echo message="delete the file deployment.zip on server" />
-		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="echo 12345 | sudo rm ./raid/pathwaytool/deployment.zip" />
-
-		<!-- push new version to docker -->
-		<!--What was the name of frontend and abckend folder?-->
-		<echo message="pushed new version to docker container frontend" />
-		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="echo 12345 | sudo docker push mpacloud/pathwaytool" />
-
-		<!-- stop current docker container frontend-->
-		<!--Which docker number? -> sudo docker ps -aqf "name=containername" -->
-		<echo message="stopped current docker container frontend" />
-		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="echo 12345 | sudo docker stop " />
+		<!-- zip backend file for transfer to server -->
+		<echo message="zip the file deployment_backend.zip for transfer to server" />
+		<zip destfile="deployment_backend.zip" basedir="docker/backend" update="true" />
 		
-		<!--pull new version to docker frontend-->
-		<echo message="pulled new version frontend" />
-		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="echo 12345 | sudo docker pull" />
+		<!-- zip frontend file for transfer to server -->
+		<echo message="zip the file deployment_frontend.zip for transfer to server" />
+		<zip destfile="deployment_frontend.zip" basedir="docker/frontend" update="true" />
 
-		<!-- starts docker container frontend -->
-		<!--Which ports?-->
-		<echo message="started the docker container frontend" />
-		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="echo 12345 | sudo docker run -d -p 9005:80 mpacloud/pathwaytool" />
+		<!-- scp zip file backend -->
+		<echo message="copy docker/deployment_backend.zip to /raid/pathwaytool/backend/" />
+		<scp port="22" file="deployment_backend.zip" todir="${server.name}@${server.url}:/raid/pathwaytool" keyfile="${key.file}" trust="true" />
+		
+		<!-- scp zip file frontend -->
+		<echo message="copy docker/deployment_frontend.zip to /raid/pathwaytool/frontend/" />
+		<scp port="22" file="deployment_frontend.zip" todir="${server.name}@${server.url}:/raid/pathwaytool" keyfile="${key.file}" trust="true" />
 
+		<!-- unzip zip file on server -->
+		<echo message="unzip the file deployment_backend.zip on server" />
+		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="echo 12345 | sudo -S unzip -o /raid/pathwaytool/deployment_backend.zip -d /raid/pathwaytool/backend/" />
+		
+		<!-- unzip zip file on server -->
+		<echo message="unzip the file deployment_frontend.zip on server" />
+		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="echo 12345 | sudo -S unzip -o /raid/pathwaytool/deployment_frontend.zip -d /raid/pathwaytool/frontend/" />
+
+		<!-- delete local zip backend -->
+		<echo message="delete the file deployment_backend.zip locally" />
+		<delete file="deployment_backend.zip" />
+		
+		<!-- delete local zip frontend -->
+		<echo message="delete the file deployment_frontend.zip locally" />
+		<delete file="deployment_frontend.zip" />
+
+		<!-- delete zip file backend on server -->
+		<echo message="delete the file deployment_backend.zip on server" />
+		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="echo 12345 | sudo -S rm /raid/pathwaytool/deployment_backend.zip" />
+		
+		<!-- delete zip file frontend on server -->
+		<echo message="delete the file deployment_frontend.zip on server" />
+		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="echo 12345 | sudo -S rm /raid/pathwaytool/deployment_frontend.zip" />
+
+		<!-- docker build backend -->
+		<echo message="docker build backend" />
+		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="echo 12345 | sudo -S docker build -t mpacloud/pathwaytool_backend /raid/pathwaytool/backend/" />
+		
+		<!-- docker build frontend -->
+		<echo message="docker build frontend" />
+		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="echo 12345 | sudo -S docker build -t mpacloud/pathwaytool_frontend /raid/pathwaytool/frontend/" />
+		
+		<!-- login into docker-hub using shell script-->
+		<echo message="login into docker on the server" />		
+		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="echo 12345 | sudo -S bash /raid/pathwaytool/docker-login.sh" />
+		
+		<!-- docker push backend -->
+		<echo message="docker push backend" />
+		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="echo 12345 | sudo -S docker push mpacloud/pathwaytool_backend" />
+		
+		<!-- docker push frontend -->
+		<echo message="docker push frontend" />
+		<sshexec host="${server.url}" port="22" username="${server.name}" keyfile="${key.file}" trust="true" command="echo 12345 | sudo -S docker push mpacloud/pathwaytool_frontend" />
+		
 	</target>
 
 </project>
