@@ -1,9 +1,10 @@
 import React from "react";
 import {saveAs} from "file-saver";
 import * as d3 from "d3";
+import {useDispatch} from "react-redux";
 
 const GraphSvgExporter = (props) => {
-
+    const dispatch = useDispatch()
     const fileName = "graph.svg"
 
     const download = (e) => {
@@ -19,6 +20,7 @@ const GraphSvgExporter = (props) => {
         let serializer = new XMLSerializer()
         const svg = serializer.serializeToString(graph)
         let blob = new Blob(new Array(svg), {type: "text/plain;charset=utf-8"});
+        dispatch({type:"ADD_SVG_DOWNLOAD_TO_AUDIT_TRAIL"})
         saveAs(blob, fileName)
     }
 

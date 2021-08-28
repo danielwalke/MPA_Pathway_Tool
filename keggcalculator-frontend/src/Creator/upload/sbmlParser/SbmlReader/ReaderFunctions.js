@@ -199,6 +199,7 @@ export const onSBMLModuleFileChange = async (event, dispatch, state) => {
             dispatch({type:"SET_LIST_OF_REACTION_GLYPHS", payload: listOfReactionGlyphs})
             dispatch({type:"SETLISTOFSPECIES", payload: listOfSpecies})
             dispatch({type:"SETLISTOFREACTIONS", payload: listOfReactions})
+            dispatch({type:"ADD_PATHWAY_TO_AUDIT_TRAIL", payload: file.name})
             dispatch({type:"SETISMISSINGANNOTATIONS", payload: isMissingAnnotations}) //if true, annotationWarningModal will show up
             if(!isMissingAnnotations){ //all compounds are perfectly annotated :)
                 //add additional information to each reaction

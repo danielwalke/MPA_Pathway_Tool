@@ -12,8 +12,10 @@ import MakeCompartmentObjList from "./MakeCompartmentObjList";
 import {requestGenerator} from "../../request/RequestGenerator";
 import MakeRenderInformationObj from "./MakeRenderInformationObj";
 import {endpoint_getTaxonomyIdList} from "../../../App Configurations/RequestURLCollection";
+import {useDispatch} from "react-redux";
 
 const SBMLDownloader = (props) => {
+    const dispatch = useDispatch()
 
     const HandleSBMLDownload = () => {
         const {generalState, graphState} = clonedeep(props)
@@ -21,6 +23,7 @@ const SBMLDownloader = (props) => {
 
         const [reactionsRaw, requestList] = MakeReactionList(generalState, graphState)
         const [speciesRaw, speciesPosRaw, compartmentsRaw] = MakeSpeciesList(reactionsRaw)
+
 
         console.log(speciesRaw)
         console.log(reactionsRaw)
@@ -82,7 +85,7 @@ const SBMLDownloader = (props) => {
                             }}
 
         console.log(objectToXML(obj))
-
+        dispatch({type:"ADD_SBML_DOWNLOAD_TO_AUDIT_TRAIL"})
         let blob = new Blob(new Array(objectToXML(obj).trim()), {type: "text/plain;charset=utf-8"});
         saveAs(blob, "ModuleGraph.xml")
         })}

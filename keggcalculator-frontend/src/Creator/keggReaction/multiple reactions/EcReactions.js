@@ -96,6 +96,7 @@ const EcReactions = () => {
         requestGenerator("POST", reactionUrl, {reactionId: reactionId}, "", "")
             .then(response => {
                 const reaction  = response.data;
+                dispatch({type:"ADD_EC_NUMBERS_TO_AUDIT_TRAIL", payload: reaction})
                 handleDrawGraph(reaction, state, dispatch,graphState,generalState, generalState.keggReactions);
                 return null;
             })

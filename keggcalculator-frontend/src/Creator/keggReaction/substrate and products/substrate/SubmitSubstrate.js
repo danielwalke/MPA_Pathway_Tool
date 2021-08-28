@@ -23,6 +23,7 @@ const  SubmitSubstrate = () => {
             onClick={(event) => {
                 event.preventDefault()
                 dispatch({type: "SWITCHLOADING"})
+                dispatch({type:"ADD_SUBSTRATE_TO_AUDIT_TRAIL", payload: keggState.substrate})
                 handleSubmit(substrateId)
                     .then(({productList, prodReactionsMap}) => setProducts({productList, prodReactionsMap}))
                     .then(() => dispatch({type: "SWITCHLOADING"}))

@@ -49,6 +49,7 @@ const ModuleListModal = () => {
                 dispatch({type: "SETDATA", payload: data})
                 dispatch({type: "SETDATALINKS", payload: links})
                 dispatch({type: "ADDREACTIONSTOARRAY", payload: reactionList})
+                dispatch({type:"ADD_KEGG_MODULE_TO_AUDIT_TRAIL", payload: state.module})
             })
     }
     const body = (

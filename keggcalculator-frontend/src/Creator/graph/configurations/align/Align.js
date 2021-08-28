@@ -14,6 +14,7 @@ const handleAlign = async(graphState,dispatch) => {
        const alignedNodes = getAlignedNodes(graphState)
         const data = {nodes: alignedNodes, links: graphState.data.links}
         await dispatch({type:"SETDATA", payload: data})
+    dispatch({type:"ADD_ALIGN_TO_AUDIT_TRAIL"})
 
 
 }

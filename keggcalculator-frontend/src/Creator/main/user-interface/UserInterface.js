@@ -121,7 +121,10 @@ const UserInterface = () => {
                     </div>
                     <div className={"helpContainer"}>
                         <button className={"downloadButton"}
-                                onClick={() => dispatch({type: "SWITCHSHOWUSERINFO"})}>Help
+                                onClick={() => {
+                                    dispatch({type:"ADD_HELP_TO_AUDIT_TRAIL"})
+                                    dispatch({type: "SWITCHSHOWUSERINFO"})
+                                }}>Help
                         </button>
                     </div>
                     <div>

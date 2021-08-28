@@ -48,6 +48,7 @@ const HeatMapCsvExporter = (props) => {
         let blob = new Blob(new Array(outputString.trim()), {type: "text/plain;charset=utf-8"});
         saveAs(blob, "Reactions.csv")
         dispatch({type: "SETLOADING", payload: false})
+        dispatch({type:"ADD_DATA_DOWNLOAD_TO_AUDIT_TRAIL"})
         console.timeEnd("HeatMap")
     }
 

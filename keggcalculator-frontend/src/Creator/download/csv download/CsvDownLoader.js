@@ -1,12 +1,12 @@
 import React, {useEffect} from "react";
 import {saveAs} from "file-saver";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {getNodePosition} from "../NodePosition";
 import {addOutput, getReactions} from "../DownloadFunctions";
 import clonedeep from "lodash/cloneDeep";
 
 const CsvDownLoader = (props) => {
-
+    const dispatch = useDispatch()
     const handleDownloadCsv = () => {
 
         try{
@@ -75,6 +75,7 @@ const CsvDownLoader = (props) => {
             }
             let blob = new Blob(new Array(output.trim()), {type: "text/plain;charset=utf-8"});
             saveAs(blob, "ModuleGraph.csv")
+            dispatch({type:"ADD_CSV_DOWNLOAD_TO_AUDIT_TRAIL"})
         }catch (e){
             window.alert("make a change")
         }

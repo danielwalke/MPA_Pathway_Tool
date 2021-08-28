@@ -23,6 +23,7 @@ const ModuleJSONInput = () =>{
                 dispatch({type: "SETDATALINKS", payload: links})
                 dispatch({type: "ADDREACTIONSTOARRAY", payload: reactions})
                 dispatch({type: "SETMODULEFILENAMEJSON", payload: file.name})
+                dispatch({type:"ADD_PATHWAY_TO_AUDIT_TRAIL", payload: file.name})
             }catch (e){
                 window.alert("Your file format is wrong.") //TODO add possible parsing/format mistake
                 console.error(e)

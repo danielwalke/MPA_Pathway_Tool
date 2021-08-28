@@ -93,6 +93,10 @@ const mergeNodes = (graphState, dispatch) => {
     const data = {nodes: mergeNodes, links: mergeLinks}
     dispatch({type:"SETDATA", payload: data})
     dispatch({type:"EMPTY_MERGE_NODES"})
+    dispatch({type:"ADD_MERGE_NODES_TO_AUDIT_TRAIL", payload: {
+        merged_source: graphState.mergeNodes,
+            merged_name: graphState.mergeNodesName
+        }})
 }
 
 export default MergeNodesModal

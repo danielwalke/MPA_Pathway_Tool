@@ -54,12 +54,14 @@ const checkCompooundId = (compound, index) =>{
 
 export const handleAddSubstrate = (e, dispatch, state, index) => {
     e.preventDefault()
+    dispatch({type:"ADD_USER_SUBSTRATE_TO_AUDIT_TRAIL", payload: state.specSubstrate.concat(checkCompooundId(state.specSubstrate, index))})
     dispatch({type: "ADDSPECIFICSUBSTRATE", payload: state.specSubstrate.concat(checkCompooundId(state.specSubstrate, index))})
     dispatch({type: "ADDSPECIFICSUBSTRATECOEFF", payload: state.specSubstrateCoeff})
 }
 
 export const handleAddProduct = (e, dispatch, state, index) => {
     e.preventDefault()
+    dispatch({type:"ADD_USER_PRODUCT_TO_AUDIT_TRAIL", payload: state.specProduct.concat(checkCompooundId(state.specProduct, index))})
     dispatch({type: "ADDSPECIFICPRODUCT", payload: state.specProduct.concat(checkCompooundId(state.specProduct, index))})
     dispatch({type: "ADDSPECIFICPRODUCTCOEFF", payload: state.specProductCoeff})
 }

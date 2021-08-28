@@ -42,6 +42,7 @@ export const handleSpecSubmit = (e, graphStates, specReactionStates, dispatch, g
     const reaction = {}
     addReactionDetails(reaction, specReactionStates)
     const data = handleJSONGraphUpload([...generalState.keggReactions, reaction],dispatch, graphStates)
+    dispatch({type:"ADD_USER_REACTION_TO_AUDIT_TRAIL", payload: reaction})
     dispatch({type:"SETDATA", payload: data})
     dispatch({type:"ADDREACTIONSTOARRAY",payload:[reaction]})
     dispatch({type: "RESETSPECIFICREACTION"})

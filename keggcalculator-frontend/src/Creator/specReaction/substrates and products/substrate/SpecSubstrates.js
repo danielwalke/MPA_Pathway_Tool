@@ -7,7 +7,6 @@ import "./SpecSubstrate.css"
 import PopOverButton from "../PopOverButton";
 
 
-
 const SpecSubstrates = (props) => {
     const state = useSelector(state => state.specificReaction)
 
@@ -29,7 +28,8 @@ const SpecSubstrates = (props) => {
                     compound={state.specSubstrate}/>
             }
             <PopOverButton text={" not found? :-(\n" +
-            "                Don't worry! Click here :)"} className={"notFoundButton"}  dispatchType={"SWITCHISSPECCOMPOUNDINPUTSUBSTRATE"}/>
+            "                Don't worry! Click here :)"} className={"notFoundButton"}
+                           dispatchType={"SWITCHISSPECCOMPOUNDINPUTSUBSTRATE"}/>
             <TextField
                 size={"small"}
                 className={"substrateSc"}

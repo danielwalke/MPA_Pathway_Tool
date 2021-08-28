@@ -22,6 +22,7 @@ const onModuleFileChange = (event, dispatch, state) => {
                 dispatch({type: "SETDATALINKS", payload: links})
                 dispatch({type: "ADDREACTIONSTOARRAY", payload: reactionList})
                 dispatch({type: "SETMODULEFILENAME", payload: files[0].name})
+                dispatch({type:"ADD_PATHWAY_TO_AUDIT_TRAIL", payload: files[0].name})
             }catch (e) {
                 window.alert("Your file format is either wrong or you have already imported a file.")
                 console.error(e)

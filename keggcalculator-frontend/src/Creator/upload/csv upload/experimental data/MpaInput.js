@@ -125,6 +125,7 @@ const MpaInput = () => {
                     dispatch({type: "SETMIDQUANTUSER3", payload: (+minQuant + (+maxQuant - +minQuant) / 2)})
                     dispatch({type: "SETSAMPLENAMES", payload: sampleNames})
                     dispatch({type: "SETMPAFILENAME", payload: files[0].name})
+                    dispatch({type:"ADD_EXPERIMENTAL_DATA_TO_AUDIT_TRAIL", payload: files[0].name})
                 }catch (e){
                     window.alert("Your file format is wrong.")
                     console.error(e)

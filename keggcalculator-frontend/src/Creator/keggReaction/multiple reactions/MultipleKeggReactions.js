@@ -27,6 +27,7 @@ const MultipleKeggReactions = () => {
                 reaction.reactionName = reaction.reactionName.concat(" " + reaction.reactionId)
                 dispatch({type: "ADDREACTIONSTOARRAY", payload: [reaction]})
                 dispatch({type:"ADD_KEGG_REACTION", payload: reaction})
+                dispatch({type:"ADD_REACTION_NUMBERS_TO_AUDIT_TRAIL", payload: reaction})
                 reactions.push(reaction)
                 handleDrawGraph(reaction, state.keggReaction,  dispatch, state.graph,state.general, reactions)
             })

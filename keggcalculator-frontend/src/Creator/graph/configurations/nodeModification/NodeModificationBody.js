@@ -12,6 +12,9 @@ const NodeModificationBody = () => {
 
     const changeNodeSize = (e) =>{
         dispatch({type:"SET_NODE_SIZE", payload:e.target.value})
+        dispatch({type:"ADD_NODE_MODIFICATION_TO_AUDIT_TRAIL", payload: {
+                compoundSize: e.target.value
+            }})
     }
 
     const changeCompoundNodeColor= (e) =>{
@@ -22,6 +25,9 @@ const NodeModificationBody = () => {
             }
         })
         dispatch({type:"SETDATA", payload: graphState.data})
+        dispatch({type:"ADD_NODE_MODIFICATION_TO_AUDIT_TRAIL", payload: {
+            compoundColor: e.target.value
+        }})
     }
 
     const filteredColorChange= (e) =>{
@@ -29,6 +35,9 @@ const NodeModificationBody = () => {
         graphState.data.nodes.forEach(node => {
             if(node.symbolType === "circle" && node.id.match(matchingString)){
                 node.color = e.target.value
+                dispatch({type:"ADD_NODE_MODIFICATION_TO_AUDIT_TRAIL", payload: {
+                        [node.id]: e.target.value
+                    }})
             }
         })
         dispatch({type:"SETDATA", payload: graphState.data})

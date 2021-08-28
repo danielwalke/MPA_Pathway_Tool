@@ -59,6 +59,7 @@ const Main = () => {
     const [open, setOpen] = React.useState(false)
 
     const graphState = useSelector(state => state.graph)
+    const auditTrail = useSelector(state => state.auditTrail)
     const dispatch = useDispatch()
     const proteinState = useSelector(state => state.mpaProteins)
     const exit = () => "Are you sure you want to exit?"
@@ -84,6 +85,10 @@ const Main = () => {
             window.onbeforeunload = exit
         }, []
     )
+
+    useEffect(()=>{
+        console.log(auditTrail)
+    })
 
     const classes = useStylesMain()
 

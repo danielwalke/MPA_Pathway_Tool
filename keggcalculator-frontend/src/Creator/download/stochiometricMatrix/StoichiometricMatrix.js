@@ -65,7 +65,7 @@ const fetchStochiometricInformation = (dispatch, props) => {
         output+="\n"
         return null;
     })
-
+    dispatch({type:"ADD_MATRIX_DOWNLOAD_TO_AUDIT_TRAIL"})
     let blob = new Blob(new Array(output.trim()), {type: "text/plain;charset=utf-8"});
     saveAs(blob, "stoichiometricMatrix.csv")
 }

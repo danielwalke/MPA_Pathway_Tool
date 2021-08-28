@@ -62,6 +62,7 @@ const Abbreviation = () => {
                 state.abbreviationsObject[`${filteredNode}`] = nodeAbbr
             })
         }
+        dispatch({type:"ADD_ABBREVIATION_TO_AUDIT_TRAIL", payload: state.abbreviationsObject})
         dispatch({type: "SETABBREVIATIONOBJECT", payload: state.abbreviationsObject})
 
     }
