@@ -2,12 +2,12 @@ package jobs;
 
 import java.io.File;
 
+import calculator.Calculator2;
 import calculator.CalculatorOutputList;
 import constants.KeggCalculatorConstants;
 import json.KeggCalculatorJobJSON;
 import model.KeggDataObject;
 import model.MpaProteine;
-import parser.Calculator2;
 import parser.KeggDataParser;
 import parser.ModuleFileParser;
 import parser.MpaFileParser2;

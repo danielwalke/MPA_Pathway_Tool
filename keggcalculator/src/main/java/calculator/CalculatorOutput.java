@@ -1,6 +1,7 @@
 package calculator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 /**
  * 
  * @author Daniel defines output for Calculator of KEGG- Manager shows for every
@@ -17,8 +18,36 @@ public class CalculatorOutput implements Cloneable{
 	private double stepMpa;
 	private double stepTotal;
 	private ArrayList<Double> quantList;
+	private HashMap<Taxonomy, double[]> taxonomyQuants; //{taxon1: sample1, taxon2: sample2}
+	private HashMap<Taxonomy, Integer> taxonomySteps; //counts reactions
 	
-		public double getQuantMPA() {
+	public CalculatorOutput() {
+		this.quantList = new ArrayList<>();
+		this.taxonomyQuants = new HashMap<>();
+		this.taxonomySteps = new HashMap<>();
+	}
+	
+	public HashMap<Taxonomy, Integer> getTaxonomySteps() {
+		return taxonomySteps;
+	}
+
+
+
+	public void setTaxonomySteps(HashMap<Taxonomy, Integer> taxonomySteps) {
+		this.taxonomySteps = taxonomySteps;
+	}
+
+
+
+	public HashMap<Taxonomy, double[]> getTaxonomyQuants() {
+		return taxonomyQuants;
+	}
+
+	public void setTaxonomyQuants(HashMap<Taxonomy, double[]> taxonomyQuants) {
+		this.taxonomyQuants = taxonomyQuants;
+	}
+
+	public double getQuantMPA() {
 		return quantMPA;
 	}
 
@@ -38,8 +67,8 @@ public class CalculatorOutput implements Cloneable{
 		return quantList;
 	}
 
-	public void setQuantList(ArrayList<Double> quantList) {
-		this.quantList = quantList;
+	public void addQuantToQuantList(double quant) {
+		this.quantList.add(quant);
 	}
 
 	public String getModule() {

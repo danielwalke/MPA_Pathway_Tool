@@ -15,6 +15,7 @@ import Start from "./Start";
 import {makeStyles} from "@material-ui/core";
 import {getLastItemOfList} from "../../Creator/usefulFunctions/Arrays";
 import { Redirect } from 'react-router'
+import FBA from "../FBA/FBA";
 
 class Home extends Component {
 
@@ -35,6 +36,8 @@ class Home extends Component {
     }
 
     componentDidMount() {
+        //TODO: delete the following line after fixing haproxy error
+        // window.location.href = 'http://141.44.141.132:9001/home';
         requestGenerator("GET", endpoint_getCompoundList, "", "").then(response => {
             this.props.ModuleStore.addCompounds(response.data);
         })
@@ -57,11 +60,11 @@ class Home extends Component {
                             <BrowserRouter>
                                 <CustomTabs state={this.state} changeState={this.changeState}/>
                                 <Switch>
-                                    {this.state.reload? <Redirect to={"/home"}/> : null}
+                                    {this.state.reload? <Redirect to={"/home"} target="_blank"/> : null}
                                     {/*<div><h3 style={{margin: "5% 0 0 0"}}>Under Construction</h3> <img style={{width: "70%", padding: "3%"}} src={underConstruction}/></div>*/}
                                     <Route path={"/home"}><Start changeState={this.changeState}/></Route>
                                     <Route path={"/creator"}><App changeState={this.changeState}/></Route>
-                                    <Route path={"/calculator"}> <UploadPanel changeState={this.changeState}/> </Route>
+                                    <Route path={"/calculator"}> <UploadPanel changeState={this.changeState}/></Route>
                                 </Switch>
                             </BrowserRouter>
                         </div>
