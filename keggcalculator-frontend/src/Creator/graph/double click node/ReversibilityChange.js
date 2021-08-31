@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Checkbox} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
+import {ToolTipBig} from "../../main/user-interface/UserInterface";
 
 const ReversibilityChange = (props) => {
     const [reversible, setReversible] = useState(false)
@@ -55,7 +56,9 @@ const ReversibilityChange = (props) => {
 
     return (
         <div style={{display: "flex"}}>
-            <div><Checkbox checked={reversible} onChange={() => changeReversibility()}/></div>
+            <div> <ToolTipBig title={reversible? "Make reaction irreversible" : "Make reaction reversible"} placement={"right"}>
+                <Checkbox checked={reversible} onChange={() => changeReversibility()}/>
+            </ToolTipBig></div>
             <div>Reversible</div>
         </div>
     );

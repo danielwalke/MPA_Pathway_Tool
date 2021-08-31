@@ -12,6 +12,8 @@ import {Typography} from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from '@material-ui/icons/Close';
 import {saveAs} from "file-saver"
+import MetaDataCalculator from "./MetaDataCalculator";
+import {ToolTipBig} from "../../Creator/main/user-interface/UserInterface";
 
 class UploadPanel extends Component {
 
@@ -120,21 +122,28 @@ class UploadPanel extends Component {
             <div>
                 <div style={{display: "flex", padding: "20px 0 20px 0px"}}>
                     <div style={{height: "auto",width: "47%", padding: "0 1% 0 2.5%"}}>
-                        <DropZone fileType={"MPAFile"} message={"Drag MPA file here or click the upload file button"}
-                                  uploadFileButton={"Upload MPA File"}
+                        <DropZone fileType={"MPAFile"} message={"Drag a experimental data file here or click the upload file button"}
+                                  uploadFileButton={"Upload a experimental data file"}
                         />
                     </div>
                     <div style={{height: "auto",width: "47%", padding: "0 1% 0 0"}}>
-                        <DropZone fileType={"moduleFile"} message={"Drag module files here or click the upload files button"}
-                                  uploadFileButton={"Upload Module Files"}
+                        <DropZone fileType={"moduleFile"} message={"Drag pathway files here or click the upload files button"}
+                                  uploadFileButton={"Upload pathway files"}
                         />
                     </div>
                 </div>
                 <div style={{display: "flex", justifyContent: "space-evenly" }}>
+                    <ToolTipBig title={"Download results of mapping"} placement={"left"}>
                     <Button disabled={this.props.CalculatorStore.downloadLink === undefined} variant={"contained"} color={"primary"} endIcon={<GetAppIcon/>} onClick={() => this.downloadData()}>Download</Button>
+                    </ToolTipBig>
+                    <ToolTipBig title={"Download unmatched features, e.g. unmatched proteins"} placement={"top"}>
                     <Button disabled={this.props.CalculatorStore.downloadLink === undefined} variant={"contained"} color={"primary"} endIcon={<GetAppIcon/>} onClick={() => this.downloadDataUnmatchedProteins(this.state.jobID)}>Download unmatched Proteins</Button>
+                    </ToolTipBig>
+                    <MetaDataCalculator/>
+                    <ToolTipBig title={"Start mapping"} placement={"right"}>
                     <Button disabled={this.props.CalculatorStore.downloadLink !== undefined || typeof this.props.CalculatorStore.getMPAFile === "undefined" || this.props.CalculatorStore.processing}
                             variant={"contained"} color={"primary"} onClick={() => this.startProcessing()} endIcon={<KeyboardArrowRightIcon/>}>Start</Button>
+                    </ToolTipBig>
                 </div>
                 {(this.props.CalculatorStore.processing || this.props.CalculatorStore.error) &&
                 <Snackbar anchorOrigin={{vertical: "bottom", horizontal: "right"}}

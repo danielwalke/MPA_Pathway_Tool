@@ -8,6 +8,7 @@ import {isRequestValid} from "../../request/RequestValidation";
 import {requestGenerator} from "../../request/RequestGenerator";
 import {handleGraphUpload, handleReactionListUpload} from "../../upload/csv upload/module file/ModuleUploadFunctions";
 import {endpoint_getModule} from "../../../App Configurations/RequestURLCollection";
+import {ToolTipBig} from "../../main/user-interface/UserInterface";
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -54,6 +55,7 @@ const ModuleListModal = () => {
     }
     const body = (
         <div className={classes.paper} style={{width:"40vw", display:"grid", gridTemplateColumns:"8fr 2fr"}} >
+            <ToolTipBig title={"Search a KEGG module"} placement={"right"}>
             <Autocomplete
                 size={"small"}
                 id={`combo-box-1 module`}
@@ -71,7 +73,10 @@ const ModuleListModal = () => {
                     />
                 )}
             />
+            </ToolTipBig>
+            <ToolTipBig title={"Submit the chosen KEGG module"} placement={"right"}>
             <button disabled={!isRequestValid(state.module)} className={"downloadButton"} onClick={()=> handleSubmitModule()}>submit</button>
+            </ToolTipBig>
         </div>
     )
 

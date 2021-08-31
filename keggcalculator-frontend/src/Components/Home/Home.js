@@ -16,6 +16,8 @@ import {makeStyles} from "@material-ui/core";
 import {getLastItemOfList} from "../../Creator/usefulFunctions/Arrays";
 import { Redirect } from 'react-router'
 import FBA from "../FBA/FBA";
+import {host} from "../../App Configurations/SystemSettings";
+import Footer from "../Footer/Footer";
 
 class Home extends Component {
 
@@ -37,7 +39,7 @@ class Home extends Component {
 
     componentDidMount() {
         //TODO: delete the following line after fixing haproxy error
-        // window.location.href = 'http://141.44.141.132:9001/home';
+        if(host !== "http://127.0.0.1") window.location.href = 'http://141.44.141.132:9001/home'
         requestGenerator("GET", endpoint_getCompoundList, "", "").then(response => {
             this.props.ModuleStore.addCompounds(response.data);
         })
@@ -70,6 +72,9 @@ class Home extends Component {
                         </div>
                     </div>
                 </main>
+                {this.state.selectedTab === "/home" && <footer>
+                    <Footer/>
+                </footer>}
             </div>
         );
     }

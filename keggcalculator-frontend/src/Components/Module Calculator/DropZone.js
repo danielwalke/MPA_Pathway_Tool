@@ -75,7 +75,7 @@ class DropZone extends Component {
                 </ReactDropZone>
                 <Accordion style={{padding: "5px", margin: "10px 0 0 0"}}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon/>}>
-                        <Typography variant={"h6"} style={{flexBasis: "33.33%"}}>{this.props.fileType === "MPAFile" ? "MPA File" : "Module Files"}</Typography>
+                        <Typography variant={"h6"} style={{flexBasis: "33.33%"}}>{this.props.fileType === "MPAFile" ? "experimental data file" : "pathway files"}</Typography>
                         <Typography variant={"h6"} style={{flexBasis: "33.33%" ,color: "#bdbdbd"}}>{this.props.CalculatorStore.getSize(this.props.fileType)}</Typography>
                     </AccordionSummary>
                     <AccordionDetails>

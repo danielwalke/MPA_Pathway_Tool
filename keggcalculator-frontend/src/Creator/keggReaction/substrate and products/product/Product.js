@@ -5,6 +5,7 @@ import SubmitProduct from "./SubmitProduct";
 import React from "react"
 import "./Product.css"
 import "../../../main/Buttons.css"
+import {ToolTipBig} from "../../../main/user-interface/UserInterface";
 
 const Product = () => {
     const dispatch = useDispatch()
@@ -18,6 +19,7 @@ const Product = () => {
 
     return (
         <div className={"productContainer"}>
+            <ToolTipBig title={"Search a product"} placement={"left"}>
             <Autocomplete
                 size={"small"}
                 id="productBox"
@@ -37,6 +39,7 @@ const Product = () => {
                     />
                 )}
             />
+            </ToolTipBig>
             <SubmitProduct className={"submit"}/>
         </div>
 

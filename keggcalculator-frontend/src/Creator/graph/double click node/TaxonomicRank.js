@@ -8,6 +8,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
 import {requestGenerator} from "../../request/RequestGenerator";
 import {endpoint_getTaxonomicNames} from "../../../App Configurations/RequestURLCollection";
+import {ToolTipBig} from "../../main/user-interface/UserInterface";
 
 const useStyles = makeStyles(() => ({
     formControl: {
@@ -30,6 +31,7 @@ const TaxonomicRank = ()=>{
     const generalState = useSelector(state => state.general)
     const classes = useStyles()
     return(
+        <ToolTipBig title={"Select a taxonomic rank"} placement={"right"}>
         <FormControl style={{margin:"2px 0"}} size="small" variant="outlined" className={classes.formControl}>
             {generalState.taxonomicRank.length===0 && <InputLabel id="taxonomicRankInput">taxonomic rank</InputLabel>}
             <Select
@@ -41,6 +43,7 @@ const TaxonomicRank = ()=>{
                     )}
             </Select>
         </FormControl>
+        </ToolTipBig>
     )
 }
 

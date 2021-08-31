@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {handleSubmit} from "../../keggReaction/substrate and products/SubmitHandler";
 import clonedeep from "lodash/cloneDeep"
 import {NOT_KEY_COMPOUND_OPACITY} from "../Constants";
+import {isColliding} from "../collision/CollisionCheck";
 
 const onClickNode = (nodeId, dispatch, graphState, keggState) => {
     const setProducts = ({productList, prodReactionsMap}) => {
@@ -41,7 +42,10 @@ const handleNodePositionChange = (graphState, x, y, nodeId,dispatch)=>{
         }
         return node
     })
-    const data = {nodes: nodes, links: graphState.data.links}
+    const targetNode = nodes.find(node => node.id === nodeId)
+    const otherNodes = nodes.filter(node => node.id !== nodeId)
+    const newNodes = isColliding(targetNode, otherNodes)
+    const data = {nodes: newNodes, links: graphState.data.links}
     dispatch({type:"SETDATA", payload: data})
 }
 

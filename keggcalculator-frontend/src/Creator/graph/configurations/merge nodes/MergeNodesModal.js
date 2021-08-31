@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import DeleteIcon from "@material-ui/icons/Delete";
+import {ToolTipBig} from "../../../main/user-interface/UserInterface";
 
 const MergeNodesModal = () => {
     const classes = useStyles()
@@ -12,6 +13,7 @@ const MergeNodesModal = () => {
     const dispatch = useDispatch()
     const body = (
         <div style={{width: "60vw", height: "80vh", backgroundColor: "white", padding: "5px"}}>
+            <ToolTipBig title={"Choose a node"} placement={"right"}>
             <Autocomplete
                 size={"small"}
                 id={"merge nodes selector"}
@@ -29,20 +31,26 @@ const MergeNodesModal = () => {
                     />
                 )}
             />
+            </ToolTipBig>
+            <ToolTipBig title={"Add node for merging"} placement={"right"}>
             <button className={"downloadButton"} onClick={() => dispatch({type: "ADDMERGENODE"})}>add</button>
+            </ToolTipBig>
             <ul style={{listStyleType: "none"}}>
                 {graphState.mergeNodes.map((id, index) => {
                     return (
                         <li key={`${index}_${id}`}>
+                            <ToolTipBig title={"Unselect node for merging"} placement={"right"}>
                             <DeleteIcon
                                 onClick={() => dispatch({type: "SPLICEMERGENODES", payload: id})}
                                 style={{transform: "translate(0,4px)"}}/>
+                            </ToolTipBig>
                             {id}
                         </li>
                     )
                 })}
             </ul>
             <div style={{padding:"5px"}}>merged node name:
+                <ToolTipBig title={"Select a name for the new merged node"} placement={"right"}>
                 <Autocomplete
                 size={"small"}
                 id={"merge nodes name selector"}
@@ -60,11 +68,16 @@ const MergeNodesModal = () => {
                     />
                 )}
             />
+                </ToolTipBig>
+                <ToolTipBig title={"Submit the new name"} placement={"right"}>
             <button className={"downloadButton"}>submit node name</button>
+                </ToolTipBig>
             </div>
+            <ToolTipBig title={"Submit merging nodes"} placement={"right"}>
             <button className={"downloadButton"} disabled={(graphState.mergeNodes.length < 2 || graphState.mergeNodesName.length<1)}
                     onClick={() => mergeNodes(graphState, dispatch)}>merge selected nodes
             </button>
+            </ToolTipBig>
         </div>
     )
     return (

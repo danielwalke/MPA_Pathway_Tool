@@ -3,6 +3,7 @@ import {handleSubmitReaction} from "../substrate and products/SubmitHandler";
 import React from "react"
 import "./Reaction.css"
 import {isRequestValid} from "../../request/RequestValidation";
+import {ToolTipBig} from "../../main/user-interface/UserInterface";
 
 const SubmitReaction = () => {
     const state = {
@@ -12,6 +13,7 @@ const SubmitReaction = () => {
     }
     const dispatch = useDispatch()
     return (
+        <ToolTipBig title={"Submit chosen reaction"} placement={"right"}>
         <button
             disabled={!isRequestValid(state.keggState.reaction)}
             className={"submitButtonReaction"}
@@ -19,6 +21,7 @@ const SubmitReaction = () => {
                 event.preventDefault()
                 handleSubmitReaction(state, dispatch)
             }}> Submit reaction</button>
+        </ToolTipBig>
     )
 }
 

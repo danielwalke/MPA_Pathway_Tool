@@ -100,8 +100,8 @@ public class CalculatorOutputList {
 			br.write("family\t");
 			br.write("genus\t");
 			br.write("species\t");
-			br.write("Steps found\t");
-			br.write("Total steps pathway\t");
+			br.write("identified reactions\t");
+			br.write("total reactions in pathway\t");
 			br.write(getSampleHeaderString().trim());
 			int numberOfSamples = getSampleHeaderString().split("\t").length;
 			br.write("\n");

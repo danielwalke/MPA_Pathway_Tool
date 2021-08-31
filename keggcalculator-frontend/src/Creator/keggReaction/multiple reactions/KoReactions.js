@@ -8,6 +8,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import {requestGenerator} from "../../request/RequestGenerator";
 import {handleDrawGraph} from "./EcReactions";
 import {endpoint_getReactionsByKoList, endpoint_getReactionUrl} from "../../../App Configurations/RequestURLCollection";
+import {ToolTipBig} from "../../main/user-interface/UserInterface";
 
 const reactionUrl = endpoint_getReactionUrl
 const koUrl = endpoint_getReactionsByKoList
@@ -68,7 +69,7 @@ const KoReactions = () => {
         requestGenerator("POST", reactionUrl, {reactionId: reactionId}, "", "")
             .then(response => {
                 const reaction = response.data;
-                dispatch({type:"ADD_KO_NUMBERS_TO_AUDIT_TRAIL", payload: reaction})
+                dispatch({type: "ADD_KO_NUMBERS_TO_AUDIT_TRAIL", payload: reaction})
                 handleDrawGraph(reaction, state, dispatch, graphState, generalState, generalState.keggReactions);
                 handleAddReaction(reaction);
                 return null;
@@ -78,94 +79,114 @@ const KoReactions = () => {
     const body = (
         <div className={classes.paper} style={{width: "60vw", height: "80vh", overflow: "auto"}}>
             <div style={{display: "grid", gridTemplateColumns: "8fr 2fr"}}>
-                <TextField
-                    className={"koRequest"}
-                    size={"small"}
-                    label="koRequest"
-                    variant="outlined"
-                    id="koRequest"
-                    value={state.koNumbersRequestText}
-                    placeholder={"K01234;K56789"}
-                    onChange={(e) => dispatch({
-                        type: "SETKONUMBERSREQUESTTEXT",
-                        payload: e.target.value.toString()
-                    })}
-                />
-                <button className={"downloadButton"}
-                        onClick={() => dispatch({type: "SETKONUMBERSREQUEST", payload: state.koNumbersRequestText})}>set
-                    ko numbers
-                </button>
+                <ToolTipBig title={"Type in multiple K numbers separated by a semicolon"} placement={"right"}>
+                    <TextField
+                        className={"koRequest"}
+                        size={"small"}
+                        label="koRequest"
+                        variant="outlined"
+                        id="koRequest"
+                        value={state.koNumbersRequestText}
+                        placeholder={"K01234;K56789"}
+                        onChange={(e) => dispatch({
+                            type: "SETKONUMBERSREQUESTTEXT",
+                            payload: e.target.value.toString()
+                        })}
+                    />
+                </ToolTipBig>
+                <ToolTipBig title={"Submit K numbers to query"} placement={"right"}>
+                    <button className={"downloadButton"}
+                            onClick={() => dispatch({
+                                type: "SETKONUMBERSREQUEST",
+                                payload: state.koNumbersRequestText
+                            })}>set
+                        ko numbers
+                    </button>
+                </ToolTipBig>
             </div>
             <div style={{display: "grid", gridTemplateColumns: "8fr 2fr"}}>
-                <div><Autocomplete
-                    size={"small"}
-                    id="combo-box-demo"
-                    options={state.koNumberSet}
-                    className={"substrate"}
-                    name={"koNumberSet"}
-                    onChange={(event, value) => {
-                        dispatch({type: "SETKONUMBERREQUEST", payload: value})
-                    }}
-                    renderInput={params => (
-                        <TextField
-                            onChange={(e) => handleAutoChange(e)}
-                            value={state.koNumberRequest}
-                            {...params}
-                            label="Initialize"
-                            variant="outlined"
-                        />
-                    )}
-                /></div>
-                <button className={"downloadButton"}
-                        onClick={() => dispatch({type: "ADDKONUMBERREQUEST", payload: state.koNumberRequest})}>add ko
-                    number
-                </button>
+                <div>
+                    <ToolTipBig title={"Search a single K number"} placement={"right"}>
+                        <Autocomplete
+                            size={"small"}
+                            id="combo-box-demo"
+                            options={state.koNumberSet}
+                            className={"substrate"}
+                            name={"koNumberSet"}
+                            onChange={(event, value) => {
+                                dispatch({type: "SETKONUMBERREQUEST", payload: value})
+                            }}
+                            renderInput={params => (
+                                <TextField
+                                    onChange={(e) => handleAutoChange(e)}
+                                    value={state.koNumberRequest}
+                                    {...params}
+                                    label="Initialize"
+                                    variant="outlined"
+                                />
+                            )}
+                        /></ToolTipBig></div>
+                <ToolTipBig title={"Add a single K number to query"} placement={"right"}>
+                    <button className={"downloadButton"}
+                            onClick={() => dispatch({type: "ADDKONUMBERREQUEST", payload: state.koNumberRequest})}>add
+                        ko
+                        number
+                    </button>
+                </ToolTipBig>
             </div>
             <ul style={{listStyleType: "none"}}>
                 {state.koNumbersRequest.map((ko, index) => {
                     return (
                         <li key={index} style={{border: "2px solid rgb(150, 25, 130)"}}>
-                            <DeleteIcon
-                                onClick={() => dispatch({type: "SPLICEKONUMBERSREQUEST", payload: index})}/>{ko}
+                            <ToolTipBig title={"Delete K number from query"} placement={"right"}>
+                                <DeleteIcon
+                                    onClick={() => dispatch({
+                                        type: "SPLICEKONUMBERSREQUEST",
+                                        payload: index
+                                    })}/></ToolTipBig>{ko}
                             {typeof handleReactionOptions(ko) === "undefined" ? null : <div>
-                                <Autocomplete
-                                    size={"small"}
-                                    options={handleReactionOptions(ko)}
-                                    className={"substrate"}
-                                    name={"reactionsOfKoSet"}
-                                    onChange={(event, value) => {
-                                        dispatch({type: "SETREACTIONOFKO", payload: value})
-                                    }}
-                                    renderInput={params => (
-                                        <TextField
-                                            onChange={(e) => dispatch({
-                                                type: "SETREACTIONOFKO",
-                                                payload: e.target.value
-                                            })}
-                                            value={state.reactionOfKo}
-                                            {...params}
-                                            label="Initialize"
-                                            variant="outlined"
-                                        />
-                                    )}
-                                />
-                                <button className={"downloadButton"} onClick={() => handleReactionSubmit()}>Submit
-                                </button>
+                                <ToolTipBig title={"Search reaction"} placement={"right"}>
+                                    <Autocomplete
+                                        size={"small"}
+                                        options={handleReactionOptions(ko)}
+                                        className={"substrate"}
+                                        name={"reactionsOfKoSet"}
+                                        onChange={(event, value) => {
+                                            dispatch({type: "SETREACTIONOFKO", payload: value})
+                                        }}
+                                        renderInput={params => (
+                                            <TextField
+                                                onChange={(e) => dispatch({
+                                                    type: "SETREACTIONOFKO",
+                                                    payload: e.target.value
+                                                })}
+                                                value={state.reactionOfKo}
+                                                {...params}
+                                                label="Initialize"
+                                                variant="outlined"
+                                            />
+                                        )}
+                                    />
+                                </ToolTipBig>
+                                <ToolTipBig title={"Submit chosen reaction"} placement={"right"}>
+                                    <button className={"downloadButton"} onClick={() => handleReactionSubmit()}>Submit
+                                    </button>
+                                </ToolTipBig>
                             </div>
 
                             }
                         </li>
                     )
                 })}
-            </ul>
-            <button className={"downloadButton"} onClick={() => handleKoRequest()}>Submit</button>
-        </div>
-    )
-    return (
-        <Modal className={classes.modal} open={state.showKoModal} onClose={() => dispatch({type: "SWITCHSHOWKOMODAL"})}>
-            {body}
-        </Modal>
-    )
-}
+                    </ul>
+                    <button className={"downloadButton"} onClick={() => handleKoRequest()}>Submit</button>
+                    </div>
+                    )
+                    return (
+                    <Modal className={classes.modal} open={state.showKoModal} onClose={() => dispatch({type: "SWITCHSHOWKOMODAL"})}>
+                {body}
+                    </Modal>
+                    )
+                }
 
-export default KoReactions
+                    export default KoReactions

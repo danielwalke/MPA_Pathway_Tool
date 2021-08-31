@@ -200,6 +200,7 @@ export const onSBMLModuleFileChange = async (event, dispatch, state) => {
             dispatch({type:"SETLISTOFSPECIES", payload: listOfSpecies})
             dispatch({type:"SETLISTOFREACTIONS", payload: listOfReactions})
             dispatch({type:"ADD_PATHWAY_TO_AUDIT_TRAIL", payload: file.name})
+            dispatch({type:"SET_PATHWAY_FILE", payload: file})
             dispatch({type:"SETISMISSINGANNOTATIONS", payload: isMissingAnnotations}) //if true, annotationWarningModal will show up
             if(!isMissingAnnotations){ //all compounds are perfectly annotated :)
                 //add additional information to each reaction

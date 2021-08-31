@@ -4,6 +4,7 @@ import {TextField} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import {requestGenerator} from "../request/RequestGenerator";
 import {endpoint_getFilteredTaxonomicNames} from "../../App Configurations/RequestURLCollection";
+import {ToolTipBig} from "../main/user-interface/UserInterface";
 
 
 const TaxonomyNcbi = (props) => {
@@ -32,6 +33,7 @@ const TaxonomyNcbi = (props) => {
     }
     return (
         <div style={{margin:"2px 0"}}>
+            <ToolTipBig title={"Search a taxonomic name"} placement={"left"}>
                 <Autocomplete
                     size={"small"}
                     id={`taxonomySearch`}
@@ -49,7 +51,7 @@ const TaxonomyNcbi = (props) => {
                         />
                     )}
                 />
-
+            </ToolTipBig>
         </div>
     );
 };

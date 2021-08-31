@@ -3,14 +3,16 @@ import React from "react";
 import {saveAs} from "file-saver";
 import {filterTaxon} from "../../data-mapping/TaxonomyFilter";
 import clonedeep from "lodash/cloneDeep"
+import {ToolTipBig} from "../../main/user-interface/UserInterface";
 
 const HeatMapCsvExporter = (props) => {
     let proteinState = useSelector(state => state.mpaProteins)
-
+    const {setDownloadedHeatMapData} = props
     const dispatch = useDispatch()
 
     const handleHeatMapExport = () => {
         dispatch({type:"SETLOADING", payload:true})
+        setDownloadedHeatMapData(true) // boolean for checking whether mapping was performed
         proteinState = clonedeep(proteinState)
         const {generalState, graphState} = clonedeep(props)
         console.time("HeatMap")
@@ -55,10 +57,12 @@ const HeatMapCsvExporter = (props) => {
 
     return (
         <div>
+            <ToolTipBig title={"Click for downloading mapped data as CSV"} placement={"right"}>
             <button className={"downloadButton"}
                     disabled={!props.graphState.data.nodes.length > 0 || !proteinState.proteinSet.size > 0}
                     onClick={() => handleHeatMapExport()}>Download Data
             </button>
+            </ToolTipBig>
         </div>
     )
 }

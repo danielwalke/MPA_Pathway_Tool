@@ -6,18 +6,21 @@ import MpaInput from "../csv upload/experimental data/MpaInput";
 import ModuleCsvFileInput from "../csv upload/module file/ModuleCsvFileInput";
 import ModuleJSONInput from "../json upload/ModuleJSONInput";
 import SbmlReader from "../sbmlParser/SbmlReader/SbmlReader";
+import Example from "../example/Example";
 
 
-const UploadModal = () =>{
+const UploadModal = (props) =>{
     const classes = useStyles();
     const state = useSelector(state => state.general)
     const dispatch= useDispatch()
     const body = (
         <div className={classes.paper}>
-            <MpaInput/>
+            <MpaInput setOpen={props.setOpen}/>
             <ModuleCsvFileInput/>
             <ModuleJSONInput/>
             <SbmlReader/>
+            <hr/>
+            <Example/>
         </div>
     )
 

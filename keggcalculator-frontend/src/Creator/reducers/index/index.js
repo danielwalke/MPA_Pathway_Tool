@@ -5,6 +5,7 @@ import {generalReducer} from "../General";
 import {keggReactionReducer} from "../KeggReaction";
 import {graphReducer} from "../Graph";
 import {auditTrailReducer} from "../AuditTrail";
+import {fileReducer} from "../Files";
 
 export const allReducers = combineReducers({
     general: generalReducer,
@@ -13,4 +14,5 @@ export const allReducers = combineReducers({
     specificReaction:specificReactionReducer,
     mpaProteins: mpaProteinReducer,
     auditTrail: auditTrailReducer,
+    files: fileReducer
 })

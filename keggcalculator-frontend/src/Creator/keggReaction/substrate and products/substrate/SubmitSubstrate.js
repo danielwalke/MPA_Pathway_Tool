@@ -3,6 +3,7 @@ import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {handleSubmit} from "../SubmitHandler";
 import "./Substrate.css"
+import {ToolTipBig} from "../../../main/user-interface/UserInterface";
 
 
 
@@ -17,6 +18,7 @@ const  SubmitSubstrate = () => {
 
     const substrateId = keggState.substrate? keggState.substrate.substring(keggState.substrate.length - 6, keggState.substrate.length) : ""
     return(
+        <ToolTipBig title={"Submit the chosen substrate"} placement={"right"}>
         <button
             disabled={!isRequestValid(keggState.substrate)}
             className={"submitButtonSubstrate"}
@@ -29,6 +31,7 @@ const  SubmitSubstrate = () => {
                     .then(() => dispatch({type: "SWITCHLOADING"}))
 
             }}> Submit Substrate</button>
+        </ToolTipBig>
     )
 }
 

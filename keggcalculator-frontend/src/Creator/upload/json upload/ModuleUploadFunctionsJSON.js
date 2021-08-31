@@ -5,6 +5,7 @@ import {
     REACTION_NODE_SYMBOL
 } from "../../graph/Constants";
 
+
 /**
  * functions for drawing everything in the graph
  * @param reactions
@@ -38,17 +39,31 @@ const linkInData = (links, newLink) => {
 
 // return a node object
 const createNode = (id, color, symbolType, x, y, opacity, reversible) => {
-    return (
-        {
-            id: id,
-            color: color,
-            symbolType: symbolType,
-            x: x,
-            y: y,
-            opacity: opacity,
-            reversible: reversible
-        }
-    )
+    if(symbolType === "circle"){
+        return (
+            {
+                id: id,
+                color: color,
+                symbolType: "circle",
+                x: x,
+                y: y,
+                opacity: opacity,
+                reversible: reversible,
+            }
+        )
+    }else{
+        return (
+            {
+                id: id,
+                color: color,
+                x: x,
+                y: y,
+                opacity: opacity,
+                reversible: reversible,
+                symbolType:"diamond"
+            })
+    }
+
 }
 
 //return a link object

@@ -4,6 +4,7 @@ import {getReactions} from "../DownloadFunctions";
 import {getNodePosition} from "../NodePosition";
 import {saveAs} from "file-saver";
 import clonedeep from "lodash/cloneDeep"
+import {ToolTipBig} from "../../main/user-interface/UserInterface";
 
 const JSONDownloader = (props) => {
 
@@ -70,9 +71,11 @@ const JSONDownloader = (props) => {
 
     return (
         <div>
+            <ToolTipBig title={"Click for downloading the pathway as JSON"} placement={"right"}>
             <button disabled={!props.graphState.data.nodes.length > 0} className={"downloadButton"}
                     onClick={handleJsonDownload}>Download Json
             </button>
+            </ToolTipBig>
         </div>
     )
 }

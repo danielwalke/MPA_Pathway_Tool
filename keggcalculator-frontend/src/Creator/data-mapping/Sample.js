@@ -2,6 +2,8 @@ import React from "react"
 import {useDispatch, useSelector} from "react-redux";
 import "./Sample.css"
 import {filterTaxon} from "./TaxonomyFilter";
+import ReactTooltip from "react-tooltip";
+import {ToolTipBig} from "../main/user-interface/UserInterface";
 
 
 const matchKoOrEc = (proteinKoAndEc, reactionKoNumbers, reactionEcNumbers) => {
@@ -84,7 +86,7 @@ const Sample = () => {
     const dispatch = useDispatch()
     //getSampleColumnSizes(state.proteinState.sampleNames)
     return (
-        <div style={{}}>
+        <div>
             {state.mpaProteins.proteinSet.size > 0 &&
             <div style={{
                 display: "grid",
@@ -94,18 +96,19 @@ const Sample = () => {
             }}>
                 {state.mpaProteins.sampleNames.map((sampleName, index) => <div
                     style={{width: "inherit", overflowX: "scroll"}}>
-                    <button
-                        key={"B".concat(index.toString())}
-                        className={"sampleButton"}
-                        onClick={(e) => handleSample(e, index, state, dispatch)}>
-                        {sampleName}
-                    </button>
+                    <ToolTipBig title={`Click for mapping experimental data of the sample ${sampleName} on the pathway`}
+                                placement={"top"}>
+                        <button
+                            key={"B".concat(index.toString())}
+                            className={"sampleButton"}
+                            onClick={(e) => handleSample(e, index, state, dispatch)}>
+                            {sampleName}
+                        </button>
+                    </ToolTipBig>
                 </div>)}
             </div>
             }
         </div>
-
-
     )
 }
 export default Sample

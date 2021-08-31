@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import DeleteModal from "../graph/click node/delete_rightClick/DeleteModal";
 import ReactionDetails from "../specReaction/reaction/ReactionDetails";
 import StructureModal from "../graph/double click node/StructureModal";
-import UserInterface from "./user-interface/UserInterface";
+import UserInterface, {ToolTipBig} from "./user-interface/UserInterface";
 import "./Main.css"
 import Sample from "../data-mapping/Sample";
 import NextReactionModal from "../graph/click node/leftClick/NextReactionModal";
@@ -27,6 +27,8 @@ import {
     endpoint_getKoNumberList,
     endpoint_getModuleList, endpoint_getReactionList, endpoint_getTaxonomyList
 } from "../../App Configurations/RequestURLCollection";
+import ReactTooltip from "react-tooltip";
+import {host} from "../../App Configurations/SystemSettings";
 //main class for graph visualization and UI for modifying graph
 //BUG: API doppelt C00668 bei C00267 => einmal linke Seite, einmal Rechte vllt anpassen in meiner api
 //FILTER: in api filter after compounds who only have reactions-> others dont make sense
@@ -34,15 +36,15 @@ import {
 const moduleUrl = endpoint_getModuleList
 const ecNumbersUrl = endpoint_getEcNumberList
 const koNumbersUrl = endpoint_getKoNumberList
-const reactionUrl= endpoint_getReactionList
+const reactionUrl = endpoint_getReactionList
 const taxonomyListLink = endpoint_getTaxonomyList
 export const taxonomicRanks = ["superkingdom", "kingdom", "phylum", "class", "order", "family", "genus", "species"]
 
 export const useStylesMain = makeStyles({
     icon: {
         marginLeft: "50vw",
-        marginTop:"20vh",
-        bottom:"1px",
+        marginTop: "20vh",
+        bottom: "1px",
     },
     drawer: {
         overflow: "auto"
@@ -51,7 +53,7 @@ export const useStylesMain = makeStyles({
         height: "20vh"
     },
     indicator: {
-        backgroundColor:"red"
+        backgroundColor: "red"
     }
 });
 
@@ -78,17 +80,20 @@ const Main = () => {
                 type: "SETMODULELIST",
                 payload: response.data
             }))
-        requestGenerator("GET", reactionUrl, "","").then(resp=>{
-            dispatch({type:"SETKEGGREACTIONS", payload: resp.data})
+            requestGenerator("GET", reactionUrl, "", "").then(resp => {
+                dispatch({type: "SETKEGGREACTIONS", payload: resp.data})
 
-        })
-            window.onbeforeunload = exit
+            })
+            if (host !== "http://127.0.0.1") {
+                window.onbeforeunload = exit
+            }
         }, []
     )
 
-    useEffect(()=>{
-        console.log(auditTrail)
-    })
+    useEffect(()=> {
+        console.log(graphState.data.nodes.map(node => node.color))
+    },[graphState.data.nodes])
+
 
     const classes = useStylesMain()
 
@@ -109,20 +114,22 @@ const Main = () => {
                 <div className={"graph"}>
                     <GraphVisualization dispatch={dispatch}/>
                 </div>
-                <div className={open? "footer" :  ""}>
+                <div className={open ? "footer" : ""}>
                     <Toolbar>
-                        <IconButton
-                            color="inherit"
-                            edge={"end"}
-                            aria-label="open drawer"
-                            onClick={() => {
-                                setOpen(true)
-                            }}
-                            className={classes.icon}
+                        <ToolTipBig title={"Click to open the mapping user-interface"} placement={"top"}>
+                            <IconButton
+                                color="inherit"
+                                edge={"end"}
+                                aria-label="open drawer"
+                                onClick={() => {
+                                    setOpen(true)
+                                }}
+                                className={classes.icon}
 
-                        >
-                            <ExpandLessIcon/>
-                        </IconButton>
+                            >
+                                <ExpandLessIcon/>
+                            </IconButton>
+                        </ToolTipBig>
                     </Toolbar>
                     {proteinState.proteinSet.size > 0 && <UserCaptionThree/>}
                     <Drawer
@@ -137,11 +144,13 @@ const Main = () => {
                             {paper: classes.drawerPaper}
                         }
                     >
+                        <ToolTipBig title={"Click to close the mapping user-interface"} placement={"top"}>
                         <IconButton onClick={() => {
                             setOpen(false)
                         }}>
                             {<CloseIcon/>}
                         </IconButton>
+                        </ToolTipBig>
                         <div>
                             {proteinState.proteinSet.size === 0 && <h4>Waiting for experimental data...</h4>}
                         </div>

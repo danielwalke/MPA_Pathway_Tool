@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Checkbox} from "@material-ui/core";
+import {ToolTipBig} from "../../main/user-interface/UserInterface";
 
 const KeyCompoundChanger = (props) => {
     const [isKeyCompound, setIsKeyCompound] = useState(false)
@@ -20,7 +21,9 @@ const KeyCompoundChanger = (props) => {
     }
 
     return (
-        <div><Checkbox checked={isKeyCompound} onClick={(e) => changeOpacity(e)}/>key-Compound?</div>
+        <div> <ToolTipBig title={isKeyCompound? "Reduce opacity of chosen node" : "Increase opacity of chosen node"} placement={"right"}>
+            <Checkbox checked={isKeyCompound} onClick={(e) => changeOpacity(e)}/>
+        </ToolTipBig>key-Compound?</div>
     );
 };
 

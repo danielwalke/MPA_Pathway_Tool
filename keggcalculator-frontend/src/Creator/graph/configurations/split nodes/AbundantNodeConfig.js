@@ -7,6 +7,7 @@ import {isRequestValid} from "../../../request/RequestValidation";
 import DeleteIcon from "@material-ui/icons/Delete";
 import "./AbundantNodeConfig.css"
 import {COMPOUND_NODE_COLOR} from "../../Constants"
+import {ToolTipBig} from "../../../main/user-interface/UserInterface";
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -73,25 +74,31 @@ const AbundantNodeConfig = () => {
         <div className={classes.paper}>
             <div style={{display: "grid", gridTemplateColumns: "8fr 2fr"}}>
                 <Compound/>
+                <ToolTipBig title={"Select node for splitting"} placement={"right"}>
                 <button className={"addNode"} disabled={!isRequestValid(graphState.abundantCompound)}
                         onClick={() => dispatch({
                             type: "ADDABUNDANTCOMPOUND",
                             payload: graphState.abundantCompound
                         })}>Add
                 </button>
+                </ToolTipBig>
             </div>
             <br/>
             chosen Compounds:
             <ul style={{listStyleType: "none"}}>{graphState.abundantCompounds.map((comp, index) => {
                 return (
                     <li key={comp}>
+                        <ToolTipBig title={"Unselect node for splitting"} placement={"right"}>
                         <DeleteIcon
                             onClick={() => dispatch({type: "SPLICEABUNDANTCOMPOUNDS", payload: index})}/>{comp}
+                        </ToolTipBig>
                     </li>
                 )
             })}</ul>
             <div style={{display: "flex", justifyContent: "center"}}>
+                <ToolTipBig title={"Submit splitting nodes"} placement={"right"}>
                 <button className={"submitNodes"} onClick={() => handleAbundantCompoundsSubmit()}>Submit</button>
+                </ToolTipBig>
             </div>
 
         </div>
@@ -115,12 +122,12 @@ export default AbundantNodeConfig
 const Compound = () => {
     const graphState = useSelector(state => state.graph)
     console.log(graphState.abundantCompoundOptions)
-    return (<Field
+    return (<ToolTipBig title={"Choose a node"} placement={"right"}><Field
         // className={"compound"}
         dispatchType={"SETABUNDANTCOMPOUND"}
         id={"Abundantompound"}
         boolean={true}
         dispatchTypeOptions={"SETABUNDANTCOMPOUNDOPTIONS"}
         options={graphState.data.nodes.map(node => node.id)}
-        compound={graphState.abundantCompound}/>)
+        compound={graphState.abundantCompound}/></ToolTipBig>)
 }

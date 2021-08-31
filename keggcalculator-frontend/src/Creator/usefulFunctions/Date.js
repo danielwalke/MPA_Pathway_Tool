@@ -1,6 +1,6 @@
 export const getCurrentDateMinute = () =>{
     const today = new Date();
-    const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate() + "; " + toTwoDigit(today.getHours()) + ":" + toTwoDigit(today.getMinutes());
+    const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate() + "; " + toTwoDigit(today.getHours()) + ":" + toTwoDigit(today.getMinutes() + toTwoDigit(today.getSeconds()));
     return date;
 }
 

@@ -38,7 +38,7 @@ const defaultState = {
 export const auditTrailReducer = (state = defaultState, action) => {
     const {type, payload} = action;
     switch (type) {
-        case "ADD_EXPERIMENTAL_DATA_TO_AUDIT_TRAIL": //TODO: change this to the dispatch i wanna track
+        case "ADD_EXPERIMENTAL_DATA_TO_AUDIT_TRAIL":
             return {
                 ...state, uploadExperimentalData: [...state.uploadExperimentalData, {
                     time: getCurrentDateMinute(),

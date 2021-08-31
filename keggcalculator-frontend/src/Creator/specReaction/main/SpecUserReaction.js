@@ -9,6 +9,8 @@ import SpecKoEc from "../KoAndEcNumbers/SpecKoEc";
 import {useDispatch, useSelector} from "react-redux";
 import {makeStyles} from "@material-ui/core";
 import Modal from "@material-ui/core/Modal";
+import TextField from "@material-ui/core/TextField";
+import {ToolTipBig} from "../../main/user-interface/UserInterface";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -35,7 +37,7 @@ const SpecUserReaction = () => {
     const numberOfExistentNodes = graphStates.data.nodes.length + specReactionStates.specSubstrates.length + specReactionStates.specProducts.length
     const classes = useStyles()
     const body = (
-        <div className={classes.paper} style={{width:"40vw"}}>
+        <div className={classes.paper} style={{width: "40vw"}}>
             <div className={"mainContainerSpec"}>
                 <SpecSubstrates className={"substrate"} index={numberOfExistentNodes}/>
                 <SpecProducts className={"product"} index={numberOfExistentNodes}/>
@@ -43,11 +45,21 @@ const SpecUserReaction = () => {
                 <SpecKoEc className={"koAndEc"}/>
                 <SpecTaxonomy className={"taxonomy"}/>
                 <div className={"submitSpecReaction"}>
-                    <button className={"buttonShowReaction"} onClick={()=> dispatch({type:"SWITCHSHOWREACTIONDETAILS"})}>show Reaction</button>
+                    <ToolTipBig
+                        title={"See reaction details"}
+                        placement={"left"}>
+                        <button className={"buttonShowReaction"}
+                                onClick={() => dispatch({type: "SWITCHSHOWREACTIONDETAILS"})}>show Reaction
+                        </button>
+                    </ToolTipBig>
+                    <ToolTipBig
+                        title={"Submit reaction"}
+                        placement={"right"}>
                     <button className={"buttonSpec"}
                             disabled={specReactionStates.specReaction.length < 1}
-                            onClick={(e) => handleSpecSubmit(e, graphStates, specReactionStates, dispatch,state)}>Submit
+                            onClick={(e) => handleSpecSubmit(e, graphStates, specReactionStates, dispatch, state)}>Submit
                     </button>
+                    </ToolTipBig>
                 </div>
 
             </div>

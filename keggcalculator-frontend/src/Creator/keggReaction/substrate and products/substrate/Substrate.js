@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import SubmitSubstrate from "./SubmitSubstrate";
 import "./Substrate.css"
 import "../../../main/Buttons.css"
+import {ToolTipBig} from "../../../main/user-interface/UserInterface";
 
 const Substrate = () => {
     const state = useSelector(state => state.keggReaction)
@@ -25,25 +26,26 @@ const Substrate = () => {
     return (
         <div className={"substrateContainer"}>
             {state.substrate && state.substrate.length > 2 ?
-                <Autocomplete
-                    size={"small"}
-                    options={state.options}
-                    className={"substrate"}
-                    name={"substrate"}
-                    onChange={(event, value) => {
-                        dispatch({type: "SETSUBSTRATE", payload: value})
-                    }}
-                    renderInput={params => (
-                        <TextField
-                            onChange={(e) => handleAutoChange(e)}
-                            value={state.substrate}
-                            {...params}
-                            label="Initialize"
-                            variant="outlined"
-                        />
-                    )}
-                /> :
-                <Autocomplete
+                <ToolTipBig title={"Search a substrate"} placement={"left"}>
+                    <Autocomplete
+                        size={"small"}
+                        options={state.options}
+                        className={"substrate"}
+                        name={"substrate"}
+                        onChange={(event, value) => {
+                            dispatch({type: "SETSUBSTRATE", payload: value})
+                        }}
+                        renderInput={params => (
+                            <TextField
+                                onChange={(e) => handleAutoChange(e)}
+                                value={state.substrate}
+                                {...params}
+                                label="Initialize"
+                                variant="outlined"
+                            />
+                        )}
+                    /></ToolTipBig> :
+                <ToolTipBig title={"Type the first 3 letters of the substrate"} placement={"left"}><Autocomplete
                     size={"small"}
                     id="combo-box-demo"
                     options={["Type in..."]}
@@ -58,12 +60,12 @@ const Substrate = () => {
                             variant="outlined"
                         />
                     )}
-                />
+                /></ToolTipBig>
             }
             {/*<Checkbox*/}
             {/*    // className={"checkBox"}*/}
             {/*    checked={state.substrate.length > 0 && isRequestValid(state.substrate)}/>*/}
-                <SubmitSubstrate className={"submit"}/>
+            <SubmitSubstrate className={"submit"}/>
         </div>
     )
 }
