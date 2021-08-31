@@ -14,6 +14,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import {saveAs} from "file-saver"
 import MetaDataCalculator from "./MetaDataCalculator";
 import {ToolTipBig} from "../../Creator/main/user-interface/UserInterface";
+import {getCurrentDateMinute} from "../../Creator/usefulFunctions/Date";
 
 class UploadPanel extends Component {
 
@@ -32,7 +33,7 @@ class UploadPanel extends Component {
             if(response.status === 200){
                 const {message} = response.data;
                 if(message === "finished") {
-                    console.timeEnd("CalculatorTime")
+                    this.props.CalculatorStore.endTime = getCurrentDateMinute()
                     this.props.CalculatorStore.setDownloadStatusAndMessage(`${RequestURL.endpoint_download}/${jobID}`, message)
                     this.props.CalculatorStore.processing = false;
                 }
@@ -71,7 +72,7 @@ class UploadPanel extends Component {
     }
 
     startProcessing(){
-        console.time("CalculatorTime")
+        this.props.CalculatorStore.startTime = getCurrentDateMinute()
         this.props.CalculatorStore.processing = true;
         let MPAFileName = this.props.CalculatorStore.getMPAFile[0].name
         let moduleFileNames = [];

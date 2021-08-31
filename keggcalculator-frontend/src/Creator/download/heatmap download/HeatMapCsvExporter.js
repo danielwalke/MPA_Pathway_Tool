@@ -4,6 +4,7 @@ import {saveAs} from "file-saver";
 import {filterTaxon} from "../../data-mapping/TaxonomyFilter";
 import clonedeep from "lodash/cloneDeep"
 import {ToolTipBig} from "../../main/user-interface/UserInterface";
+import {getCurrentDateMinute} from "../../usefulFunctions/Date";
 
 const HeatMapCsvExporter = (props) => {
     let proteinState = useSelector(state => state.mpaProteins)
@@ -11,11 +12,11 @@ const HeatMapCsvExporter = (props) => {
     const dispatch = useDispatch()
 
     const handleHeatMapExport = () => {
+        dispatch({type:"SET_MAPPING_START_TIME", payload: getCurrentDateMinute()})
         dispatch({type:"SETLOADING", payload:true})
         setDownloadedHeatMapData(true) // boolean for checking whether mapping was performed
         proteinState = clonedeep(proteinState)
         const {generalState, graphState} = clonedeep(props)
-        console.time("HeatMap")
         dispatch({type: "SETLOADING", payload: true})
         const graphReactionObjects = graphState.data.nodes.filter(node => node.id.match(/\s[R,U][0-9][0-9][0-9][0-9][0-9]/))
         const graphReactionSet = new Set()
@@ -51,7 +52,7 @@ const HeatMapCsvExporter = (props) => {
         saveAs(blob, "Reactions.csv")
         dispatch({type: "SETLOADING", payload: false})
         dispatch({type:"ADD_DATA_DOWNLOAD_TO_AUDIT_TRAIL"})
-        console.timeEnd("HeatMap")
+        dispatch({type:"SET_MAPPING_END_TIME", payload: getCurrentDateMinute()})
     }
 
 

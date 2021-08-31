@@ -22,7 +22,7 @@ const Metadata = (props) => {
         }
         let metaDataBlob = null
         if (fileStates.experimentalDataFile) {
-            const metaData = `experimental data from the file ${fileStates.experimentalDataFile.name} were successfully mapped on the ${pathwayName}`
+            const metaData = `${generalState.mappingStart} - ${generalState.mappingEnd} \texperimental data from the file ${fileStates.experimentalDataFile.name} were successfully mapped on the ${pathwayName}`
             metaDataBlob = new Blob(new Array(metaData.trim()), {type: "text/plain;charset=utf-8"})
         }
         const nullMetaDataBlob = new Blob(new Array("no data were mapped"), {type: "text/plain;charset=utf-8"})

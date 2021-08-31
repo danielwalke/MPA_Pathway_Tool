@@ -17,7 +17,7 @@ const MetadataCalculator = (props) => {
         expData.file(expDataFile.name, expDataFile)
         pathwayFiles.forEach(pathwayFile => pathwayFolder.file(pathwayFile.name, pathwayFile))
 
-        const metaData = `experimental data from ${expDataFile.name} were successfully mapped on the following pathways ${pathwayFiles.map(pathwayFile => `\n - ${pathwayFile.name}`)}`
+        const metaData = `${props.CalculatorStore.startTime} - ${props.CalculatorStore.endTime}\texperimental data from ${expDataFile.name} were successfully mapped on the following pathways ${pathwayFiles.map(pathwayFile => `\n - ${pathwayFile.name}`)}`
         const metaDataBlob = new Blob(new Array(metaData.trim()), {type: "text/plain;charset=utf-8"})
         const metaDataFile= new File(new Array(metaDataBlob), "metadata.txt")
         zip.file(metaDataFile.name, metaDataFile)

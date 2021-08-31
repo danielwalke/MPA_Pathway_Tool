@@ -53,6 +53,8 @@ const defaultState = {
     addLinkModal: false, //modal for adding new links useful for signaling pathway
     listOfReactionGlyphs: [], //positons of nodes in sbml file
     taxonomicNames:[], //taxonomic names received from server after submitting taxonomic rank
+    mappingStart: "", //start time of mapping
+    mappingEnd: "" //end time of mapping
 
 }
 
@@ -189,6 +191,10 @@ export const generalReducer = (state = defaultState, action) => {
             return {...state, keggReactions: [...state.keggReactions, payload]}
         case "SET_TAXONOMIC_NAMES":
             return {...state, taxonomicNames: payload}
+        case "SET_MAPPING_START_TIME":
+            return {...state, mappingStart: payload}
+        case "SET_MAPPING_END_TIME":
+            return {...state, mappingEnd: payload}
         default:
             return state;
     }

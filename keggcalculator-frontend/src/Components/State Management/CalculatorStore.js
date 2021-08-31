@@ -15,6 +15,10 @@ class Calculator_Store {
 
         this.processing = false;
 
+        this.startTime = "";
+
+        this.endTime = ""
+
         this.error = undefined;
         this.setUploadedFiles = this.setUploadedFiles.bind(this)
         this.setJobIDAndMessage = this.setJobIDAndMessage.bind(this)
@@ -100,6 +104,8 @@ class Calculator_Store {
 decorate(Calculator_Store,{
     jobID: observable,
     MPAFile: observable,
+    startTime: observable,
+    endTime: observable,
     moduleFiles: observable,
     downloadLink: observable,
     processing: observable,
