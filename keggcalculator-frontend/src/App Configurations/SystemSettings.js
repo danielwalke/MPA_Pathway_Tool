@@ -1,4 +1,4 @@
-// export const host = "http://mpa-pathwaymapper.ovgu.de";
+// export const host = "https://mpa-pathwaymapper.ovgu.de";
 
 
 //TODO: Change the host here
