@@ -60,7 +60,8 @@ const createNode = (id, color, symbolType, x, y, opacity, reversible) => {
                 y: y,
                 opacity: opacity,
                 reversible: reversible,
-                symbolType:"diamond"
+                symbolType:"diamond",
+                size: 100,
             })
     }
 

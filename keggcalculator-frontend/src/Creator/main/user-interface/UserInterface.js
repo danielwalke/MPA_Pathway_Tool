@@ -157,16 +157,16 @@ const UserInterface = () => {
                     <div className={"keggReaction"}>
                         <ToolTipBig title={"Click for adding a reaction from KEGG"}  placement={"right"}>
                             <button className={"downloadButton"}
-                                    onClick={handleShowKeggReaction}>Kegg
-                                Reactions
+                                    onClick={handleShowKeggReaction}>Add  Kegg
+                                Reaction
                             </button>
                         </ToolTipBig>
                     </div>
                     <div className={"userReaction"}>
                         <ToolTipBig title={"Click for defining your own reaction"}  placement={"right"}>
                             <button className={"downloadButton"}
-                                    onClick={handleShowSpecReaction}>User-defined
-                                Reactions
+                                    onClick={handleShowSpecReaction}>Add User-defined
+                                Reaction
                             </button>
                         </ToolTipBig>
                     </div>

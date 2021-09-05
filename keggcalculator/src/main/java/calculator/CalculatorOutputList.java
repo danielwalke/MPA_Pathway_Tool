@@ -87,19 +87,26 @@ public class CalculatorOutputList {
 		this.calcOutputList.add(calcOutput);
 	}
 
-	public void writeCSV(File outputCSV) {
+	public void writeCSV(String outputCSV, boolean isDetails) {
 		try {
-			BufferedWriter br = new BufferedWriter(new FileWriter(outputCSV));
-			br.write("index\t");
+			if(isDetails) {
+				outputCSV += "_detailed.csv";
+			}else {
+				outputCSV += ".csv";
+			}
+			BufferedWriter br = new BufferedWriter(new FileWriter(new File(outputCSV)));
+			if(isDetails) br.write("index\t");
 			br.write("pathway\t");
-			br.write("superkingdom\t");
-			br.write("kingdom\t");
-			br.write("phylum\t");
-			br.write("class\t");
-			br.write("order\t");
-			br.write("family\t");
-			br.write("genus\t");
-			br.write("species\t");
+			if(isDetails) {
+				br.write("superkingdom\t");
+				br.write("kingdom\t");
+				br.write("phylum\t");
+				br.write("class\t");
+				br.write("order\t");
+				br.write("family\t");
+				br.write("genus\t");
+				br.write("species\t");
+			}			
 			br.write("identified reactions\t");
 			br.write("total reactions in pathway\t");
 			br.write(getSampleHeaderString().trim());
@@ -108,8 +115,8 @@ public class CalculatorOutputList {
 			
 			for (int moduleIndex = 0; moduleIndex< this.calcOutputList.size(); moduleIndex++) {
 				CalculatorOutput calcOutput = this.calcOutputList.get(moduleIndex);
-				writePathwayHeader(br, calcOutput, moduleIndex, numberOfSamples);
-				writeTaxonomyQuants(br, calcOutput, moduleIndex, numberOfSamples);
+				writePathwayHeader(br, calcOutput, moduleIndex, numberOfSamples, isDetails);
+				if(isDetails) writeTaxonomyQuants(br, calcOutput, moduleIndex, numberOfSamples);
 			}
 			br.flush();
 			br.close();
@@ -162,17 +169,19 @@ e.printStackTrace();
 	}
 
 	private void writePathwayHeader(BufferedWriter br, CalculatorOutput calcOutput, int moduleIndex,
-			int numberOfSamples) throws IOException {
-		br.write(String.valueOf(moduleIndex+1)+"\t"); //index
+			int numberOfSamples, boolean isDetailed) throws IOException {
+		if(isDetailed) br.write(String.valueOf(moduleIndex+1)+"\t"); //index
 		br.write(calcOutput.getModule().replace("\t", ";") + "\t"); //pathway name/ module name
-		br.write("-\t");
-		br.write("-\t");
-		br.write("-\t");
-		br.write("-\t");
-		br.write("-\t");
-		br.write("-\t");
-		br.write("-\t");
-		br.write("-\t");
+		if(isDetailed) {
+			br.write("-\t");
+			br.write("-\t");
+			br.write("-\t");
+			br.write("-\t");
+			br.write("-\t");
+			br.write("-\t");
+			br.write("-\t");
+			br.write("-\t");
+		}
 		br.write(calcOutput.getStepMpa() + "\t");
 		br.write(calcOutput.getStepTotal() + "\t");
 		if (calcOutput.getQuantList().isEmpty()) {

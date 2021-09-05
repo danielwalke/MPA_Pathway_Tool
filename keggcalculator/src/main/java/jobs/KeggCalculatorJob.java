@@ -105,7 +105,8 @@ public class KeggCalculatorJob implements Runnable {
 			calc.loopModules(keggData, keggDataUser, proteins, outputList);
 			
 			//write output-file
-			outputList.writeCSV(new File(KeggCalculatorConstants.DOWNLOAD_DIR + this.job.jobID + ".csv"));
+			outputList.writeCSV(KeggCalculatorConstants.DOWNLOAD_DIR + this.job.jobID, false);
+			outputList.writeCSV(KeggCalculatorConstants.DOWNLOAD_DIR + this.job.jobID, true);
 			outputList.writeCSVUnmatchedProteins(new File(KeggCalculatorConstants.DOWNLOAD_DIR + this.job.jobID + "_unmatchedProteins" + ".csv"));
 			
 			System.out.println("Done");

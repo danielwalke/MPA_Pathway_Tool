@@ -15,6 +15,7 @@ import {saveAs} from "file-saver"
 import MetaDataCalculator from "./MetaDataCalculator";
 import {ToolTipBig} from "../../Creator/main/user-interface/UserInterface";
 import {getCurrentDateMinute} from "../../Creator/usefulFunctions/Date";
+import TaxonomicDetails from "./taxonomicDetails/TaxonomicDetails";
 
 class UploadPanel extends Component {
 
@@ -140,11 +141,12 @@ class UploadPanel extends Component {
                     <ToolTipBig title={"Download unmatched features, e.g. unmatched proteins"} placement={"top"}>
                     <Button disabled={this.props.CalculatorStore.downloadLink === undefined} variant={"contained"} color={"primary"} endIcon={<GetAppIcon/>} onClick={() => this.downloadDataUnmatchedProteins(this.state.jobID)}>Download unmatched Proteins</Button>
                     </ToolTipBig>
+                    <TaxonomicDetails jobId={this.props.CalculatorStore.jobID} isNotFinished={this.props.CalculatorStore.downloadLink === undefined}/>
                     <MetaDataCalculator/>
-                    <ToolTipBig title={"Start mapping"} placement={"right"}>
+
                     <Button disabled={this.props.CalculatorStore.downloadLink !== undefined || typeof this.props.CalculatorStore.getMPAFile === "undefined" || this.props.CalculatorStore.processing}
                             variant={"contained"} color={"primary"} onClick={() => this.startProcessing()} endIcon={<KeyboardArrowRightIcon/>}>Start</Button>
-                    </ToolTipBig>
+
                 </div>
                 {(this.props.CalculatorStore.processing || this.props.CalculatorStore.error) &&
                 <Snackbar anchorOrigin={{vertical: "bottom", horizontal: "right"}}

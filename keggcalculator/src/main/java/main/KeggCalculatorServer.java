@@ -127,11 +127,20 @@ public class KeggCalculatorServer {
 			creator.requestAccess.get("status").add(KeggCreatorService.getAccessDate());
 			return KeggHandleRequests.status(req, res, calculator, req.queryParams("jobid"));
 		});
+		
+		
 
 		get("/keggcalculator/download/:name", (req, res) -> {
 			creator.requestAccess.get("download").add(KeggCreatorService.getAccessDate());
 			// UUID jobID = UUID.fromString(req.queryParams("jobid"));
 			return KeggHandleRequests.download(req, res, calculator, req.params("name"));
+		});
+		
+		post("/keggcalculator/detailedContent", (req, res) -> {
+			//TODO: Delete files
+			creator.requestAccess.get("detailedContent").add(KeggCreatorService.getAccessDate());
+			// UUID jobID = UUID.fromString(req.queryParams("jobid"));
+			return KeggHandleRequests.getDetailedContent(req, res, calculator, req.queryParams("jobId"));
 		});
 
 		get("/keggcalculator/downloadunmatchedproteins/:name", (req, res) -> {
