@@ -24,6 +24,3 @@ yarn-error.log*
 /.idea/
 /package-lock.json
 /debug.log
-/src/Creator/graph/graph visualization/Square.js
-/src/Creator/graph/graph visualization/Square.svg
-/src/Creator/graph/graph visualization/squaredSquare.svg
