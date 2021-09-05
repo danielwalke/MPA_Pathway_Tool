@@ -62,10 +62,10 @@ class DropZone extends Component {
         let file = this.props.fileType === "MPAFile" ? this.props.CalculatorStore.getMPAFile : this.props.CalculatorStore.getModuleFiles;
         return (
             <div>
-                <ReactDropZone onDrop={files => this.uploadedFiles(files)} accept={"application/vnd.ms-excel,application/json,text/xml"}>
+                <ReactDropZone onDrop={files => this.uploadedFiles(files)} accept={"application/vnd.ms-excel,application/json,text/xml,text/comma-separated-values,text/plain"}>
                     {({getRootProps,getInputProps, isDragActive, isDragReject, isDragAccept}) => (
                         <div {...getRootProps({style: customStyle.dropZone})}>
-                            <input {...getInputProps()} accept={".CSV,.JSON,.XML"}/>
+                            <input {...getInputProps()} accept={".CSV,.JSON,.XML,.TXT"}/>
                             {!isDragActive && <div style={{padding: "10px"}}>{this.props.message}</div>}
                             {isDragReject && "Unsupported file format"}
                             {isDragAccept && "Drop here...."}
