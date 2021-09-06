@@ -8,6 +8,7 @@ import {useStyles} from "../../../Creator/ModalStyles/ModalStyles";
 import TaxonomicDetailsBody from "./TaxonomicDetailsBody";
 import {ToolTipBig} from "../../../Creator/main/user-interface/UserInterface";
 
+
 const TaxonomicDetails = (props) => {
     const [data, setData] = useState("")
     const [open, setOpen] = useState(false)
@@ -29,7 +30,7 @@ const TaxonomicDetails = (props) => {
 
     return (
         <div>
-            <Modal  className={classes.modal} open={open} onClose={() => setOpen(false)}><TaxonomicDetailsBody classes={classes} data={data}/></Modal>
+            <Modal  className={classes.modal} open={open} onClose={() => setOpen(false)}><TaxonomicDetailsBody classes={classes} data={data} jobId={props.jobId} CalculatorStore={props.CalculatorStore}/></Modal>
             <ToolTipBig title={"See details about mapping"} placement={"top"}>
             <Button variant={"contained"} disabled={props.isNotFinished}
                     color={"primary"} endIcon={<GetAppIcon/>}

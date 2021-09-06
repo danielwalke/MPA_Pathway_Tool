@@ -118,6 +118,12 @@ public class KeggHandleRequests {
 	}
 	
 	// handles download of output-csv-file
+	public static HttpServletResponse downloadDetails(Request req, Response res, KeggCalculatorService calculator,
+			String jobID) {
+		return calculator.getDownloadDetails(req, res, jobID);
+	}
+	
+	// handles download of output-csv-file
 	public static String getDetailedContent(Request req, Response res, KeggCalculatorService calculator,
 			String jobID) throws IOException {
 		return calculator.getDetailedContent(req, res, jobID);

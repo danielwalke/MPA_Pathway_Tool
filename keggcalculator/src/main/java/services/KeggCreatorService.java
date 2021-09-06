@@ -82,6 +82,8 @@ public class KeggCreatorService {
 		this.requestAccess.put("taxonomyByArray", new ArrayList<>());
 		this.requestAccess.put("taxonomylist", new ArrayList<>());
 		this.requestAccess.put("detailedContent", new ArrayList<>());
+		this.requestAccess.put("downloadDetails", new ArrayList<>());
+		
 		
 	}
 

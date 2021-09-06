@@ -59,7 +59,6 @@ public class DeleteThread implements Runnable {
 	public static void listFilesForFolder(File folder, ArrayList<String> filePaths, String jobId) {
 	    for (final File fileEntry : folder.listFiles()) {
 	        if (fileEntry.isDirectory()) {
-	       
 	            listFilesForFolder(fileEntry, filePaths, jobId);
 	        } else {
 		    	String fileName = fileEntry.getName();

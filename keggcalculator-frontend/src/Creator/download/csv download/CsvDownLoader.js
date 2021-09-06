@@ -1,10 +1,9 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {saveAs} from "file-saver";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {getNodePosition} from "../NodePosition";
 import {addOutput, getReactions} from "../DownloadFunctions";
 import clonedeep from "lodash/cloneDeep";
-import Autocomplete from "@material-ui/lab/Autocomplete";
 import {ToolTipBig} from "../../main/user-interface/UserInterface";
 
 export const createCsvBlob = (generalState, graphState) => {

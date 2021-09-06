@@ -12,6 +12,8 @@ export const endpoint_download_unmatched_proteins = host + ":" + portNumber + "/
 
 export const endpoint_download = host + ":" + portNumber + "/keggcalculator/download";
 
+export const endpoint_download_details = host + ":" + portNumber + "/keggcalculator/downloadDetails";
+
 export const endpoint_getCompoundList = host + ":" + portNumber + "/keggcreator/compoundlist";
 
 export const endpoint_getReactionAndProduct =  host + ":" + portNumber + "/keggcreator/reactiondatabysubstrate";

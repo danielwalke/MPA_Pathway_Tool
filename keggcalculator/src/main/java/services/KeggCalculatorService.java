@@ -130,6 +130,28 @@ public class KeggCalculatorService {
 	}
 	
 	//returns download of output file of the calculator
+	public HttpServletResponse getDownloadDetails(Request request, Response response, String jobid) {
+        Path path = Paths.get(KeggCalculatorConstants.DOWNLOAD_DIR + "/" + jobid + "_detailed.csv");
+        byte[] data = null;
+        try {
+            data = Files.readAllBytes(path);
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+        HttpServletResponse raw = response.raw();
+        response.header("Content-Disposition", "attachment; filename="+"results_" + jobid + ".csv");
+        response.type("application/force-download");
+        try {
+            raw.getOutputStream().write(data);
+            raw.getOutputStream().flush();
+            raw.getOutputStream().close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return raw;
+	}
+	
+	//returns download of output file of the calculator
 	public String getDetailedContent(Request request, Response response, String jobid) throws IOException {
         String path = KeggCalculatorConstants.DOWNLOAD_DIR + "/" + jobid + "_detailed.csv";
         BufferedReader reader = new BufferedReader(new FileReader(new File(path)));

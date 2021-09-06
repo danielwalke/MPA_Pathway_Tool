@@ -3,6 +3,9 @@ import AddBoxIcon from '@material-ui/icons/AddBox';
 import { FormControl, makeStyles, Select} from "@material-ui/core";
 import {ToolTipBig} from "../../../Creator/main/user-interface/UserInterface";
 import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox';
+import {requestGenerator} from "../../../Request Generator/RequestGenerator";
+import * as RequestURL from "../../../App Configurations/RequestURLCollection";
+import {saveAs} from "file-saver";
 
 const TaxonomicDetailsBody = (props) => {
     const {data, classes} = props
@@ -61,6 +64,18 @@ const TaxonomicDetailsBody = (props) => {
         setLines(filteredLines)
     }
 
+    const downloadDetails = () =>{
+        requestGenerator("GET", `${RequestURL.endpoint_download_details}/${props.jobId}`, "", "", "").then(response => {
+            if(response.status === 200) {
+                let blob = new Blob(new Array(response.data.trim()), {type: "text/plain;charset=utf-8"});
+                saveAs(blob, "detailed_results.csv")
+            }
+            else {
+                props.CalculatorStore.setErrorMessage("Failed to Download");
+            }
+        })
+    }
+
 
     useEffect(() => {
         shrink()
@@ -69,6 +84,9 @@ const TaxonomicDetailsBody = (props) => {
     return (
         <div className={classes.paper}>
             <div style={{width: "80vw", height: "90vh", overflow: "auto"}}>
+                <ToolTipBig title={"download the complete table with details as *.csv"} placement={"right"}>
+                <button className={"downloadButton"} onClick={()=>downloadDetails()} style={{width:"20vw", margin:"5px"}}>Download details</button>
+                </ToolTipBig>
                 <table style={{margin:"5px 0"}}>
                     {lines.map((line, index) => <Line isFirst={index === 0} line={line} index={index}
                                                       handleExpand={handleExpand} columnSets={columnSets} shrink={shrink}

@@ -136,6 +136,12 @@ public class KeggCalculatorServer {
 			return KeggHandleRequests.download(req, res, calculator, req.params("name"));
 		});
 		
+		get("/keggcalculator/downloadDetails/:name", (req, res) -> {
+			creator.requestAccess.get("downloadDetails").add(KeggCreatorService.getAccessDate());
+			// UUID jobID = UUID.fromString(req.queryParams("jobid"));
+			return KeggHandleRequests.downloadDetails(req, res, calculator, req.params("name"));
+		});
+		
 		post("/keggcalculator/detailedContent", (req, res) -> {
 			//TODO: Delete files
 			creator.requestAccess.get("detailedContent").add(KeggCreatorService.getAccessDate());

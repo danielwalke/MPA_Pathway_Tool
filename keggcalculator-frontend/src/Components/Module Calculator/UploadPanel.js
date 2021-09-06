@@ -141,7 +141,7 @@ class UploadPanel extends Component {
                     <ToolTipBig title={"Download unmatched features, e.g. unmatched proteins"} placement={"top"}>
                     <Button disabled={this.props.CalculatorStore.downloadLink === undefined} variant={"contained"} color={"primary"} endIcon={<GetAppIcon/>} onClick={() => this.downloadDataUnmatchedProteins(this.state.jobID)}>Download unmatched Proteins</Button>
                     </ToolTipBig>
-                    <TaxonomicDetails jobId={this.props.CalculatorStore.jobID} isNotFinished={this.props.CalculatorStore.downloadLink === undefined}/>
+                    <TaxonomicDetails jobId={this.props.CalculatorStore.jobID} isNotFinished={this.props.CalculatorStore.downloadLink === undefined} CalculatorStore={this.props.CalculatorStore}/>
                     <MetaDataCalculator/>
 
                     <Button disabled={this.props.CalculatorStore.downloadLink !== undefined || typeof this.props.CalculatorStore.getMPAFile === "undefined" || this.props.CalculatorStore.processing}
