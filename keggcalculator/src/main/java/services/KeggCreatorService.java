@@ -589,9 +589,11 @@ public class KeggCreatorService {
 			TempFile.createTempFile();
 			TempFile.writeModelToTempFile(modelContainer);
 			
+			String pythonPath = new File("Python/pythonProject/main.py").getAbsolutePath();
+						
 			ProcessBuilder builder = new ProcessBuilder(Arrays.asList(
 					"C:\\Python39\\python",
-					"C:\\Users\\Emanu\\OneDrive\\Masterarbeit\\MPA Pathway Tool\\MPA_Pathway_Tool\\keggcalculator\\Python\\pythonProject\\main.py",
+					pythonPath,
 					"temp\\tempModel.txt"));
 
 			builder.redirectErrorStream(true); // print Errors from Python

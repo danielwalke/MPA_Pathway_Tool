@@ -22,10 +22,12 @@ const SBMLDownloader = (props) => {
         const [reactionsRaw, requestList] = MakeReactionList(generalState, graphState)
         const [speciesRaw, speciesPosRaw, compartmentsRaw] = MakeSpeciesList(reactionsRaw)
 
-        console.log(speciesRaw)
+        // console.log(speciesRaw)
         console.log(reactionsRaw)
-        console.log(speciesPosRaw)
+        // console.log(speciesPosRaw)
         // console.log(requestList)
+        console.log(generalState)
+        console.log(graphState)
 
 
         const taxonomyUrl = endpoint_getTaxonomyIdList
