@@ -189,6 +189,8 @@ export const generalReducer = (state = defaultState, action) => {
             return {...state, listOfReactionGlyphs: payload}
         case "ADD_KEGG_REACTION":
             return {...state, keggReactions: [...state.keggReactions, payload]}
+        case "SET_KEGG_REACTION":
+            return {...state, keggReactions:payload}
         case "SET_TAXONOMIC_NAMES":
             return {...state, taxonomicNames: payload}
         case "SET_MAPPING_START_TIME":

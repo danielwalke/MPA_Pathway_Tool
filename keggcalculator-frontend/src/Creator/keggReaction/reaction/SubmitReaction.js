@@ -6,6 +6,7 @@ import {isRequestValid} from "../../request/RequestValidation";
 import {ToolTipBig} from "../../main/user-interface/UserInterface";
 
 const SubmitReaction = () => {
+
     const state = {
         graphState: useSelector(state => state.graph),
         keggState: useSelector(state => state.keggReaction),

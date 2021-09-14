@@ -3,10 +3,12 @@ import Modal from '@material-ui/core/Modal';
 import {useDispatch, useSelector} from "react-redux";
 import "./DeleteModal.css"
 import {useStyles} from "../../../ModalStyles/ModalStyles";
+import {getNLastChars} from "../../../usefulFunctions/Strings";
 
 
 const DeleteModal = () => {
     const state = useSelector(state => state.graph)
+    const generalState = useSelector(state=> state.general)
     const dispatch = useDispatch()
     const classes = useStyles()
 
@@ -16,6 +18,10 @@ const DeleteModal = () => {
         const sourceLinks = state.data.links.filter( links => links.source !== state.deleteNode)
         const newLinks = sourceLinks.filter( links => links.target !== state.deleteNode)
         const newData = {nodes: newDataNodes, links: newLinks}
+        const newReactions = generalState.reactionsInSelectArray.filter(reaction => reaction.reactionId !== getNLastChars(state.deleteNode, 6))
+        const newKeggReactions = generalState.keggReactions.filter(reaction => reaction.reactionId !== getNLastChars(state.deleteNode, 6))
+        dispatch({type:"SET_KEGG_REACTION", payload: newKeggReactions})
+        dispatch({type:"SETREACTIONSINARRAY", payload: newReactions})
         dispatch({type: "SETDATA", payload: newData})
         dispatch({type:"SWITCHDELETEMODAL"})
     }

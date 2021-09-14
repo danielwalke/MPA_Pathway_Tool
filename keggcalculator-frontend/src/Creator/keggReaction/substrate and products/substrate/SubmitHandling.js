@@ -3,6 +3,7 @@ import {NOT_KEY_COMPOUND_OPACITY} from "../../../graph/Constants";
 
 export const handleSubmitKeggReaction = (state, dispatch) =>{
     const data = handleJSONGraphUpload([...state.generalState.keggReactions, getJSONReaction(state)],dispatch, state.graphState)
+    console.log(data.nodes.filter(node => node.symbolType !== "circle"))
     dispatch({type:"ADD_REACTION_TO_AUDIT_TRAIL", payload: getJSONReaction(state)})
     dispatch({type:"SETDATA", payload: data})
 }
