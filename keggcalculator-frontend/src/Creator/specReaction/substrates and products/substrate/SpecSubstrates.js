@@ -17,11 +17,11 @@ const SpecSubstrates = (props) => {
         <div className={"substrateContainerSpec"}>
             {state.isSpecificCompoundInputSubstrate ?
                 <ToolTipBig title={"Type in a substrate name"} placement={"left"}>
-                <TextField className={"substrate"} size={"small"} value={state.specSubstrate}
-                           onChange={e => dispatch({type: "SETSPECIFICSUBSTRATE", payload: e.target.value})}
-                           type={"text"}
-                           label={"substrate"} id={"spec substrate"}/>
-                </ToolTipBig>:
+                    <TextField className={"substrate"} size={"small"} value={state.specSubstrate}
+                               onChange={e => dispatch({type: "SETSPECIFICSUBSTRATE", payload: e.target.value})}
+                               type={"text"}
+                               label={"substrate"} id={"spec substrate"}/>
+                </ToolTipBig> :
                 <Field
                     className={"substrate"}
                     dispatchType={"SETSPECIFICSUBSTRATE"}
@@ -31,9 +31,9 @@ const SpecSubstrates = (props) => {
                     compound={state.specSubstrate}/>
             }
             <PopOverButton text={" not found? :-(\n" +
-            "                Don't worry! Click here :)"} className={"notFoundButton"}
+            "                Don't worry! Click here :)"}
                            dispatchType={"SWITCHISSPECCOMPOUNDINPUTSUBSTRATE"}
-            isText={state.isSpecificCompoundInputSubstrate}/>
+                           isText={state.isSpecificCompoundInputSubstrate}/>
             <ToolTipBig title={"Type in a stoichiometric coefficient"} placement={"left"}><TextField
                 size={"small"}
                 className={"substrateSc"}
@@ -54,8 +54,8 @@ const SpecSubstrates = (props) => {
             {/*disabled={!isRequestValid(state.specSubstrate)}*/}
             <ToolTipBig title={"Submit the substrate with chosen coefficient"} placement={"right"}>
                 <button className={"addSubstrate"}
-                    onClick={(e) => handleAddSubstrate(e, dispatch, state, props.index)}>Add Substrate
-            </button>
+                        onClick={(e) => handleAddSubstrate(e, dispatch, state, props.index)}>Add Substrate
+                </button>
             </ToolTipBig>
         </div>
     )

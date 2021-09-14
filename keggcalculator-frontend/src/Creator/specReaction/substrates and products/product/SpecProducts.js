@@ -18,17 +18,20 @@ const SpecProducts = (props) => {
                     <TextField className={"product"} size={"small"} value={state.specProduct}
                                onChange={e => dispatch({type: "SETSPECIFICPRODUCT", payload: e.target.value})}
                                type={"text"}
-                               label={"product"} id={"spec product"}/> </ToolTipBig> :
-                <ToolTipBig title={"Search a product"} placement={"left"}><Field
+                               label={"product"} id={"spec product"}/>
+                </ToolTipBig> :
+                    <Field
                     className={"product"}
                     dispatchType={"SETSPECIFICPRODUCT"}
                     id={"product"}
                     dispatchTypeOptions={"SETSPECIFICOPTIONSPRODUCT"}
                     options={state.specOptionsProduct}
-                    compound={state.specProduct}/></ToolTipBig>}
+                    compound={state.specProduct}/>
+                }
             <PopOverButton text={" not found? :-(\n" +
-            "                Don't worry! Click here :)"} className={"notFoundButton"}
-                           dispatchType={"SWITCHISSPECCOMPOUNDINPUTPRODUCT"}/>
+            "                Don't worry! Click here :)"}
+                           dispatchType={"SWITCHISSPECCOMPOUNDINPUTPRODUCT"}
+                           isText={state.isSpecificCompoundInputProduct}/>
             <ToolTipBig title={"Type in a stoichiometric coefficient"} placement={"left"}>
                 <TextField
                     size={"small"}

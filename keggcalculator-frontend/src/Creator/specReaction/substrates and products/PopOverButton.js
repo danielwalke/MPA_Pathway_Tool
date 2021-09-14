@@ -1,10 +1,14 @@
 import SyncAltIcon from "@material-ui/icons/SyncAlt";
-import React from "react";
+import React, {useEffect} from "react";
 import {useDispatch} from "react-redux";
 import {ToolTipBig} from "../../main/user-interface/UserInterface";
 
 const PopOverButton =(props)=>{
     const dispatch = useDispatch()
+
+    useEffect(()=>{
+        console.log(props)
+    })
 
     return(
         <div>
