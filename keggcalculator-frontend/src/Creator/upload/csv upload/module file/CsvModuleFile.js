@@ -7,8 +7,8 @@ export const readFile = (string) => {
     lines.forEach(line => {
         const entries = line.split(";")
         const reactionName = entries[1]
-        const koNumbers = entries[2].split(",")
-        const ecNumbers = entries[3].split(",")
+        const koNumbers = entries[2].includes(",")? entries[2].split(",") : entries[2].length>0? [entries[2]] : []
+        const ecNumbers = entries[3].includes(",")? entries[3].split(",") : entries[3].length>0? [entries[3]] : []
         const stoichiometricCoeff = entries[4]
         const compoundId = entries[5]
         const typeOfCompound = entries[6]
@@ -73,7 +73,6 @@ export const readFile = (string) => {
         }
 
     })
-    console.log(reactions)
     return reactions
 }
 
