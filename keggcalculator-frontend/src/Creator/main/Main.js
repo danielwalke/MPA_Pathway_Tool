@@ -90,10 +90,6 @@ const Main = () => {
         }, []
     )
 
-    useEffect(()=> {
-        console.log(graphState.data.nodes.map(node => node.color))
-    },[graphState.data.nodes])
-
 
     const classes = useStylesMain()
 

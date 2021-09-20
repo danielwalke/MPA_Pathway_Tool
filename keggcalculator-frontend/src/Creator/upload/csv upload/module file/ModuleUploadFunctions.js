@@ -1,6 +1,8 @@
 import {handleJSONGraphUpload} from "../../json upload/ModuleUploadFunctionsJSON";
 import {CsvColumns} from "./CsvFile";
 import {getReaction} from "./CsvFile"
+import {getStochiometryProductsString} from "../../../specReaction/functions/SpecReactionFunctions";
+import {getNLastChars} from "../../../usefulFunctions/Strings";
 
 export const handleGraphUpload = (rows, dispatch, graphState) => {
     let reactions = []
@@ -11,7 +13,53 @@ export const handleGraphUpload = (rows, dispatch, graphState) => {
         addCompound(reaction, compound)
         addReactionToReactions(reactions, reaction)
     })
-    return (handleJSONGraphUpload(reactions, dispatch, graphState))
+    console.log(reactions)
+    const newReactions = convertReactionsToObjects(reactions)
+    return (handleJSONGraphUpload(newReactions, dispatch, graphState))
+}
+
+const convertReactionsToObjects =(reactions) =>{
+    try{const newReactions = []
+    reactions.forEach(reaction => {
+        console.log(reaction._reactionName)
+        const newReaction = {
+            reactionId: getNLastChars(reaction._reactionName, 6),
+            reactionName: reaction._reactionName,
+            ecNumbersString: reaction._ecList,
+            isForwardReaction: true,
+            koNumbersString: reaction._koList,
+            opacity: 1,
+            products: reaction._products.map(product => ({
+                abbreviation: product.compound._abbreviation,
+                name: product.compound.name,
+                opacity: product.compound._opacity,
+                stochiometry: product.coefficient,
+                x: product.compound._x,
+                y: product.compound._y,
+            })),
+        reversible: reaction._reversible,
+        stochiometrySubstratesString: {},
+        stochiometryProductsString: {},
+        substrates: reaction._substrates.map(substrate => ({
+            abbreviation: substrate.compound._abbreviation,
+            name: substrate.compound.name,
+            opacity: substrate.compound._opacity,
+            stochiometry: substrate.coefficient,
+            x: substrate.compound._x,
+            y: substrate.compound._y,
+        })),
+        taxa: reaction._taxonomy,
+        x: reaction._x,
+        y:reaction._y,
+        }
+        console.log(newReaction)
+        newReactions.push(newReaction)
+    })
+    console.log(newReactions)
+    return newReactions}
+    catch(e){
+        console.error(e)
+    }
 }
 
 const addCompound = (reaction, compound) =>{

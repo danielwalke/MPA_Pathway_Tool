@@ -4,6 +4,8 @@ import {useDispatch, useSelector} from "react-redux";
 import "../../main/Upload.css"
 import {handleGraphUpload, handleReactionListUpload} from "./ModuleUploadFunctions";
 import {ToolTipBig} from "../../../main/user-interface/UserInterface";
+import {readFile} from "./CsvModuleFile";
+import {handleJSONGraphUpload} from "../../json upload/ModuleUploadFunctionsJSON";
 
 export const onModuleFileChange = (files, dispatch, state) => {
     try {
@@ -12,18 +14,22 @@ export const onModuleFileChange = (files, dispatch, state) => {
         reader.onload = e => {
             try{
                 const result = e.target.result.trim()
-                const rows = result.split("\n")
-                rows.shift() //header
-                const {nodes, links} = handleGraphUpload(rows, dispatch, state.graph)
-                const reactionList = handleReactionListUpload(rows)
+                const reactions = readFile(result)
+                console.log(reactions)
+                const {nodes, links} = handleJSONGraphUpload(reactions, dispatch, state.graph)
+                // const rows = result.split("\n")
+                // rows.shift() //header
+                // const {nodes, links} = handleGraphUpload(rows, dispatch, state.graph)
+                // const reactionList = handleReactionListUpload(rows)
                 const data = {nodes: nodes, links: links}
                 dispatch({type: "SETDATA", payload: data})
                 dispatch({type: "SWITCHISMODULEIMPORT"})
                 dispatch({type: "SETDATALINKS", payload: links})
-                dispatch({type: "ADDREACTIONSTOARRAY", payload: reactionList})
+                dispatch({type: "ADDREACTIONSTOARRAY", payload: reactions})//reactionList
                 dispatch({type: "SETMODULEFILENAME", payload: files[0].name})
                 dispatch({type:"ADD_PATHWAY_TO_AUDIT_TRAIL", payload: files[0].name})
                 dispatch({type:"SET_PATHWAY_FILE", payload: files[0]})
+                dispatch({type: "SWITCHUPLOADMODAL"})
             }catch (e) {
                 window.alert("Your file format is either wrong or you have already imported a file.")
                 console.error(e)

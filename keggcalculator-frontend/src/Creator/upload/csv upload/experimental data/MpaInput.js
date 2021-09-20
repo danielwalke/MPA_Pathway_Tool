@@ -77,6 +77,7 @@ export const onFileChange = (files, dispatch) => {
                     })
                     for (let columnIterator = 12; columnIterator < entries.length; columnIterator++) {
                         const quant = entries[columnIterator]
+
                         if (quant.includes("/")) {
                             const quantRatios = quant.split("/")
                             const calcQuant = +quantRatios[0] / +quantRatios[1]
@@ -96,6 +97,7 @@ export const onFileChange = (files, dispatch) => {
                     proteinSet.add(protein)
                     return null
                 })
+                console.log(allQuants)
                 const minQuant = getMin(allQuants)
                 const maxQuant = getMax(allQuants)
                 dispatch({type: "SETPROTEINSET", payload: proteinSet})
