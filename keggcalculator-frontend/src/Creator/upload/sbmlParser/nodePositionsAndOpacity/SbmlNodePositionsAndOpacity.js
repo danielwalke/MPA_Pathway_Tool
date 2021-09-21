@@ -1,30 +1,30 @@
 import ReactionGlyph from "./ReactionGlyph";
 import SpeciesReferenceGlyph from "./SpeciesReferenceGlyph";
 
-export const readListOfReactionGlyphs = (sbml, listOfSpeciesGlyphs) =>{
+export const readListOfReactionGlyphs = (sbml, listOfSpeciesGlyphs) => {
     const listOfReactionGlyphs = []
     const listOfReactionGlyphsTag = sbml.getElementsByTagName("layout:listOfReactionGlyphs")[0]
     const reactionGlyphTags = listOfReactionGlyphsTag.children
     reactionGlyphTags.forEach(reactionGlyphTag => {
-        if(reactionGlyphTag.getElementsByTagName("layout:curveSegment").length>0){
-            addNewReactionGlyph(reactionGlyphTag, listOfReactionGlyphs,listOfSpeciesGlyphs)
+        if (reactionGlyphTag.getElementsByTagName("layout:curveSegment").length > 0) {
+            addNewReactionGlyph(reactionGlyphTag, listOfReactionGlyphs, listOfSpeciesGlyphs)
         }
     })
     return listOfReactionGlyphs
 }
 
-const addNewReactionGlyph = (reactionGlyphTag, listOfReactionGlyphs,listOfSpeciesGlyphs) =>{
-    const curveSegmentTag =reactionGlyphTag.getElementsByTagName("layout:curveSegment")[0]
+const addNewReactionGlyph = (reactionGlyphTag, listOfReactionGlyphs, listOfSpeciesGlyphs) => {
+    const curveSegmentTag = reactionGlyphTag.getElementsByTagName("layout:curveSegment")[0]
     const reactionGlyph = createNewReactionGlyph(reactionGlyphTag, curveSegmentTag)
-    if(reactionGlyphTag.getElementsByTagName("layout:listOfSpeciesReferenceGlyphs").length >0 ){
-        const listOfSpeciesReferenceGlyphsTag =  reactionGlyphTag.getElementsByTagName("layout:listOfSpeciesReferenceGlyphs")[0]
+    if (reactionGlyphTag.getElementsByTagName("layout:listOfSpeciesReferenceGlyphs").length > 0) {
+        const listOfSpeciesReferenceGlyphsTag = reactionGlyphTag.getElementsByTagName("layout:listOfSpeciesReferenceGlyphs")[0]
         const speciesReferenceGlyphTags = listOfSpeciesReferenceGlyphsTag.children
-        speciesReferenceGlyphTags.forEach(speciesReferenceGlyphTag => addNewSpeciesReferenceGlyph(speciesReferenceGlyphTag, reactionGlyph,listOfSpeciesGlyphs))
+        speciesReferenceGlyphTags.forEach(speciesReferenceGlyphTag => addNewSpeciesReferenceGlyph(speciesReferenceGlyphTag, reactionGlyph, listOfSpeciesGlyphs))
     }
     listOfReactionGlyphs.push(reactionGlyph)
 }
 
-const addSpeciesReferencePositions = (speciesReferenceGlyph, speciesReferenceGlyphTag) =>{
+const addSpeciesReferencePositions = (speciesReferenceGlyph, speciesReferenceGlyphTag) => {
     const layoutStartTag = speciesReferenceGlyphTag.getElementsByTagName("layout:start")[0]
     const layoutEndTag = speciesReferenceGlyphTag.getElementsByTagName("layout:end")[0]
     speciesReferenceGlyph.layOutStartX = layoutStartTag.attributes["layout:x"]
@@ -33,7 +33,7 @@ const addSpeciesReferencePositions = (speciesReferenceGlyph, speciesReferenceGly
     speciesReferenceGlyph.layOutEndY = layoutEndTag.attributes["layout:y"]
 }
 
-const addNewSpeciesReferenceGlyph = (speciesReferenceGlyphTag,reactionGlyph,listOfSpeciesGlyphs) =>{
+const addNewSpeciesReferenceGlyph = (speciesReferenceGlyphTag, reactionGlyph, listOfSpeciesGlyphs) => {
     const speciesReferenceGlyph = new SpeciesReferenceGlyph(speciesReferenceGlyphTag.attributes["layout:id"], speciesReferenceGlyphTag.attributes["layout:role"])
     speciesReferenceGlyph.speciesGlyph = speciesReferenceGlyphTag.attributes["layout:speciesGlyph"]
     speciesReferenceGlyph.layoutSpeciesReference = speciesReferenceGlyphTag.attributes["layout:speciesReference"]
@@ -42,12 +42,12 @@ const addNewSpeciesReferenceGlyph = (speciesReferenceGlyphTag,reactionGlyph,list
     reactionGlyph.addSpeciesReferenceGlyph(speciesReferenceGlyph)
 }
 
-const addSpeciesIsKeyCompound = (speciesReferenceGlyph, listOfSpeciesGlyphs) =>{
+const addSpeciesIsKeyCompound = (speciesReferenceGlyph, listOfSpeciesGlyphs) => {
     const speciesGlyph = listOfSpeciesGlyphs.find(speciesGlyph => speciesReferenceGlyph.speciesGlyph === speciesGlyph.layoutId)
     speciesReferenceGlyph.isKeyCompound = speciesGlyph.isKeyCompound
 }
 
-const createNewReactionGlyph = (reactionGlyphTag, curveSegmentTag) =>{
+const createNewReactionGlyph = (reactionGlyphTag, curveSegmentTag) => {
     const reactionGlyph = new ReactionGlyph(reactionGlyphTag.attributes["layout:id"], reactionGlyphTag.attributes["layout:reaction"])
     reactionGlyph.layoutX = getXPositionFromCurveSegment(curveSegmentTag)
     reactionGlyph.layoutY = getYPositionFromCurveSegment(curveSegmentTag)
@@ -57,10 +57,10 @@ const createNewReactionGlyph = (reactionGlyphTag, curveSegmentTag) =>{
 
 const getReactionIsKeyCompound = (reactionGlyphTag) => reactionGlyphTag.attributes["render:objectRole"] === "keyCompound"
 
-const getXPositionFromCurveSegment = (curveSegmentTag) =>{
+const getXPositionFromCurveSegment = (curveSegmentTag) => {
     return curveSegmentTag.children[0].attributes["layout:x"]
 }
 
-const getYPositionFromCurveSegment = (curveSegmentTag) =>{
+const getYPositionFromCurveSegment = (curveSegmentTag) => {
     return curveSegmentTag.children[0].attributes["layout:y"]
 }

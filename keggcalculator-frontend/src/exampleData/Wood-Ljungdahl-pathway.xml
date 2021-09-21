@@ -1,1000 +1,1186 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sbml xmlns="http://www.sbml.org/sbml/level3/version2/core" level="3" version="2" xmlns:layout="http://www.sbml.org/sbml/level3/version2/layout/version1" layout:required="false" xmlns:render="http://www.sbml.org/sbml/level3/version1/render/version1" render:required="false">
-  <model id="pathway">
-    <listOfSpecies>
-      <species id="C00008" name="ADP C00008" metaid="C00008" compartment="c" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
-        <annotation xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:Description rdf:about="#C00008">
-              <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00008" />
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </species>
-      <species id="C00009" name="Phosphate C00009" metaid="C00009" compartment="c" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
-        <annotation xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:Description rdf:about="#C00009">
-              <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00009" />
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </species>
-      <species id="C00234" name="10-Formyltetrahydrofolate C00234" metaid="C00234" compartment="c" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
-        <annotation xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:Description rdf:about="#C00234">
-              <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00234" />
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </species>
-      <species id="C00002" name="ATP C00002" metaid="C00002" compartment="c" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
-        <annotation xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:Description rdf:about="#C00002">
-              <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00002" />
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </species>
-      <species id="C00101" name="Tetrahydrofolate C00101" metaid="C00101" compartment="c" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
-        <annotation xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:Description rdf:about="#C00101">
-              <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00101" />
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </species>
-      <species id="C00058" name="Formate C00058" metaid="C00058" compartment="c" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
-        <annotation xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:Description rdf:about="#C00058">
-              <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00058" />
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </species>
-      <species id="C00001" name="H2O C00001" metaid="C00001" compartment="c" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
-        <annotation xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:Description rdf:about="#C00001">
-              <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00001" />
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </species>
-      <species id="C00445" name="5,10-Methenyltetrahydrofolate C00445" metaid="C00445" compartment="c" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
-        <annotation xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:Description rdf:about="#C00445">
-              <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00445" />
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </species>
-      <species id="C00080" name="H+ C00080" metaid="C00080" compartment="c" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
-        <annotation xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:Description rdf:about="#C00080">
-              <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00080" />
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </species>
-      <species id="C00006" name="NADP+ C00006" metaid="C00006" compartment="c" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
-        <annotation xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:Description rdf:about="#C00006">
-              <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00006" />
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </species>
-      <species id="C00143" name="5,10-Methylenetetrahydrofolate C00143" metaid="C00143" compartment="c" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
-        <annotation xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:Description rdf:about="#C00143">
-              <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00143" />
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </species>
-      <species id="C00005" name="NADPH C00005" metaid="C00005" compartment="c" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
-        <annotation xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:Description rdf:about="#C00005">
-              <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00005" />
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </species>
-      <species id="C00139" name="Oxidized ferredoxin C00139" metaid="C00139" compartment="c" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
-        <annotation xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:Description rdf:about="#C00139">
-              <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00139" />
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </species>
-      <species id="C00237" name="CO C00237" metaid="C00237" compartment="c" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
-        <annotation xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:Description rdf:about="#C00237">
-              <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00237" />
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </species>
-      <species id="C00138" name="Reduced ferredoxin C00138" metaid="C00138" compartment="c" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
-        <annotation xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:Description rdf:about="#C00138">
-              <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00138" />
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </species>
-      <species id="C00011" name="CO2 C00011" metaid="C00011" compartment="c" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
-        <annotation xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:Description rdf:about="#C00011">
-              <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00011" />
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </species>
-      <species id="C00024" name="Acetyl-CoA C00024" metaid="C00024" compartment="c" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
-        <annotation xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:Description rdf:about="#C00024">
-              <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00024" />
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </species>
-      <species id="C00010" name="Coenzyme A C00010" metaid="C00010" compartment="c" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
-        <annotation xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:Description rdf:about="#C00010">
-              <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00010" />
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </species>
-      <species id="C00440" name="5-Methyltetrahydrofolate C00440" metaid="C00440" compartment="c" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
-        <annotation xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:Description rdf:about="#C00440">
-              <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00440" />
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </species>
-      <species id="C00080_1" name="H+	 Hydron C00080" metaid="C00080_1" compartment="c" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
-        <annotation xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:Description rdf:about="#C00080_1">
-              <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00080" />
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </species>
-    </listOfSpecies>
-    <listOfReactions>
-      <reaction id="R00943" reversible="false" name="Formate:tetrahydrofolate ligase (ADP-forming) R00943" metaid="R00943">
-        <listOfReactants>
-          <speciesReference species="C00002" name="ATP" stoichiometry="1" constant="true" />
-          <speciesReference species="C00101" name="Tetrahydrofolate" stoichiometry="1" constant="true" />
-          <speciesReference species="C00058" name="Formate" stoichiometry="1" constant="true" />
-        </listOfReactants>
-        <listOfProducts>
-          <speciesReference species="C00008" name="ADP" stoichiometry="1" constant="true" />
-          <speciesReference species="C00009" name="Phosphate" stoichiometry="1" constant="true" />
-          <speciesReference species="C00234" name="10-Formyltetrahydrofolate" stoichiometry="1" constant="true" />
-        </listOfProducts>
-        <annotation xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:Description rdf:about="#R00943">
-              <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/kegg.reaction/R00943" />
-                  <rdf:li rdf:resource="https://www.kegg.jp/entry/K00288" />
-                  <rdf:li rdf:resource="https://www.kegg.jp/entry/K01938" />
-                  <rdf:li rdf:resource="https://www.kegg.jp/entry/K13402" />
-                  <rdf:li rdf:resource="http://identifiers.org/ec-code/6.3.4.3" />
-                  <rdf:li rdf:resource="https://www.uniprot.org/taxonomy/10239" />
-                  <rdf:li rdf:resource="https://www.uniprot.org/taxonomy/2" />
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </reaction>
-      <reaction id="R01655" reversible="false" name="5,10-Methenyltetrahydrofolate 5-hydrolase R01655" metaid="R01655">
-        <listOfReactants>
-          <speciesReference species="C00080" name="H+" stoichiometry="1" constant="true" />
-          <speciesReference species="C00234" name="10-Formyltetrahydrofolate" stoichiometry="1" constant="true" />
-        </listOfReactants>
-        <listOfProducts>
-          <speciesReference species="C00001" name="H2O" stoichiometry="1" constant="true" />
-          <speciesReference species="C00445" name="5,10-Methenyltetrahydrofolate" stoichiometry="1" constant="true" />
-        </listOfProducts>
-        <annotation xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:Description rdf:about="#R01655">
-              <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/kegg.reaction/R01655" />
-                  <rdf:li rdf:resource="https://www.kegg.jp/entry/K00288" />
-                  <rdf:li rdf:resource="https://www.kegg.jp/entry/K01491" />
-                  <rdf:li rdf:resource="https://www.kegg.jp/entry/K01500" />
-                  <rdf:li rdf:resource="https://www.kegg.jp/entry/K13403" />
-                  <rdf:li rdf:resource="http://identifiers.org/ec-code/3.5.4.9" />
-                  <rdf:li rdf:resource="https://www.uniprot.org/taxonomy/10239" />
-                  <rdf:li rdf:resource="https://www.uniprot.org/taxonomy/2" />
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </reaction>
-      <reaction id="R01220" reversible="false" name="5,10-methylenetetrahydrofolate:NADP+ oxidoreductase R01220" metaid="R01220">
-        <listOfReactants>
-          <speciesReference species="C00005" name="NADPH" stoichiometry="1" constant="true" />
-          <speciesReference species="C00445" name="5,10-Methenyltetrahydrofolate" stoichiometry="1" constant="true" />
-        </listOfReactants>
-        <listOfProducts>
-          <speciesReference species="C00006" name="NADP+" stoichiometry="1" constant="true" />
-          <speciesReference species="C00143" name="5,10-Methylenetetrahydrofolate" stoichiometry="1" constant="true" />
-        </listOfProducts>
-        <annotation xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:Description rdf:about="#R01220">
-              <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/kegg.reaction/R01220" />
-                  <rdf:li rdf:resource="https://www.kegg.jp/entry/K00288" />
-                  <rdf:li rdf:resource="https://www.kegg.jp/entry/K01491" />
-                  <rdf:li rdf:resource="https://www.kegg.jp/entry/K00300" />
-                  <rdf:li rdf:resource="http://identifiers.org/ec-code/1.5.1.5" />
-                  <rdf:li rdf:resource="https://www.uniprot.org/taxonomy/10239" />
-                  <rdf:li rdf:resource="https://www.uniprot.org/taxonomy/2" />
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </reaction>
-      <reaction id="R07157" reversible="false" name="carbon-monoxide-oxidoreductase R07157" metaid="R07157">
-        <listOfReactants>
-          <speciesReference species="C00138" name="Reduced ferredoxin" stoichiometry="2" constant="true" />
-          <speciesReference species="C00080" name="H+" stoichiometry="2" constant="true" />
-          <speciesReference species="C00011" name="CO2" stoichiometry="1" constant="true" />
-        </listOfReactants>
-        <listOfProducts>
-          <speciesReference species="C00001" name="H2O" stoichiometry="1" constant="true" />
-          <speciesReference species="C00139" name="Oxidized ferredoxin" stoichiometry="2" constant="true" />
-          <speciesReference species="C00237" name="CO" stoichiometry="1" constant="true" />
-        </listOfProducts>
-        <annotation xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:Description rdf:about="#R07157">
-              <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/kegg.reaction/R07157" />
-                  <rdf:li rdf:resource="https://www.kegg.jp/entry/K00198" />
-                  <rdf:li rdf:resource="https://www.kegg.jp/entry/K00195" />
-                  <rdf:li rdf:resource="https://www.kegg.jp/entry/K00196" />
-                  <rdf:li rdf:resource="https://www.kegg.jp/entry/K00192" />
-                  <rdf:li rdf:resource="http://identifiers.org/ec-code/1.2.7.4" />
-                  <rdf:li rdf:resource="https://www.uniprot.org/taxonomy/10239" />
-                  <rdf:li rdf:resource="https://www.uniprot.org/taxonomy/2" />
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </reaction>
-      <reaction id="R10243" reversible="false" name="Tetrahydrofolate + Acetyl-CoA &lt;=&gt; 5-Methyltetrahydrofolate + CoA + CO R10243" metaid="R10243">
-        <listOfReactants>
-          <speciesReference species="C00010" name="Coenzyme A" stoichiometry="1" constant="true" />
-          <speciesReference species="C00237" name="CO" stoichiometry="1" constant="true" />
-          <speciesReference species="C00440" name="5-Methyltetrahydrofolate" stoichiometry="1" constant="true" />
-        </listOfReactants>
-        <listOfProducts>
-          <speciesReference species="C00101" name="Tetrahydrofolate" stoichiometry="1" constant="true" />
-          <speciesReference species="C00024" name="Acetyl-CoA" stoichiometry="1" constant="true" />
-        </listOfProducts>
-        <annotation xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:Description rdf:about="#R10243">
-              <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/kegg.reaction/R10243" />
-                  <rdf:li rdf:resource="https://www.kegg.jp/entry/K00197" />
-                  <rdf:li rdf:resource="https://www.kegg.jp/entry/K15023" />
-                  <rdf:li rdf:resource="https://www.kegg.jp/entry/K00194" />
-                  <rdf:li rdf:resource="https://www.kegg.jp/entry/K14138" />
-                  <rdf:li rdf:resource="http://identifiers.org/ec-code/2.1.1.258" />
-                  <rdf:li rdf:resource="http://identifiers.org/ec-code/2.3.1.169" />
-                  <rdf:li rdf:resource="https://www.uniprot.org/taxonomy/10239" />
-                  <rdf:li rdf:resource="https://www.uniprot.org/taxonomy/2" />
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </reaction>
-      <reaction id="R01224" reversible="false" name="5-methyltetrahydrofolate:NADP+ oxidoreductase R01224" metaid="R01224">
-        <listOfReactants>
-          <speciesReference species="C00005" name="NADPH" stoichiometry="1" constant="true" />
-          <speciesReference species="C00080_1" name="H+	 Hydron" stoichiometry="1" constant="true" />
-          <speciesReference species="C00143" name="5,10-Methylenetetrahydrofolate" stoichiometry="1" constant="true" />
-        </listOfReactants>
-        <listOfProducts>
-          <speciesReference species="C00006" name="NADP+" stoichiometry="1" constant="true" />
-          <speciesReference species="C00440" name="5-Methyltetrahydrofolate" stoichiometry="1" constant="true" />
-        </listOfProducts>
-        <annotation xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core">
-          <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:Description rdf:about="#R01224">
-              <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
-                <rdf:Bag>
-                  <rdf:li rdf:resource="http://identifiers.org/kegg.reaction/R01224" />
-                  <rdf:li rdf:resource="https://www.kegg.jp/entry/K00297" />
-                  <rdf:li rdf:resource="https://www.kegg.jp/entry/K24042" />
-                  <rdf:li rdf:resource="http://identifiers.org/ec-code/1.5.1.20" />
-                  <rdf:li rdf:resource="https://www.uniprot.org/taxonomy/10239" />
-                  <rdf:li rdf:resource="https://www.uniprot.org/taxonomy/2" />
-                </rdf:Bag>
-              </bqbiol:is>
-            </rdf:Description>
-          </rdf:RDF>
-        </annotation>
-      </reaction>
-    </listOfReactions>
-    <listOfCompartments>
-      <compartment id="c" name="cytosol" constant="true" />
-    </listOfCompartments>
-    <layout:listOfLayouts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:layout="http://www.sbml.org/sbml/level3/version2/layout/version1">
-      <layout:layout layout:id="Layout1">
-        <layout:dimensions layout:width="1216" layout:height="414" />
-        <layout:listOfReactionGlyphs>
-          <reactionGlyph layout:id="glyph_R00943" layout:reaction="R00943" render:objectRole="keyCompound">
-            <layout:curve>
-              <listOfCurveSegments>
-                <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                  <layout:start layout:x="300" layout:y="350" />
-                  <layout:end layout:x="300" layout:y="350" />
-                </layout:curveSegment>
-              </listOfCurveSegments>
-            </layout:curve>
-            <layout:listOfSpeciesReferenceGlyphs>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00002_0" layout:speciesReference="C00002" layout:speciesGlyph="SpeciesGlyph_C00002_0" layout:role="substrate">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="150" layout:y="325" />
-                      <layout:end layout:x="300" layout:y="350" />
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00101_0" layout:speciesReference="C00101" layout:speciesGlyph="SpeciesGlyph_C00101_0" layout:role="substrate">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="450" layout:y="300" />
-                      <layout:end layout:x="300" layout:y="350" />
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00058_0" layout:speciesReference="C00058" layout:speciesGlyph="SpeciesGlyph_C00058_0" layout:role="substrate">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="300" layout:y="300" />
-                      <layout:end layout:x="300" layout:y="350" />
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00008_0" layout:speciesReference="C00008" layout:speciesGlyph="SpeciesGlyph_C00008_0" layout:role="product">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="300" layout:y="350">
-                        <layout:end layout:x="450" layout:y="375" />
-                      </layout:start>
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00009_0" layout:speciesReference="C00009" layout:speciesGlyph="SpeciesGlyph_C00009_0" layout:role="product">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="300" layout:y="350">
-                        <layout:end layout:x="150" layout:y="375" />
-                      </layout:start>
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00234_0" layout:speciesReference="C00234" layout:speciesGlyph="SpeciesGlyph_C00234_0" layout:role="product">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="300" layout:y="350">
-                        <layout:end layout:x="300" layout:y="400" />
-                      </layout:start>
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-            </layout:listOfSpeciesReferenceGlyphs>
-          </reactionGlyph>
-          <reactionGlyph layout:id="glyph_R01655" layout:reaction="R01655" render:objectRole="keyCompound">
-            <layout:curve>
-              <listOfCurveSegments>
-                <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                  <layout:start layout:x="300" layout:y="450" />
-                  <layout:end layout:x="300" layout:y="450" />
-                </layout:curveSegment>
-              </listOfCurveSegments>
-            </layout:curve>
-            <layout:listOfSpeciesReferenceGlyphs>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00080_0" layout:speciesReference="C00080" layout:speciesGlyph="SpeciesGlyph_C00080_0" layout:role="substrate">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="150" layout:y="425" />
-                      <layout:end layout:x="300" layout:y="450" />
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00234_0" layout:speciesReference="C00234" layout:speciesGlyph="SpeciesGlyph_C00234_0" layout:role="substrate">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="300" layout:y="400" />
-                      <layout:end layout:x="300" layout:y="450" />
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00001_0" layout:speciesReference="C00001" layout:speciesGlyph="SpeciesGlyph_C00001_0" layout:role="product">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="300" layout:y="450">
-                        <layout:end layout:x="150" layout:y="475" />
-                      </layout:start>
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00445_0" layout:speciesReference="C00445" layout:speciesGlyph="SpeciesGlyph_C00445_0" layout:role="product">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="300" layout:y="450">
-                        <layout:end layout:x="300" layout:y="500" />
-                      </layout:start>
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-            </layout:listOfSpeciesReferenceGlyphs>
-          </reactionGlyph>
-          <reactionGlyph layout:id="glyph_R01220" layout:reaction="R01220" render:objectRole="keyCompound">
-            <layout:curve>
-              <listOfCurveSegments>
-                <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                  <layout:start layout:x="300" layout:y="550" />
-                  <layout:end layout:x="300" layout:y="550" />
-                </layout:curveSegment>
-              </listOfCurveSegments>
-            </layout:curve>
-            <layout:listOfSpeciesReferenceGlyphs>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00005_0" layout:speciesReference="C00005" layout:speciesGlyph="SpeciesGlyph_C00005_0" layout:role="substrate">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="0" layout:y="600" />
-                      <layout:end layout:x="300" layout:y="550" />
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00445_0" layout:speciesReference="C00445" layout:speciesGlyph="SpeciesGlyph_C00445_0" layout:role="substrate">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="300" layout:y="500" />
-                      <layout:end layout:x="300" layout:y="550" />
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00006_0" layout:speciesReference="C00006" layout:speciesGlyph="SpeciesGlyph_C00006_0" layout:role="product">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="300" layout:y="550">
-                        <layout:end layout:x="150" layout:y="600" />
-                      </layout:start>
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00143_0" layout:speciesReference="C00143" layout:speciesGlyph="SpeciesGlyph_C00143_0" layout:role="product">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="300" layout:y="550">
-                        <layout:end layout:x="300" layout:y="600" />
-                      </layout:start>
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-            </layout:listOfSpeciesReferenceGlyphs>
-          </reactionGlyph>
-          <reactionGlyph layout:id="glyph_R07157" layout:reaction="R07157" render:objectRole="keyCompound">
-            <layout:curve>
-              <listOfCurveSegments>
-                <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                  <layout:start layout:x="600" layout:y="100" />
-                  <layout:end layout:x="600" layout:y="100" />
-                </layout:curveSegment>
-              </listOfCurveSegments>
-            </layout:curve>
-            <layout:listOfSpeciesReferenceGlyphs>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00138_0" layout:speciesReference="C00138" layout:speciesGlyph="SpeciesGlyph_C00138_0" layout:role="substrate">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="750" layout:y="50" />
-                      <layout:end layout:x="600" layout:y="100" />
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00080_1" layout:speciesReference="C00080" layout:speciesGlyph="SpeciesGlyph_C00080_1" layout:role="substrate">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="450" layout:y="50" />
-                      <layout:end layout:x="600" layout:y="100" />
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00011_0" layout:speciesReference="C00011" layout:speciesGlyph="SpeciesGlyph_C00011_0" layout:role="substrate">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="600" layout:y="50" />
-                      <layout:end layout:x="600" layout:y="100" />
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00001_1" layout:speciesReference="C00001" layout:speciesGlyph="SpeciesGlyph_C00001_1" layout:role="product">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="600" layout:y="100">
-                        <layout:end layout:x="750" layout:y="125" />
-                      </layout:start>
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00139_0" layout:speciesReference="C00139" layout:speciesGlyph="SpeciesGlyph_C00139_0" layout:role="product">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="600" layout:y="100">
-                        <layout:end layout:x="450" layout:y="125" />
-                      </layout:start>
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00237_0" layout:speciesReference="C00237" layout:speciesGlyph="SpeciesGlyph_C00237_0" layout:role="product">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="600" layout:y="100">
-                        <layout:end layout:x="600" layout:y="150" />
-                      </layout:start>
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-            </layout:listOfSpeciesReferenceGlyphs>
-          </reactionGlyph>
-          <reactionGlyph layout:id="glyph_R10243" layout:reaction="R10243" render:objectRole="keyCompound">
-            <layout:curve>
-              <listOfCurveSegments>
-                <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                  <layout:start layout:x="600" layout:y="200" />
-                  <layout:end layout:x="600" layout:y="200" />
-                </layout:curveSegment>
-              </listOfCurveSegments>
-            </layout:curve>
-            <layout:listOfSpeciesReferenceGlyphs>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00010_0" layout:speciesReference="C00010" layout:speciesGlyph="SpeciesGlyph_C00010_0" layout:role="substrate">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="750" layout:y="175" />
-                      <layout:end layout:x="600" layout:y="200" />
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00237_0" layout:speciesReference="C00237" layout:speciesGlyph="SpeciesGlyph_C00237_0" layout:role="substrate">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="600" layout:y="150" />
-                      <layout:end layout:x="600" layout:y="200" />
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00440_0" layout:speciesReference="C00440" layout:speciesGlyph="SpeciesGlyph_C00440_0" layout:role="substrate">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="600" layout:y="650" />
-                      <layout:end layout:x="600" layout:y="200" />
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00101_0" layout:speciesReference="C00101" layout:speciesGlyph="SpeciesGlyph_C00101_0" layout:role="product">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="600" layout:y="200">
-                        <layout:end layout:x="450" layout:y="300" />
-                      </layout:start>
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00024_0" layout:speciesReference="C00024" layout:speciesGlyph="SpeciesGlyph_C00024_0" layout:role="product">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="600" layout:y="200">
-                        <layout:end layout:x="750" layout:y="225" />
-                      </layout:start>
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-            </layout:listOfSpeciesReferenceGlyphs>
-          </reactionGlyph>
-          <reactionGlyph layout:id="glyph_R01224" layout:reaction="R01224" render:objectRole="keyCompound">
-            <layout:curve>
-              <listOfCurveSegments>
-                <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                  <layout:start layout:x="300" layout:y="650" />
-                  <layout:end layout:x="300" layout:y="650" />
-                </layout:curveSegment>
-              </listOfCurveSegments>
-            </layout:curve>
-            <layout:listOfSpeciesReferenceGlyphs>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00005_0" layout:speciesReference="C00005" layout:speciesGlyph="SpeciesGlyph_C00005_0" layout:role="substrate">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="0" layout:y="600" />
-                      <layout:end layout:x="300" layout:y="650" />
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00080_2" layout:speciesReference="C00080_1" layout:speciesGlyph="SpeciesGlyph_C00080_2" layout:role="substrate">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="150" layout:y="650" />
-                      <layout:end layout:x="300" layout:y="650" />
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00143_0" layout:speciesReference="C00143" layout:speciesGlyph="SpeciesGlyph_C00143_0" layout:role="substrate">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="300" layout:y="600" />
-                      <layout:end layout:x="300" layout:y="650" />
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00006_0" layout:speciesReference="C00006" layout:speciesGlyph="SpeciesGlyph_C00006_0" layout:role="product">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="300" layout:y="650">
-                        <layout:end layout:x="150" layout:y="600" />
-                      </layout:start>
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-              <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00440_0" layout:speciesReference="C00440" layout:speciesGlyph="SpeciesGlyph_C00440_0" layout:role="product">
-                <layout:curve>
-                  <layout:listOfCurveSegments>
-                    <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="LineSegment">
-                      <layout:start layout:x="300" layout:y="650">
-                        <layout:end layout:x="600" layout:y="650" />
-                      </layout:start>
-                    </layout:curveSegment>
-                  </layout:listOfCurveSegments>
-                </layout:curve>
-              </layout:speciesReferenceGlyph>
-            </layout:listOfSpeciesReferenceGlyphs>
-          </reactionGlyph>
-        </layout:listOfReactionGlyphs>
-        <layout:listOfSpeciesGlyphs>
-          <speciesGlyph layout:id="SpeciesGlyph_C00008_0" layout:species="C00008" render:objectRole="nonKeyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="450" layout:y="375" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_C00009_0" layout:species="C00009" render:objectRole="nonKeyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="150" layout:y="375" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_C00234_0" layout:species="C00234" render:objectRole="keyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="300" layout:y="400" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_C00002_0" layout:species="C00002" render:objectRole="nonKeyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="150" layout:y="325" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_C00101_0" layout:species="C00101" render:objectRole="keyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="450" layout:y="300" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_C00058_0" layout:species="C00058" render:objectRole="keyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="300" layout:y="300" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_C00001_0" layout:species="C00001" render:objectRole="nonKeyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="150" layout:y="475" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_C00445_0" layout:species="C00445" render:objectRole="keyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="300" layout:y="500" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_C00080_0" layout:species="C00080" render:objectRole="nonKeyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="150" layout:y="425" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_C00006_0" layout:species="C00006" render:objectRole="nonKeyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="150" layout:y="600" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_C00143_0" layout:species="C00143" render:objectRole="keyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="300" layout:y="600" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_C00005_0" layout:species="C00005" render:objectRole="nonKeyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="0" layout:y="600" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_C00001_1" layout:species="C00001" render:objectRole="nonKeyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="750" layout:y="125" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_C00139_0" layout:species="C00139" render:objectRole="nonKeyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="450" layout:y="125" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_C00237_0" layout:species="C00237" render:objectRole="keyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="600" layout:y="150" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_C00138_0" layout:species="C00138" render:objectRole="nonKeyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="750" layout:y="50" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_C00080_1" layout:species="C00080" render:objectRole="nonKeyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="450" layout:y="50" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_C00011_0" layout:species="C00011" render:objectRole="keyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="600" layout:y="50" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_C00024_0" layout:species="C00024" render:objectRole="keyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="750" layout:y="225" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_C00010_0" layout:species="C00010" render:objectRole="nonKeyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="750" layout:y="175" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_C00440_0" layout:species="C00440" render:objectRole="keyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="600" layout:y="650" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-          <speciesGlyph layout:id="SpeciesGlyph_C00080_2" layout:species="C00080_1" render:objectRole="nonKeyCompound">
-            <layout:boundingBox layout:id="bb2">
-              <layout:position layout:x="150" layout:y="650" />
-              <layout:dimensions layout:width="20" layout:height="20" />
-            </layout:boundingBox>
-          </speciesGlyph>
-        </layout:listOfSpeciesGlyphs>
-        <render:listOfRenderInformation xmlns:render="http://www.sbml.org/sbml/level3/version1/render/version1" versionMajor="1" versionMinor="0">
-          <render:renderInformation id="renderForOpacity" programName="MPA Pathway Tool" programVersion="0.8">
-            <render:listOfColorDefinitions>
-              <render:colorDefinition render:id="keyReaction" render:value="#000000ff" />
-              <render:colorDefinition render:id="nonKeyReaction" render:value="#00000066" />
-              <render:colorDefinition render:id="keyCompound" render:value="#FF800000" />
-              <render:colorDefinition render:id="nonKeyCompound" render:value="#FF800066" />
-            </render:listOfColorDefinitions>
-            <render:listOfStyles>
-              <render:style render:id="keyReaction" render:roleList="keyReaction">
-                <render:g render:stroke="keyReaction" />
-              </render:style>
-            </render:listOfStyles>
-            <render:listOfStyles>
-              <render:style render:id="nonKeyReaction" render:roleList="nonKeyReaction">
-                <render:g render:stroke="nonKeyReaction" />
-              </render:style>
-            </render:listOfStyles>
-            <render:listOfStyles>
-              <render:style render:id="keyCompound" render:roleList="keyCompound">
-                <render:g render:stroke="keyCompound" />
-              </render:style>
-            </render:listOfStyles>
-            <render:listOfStyles>
-              <render:style render:id="nonKeyCompound" render:roleList="nonKeyCompound">
-                <render:g render:stroke="nonKeyCompound" />
-              </render:style>
-            </render:listOfStyles>
-          </render:renderInformation>
-        </render:listOfRenderInformation>
-      </layout:layout>
-    </layout:listOfLayouts>
-  </model>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version2/core" level="3" version="2"
+      xmlns:layout="http://www.sbml.org/sbml/level3/version2/layout/version1" layout:required="false"
+      xmlns:render="http://www.sbml.org/sbml/level3/version1/render/version1" render:required="false">
+    <model id="pathway">
+        <listOfSpecies>
+            <species id="C00008" name="ADP C00008" metaid="C00008" compartment="c" hasOnlySubstanceUnits="true"
+                     boundaryCondition="false" constant="false">
+                <annotation>
+                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                        <rdf:Description rdf:about="#C00008">
+                            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                                <rdf:Bag>
+                                    <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00008"/>
+                                </rdf:Bag>
+                            </bqbiol:is>
+                        </rdf:Description>
+                    </rdf:RDF>
+                </annotation>
+            </species>
+            <species id="C00009" name="Phosphate C00009" metaid="C00009" compartment="c" hasOnlySubstanceUnits="true"
+                     boundaryCondition="false" constant="false">
+                <annotation>
+                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                        <rdf:Description rdf:about="#C00009">
+                            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                                <rdf:Bag>
+                                    <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00009"/>
+                                </rdf:Bag>
+                            </bqbiol:is>
+                        </rdf:Description>
+                    </rdf:RDF>
+                </annotation>
+            </species>
+            <species id="C00234" name="10-Formyltetrahydrofolate C00234" metaid="C00234" compartment="c"
+                     hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+                <annotation>
+                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                        <rdf:Description rdf:about="#C00234">
+                            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                                <rdf:Bag>
+                                    <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00234"/>
+                                </rdf:Bag>
+                            </bqbiol:is>
+                        </rdf:Description>
+                    </rdf:RDF>
+                </annotation>
+            </species>
+            <species id="C00002" name="ATP C00002" metaid="C00002" compartment="c" hasOnlySubstanceUnits="true"
+                     boundaryCondition="false" constant="false">
+                <annotation>
+                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                        <rdf:Description rdf:about="#C00002">
+                            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                                <rdf:Bag>
+                                    <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00002"/>
+                                </rdf:Bag>
+                            </bqbiol:is>
+                        </rdf:Description>
+                    </rdf:RDF>
+                </annotation>
+            </species>
+            <species id="C00101" name="Tetrahydrofolate C00101" metaid="C00101" compartment="c"
+                     hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+                <annotation>
+                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                        <rdf:Description rdf:about="#C00101">
+                            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                                <rdf:Bag>
+                                    <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00101"/>
+                                </rdf:Bag>
+                            </bqbiol:is>
+                        </rdf:Description>
+                    </rdf:RDF>
+                </annotation>
+            </species>
+            <species id="C00058" name="Formate C00058" metaid="C00058" compartment="c" hasOnlySubstanceUnits="true"
+                     boundaryCondition="false" constant="false">
+                <annotation>
+                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                        <rdf:Description rdf:about="#C00058">
+                            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                                <rdf:Bag>
+                                    <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00058"/>
+                                </rdf:Bag>
+                            </bqbiol:is>
+                        </rdf:Description>
+                    </rdf:RDF>
+                </annotation>
+            </species>
+            <species id="C00001" name="H2O C00001" metaid="C00001" compartment="c" hasOnlySubstanceUnits="true"
+                     boundaryCondition="false" constant="false">
+                <annotation>
+                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                        <rdf:Description rdf:about="#C00001">
+                            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                                <rdf:Bag>
+                                    <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00001"/>
+                                </rdf:Bag>
+                            </bqbiol:is>
+                        </rdf:Description>
+                    </rdf:RDF>
+                </annotation>
+            </species>
+            <species id="C00445" name="5,10-Methenyltetrahydrofolate C00445" metaid="C00445" compartment="c"
+                     hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+                <annotation>
+                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                        <rdf:Description rdf:about="#C00445">
+                            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                                <rdf:Bag>
+                                    <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00445"/>
+                                </rdf:Bag>
+                            </bqbiol:is>
+                        </rdf:Description>
+                    </rdf:RDF>
+                </annotation>
+            </species>
+            <species id="C00080" name="H+ C00080" metaid="C00080" compartment="c" hasOnlySubstanceUnits="true"
+                     boundaryCondition="false" constant="false">
+                <annotation>
+                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                        <rdf:Description rdf:about="#C00080">
+                            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                                <rdf:Bag>
+                                    <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00080"/>
+                                </rdf:Bag>
+                            </bqbiol:is>
+                        </rdf:Description>
+                    </rdf:RDF>
+                </annotation>
+            </species>
+            <species id="C00006" name="NADP+ C00006" metaid="C00006" compartment="c" hasOnlySubstanceUnits="true"
+                     boundaryCondition="false" constant="false">
+                <annotation>
+                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                        <rdf:Description rdf:about="#C00006">
+                            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                                <rdf:Bag>
+                                    <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00006"/>
+                                </rdf:Bag>
+                            </bqbiol:is>
+                        </rdf:Description>
+                    </rdf:RDF>
+                </annotation>
+            </species>
+            <species id="C00143" name="5,10-Methylenetetrahydrofolate C00143" metaid="C00143" compartment="c"
+                     hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+                <annotation>
+                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                        <rdf:Description rdf:about="#C00143">
+                            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                                <rdf:Bag>
+                                    <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00143"/>
+                                </rdf:Bag>
+                            </bqbiol:is>
+                        </rdf:Description>
+                    </rdf:RDF>
+                </annotation>
+            </species>
+            <species id="C00005" name="NADPH C00005" metaid="C00005" compartment="c" hasOnlySubstanceUnits="true"
+                     boundaryCondition="false" constant="false">
+                <annotation>
+                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                        <rdf:Description rdf:about="#C00005">
+                            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                                <rdf:Bag>
+                                    <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00005"/>
+                                </rdf:Bag>
+                            </bqbiol:is>
+                        </rdf:Description>
+                    </rdf:RDF>
+                </annotation>
+            </species>
+            <species id="C00139" name="Oxidized ferredoxin C00139" metaid="C00139" compartment="c"
+                     hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+                <annotation>
+                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                        <rdf:Description rdf:about="#C00139">
+                            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                                <rdf:Bag>
+                                    <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00139"/>
+                                </rdf:Bag>
+                            </bqbiol:is>
+                        </rdf:Description>
+                    </rdf:RDF>
+                </annotation>
+            </species>
+            <species id="C00237" name="CO C00237" metaid="C00237" compartment="c" hasOnlySubstanceUnits="true"
+                     boundaryCondition="false" constant="false">
+                <annotation>
+                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                        <rdf:Description rdf:about="#C00237">
+                            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                                <rdf:Bag>
+                                    <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00237"/>
+                                </rdf:Bag>
+                            </bqbiol:is>
+                        </rdf:Description>
+                    </rdf:RDF>
+                </annotation>
+            </species>
+            <species id="C00138" name="Reduced ferredoxin C00138" metaid="C00138" compartment="c"
+                     hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+                <annotation>
+                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                        <rdf:Description rdf:about="#C00138">
+                            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                                <rdf:Bag>
+                                    <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00138"/>
+                                </rdf:Bag>
+                            </bqbiol:is>
+                        </rdf:Description>
+                    </rdf:RDF>
+                </annotation>
+            </species>
+            <species id="C00011" name="CO2 C00011" metaid="C00011" compartment="c" hasOnlySubstanceUnits="true"
+                     boundaryCondition="false" constant="false">
+                <annotation>
+                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                        <rdf:Description rdf:about="#C00011">
+                            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                                <rdf:Bag>
+                                    <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00011"/>
+                                </rdf:Bag>
+                            </bqbiol:is>
+                        </rdf:Description>
+                    </rdf:RDF>
+                </annotation>
+            </species>
+            <species id="C00024" name="Acetyl-CoA C00024" metaid="C00024" compartment="c" hasOnlySubstanceUnits="true"
+                     boundaryCondition="false" constant="false">
+                <annotation>
+                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                        <rdf:Description rdf:about="#C00024">
+                            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                                <rdf:Bag>
+                                    <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00024"/>
+                                </rdf:Bag>
+                            </bqbiol:is>
+                        </rdf:Description>
+                    </rdf:RDF>
+                </annotation>
+            </species>
+            <species id="C00010" name="Coenzyme A C00010" metaid="C00010" compartment="c" hasOnlySubstanceUnits="true"
+                     boundaryCondition="false" constant="false">
+                <annotation>
+                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                        <rdf:Description rdf:about="#C00010">
+                            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                                <rdf:Bag>
+                                    <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00010"/>
+                                </rdf:Bag>
+                            </bqbiol:is>
+                        </rdf:Description>
+                    </rdf:RDF>
+                </annotation>
+            </species>
+            <species id="C00440" name="5-Methyltetrahydrofolate C00440" metaid="C00440" compartment="c"
+                     hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+                <annotation>
+                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                        <rdf:Description rdf:about="#C00440">
+                            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                                <rdf:Bag>
+                                    <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00440"/>
+                                </rdf:Bag>
+                            </bqbiol:is>
+                        </rdf:Description>
+                    </rdf:RDF>
+                </annotation>
+            </species>
+            <species id="C00080_1" name="H+	 Hydron C00080" metaid="C00080_1" compartment="c"
+                     hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false">
+                <annotation>
+                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                        <rdf:Description rdf:about="#C00080_1">
+                            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                                <rdf:Bag>
+                                    <rdf:li rdf:resource="http://identifiers.org/kegg.compound/C00080"/>
+                                </rdf:Bag>
+                            </bqbiol:is>
+                        </rdf:Description>
+                    </rdf:RDF>
+                </annotation>
+            </species>
+        </listOfSpecies>
+        <listOfReactions>
+            <reaction id="R00943" reversible="false" name="Formate:tetrahydrofolate ligase (ADP-forming) R00943"
+                      metaid="R00943">
+                <listOfReactants>
+                    <speciesReference species="C00002" name="ATP" stoichiometry="1" constant="true"/>
+                    <speciesReference species="C00101" name="Tetrahydrofolate" stoichiometry="1" constant="true"/>
+                    <speciesReference species="C00058" name="Formate" stoichiometry="1" constant="true"/>
+                </listOfReactants>
+                <listOfProducts>
+                    <speciesReference species="C00008" name="ADP" stoichiometry="1" constant="true"/>
+                    <speciesReference species="C00009" name="Phosphate" stoichiometry="1" constant="true"/>
+                    <speciesReference species="C00234" name="10-Formyltetrahydrofolate" stoichiometry="1"
+                                      constant="true"/>
+                </listOfProducts>
+                <annotation>
+                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                        <rdf:Description rdf:about="#R00943">
+                            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                                <rdf:Bag>
+                                    <rdf:li rdf:resource="http://identifiers.org/kegg.reaction/R00943"/>
+                                    <rdf:li rdf:resource="https://www.kegg.jp/entry/K00288"/>
+                                    <rdf:li rdf:resource="https://www.kegg.jp/entry/K01938"/>
+                                    <rdf:li rdf:resource="https://www.kegg.jp/entry/K13402"/>
+                                    <rdf:li rdf:resource="http://identifiers.org/ec-code/6.3.4.3"/>
+                                    <rdf:li rdf:resource="https://www.uniprot.org/taxonomy/10239"/>
+                                    <rdf:li rdf:resource="https://www.uniprot.org/taxonomy/2"/>
+                                </rdf:Bag>
+                            </bqbiol:is>
+                        </rdf:Description>
+                    </rdf:RDF>
+                </annotation>
+            </reaction>
+            <reaction id="R01655" reversible="false" name="5,10-Methenyltetrahydrofolate 5-hydrolase R01655"
+                      metaid="R01655">
+                <listOfReactants>
+                    <speciesReference species="C00080" name="H+" stoichiometry="1" constant="true"/>
+                    <speciesReference species="C00234" name="10-Formyltetrahydrofolate" stoichiometry="1"
+                                      constant="true"/>
+                </listOfReactants>
+                <listOfProducts>
+                    <speciesReference species="C00001" name="H2O" stoichiometry="1" constant="true"/>
+                    <speciesReference species="C00445" name="5,10-Methenyltetrahydrofolate" stoichiometry="1"
+                                      constant="true"/>
+                </listOfProducts>
+                <annotation>
+                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                        <rdf:Description rdf:about="#R01655">
+                            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                                <rdf:Bag>
+                                    <rdf:li rdf:resource="http://identifiers.org/kegg.reaction/R01655"/>
+                                    <rdf:li rdf:resource="https://www.kegg.jp/entry/K00288"/>
+                                    <rdf:li rdf:resource="https://www.kegg.jp/entry/K01491"/>
+                                    <rdf:li rdf:resource="https://www.kegg.jp/entry/K01500"/>
+                                    <rdf:li rdf:resource="https://www.kegg.jp/entry/K13403"/>
+                                    <rdf:li rdf:resource="http://identifiers.org/ec-code/3.5.4.9"/>
+                                    <rdf:li rdf:resource="https://www.uniprot.org/taxonomy/10239"/>
+                                    <rdf:li rdf:resource="https://www.uniprot.org/taxonomy/2"/>
+                                </rdf:Bag>
+                            </bqbiol:is>
+                        </rdf:Description>
+                    </rdf:RDF>
+                </annotation>
+            </reaction>
+            <reaction id="R01220" reversible="false" name="5,10-methylenetetrahydrofolate:NADP+ oxidoreductase R01220"
+                      metaid="R01220">
+                <listOfReactants>
+                    <speciesReference species="C00005" name="NADPH" stoichiometry="1" constant="true"/>
+                    <speciesReference species="C00445" name="5,10-Methenyltetrahydrofolate" stoichiometry="1"
+                                      constant="true"/>
+                </listOfReactants>
+                <listOfProducts>
+                    <speciesReference species="C00006" name="NADP+" stoichiometry="1" constant="true"/>
+                    <speciesReference species="C00143" name="5,10-Methylenetetrahydrofolate" stoichiometry="1"
+                                      constant="true"/>
+                </listOfProducts>
+                <annotation>
+                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                        <rdf:Description rdf:about="#R01220">
+                            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                                <rdf:Bag>
+                                    <rdf:li rdf:resource="http://identifiers.org/kegg.reaction/R01220"/>
+                                    <rdf:li rdf:resource="https://www.kegg.jp/entry/K00288"/>
+                                    <rdf:li rdf:resource="https://www.kegg.jp/entry/K01491"/>
+                                    <rdf:li rdf:resource="https://www.kegg.jp/entry/K00300"/>
+                                    <rdf:li rdf:resource="http://identifiers.org/ec-code/1.5.1.5"/>
+                                    <rdf:li rdf:resource="https://www.uniprot.org/taxonomy/10239"/>
+                                    <rdf:li rdf:resource="https://www.uniprot.org/taxonomy/2"/>
+                                </rdf:Bag>
+                            </bqbiol:is>
+                        </rdf:Description>
+                    </rdf:RDF>
+                </annotation>
+            </reaction>
+            <reaction id="R07157" reversible="false" name="carbon-monoxide-oxidoreductase R07157" metaid="R07157">
+                <listOfReactants>
+                    <speciesReference species="C00138" name="Reduced ferredoxin" stoichiometry="2" constant="true"/>
+                    <speciesReference species="C00080" name="H+" stoichiometry="2" constant="true"/>
+                    <speciesReference species="C00011" name="CO2" stoichiometry="1" constant="true"/>
+                </listOfReactants>
+                <listOfProducts>
+                    <speciesReference species="C00001" name="H2O" stoichiometry="1" constant="true"/>
+                    <speciesReference species="C00139" name="Oxidized ferredoxin" stoichiometry="2" constant="true"/>
+                    <speciesReference species="C00237" name="CO" stoichiometry="1" constant="true"/>
+                </listOfProducts>
+                <annotation>
+                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                        <rdf:Description rdf:about="#R07157">
+                            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                                <rdf:Bag>
+                                    <rdf:li rdf:resource="http://identifiers.org/kegg.reaction/R07157"/>
+                                    <rdf:li rdf:resource="https://www.kegg.jp/entry/K00198"/>
+                                    <rdf:li rdf:resource="https://www.kegg.jp/entry/K00195"/>
+                                    <rdf:li rdf:resource="https://www.kegg.jp/entry/K00196"/>
+                                    <rdf:li rdf:resource="https://www.kegg.jp/entry/K00192"/>
+                                    <rdf:li rdf:resource="http://identifiers.org/ec-code/1.2.7.4"/>
+                                    <rdf:li rdf:resource="https://www.uniprot.org/taxonomy/10239"/>
+                                    <rdf:li rdf:resource="https://www.uniprot.org/taxonomy/2"/>
+                                </rdf:Bag>
+                            </bqbiol:is>
+                        </rdf:Description>
+                    </rdf:RDF>
+                </annotation>
+            </reaction>
+            <reaction id="R10243" reversible="false"
+                      name="Tetrahydrofolate + Acetyl-CoA &lt;=&gt; 5-Methyltetrahydrofolate + CoA + CO R10243"
+                      metaid="R10243">
+                <listOfReactants>
+                    <speciesReference species="C00010" name="Coenzyme A" stoichiometry="1" constant="true"/>
+                    <speciesReference species="C00237" name="CO" stoichiometry="1" constant="true"/>
+                    <speciesReference species="C00440" name="5-Methyltetrahydrofolate" stoichiometry="1"
+                                      constant="true"/>
+                </listOfReactants>
+                <listOfProducts>
+                    <speciesReference species="C00101" name="Tetrahydrofolate" stoichiometry="1" constant="true"/>
+                    <speciesReference species="C00024" name="Acetyl-CoA" stoichiometry="1" constant="true"/>
+                </listOfProducts>
+                <annotation>
+                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                        <rdf:Description rdf:about="#R10243">
+                            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                                <rdf:Bag>
+                                    <rdf:li rdf:resource="http://identifiers.org/kegg.reaction/R10243"/>
+                                    <rdf:li rdf:resource="https://www.kegg.jp/entry/K00197"/>
+                                    <rdf:li rdf:resource="https://www.kegg.jp/entry/K15023"/>
+                                    <rdf:li rdf:resource="https://www.kegg.jp/entry/K00194"/>
+                                    <rdf:li rdf:resource="https://www.kegg.jp/entry/K14138"/>
+                                    <rdf:li rdf:resource="http://identifiers.org/ec-code/2.1.1.258"/>
+                                    <rdf:li rdf:resource="http://identifiers.org/ec-code/2.3.1.169"/>
+                                    <rdf:li rdf:resource="https://www.uniprot.org/taxonomy/10239"/>
+                                    <rdf:li rdf:resource="https://www.uniprot.org/taxonomy/2"/>
+                                </rdf:Bag>
+                            </bqbiol:is>
+                        </rdf:Description>
+                    </rdf:RDF>
+                </annotation>
+            </reaction>
+            <reaction id="R01224" reversible="false" name="5-methyltetrahydrofolate:NADP+ oxidoreductase R01224"
+                      metaid="R01224">
+                <listOfReactants>
+                    <speciesReference species="C00005" name="NADPH" stoichiometry="1" constant="true"/>
+                    <speciesReference species="C00080_1" name="H+	 Hydron" stoichiometry="1" constant="true"/>
+                    <speciesReference species="C00143" name="5,10-Methylenetetrahydrofolate" stoichiometry="1"
+                                      constant="true"/>
+                </listOfReactants>
+                <listOfProducts>
+                    <speciesReference species="C00006" name="NADP+" stoichiometry="1" constant="true"/>
+                    <speciesReference species="C00440" name="5-Methyltetrahydrofolate" stoichiometry="1"
+                                      constant="true"/>
+                </listOfProducts>
+                <annotation>
+                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                        <rdf:Description rdf:about="#R01224">
+                            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+                                <rdf:Bag>
+                                    <rdf:li rdf:resource="http://identifiers.org/kegg.reaction/R01224"/>
+                                    <rdf:li rdf:resource="https://www.kegg.jp/entry/K00297"/>
+                                    <rdf:li rdf:resource="https://www.kegg.jp/entry/K24042"/>
+                                    <rdf:li rdf:resource="http://identifiers.org/ec-code/1.5.1.20"/>
+                                    <rdf:li rdf:resource="https://www.uniprot.org/taxonomy/10239"/>
+                                    <rdf:li rdf:resource="https://www.uniprot.org/taxonomy/2"/>
+                                </rdf:Bag>
+                            </bqbiol:is>
+                        </rdf:Description>
+                    </rdf:RDF>
+                </annotation>
+            </reaction>
+        </listOfReactions>
+        <listOfCompartments>
+            <compartment id="c" name="cytosol" constant="true"/>
+        </listOfCompartments>
+        <layout:listOfLayouts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xmlns:layout="http://www.sbml.org/sbml/level3/version2/layout/version1">
+            <layout:layout layout:id="Layout1">
+                <layout:dimensions layout:width="1216" layout:height="414"/>
+                <layout:listOfReactionGlyphs>
+                    <reactionGlyph layout:id="glyph_R00943" layout:reaction="R00943" render:objectRole="keyCompound">
+                        <layout:curve>
+                            <listOfCurveSegments>
+                                <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                     xsi:type="LineSegment">
+                                    <layout:start layout:x="300" layout:y="350"/>
+                                    <layout:end layout:x="300" layout:y="350"/>
+                                </layout:curveSegment>
+                            </listOfCurveSegments>
+                        </layout:curve>
+                        <layout:listOfSpeciesReferenceGlyphs>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00002_0"
+                                                          layout:speciesReference="C00002"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00002_0"
+                                                          layout:role="substrate">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="150" layout:y="325"/>
+                                            <layout:end layout:x="300" layout:y="350"/>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00101_0"
+                                                          layout:speciesReference="C00101"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00101_0"
+                                                          layout:role="substrate">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="450" layout:y="300"/>
+                                            <layout:end layout:x="300" layout:y="350"/>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00058_0"
+                                                          layout:speciesReference="C00058"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00058_0"
+                                                          layout:role="substrate">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="300" layout:y="300"/>
+                                            <layout:end layout:x="300" layout:y="350"/>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00008_0"
+                                                          layout:speciesReference="C00008"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00008_0"
+                                                          layout:role="product">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="300" layout:y="350">
+                                                <layout:end layout:x="450" layout:y="375"/>
+                                            </layout:start>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00009_0"
+                                                          layout:speciesReference="C00009"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00009_0"
+                                                          layout:role="product">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="300" layout:y="350">
+                                                <layout:end layout:x="150" layout:y="375"/>
+                                            </layout:start>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00234_0"
+                                                          layout:speciesReference="C00234"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00234_0"
+                                                          layout:role="product">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="300" layout:y="350">
+                                                <layout:end layout:x="300" layout:y="400"/>
+                                            </layout:start>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                        </layout:listOfSpeciesReferenceGlyphs>
+                    </reactionGlyph>
+                    <reactionGlyph layout:id="glyph_R01655" layout:reaction="R01655" render:objectRole="keyCompound">
+                        <layout:curve>
+                            <listOfCurveSegments>
+                                <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                     xsi:type="LineSegment">
+                                    <layout:start layout:x="300" layout:y="450"/>
+                                    <layout:end layout:x="300" layout:y="450"/>
+                                </layout:curveSegment>
+                            </listOfCurveSegments>
+                        </layout:curve>
+                        <layout:listOfSpeciesReferenceGlyphs>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00080_0"
+                                                          layout:speciesReference="C00080"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00080_0"
+                                                          layout:role="substrate">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="150" layout:y="425"/>
+                                            <layout:end layout:x="300" layout:y="450"/>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00234_0"
+                                                          layout:speciesReference="C00234"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00234_0"
+                                                          layout:role="substrate">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="300" layout:y="400"/>
+                                            <layout:end layout:x="300" layout:y="450"/>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00001_0"
+                                                          layout:speciesReference="C00001"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00001_0"
+                                                          layout:role="product">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="300" layout:y="450">
+                                                <layout:end layout:x="150" layout:y="475"/>
+                                            </layout:start>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00445_0"
+                                                          layout:speciesReference="C00445"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00445_0"
+                                                          layout:role="product">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="300" layout:y="450">
+                                                <layout:end layout:x="300" layout:y="500"/>
+                                            </layout:start>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                        </layout:listOfSpeciesReferenceGlyphs>
+                    </reactionGlyph>
+                    <reactionGlyph layout:id="glyph_R01220" layout:reaction="R01220" render:objectRole="keyCompound">
+                        <layout:curve>
+                            <listOfCurveSegments>
+                                <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                     xsi:type="LineSegment">
+                                    <layout:start layout:x="300" layout:y="550"/>
+                                    <layout:end layout:x="300" layout:y="550"/>
+                                </layout:curveSegment>
+                            </listOfCurveSegments>
+                        </layout:curve>
+                        <layout:listOfSpeciesReferenceGlyphs>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00005_0"
+                                                          layout:speciesReference="C00005"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00005_0"
+                                                          layout:role="substrate">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="0" layout:y="600"/>
+                                            <layout:end layout:x="300" layout:y="550"/>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00445_0"
+                                                          layout:speciesReference="C00445"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00445_0"
+                                                          layout:role="substrate">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="300" layout:y="500"/>
+                                            <layout:end layout:x="300" layout:y="550"/>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00006_0"
+                                                          layout:speciesReference="C00006"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00006_0"
+                                                          layout:role="product">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="300" layout:y="550">
+                                                <layout:end layout:x="150" layout:y="600"/>
+                                            </layout:start>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00143_0"
+                                                          layout:speciesReference="C00143"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00143_0"
+                                                          layout:role="product">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="300" layout:y="550">
+                                                <layout:end layout:x="300" layout:y="600"/>
+                                            </layout:start>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                        </layout:listOfSpeciesReferenceGlyphs>
+                    </reactionGlyph>
+                    <reactionGlyph layout:id="glyph_R07157" layout:reaction="R07157" render:objectRole="keyCompound">
+                        <layout:curve>
+                            <listOfCurveSegments>
+                                <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                     xsi:type="LineSegment">
+                                    <layout:start layout:x="600" layout:y="100"/>
+                                    <layout:end layout:x="600" layout:y="100"/>
+                                </layout:curveSegment>
+                            </listOfCurveSegments>
+                        </layout:curve>
+                        <layout:listOfSpeciesReferenceGlyphs>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00138_0"
+                                                          layout:speciesReference="C00138"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00138_0"
+                                                          layout:role="substrate">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="750" layout:y="50"/>
+                                            <layout:end layout:x="600" layout:y="100"/>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00080_1"
+                                                          layout:speciesReference="C00080"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00080_1"
+                                                          layout:role="substrate">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="450" layout:y="50"/>
+                                            <layout:end layout:x="600" layout:y="100"/>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00011_0"
+                                                          layout:speciesReference="C00011"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00011_0"
+                                                          layout:role="substrate">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="600" layout:y="50"/>
+                                            <layout:end layout:x="600" layout:y="100"/>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00001_1"
+                                                          layout:speciesReference="C00001"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00001_1"
+                                                          layout:role="product">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="600" layout:y="100">
+                                                <layout:end layout:x="750" layout:y="125"/>
+                                            </layout:start>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00139_0"
+                                                          layout:speciesReference="C00139"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00139_0"
+                                                          layout:role="product">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="600" layout:y="100">
+                                                <layout:end layout:x="450" layout:y="125"/>
+                                            </layout:start>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00237_0"
+                                                          layout:speciesReference="C00237"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00237_0"
+                                                          layout:role="product">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="600" layout:y="100">
+                                                <layout:end layout:x="600" layout:y="150"/>
+                                            </layout:start>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                        </layout:listOfSpeciesReferenceGlyphs>
+                    </reactionGlyph>
+                    <reactionGlyph layout:id="glyph_R10243" layout:reaction="R10243" render:objectRole="keyCompound">
+                        <layout:curve>
+                            <listOfCurveSegments>
+                                <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                     xsi:type="LineSegment">
+                                    <layout:start layout:x="600" layout:y="200"/>
+                                    <layout:end layout:x="600" layout:y="200"/>
+                                </layout:curveSegment>
+                            </listOfCurveSegments>
+                        </layout:curve>
+                        <layout:listOfSpeciesReferenceGlyphs>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00010_0"
+                                                          layout:speciesReference="C00010"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00010_0"
+                                                          layout:role="substrate">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="750" layout:y="175"/>
+                                            <layout:end layout:x="600" layout:y="200"/>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00237_0"
+                                                          layout:speciesReference="C00237"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00237_0"
+                                                          layout:role="substrate">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="600" layout:y="150"/>
+                                            <layout:end layout:x="600" layout:y="200"/>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00440_0"
+                                                          layout:speciesReference="C00440"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00440_0"
+                                                          layout:role="substrate">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="600" layout:y="650"/>
+                                            <layout:end layout:x="600" layout:y="200"/>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00101_0"
+                                                          layout:speciesReference="C00101"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00101_0"
+                                                          layout:role="product">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="600" layout:y="200">
+                                                <layout:end layout:x="450" layout:y="300"/>
+                                            </layout:start>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00024_0"
+                                                          layout:speciesReference="C00024"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00024_0"
+                                                          layout:role="product">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="600" layout:y="200">
+                                                <layout:end layout:x="750" layout:y="225"/>
+                                            </layout:start>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                        </layout:listOfSpeciesReferenceGlyphs>
+                    </reactionGlyph>
+                    <reactionGlyph layout:id="glyph_R01224" layout:reaction="R01224" render:objectRole="keyCompound">
+                        <layout:curve>
+                            <listOfCurveSegments>
+                                <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                     xsi:type="LineSegment">
+                                    <layout:start layout:x="300" layout:y="650"/>
+                                    <layout:end layout:x="300" layout:y="650"/>
+                                </layout:curveSegment>
+                            </listOfCurveSegments>
+                        </layout:curve>
+                        <layout:listOfSpeciesReferenceGlyphs>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00005_0"
+                                                          layout:speciesReference="C00005"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00005_0"
+                                                          layout:role="substrate">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="0" layout:y="600"/>
+                                            <layout:end layout:x="300" layout:y="650"/>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00080_2"
+                                                          layout:speciesReference="C00080_1"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00080_2"
+                                                          layout:role="substrate">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="150" layout:y="650"/>
+                                            <layout:end layout:x="300" layout:y="650"/>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00143_0"
+                                                          layout:speciesReference="C00143"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00143_0"
+                                                          layout:role="substrate">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="300" layout:y="600"/>
+                                            <layout:end layout:x="300" layout:y="650"/>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00006_0"
+                                                          layout:speciesReference="C00006"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00006_0"
+                                                          layout:role="product">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="300" layout:y="650">
+                                                <layout:end layout:x="150" layout:y="600"/>
+                                            </layout:start>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                            <layout:speciesReferenceGlyph layout:id="SpeciesReferenceGlyph_C00440_0"
+                                                          layout:speciesReference="C00440"
+                                                          layout:speciesGlyph="SpeciesGlyph_C00440_0"
+                                                          layout:role="product">
+                                <layout:curve>
+                                    <layout:listOfCurveSegments>
+                                        <layout:curveSegment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                             xsi:type="LineSegment">
+                                            <layout:start layout:x="300" layout:y="650">
+                                                <layout:end layout:x="600" layout:y="650"/>
+                                            </layout:start>
+                                        </layout:curveSegment>
+                                    </layout:listOfCurveSegments>
+                                </layout:curve>
+                            </layout:speciesReferenceGlyph>
+                        </layout:listOfSpeciesReferenceGlyphs>
+                    </reactionGlyph>
+                </layout:listOfReactionGlyphs>
+                <layout:listOfSpeciesGlyphs>
+                    <speciesGlyph layout:id="SpeciesGlyph_C00008_0" layout:species="C00008"
+                                  render:objectRole="nonKeyCompound">
+                        <layout:boundingBox layout:id="bb2">
+                            <layout:position layout:x="450" layout:y="375"/>
+                            <layout:dimensions layout:width="20" layout:height="20"/>
+                        </layout:boundingBox>
+                    </speciesGlyph>
+                    <speciesGlyph layout:id="SpeciesGlyph_C00009_0" layout:species="C00009"
+                                  render:objectRole="nonKeyCompound">
+                        <layout:boundingBox layout:id="bb2">
+                            <layout:position layout:x="150" layout:y="375"/>
+                            <layout:dimensions layout:width="20" layout:height="20"/>
+                        </layout:boundingBox>
+                    </speciesGlyph>
+                    <speciesGlyph layout:id="SpeciesGlyph_C00234_0" layout:species="C00234"
+                                  render:objectRole="keyCompound">
+                        <layout:boundingBox layout:id="bb2">
+                            <layout:position layout:x="300" layout:y="400"/>
+                            <layout:dimensions layout:width="20" layout:height="20"/>
+                        </layout:boundingBox>
+                    </speciesGlyph>
+                    <speciesGlyph layout:id="SpeciesGlyph_C00002_0" layout:species="C00002"
+                                  render:objectRole="nonKeyCompound">
+                        <layout:boundingBox layout:id="bb2">
+                            <layout:position layout:x="150" layout:y="325"/>
+                            <layout:dimensions layout:width="20" layout:height="20"/>
+                        </layout:boundingBox>
+                    </speciesGlyph>
+                    <speciesGlyph layout:id="SpeciesGlyph_C00101_0" layout:species="C00101"
+                                  render:objectRole="keyCompound">
+                        <layout:boundingBox layout:id="bb2">
+                            <layout:position layout:x="450" layout:y="300"/>
+                            <layout:dimensions layout:width="20" layout:height="20"/>
+                        </layout:boundingBox>
+                    </speciesGlyph>
+                    <speciesGlyph layout:id="SpeciesGlyph_C00058_0" layout:species="C00058"
+                                  render:objectRole="keyCompound">
+                        <layout:boundingBox layout:id="bb2">
+                            <layout:position layout:x="300" layout:y="300"/>
+                            <layout:dimensions layout:width="20" layout:height="20"/>
+                        </layout:boundingBox>
+                    </speciesGlyph>
+                    <speciesGlyph layout:id="SpeciesGlyph_C00001_0" layout:species="C00001"
+                                  render:objectRole="nonKeyCompound">
+                        <layout:boundingBox layout:id="bb2">
+                            <layout:position layout:x="150" layout:y="475"/>
+                            <layout:dimensions layout:width="20" layout:height="20"/>
+                        </layout:boundingBox>
+                    </speciesGlyph>
+                    <speciesGlyph layout:id="SpeciesGlyph_C00445_0" layout:species="C00445"
+                                  render:objectRole="keyCompound">
+                        <layout:boundingBox layout:id="bb2">
+                            <layout:position layout:x="300" layout:y="500"/>
+                            <layout:dimensions layout:width="20" layout:height="20"/>
+                        </layout:boundingBox>
+                    </speciesGlyph>
+                    <speciesGlyph layout:id="SpeciesGlyph_C00080_0" layout:species="C00080"
+                                  render:objectRole="nonKeyCompound">
+                        <layout:boundingBox layout:id="bb2">
+                            <layout:position layout:x="150" layout:y="425"/>
+                            <layout:dimensions layout:width="20" layout:height="20"/>
+                        </layout:boundingBox>
+                    </speciesGlyph>
+                    <speciesGlyph layout:id="SpeciesGlyph_C00006_0" layout:species="C00006"
+                                  render:objectRole="nonKeyCompound">
+                        <layout:boundingBox layout:id="bb2">
+                            <layout:position layout:x="150" layout:y="600"/>
+                            <layout:dimensions layout:width="20" layout:height="20"/>
+                        </layout:boundingBox>
+                    </speciesGlyph>
+                    <speciesGlyph layout:id="SpeciesGlyph_C00143_0" layout:species="C00143"
+                                  render:objectRole="keyCompound">
+                        <layout:boundingBox layout:id="bb2">
+                            <layout:position layout:x="300" layout:y="600"/>
+                            <layout:dimensions layout:width="20" layout:height="20"/>
+                        </layout:boundingBox>
+                    </speciesGlyph>
+                    <speciesGlyph layout:id="SpeciesGlyph_C00005_0" layout:species="C00005"
+                                  render:objectRole="nonKeyCompound">
+                        <layout:boundingBox layout:id="bb2">
+                            <layout:position layout:x="0" layout:y="600"/>
+                            <layout:dimensions layout:width="20" layout:height="20"/>
+                        </layout:boundingBox>
+                    </speciesGlyph>
+                    <speciesGlyph layout:id="SpeciesGlyph_C00001_1" layout:species="C00001"
+                                  render:objectRole="nonKeyCompound">
+                        <layout:boundingBox layout:id="bb2">
+                            <layout:position layout:x="750" layout:y="125"/>
+                            <layout:dimensions layout:width="20" layout:height="20"/>
+                        </layout:boundingBox>
+                    </speciesGlyph>
+                    <speciesGlyph layout:id="SpeciesGlyph_C00139_0" layout:species="C00139"
+                                  render:objectRole="nonKeyCompound">
+                        <layout:boundingBox layout:id="bb2">
+                            <layout:position layout:x="450" layout:y="125"/>
+                            <layout:dimensions layout:width="20" layout:height="20"/>
+                        </layout:boundingBox>
+                    </speciesGlyph>
+                    <speciesGlyph layout:id="SpeciesGlyph_C00237_0" layout:species="C00237"
+                                  render:objectRole="keyCompound">
+                        <layout:boundingBox layout:id="bb2">
+                            <layout:position layout:x="600" layout:y="150"/>
+                            <layout:dimensions layout:width="20" layout:height="20"/>
+                        </layout:boundingBox>
+                    </speciesGlyph>
+                    <speciesGlyph layout:id="SpeciesGlyph_C00138_0" layout:species="C00138"
+                                  render:objectRole="nonKeyCompound">
+                        <layout:boundingBox layout:id="bb2">
+                            <layout:position layout:x="750" layout:y="50"/>
+                            <layout:dimensions layout:width="20" layout:height="20"/>
+                        </layout:boundingBox>
+                    </speciesGlyph>
+                    <speciesGlyph layout:id="SpeciesGlyph_C00080_1" layout:species="C00080"
+                                  render:objectRole="nonKeyCompound">
+                        <layout:boundingBox layout:id="bb2">
+                            <layout:position layout:x="450" layout:y="50"/>
+                            <layout:dimensions layout:width="20" layout:height="20"/>
+                        </layout:boundingBox>
+                    </speciesGlyph>
+                    <speciesGlyph layout:id="SpeciesGlyph_C00011_0" layout:species="C00011"
+                                  render:objectRole="keyCompound">
+                        <layout:boundingBox layout:id="bb2">
+                            <layout:position layout:x="600" layout:y="50"/>
+                            <layout:dimensions layout:width="20" layout:height="20"/>
+                        </layout:boundingBox>
+                    </speciesGlyph>
+                    <speciesGlyph layout:id="SpeciesGlyph_C00024_0" layout:species="C00024"
+                                  render:objectRole="keyCompound">
+                        <layout:boundingBox layout:id="bb2">
+                            <layout:position layout:x="750" layout:y="225"/>
+                            <layout:dimensions layout:width="20" layout:height="20"/>
+                        </layout:boundingBox>
+                    </speciesGlyph>
+                    <speciesGlyph layout:id="SpeciesGlyph_C00010_0" layout:species="C00010"
+                                  render:objectRole="nonKeyCompound">
+                        <layout:boundingBox layout:id="bb2">
+                            <layout:position layout:x="750" layout:y="175"/>
+                            <layout:dimensions layout:width="20" layout:height="20"/>
+                        </layout:boundingBox>
+                    </speciesGlyph>
+                    <speciesGlyph layout:id="SpeciesGlyph_C00440_0" layout:species="C00440"
+                                  render:objectRole="keyCompound">
+                        <layout:boundingBox layout:id="bb2">
+                            <layout:position layout:x="600" layout:y="650"/>
+                            <layout:dimensions layout:width="20" layout:height="20"/>
+                        </layout:boundingBox>
+                    </speciesGlyph>
+                    <speciesGlyph layout:id="SpeciesGlyph_C00080_2" layout:species="C00080_1"
+                                  render:objectRole="nonKeyCompound">
+                        <layout:boundingBox layout:id="bb2">
+                            <layout:position layout:x="150" layout:y="650"/>
+                            <layout:dimensions layout:width="20" layout:height="20"/>
+                        </layout:boundingBox>
+                    </speciesGlyph>
+                </layout:listOfSpeciesGlyphs>
+                <render:listOfRenderInformation xmlns:render="http://www.sbml.org/sbml/level3/version1/render/version1"
+                                                versionMajor="1" versionMinor="0">
+                    <render:renderInformation id="renderForOpacity" programName="MPA Pathway Tool" programVersion="0.8">
+                        <render:listOfColorDefinitions>
+                            <render:colorDefinition render:id="keyReaction" render:value="#000000ff"/>
+                            <render:colorDefinition render:id="nonKeyReaction" render:value="#00000066"/>
+                            <render:colorDefinition render:id="keyCompound" render:value="#FF800000"/>
+                            <render:colorDefinition render:id="nonKeyCompound" render:value="#FF800066"/>
+                        </render:listOfColorDefinitions>
+                        <render:listOfStyles>
+                            <render:style render:id="keyReaction" render:roleList="keyReaction">
+                                <render:g render:stroke="keyReaction"/>
+                            </render:style>
+                        </render:listOfStyles>
+                        <render:listOfStyles>
+                            <render:style render:id="nonKeyReaction" render:roleList="nonKeyReaction">
+                                <render:g render:stroke="nonKeyReaction"/>
+                            </render:style>
+                        </render:listOfStyles>
+                        <render:listOfStyles>
+                            <render:style render:id="keyCompound" render:roleList="keyCompound">
+                                <render:g render:stroke="keyCompound"/>
+                            </render:style>
+                        </render:listOfStyles>
+                        <render:listOfStyles>
+                            <render:style render:id="nonKeyCompound" render:roleList="nonKeyCompound">
+                                <render:g render:stroke="nonKeyCompound"/>
+                            </render:style>
+                        </render:listOfStyles>
+                    </render:renderInformation>
+                </render:listOfRenderInformation>
+            </layout:layout>
+        </layout:listOfLayouts>
+    </model>
 </sbml>

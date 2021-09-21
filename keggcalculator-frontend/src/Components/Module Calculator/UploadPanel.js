@@ -24,55 +24,51 @@ class UploadPanel extends Component {
         this.fetchStatus = this.fetchStatus.bind(this)
         this.downloadData = this.downloadData.bind(this)
         this.startProcessing = this.startProcessing.bind(this)
-        this.state={
+        this.state = {
             jobID: undefined
         }
     }
 
-    fetchStatus(jobID){
+    fetchStatus(jobID) {
         requestGenerator("GET", RequestURL.endpoint_status, {jobid: jobID}, "", "").then(response => {
-            if(response.status === 200){
+            if (response.status === 200) {
                 const {message} = response.data;
-                if(message === "finished") {
+                if (message === "finished") {
                     this.props.CalculatorStore.endTime = getCurrentDateMinute()
                     this.props.CalculatorStore.setDownloadStatusAndMessage(`${RequestURL.endpoint_download}/${jobID}`, message)
                     this.props.CalculatorStore.processing = false;
-                }
-                else if(message === "failed") {
+                } else if (message === "failed") {
                     this.props.CalculatorStore.setErrorMessage(message);
-                }
-                else{
+                } else {
                     setTimeout(() => this.fetchStatus(jobID), 5000)
                 }
             }
         });
     };
 
-    downloadData(){
+    downloadData() {
         requestGenerator("GET", this.props.CalculatorStore.downloadLink, "", "", "").then(response => {
-            if(response.status === 200) {
+            if (response.status === 200) {
                 let blob = new Blob(new Array(response.data), {type: "text/plain;charset=utf-8"});
                 saveAs(blob, "PathwayCalculator.csv")
-            }
-            else {
+            } else {
                 this.props.CalculatorStore.setErrorMessage("Failed to Download");
             }
         })
     }
 
-    downloadDataUnmatchedProteins(jobID){
+    downloadDataUnmatchedProteins(jobID) {
         requestGenerator("GET", `${RequestURL.endpoint_download_unmatched_proteins}/${jobID}`, "", "", "").then(response => {
-            if(response.status === 200) {
+            if (response.status === 200) {
                 let blob = new Blob(new Array(response.data.trim()), {type: "text/plain;charset=utf-8"});
                 saveAs(blob, "unmatchedProteins.csv")
-            }
-            else {
+            } else {
                 this.props.CalculatorStore.setErrorMessage("Failed to Download");
             }
         })
     }
 
-    startProcessing(){
+    startProcessing() {
         this.props.CalculatorStore.startTime = getCurrentDateMinute()
         this.props.CalculatorStore.processing = true;
         let MPAFileName = this.props.CalculatorStore.getMPAFile[0].name
@@ -81,19 +77,23 @@ class UploadPanel extends Component {
             moduleFileNames.push(moduleFile.name);
             return null
         })
-        let body = { jobID: "", mpaCSVFile: MPAFileName, moduleFiles: moduleFileNames, message: "", downloadLink: "" };
-        requestGenerator("POST", RequestURL.endpoint_fetchUUID,"","", body).then( response => {
-            if(response.status === 200) {
+        let body = {jobID: "", mpaCSVFile: MPAFileName, moduleFiles: moduleFileNames, message: "", downloadLink: ""};
+        requestGenerator("POST", RequestURL.endpoint_fetchUUID, "", "", body).then(response => {
+            if (response.status === 200) {
                 const {jobID, message} = response.data;
                 this.setState({jobID: jobID})
-                const header = {"Content-Type": "multipart/form-data", "type": "formData", "Transfer-Encoding": "chunked"};
+                const header = {
+                    "Content-Type": "multipart/form-data",
+                    "type": "formData",
+                    "Transfer-Encoding": "chunked"
+                };
                 let formData = new FormData();
                 formData.append("Content-Type", "multipart/form-data");
                 formData.append("uploaded_file", this.props.CalculatorStore.getMPAFile[0]);
                 // let body = {"Content-Type": "multipart/form-data", "uploaded_file":this.props.CalculatorStore.getMPAFile[0]}
                 this.props.CalculatorStore.setJobIDAndMessage(jobID, message);
                 requestGenerator("POST", RequestURL.endpoint_uploadMPAFile, {jobid: jobID}, header, formData).then(response => {
-                    if(response.status !== 200){
+                    if (response.status !== 200) {
                         this.props.CalculatorStore.setErrorMessage("MPA file processing failed");
                     }
                 });
@@ -103,18 +103,17 @@ class UploadPanel extends Component {
                     formData.append("uploaded_file", moduleFile);
                     // body = {"Content-Type": "multipart/form-data", "uploaded_file": moduleFile};
                     requestGenerator("POST", RequestURL.endpoint_uploadModuleFiles, {jobid: jobID}, header, formData).then(response => {
-                        if(response.status !== 200){
+                        if (response.status !== 200) {
                             this.props.CalculatorStore.setErrorMessage("Module file processing failed");
                         }
                     })
                     return null
                 });
-                if(!this.props.CalculatorStore.error) {
+                if (!this.props.CalculatorStore.error) {
                     this.fetchStatus(jobID)
                 }
-            }
-            else {
-                    this.props.CalculatorStore.setErrorMessage("Failed to initiate the job");
+            } else {
+                this.props.CalculatorStore.setErrorMessage("Failed to initiate the job");
             }
         })
     };
@@ -123,29 +122,40 @@ class UploadPanel extends Component {
         return (
             <div>
                 <div style={{display: "flex", padding: "20px 0 20px 0px"}}>
-                    <div style={{height: "auto",width: "47%", padding: "0 1% 0 2.5%"}}>
-                        <DropZone fileType={"MPAFile"} message={"Drag a experimental data file here or click the upload file button"}
+                    <div style={{height: "auto", width: "47%", padding: "0 1% 0 2.5%"}}>
+                        <DropZone fileType={"MPAFile"}
+                                  message={"Drag a experimental data file here or click the upload file button"}
                                   uploadFileButton={"Upload a experimental data file"}
                         />
                     </div>
-                    <div style={{height: "auto",width: "47%", padding: "0 1% 0 0"}}>
-                        <DropZone fileType={"moduleFile"} message={"Drag pathway files here or click the upload files button"}
+                    <div style={{height: "auto", width: "47%", padding: "0 1% 0 0"}}>
+                        <DropZone fileType={"moduleFile"}
+                                  message={"Drag pathway files here or click the upload files button"}
                                   uploadFileButton={"Upload pathway files"}
                         />
                     </div>
                 </div>
-                <div style={{display: "flex", justifyContent: "space-evenly" }}>
+                <div style={{display: "flex", justifyContent: "space-evenly"}}>
                     <ToolTipBig title={"Download results of mapping"} placement={"left"}>
-                    <Button disabled={this.props.CalculatorStore.downloadLink === undefined} variant={"contained"} color={"primary"} endIcon={<GetAppIcon/>} onClick={() => this.downloadData()}>Download</Button>
+                        <Button disabled={this.props.CalculatorStore.downloadLink === undefined} variant={"contained"}
+                                color={"primary"} endIcon={<GetAppIcon/>}
+                                onClick={() => this.downloadData()}>Download</Button>
                     </ToolTipBig>
                     <ToolTipBig title={"Download unmatched features, e.g. unmatched proteins"} placement={"top"}>
-                    <Button disabled={this.props.CalculatorStore.downloadLink === undefined} variant={"contained"} color={"primary"} endIcon={<GetAppIcon/>} onClick={() => this.downloadDataUnmatchedProteins(this.state.jobID)}>Download unmatched Proteins</Button>
+                        <Button disabled={this.props.CalculatorStore.downloadLink === undefined} variant={"contained"}
+                                color={"primary"} endIcon={<GetAppIcon/>}
+                                onClick={() => this.downloadDataUnmatchedProteins(this.state.jobID)}>Download unmatched
+                            Proteins</Button>
                     </ToolTipBig>
-                    <TaxonomicDetails jobId={this.props.CalculatorStore.jobID} isNotFinished={this.props.CalculatorStore.downloadLink === undefined} CalculatorStore={this.props.CalculatorStore}/>
+                    <TaxonomicDetails jobId={this.props.CalculatorStore.jobID}
+                                      isNotFinished={this.props.CalculatorStore.downloadLink === undefined}
+                                      CalculatorStore={this.props.CalculatorStore}/>
                     <MetaDataCalculator/>
 
-                    <Button disabled={this.props.CalculatorStore.downloadLink !== undefined || typeof this.props.CalculatorStore.getMPAFile === "undefined" || this.props.CalculatorStore.processing}
-                            variant={"contained"} color={"primary"} onClick={() => this.startProcessing()} endIcon={<KeyboardArrowRightIcon/>}>Start</Button>
+                    <Button
+                        disabled={this.props.CalculatorStore.downloadLink !== undefined || typeof this.props.CalculatorStore.getMPAFile === "undefined" || this.props.CalculatorStore.processing}
+                        variant={"contained"} color={"primary"} onClick={() => this.startProcessing()}
+                        endIcon={<KeyboardArrowRightIcon/>}>Start</Button>
 
                 </div>
                 {(this.props.CalculatorStore.processing || this.props.CalculatorStore.error) &&
@@ -154,16 +164,19 @@ class UploadPanel extends Component {
                           message={
                               <div>
                                   {this.props.CalculatorStore.processing && <div style={{display: "flex"}}>
-                                      <Typography style={{display: "flex", alignItems: "center"}}>Processing...</Typography>
+                                      <Typography
+                                          style={{display: "flex", alignItems: "center"}}>Processing...</Typography>
                                       &nbsp;&nbsp;
                                       <CircularProgress/>
                                   </div>}
-                                  {this.props.CalculatorStore.error && <div>Error occurred during uploading. Check your input files or try again later</div>}
+                                  {this.props.CalculatorStore.error &&
+                                  <div>Error occurred during uploading. Check your input files or try again later</div>}
                               </div>
                           }
                           action={this.props.CalculatorStore.error && <div>
-                              <IconButton size="small" aria-label="close" color="inherit" onClick={() => this.props.CalculatorStore.error = false}>
-                                  <CloseIcon fontSize="small" />
+                              <IconButton size="small" aria-label="close" color="inherit"
+                                          onClick={() => this.props.CalculatorStore.error = false}>
+                                  <CloseIcon fontSize="small"/>
                               </IconButton>
                           </div>}
                 />}

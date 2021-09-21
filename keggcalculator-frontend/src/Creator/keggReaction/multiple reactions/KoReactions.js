@@ -178,15 +178,15 @@ const KoReactions = () => {
                         </li>
                     )
                 })}
-                    </ul>
-                    <button className={"downloadButton"} onClick={() => handleKoRequest()}>Submit</button>
-                    </div>
-                    )
-                    return (
-                    <Modal className={classes.modal} open={state.showKoModal} onClose={() => dispatch({type: "SWITCHSHOWKOMODAL"})}>
-                {body}
-                    </Modal>
-                    )
-                }
+            </ul>
+            <button className={"downloadButton"} onClick={() => handleKoRequest()}>Submit</button>
+        </div>
+    )
+    return (
+        <Modal className={classes.modal} open={state.showKoModal} onClose={() => dispatch({type: "SWITCHSHOWKOMODAL"})}>
+            {body}
+        </Modal>
+    )
+}
 
-                    export default KoReactions
+export default KoReactions

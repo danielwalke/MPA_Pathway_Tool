@@ -20,7 +20,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const customStyle = {
     dropZone: {
-        flex: "1",display: "flex", flexDirection: "column", height: "140px",
+        flex: "1", display: "flex", flexDirection: "column", height: "140px",
         alignItems: "center", borderWidth: "2px",
         borderRadius: "2px", borderColor: "#eeeeee", borderStyle: "dashed",
         backgroundColor: "#fafafa", color: "#bdbdbd", outline: "none",
@@ -39,21 +39,19 @@ class DropZone extends Component {
     }
 
     uploadedFiles(collection) {
-        if(collection.length !== 0) {
-            if(this.props.fileType === "MPAFile") {
+        if (collection.length !== 0) {
+            if (this.props.fileType === "MPAFile") {
                 this.props.CalculatorStore.setUploadedFiles("MPAFile", new Array(collection[0]))
-            }
-            else {
+            } else {
                 collection.map(file => this.props.CalculatorStore.setUploadedFiles("moduleFiles", file))
             }
         }
     }
 
-    convertFileSize(size){
+    convertFileSize(size) {
         if (size >= 1048576) {
             return (size / 1048576).toFixed(2) + " MB";
-        }
-        else if (size >= 1024) {
+        } else if (size >= 1024) {
             return (size / 1024).toFixed(2) + " KB";
         }
     }
@@ -62,41 +60,48 @@ class DropZone extends Component {
         let file = this.props.fileType === "MPAFile" ? this.props.CalculatorStore.getMPAFile : this.props.CalculatorStore.getModuleFiles;
         return (
             <div>
-                <ReactDropZone onDrop={files => this.uploadedFiles(files)} accept={"application/vnd.ms-excel,application/json,text/xml,text/comma-separated-values,text/plain"}>
-                    {({getRootProps,getInputProps, isDragActive, isDragReject, isDragAccept}) => (
+                <ReactDropZone onDrop={files => this.uploadedFiles(files)}
+                               accept={"application/vnd.ms-excel,application/json,text/xml,text/comma-separated-values,text/plain"}>
+                    {({getRootProps, getInputProps, isDragActive, isDragReject, isDragAccept}) => (
                         <div {...getRootProps({style: customStyle.dropZone})}>
                             <input {...getInputProps()} accept={".CSV,.JSON,.XML,.TXT"}/>
                             {!isDragActive && <div style={{padding: "10px"}}>{this.props.message}</div>}
                             {isDragReject && "Unsupported file format"}
                             {isDragAccept && "Drop here...."}
-                            {!isDragActive && <Button variant={"contained"} color={"primary"}>{this.props.uploadFileButton}</Button>}
+                            {!isDragActive &&
+                            <Button variant={"contained"} color={"primary"}>{this.props.uploadFileButton}</Button>}
                         </div>
                     )}
                 </ReactDropZone>
                 <Accordion style={{padding: "5px", margin: "10px 0 0 0"}}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon/>}>
-                        <Typography variant={"h6"} style={{flexBasis: "33.33%"}}>{this.props.fileType === "MPAFile" ? "experimental data" : "pathway files"}</Typography>
-                        <Typography variant={"h6"} style={{flexBasis: "33.33%" ,color: "#bdbdbd"}}>{this.props.CalculatorStore.getSize(this.props.fileType)}</Typography>
+                        <Typography variant={"h6"}
+                                    style={{flexBasis: "33.33%"}}>{this.props.fileType === "MPAFile" ? "experimental data" : "pathway files"}</Typography>
+                        <Typography variant={"h6"} style={{
+                            flexBasis: "33.33%",
+                            color: "#bdbdbd"
+                        }}>{this.props.CalculatorStore.getSize(this.props.fileType)}</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <List style={{width: "100%"}}>
                             {
-                                file.map((uploadedFile,index) => {
+                                file.map((uploadedFile, index) => {
                                     // console.log(uploadedFile)
                                     return (
-                                        <ListItem key={uploadedFile.name+"_"+index}>
+                                        <ListItem key={uploadedFile.name + "_" + index}>
                                             <ListItemAvatar>
                                                 <Avatar>
                                                     <AttachFileIcon/>
                                                 </Avatar>
                                             </ListItemAvatar>
                                             <ListItemText
-                                                primary={<Typography variant={"subtitle2"}>{uploadedFile.name+"_"+index}</Typography>}
+                                                primary={<Typography
+                                                    variant={"subtitle2"}>{uploadedFile.name + "_" + index}</Typography>}
                                                 secondary={this.convertFileSize(Number(uploadedFile.size))}
                                             />
                                             <ListItemSecondaryAction>
                                                 <IconButton value={index} edge={"end"}
-                                                            onClick={event => this.props.CalculatorStore.removeFiles(this.props.fileType ,event.currentTarget.value)}
+                                                            onClick={event => this.props.CalculatorStore.removeFiles(this.props.fileType, event.currentTarget.value)}
                                                 >
                                                     <DeleteIcon/>
                                                 </IconButton>
@@ -107,7 +112,7 @@ class DropZone extends Component {
                             }
                         </List>
                     </AccordionDetails>
-                </Accordion >
+                </Accordion>
             </div>
         );
     }

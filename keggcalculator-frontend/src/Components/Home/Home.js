@@ -14,8 +14,7 @@ import App from "../../Creator/main/App"
 import Start from "./Start";
 import {makeStyles} from "@material-ui/core";
 import {getLastItemOfList} from "../../Creator/usefulFunctions/Arrays";
-import { Redirect } from 'react-router'
-import FBA from "../FBA/FBA";
+import {Redirect} from 'react-router'
 import {host} from "../../App Configurations/SystemSettings";
 import Footer from "../Footer/Footer";
 
@@ -32,21 +31,21 @@ class Home extends Component {
         this.getLastTab = this.getLastTab.bind(this)
     }
 
-    getLastTab= (url)=> {
+    getLastTab = (url) => {
         const urlEntries = url.split("/")
         return getLastItemOfList(urlEntries)
     }
 
     componentDidMount() {
         //TODO: delete the following line after fixing haproxy error
-        if(host !== "http://127.0.0.1") window.location.href = 'http://141.44.141.132:9001/home'
+        if (host !== "http://127.0.0.1") window.location.href = 'http://141.44.141.132:9001/home'
         requestGenerator("GET", endpoint_getCompoundList, "", "").then(response => {
             this.props.ModuleStore.addCompounds(response.data);
         })
         this.changeState("reload", false)
     }
 
-    changeState(stateName, value){
+    changeState(stateName, value) {
         this.setState({[stateName]: value})
     };
 
@@ -62,7 +61,7 @@ class Home extends Component {
                             <BrowserRouter>
                                 <CustomTabs state={this.state} changeState={this.changeState}/>
                                 <Switch>
-                                    {this.state.reload? <Redirect to={"/home"} target="_blank"/> : null}
+                                    {this.state.reload ? <Redirect to={"/home"} target="_blank"/> : null}
                                     {/*<div><h3 style={{margin: "5% 0 0 0"}}>Under Construction</h3> <img style={{width: "70%", padding: "3%"}} src={underConstruction}/></div>*/}
                                     <Route path={"/home"}><Start changeState={this.changeState}/></Route>
                                     <Route path={"/creator"}><App changeState={this.changeState}/></Route>
@@ -82,21 +81,21 @@ class Home extends Component {
 
 export default inject("ModuleStore")(observer(Home));
 
-const CustomTabs = (props) =>{
+const CustomTabs = (props) => {
     const useStyles = makeStyles({
-        indicator:{
-            backgroundColor:"rgb(150, 25, 130)",
-            height:"5px"
+        indicator: {
+            backgroundColor: "rgb(150, 25, 130)",
+            height: "5px"
         }
     })
     const classes = useStyles()
     const {state, changeState} = props
-    return(
+    return (
         <Tabs variant={"fullWidth"} textColor={"primary"} indicatorColor={"primary"} orientation={"horizontal"}
               scrollButtons={"auto"}
-            classes={
-                {indicator: classes.indicator}
-            }
+              classes={
+                  {indicator: classes.indicator}
+              }
               value={state.selectedTab}
               onChange={(event, tabValue) => changeState("selectedTab", tabValue)}>
             <Tab icon={<HomeIcon/>} to={"/home"}

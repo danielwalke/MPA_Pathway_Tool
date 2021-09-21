@@ -43,7 +43,7 @@ const ReactionInfo = () => {
     const body = (<div className={"infoWrapper"}>
         <button className={"closeInfo"} onClick={(event) => handleClose(event, dispatch)}><CloseIcon/></button>
         <h4 className={"headerInfo"} style={{top: 0, left: 0}}>You clicked on node {state.graph.chosenNode}!</h4>
-        <div className={"svgInfo"} >
+        <div className={"svgInfo"}>
             <HeatMap/>
         </div>
         <div className={"koAndEcListContainer"}>

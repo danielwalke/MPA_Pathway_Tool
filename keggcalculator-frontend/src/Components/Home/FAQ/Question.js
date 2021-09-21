@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -19,10 +19,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Question = (props) => {
-    const {panelId, index, answer, question,link} = props
+    const {panelId, index, answer, question, link} = props
     const [expanded, setExpanded] = React.useState(false)
 
-    const handleChange = (panel) => (e, isExpanded) =>{
+    const handleChange = (panel) => (e, isExpanded) => {
         setExpanded(isExpanded ? panel : false)
     }
 
@@ -30,7 +30,7 @@ const Question = (props) => {
     return (
         <Accordion expanded={expanded === panelId} onChange={handleChange(panelId)}>
             <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
+                expandIcon={<ExpandMoreIcon/>}
                 aria-controls="panel1bh-content"
             >
                 <Typography className={classes.heading}>{index}) </Typography>
@@ -39,7 +39,7 @@ const Question = (props) => {
             <AccordionDetails>
                 <Typography>
                     {answer}
-                    {link.length>0 && <a href={link}>here.</a>}
+                    {link.length > 0 && <a href={link}>here.</a>}
                 </Typography>
             </AccordionDetails>
         </Accordion>

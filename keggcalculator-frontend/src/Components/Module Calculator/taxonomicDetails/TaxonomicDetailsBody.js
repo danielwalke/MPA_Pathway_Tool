@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import AddBoxIcon from '@material-ui/icons/AddBox';
-import { FormControl, makeStyles, Select} from "@material-ui/core";
+import {FormControl, makeStyles, Select} from "@material-ui/core";
 import {ToolTipBig} from "../../../Creator/main/user-interface/UserInterface";
 import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox';
 import {requestGenerator} from "../../../Request Generator/RequestGenerator";
@@ -64,13 +64,12 @@ const TaxonomicDetailsBody = (props) => {
         setLines(filteredLines)
     }
 
-    const downloadDetails = () =>{
+    const downloadDetails = () => {
         requestGenerator("GET", `${RequestURL.endpoint_download_details}/${props.jobId}`, "", "", "").then(response => {
-            if(response.status === 200) {
+            if (response.status === 200) {
                 let blob = new Blob(new Array(response.data.trim()), {type: "text/plain;charset=utf-8"});
                 saveAs(blob, "detailed_results.csv")
-            }
-            else {
+            } else {
                 props.CalculatorStore.setErrorMessage("Failed to Download");
             }
         })
@@ -85,11 +84,14 @@ const TaxonomicDetailsBody = (props) => {
         <div className={classes.paper}>
             <div style={{width: "80vw", height: "90vh", overflow: "auto"}}>
                 <ToolTipBig title={"download the complete table with details as *.csv"} placement={"right"}>
-                <button className={"downloadButton"} onClick={()=>downloadDetails()} style={{width:"20vw", margin:"5px"}}>Download details</button>
+                    <button className={"downloadButton"} onClick={() => downloadDetails()}
+                            style={{width: "20vw", margin: "5px"}}>Download details
+                    </button>
                 </ToolTipBig>
-                <table style={{margin:"5px 0"}}>
+                <table style={{margin: "5px 0"}}>
                     {lines.map((line, index) => <Line isFirst={index === 0} line={line} index={index}
-                                                      handleExpand={handleExpand} columnSets={columnSets} shrink={shrink}
+                                                      handleExpand={handleExpand} columnSets={columnSets}
+                                                      shrink={shrink}
                                                       filter={filter}/>)}
                 </table>
             </div>
@@ -131,7 +133,7 @@ const Line = (props) => {
                 <th style={{border: "2px solid black"}} onClick={() => handleExpand(index)}>action</th>
                 {entries.map((entry, i) => {
                     if (isFilter && i === entryIndex) {
-                        return (<th style={{border: "2px solid rgb(150, 25, 130)", minWidth:"7vw"}}>
+                        return (<th style={{border: "2px solid rgb(150, 25, 130)", minWidth: "7vw"}}>
                             <FilterBody index={i} columnSets={columnSets} setIsFilter={setIsFilter} filter={filter}/>
                         </th>)
                     } else {
@@ -152,17 +154,19 @@ const Line = (props) => {
     } else {
         return (
             <tr>
-                {isHeader(entries[0]) && !isExpanded && <td style={{border: "1px solid rgb(150, 25, 130)", cursor: "pointer"}}><AddBoxIcon
+                {isHeader(entries[0]) && !isExpanded &&
+                <td style={{border: "1px solid rgb(150, 25, 130)", cursor: "pointer"}}><AddBoxIcon
                     onClick={() => {
                         setIsExpanded(true)
                         handleExpand(entries[0])
                     }}/></td>}
-                {isHeader(entries[0]) && isExpanded && <td style={{border: "1px solid rgb(150, 25, 130)", cursor: "pointer"}}><IndeterminateCheckBoxIcon
+                {isHeader(entries[0]) && isExpanded &&
+                <td style={{border: "1px solid rgb(150, 25, 130)", cursor: "pointer"}}><IndeterminateCheckBoxIcon
                     onClick={() => {
                         setIsExpanded(false)
                         shrink()
                     }}/></td>}
-                {!isHeader(entries[0]) && <td style={{border: "1px solid rgb(150, 25, 130)", cursor: "pointer"}}> </td>}
+                {!isHeader(entries[0]) && <td style={{border: "1px solid rgb(150, 25, 130)", cursor: "pointer"}}></td>}
                 {entries.map(entry => {
                     return (
                         <td style={{border: "1px solid black"}}>{entry}</td>

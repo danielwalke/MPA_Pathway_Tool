@@ -19,9 +19,9 @@ const MetadataCalculator = (props) => {
 
         const metaData = `${props.CalculatorStore.startTime} - ${props.CalculatorStore.endTime}\texperimental data from ${expDataFile.name} were successfully mapped on the following pathways ${pathwayFiles.map(pathwayFile => `\n - ${pathwayFile.name}`)}`
         const metaDataBlob = new Blob(new Array(metaData.trim()), {type: "text/plain;charset=utf-8"})
-        const metaDataFile= new File(new Array(metaDataBlob), "metadata.txt")
+        const metaDataFile = new File(new Array(metaDataBlob), "metadata.txt")
         zip.file(metaDataFile.name, metaDataFile)
-        zip.generateAsync({type:"blob"}).then(function(content) {
+        zip.generateAsync({type: "blob"}).then(function (content) {
             saveAs(content, "metadata.zip");
         });
 
@@ -29,7 +29,9 @@ const MetadataCalculator = (props) => {
     return (
         <div>
             <ToolTipBig title={"Download metadata from mapping as *.zip"} placement={"top"}>
-            <Button disabled={props.CalculatorStore.downloadLink === undefined} variant={"contained"} color={"primary"} endIcon={<GetAppIcon/>}  onClick={handleDownloadMetadata}>download metadata</Button>
+                <Button disabled={props.CalculatorStore.downloadLink === undefined} variant={"contained"}
+                        color={"primary"} endIcon={<GetAppIcon/>} onClick={handleDownloadMetadata}>download
+                    metadata</Button>
             </ToolTipBig>
         </div>
     );

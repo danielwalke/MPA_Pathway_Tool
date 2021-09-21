@@ -14,17 +14,22 @@ const ReversibilityChange = (props) => {
     }, [props])
 
     const deleteLinks = (links) => {
-        links = links.filter(link =>!((link.source === node.id || link.target === node.id) && link.isReversibleLink))
+        links = links.filter(link => !((link.source === node.id || link.target === node.id) && link.isReversibleLink))
         return links
     }
 
     const addLinks = (links) => {
         links.map(link => {
-                if(link.source === node.id || link.target === node.id){
-                    const reverseLink = {source: link.target, target: link.source, opacity: link.opacity, isReversibleLink: true}
+                if (link.source === node.id || link.target === node.id) {
+                    const reverseLink = {
+                        source: link.target,
+                        target: link.source,
+                        opacity: link.opacity,
+                        isReversibleLink: true
+                    }
                     links.push(reverseLink)
                 }
-            return link
+                return link
             }
         )
         return links
@@ -49,14 +54,15 @@ const ReversibilityChange = (props) => {
         dispatch({type: "SETDATA", payload: data})
     }
 
-    const changeReversibilityInReactions = ()=>{
-        const reaction = state.general.reactionsInSelectArray.find(reaction => reaction.reactionId === node.id.substring(node.id.length-6, node.id.length))
+    const changeReversibilityInReactions = () => {
+        const reaction = state.general.reactionsInSelectArray.find(reaction => reaction.reactionId === node.id.substring(node.id.length - 6, node.id.length))
         reaction.reversible = !reaction.reversible
     }
 
     return (
         <div style={{display: "flex"}}>
-            <div> <ToolTipBig title={reversible? "Make reaction irreversible" : "Make reaction reversible"} placement={"right"}>
+            <div><ToolTipBig title={reversible ? "Make reaction irreversible" : "Make reaction reversible"}
+                             placement={"right"}>
                 <Checkbox checked={reversible} onChange={() => changeReversibility()}/>
             </ToolTipBig></div>
             <div>Reversible</div>

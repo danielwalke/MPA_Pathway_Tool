@@ -1,7 +1,7 @@
 const defaultState = {
     experimentalDataFile: null,//new File([], ""),
     pathwayFile: null
-    }
+}
 
 export const fileReducer = (state = defaultState, action) => {
     const {type, payload} = action;

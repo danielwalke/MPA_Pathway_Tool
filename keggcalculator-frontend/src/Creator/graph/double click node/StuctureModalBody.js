@@ -59,33 +59,36 @@ export const getStructureBody = (state, dispatch, generalState, isNcbiTaxonomy, 
         dispatch({type: "SETDATA", payload: data})
     }
 
-    const body = (<div className={"structureBodyContainer"} style={{backgroundColor: "white", width:"75vw",overflow:"auto", maxHeight:"80vh"}}>
+    const body = (<div className={"structureBodyContainer"}
+                       style={{backgroundColor: "white", width: "75vw", overflow: "auto", maxHeight: "80vh"}}>
         <div className={"nodeLabel"}><h3 style={{padding: "2px"}}>ID: {compound.id}</h3></div>
         <div className={"keyCompoundChoice"}>
             <KeyCompoundChanger compound={compound} handleIsNotKeyCompound={handleIsNotKeyCompound}
                                 handleIsKeyCompound={handleIsKeyCompound}/>
-                                <LabelPositionChanger compound={compound}/>
+            <LabelPositionChanger compound={compound}/>
         </div>
         <div className={"details"}>
             {nodeId.match(/[C]/) &&
-            <img style={{maxWidth:"75vw"}} src={`https://www.genome.jp/Fig/compound/${nodeId}.gif`} alt={state.doubleClickNode}/>}
+            <img style={{maxWidth: "75vw"}} src={`https://www.genome.jp/Fig/compound/${nodeId}.gif`}
+                 alt={state.doubleClickNode}/>}
             {nodeId.match(/[G]/) &&
-            <img style={{maxWidth:"75vw"}} src={`https://www.genome.jp/Fig/glycan/${nodeId}.gif`} alt={state.doubleClickNode}/>}
+            <img style={{maxWidth: "75vw"}} src={`https://www.genome.jp/Fig/glycan/${nodeId}.gif`}
+                 alt={state.doubleClickNode}/>}
             {nodeId.match(/[R,U]/) && (
                 <div style={{display: "grid", gridAutoRows: "auto"}}>
                     <div style={{display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10vw"}}>
                         <div><ReversibilityChange nodeId={nodeId}/></div>
                         <div>
                             <ToolTipBig title={"Change direction of chosen reaction"} placement={"right"}>
-                            <button className={"downloadButton"} style={{width: "15vw"}}
-                                    onClick={() => handleSubmitDirection(state, dispatch, generalState)}>reverse
-                                reaction
-                            </button>
+                                <button className={"downloadButton"} style={{width: "15vw"}}
+                                        onClick={() => handleSubmitDirection(state, dispatch, generalState)}>reverse
+                                    reaction
+                                </button>
                             </ToolTipBig>
                         </div>
                     </div>
                     <div style={{margin: "2px"}}><TaxonomicRank/>
-                        <div style={{display:"grid", gridTemplateColumns:"5fr 1fr"}}>
+                        <div style={{display: "grid", gridTemplateColumns: "5fr 1fr"}}>
                             <div>{!isNcbiTaxonomy ? <TextField
                                     style={{width: "100%"}}
                                     placeholder={"lowest taxonomic rank"}
@@ -101,30 +104,36 @@ export const getStructureBody = (state, dispatch, generalState, isNcbiTaxonomy, 
                                 /> :
                                 <TaxonomyNcbi taxonomy={generalState.taxonomy} dispatchTaxonomy={"SETTAXONOMY"}/>}</div>
                             <div>
-                                <ToolTipBig title={isNcbiTaxonomy ? "Choose your own taxonomic name" : `Choose taxonomic name from a list`} placement={"right"}>
-                                <button className={"downloadButton"} style={{height:"100%"}}
-                                        onClick={() => setIsNcbiTaxonomy(!isNcbiTaxonomy)}>Switch
-                                </button>
+                                <ToolTipBig
+                                    title={isNcbiTaxonomy ? "Choose your own taxonomic name" : `Choose taxonomic name from a list`}
+                                    placement={"right"}>
+                                    <button className={"downloadButton"} style={{height: "100%"}}
+                                            onClick={() => setIsNcbiTaxonomy(!isNcbiTaxonomy)}>Switch
+                                    </button>
                                 </ToolTipBig>
                             </div>
                         </div>
                         <ToolTipBig title={"Add taxonomic requirement to reaction"} placement={"right"}>
-                        <button className={"downloadButton"} style={{width: "20vw"}}
-                                onClick={() => dispatch({type: "ADDTAXONOMY", payload: reactionName})}>Add taxonomy
-                        </button>
+                            <button className={"downloadButton"} style={{width: "20vw"}}
+                                    onClick={() => dispatch({type: "ADDTAXONOMY", payload: reactionName})}>Add taxonomy
+                            </button>
                         </ToolTipBig>
                     </div>
-                    <div><p style={{fontWeight:"bold"}}>chosen taxonomic constraints:</p></div>
+                    <div><p style={{fontWeight: "bold"}}>chosen taxonomic constraints:</p></div>
                     <div>
                         <ul style={{listStyleType: "none"}}>
                             {getTaxaList(reaction.taxa).map((taxon, index) => <li key={taxon.concat(index.toString())}>
                                 <ToolTipBig title={"Delete taxonomic requirement from reaction"} placement={"left"}>
-                                <DeleteIcon
-                                    onClick={() => dispatch({type: "DELETETAXONOMY", payload: {reactionName, taxon}})}
-                                    style={{transform: "translate(0,4px)", cursor:"pointer"}}/></ToolTipBig>{taxon}</li>)}
+                                    <DeleteIcon
+                                        onClick={() => dispatch({
+                                            type: "DELETETAXONOMY",
+                                            payload: {reactionName, taxon}
+                                        })}
+                                        style={{transform: "translate(0,4px)", cursor: "pointer"}}/></ToolTipBig>{taxon}
+                            </li>)}
                         </ul>
                     </div>
-                    <div><img style={{maxWidth:"75vw"}} src={`https://www.genome.jp/Fig/reaction/${nodeId}.gif`}
+                    <div><img style={{maxWidth: "75vw"}} src={`https://www.genome.jp/Fig/reaction/${nodeId}.gif`}
                               alt={state.doubleClickNode}/></div>
                 </div>
             )}

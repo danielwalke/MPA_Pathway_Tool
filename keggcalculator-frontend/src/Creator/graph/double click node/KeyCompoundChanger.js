@@ -5,23 +5,24 @@ import {ToolTipBig} from "../../main/user-interface/UserInterface";
 const KeyCompoundChanger = (props) => {
     const [isKeyCompound, setIsKeyCompound] = useState(false)
 
-    useEffect(()=>{
+    useEffect(() => {
         const opacity = props.compound.opacity
-        setIsKeyCompound(opacity===1)
-    },[props])
+        setIsKeyCompound(opacity === 1)
+    }, [props])
 
-    const changeOpacity = (e) =>{
+    const changeOpacity = (e) => {
         e.preventDefault()
-        if(isKeyCompound){
+        if (isKeyCompound) {
             props.handleIsNotKeyCompound(e)
-        }else{
+        } else {
             props.handleIsKeyCompound(e)
         }
         setIsKeyCompound(!isKeyCompound)
     }
 
     return (
-        <div> <ToolTipBig title={isKeyCompound? "Reduce opacity of chosen node" : "Increase opacity of chosen node"} placement={"right"}>
+        <div><ToolTipBig title={isKeyCompound ? "Reduce opacity of chosen node" : "Increase opacity of chosen node"}
+                         placement={"right"}>
             <Checkbox checked={isKeyCompound} onClick={(e) => changeOpacity(e)}/>
         </ToolTipBig>key-Compound?</div>
     );

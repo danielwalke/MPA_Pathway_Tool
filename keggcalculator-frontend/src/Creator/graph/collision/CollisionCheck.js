@@ -3,7 +3,7 @@ export const isColliding = (nodeTarget, nodes) => {
     nodes.forEach(node => {
         if ((node.labelPosition === "right" || typeof node.labelPosition === "undefined") && isInXRangeRight(node, x) && isInYRange(node, y)) {
             node.labelPosition = "left"
-        } else if (node.labelPosition ==="left" && isInXRangeLeft(node, x) && isInYRange(node, y)) {
+        } else if (node.labelPosition === "left" && isInXRangeLeft(node, x) && isInYRange(node, y)) {
             node.labelPosition = "right"
         }
     })

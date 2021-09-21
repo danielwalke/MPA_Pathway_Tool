@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import TextField from "@material-ui/core/TextField";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import {FormControl, InputLabel, MenuItem, Select} from "@material-ui/core";
@@ -8,7 +8,7 @@ import {useStylesSelector} from "./Styles";
 import Checkbox from "@material-ui/core/Checkbox";
 
 
-const   EcSelector = (props) => {
+const EcSelector = (props) => {
     const state = useSelector(state => state)
     const classes = useStylesSelector()
     const [ecNumber, setEcNumber] = React.useState("");
@@ -70,7 +70,7 @@ const   EcSelector = (props) => {
                             </MenuItem>)}
                         </Select>
                     </FormControl>
-                    <button style={{width:"10vw"}}
+                    <button style={{width: "10vw"}}
                             className={"downloadButton"} onClick={() => handleSubmitEcNumbersChanges()}>submit changes
                     </button>
                 </div>}

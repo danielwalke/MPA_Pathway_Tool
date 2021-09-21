@@ -25,9 +25,10 @@ import "../download/DownloadGraph.css"
 import {
     endpoint_getEcNumberList,
     endpoint_getKoNumberList,
-    endpoint_getModuleList, endpoint_getReactionList, endpoint_getTaxonomyList
+    endpoint_getModuleList,
+    endpoint_getReactionList,
+    endpoint_getTaxonomyList
 } from "../../App Configurations/RequestURLCollection";
-import ReactTooltip from "react-tooltip";
 import {host} from "../../App Configurations/SystemSettings";
 //main class for graph visualization and UI for modifying graph
 //BUG: API doppelt C00668 bei C00267 => einmal linke Seite, einmal Rechte vllt anpassen in meiner api
@@ -141,11 +142,11 @@ const Main = () => {
                         }
                     >
                         <ToolTipBig title={"Click to close the mapping user-interface"} placement={"top"}>
-                        <IconButton onClick={() => {
-                            setOpen(false)
-                        }}>
-                            {<CloseIcon/>}
-                        </IconButton>
+                            <IconButton onClick={() => {
+                                setOpen(false)
+                            }}>
+                                {<CloseIcon/>}
+                            </IconButton>
                         </ToolTipBig>
                         <div>
                             {proteinState.proteinSet.size === 0 && <h4>Waiting for experimental data...</h4>}

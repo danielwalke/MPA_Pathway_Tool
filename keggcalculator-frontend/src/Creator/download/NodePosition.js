@@ -9,12 +9,12 @@ export const getNodePosition = (compound) => {
     let y = ""
     for (let i = 0; i < graphObjects.length; i++) {
         if (graphObjects[i].getAttribute("class") === "node") {
-            const nodeId =  graphObjects[i].getAttribute("id")
+            const nodeId = graphObjects[i].getAttribute("id")
             if (compound === nodeId) {
                 x = graphObjects[i].getAttribute("cx")
                 y = graphObjects[i].getAttribute("cy")
             }
         }
     }
-    return({x:x, y:y})
+    return ({x: x, y: y})
 }

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import "./Heatmap.css"
 import {filterTaxon} from "../../../data-mapping/TaxonomyFilter";
@@ -16,12 +16,11 @@ const HeatMap = () => {
         const matchedProteinSet = new Set()
         proteins.map(protein => {
             const koAndEc = Array.from(protein.koAndEcSet)
-            loop:
             for (let iterator = 0; iterator < koAndEc.length; iterator++) {
                 const proteinKoAndEc = koAndEc[iterator]
                 const isProteinKoInReaction = clickedReaction.koNumbersString.includes(proteinKoAndEc)
                 const isProteinEcInReaction = clickedReaction.ecNumbersString.includes(proteinKoAndEc)
-                if(filterTaxon(clickedReaction.taxa, protein.taxa) && (isProteinEcInReaction || isProteinKoInReaction)){
+                if (filterTaxon(clickedReaction.taxa, protein.taxa) && (isProteinEcInReaction || isProteinKoInReaction)) {
                     matchedProteinSet.add(protein)
                     break
                 }
@@ -30,21 +29,21 @@ const HeatMap = () => {
         })
         setMatchedProteins(Array.from(matchedProteinSet))
     }, [proteinState.proteinSet, graphState, clickedReaction])
-    return (<table style={{height: "auto", width:"auto"}}>
-           <thead>
-           <tr style={{height: "5vh", width:"auto"}}>
-               <th style={{height: "5vh", width:"auto"}}> </th>
-               {proteinState.sampleNames.map(sampleName => {
-                   return (
-                       <th style={{height: "5vh"}}>
-                           <SampleName sampleName={sampleName}/>
-                       </th>
+    return (<table style={{height: "auto", width: "auto"}}>
+            <thead>
+            <tr style={{height: "5vh", width: "auto"}}>
+                <th style={{height: "5vh", width: "auto"}}></th>
+                {proteinState.sampleNames.map(sampleName => {
+                    return (
+                        <th style={{height: "5vh"}}>
+                            <SampleName sampleName={sampleName}/>
+                        </th>
 
-                   )
-               })
-               }
-           </tr>
-           </thead>
+                    )
+                })
+                }
+            </tr>
+            </thead>
             {matchedProteins.map((protein) => {
                     return (
                         <tbody>
@@ -52,14 +51,14 @@ const HeatMap = () => {
                             <td style={{height: "5vh"}}><ProteinName proteinName={protein.name}/></td>
                             {protein.quants.map((quant) => {
                                 let color;
-                                if(+quant<proteinState.midQuantUserReaction3){
+                                if (+quant < proteinState.midQuantUserReaction3) {
                                     const b = ((+quant - proteinState.minQuantUserReaction3) / (proteinState.midQuantUserReaction3 - proteinState.minQuantUserReaction3)) * 255
                                     color = {
                                         r: 255,
                                         g: 0,
                                         b: b
                                     }
-                                }else{
+                                } else {
                                     const r = 255 - ((+quant - proteinState.midQuantUserReaction3) / (proteinState.maxQuantUserReaction3 - proteinState.midQuantUserReaction3)) * 255
                                     color = {
                                         r: r,
@@ -91,7 +90,7 @@ const Square = (props) => {
             border: "2px solid black",
             color: "white",
             width: "auto",
-            height:"auto",
+            height: "auto",
             backgroundColor: `rgb(${props.color.r},${props.color.g},${props.color.b})`
         }}>{props.number}</div>
 
@@ -100,7 +99,7 @@ const Square = (props) => {
 
 const SampleName = (props) => {
     return (
-        <div style={{height:"auto", overflow: "auto", width: "100%"}}>
+        <div style={{height: "auto", overflow: "auto", width: "100%"}}>
             {props.sampleName}
         </div>
     )

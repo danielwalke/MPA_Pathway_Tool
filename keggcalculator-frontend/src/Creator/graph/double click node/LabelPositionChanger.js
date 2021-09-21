@@ -1,11 +1,6 @@
 import React from 'react';
-import {Autocomplete} from "@material-ui/lab";
-import TextField from "@material-ui/core/TextField";
-import {useSelector} from "react-redux";
 import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
-import {taxonomicRanks} from "../../main/Main";
 import MenuItem from "@material-ui/core/MenuItem";
 import {makeStyles} from "@material-ui/core/styles";
 import {ToolTipBig} from "../../main/user-interface/UserInterface";
@@ -17,7 +12,6 @@ const useStyles = makeStyles(() => ({
 }));
 
 
-
 const LabelPositionChanger = (props) => {
     const {compound} = props
     const classes = useStyles()
@@ -25,7 +19,7 @@ const LabelPositionChanger = (props) => {
     const options = ["top", "right", "bottom", "left"]
     // const graphState = useSelector(state=> state.graph)
 
-    const handleLabelPositionChange = (e)=>{
+    const handleLabelPositionChange = (e) => {
         setLabelPos(e.target.value)
         compound.labelPosition = e.target.value
     }
@@ -34,18 +28,18 @@ const LabelPositionChanger = (props) => {
         <div>
             <br/>
             <div>Label-position</div>
-            <FormControl style={{margin:"2px 0"}} size="small" variant="outlined" className={classes.formControl}>
+            <FormControl style={{margin: "2px 0"}} size="small" variant="outlined" className={classes.formControl}>
                 <ToolTipBig title={"Select a position for the node label"} placement={"right"}>
-            <Select
-                labelId="label position"
-                value={labelPos}
-                onChange={(e)=> handleLabelPositionChange(e)}
-            >
-                {options.map(labelPosition => <MenuItem value={labelPosition}>{labelPosition}</MenuItem>
-                )}
-            </Select>
+                    <Select
+                        labelId="label position"
+                        value={labelPos}
+                        onChange={(e) => handleLabelPositionChange(e)}
+                    >
+                        {options.map(labelPosition => <MenuItem value={labelPosition}>{labelPosition}</MenuItem>
+                        )}
+                    </Select>
                 </ToolTipBig>
-        </FormControl>
+            </FormControl>
         </div>
     );
 };

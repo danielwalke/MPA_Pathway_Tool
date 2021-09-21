@@ -1,18 +1,18 @@
-.substrateContainer{
+.substrateContainer {
     display: grid;
     grid-template-columns: 80% 20%;
     grid-template-areas: "substrate submit";
 }
 
-.substrate{
+.substrate {
     grid-area: substrate;
 }
 
-.submit{
+.submit {
     grid-area: submit;
 }
 
-.submitButtonSubstrate{
+.submitButtonSubstrate {
     background-color: rgb(150, 25, 130);
     border-radius: 0.8vw;
     color: white;
@@ -21,7 +21,7 @@
     font-size: clamp(12px, 1vw, 15px);
     font-family: Roboto;
     margin: 2px;
-    transform: translate(0,-3px);
+    transform: translate(0, -3px);
     padding: 1px;
 }
 
@@ -30,7 +30,7 @@
     cursor: pointer;
 }
 
-.submitButtonSubstrate:disabled:hover{
+.submitButtonSubstrate:disabled:hover {
     background-color: rgb(150, 25, 130);
     cursor: default;
 }

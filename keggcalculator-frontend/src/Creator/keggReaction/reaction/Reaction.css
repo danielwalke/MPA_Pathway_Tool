@@ -1,18 +1,18 @@
-.reactionContainer{
+.reactionContainer {
     display: grid;
     grid-template-columns: 80% 20%;
     grid-template-areas: "reaction submit";
 }
 
-.reaction{
+.reaction {
     grid-area: reaction;
 }
 
-.submit{
+.submit {
     grid-area: submit;
 }
 
-.submitButtonReaction{
+.submitButtonReaction {
     background-color: rgb(150, 25, 130);
     border-radius: 0.8vw;
     color: white;
@@ -21,7 +21,7 @@
     font-size: clamp(12px, 1vw, 15px);
     font-family: Roboto;
     margin: 2px;
-    transform: translate(0,-3px);
+    transform: translate(0, -3px);
     padding: 1px;
 }
 
@@ -30,7 +30,7 @@
     cursor: pointer;
 }
 
-.submitButtonReaction:disabled:hover{
+.submitButtonReaction:disabled:hover {
     background-color: rgb(150, 25, 130);
     cursor: default;
 }

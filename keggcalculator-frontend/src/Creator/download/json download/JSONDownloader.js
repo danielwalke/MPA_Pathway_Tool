@@ -1,5 +1,5 @@
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {getReactions} from "../DownloadFunctions";
 import {getNodePosition} from "../NodePosition";
 import {saveAs} from "file-saver";
@@ -72,9 +72,9 @@ const JSONDownloader = (props) => {
     return (
         <div>
             <ToolTipBig title={"Click for downloading the pathway as JSON"} placement={"right"}>
-            <button disabled={!props.graphState.data.nodes.length > 0} className={"downloadButton"}
-                    onClick={handleJsonDownload}>Download Json
-            </button>
+                <button disabled={!props.graphState.data.nodes.length > 0} className={"downloadButton"}
+                        onClick={handleJsonDownload}>Download Json
+                </button>
             </ToolTipBig>
         </div>
     )

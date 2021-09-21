@@ -1,4 +1,4 @@
-.taxonomyContainer{
+.taxonomyContainer {
     display: grid;
     grid-template-columns: 80% 20%;
     grid-template-rows: 50% 50%;
@@ -8,18 +8,19 @@
 
 }
 
-.switch{
+.switch {
     grid-area: switch;
 }
 
-.taxonomicRank{
+.taxonomicRank {
     grid-area: taxonomicRank;
 }
-.taxonomy{
+
+.taxonomy {
     grid-area: taxonomy;
 }
 
-.addTaxonomy{
+.addTaxonomy {
     grid-area: addTaxonomy;
     background-color: rgb(150, 25, 130);
     border-width: 0;
@@ -30,7 +31,7 @@
     font-size: clamp(10px, 1vw, 14px);
     font-family: Roboto;
     margin: 2px;
-    transform: translate(0,-3px);
+    transform: translate(0, -3px);
     padding: 0;
 }
 

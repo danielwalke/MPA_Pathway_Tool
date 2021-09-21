@@ -12,18 +12,18 @@ const SpecReaction = () => {
     return (
         <div className={"reactionContainerSpec"}>
             <ToolTipBig title={"Type in a reaction name"} placement={"right"}>
-            <TextField
-                size={"small"}
-                placeholder={"name of your reaction"}
-                className={"reaction"}
-                label="Reaction name"
-                variant="outlined"
-                id="reaction"
-                onChange={(e) => dispatch({
-                    type: "SETSPECIFICREACTION",
-                    payload: e.target.value.concat(` U${getUserReactionId(reactionList.length)}`)
-                })}
-            />
+                <TextField
+                    size={"small"}
+                    placeholder={"name of your reaction"}
+                    className={"reaction"}
+                    label="Reaction name"
+                    variant="outlined"
+                    id="reaction"
+                    onChange={(e) => dispatch({
+                        type: "SETSPECIFICREACTION",
+                        payload: e.target.value.concat(` U${getUserReactionId(reactionList.length)}`)
+                    })}
+                />
             </ToolTipBig>
         </div>
     )

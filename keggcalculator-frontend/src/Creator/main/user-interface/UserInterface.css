@@ -1,4 +1,4 @@
-.interfaceContainer{
+.interfaceContainer {
     /*width: auto;*/
     display: grid;
     grid-auto-columns: auto;
@@ -8,10 +8,10 @@
     /*grid-template-rows: 1fr 3fr 3fr 10fr 2fr;*/
 }
 
-.config{
+.config {
     display: flex;
 }
 
-.reactions{
+.reactions {
     display: flex;
 }

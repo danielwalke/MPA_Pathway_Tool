@@ -19,32 +19,32 @@ const Reaction = () => {
     }
 
     return (
-  <div className={"reactionContainer"}>
-      <ToolTipBig title={"Search a reaction"} placement={"left"}>
-      <Autocomplete
-          size={"small"}
-          id="reactionBox"
-          options={getReactionList()}
-          className={"reaction"}
-          name={"reaction"}
-          onChange={(event, value) => {
-              dispatch({type: "SETREACTION", payload: value})
-          }}
-          renderInput={params => (
-              <TextField
-                  onChange={(e) => {
-                      dispatch({type: "SETREACTION", payload: e.target.value})
-                  }}
-                  value={state.reaction}
-                  {...params}
-                  label="reaction"
-                  variant="outlined"
-              />
-          )}
-      /></ToolTipBig>
-      {/*<Checkbox className={"checkBox"} checked={state.reaction.length>0 && isRequestValid(state.reaction)}/>*/}
-      <SubmitReaction className={"submit"}/>
-  </div>
+        <div className={"reactionContainer"}>
+            <ToolTipBig title={"Search a reaction"} placement={"left"}>
+                <Autocomplete
+                    size={"small"}
+                    id="reactionBox"
+                    options={getReactionList()}
+                    className={"reaction"}
+                    name={"reaction"}
+                    onChange={(event, value) => {
+                        dispatch({type: "SETREACTION", payload: value})
+                    }}
+                    renderInput={params => (
+                        <TextField
+                            onChange={(e) => {
+                                dispatch({type: "SETREACTION", payload: e.target.value})
+                            }}
+                            value={state.reaction}
+                            {...params}
+                            label="reaction"
+                            variant="outlined"
+                        />
+                    )}
+                /></ToolTipBig>
+            {/*<Checkbox className={"checkBox"} checked={state.reaction.length>0 && isRequestValid(state.reaction)}/>*/}
+            <SubmitReaction className={"submit"}/>
+        </div>
 
     )
 }

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import objectToXML from "object-to-xml"
 import {saveAs} from "file-saver";
 import clonedeep from "lodash/cloneDeep";

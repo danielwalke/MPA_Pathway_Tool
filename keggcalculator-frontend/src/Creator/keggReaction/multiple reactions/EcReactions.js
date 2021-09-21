@@ -233,14 +233,14 @@ const EcReactions = () => {
                         </li>
                     )
                 })}
-                    </ul>
-                    <button className={"downloadButton"} onClick={()=> handleEcRequest()}>Submit</button>
-                    </div>
-                    )
-                    return(
-                    <Modal className={classes.modal} open={state.showEcModal} onClose={() => dispatch({type: "SWITCHSHOWECMODAL"})}>
-                {body}
-                    </Modal>
-                    )
-                }
-                    export default EcReactions
+            </ul>
+            <button className={"downloadButton"} onClick={() => handleEcRequest()}>Submit</button>
+        </div>
+    )
+    return (
+        <Modal className={classes.modal} open={state.showEcModal} onClose={() => dispatch({type: "SWITCHSHOWECMODAL"})}>
+            {body}
+        </Modal>
+    )
+}
+export default EcReactions

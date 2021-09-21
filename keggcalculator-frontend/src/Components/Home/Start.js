@@ -11,20 +11,20 @@ import {Link} from "react-router-dom";
 import ExampleData from "./exampleData/ExampleData";
 import VIDEOS from "./StartCards/videos.js"
 
-const getVideoRowFeatures= (videos, featureName) =>{
+const getVideoRowFeatures = (videos, featureName) => {
     const videoRowFeatures = []
     const features = videos.map(video => video[featureName])
     let videoRow = []
-    features.forEach((feature, index) =>{
+    features.forEach((feature, index) => {
         // push feature to row
         videoRow.push(feature)
         // if row is completed push row to list of rows and reset row
-        if((index+1)%3 === 0){
+        if ((index + 1) % 3 === 0) {
             videoRowFeatures.push(videoRow)
             videoRow = []
         }
         // if row is not completed, but its the last feature push incomplete row to list of rows
-        if((index+1)%3 !== 0 && index===features.length-1){
+        if ((index + 1) % 3 !== 0 && index === features.length - 1) {
             videoRowFeatures.push(videoRow)
         }
     })
@@ -38,18 +38,19 @@ const Start = (props) => {
     //titleLists
     const videos = (
         <div className={classes.paper} style={{width: "80vw", height: "80vh", overflow: "auto"}}>
-                <Link style={{
-                    textDecoration: "none", color: "white", width: "80%",
-                    backgroundColor: "rgb(150, 25, 130)",
-                    borderRadius: "1.5vw",
-                    transition: "all 400ms ease-in-out",
-                    textTransform: "uppercase",
-                    fontSize: "clamp(12px, 1vw, 22px)",
-                    fontFamily: "Roboto",
-                    margin: "5",
-                    padding: "8px"
-                }} to={TutorialPdf} target={"_blank"} download>Download pdf</Link>
-            <TutorialRows titleLists={getVideoRowFeatures(VIDEOS, "title")} idLists={getVideoRowFeatures(VIDEOS, "id")}/>
+            <Link style={{
+                textDecoration: "none", color: "white", width: "80%",
+                backgroundColor: "rgb(150, 25, 130)",
+                borderRadius: "1.5vw",
+                transition: "all 400ms ease-in-out",
+                textTransform: "uppercase",
+                fontSize: "clamp(12px, 1vw, 22px)",
+                fontFamily: "Roboto",
+                margin: "5",
+                padding: "8px"
+            }} to={TutorialPdf} target={"_blank"} download>Download pdf</Link>
+            <TutorialRows titleLists={getVideoRowFeatures(VIDEOS, "title")}
+                          idLists={getVideoRowFeatures(VIDEOS, "id")}/>
         </div>
     )
 
@@ -65,22 +66,31 @@ const Start = (props) => {
                 hyphens: "auto"
             }}>
                 {/*<Typography style={{ textAlign: "center", color:"rgb(150, 25, 130)"}} variant="h3" component="h2">Getting started</Typography>*/}
-                <Card style={{margin:"10px 0"}}>
-                    <div style={{display:"flex", alignItems:"center", justifyContent:"center"}}><div style={{
-                        backgroundColor: "#E6E6E6",
-                        padding: "2px",
-                        margin: "5px",
-                        display: "flex",
-                        alignItems:"center",
-                        width:"50%",
-                        height:"10vh",
-                        borderRadius: "0.8vw",
-                        justifyContent:"center",
-                        color: "rgb(150, 25, 130)"
-                    }}>
-                        <div style={{display:"flex", alignItems:"center",justifyContent:"center",height:"8vh" }}><img style={{height: "100%",borderRadius: "0.8vw", border:"0.5px solid black"}} src={Logo} alt={"Logo"}/></div>
-                        <div><Typography variant="h4" component="h3">Getting started</Typography></div></div></div>
-              </Card>
+                <Card style={{margin: "10px 0"}}>
+                    <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+                        <div style={{
+                            backgroundColor: "#E6E6E6",
+                            padding: "2px",
+                            margin: "5px",
+                            display: "flex",
+                            alignItems: "center",
+                            width: "50%",
+                            height: "10vh",
+                            borderRadius: "0.8vw",
+                            justifyContent: "center",
+                            color: "rgb(150, 25, 130)"
+                        }}>
+                            <div style={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                height: "8vh"
+                            }}><img style={{height: "100%", borderRadius: "0.8vw", border: "0.5px solid black"}}
+                                    src={Logo} alt={"Logo"}/></div>
+                            <div><Typography variant="h4" component="h3">Getting started</Typography></div>
+                        </div>
+                    </div>
+                </Card>
 
                 <StartCard title={"Overview"}
                            text={"The MPA_Pathway_Tool a new user-friendly, stand-alone web application, the MPA_Pathway_Tool. It\n" +

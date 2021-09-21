@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import GetAppIcon from "@material-ui/icons/GetApp";
 import Button from "@material-ui/core/Button";
 import {requestGenerator} from "../../../Request Generator/RequestGenerator";
@@ -17,24 +17,25 @@ const TaxonomicDetails = (props) => {
     const classes = useStyles();
 
     const handleDetails = () => {
-        if(!alreadyReceived){ //just fetch once -> file should be deleted after time limit but data should stay available
+        if (!alreadyReceived) { //just fetch once -> file should be deleted after time limit but data should stay available
             requestGenerator("POST", RequestURL.endpoint_getTaxonomicDetails, {jobId: props.jobId}, "", "").then(response => {
                 setData(response.data.trim())
                 setOpen(true)
                 setAlreadyReceived(true)
             })
-        }else{
+        } else {
             setOpen(true)
         }
     }
 
     return (
         <div>
-            <Modal  className={classes.modal} open={open} onClose={() => setOpen(false)}><TaxonomicDetailsBody classes={classes} data={data} jobId={props.jobId} CalculatorStore={props.CalculatorStore}/></Modal>
+            <Modal className={classes.modal} open={open} onClose={() => setOpen(false)}><TaxonomicDetailsBody
+                classes={classes} data={data} jobId={props.jobId} CalculatorStore={props.CalculatorStore}/></Modal>
             <ToolTipBig title={"See details about mapping"} placement={"top"}>
-            <Button variant={"contained"} disabled={props.isNotFinished}
-                    color={"primary"} endIcon={<GetAppIcon/>}
-                    onClick={() => handleDetails()}>See details</Button>
+                <Button variant={"contained"} disabled={props.isNotFinished}
+                        color={"primary"} endIcon={<GetAppIcon/>}
+                        onClick={() => handleDetails()}>See details</Button>
             </ToolTipBig>
         </div>
     );

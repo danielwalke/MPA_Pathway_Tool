@@ -3,17 +3,17 @@ import {getCompoundId} from "../../upload/sbmlParser/SbmlReader/ReaderFunctions"
 export const getStochiometrySubstratesString = (state) => {
     const object = {}
     state.specSubstrates.map((substrate, index) => {
-        const substrateId = substrate.substring(substrate.length-6, substrate.length)
+        const substrateId = substrate.substring(substrate.length - 6, substrate.length)
         object[`${substrateId}`] = state.specSubstratesCoeff[index].toString()
         return null
     })
     return object;
 }
 
-export const getStochiometryProductsString = (state) =>{
+export const getStochiometryProductsString = (state) => {
     const object = {}
     state.specProducts.map((product, index) => {
-        const productId = product.substring(product.length-6, product.length)
+        const productId = product.substring(product.length - 6, product.length)
         object[`${productId}`] = state.specProductsCoeff[index].toString()
         return null
     })
@@ -43,26 +43,38 @@ export const getReaction = (state) => {
     return reaction;
 }
 
-const checkCompooundId = (compound, index) =>{
-    const compoundId = compound.length>5?compound.substring(compound.length-6, compound.length) : getCompoundId(index)
-    if(compoundId.match(/[C,G][0-9][0-9][0-9][0-9][0-9]/)){
+const checkCompooundId = (compound, index) => {
+    const compoundId = compound.length > 5 ? compound.substring(compound.length - 6, compound.length) : getCompoundId(index)
+    if (compoundId.match(/[C,G][0-9][0-9][0-9][0-9][0-9]/)) {
         return ""
-    }else{
+    } else {
         return ` ${getCompoundId(index)}`
     }
 }
 
 export const handleAddSubstrate = (e, dispatch, state, index) => {
     e.preventDefault()
-    dispatch({type:"ADD_USER_SUBSTRATE_TO_AUDIT_TRAIL", payload: state.specSubstrate.concat(checkCompooundId(state.specSubstrate, index))})
-    dispatch({type: "ADDSPECIFICSUBSTRATE", payload: state.specSubstrate.concat(checkCompooundId(state.specSubstrate, index))})
+    dispatch({
+        type: "ADD_USER_SUBSTRATE_TO_AUDIT_TRAIL",
+        payload: state.specSubstrate.concat(checkCompooundId(state.specSubstrate, index))
+    })
+    dispatch({
+        type: "ADDSPECIFICSUBSTRATE",
+        payload: state.specSubstrate.concat(checkCompooundId(state.specSubstrate, index))
+    })
     dispatch({type: "ADDSPECIFICSUBSTRATECOEFF", payload: state.specSubstrateCoeff})
 }
 
 export const handleAddProduct = (e, dispatch, state, index) => {
     e.preventDefault()
-    dispatch({type:"ADD_USER_PRODUCT_TO_AUDIT_TRAIL", payload: state.specProduct.concat(checkCompooundId(state.specProduct, index))})
-    dispatch({type: "ADDSPECIFICPRODUCT", payload: state.specProduct.concat(checkCompooundId(state.specProduct, index))})
+    dispatch({
+        type: "ADD_USER_PRODUCT_TO_AUDIT_TRAIL",
+        payload: state.specProduct.concat(checkCompooundId(state.specProduct, index))
+    })
+    dispatch({
+        type: "ADDSPECIFICPRODUCT",
+        payload: state.specProduct.concat(checkCompooundId(state.specProduct, index))
+    })
     dispatch({type: "ADDSPECIFICPRODUCTCOEFF", payload: state.specProductCoeff})
 }
 

@@ -24,7 +24,7 @@ const Field = (props) => {
     }
 
     return (
-        <div >
+        <div>
             {(component && component.length > 2) || props.boolean ?
                 <ToolTipBig title={"Search a metabolite"} placement={"left"}><Autocomplete
                     size={"small"}

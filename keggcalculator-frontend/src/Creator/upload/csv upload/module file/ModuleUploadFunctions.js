@@ -1,12 +1,10 @@
 import {handleJSONGraphUpload} from "../../json upload/ModuleUploadFunctionsJSON";
-import {CsvColumns} from "./CsvFile";
-import {getReaction} from "./CsvFile"
-import {getStochiometryProductsString} from "../../../specReaction/functions/SpecReactionFunctions";
+import {CsvColumns, getReaction} from "./CsvFile";
 import {getNLastChars} from "../../../usefulFunctions/Strings";
 
 export const handleGraphUpload = (rows, dispatch, graphState) => {
     let reactions = []
-    rows.forEach(row=>{
+    rows.forEach(row => {
         const columns = new CsvColumns(row)
         const reaction = getReaction(reactions, columns)
         const compound = columns.getCompound()
@@ -18,58 +16,59 @@ export const handleGraphUpload = (rows, dispatch, graphState) => {
     return (handleJSONGraphUpload(newReactions, dispatch, graphState))
 }
 
-const convertReactionsToObjects =(reactions) =>{
-    try{const newReactions = []
-    reactions.forEach(reaction => {
-        console.log(reaction._reactionName)
-        const newReaction = {
-            reactionId: getNLastChars(reaction._reactionName, 6),
-            reactionName: reaction._reactionName,
-            ecNumbersString: reaction._ecList,
-            isForwardReaction: true,
-            koNumbersString: reaction._koList,
-            opacity: 1,
-            products: reaction._products.map(product => ({
-                abbreviation: product.compound._abbreviation,
-                name: product.compound.name,
-                opacity: product.compound._opacity,
-                stochiometry: product.coefficient,
-                x: product.compound._x,
-                y: product.compound._y,
-            })),
-        reversible: reaction._reversible,
-        stochiometrySubstratesString: {},
-        stochiometryProductsString: {},
-        substrates: reaction._substrates.map(substrate => ({
-            abbreviation: substrate.compound._abbreviation,
-            name: substrate.compound.name,
-            opacity: substrate.compound._opacity,
-            stochiometry: substrate.coefficient,
-            x: substrate.compound._x,
-            y: substrate.compound._y,
-        })),
-        taxa: reaction._taxonomy,
-        x: reaction._x,
-        y:reaction._y,
-        }
-        console.log(newReaction)
-        newReactions.push(newReaction)
-    })
-    console.log(newReactions)
-    return newReactions}
-    catch(e){
+const convertReactionsToObjects = (reactions) => {
+    try {
+        const newReactions = []
+        reactions.forEach(reaction => {
+            console.log(reaction._reactionName)
+            const newReaction = {
+                reactionId: getNLastChars(reaction._reactionName, 6),
+                reactionName: reaction._reactionName,
+                ecNumbersString: reaction._ecList,
+                isForwardReaction: true,
+                koNumbersString: reaction._koList,
+                opacity: 1,
+                products: reaction._products.map(product => ({
+                    abbreviation: product.compound._abbreviation,
+                    name: product.compound.name,
+                    opacity: product.compound._opacity,
+                    stochiometry: product.coefficient,
+                    x: product.compound._x,
+                    y: product.compound._y,
+                })),
+                reversible: reaction._reversible,
+                stochiometrySubstratesString: {},
+                stochiometryProductsString: {},
+                substrates: reaction._substrates.map(substrate => ({
+                    abbreviation: substrate.compound._abbreviation,
+                    name: substrate.compound.name,
+                    opacity: substrate.compound._opacity,
+                    stochiometry: substrate.coefficient,
+                    x: substrate.compound._x,
+                    y: substrate.compound._y,
+                })),
+                taxa: reaction._taxonomy,
+                x: reaction._x,
+                y: reaction._y,
+            }
+            console.log(newReaction)
+            newReactions.push(newReaction)
+        })
+        console.log(newReactions)
+        return newReactions
+    } catch (e) {
         console.error(e)
     }
 }
 
-const addCompound = (reaction, compound) =>{
+const addCompound = (reaction, compound) => {
     const typeOfCompound = compound.typeOfCompound
-    if(compound.name.length !== 0){
-        typeOfCompound==="substrate"?  reaction.addSubstrate(compound) : reaction.addProduct(compound)
+    if (compound.name.length !== 0) {
+        typeOfCompound === "substrate" ? reaction.addSubstrate(compound) : reaction.addProduct(compound)
     }
 }
 
-const addReactionToReactions = (reactions, reaction) =>{
+const addReactionToReactions = (reactions, reaction) => {
     reactions.push(reaction)
 }
 

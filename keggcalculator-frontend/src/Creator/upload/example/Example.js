@@ -30,7 +30,9 @@ const Example = () => {
     return (
         <div>
             <ToolTipBig title={"Click for seeing an example pathway with example data"} placement={"right"}>
-                <button className={"downloadButton"} style={{width:"70%", fontSize:"0.8em"}} onClick={handleExample}>Example pathway with data</button>
+                <button className={"downloadButton"} style={{width: "70%", fontSize: "0.8em"}}
+                        onClick={handleExample}>Example pathway with data
+                </button>
             </ToolTipBig>
         </div>
     );

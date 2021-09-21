@@ -20,14 +20,14 @@ const SpecProducts = (props) => {
                                type={"text"}
                                label={"product"} id={"spec product"}/>
                 </ToolTipBig> :
-                    <Field
+                <Field
                     className={"product"}
                     dispatchType={"SETSPECIFICPRODUCT"}
                     id={"product"}
                     dispatchTypeOptions={"SETSPECIFICOPTIONSPRODUCT"}
                     options={state.specOptionsProduct}
                     compound={state.specProduct}/>
-                }
+            }
             <PopOverButton text={" not found? :-(\n" +
             "                Don't worry! Click here :)"}
                            dispatchType={"SWITCHISSPECCOMPOUNDINPUTPRODUCT"}

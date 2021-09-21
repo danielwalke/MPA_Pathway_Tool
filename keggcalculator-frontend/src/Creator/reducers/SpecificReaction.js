@@ -21,9 +21,9 @@ const defaultState = {
     isSpecificCompoundInputProduct: false
 }
 
-export const specificReactionReducer = (state= defaultState, action) => {
+export const specificReactionReducer = (state = defaultState, action) => {
     const {type, payload} = action;
-    switch(type){
+    switch (type) {
         case "SETSPECIFICSUBSTRATE":
             return {...state, specSubstrate: payload}
         case "SETSPECIFICOPTIONSSUBSTRATE":
@@ -36,7 +36,7 @@ export const specificReactionReducer = (state= defaultState, action) => {
             return {...state, specSubstrates: [...state.specSubstrates, payload]}
         case "SPLICESUBSTRATES":
             state.specSubstrates.splice(payload, 1)
-            state.specSubstratesCoeff.splice(payload,1)
+            state.specSubstratesCoeff.splice(payload, 1)
             return {...state, specSubstrates: state.specSubstrates, specSubstratesCoeff: state.specSubstratesCoeff}
         case "ADDSPECIFICSUBSTRATECOEFF":
             return {...state, specSubstratesCoeff: [...state.specSubstratesCoeff, payload]}
@@ -48,7 +48,7 @@ export const specificReactionReducer = (state= defaultState, action) => {
             return {...state, specProducts: [...state.specProducts, payload]}
         case "SPLICEPRODUCTS":
             state.specProducts.splice(payload, 1)
-            state.specProductsCoeff.splice(payload,1)
+            state.specProductsCoeff.splice(payload, 1)
             return {...state, specProducts: state.specProducts, specProductsCoeff: state.specProductsCoeff}
         case "ADDSPECIFICPRODUCTCOEFF":
             return {...state, specProductsCoeff: [...state.specProductsCoeff, payload]}

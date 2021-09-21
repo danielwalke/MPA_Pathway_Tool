@@ -9,10 +9,10 @@ import SbmlReader from "../sbmlParser/SbmlReader/SbmlReader";
 import Example from "../example/Example";
 
 
-const UploadModal = (props) =>{
+const UploadModal = (props) => {
     const classes = useStyles();
     const state = useSelector(state => state.general)
-    const dispatch= useDispatch()
+    const dispatch = useDispatch()
     const body = (
         <div className={classes.paper}>
             <MpaInput setOpen={props.setOpen}/>
@@ -24,11 +24,11 @@ const UploadModal = (props) =>{
         </div>
     )
 
-    const handleClose = () =>{
+    const handleClose = () => {
         dispatch({type: "SWITCHUPLOADMODAL"})
         dispatch({type: "SETLOADING", payload: false})
     }
-    return(
+    return (
         <div>
             <Modal className={classes.modal} open={state.uploadModal} onClose={() => handleClose()}>
                 {body}

@@ -11,7 +11,7 @@ export const allReducers = combineReducers({
     general: generalReducer,
     keggReaction: keggReactionReducer,
     graph: graphReducer,
-    specificReaction:specificReactionReducer,
+    specificReaction: specificReactionReducer,
     mpaProteins: mpaProteinReducer,
     auditTrail: auditTrailReducer,
     files: fileReducer

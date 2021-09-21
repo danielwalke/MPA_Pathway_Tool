@@ -9,7 +9,6 @@ import SpecKoEc from "../KoAndEcNumbers/SpecKoEc";
 import {useDispatch, useSelector} from "react-redux";
 import {makeStyles} from "@material-ui/core";
 import Modal from "@material-ui/core/Modal";
-import TextField from "@material-ui/core/TextField";
 import {ToolTipBig} from "../../main/user-interface/UserInterface";
 
 
@@ -55,10 +54,10 @@ const SpecUserReaction = () => {
                     <ToolTipBig
                         title={"Submit reaction"}
                         placement={"right"}>
-                    <button className={"buttonSpec"}
-                            disabled={specReactionStates.specReaction.length < 1}
-                            onClick={(e) => handleSpecSubmit(e, graphStates, specReactionStates, dispatch, state)}>Submit
-                    </button>
+                        <button className={"buttonSpec"}
+                                disabled={specReactionStates.specReaction.length < 1}
+                                onClick={(e) => handleSpecSubmit(e, graphStates, specReactionStates, dispatch, state)}>Submit
+                        </button>
                     </ToolTipBig>
                 </div>
 

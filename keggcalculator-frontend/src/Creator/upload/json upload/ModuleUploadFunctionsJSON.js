@@ -18,12 +18,12 @@ export const handleJSONGraphUpload = (reactions, dispatch, graphState) => { //ha
     const links = []
     console.log(reactions)
     reactions.forEach(reaction => {
-        dispatch({type:"ADD_KEGG_REACTION", payload: reaction})
+        dispatch({type: "ADD_KEGG_REACTION", payload: reaction})
         const reactionNode = createNode(reaction.reactionName, REACTION_NODE_COLOR, REACTION_NODE_SYMBOL, +reaction.x, +reaction.y, reaction.opacity, reaction.reversible)
         addNode(nodes, reactionNode)
         addReactionAbbreviations(graphState, reaction)
-        reaction.substrates.forEach(substrate =>addCompoundToData(substrate, reaction, reactionNode, links, nodes, graphState,true))
-        reaction.products.forEach(product => addCompoundToData(product, reaction, reactionNode, links, nodes, graphState,false))
+        reaction.substrates.forEach(substrate => addCompoundToData(substrate, reaction, reactionNode, links, nodes, graphState, true))
+        reaction.products.forEach(product => addCompoundToData(product, reaction, reactionNode, links, nodes, graphState, false))
         dispatch({type: "SETABBREVIATIONOBJECT", payload: graphState.abbreviationsObject})
     })
     return {nodes, links}
@@ -40,7 +40,7 @@ const linkInData = (links, newLink) => {
 
 // return a node object
 const createNode = (id, color, symbolType, x, y, opacity, reversible) => {
-    if(symbolType === "circle"){
+    if (symbolType === "circle") {
         return (
             {
                 id: id,
@@ -52,7 +52,7 @@ const createNode = (id, color, symbolType, x, y, opacity, reversible) => {
                 reversible: reversible,
             }
         )
-    }else{
+    } else {
         return (
             {
                 id: id,
@@ -61,7 +61,7 @@ const createNode = (id, color, symbolType, x, y, opacity, reversible) => {
                 y: y,
                 opacity: opacity,
                 reversible: reversible,
-                symbolType:"diamond",
+                symbolType: "diamond",
                 size: 100,
             })
     }
@@ -105,9 +105,9 @@ const addReactionAbbreviations = (graphState, reaction) => {
 
 const addCompoundToData = (compound, reaction, reactionNode, links, nodes, graphState, isSubstrate) => {
     const compoundNode = createNode(compound.name, COMPOUND_NODE_COLOR, COMPOUND_NODE_SYMBOL, +compound.x, +compound.y, compound.opacity, reaction.reversible)
-    const compoundLink = isSubstrate? createLink(compound.name, reaction.reactionName, compound.opacity, false):
+    const compoundLink = isSubstrate ? createLink(compound.name, reaction.reactionName, compound.opacity, false) :
         createLink(reaction.reactionName, compound.name, compound.opacity, false)
-    const compoundLinkReversible = isSubstrate? createLink(reaction.reactionName, compound.name, compound.opacity, true):
+    const compoundLinkReversible = isSubstrate ? createLink(reaction.reactionName, compound.name, compound.opacity, true) :
         createLink(compound.name, reaction.reactionName, compound.opacity, true)
     addLinks(reactionNode, links, compoundLink, compoundLinkReversible)
     addNode(nodes, compoundNode)

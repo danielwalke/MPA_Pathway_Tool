@@ -1,4 +1,5 @@
 import {getCurrentDateMinute} from "../usefulFunctions/Date"
+
 const defaultState = {
     // upload
     uploadExperimentalData: [],
@@ -26,10 +27,10 @@ const defaultState = {
     kNumbers: [],
     reactionNumbers: [],
     //download
-    csv:[],
+    csv: [],
     json: [],
     sbml: [],
-    svg:[],
+    svg: [],
     data: [],
     stoichiometricMatrix: []
 

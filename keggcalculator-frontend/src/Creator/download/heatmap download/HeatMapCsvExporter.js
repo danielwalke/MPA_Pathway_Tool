@@ -12,8 +12,8 @@ const HeatMapCsvExporter = (props) => {
     const dispatch = useDispatch()
 
     const handleHeatMapExport = () => {
-        dispatch({type:"SET_MAPPING_START_TIME", payload: getCurrentDateMinute()})
-        dispatch({type:"SETLOADING", payload:true})
+        dispatch({type: "SET_MAPPING_START_TIME", payload: getCurrentDateMinute()})
+        dispatch({type: "SETLOADING", payload: true})
         setDownloadedHeatMapData(true) // boolean for checking whether mapping was performed
         proteinState = clonedeep(proteinState)
         const {generalState, graphState} = clonedeep(props)
@@ -29,40 +29,39 @@ const HeatMapCsvExporter = (props) => {
             const matchedMetaProteins = proteins.filter(protein => {
                 let containsKoOrEc = false
                 const koAndEcNumbers = Array.from(protein.koAndEcSet)
-                loop:
-                    for (let iterator = 0; iterator < koAndEcNumbers.length; iterator++) {
-                        const proteinKoAndEc = koAndEcNumbers[iterator]
-                        const isProteinKoInReaction = reaction.koNumbersString.includes(proteinKoAndEc)
-                        const isProteinEcInReaction = reaction.ecNumbersString.includes(proteinKoAndEc)
-                        if (filterTaxon(reaction.taxa, protein.taxa) && (isProteinEcInReaction || isProteinKoInReaction)) {
-                            containsKoOrEc = true
-                            break;
-                        }
+                for (let iterator = 0; iterator < koAndEcNumbers.length; iterator++) {
+                    const proteinKoAndEc = koAndEcNumbers[iterator]
+                    const isProteinKoInReaction = reaction.koNumbersString.includes(proteinKoAndEc)
+                    const isProteinEcInReaction = reaction.ecNumbersString.includes(proteinKoAndEc)
+                    if (filterTaxon(reaction.taxa, protein.taxa) && (isProteinEcInReaction || isProteinKoInReaction)) {
+                        containsKoOrEc = true
+                        break;
                     }
+                }
                 return containsKoOrEc
             })
             const quantSums = proteinState.sampleNames.map(sample => 0)
             matchedMetaProteins.map((protein) => protein.quants.map((quant, index) => quantSums[index] += +quant))
             const matchedMetaProteinNames = matchedMetaProteins.map(protein => protein.name)
             let metaProteinsString = ""
-            matchedMetaProteinNames.forEach(protein => metaProteinsString+=protein.concat("|"))
+            matchedMetaProteinNames.forEach(protein => metaProteinsString += protein.concat("|"))
             outputString += `${reaction.reactionName.replaceAll(";", "\t")};${reaction.koNumbersString};${reaction.ecNumbersString};${metaProteinsString};${quantSums.toString().replaceAll(",", ";")}\n`
         })
         let blob = new Blob(new Array(outputString.trim()), {type: "text/plain;charset=utf-8"});
         saveAs(blob, "Reactions.csv")
         dispatch({type: "SETLOADING", payload: false})
-        dispatch({type:"ADD_DATA_DOWNLOAD_TO_AUDIT_TRAIL"})
-        dispatch({type:"SET_MAPPING_END_TIME", payload: getCurrentDateMinute()})
+        dispatch({type: "ADD_DATA_DOWNLOAD_TO_AUDIT_TRAIL"})
+        dispatch({type: "SET_MAPPING_END_TIME", payload: getCurrentDateMinute()})
     }
 
 
     return (
         <div>
             <ToolTipBig title={"Click for downloading mapped data as CSV"} placement={"right"}>
-            <button className={"downloadButton"}
-                    disabled={!props.graphState.data.nodes.length > 0 || !proteinState.proteinSet.size > 0}
-                    onClick={() => handleHeatMapExport()}>Download Data
-            </button>
+                <button className={"downloadButton"}
+                        disabled={!props.graphState.data.nodes.length > 0 || !proteinState.proteinSet.size > 0}
+                        onClick={() => handleHeatMapExport()}>Download Data
+                </button>
             </ToolTipBig>
         </div>
     )

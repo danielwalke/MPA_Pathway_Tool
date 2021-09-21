@@ -4,7 +4,6 @@ import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import DeleteIcon from '@material-ui/icons/Delete';
 import {getTaxaList} from "../../graph/double click node/StuctureModalBody";
-import TextField from "@material-ui/core/TextField";
 import {ToolTipBig} from "../../main/user-interface/UserInterface";
 
 const ReactionDetails = () => {
@@ -51,7 +50,7 @@ const ReactionDetails = () => {
             <br/>
             KO- numbers:
             <ul>
-                {state.specKoNumbers.map((ko, index) => <li key={ko.concat(index.toString())}>   <ToolTipBig
+                {state.specKoNumbers.map((ko, index) => <li key={ko.concat(index.toString())}><ToolTipBig
                     title={"Delete K number from reaction"}
                     placement={"left"}><DeleteIcon
                     onClick={() => dispatch({type: "SPLICEKONUMBERS", payload: index})}
@@ -59,7 +58,7 @@ const ReactionDetails = () => {
             </ul>
             EC-numbers:
             <ul>
-                {state.ecNumbers.map((ec, index) => <li key={ec.concat(index.toString())}>   <ToolTipBig
+                {state.ecNumbers.map((ec, index) => <li key={ec.concat(index.toString())}><ToolTipBig
                     title={"Delete EC number from reaction"}
                     placement={"left"}><DeleteIcon
                     onClick={() => dispatch({type: "SPLICEECNUMBERS", payload: index})}

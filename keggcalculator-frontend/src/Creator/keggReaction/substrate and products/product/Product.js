@@ -20,25 +20,25 @@ const Product = () => {
     return (
         <div className={"productContainer"}>
             <ToolTipBig title={"Search a product"} placement={"left"}>
-            <Autocomplete
-                size={"small"}
-                id="productBox"
-                options={getProdList()}
-                className={"product"}
-                name={"product"}
-                onChange={(event, value) => {
-                    dispatch({type: "SETPRODUCT", payload: value})
-                }}
-                renderInput={params => (
-                    <TextField
-                        onChange={(event) => dispatch({type: "SETPRODUCT", payload: event.target.value})}
-                        value={state.product}
-                        {...params}
-                        label="Type in three letters..."
-                        variant="outlined"
-                    />
-                )}
-            />
+                <Autocomplete
+                    size={"small"}
+                    id="productBox"
+                    options={getProdList()}
+                    className={"product"}
+                    name={"product"}
+                    onChange={(event, value) => {
+                        dispatch({type: "SETPRODUCT", payload: value})
+                    }}
+                    renderInput={params => (
+                        <TextField
+                            onChange={(event) => dispatch({type: "SETPRODUCT", payload: event.target.value})}
+                            value={state.product}
+                            {...params}
+                            label="Type in three letters..."
+                            variant="outlined"
+                        />
+                    )}
+                />
             </ToolTipBig>
             <SubmitProduct className={"submit"}/>
         </div>

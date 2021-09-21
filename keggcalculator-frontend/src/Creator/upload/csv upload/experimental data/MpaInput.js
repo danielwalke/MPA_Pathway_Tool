@@ -32,7 +32,7 @@ export const onFileChange = (files, dispatch) => {
     // }
 
     try {
-        dispatch({type:"SETLOADING", payload:true})
+        dispatch({type: "SETLOADING", payload: true})
         let reader = new FileReader()
         const allQuants = []
         reader.readAsText(files[0])
@@ -109,18 +109,18 @@ export const onFileChange = (files, dispatch) => {
                 dispatch({type: "SETMIDQUANTUSER3", payload: (+minQuant + (+maxQuant - +minQuant) / 2)})
                 dispatch({type: "SETSAMPLENAMES", payload: sampleNames})
                 dispatch({type: "SETMPAFILENAME", payload: files[0].name})
-                dispatch({type:"ADD_EXPERIMENTAL_DATA_TO_AUDIT_TRAIL", payload: files[0].name})
-                dispatch({type:"SET_EXPERIMENTAL_DATA_FILE", payload: files[0]})
-            }catch (e){
+                dispatch({type: "ADD_EXPERIMENTAL_DATA_TO_AUDIT_TRAIL", payload: files[0].name})
+                dispatch({type: "SET_EXPERIMENTAL_DATA_FILE", payload: files[0]})
+            } catch (e) {
                 window.alert("Your file format is wrong.")
                 console.error(e)
             }
         }
-    } catch(e) {
+    } catch (e) {
         window.alert("Your file format is wrong.")
         console.error(e)
     }
-    dispatch({type:"SETLOADING", payload:false})
+    dispatch({type: "SETLOADING", payload: false})
 }
 
 const MpaInput = (props) => {
@@ -135,26 +135,28 @@ const MpaInput = (props) => {
 
     const getFileSize = file => file.size
     const getChunks = (file, start, chunks) => {
-        const chunk = file.slice(start,start+500000000)
+        const chunk = file.slice(start, start + 500000000)
         chunks.push(chunk)
         start += 500000000
-        if(start < getFileSize(file)){
+        if (start < getFileSize(file)) {
             getChunks(file, start, chunks)
         }
 
     }
 
-    const onFileClick = (files, dispatch)=>{
+    const onFileClick = (files, dispatch) => {
         onFileChange(files, dispatch)
         props.setOpen(false)//closes the drawer menu
     }
     return (
         <div>
-            <ToolTipBig title={"Click for uploading experimental data"}  placement={"right"}>
-            <label className={"uploadLabel"} htmlFor={"mpa-file"}>Upload experimental data <img src={UploadIcon} style={{
-                width: `clamp(6px, 1.7vw, 12px)`,
-                transform: "translate(0,0.2vw)"
-            }} alt={""}/></label>
+            <ToolTipBig title={"Click for uploading experimental data"} placement={"right"}>
+                <label className={"uploadLabel"} htmlFor={"mpa-file"}>Upload experimental data <img src={UploadIcon}
+                                                                                                    style={{
+                                                                                                        width: `clamp(6px, 1.7vw, 12px)`,
+                                                                                                        transform: "translate(0,0.2vw)"
+                                                                                                    }}
+                                                                                                    alt={""}/></label>
             </ToolTipBig>
             <input style={{display: "none"}} className={"mpaInput"} id={"mpa-file"}
                    onClick={() => dispatch({type: "SWITCHLOADING"})} type={"file"} name={"mpa-file"}

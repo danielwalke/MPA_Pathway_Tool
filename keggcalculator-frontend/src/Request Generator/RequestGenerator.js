@@ -8,8 +8,8 @@ export const requestGenerator = (httpmethod, endpoint, params, header, body) => 
         params: params,
         header: header,
         data: body,
-        validateStatus:  (status) => {
-            return status>=200 && status<300;
+        validateStatus: (status) => {
+            return status >= 200 && status < 300;
         },
         proxy: {
             host: host,

@@ -90,10 +90,10 @@ const RenderInformationObject = {
                             }
                         }
                     ]
-                }
             }
         }
     }
+}
 
 
 export default RenderInformationObject

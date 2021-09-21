@@ -8,15 +8,15 @@ import {getNLastChars} from "../../../usefulFunctions/Strings";
 
 const DeleteModal = () => {
     const state = useSelector(state => state.graph)
-    const generalState = useSelector(state=> state.general)
+    const generalState = useSelector(state => state.general)
     const dispatch = useDispatch()
     const classes = useStyles()
 
     const handleDeleteNode = (e) => {
         e.preventDefault()
         const newDataNodes = state.data.nodes.filter(node => node.id !== state.deleteNode)
-        const sourceLinks = state.data.links.filter( links => links.source !== state.deleteNode)
-        const newLinks = sourceLinks.filter( links => links.target !== state.deleteNode)
+        const sourceLinks = state.data.links.filter(links => links.source !== state.deleteNode)
+        const newLinks = sourceLinks.filter(links => links.target !== state.deleteNode)
         const newData = {nodes: newDataNodes, links: newLinks}
         const newReactions = generalState.reactionsInSelectArray.filter(reaction => reaction.reactionId !== getNLastChars(state.deleteNode, 6))
         newReactions.map(reaction => {
@@ -35,10 +35,10 @@ const DeleteModal = () => {
             return reaction
         })
         console.log(newKeggReactions)
-        dispatch({type:"SET_KEGG_REACTION", payload: newKeggReactions})
-        dispatch({type:"SETREACTIONSINARRAY", payload: newReactions})
+        dispatch({type: "SET_KEGG_REACTION", payload: newKeggReactions})
+        dispatch({type: "SETREACTIONSINARRAY", payload: newReactions})
         dispatch({type: "SETDATA", payload: newData})
-        dispatch({type:"SWITCHDELETEMODAL"})
+        dispatch({type: "SWITCHDELETEMODAL"})
     }
 
     const body = (
@@ -50,7 +50,8 @@ const DeleteModal = () => {
     )
     return (
         <div>
-            <Modal className={classes.modal} open={state.showDeleteModal} onClose={() => dispatch({type: "SWITCHDELETEMODAL"})}>
+            <Modal className={classes.modal} open={state.showDeleteModal}
+                   onClose={() => dispatch({type: "SWITCHDELETEMODAL"})}>
                 {body}
             </Modal>
         </div>

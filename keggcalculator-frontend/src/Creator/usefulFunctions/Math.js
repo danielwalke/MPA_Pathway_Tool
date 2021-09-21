@@ -1,7 +1,7 @@
-export const getMax = (arr) =>{
+export const getMax = (arr) => {
     let max = 0;
-    if(typeof arr === "object" && arr.length>0){
-        arr.map(item =>{
+    if (typeof arr === "object" && arr.length > 0) {
+        arr.map(item => {
             max = +item > +max ? +item : max
             return null
         })
@@ -9,10 +9,10 @@ export const getMax = (arr) =>{
     return max
 }
 
-export const getMin = (arr) =>{
+export const getMin = (arr) => {
     let min = 0;
-    if(typeof arr === "object" && arr.length>0){
-        arr.map(item =>{
+    if (typeof arr === "object" && arr.length > 0) {
+        arr.map(item => {
             min = +item < +min ? +item : min
             return null
         })

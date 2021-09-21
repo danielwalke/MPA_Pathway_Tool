@@ -6,7 +6,6 @@ import clonedeep from "lodash/cloneDeep"
 import {NOT_KEY_COMPOUND_OPACITY} from "../Constants";
 import {isColliding} from "../collision/CollisionCheck";
 import Example from "../../upload/example/Example";
-import {Card, CardContent} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 
 const onClickNode = (nodeId, dispatch, graphState, keggState) => {
@@ -146,23 +145,27 @@ const GraphVisualization = () => {
     }
     return (
         <div>
-                <Typography variant="h5" component="h1" style={{textDecoration:"underline"}}> Upload a pathway or start building your own pathway from scratch!</Typography>
-                <div style={{padding:"5px"}}>
-                    <a href={"https://www.youtube.com/channel/UCf_p5aayjVS5BXfaCHbsX1Q"}><Typography>Click here for watching our
-                        tutorials!</Typography></a>
+            <Typography variant="h5" component="h1" style={{textDecoration: "underline"}}> Upload a pathway or start
+                building your own pathway from scratch!</Typography>
+            <div style={{padding: "5px"}}>
+                <a href={"https://www.youtube.com/channel/UCf_p5aayjVS5BXfaCHbsX1Q"}><Typography>Click here for watching
+                    our
+                    tutorials!</Typography></a>
+            </div>
+            <div style={{padding: "5px"}}>
+                <a href={"https://github.com/danielwalke/MPA_Pathway_Tool/tree/main/pathway%20examples"}><Typography>Click
+                    here for already created pathway files!</Typography></a>
+            </div>
+            <div style={{padding: "5px"}}>
+                <a href={"https://github.com/danielwalke/MPA_Pathway_Tool"}><Typography>Click here for the source
+                    code!</Typography></a>
+            </div>
+            <Typography variant="h5" component="h5">Do you want an example? Click on the following button: </Typography>
+            <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+                <div style={{width: "20vw"}}>
+                    <Example/>
                 </div>
-                <div style={{padding:"5px"}}>
-                    <a href={"https://github.com/danielwalke/MPA_Pathway_Tool/tree/main/pathway%20examples"}><Typography>Click here for already created pathway files!</Typography></a>
-                </div>
-                <div  style={{padding:"5px"}}>
-                    <a href={"https://github.com/danielwalke/MPA_Pathway_Tool"}><Typography>Click here for the source code!</Typography></a>
-                </div>
-                <Typography variant="h5" component="h5">Do you want an example? Click on the following button: </Typography>
-                <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-                    <div style={{width: "20vw"}}>
-                        <Example/>
-                    </div>
-                </div>
+            </div>
         </div>
     )
 }

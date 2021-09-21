@@ -1,4 +1,4 @@
-class SpeciesGlyph{
+class SpeciesGlyph {
     _layoutId
     _layoutSpecies
     _layoutSpeciesReference
@@ -20,11 +20,11 @@ class SpeciesGlyph{
         this._layoutSpeciesReference = value;
     }
 
-    get isKeyCompound(){
+    get isKeyCompound() {
         return this._isKeyCompound
     }
 
-    set isKeyCompound(isKeyCompound){
+    set isKeyCompound(isKeyCompound) {
         this._isKeyCompound = isKeyCompound
     }
 

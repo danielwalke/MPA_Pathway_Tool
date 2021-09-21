@@ -4,12 +4,12 @@ import {useSelector} from "react-redux";
 
 const FBA = () => {
     const graphState = useSelector(state => state.graph)
-    React.useEffect(()=>{
+    React.useEffect(() => {
         console.log(graphState.data)
     })
     const myConfig = {
-        height: 0.75*window.innerHeight,
-        width:  0.95*window.innerWidth,
+        height: 0.75 * window.innerHeight,
+        width: 0.95 * window.innerWidth,
         nodeHighlightBehavior: true,
         directed: true,
         node: {
@@ -18,7 +18,7 @@ const FBA = () => {
         },
         link: {
             highlightColor: "lightblue",
-            strokeWidth:2
+            strokeWidth: 2
 
         },
         d3: {
@@ -27,7 +27,7 @@ const FBA = () => {
             disableLinkForce: graphState.isForceDisabled
         }
     };
-    if(graphState.data.nodes.length >0){
+    if (graphState.data.nodes.length > 0) {
         return (
             <div>
                 <Graph
@@ -39,10 +39,10 @@ const FBA = () => {
                 />
             </div>
         );
-    }return(
+    }
+    return (
         <div>lol</div>
-        )
-
+    )
 
 
 };

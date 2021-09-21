@@ -1,13 +1,11 @@
 import React from "react"
-import OVGULogo from "../../images/OVGU_bioprocess.png"
 // import DBSELogo from "../../images/DBSE_logo.png"
-import denbiLogo from "../../images/denbi-logo-color.svg"
 import {AppBar} from "@material-ui/core";
 
 export default function NavigationBar(props) {
 
     let style = {
-        navBar: {flexDirection: "row", flex: 1, display: "flex", justifyContent:"center"},
+        navBar: {flexDirection: "row", flex: 1, display: "flex", justifyContent: "center"},
         title: {display: "flex", alignItems: "center", fontSize: "1.25rem", fontWeight: "600", userSelect: "none"},
     }
 

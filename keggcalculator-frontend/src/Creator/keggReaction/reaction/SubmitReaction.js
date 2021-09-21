@@ -15,13 +15,14 @@ const SubmitReaction = () => {
     const dispatch = useDispatch()
     return (
         <ToolTipBig title={"Submit chosen reaction"} placement={"right"}>
-        <button
-            disabled={!isRequestValid(state.keggState.reaction)}
-            className={"submitButtonReaction"}
-            onClick={(event) => {
-                event.preventDefault()
-                handleSubmitReaction(state, dispatch)
-            }}> Submit reaction</button>
+            <button
+                disabled={!isRequestValid(state.keggState.reaction)}
+                className={"submitButtonReaction"}
+                onClick={(event) => {
+                    event.preventDefault()
+                    handleSubmitReaction(state, dispatch)
+                }}> Submit reaction
+            </button>
         </ToolTipBig>
     )
 }

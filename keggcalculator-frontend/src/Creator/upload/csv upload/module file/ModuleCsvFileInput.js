@@ -2,7 +2,6 @@ import React from "react";
 import UploadIcon from "../../../icons/uploadIconWhite.svg"
 import {useDispatch, useSelector} from "react-redux";
 import "../../main/Upload.css"
-import {handleGraphUpload, handleReactionListUpload} from "./ModuleUploadFunctions";
 import {ToolTipBig} from "../../../main/user-interface/UserInterface";
 import {readFile} from "./CsvModuleFile";
 import {handleJSONGraphUpload} from "../../json upload/ModuleUploadFunctionsJSON";
@@ -12,7 +11,7 @@ export const onModuleFileChange = (files, dispatch, state) => {
         let reader = new FileReader()
         reader.readAsText(files[0])
         reader.onload = e => {
-            try{
+            try {
                 const result = e.target.result.trim()
                 const reactions = readFile(result)
                 console.log(reactions)
@@ -27,10 +26,10 @@ export const onModuleFileChange = (files, dispatch, state) => {
                 dispatch({type: "SETDATALINKS", payload: links})
                 dispatch({type: "ADDREACTIONSTOARRAY", payload: reactions})//reactionList
                 dispatch({type: "SETMODULEFILENAME", payload: files[0].name})
-                dispatch({type:"ADD_PATHWAY_TO_AUDIT_TRAIL", payload: files[0].name})
-                dispatch({type:"SET_PATHWAY_FILE", payload: files[0]})
+                dispatch({type: "ADD_PATHWAY_TO_AUDIT_TRAIL", payload: files[0].name})
+                dispatch({type: "SET_PATHWAY_FILE", payload: files[0]})
                 dispatch({type: "SWITCHUPLOADMODAL"})
-            }catch (e) {
+            } catch (e) {
                 window.alert("Your file format is either wrong or you have already imported a file.")
                 console.error(e)
             }
@@ -54,12 +53,13 @@ const ModuleCsvFileInput = () => {
 
     return (
         <div>
-            <ToolTipBig title={"Click for uploading a pathway as CSV"}  placement={"right"}>
-            <label className={"uploadLabel"} htmlFor={"module-file"}>Upload pathway as CSV <img src={UploadIcon}
-                                                                                                style={{
-                                                                                                    width: `clamp(6px, 1.7vw, 12px)`,
-                                                                                                    transform: "translate(0,0.2vw)"
-                                                                                                }} alt={""}/></label>
+            <ToolTipBig title={"Click for uploading a pathway as CSV"} placement={"right"}>
+                <label className={"uploadLabel"} htmlFor={"module-file"}>Upload pathway as CSV <img src={UploadIcon}
+                                                                                                    style={{
+                                                                                                        width: `clamp(6px, 1.7vw, 12px)`,
+                                                                                                        transform: "translate(0,0.2vw)"
+                                                                                                    }}
+                                                                                                    alt={""}/></label>
             </ToolTipBig>
             <input className={"moduleInput"} style={{display: "none"}} id={"module-file"}
                    onClick={() => dispatch({type: "SETLOADING", payload: true})} type={"file"}

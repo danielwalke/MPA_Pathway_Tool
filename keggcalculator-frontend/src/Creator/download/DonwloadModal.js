@@ -11,7 +11,7 @@ import CsvDownLoader from "./csv download/CsvDownLoader";
 import Metadata from "./metadata/Metadata";
 
 
-const DonwloadModal = () =>{
+const DonwloadModal = () => {
     const classes = useStyles();
     const generalState = useSelector(state => state.general)
     const graphState = useSelector(state => state.graph)
@@ -26,14 +26,17 @@ const DonwloadModal = () =>{
             <JSONDownloader generalState={generalState} graphState={graphState}/>
             <SBMLDownloader generalState={generalState} graphState={graphState}/>
             <GraphSvgExporter graphState={graphState}/>
-            <HeatMapCsvExporter generalState={generalState} graphState={graphState} setDownloadedHeatMapData={setDownloadedHeatMapData}/>
+            <HeatMapCsvExporter generalState={generalState} graphState={graphState}
+                                setDownloadedHeatMapData={setDownloadedHeatMapData}/>
             <StoichiometricMatrix generalState={generalState} graphState={graphState}/>
-            <Metadata fileStates={fileStates} generalState={generalState} graphState={graphState} downloadedHeatMapData={downloadedHeatMapData}/>
+            <Metadata fileStates={fileStates} generalState={generalState} graphState={graphState}
+                      downloadedHeatMapData={downloadedHeatMapData}/>
         </div>
     )
-    return(
+    return (
         <div>
-            <Modal className={classes.modal} open={generalState.downloadModal} onClose={() => dispatch({type: "SWITCHDOWNLOADMODAL"})}>
+            <Modal className={classes.modal} open={generalState.downloadModal}
+                   onClose={() => dispatch({type: "SWITCHDOWNLOADMODAL"})}>
                 {body}
             </Modal>
         </div>

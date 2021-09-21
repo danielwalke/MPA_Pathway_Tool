@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import MakeSpeciesReferenceObj from "./MakeSpeciesReferenceObj";
 
 const MakeReactionObjectList = (reactionsRaw, taxonomyIdArray) => {
@@ -7,18 +7,23 @@ const MakeReactionObjectList = (reactionsRaw, taxonomyIdArray) => {
 
         const taxonomyIds = taxonomyIdArray.filter(taxon => item.reactionId == taxon.reactionId)
 
-        const rIdForRDF = ['#',item.reactionId].join("")
+        const rIdForRDF = ['#', item.reactionId].join("")
 
-        const references = {'rdf:li':[]}
-        if(item.reactionId != ""){
-            references['rdf:li'].push({'@': {'rdf:resource': ['http://identifiers.org/kegg.reaction/', item.reactionId].join("")}})}
-        if(item.koNumbersString.length != 0){
+        const references = {'rdf:li': []}
+        if (item.reactionId != "") {
+            references['rdf:li'].push({'@': {'rdf:resource': ['http://identifiers.org/kegg.reaction/', item.reactionId].join("")}})
+        }
+        if (item.koNumbersString.length != 0) {
             item.koNumbersString.map(ko => {
-                references['rdf:li'].push({'@': {'rdf:resource': ['https://www.kegg.jp/entry/', ko].join("")}})})}
-        if(item.ecNumbersString.length != 0){
+                references['rdf:li'].push({'@': {'rdf:resource': ['https://www.kegg.jp/entry/', ko].join("")}})
+            })
+        }
+        if (item.ecNumbersString.length != 0) {
             item.ecNumbersString.map(ec => {
-                references['rdf:li'].push({'@': {'rdf:resource': ['http://identifiers.org/ec-code/', ec].join("")}})})}
-        if(taxonomyIds.length > 0){
+                references['rdf:li'].push({'@': {'rdf:resource': ['http://identifiers.org/ec-code/', ec].join("")}})
+            })
+        }
+        if (taxonomyIds.length > 0) {
             taxonomyIds.map(id => {
                 references['rdf:li'].push({'@': {'rdf:resource': ['https://www.uniprot.org/taxonomy/', id.id].join("")}})
             })
@@ -29,7 +34,8 @@ const MakeReactionObjectList = (reactionsRaw, taxonomyIdArray) => {
                 id: item.reactionId,
                 reversible: item.reversible.toString(),
                 name: item.abbreviation,
-                metaid: item.reactionId},
+                metaid: item.reactionId
+            },
             '#': {
                 listOfReactants: {'#': MakeSpeciesReferenceObj(item.substrates)},
                 listOfProducts: {'#': MakeSpeciesReferenceObj(item.products)},
@@ -55,7 +61,8 @@ const MakeReactionObjectList = (reactionsRaw, taxonomyIdArray) => {
                     }
                 }
 
-            }}
+            }
+        }
         return reactionObject
     })
     return reactionObj

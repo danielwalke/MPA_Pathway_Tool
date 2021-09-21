@@ -1,4 +1,4 @@
-.captionContainerReaction{
+.captionContainerReaction {
     /*transform: translate(-10px,0);*/
     width: 100%;
     display: grid;
@@ -8,30 +8,31 @@
 "heatReaction heatReaction heatReaction heatReaction heatReaction";
     justify-content: space-between;
 }
-.userCaptionReaction{
+
+.userCaptionReaction {
     grid-area: heatReaction;
-    background: linear-gradient(90deg, rgb(255,0,0),rgb(255,0,255),rgb(0,0,255));
+    background: linear-gradient(90deg, rgb(255, 0, 0), rgb(255, 0, 255), rgb(0, 0, 255));
     height: 10px;
 }
 
-.minReaction{
+.minReaction {
     grid-area: minReaction;
 }
 
-.min2Reaction{
+.min2Reaction {
     grid-area: min2Reaction;
 }
 
-.midReaction{
+.midReaction {
     grid-area: midReaction;
 }
 
 
-.max2Reaction{
+.max2Reaction {
     grid-area: max2Reaction;
 }
 
-.maxReaction{
+.maxReaction {
     grid-area: maxReaction;
     justify-self: end;
 }
