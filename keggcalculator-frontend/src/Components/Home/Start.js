@@ -136,7 +136,37 @@ const Start = (props) => {
                     {videos}
                 </Modal>
 
+                <Card style={{marginTop:"8px",backgroundColor:"rgb(230,230,230)"}}>
+                    <Typography variant="h4" component="h3" style={{textAlign: "center"}}>Site notice</Typography>
+                    <CardContent >
+                        <div style={{display:"flex", justifyContent: "space-around"}}>
+                        <div>
+                            <p style={{textAlign: "center"}}>Otto-von-Guericke University Magdeburg</p>
+                            <p style={{textAlign: "center"}}>Building 28</p>
+                            <p style={{textAlign: "center"}}>Universitätsplatz 2</p>
+                            <p style={{textAlign: "center"}}>39106 Magdeburg, Germany</p>
+                        </div>
+                        <div>
+                            <h4 style={{textAlign: "center"}}>
+                                Contributors:
+                            </h4>
+                            <ul style={{textAlign: "left", listStyleType:"none"}}>
+                                <li style={{margin:"2px"}}>Daniel Walke - daniel.walke@ovgu.de</li>
+                                <li style={{margin:"2px"}}>Kay Schallert</li>
+                                <li style={{margin:"2px"}}>Prasanna Ramesh</li>
+                                <li style={{margin:"2px"}}>Emanuel Lange</li>
+                                <li style={{margin:"2px"}}>Dr. Dirk Benndorf</li>
+                                <li style={{margin:"2px"}}>Prof. Udo Reichl</li>
+                                <li style={{margin:"2px"}}>Dr. Robert Heyer</li>
+                            </ul>
+                        </div>
+                        </div>
+
+                    </CardContent>
+                </Card>
             </div>
+
+
         </div>
     )
 }
