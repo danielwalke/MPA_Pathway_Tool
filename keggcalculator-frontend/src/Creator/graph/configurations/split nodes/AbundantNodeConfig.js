@@ -33,14 +33,28 @@ const AbundantNodeConfig = () => {
     const filterAbundantCompounds = () => {
         let nodes = []
         let data = {}
+
         graphState.abundantCompounds.map(comp => {
             nodes = graphState.data.nodes
+            let origNodeX = 0
+            let origNodeY = 0
+            let splitNodeDist = 0
+
+            const origNode = nodes.filter(node => comp === node.id)[0]
+
+            if (origNode) {
+                origNodeX = nodes.filter(node => comp === node.id)[0].x
+                origNodeY = nodes.filter(node => comp === node.id)[0].y
+                splitNodeDist = 40
+            }
+
             const abundantLinks = graphState.data.links.filter(link => link.source === comp || link.target === comp)
+
             abundantLinks.map((link, index) => {
                 if (link.source === comp) {
-                    nodes.push({id: `${index}__${link.source}`, color: COMPOUND_NODE_COLOR, opacity: 0.4, x: 0, y: 0})
+                    nodes.push({id: `${index}__${link.source}`, color: COMPOUND_NODE_COLOR, opacity: 0.4, x: origNodeX, y: origNodeY+splitNodeDist*index})
                 } else {
-                    nodes.push({id: `${index}__${link.target}`, color: COMPOUND_NODE_COLOR, opacity: 0.4, x: 0, y: 0})
+                    nodes.push({id: `${index}__${link.target}`, color: COMPOUND_NODE_COLOR, opacity: 0.4, x: origNodeX, y: origNodeY+splitNodeDist*index})
                 }
                 return null
             })
@@ -54,6 +68,7 @@ const AbundantNodeConfig = () => {
                 }
                 return null;
             })
+            console.log(nodes)
             data.links = graphState.data.links
             return null;
         })
