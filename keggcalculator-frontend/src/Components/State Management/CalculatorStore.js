@@ -1,4 +1,4 @@
-import {action, observable, computed, decorate, toJS} from "mobx"
+import {action, computed, decorate, observable, toJS} from "mobx"
 
 class Calculator_Store {
 
@@ -14,6 +14,10 @@ class Calculator_Store {
         this.downloadLink = undefined;
 
         this.processing = false;
+
+        this.startTime = "";
+
+        this.endTime = ""
 
         this.error = undefined;
         this.setUploadedFiles = this.setUploadedFiles.bind(this)
@@ -38,23 +42,22 @@ class Calculator_Store {
     //
     // error = undefined;
 
-    setUploadedFiles(fileType, collection){
+    setUploadedFiles(fileType, collection) {
         this.downloadLink = undefined;
         this.currentStatus = undefined;
-        if(fileType === "MPAFile") {
+        if (fileType === "MPAFile") {
             this.MPAFile = collection;
-        }
-        else {
+        } else {
             this.moduleFiles.push(collection);
         }
     };
 
-    setJobIDAndMessage(jobID, message){
+    setJobIDAndMessage(jobID, message) {
         this.jobID = jobID;
         this.currentStatus = message;
     };
 
-    setErrorMessage(errorMessage){
+    setErrorMessage(errorMessage) {
         this.currentStatus = errorMessage;
         this.processing = false;
         this.downloadLink = undefined;
@@ -62,16 +65,15 @@ class Calculator_Store {
         this.error = true;
     };
 
-    setDownloadStatusAndMessage(downloadLink, message){
+    setDownloadStatusAndMessage(downloadLink, message) {
         this.downloadLink = downloadLink;
         this.currentStatus = message;
     };
 
-    getSize (fileType) {
-        if(fileType === "MPAFile") {
+    getSize(fileType) {
+        if (fileType === "MPAFile") {
             return this.MPAFile.length;
-        }
-        else {
+        } else {
             return this.moduleFiles.length
         }
     };
@@ -84,22 +86,23 @@ class Calculator_Store {
         return toJS(this.moduleFiles);
     }
 
-    removeFiles (fileType, index) {
+    removeFiles(fileType, index) {
         this.downloadLink = undefined;
         this.currentStatus = undefined;
-        if(fileType === "MPAFile") {
+        if (fileType === "MPAFile") {
             this.MPAFile = [];
-        }
-        else {
+        } else {
             this.moduleFiles.splice(index, 1)
         }
     };
 
 }
 
-decorate(Calculator_Store,{
+decorate(Calculator_Store, {
     jobID: observable,
     MPAFile: observable,
+    startTime: observable,
+    endTime: observable,
     moduleFiles: observable,
     downloadLink: observable,
     processing: observable,

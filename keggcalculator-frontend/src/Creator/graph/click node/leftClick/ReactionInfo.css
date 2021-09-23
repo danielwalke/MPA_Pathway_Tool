@@ -1,5 +1,5 @@
 
-.infoWrapper{
+.infoWrapper {
     transform: translate(-20%, 0%);
     background-color: #FFF;
     z-index: 1000;
@@ -15,24 +15,29 @@
 "heatmap heatmap"
 "caption caption";
 }
-.koAndEcListContainer{
+
+.koAndEcListContainer {
     grid-area: koAndEc;
 }
-.closeInfo{
+
+.closeInfo {
     grid-area: close;
     color: white;
     font-size: clamp(5px, 1.7vw, 10px);
     background-color: rgb(150, 25, 130);
     transition: all 400ms ease;
 }
+
 .closeInfo:hover {
     background-color: rgb(120, -5, 100);
     cursor: pointer;
 }
-.headerInfo{
+
+.headerInfo {
     grid-area: header;
 }
-.svgInfo{
+
+.svgInfo {
     height: 40vh;
     grid-area: heatmap;
     white-space: nowrap;
@@ -40,7 +45,7 @@
     overflow-y: scroll;
 }
 
-.captionReaction{
+.captionReaction {
     width: 100%;
     grid-area: caption;
 }

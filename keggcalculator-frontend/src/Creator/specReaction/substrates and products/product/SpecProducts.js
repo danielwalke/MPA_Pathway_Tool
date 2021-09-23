@@ -5,6 +5,7 @@ import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import "./SpecProduct.css"
 import PopOverButton from "../PopOverButton";
+import {ToolTipBig} from "../../../main/user-interface/UserInterface";
 
 const SpecProducts = (props) => {
     const dispatch = useDispatch()
@@ -13,19 +14,25 @@ const SpecProducts = (props) => {
     return (
         <div className={"productContainerSpec"}>
             {state.isSpecificCompoundInputProduct ?
-                <TextField className={"product"} size={"small"} value={state.specProduct}
-                           onChange={e => dispatch({type: "SETSPECIFICPRODUCT", payload: e.target.value})}
-                           type={"text"}
-                           label={"product"} id={"spec product"}/> :
-            <Field
-                className={"product"}
-                dispatchType={"SETSPECIFICPRODUCT"}
-                id={"product"}
-                dispatchTypeOptions={"SETSPECIFICOPTIONSPRODUCT"}
-                options={state.specOptionsProduct}
-                compound={state.specProduct}/>}
+                <ToolTipBig title={"Type in a product name"} placement={"left"}>
+                    <TextField className={"product"} size={"small"} value={state.specProduct}
+                               onChange={e => dispatch({type: "SETSPECIFICPRODUCT", payload: e.target.value})}
+                               type={"text"}
+                               label={"product"} id={"spec product"}/>
+                </ToolTipBig> :
+                <Field
+                    className={"product"}
+                    dispatchType={"SETSPECIFICPRODUCT"}
+                    id={"product"}
+                    dispatchTypeOptions={"SETSPECIFICOPTIONSPRODUCT"}
+                    options={state.specOptionsProduct}
+                    compound={state.specProduct}/>
+            }
             <PopOverButton text={" not found? :-(\n" +
-            "                Don't worry! Click here :)"} className={"notFoundButton"}  dispatchType={"SWITCHISSPECCOMPOUNDINPUTPRODUCT"}/>
+            "                Don't worry! Click here :)"}
+                           dispatchType={"SWITCHISSPECCOMPOUNDINPUTPRODUCT"}
+                           isText={state.isSpecificCompoundInputProduct}/>
+            <ToolTipBig title={"Type in a stoichiometric coefficient"} placement={"left"}>
                 <TextField
                     size={"small"}
                     className={"productSc"}
@@ -42,9 +49,13 @@ const SpecProducts = (props) => {
                     }}
                     variant="filled"
                 />
-            <button className={"addProduct"}
+            </ToolTipBig>
+            <ToolTipBig title={"Submit the product with chosen coefficient"} placement={"right"}>
+                <button className={"addProduct"}
                     // disabled={!isRequestValid(state.specProduct)}
-                    onClick={(e) => handleAddProduct(e, dispatch, state, props.index)}>Add Product</button>
+                        onClick={(e) => handleAddProduct(e, dispatch, state, props.index)}>Add Product
+                </button>
+            </ToolTipBig>
         </div>
     )
 }

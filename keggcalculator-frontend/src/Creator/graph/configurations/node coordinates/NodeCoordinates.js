@@ -9,8 +9,8 @@ const NodeCoordinates = () => {
     const graphState = useSelector(state => state.graph)
     const classes = useStyles()
 
-    const handleCoordinateChange = async(node) => {
-        await dispatch({type: "SETDATA", payload: {nodes:[], links:graphState.data.links}})
+    const handleCoordinateChange = async (node) => {
+        await dispatch({type: "SETDATA", payload: {nodes: [], links: graphState.data.links}})
         graphState.data.nodes.push({
             id: `${node.id}`,
             opacity: node.opacity,
@@ -48,17 +48,17 @@ const NodeCoordinates = () => {
                     </div>
                 )
             })}
-                </div>
-                )
-                return (
-                <div>
-                <Modal style={{width: "90vw", margin: "5vw", overflow: "auto"}}
-                open={graphState.showNodeCoordinatesModal}
-                onClose={() => dispatch({type: "SWITCHSHOWNODECOORDINATESMODAL"})}>
-            {body}
-                </Modal>
-                </div>
-                )
-            }
+        </div>
+    )
+    return (
+        <div>
+            <Modal style={{width: "90vw", margin: "5vw", overflow: "auto"}}
+                   open={graphState.showNodeCoordinatesModal}
+                   onClose={() => dispatch({type: "SWITCHSHOWNODECOORDINATESMODAL"})}>
+                {body}
+            </Modal>
+        </div>
+    )
+}
 
-            export default NodeCoordinates
+export default NodeCoordinates

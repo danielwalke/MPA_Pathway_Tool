@@ -7,3 +7,6 @@
 /.settings/
 /bin/
 /jsbml.log
+/mpaserver2
+/mpaserver2.pub
+/deployment.zip

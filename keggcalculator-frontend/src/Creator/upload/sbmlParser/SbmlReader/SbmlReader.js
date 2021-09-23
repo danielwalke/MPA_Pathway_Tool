@@ -15,17 +15,21 @@ import {useDispatch, useSelector} from "react-redux";
 import AnnotationModal from "../AnnotationModal";
 import AnnotationWarningModal from "../AnnotationWarningModal";
 import ReactionTableList from "../finalReactionTable/ReactionTableList";
+import {ToolTipBig} from "../../../main/user-interface/UserInterface";
 
 const SbmlReader = () => {
     const dispatch = useDispatch();
-    const state = useSelector(state=> state)
+    const state = useSelector(state => state)
     return (
         <div>
-            <label className={"uploadLabel"} htmlFor={"SBML_Module"}>Upload pathway as SBML <img src={UploadIcon}
-                                                                                                 style={{
-                                                                                                     width: `clamp(6px, 1.7vw, 12px)`,
-                                                                                                     transform: "translate(0,0.2vw)"
-                                                                                                 }} alt={""}/></label>
+            <ToolTipBig title={"Click for uploading a pathway as SBML"} placement={"right"}>
+                <label className={"uploadLabel"} htmlFor={"SBML_Module"}>Upload pathway as SBML <img src={UploadIcon}
+                                                                                                     style={{
+                                                                                                         width: `clamp(6px, 1.7vw, 12px)`,
+                                                                                                         transform: "translate(0,0.2vw)"
+                                                                                                     }}
+                                                                                                     alt={""}/></label>
+            </ToolTipBig>
             <input className={"moduleInput"} style={{display: "none"}} id={"SBML_Module"}
                    onClick={() => dispatch({type: "SETLOADING", payload: true})} type={"file"}
                    name={"module-file"}

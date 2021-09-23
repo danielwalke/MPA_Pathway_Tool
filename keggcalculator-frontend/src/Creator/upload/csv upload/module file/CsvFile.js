@@ -2,7 +2,7 @@ import {Reaction} from "../../model/Reaction";
 import {Compound} from "../../model/Compound";
 import {NOT_KEY_COMPOUND_OPACITY} from "../../../graph/Constants";
 
-export class CsvColumns{
+export class CsvColumns {
     columns
     compoundX
     compoundY
@@ -23,12 +23,12 @@ export class CsvColumns{
         this._typeOfCompound = this._columns[6]
         const keyComp = this._columns[15]
         this._opacity = keyComp.trim() === "true" ? 1 : NOT_KEY_COMPOUND_OPACITY
-        this._reactionName =this._columns[1].replaceAll("\t", ";")
+        this._reactionName = this._columns[1].replaceAll("\t", ";")
         this._reactionX = this._columns[9].trim()
         this._reactionY = this._columns[10]
         this._reactionAbbreviation = this._columns[13]
         this._reversible = this._columns[7] === "reversible"
-        this._compoundAbbreviation =this._columns[14]
+        this._compoundAbbreviation = this._columns[14]
         this._row = row;
     }
 
@@ -94,7 +94,7 @@ export class CsvColumns{
         return compound
     }
 
-    createNewReaction = (reaction) =>{
+    createNewReaction = (reaction) => {
         reaction = new Reaction(this.reactionName)
         reaction._x = this.reactionX
         reaction._y = this.reactionY
@@ -107,7 +107,7 @@ export class CsvColumns{
 
 }
 
-export const getReaction = (reactions, columns) =>{
+export const getReaction = (reactions, columns) => {
     let reaction
     const reactionName = columns.reactionName
     if (!isInReaction(reactions, reactionName)) {
@@ -118,10 +118,10 @@ export const getReaction = (reactions, columns) =>{
     return reaction
 }
 
-const isInReaction = (reactions, reactionName) =>{
+const isInReaction = (reactions, reactionName) => {
     return reactions.some(reaction => reaction.reactionName === reactionName)
 }
-const findReactionInList = (reaction, reactions, reactionName) =>{
+const findReactionInList = (reaction, reactions, reactionName) => {
     reaction = reactions.find(reaction => reaction.reactionName === reactionName)
     reactions.pop()
     return reaction

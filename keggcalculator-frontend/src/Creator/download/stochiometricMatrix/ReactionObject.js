@@ -1,21 +1,19 @@
-
-
-export const getReactionObjects = (forwardReactions, backwardReactions,compoundSet, graphState) =>{
+export const getReactionObjects = (forwardReactions, backwardReactions, compoundSet, graphState) => {
     //adds compound names to stoichiometric coefficients in each reactions
     const reactionObjects = forwardReactions.map(reaction => { // correct direction
         const reactionSubstrateLinks = graphState.data.links.filter(link => link.target.includes(reaction.reactionId) && !link.isReversibleLink)
         const reactionSubstrates = reactionSubstrateLinks.map(link => link.source)
         reaction.metabolites = []
         reaction.reactionSubstrates = reactionSubstrates.map(substrate => {
-            const id = substrate.substring(substrate.length-6, substrate.length)
-            const stoichiometry =reaction.stochiometrySubstratesString instanceof Map? reaction.stochiometrySubstratesString.get(id) :
+            const id = substrate.substring(substrate.length - 6, substrate.length)
+            const stoichiometry = reaction.stochiometrySubstratesString instanceof Map ? reaction.stochiometrySubstratesString.get(id) :
                 reaction.stochiometrySubstratesString[id]
             compoundSet.add(substrate)
             reaction.metabolites.push({
                 id: substrate,
-                stoichiometry:  `${-stoichiometry}`
+                stoichiometry: `${-stoichiometry}`
             })
-            return(
+            return (
                 {
                     id: substrate,
                     stoichiometry: stoichiometry
@@ -25,15 +23,15 @@ export const getReactionObjects = (forwardReactions, backwardReactions,compoundS
         const reactionProductLinks = graphState.data.links.filter(link => link.source.includes(reaction.reactionId) && !link.isReversibleLink)
         const reactionProducts = reactionProductLinks.map(link => link.target)
         reaction.reactionProducts = reactionProducts.map(product => {
-            const id = product.substring(product.length-6, product.length)
-            const stoichiometry =reaction.stochiometryProductsString instanceof Map? reaction.stochiometryProductsString.get(id) :
+            const id = product.substring(product.length - 6, product.length)
+            const stoichiometry = reaction.stochiometryProductsString instanceof Map ? reaction.stochiometryProductsString.get(id) :
                 reaction.stochiometryProductsString[id]
             compoundSet.add(product)
             reaction.metabolites.push({
                 id: product,
                 stoichiometry: stoichiometry
             })
-            return(
+            return (
                 {
                     id: product,
                     stoichiometry: stoichiometry
@@ -49,15 +47,15 @@ export const getReactionObjects = (forwardReactions, backwardReactions,compoundS
         const reactionSubstrates = reactionSubstrateLinks.map(link => link.target)
         reaction.metabolites = []
         reaction.reactionSubstrates = reactionSubstrates.map(substrate => {
-            const id = substrate.substring(substrate.length-6, substrate.length)
-            const stoichiometry =reaction.stochiometrySubstratesString instanceof Map? reaction.stochiometrySubstratesString.get(id) :
+            const id = substrate.substring(substrate.length - 6, substrate.length)
+            const stoichiometry = reaction.stochiometrySubstratesString instanceof Map ? reaction.stochiometrySubstratesString.get(id) :
                 reaction.stochiometrySubstratesString[id]
             compoundSet.add(substrate)
             reaction.metabolites.push({
                 id: substrate,
                 stoichiometry: stoichiometry
             })
-            return(
+            return (
                 {
                     id: substrate,
                     stoichiometry: stoichiometry
@@ -67,15 +65,15 @@ export const getReactionObjects = (forwardReactions, backwardReactions,compoundS
         const reactionProductLinks = graphState.data.links.filter(link => link.target.includes(reaction.reactionId) && !link.isReversibleLink)
         const reactionProducts = reactionProductLinks.map(link => link.source)
         reaction.reactionProducts = reactionProducts.map(product => {
-            const id = product.substring(product.length-6, product.length)
-            const stoichiometry = reaction.stochiometryProductsString instanceof Map? reaction.stochiometryProductsString.get(id) :
+            const id = product.substring(product.length - 6, product.length)
+            const stoichiometry = reaction.stochiometryProductsString instanceof Map ? reaction.stochiometryProductsString.get(id) :
                 reaction.stochiometryProductsString[id]
             compoundSet.add(product)
             reaction.metabolites.push({
                 id: product,
                 stoichiometry: `${-stoichiometry}`
             })
-            return(
+            return (
                 {
                     id: product,
                     stoichiometry: stoichiometry

@@ -1,4 +1,3 @@
-
 const defaultState = {
     data: {//graph
         nodes: [],
@@ -29,11 +28,11 @@ const defaultState = {
     showPathwayTaxonomy: false,
     x: "",
     y: "",
-    oldData: {nodes:[],links:[]},
-    chosenCompound: {id:"", x:0,y:0, opacity:1, reversible: true,symbolType:"circle", color:"#FF8000"},
+    oldData: {nodes: [], links: []},
+    chosenCompound: {id: "", x: 0, y: 0, opacity: 1, reversible: true, symbolType: "circle", color: "#FF8000"},
     showNodeCoordinatesModal: false,
-     showMergeNodesModal : false,
-    mergeNode:"",
+    showMergeNodesModal: false,
+    mergeNode: "",
     mergeNodes: [],
     mergeNodesName: "",
     nodeModificationModal: false,

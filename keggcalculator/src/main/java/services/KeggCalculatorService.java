@@ -1,5 +1,8 @@
 package services;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -124,6 +127,42 @@ public class KeggCalculatorService {
             e.printStackTrace();
         }
         return raw;
+	}
+	
+	//returns download of output file of the calculator
+	public HttpServletResponse getDownloadDetails(Request request, Response response, String jobid) {
+        Path path = Paths.get(KeggCalculatorConstants.DOWNLOAD_DIR + "/" + jobid + "_detailed.csv");
+        byte[] data = null;
+        try {
+            data = Files.readAllBytes(path);
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+        HttpServletResponse raw = response.raw();
+        response.header("Content-Disposition", "attachment; filename="+"results_" + jobid + ".csv");
+        response.type("application/force-download");
+        try {
+            raw.getOutputStream().write(data);
+            raw.getOutputStream().flush();
+            raw.getOutputStream().close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return raw;
+	}
+	
+	//returns download of output file of the calculator
+	public String getDetailedContent(Request request, Response response, String jobid) throws IOException {
+        String path = KeggCalculatorConstants.DOWNLOAD_DIR + "/" + jobid + "_detailed.csv";
+        BufferedReader reader = new BufferedReader(new FileReader(new File(path)));
+        String line = reader.readLine();
+        String fileContent = "";
+        while(line != null) {
+        	fileContent += line + "\n";
+        	line = reader.readLine();
+        }
+        reader.close();
+        return fileContent;
 	}
 
 	public HttpServletResponse getDownloadUnmatchedProteins(Request req, Response response, String jobID) {

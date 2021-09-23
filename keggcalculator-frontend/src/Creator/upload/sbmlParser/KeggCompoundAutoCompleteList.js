@@ -85,13 +85,13 @@ const KeggCompoundAutoCompleteList = (props) => {
     const state = useSelector(state => state)
     const dispatch = useDispatch()
     const classes = useStylesList();
-    useEffect(()=>{
+    useEffect(() => {
         setCompleteCompoundList(Object.values(state.general.compoundId2Name))
-    },[state.general.isAnnotationPurpose])
+    }, [state.general.isAnnotationPurpose])
 
     return (
         <Autocomplete
-            onChange={(event,value)=> {
+            onChange={(event, value) => {
                 props.autoCompounds[props.index] = value;
                 props.setAutoCompounds(props.autoCompounds)
             }} //dispatch({type:"SETANNOTATION", payload: value})
@@ -102,7 +102,7 @@ const KeggCompoundAutoCompleteList = (props) => {
             classes={classes}
             ListboxComponent={ListboxComponent}
             options={completeCompoundList}
-            renderInput={(params) => <TextField {...params} variant="outlined" label="KEGG Compound" />}
+            renderInput={(params) => <TextField {...params} variant="outlined" label="KEGG Compound"/>}
         />
 
     );

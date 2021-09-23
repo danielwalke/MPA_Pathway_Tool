@@ -4,13 +4,13 @@ import {endpoint_getCompoundList} from "../../App Configurations/RequestURLColle
 
 export const compoundUrl = endpoint_getCompoundList; //URL for receiving compound list
 
-export const handleSetCompoundList = (dispatch) =>{
+export const handleSetCompoundList = (dispatch) => {
     const compMap = new Map()
     const compoundId2Name = {}
     requestGenerator("GET", compoundUrl, "", "").then(response => {
         response.data.map((comp) => {
             compMap.set(comp.compoundName.concat(" ").concat(comp.compoundId), comp.compoundId) //creates a map with names of compounds and their id
-            compoundId2Name[`${comp.compoundId}`]= comp.compoundName.concat(" ").concat(comp.compoundId)
+            compoundId2Name[`${comp.compoundId}`] = comp.compoundName.concat(" ").concat(comp.compoundId)
             return null
         })
         return (
@@ -20,6 +20,6 @@ export const handleSetCompoundList = (dispatch) =>{
         dispatch({type: "SETCOMPMAP", payload: compMap})
         dispatch({type: "SETCOMPOUNDID2NAME", payload: compoundId2Name})
         dispatch({type: "SETOPTIONS", payload: getCompName(compMap)})
-        dispatch({type:"SETLOADING", payload:false})
+        dispatch({type: "SETLOADING", payload: false})
     })
 }

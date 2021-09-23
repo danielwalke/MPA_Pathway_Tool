@@ -5,6 +5,7 @@ import SubmitProduct from "./SubmitProduct";
 import React from "react"
 import "./Product.css"
 import "../../../main/Buttons.css"
+import {ToolTipBig} from "../../../main/user-interface/UserInterface";
 
 const Product = () => {
     const dispatch = useDispatch()
@@ -18,25 +19,27 @@ const Product = () => {
 
     return (
         <div className={"productContainer"}>
-            <Autocomplete
-                size={"small"}
-                id="productBox"
-                options={getProdList()}
-                className={"product"}
-                name={"product"}
-                onChange={(event, value) => {
-                    dispatch({type: "SETPRODUCT", payload: value})
-                }}
-                renderInput={params => (
-                    <TextField
-                        onChange={(event) => dispatch({type: "SETPRODUCT", payload: event.target.value})}
-                        value={state.product}
-                        {...params}
-                        label="Type in three letters..."
-                        variant="outlined"
-                    />
-                )}
-            />
+            <ToolTipBig title={"Search a product"} placement={"left"}>
+                <Autocomplete
+                    size={"small"}
+                    id="productBox"
+                    options={getProdList()}
+                    className={"product"}
+                    name={"product"}
+                    onChange={(event, value) => {
+                        dispatch({type: "SETPRODUCT", payload: value})
+                    }}
+                    renderInput={params => (
+                        <TextField
+                            onChange={(event) => dispatch({type: "SETPRODUCT", payload: event.target.value})}
+                            value={state.product}
+                            {...params}
+                            label="Type in three letters..."
+                            variant="outlined"
+                        />
+                    )}
+                />
+            </ToolTipBig>
             <SubmitProduct className={"submit"}/>
         </div>
 

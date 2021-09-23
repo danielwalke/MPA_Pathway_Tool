@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -14,7 +14,7 @@ const useStyles = makeStyles({
 });
 
 const StartCard = (props) => {
-    const {title, text, link,changeState} = props
+    const {title, text, link, changeState} = props
     const classes = useStyles()
     return (
         <div>
@@ -27,11 +27,11 @@ const StartCard = (props) => {
                         {text}
                     </Typography>
                 </CardContent>
-                {props.link?<CardActions>
+                {props.link ? <CardActions>
                     <Button size="small" onClick={() => {
                         changeState("selectedTab", link)
-                    }}><Link to={link} style={{textDecoration:"none", color:"rgb(0,0,0)"}}>Try It</Link></Button>
-                </CardActions>:<div></div>}
+                    }}><Link to={link} style={{textDecoration: "none", color: "rgb(0,0,0)"}}>Try It</Link></Button>
+                </CardActions> : <div></div>}
             </Card>
         </div>
     );

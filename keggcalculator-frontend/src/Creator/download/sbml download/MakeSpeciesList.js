@@ -1,6 +1,6 @@
 import React from "react"
 
-const getKeggId = comp => comp.name.substring(comp.name.length-6, comp.name.length)
+const getKeggId = comp => comp.name.substring(comp.name.length - 6, comp.name.length)
 
 
 const MakeSpeciesList = (reactionArrayProcessed) => {
@@ -17,7 +17,7 @@ const MakeSpeciesList = (reactionArrayProcessed) => {
     let speciesArray = []
     let compartmentArray = []
 
-    for(const rxn of reactionArrayProcessed) {
+    for (const rxn of reactionArrayProcessed) {
         compounds.push(...rxn.products)
         compounds.push(...rxn.substrates)
     }

@@ -11,8 +11,8 @@ const StructureModal = () => {
     const [isNcbiTaxonomy, setIsNcbiTaxonomy] = useState(true)
     const classes = useStyles()
     let body;
-    if(state.doubleClickNode.length>0){
-         body = getStructureBody(state,dispatch, generalState,isNcbiTaxonomy, setIsNcbiTaxonomy)
+    if (state.doubleClickNode.length > 0) {
+        body = getStructureBody(state, dispatch, generalState, isNcbiTaxonomy, setIsNcbiTaxonomy)
     }
 
     return (

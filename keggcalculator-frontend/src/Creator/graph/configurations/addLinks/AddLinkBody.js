@@ -15,26 +15,26 @@ const AddLinkBody = () => {
     const [isReversible, setIsReversible] = useState(false)
     const [isKeyLink, setIsKeyLink] = useState(true)
 
-    const handleAddLink = () =>{
+    const handleAddLink = () => {
         const newLink = {
             source: source,
             target: target,
-            opacity: isKeyLink? 1 : 0.4,
+            opacity: isKeyLink ? 1 : 0.4,
             isReversibleLink: false
         }
         const newLinkReverse = {
             source: target,
             target: source,
-            opacity: isKeyLink? 1 : 0.4,
+            opacity: isKeyLink ? 1 : 0.4,
             isReversibleLink: true
         }
-        if(isReversible){
+        if (isReversible) {
             graphState.data.links.push(newLink)
             graphState.data.links.push(newLinkReverse)
-        } else{
+        } else {
             graphState.data.links.push(newLink)
         }
-        dispatch({type:"SETDATA", payload: graphState.data})
+        dispatch({type: "SETDATA", payload: graphState.data})
     }
 
     return (
