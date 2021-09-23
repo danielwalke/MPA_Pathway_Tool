@@ -12,6 +12,7 @@ def build_model(temp_model_path: str):
 
     temp_file = open(temp_model_path, "r")
     model_string = temp_file.read()
+    temp_file.close()
 
     model_dict = json.loads(model_string)
     metabolites_array = model_dict['metabolites']
