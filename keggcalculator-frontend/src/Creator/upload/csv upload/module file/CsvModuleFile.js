@@ -64,13 +64,16 @@ export const readFile = (string) => {
             x: compoundX,
             y: compoundY,
         }
-        if (typeOfCompound === "substrate") {
-            reaction.substrates.push(compound)
-            reaction.stochiometrySubstratesString[getNLastChars(compoundId, 6)] = stoichiometricCoeff
-        } else {
-            reaction.products.push(compound)
-            reaction.stochiometryProductsString[getNLastChars(compoundId, 6)] = stoichiometricCoeff
+        if(compoundId.length>0){
+            if (typeOfCompound === "substrate") {
+                reaction.substrates.push(compound)
+                reaction.stochiometrySubstratesString[getNLastChars(compoundId, 6)] = stoichiometricCoeff
+            } else {
+                reaction.products.push(compound)
+                reaction.stochiometryProductsString[getNLastChars(compoundId, 6)] = stoichiometricCoeff
+            }
         }
+
 
     })
     return reactions
