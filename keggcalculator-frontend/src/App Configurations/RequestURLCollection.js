@@ -47,3 +47,5 @@ export const endpoint_getTaxonomicNames = host + ":" + portNumber + "/keggcreato
 export const endpoint_getFilteredTaxonomicNames = host + ":" + portNumber + "/keggcreator/filteredtaxonomicNames";
 
 export const endpoint_getTaxonomicDetails = host + ":" + portNumber + "/keggcalculator/detailedContent";
+
+export const endpoint_getBiggCompoundList = host + ":" + portNumber + "/keggcreator/biggcompoundlist";

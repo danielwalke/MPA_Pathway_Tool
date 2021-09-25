@@ -10,8 +10,10 @@ import static spark.Spark.staticFileLocation;
 import static spark.Spark.webSocketIdleTimeoutMillis;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.HashSet;
 
+import bigg.model.BiggCompound;
 import constants.KeggCalculatorConstants;
 import model.KeggCompound;
 import model.KeggDataObject;
@@ -168,6 +170,36 @@ public class KeggCalculatorServer {
 				HashSet<KeggCompound> substrateSet = creator.getSubstrateSet();
 				res.status(201);
 				return creator.gson.toJson(substrateSet);
+			} catch (Exception e) {
+				// this is an unexpected exception!
+				res.status(500);
+				return "{\"message\":\"internal server error\"}";
+			}
+		});
+		
+		/**
+		 * returns list of bigg compounds
+		 */
+		get("/keggcreator/biggcompoundlist", (req, res) -> {
+//			creator.requestAccess.get("biggcompoundlist").add(KeggCreatorService.getAccessDate());
+			try {
+				HashSet<BiggCompound> BiggSubstrateSet = creator.getBiggSubstrateSet();
+				res.status(201);
+				return creator.gson.toJson(BiggSubstrateSet);
+			} catch (Exception e) {
+				// this is an unexpected exception!
+				res.status(500);
+				return "{\"message\":\"internal server error\"}";
+			}
+		});
+		
+		get("/keggcreator/kegg2biggmap", (req, res) -> {
+//			creator.requestAccess.get("biggcompoundlist").add(KeggCreatorService.getAccessDate());
+			try {
+				HashMap<String, HashMap<String, HashSet<String>>> BiggSubstrateSet = creator.getKegg2BiggCompoundMap();
+				res.status(201);
+				System.out.println("Hello");
+				return creator.gson.toJson(BiggSubstrateSet);
 			} catch (Exception e) {
 				// this is an unexpected exception!
 				res.status(500);

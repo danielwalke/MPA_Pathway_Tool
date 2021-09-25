@@ -23,6 +23,7 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import "../download/DownloadGraph.css"
 import {
+    endpoint_getBiggCompoundList,
     endpoint_getEcNumberList,
     endpoint_getKoNumberList,
     endpoint_getModuleList,
@@ -39,6 +40,7 @@ const ecNumbersUrl = endpoint_getEcNumberList
 const koNumbersUrl = endpoint_getKoNumberList
 const reactionUrl = endpoint_getReactionList
 const taxonomyListLink = endpoint_getTaxonomyList
+const biggCompoundsUrl = endpoint_getBiggCompoundList
 export const taxonomicRanks = ["superkingdom", "kingdom", "phylum", "class", "order", "family", "genus", "species"]
 
 export const useStylesMain = makeStyles({
@@ -71,6 +73,10 @@ const Main = () => {
             handleSetCompoundList(dispatch)
             requestGenerator("GET", ecNumbersUrl, "", "").then(response => dispatch({
                 type: "SETECNUMBERSET",
+                payload: response.data
+            }))
+            requestGenerator("GET", biggCompoundsUrl, "", "").then(response => dispatch({
+                type: "SET_BIGG_COMPOUND_LIST",
                 payload: response.data
             }))
             requestGenerator("GET", koNumbersUrl, "", "").then(response => dispatch({

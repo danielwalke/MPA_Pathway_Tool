@@ -11,6 +11,8 @@ const DeleteModal = () => {
     const generalState = useSelector(state => state.general)
     const dispatch = useDispatch()
     const classes = useStyles()
+    console.log('general state')
+    console.log(generalState)
 
     const handleDeleteNode = (e) => {
         e.preventDefault()
@@ -34,7 +36,7 @@ const DeleteModal = () => {
             delete reaction.stochiometryProductsString[getNLastChars(state.deleteNode, 6)]
             return reaction
         })
-        console.log(newKeggReactions)
+        // console.log(newKeggReactions)
         dispatch({type: "SET_KEGG_REACTION", payload: newKeggReactions})
         dispatch({type: "SETREACTIONSINARRAY", payload: newReactions})
         dispatch({type: "SETDATA", payload: newData})

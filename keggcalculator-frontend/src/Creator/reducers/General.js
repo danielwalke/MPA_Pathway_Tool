@@ -1,6 +1,7 @@
 import clonedeep from "lodash/cloneDeep";
 
 const defaultState = {
+    biggCompoundList: [],
     compoundList: [],//mount?
     compMap: new Map(),//mount
     loading: false,//general
@@ -198,6 +199,8 @@ export const generalReducer = (state = defaultState, action) => {
             return {...state, mappingStart: payload}
         case "SET_MAPPING_END_TIME":
             return {...state, mappingEnd: payload}
+        case "SET_BIGG_COMPOUND_LIST":
+            return {...state, biggCompoundList: payload}
         default:
             return state;
     }

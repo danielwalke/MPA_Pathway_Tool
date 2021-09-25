@@ -3,6 +3,10 @@ package model;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map.Entry;
+
+import bigg.model.BiggCompoundObject;
+import bigg.model.BiggIdList;
+import bigg.model.UniversalBiggId;
 /**
  * class that allows easy access to all data from KEGG
  * contains modules, reactions, ec- numbers, ko- numbers and compounds
@@ -17,6 +21,8 @@ public class KeggDataObject extends KeggData {
 	private final HashMap<String, KeggECObject> ecnumberMap;
 	private final HashMap<String, KeggKOObject> koNumberMap;
 	private final HashMap<String, KeggCompoundObject> compoundMap;
+	private final HashMap<String, BiggCompoundObject> biggCompoundMap;
+	private HashMap<String, HashMap<String, HashSet<String>>> kegg2biggCompound;
 	protected final HashMap<String, KeggHsaObject> hsaMap;
 	
 	public KeggDataObject() {
@@ -27,6 +33,9 @@ public class KeggDataObject extends KeggData {
 		this.ecnumberMap = new HashMap<String, KeggECObject>();
 		this.koNumberMap = new HashMap<String, KeggKOObject>();
 		this.compoundMap = new HashMap<String, KeggCompoundObject>();
+		this.biggCompoundMap = new HashMap<String, BiggCompoundObject>();
+		this.kegg2biggCompound = new HashMap<String, HashMap<String, HashSet<String>>>();
+		
 		this.hsaMap = new HashMap<>();
 	}
 
@@ -63,6 +72,17 @@ public class KeggDataObject extends KeggData {
 			//set all compounds in cloned data
 			KeggCompoundObject clonedCompound = new KeggCompoundObject(comp.getCompoundId(), comp.getCompoundName());
 			clonedData.addCompound(clonedCompound);
+		}
+		
+		for (BiggCompoundObject comp : getBiggCompounds()) {
+			//set all compounds in cloned data
+			BiggCompoundObject clonedCompound = new BiggCompoundObject(comp.getCompoundId(), comp.getCompoundName(), comp.getUniversalBiggId());
+			clonedData.addBiggCompound(clonedCompound);
+		}
+				
+		for (String keggComp : this.kegg2biggCompound.keySet()) {
+			HashMap<String, HashSet<String>> biggIds = this.kegg2biggCompound.get(keggComp);
+			clonedData.addKegg2BiggCompoundMap(keggComp, biggIds);
 		}
 
 		// fill modules of cloned data
@@ -171,7 +191,7 @@ public class KeggDataObject extends KeggData {
 		}
 		return clonedData;
 	}
-	
+
 	public void addKeyCompound(String keyCompound){
 		this.keyCompounds.add(keyCompound);
 	}
@@ -260,6 +280,28 @@ public class KeggDataObject extends KeggData {
 		this.compounds.add(c);
 		this.compoundMap.put(c.getCompoundId(), c);
 	}
+	
+	public HashSet<BiggCompoundObject> getBiggCompounds() {
+		return this.biggCompounds;
+	}
+	
+	public void addBiggCompound(BiggCompoundObject c) {
+		this.biggCompounds.add(c);
+		this.biggCompoundMap.put(c.getCompoundId(), c);
+	}
+	
+	public void addKegg2BiggCompoundMap(String keggCompound, HashMap<String, HashSet<String>> biggIds) {
+		this.kegg2biggCompound.put(keggCompound, biggIds);
+	}
+	
+	public void setKegg2BiggCompoundMap(HashMap<String, HashMap<String, HashSet<String>>> kegg2Bigg) {
+		this.kegg2biggCompound = kegg2Bigg;
+	}
+	
+	public HashMap<String, HashMap<String, HashSet<String>>> getKegg2BiggCompoundMap() {
+		return this.kegg2biggCompound;
+	}
+	
 	public void addHsa(KeggHsaObject hsa) {
 		this.hsaEntities.add(hsa);
 		this.hsaMap.put(hsa.getHsaId(),hsa);

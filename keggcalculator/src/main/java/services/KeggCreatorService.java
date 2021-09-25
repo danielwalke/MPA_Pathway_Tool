@@ -20,6 +20,10 @@ import java.util.stream.Collectors;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 
+import bigg.model.BiggCompound;
+import bigg.model.BiggCompoundObject;
+import bigg.model.BiggIdList;
+import bigg.model.UniversalBiggId;
 import constants.KeggCalculatorConstants;
 import fluxanalysis.DummyFBAArray;
 import fluxanalysis.DummyFBAReactionObj;
@@ -109,6 +113,8 @@ public class KeggCreatorService {
 		KeggDataParser.parseProduct2Reaction(keggData, KeggCalculatorConstants.PRODUCT_TO_REACTION_DIR);
 		KeggDataParser.parseKo2EcNumber(keggData, KeggCalculatorConstants.KO_TO_EC_DIR);
 		KeggDataParser.parseHsa2HsaName(keggData, KeggCalculatorConstants.HSA_NUMBER_LIST_DIR);
+		KeggDataParser.parseBiggCompounds(keggData, KeggCalculatorConstants.BIGG_COMPOUNDS);
+		KeggDataParser.parseKegg2BiggCompounds(keggData, KeggCalculatorConstants.KEGG_TO_BIGG_COMPOUNDS);
 //		KeggCalculatorServer server = new KeggCalculatorServer();
 //		server.setKeggData(this.keggData);
 	}
@@ -142,6 +148,22 @@ public class KeggCreatorService {
 			substrateSetComp.add(substrateComp);
 		}
 		return substrateSetComp;
+	}
+	
+	public HashSet<BiggCompound> getBiggSubstrateSet() {
+		KeggDataObject keggDataClone = cloneKeggData();
+		HashSet<BiggCompoundObject> substrateSet = keggDataClone.getBiggCompounds();
+		HashSet<BiggCompound> substrateSetComp = new HashSet<BiggCompound>();
+		for (BiggCompoundObject substrate : substrateSet) {
+			BiggCompound substrateComp = new BiggCompound(substrate.getCompoundId(), substrate.getCompoundName(), substrate.getUniversalBiggId());
+			substrateSetComp.add(substrateComp);
+		}
+		return substrateSetComp;
+	}
+	
+	public HashMap<String, HashMap<String, HashSet<String>>> getKegg2BiggCompoundMap() {
+		KeggDataObject keggDataClone = cloneKeggData();
+		return keggDataClone.getKegg2BiggCompoundMap();
 	}
 
 	public HashSet<String> getModuleSet() {

@@ -53,5 +53,9 @@ public class KeggCalculatorConstants {
 	
 	//output-file for requests
 	public static final String REQUEST_ACCESS_FILE="src/main/resources/KEGG/essentialFiles/RequestAccess.csv";
+	
+	//Bigg Compounds
+	public static final String BIGG_COMPOUNDS="src/main/resources/BIGG/bigg_compounds_2021-09-23.csv";
+	public static final String KEGG_TO_BIGG_COMPOUNDS="src/main/resources/BIGG/kegg_compound2bigg_compound_2021-09-23.csv";
 
 }

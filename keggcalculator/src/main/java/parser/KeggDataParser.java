@@ -3,7 +3,14 @@ package parser;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
+import bigg.model.BiggCompound;
+import bigg.model.BiggCompoundObject;
+import bigg.model.UniversalBiggId;
+import bigg.model.BiggIdList;
 import model.KeggCompoundObject;
 import model.KeggDataObject;
 import model.KeggECObject;
@@ -460,6 +467,77 @@ public class KeggDataParser {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public static void parseBiggCompounds(KeggDataObject keggData, String file) {
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(new File(file)));
+			String line = br.readLine();
+			line = br.readLine(); // skip header
+			while (line != null) {
+				String[] splitLine = line.split("\t");
+				String biggId = splitLine[0];
+				String universalBiggId = splitLine[1];
+				String name;
+				
+				if (splitLine.length == 3) {
+					name = splitLine[2];
+				} else {
+					name = "none";
+				}
+				
+				BiggCompoundObject biggCompound = new BiggCompoundObject(biggId, name, universalBiggId);
+				keggData.addBiggCompound(biggCompound);
+				line = br.readLine();
+			}
+			br.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void parseKegg2BiggCompounds(KeggDataObject keggData, String file) {
+		try {
+			HashMap<String, HashMap<String, HashSet<String>>> kegg2bigg = new HashMap<String, HashMap<String, HashSet<String>>>();
+			
+			BufferedReader br = new BufferedReader(new FileReader(new File(file)));
+			String line = br.readLine();
+			line = br.readLine(); // skip header
+			while (line != null) {
+				String[] splitLine = line.split("\t");
+				String keggCompoundName = splitLine[0];
+				String biggId = splitLine[1];
+				String universalBiggId = splitLine[2];
+				
+				HashMap<String, HashSet<String>> uniIds;
+				HashSet<String> biggIds;
+				
+				if (kegg2bigg.containsKey(keggCompoundName)) {
+					uniIds =  kegg2bigg.get(keggCompoundName);
+					if (uniIds.containsKey(universalBiggId)) {
+						biggIds = uniIds.get(universalBiggId);
+					} else {
+						biggIds = new HashSet<String>();
+					}
+				} else {
+					biggIds = new HashSet<String>();
+					uniIds = new HashMap<String, HashSet<String>>();
+				}
+				
+				biggIds.add(biggId);
+				uniIds.put(universalBiggId, biggIds);
+				kegg2bigg.put(keggCompoundName, uniIds);
+				
+
+				line = br.readLine();
+			}
+			br.close();
+			keggData.setKegg2BiggCompoundMap(kegg2bigg);
+			
+		} catch(Exception e) {
+			
+			e.printStackTrace();
+		}
 	}
 
 }

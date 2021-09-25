@@ -318,7 +318,6 @@ public class KeggHandleRequests {
 
 	public static Object getFilteredTaxonomicNames(KeggCreatorService creator, String rank,
 			String subName) {
-		// TODO Auto-generated method stub
 		return creator.gson.toJson(creator.getFilteredTaxonomicNames(rank, subName));
 	}
 
