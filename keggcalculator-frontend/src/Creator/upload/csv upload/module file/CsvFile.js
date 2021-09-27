@@ -14,11 +14,13 @@ export class CsvColumns {
     reactionAbbreviation
     reversible
     compoundAbbreviation
+    _compoundStoichiometry
 
     constructor(row) {
         this._columns = row.split(";")
         this._compoundX = this._columns[11]
         this._compoundY = this._columns[12]
+        this._compoundStoichiometry = parseInt(this._columns[4])
         this._compoundName = this._columns[5].replaceAll("\t", ";")
         this._typeOfCompound = this._columns[6]
         const keyComp = this._columns[15]
@@ -28,7 +30,7 @@ export class CsvColumns {
         this._reactionY = this._columns[10]
         this._reactionAbbreviation = this._columns[13]
         this._reversible = this._columns[7] === "reversible"
-        this._compoundAbbreviation = this._columns[14]
+        this._compoundAbbreviation = this._columns[14].replaceAll("\t", ";")
         this._row = row;
     }
 
@@ -91,11 +93,12 @@ export class CsvColumns {
         compound._typeOfCompound = this.typeOfCompound
         compound._x = this.compoundX
         compound._y = this.compoundY
+        compound._stoichiometry = this._compoundStoichiometry
         return compound
     }
 
-    createNewReaction = (reaction) => {
-        reaction = new Reaction(this.reactionName)
+    createNewReaction = () => {
+        const reaction = new Reaction(this.reactionName)
         reaction._x = this.reactionX
         reaction._y = this.reactionY
         reaction._abbreviation = this.reactionAbbreviation
@@ -111,9 +114,9 @@ export const getReaction = (reactions, columns) => {
     let reaction
     const reactionName = columns.reactionName
     if (!isInReaction(reactions, reactionName)) {
-        reaction = columns.createNewReaction(reaction)
+        reaction = columns.createNewReaction()
     } else {
-        reaction = findReactionInList(reaction, reactions, reactionName)
+        reaction = findReactionInList(reactions, reactionName)
     }
     return reaction
 }
@@ -121,8 +124,8 @@ export const getReaction = (reactions, columns) => {
 const isInReaction = (reactions, reactionName) => {
     return reactions.some(reaction => reaction.reactionName === reactionName)
 }
-const findReactionInList = (reaction, reactions, reactionName) => {
-    reaction = reactions.find(reaction => reaction.reactionName === reactionName)
+const findReactionInList = (reactions, reactionName) => {
+    const reaction = reactions.find(reaction => reaction.reactionName === reactionName)
     reactions.pop()
     return reaction
 }

@@ -22,8 +22,6 @@ import com.google.gson.JsonElement;
 
 import bigg.model.BiggCompound;
 import bigg.model.BiggCompoundObject;
-import bigg.model.BiggIdList;
-import bigg.model.UniversalBiggId;
 import constants.KeggCalculatorConstants;
 import fluxanalysis.DummyFBAArray;
 import fluxanalysis.DummyFBAReactionObj;

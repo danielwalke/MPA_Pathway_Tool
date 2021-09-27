@@ -5,8 +5,6 @@ import java.util.HashSet;
 import java.util.Map.Entry;
 
 import bigg.model.BiggCompoundObject;
-import bigg.model.BiggIdList;
-import bigg.model.UniversalBiggId;
 /**
  * class that allows easy access to all data from KEGG
  * contains modules, reactions, ec- numbers, ko- numbers and compounds

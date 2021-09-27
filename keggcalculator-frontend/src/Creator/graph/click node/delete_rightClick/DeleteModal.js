@@ -22,6 +22,7 @@ const DeleteModal = () => {
         const newData = {nodes: newDataNodes, links: newLinks}
         const newReactions = generalState.reactionsInSelectArray.filter(reaction => reaction.reactionId !== getNLastChars(state.deleteNode, 6))
         newReactions.map(reaction => {
+            console.log(reaction)
             reaction.substrates = reaction.substrates.filter(substrate => getNLastChars(substrate.name, 6) !== getNLastChars(state.deleteNode, 6))
             reaction.products = reaction.products.filter(product => getNLastChars(product.name, 6) !== getNLastChars(state.deleteNode, 6))
             delete reaction.stochiometrySubstratesString[getNLastChars(state.deleteNode, 6)]

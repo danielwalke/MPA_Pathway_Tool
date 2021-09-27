@@ -9,8 +9,6 @@ import java.util.HashSet;
 
 import bigg.model.BiggCompound;
 import bigg.model.BiggCompoundObject;
-import bigg.model.UniversalBiggId;
-import bigg.model.BiggIdList;
 import model.KeggCompoundObject;
 import model.KeggDataObject;
 import model.KeggECObject;

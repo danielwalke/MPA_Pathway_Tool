@@ -44,12 +44,10 @@ const ModuleListModal = () => {
                 const rows = result.split("\n")
                 rows.shift() //header
                 const {nodes, links} = handleGraphUpload(rows, dispatch, graphState)
-                const reactionList = handleReactionListUpload(rows)
                 const data = {nodes: nodes, links: links}
                 dispatch({type: "SWITCHLOADING"})
                 dispatch({type: "SETDATA", payload: data})
                 dispatch({type: "SETDATALINKS", payload: links})
-                dispatch({type: "ADDREACTIONSTOARRAY", payload: reactionList})
                 dispatch({type: "ADD_KEGG_MODULE_TO_AUDIT_TRAIL", payload: state.module})
             })
     }
