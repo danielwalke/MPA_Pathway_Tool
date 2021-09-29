@@ -1,3 +1,4 @@
+
 const defaultState = {
     data: {//graph
         nodes: [],
@@ -28,17 +29,17 @@ const defaultState = {
     showPathwayTaxonomy: false,
     x: "",
     y: "",
-    oldData: {nodes: [], links: []},
-    chosenCompound: {id: "", x: 0, y: 0, opacity: 1, reversible: true, symbolType: "circle", color: "#FF8000"},
+    oldData: {nodes:[],links:[]},
+    chosenCompound: {id:"", x:0,y:0, opacity:1, reversible: true,symbolType:"circle", color:"#FF8000"},
     showNodeCoordinatesModal: false,
-    showMergeNodesModal: false,
-    mergeNode: "",
+     showMergeNodesModal : false,
+    mergeNode:"",
     mergeNodes: [],
     mergeNodesName: "",
     nodeModificationModal: false,
     nodeSize: 150,
-    compoundNodeColor: "#FF8000"
-
+    compoundNodeColor: "#FF8000",
+    fbaSolution: [],
 }
 
 export const graphReducer = (state = defaultState, action) => {
@@ -128,6 +129,8 @@ export const graphReducer = (state = defaultState, action) => {
             return {...state, nodeSize: payload}
         case "SET_COMPOUND_NODE_COLOR":
             return {...state, compoundNodeColor: payload}
+        case "SET_FLUX":
+            return {...state, fbaSolution: payload}
         default:
             return state;
     }

@@ -7,13 +7,13 @@ const defaultState = {
     sampleNames: [],
     mpaFileName: "",
     maxQuantUser3: 0,
-    midQuantUser3: 0,
+    midQuantUser3:0,
     minQuantUser3: 0
 }
 
-export const mpaProteinReducer = (state = defaultState, action) => {
+export const mpaProteinReducer = (state= defaultState, action) => {
     const {type, payload} = action;
-    switch (type) {
+    switch(type){
         case "SETPROTEINSET":
             return {...state, proteinSet: payload}
         case "SETCHOSENQUANTS":

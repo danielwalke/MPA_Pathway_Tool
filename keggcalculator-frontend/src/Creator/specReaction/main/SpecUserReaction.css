@@ -10,7 +10,7 @@
     grid-row-gap: 4px;
 }
 
-.close {
+.close{
     grid-area: close;
     background-color: rgb(150, 25, 130);
     transition: all 400ms ease;
@@ -21,36 +21,36 @@
     cursor: pointer;
 }
 
-.substrate {
+.substrate{
     grid-area: substrate;
     margin: 0;
 }
 
-.product {
+.product{
     grid-area: product;
     margin: 0;
 }
 
-.reaction {
+.reaction{
     grid-area: reaction;
 }
 
-.koAndEc {
+.koAndEc{
     grid-area: koAndEc;
 }
 
-.taxonomy {
+.taxonomy{
     grid-area: taxonomy;
 }
 
-.submitSpecReaction {
+.submitSpecReaction{
     grid-area: submit;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "showReaction submitButton";
 }
 
-.buttonShowReaction {
+.buttonShowReaction{
     /*grid-area: showReaction;*/
     color: white;
     background-color: rgb(150, 25, 130);

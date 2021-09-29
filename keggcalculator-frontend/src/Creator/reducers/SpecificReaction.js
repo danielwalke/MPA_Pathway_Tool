@@ -18,12 +18,13 @@ const defaultState = {
     ecNumbers: [],
     showReactionDetails: false,
     isSpecificCompoundInputSubstrate: false,
-    isSpecificCompoundInputProduct: false
+    isSpecificCompoundInputProduct: false,
+    specfbaSolution: [],
 }
 
-export const specificReactionReducer = (state = defaultState, action) => {
+export const specificReactionReducer = (state= defaultState, action) => {
     const {type, payload} = action;
-    switch (type) {
+    switch(type){
         case "SETSPECIFICSUBSTRATE":
             return {...state, specSubstrate: payload}
         case "SETSPECIFICOPTIONSSUBSTRATE":
@@ -36,7 +37,7 @@ export const specificReactionReducer = (state = defaultState, action) => {
             return {...state, specSubstrates: [...state.specSubstrates, payload]}
         case "SPLICESUBSTRATES":
             state.specSubstrates.splice(payload, 1)
-            state.specSubstratesCoeff.splice(payload, 1)
+            state.specSubstratesCoeff.splice(payload,1)
             return {...state, specSubstrates: state.specSubstrates, specSubstratesCoeff: state.specSubstratesCoeff}
         case "ADDSPECIFICSUBSTRATECOEFF":
             return {...state, specSubstratesCoeff: [...state.specSubstratesCoeff, payload]}
@@ -48,7 +49,7 @@ export const specificReactionReducer = (state = defaultState, action) => {
             return {...state, specProducts: [...state.specProducts, payload]}
         case "SPLICEPRODUCTS":
             state.specProducts.splice(payload, 1)
-            state.specProductsCoeff.splice(payload, 1)
+            state.specProductsCoeff.splice(payload,1)
             return {...state, specProducts: state.specProducts, specProductsCoeff: state.specProductsCoeff}
         case "ADDSPECIFICPRODUCTCOEFF":
             return {...state, specProductsCoeff: [...state.specProductsCoeff, payload]}
@@ -94,7 +95,8 @@ export const specificReactionReducer = (state = defaultState, action) => {
                 specKoNumbers: [],
                 ecNumbers: [],
                 specTaxonomy: "",
-                specTaxonomies: []
+                specTaxonomies: [],
+                specfbaSolution: []
             }
         case "SWITCHSHOWREACTIONDETAILS":
             return {...state, showReactionDetails: !state.showReactionDetails}
@@ -102,6 +104,7 @@ export const specificReactionReducer = (state = defaultState, action) => {
             return {...state, isSpecificCompoundInputSubstrate: !state.isSpecificCompoundInputSubstrate}
         case "SWITCHISSPECCOMPOUNDINPUTPRODUCT":
             return {...state, isSpecificCompoundInputProduct: !state.isSpecificCompoundInputProduct}
+
         default:
             return state;
     }

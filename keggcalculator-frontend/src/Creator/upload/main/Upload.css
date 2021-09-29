@@ -1,4 +1,4 @@
-.uploadLabel {
+.uploadLabel{
     background-color: rgb(150, 25, 130);
     border-radius: 0.8vw;
     color: white;
@@ -14,7 +14,7 @@
     cursor: pointer;
 }
 
-.fileName {
+.fileName{
     margin: 2px;
     padding: 2px;
     font-size: clamp(10px, 1vw, 14px);

@@ -1,4 +1,4 @@
-export class Compound {
+export class Compound{
     name
     _opacity
     _x
@@ -8,7 +8,7 @@ export class Compound {
     _stoichiometry
     _id
 
-    constructor(name) {
+    constructor(name){
         this.name = name
     }
 

@@ -7,7 +7,12 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import {useStylesSelector} from "./Styles";
 import {getCompoundId} from "../SbmlReader/ReaderFunctions";
 import {Autocomplete} from "@material-ui/lab";
-import {OuterElementContext, OuterElementType, renderRow, useResetCache} from "../KeggCompoundAutoCompleteList";
+import {
+    OuterElementContext,
+    OuterElementType,
+    renderRow,
+    useResetCache
+} from "../KeggCompoundAutoCompleteList";
 import {VariableSizeList} from "react-window";
 import Checkbox from "@material-ui/core/Checkbox";
 
@@ -75,7 +80,7 @@ const SubstrateSelector = (props) => {
         dispatch({type: "SETLISTOFREACTIONS", payload: listOfReactions})
     }
 
-    const handleAddSubstrate = () => {
+    const handleAddSubstrate = () =>{
         setEditingMode(false)
         let numberOfCompounds = substrates.length;
         state.general.listOfReactions.map(r => {
@@ -87,9 +92,9 @@ const SubstrateSelector = (props) => {
         const newSubstrate = {
             sbmlId: newSubstrateId,
             sbmlName: newSubstrateName,
-            keggId: newKeggName.length > 1 ? newKeggName.substring(newKeggName.length - 6, newKeggName.length) : keggId,
+            keggId: newKeggName.length>1 ? newKeggName.substring(newKeggName.length-6,newKeggName.length) : keggId,
             stoichiometry: newStoichiometry.toString(),
-            keggName: newKeggName.length > 1 ? newKeggName : keggId,
+            keggName: newKeggName.length>1 ? newKeggName : keggId,
         }
         setSubstrates([...substrates, newSubstrate])
     }
@@ -97,16 +102,14 @@ const SubstrateSelector = (props) => {
         <div>
             {editingMode ?
                 <div>
-                    <TextField label={"sbmlId"} size={"small"} onChange={(e) => setNewSubstrateId(e.target.value)}
-                               value={newSubstrateId}
-                               variant={"outlined"} type={"text"}/>
-                    <TextField label={"sbmlName"} size={"small"} onChange={(e) => setNewSubstrateName(e.target.value)}
-                               value={newSubstrateName}
+                    <TextField label={"sbmlId"} size={"small"} onChange={(e) => setNewSubstrateId(e.target.value)} value={newSubstrateId}
+                                variant={"outlined"} type={"text"}/>
+                    <TextField label={"sbmlName"} size={"small"} onChange={(e) => setNewSubstrateName(e.target.value)} value={newSubstrateName}
                                variant={"outlined"} type={"text"}/>
                     <TextField type={"number"} value={newStoichiometry}
                                onChange={(e) => setNewStoichiometry(+e.target.value)}/>
                     <Autocomplete
-                        onChange={(event, value) => setNewKeggName(value)}
+                        onChange={(event,value)=> setNewKeggName(value)}
                         id="keggAnnotation"
                         style={{width: "100%"}}
                         label={"optional: "}
@@ -115,8 +118,7 @@ const SubstrateSelector = (props) => {
                         classes={classes}
                         ListboxComponent={ListboxComponent}
                         options={Object.values(state.general.compoundId2Name)}
-                        renderInput={(params) => <TextField {...params} variant="outlined" label="optional: "
-                                                            placeholder={"keggName"}/>}
+                        renderInput={(params) => <TextField {...params} variant="outlined" label="optional: " placeholder={"keggName"}/>}
                     />
                     <AddCircleIcon
                         className={"CircleIcon"}
@@ -125,36 +127,30 @@ const SubstrateSelector = (props) => {
                         }}/>
                 </div>
                 : <div>
-                    {substrates.map((subst, index) => <div key={"SubstrateList" + index}><Checkbox
-                        checked={isChanged || oldSubstrates.includes(subst)}/>{subst.sbmlId};{subst.sbmlName}:{subst.stoichiometry}
-                    </div>)}
+                    {substrates.map((subst, index) => <div key={"SubstrateList" + index}><Checkbox checked={isChanged || oldSubstrates.includes(subst)}/>{subst.sbmlId};{subst.sbmlName}:{subst.stoichiometry}</div>)}
                     <FormControl className={classes.formControl}>
-                        <InputLabel id="substratesInput">substrates</InputLabel>
-                        <Select
-                            labelId="substrates"
-                            id="substrates"
-                            open={open}
-                            onClose={() => setOpen(false)}
-                            onOpen={() => setOpen(true)}
-                            value={substrate.sbmlId}
-                            onChange={(e) => setSubstrate(e.target.value)}
-                        >
-                            <MenuItem onClick={() => {
-                                setEditingMode(true)
-                                setIsChanged(false)
-                            }} value={"addRequest"}><AddCircleIcon/></MenuItem>
-                            {substrates.map((subst, index) => <MenuItem className={"CircleIcon"} onClick={() => {
-                                substrates.splice(index, 1)
-                                setSubstrates(substrates)
-                            }}
-                                                                        key={index.toString().concat(subst.sbmlId + ";" + subst.sbmlName + ":" + subst.stoichiometry)}
-                                                                        value={subst.sbmlId.concat(";" + subst.sbmlName + ":" + subst.stoichiometry)}><DeleteIcon/>{subst.sbmlId};{subst.sbmlName}:{subst.stoichiometry}
-                            </MenuItem>)}
-                        </Select>
-                    </FormControl>
-                    <button style={{width: "10vw"}} className={"downloadButton"} onClick={() => handleChanges()}>submit
-                        changes
-                    </button>
+                    <InputLabel id="substratesInput">substrates</InputLabel>
+                    <Select
+                        labelId="substrates"
+                        id="substrates"
+                        open={open}
+                        onClose={() => setOpen(false)}
+                        onOpen={() => setOpen(true)}
+                        value={substrate.sbmlId}
+                        onChange={(e) => setSubstrate(e.target.value)}
+                    >
+                        <MenuItem onClick={() => {
+                            setEditingMode(true)
+                            setIsChanged(false)
+                        }} value={"addRequest"}><AddCircleIcon/></MenuItem>
+                        {substrates.map((subst, index) => <MenuItem className={"CircleIcon"} onClick={() => {
+                            substrates.splice(index, 1)
+                            setSubstrates(substrates)
+                        }} key={index.toString().concat(subst.sbmlId + ";" + subst.sbmlName +":" +subst.stoichiometry)} value={subst.sbmlId.concat(";" + subst.sbmlName +":" +subst.stoichiometry)}><DeleteIcon/>{subst.sbmlId};{subst.sbmlName}:{subst.stoichiometry}
+                        </MenuItem>)}
+                    </Select>
+                </FormControl>
+                    <button style={{width:"10vw"}} className={"downloadButton"} onClick={() => handleChanges()}>submit changes</button>
                 </div>}
         </div>
     )

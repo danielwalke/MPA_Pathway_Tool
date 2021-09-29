@@ -2,7 +2,7 @@ import {Reaction} from "../../model/Reaction";
 import {Compound} from "../../model/Compound";
 import {NOT_KEY_COMPOUND_OPACITY} from "../../../graph/Constants";
 
-export class CsvColumns {
+export class CsvColumns{
     columns
     compoundX
     compoundY
@@ -14,23 +14,21 @@ export class CsvColumns {
     reactionAbbreviation
     reversible
     compoundAbbreviation
-    _compoundStoichiometry
 
     constructor(row) {
         this._columns = row.split(";")
         this._compoundX = this._columns[11]
         this._compoundY = this._columns[12]
-        this._compoundStoichiometry = parseInt(this._columns[4])
         this._compoundName = this._columns[5].replaceAll("\t", ";")
         this._typeOfCompound = this._columns[6]
         const keyComp = this._columns[15]
         this._opacity = keyComp.trim() === "true" ? 1 : NOT_KEY_COMPOUND_OPACITY
-        this._reactionName = this._columns[1].replaceAll("\t", ";")
+        this._reactionName =this._columns[1].replaceAll("\t", ";")
         this._reactionX = this._columns[9].trim()
         this._reactionY = this._columns[10]
         this._reactionAbbreviation = this._columns[13]
         this._reversible = this._columns[7] === "reversible"
-        this._compoundAbbreviation = this._columns[14].replaceAll("\t", ";")
+        this._compoundAbbreviation =this._columns[14]
         this._row = row;
     }
 
@@ -93,12 +91,11 @@ export class CsvColumns {
         compound._typeOfCompound = this.typeOfCompound
         compound._x = this.compoundX
         compound._y = this.compoundY
-        compound._stoichiometry = this._compoundStoichiometry
         return compound
     }
 
-    createNewReaction = () => {
-        const reaction = new Reaction(this.reactionName)
+    createNewReaction = (reaction) =>{
+        reaction = new Reaction(this.reactionName)
         reaction._x = this.reactionX
         reaction._y = this.reactionY
         reaction._abbreviation = this.reactionAbbreviation
@@ -110,22 +107,22 @@ export class CsvColumns {
 
 }
 
-export const getReaction = (reactions, columns) => {
+export const getReaction = (reactions, columns) =>{
     let reaction
     const reactionName = columns.reactionName
     if (!isInReaction(reactions, reactionName)) {
-        reaction = columns.createNewReaction()
+        reaction = columns.createNewReaction(reaction)
     } else {
-        reaction = findReactionInList(reactions, reactionName)
+        reaction = findReactionInList(reaction, reactions, reactionName)
     }
     return reaction
 }
 
-const isInReaction = (reactions, reactionName) => {
+const isInReaction = (reactions, reactionName) =>{
     return reactions.some(reaction => reaction.reactionName === reactionName)
 }
-const findReactionInList = (reactions, reactionName) => {
-    const reaction = reactions.find(reaction => reaction.reactionName === reactionName)
+const findReactionInList = (reaction, reactions, reactionName) =>{
+    reaction = reactions.find(reaction => reaction.reactionName === reactionName)
     reactions.pop()
     return reaction
 }

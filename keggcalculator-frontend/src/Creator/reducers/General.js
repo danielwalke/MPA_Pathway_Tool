@@ -1,7 +1,6 @@
 import clonedeep from "lodash/cloneDeep";
 
 const defaultState = {
-    biggCompoundList: [],
     compoundList: [],//mount?
     compMap: new Map(),//mount
     loading: false,//general
@@ -25,16 +24,16 @@ const defaultState = {
     specialProteinKoNumbers: [],
     specialProteinEcNumbers: [],
     specialProteins: [],
-    headerHeight: 0,
+    headerHeight:0,
     compoundId2Name: {},
     reactions: [],
-    listOfSpecies: [], /*from sbml [     {
+    listOfSpecies:[], /*from sbml [     {
                 sbmlId: sbmlId,
                 sbmlName: sbmlName,
                 keggId: keggId,
                 keggName: keggName
             }]*/
-    listOfReactions: [], /*
+    listOfReactions:[], /*
     [{
                 sbmlId: sbmlId,
                 sbmlName: sbmlName,
@@ -48,15 +47,13 @@ const defaultState = {
     isMissingAnnotations: false, //boolean, which checks whether there are unannotated compounds in the given sbml file
     isAnnotationPurpose: false, //boolean, which checks whether the user intents to make annotation for the compounds in the given sbml-file
     annotation: "",
-    moduleFileNameSbml: "",
+    moduleFileNameSbml:"",
     isShowingReactionTable: false, //shows final table with all reactions in the sbml file
     showMultipleKeggReactionModal: false, //show modal for chosing multiple reactions from KEGG
     addLinkModal: false, //modal for adding new links useful for signaling pathway
     listOfReactionGlyphs: [], //positons of nodes in sbml file
-    taxonomicNames: [], //taxonomic names received from server after submitting taxonomic rank
-    mappingStart: "", //start time of mapping
-    mappingEnd: "" //end time of mapping
-
+    taxonomicNames:[], //taxonomic names received from server after submitting taxonomic rank
+    fbaSolution: [] //fluxRate received from server after submitting reaction id
 }
 
 export const generalReducer = (state = defaultState, action) => {
@@ -107,7 +104,7 @@ export const generalReducer = (state = defaultState, action) => {
                     reactionTaxa[`${state.taxonomy}`] = state.taxonomicRank
                     reaction.taxa = reactionTaxa
                     // reaction.taxonomies.push(`${state.taxonomicRank}:${state.taxonomy}`)
-                } else {
+                }else{
                     reaction.taxa = reactionTaxa
                 }
                 return reaction
@@ -157,8 +154,7 @@ export const generalReducer = (state = defaultState, action) => {
             const ecNumbers = payload.split(";")
             return {...state, specialProteinEcNumbers: ecNumbers}
         case "ADDSPECIALPROTEIN":
-            return {
-                ...state,
+            return {...state,
                 specialProteins: [...state.specialProteins, {
                     name: state.specialProteinName,
                     koNumbers: state.specialProteinKoNumbers,
@@ -191,16 +187,10 @@ export const generalReducer = (state = defaultState, action) => {
             return {...state, listOfReactionGlyphs: payload}
         case "ADD_KEGG_REACTION":
             return {...state, keggReactions: [...state.keggReactions, payload]}
-        case "SET_KEGG_REACTION":
-            return {...state, keggReactions: payload}
         case "SET_TAXONOMIC_NAMES":
             return {...state, taxonomicNames: payload}
-        case "SET_MAPPING_START_TIME":
-            return {...state, mappingStart: payload}
-        case "SET_MAPPING_END_TIME":
-            return {...state, mappingEnd: payload}
-        case "SET_BIGG_COMPOUND_LIST":
-            return {...state, biggCompoundList: payload}
+        case "SETFBAANDFLUX":
+            return {...state, fbaSolution: payload}
         default:
             return state;
     }

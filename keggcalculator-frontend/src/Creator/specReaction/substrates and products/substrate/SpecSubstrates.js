@@ -5,7 +5,7 @@ import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import "./SpecSubstrate.css"
 import PopOverButton from "../PopOverButton";
-import {ToolTipBig} from "../../../main/user-interface/UserInterface";
+
 
 
 const SpecSubstrates = (props) => {
@@ -16,12 +16,10 @@ const SpecSubstrates = (props) => {
     return (
         <div className={"substrateContainerSpec"}>
             {state.isSpecificCompoundInputSubstrate ?
-                <ToolTipBig title={"Type in a substrate name"} placement={"left"}>
-                    <TextField className={"substrate"} size={"small"} value={state.specSubstrate}
-                               onChange={e => dispatch({type: "SETSPECIFICSUBSTRATE", payload: e.target.value})}
-                               type={"text"}
-                               label={"substrate"} id={"spec substrate"}/>
-                </ToolTipBig> :
+                <TextField className={"substrate"} size={"small"} value={state.specSubstrate}
+                           onChange={e => dispatch({type: "SETSPECIFICSUBSTRATE", payload: e.target.value})}
+                           type={"text"}
+                           label={"substrate"} id={"spec substrate"}/> :
                 <Field
                     className={"substrate"}
                     dispatchType={"SETSPECIFICSUBSTRATE"}
@@ -31,10 +29,8 @@ const SpecSubstrates = (props) => {
                     compound={state.specSubstrate}/>
             }
             <PopOverButton text={" not found? :-(\n" +
-            "                Don't worry! Click here :)"}
-                           dispatchType={"SWITCHISSPECCOMPOUNDINPUTSUBSTRATE"}
-                           isText={state.isSpecificCompoundInputSubstrate}/>
-            <ToolTipBig title={"Type in a stoichiometric coefficient"} placement={"left"}><TextField
+            "                Don't worry! Click here :)"} className={"notFoundButton"}  dispatchType={"SWITCHISSPECCOMPOUNDINPUTSUBSTRATE"}/>
+            <TextField
                 size={"small"}
                 className={"substrateSc"}
                 defaultValue={0}
@@ -50,13 +46,11 @@ const SpecSubstrates = (props) => {
                     shrink: true,
                 }}
                 variant="filled"
-            /></ToolTipBig>
+            />
             {/*disabled={!isRequestValid(state.specSubstrate)}*/}
-            <ToolTipBig title={"Submit the substrate with chosen coefficient"} placement={"right"}>
-                <button className={"addSubstrate"}
-                        onClick={(e) => handleAddSubstrate(e, dispatch, state, props.index)}>Add Substrate
-                </button>
-            </ToolTipBig>
+            <button className={"addSubstrate"} disabled={!state.specSubstrate.length > 0}
+                    onClick={(e) => handleAddSubstrate(e, dispatch, state, props.index)}>Add Substrate
+            </button>
         </div>
     )
 }

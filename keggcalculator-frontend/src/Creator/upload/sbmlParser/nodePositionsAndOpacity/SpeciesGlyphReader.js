@@ -1,6 +1,6 @@
 import SpeciesGlyph from "./SpeciesGlyph";
 
-export const readListOfSpeciesGlyphs = (sbml) => {
+export const readListOfSpeciesGlyphs = (sbml) =>{
     const listOfSpeciesGlyphsTag = sbml.getElementsByTagName("layout:listOfSpeciesGlyphs")[0]
     return getListOfSpeciesGlyph(listOfSpeciesGlyphsTag)
 }

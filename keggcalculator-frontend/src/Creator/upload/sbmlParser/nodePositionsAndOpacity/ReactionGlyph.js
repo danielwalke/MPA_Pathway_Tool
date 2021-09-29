@@ -1,7 +1,7 @@
 /**
  * responsible for storing node positions in sbml file
  */
-class ReactionGlyph {
+class ReactionGlyph{
     _layoutId
     _layoutReaction //equals reactionId
     _layoutX //number
@@ -18,15 +18,15 @@ class ReactionGlyph {
         this._isKeyCompound = true
     }
 
-    get isKeyCompound() {
+    get isKeyCompound(){
         return this._isKeyCompound
     }
 
-    set isKeyCompound(isKeyCompound) {
+    set isKeyCompound(isKeyCompound){
         this._isKeyCompound = isKeyCompound
     }
 
-    addSpeciesReferenceGlyph(speciesReferenceGlyph) {
+    addSpeciesReferenceGlyph(speciesReferenceGlyph){
         this._listOfSpeciesReferenceGlyphs.push(speciesReferenceGlyph)
     }
 

@@ -1,10 +1,10 @@
-.substrateContainerSpec {
+.substrateContainerSpec{
     display: grid;
     grid-template-columns: 5fr 1fr 1.2fr 2fr;
     grid-template-areas: "substrate notFound substrateSc addSubstrate";
 }
 
-.notFoundButton {
+.notFoundButton{
     grid-area: notFound;
     background-color: rgb(150, 25, 130);
     border-radius: 0.8vw;
@@ -17,18 +17,18 @@
     padding: 4px;
 }
 
-.substrate {
+.substrate{
     grid-area: substrate;
     margin: 2px;
 }
 
-.substrateSc {
+.substrateSc{
     grid-area: substrateSc;
-    transform: translate(0, -3px);
+    transform: translate(0,-3px);
     margin: 2px;
 }
 
-.addSubstrate {
+.addSubstrate{
     grid-area: addSubstrate;
     background-color: rgb(150, 25, 130);
     border-radius: 0.8vw;

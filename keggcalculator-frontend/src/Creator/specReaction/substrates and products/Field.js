@@ -3,7 +3,6 @@ import {getCompName} from "../../keggReaction/substrate and products/substrate/C
 import TextField from "@material-ui/core/TextField";
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {ToolTipBig} from "../../main/user-interface/UserInterface";
 
 const Field = (props) => {
     const [component, setComponent] = React.useState(props.compound)
@@ -24,9 +23,9 @@ const Field = (props) => {
     }
 
     return (
-        <div>
+        <div >
             {(component && component.length > 2) || props.boolean ?
-                <ToolTipBig title={"Search a metabolite"} placement={"left"}><Autocomplete
+                <Autocomplete
                     size={"small"}
                     id={`combo-box-1 ${props.dispatchType}`}
                     options={props.options}
@@ -43,8 +42,8 @@ const Field = (props) => {
                             variant="outlined"
                         />
                     )}
-                /></ToolTipBig> :
-                <ToolTipBig title={"Type in the first 3 letters of a metabolite"} placement={"left"}><Autocomplete
+                /> :
+                <Autocomplete
                     id={`combo-box-0 ${props.dispatchType}`}
                     size={"small"}
                     options={["Type in..."]}
@@ -58,7 +57,7 @@ const Field = (props) => {
                             variant="outlined"
                         />
                     )}
-                /></ToolTipBig>
+                />
             }
         </div>
     )
