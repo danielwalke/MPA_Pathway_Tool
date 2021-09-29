@@ -7,7 +7,6 @@ import {isRequestValid} from "../../../request/RequestValidation";
 import DeleteIcon from "@material-ui/icons/Delete";
 import "./AbundantNodeConfig.css"
 import {COMPOUND_NODE_COLOR} from "../../Constants"
-import {ToolTipBig} from "../../../main/user-interface/UserInterface";
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -30,95 +29,67 @@ const AbundantNodeConfig = () => {
     const dispatch = useDispatch()
     const classes = useStyles()
 
-    const filterAbundantCompounds = () => {
-        let nodes = []
-        let data = {}
-
-        graphState.abundantCompounds.map(comp => {
-            nodes = graphState.data.nodes
-            let origNodeX = 0
-            let origNodeY = 0
-            let splitNodeDist = 0
-
-            const origNode = nodes.filter(node => comp === node.id)[0]
-
-            if (origNode) {
-                origNodeX = nodes.filter(node => comp === node.id)[0].x
-                origNodeY = nodes.filter(node => comp === node.id)[0].y
-                splitNodeDist = 40
-            }
-
-            const abundantLinks = graphState.data.links.filter(link => link.source === comp || link.target === comp)
-
-            abundantLinks.map((link, index) => {
-                if (link.source === comp) {
-                    nodes.push({id: `${index}__${link.source}`, color: COMPOUND_NODE_COLOR, opacity: 0.4, x: origNodeX, y: origNodeY+splitNodeDist*index})
-                } else {
-                    nodes.push({id: `${index}__${link.target}`, color: COMPOUND_NODE_COLOR, opacity: 0.4, x: origNodeX, y: origNodeY+splitNodeDist*index})
-                }
-                return null
-            })
-            abundantLinks.map((link, index) => {
-                if (link.source === comp) {
-                    link.source = `${index}__${link.source}`
-                    link.opacity = 0.4
-                } else {
-                    link.target = `${index}__${link.target}`
-                    link.opacity = 0.4
-                }
+        const filterAbundantCompounds = () => {
+            let nodes = []
+            let data = {}
+            graphState.abundantCompounds.map(comp => {
+                nodes = graphState.data.nodes
+                const abundantLinks = graphState.data.links.filter(link => link.source === comp || link.target === comp)
+                abundantLinks.map((link, index) => {
+                    if(link.source===comp){
+                        nodes.push({id: `${index}__${link.source}`, color: COMPOUND_NODE_COLOR, opacity: 0.4, x:0, y:0})
+                    }else{
+                        nodes.push({id: `${index}__${link.target}`, color: COMPOUND_NODE_COLOR, opacity: 0.4, x:0, y:0})
+                    }
+                    return null
+                })
+                abundantLinks.map((link, index) => {
+                    if(link.source===comp){
+                        link.source = `${index}__${link.source}`
+                        link.opacity = 0.4
+                    }else{
+                        link.target = `${index}__${link.target}`
+                        link.opacity = 0.4
+                    }
+                    return null;
+                })
+                data.links = graphState.data.links
                 return null;
             })
-            console.log(nodes)
-            data.links = graphState.data.links
-            return null;
-        })
-        data.nodes = nodes.filter(node => !graphState.abundantCompounds.includes(node.id))
-        dispatch({type: "SETDATA", payload: data})
-        dispatch({
-            type: "ADD_SPLIT_NODES_TO_AUDIT_TRAIL", payload: graphState.abundantCompounds
-        })
+            data.nodes = nodes.filter(node => !graphState.abundantCompounds.includes(node.id))
+            dispatch({type:"SETDATA", payload: data})
 
-    }
+        }
 
-    const handleAbundantCompoundsSubmit = () => {
-        dispatch({type: "SWITCHSHOWABUNDANTNODECONFIG"})
-        filterAbundantCompounds()
-    }
+        const handleAbundantCompoundsSubmit = () => {
+            dispatch({type: "SWITCHSHOWABUNDANTNODECONFIG"})
+            filterAbundantCompounds()
+        }
 
-    const body = (
-        <div className={classes.paper}>
-            <div style={{display: "grid", gridTemplateColumns: "8fr 2fr"}}>
-                <Compound/>
-                <ToolTipBig title={"Select node for splitting"} placement={"right"}>
+        const body = (
+            <div className={classes.paper}>
+                <div style={{display:"grid", gridTemplateColumns: "8fr 2fr"}}>
+                    <Compound/>
                     <button className={"addNode"} disabled={!isRequestValid(graphState.abundantCompound)}
-                            onClick={() => dispatch({
-                                type: "ADDABUNDANTCOMPOUND",
-                                payload: graphState.abundantCompound
-                            })}>Add
+                            onClick={() => dispatch({type: "ADDABUNDANTCOMPOUND", payload: graphState.abundantCompound})}>Add
                     </button>
-                </ToolTipBig>
-            </div>
-            <br/>
-            chosen Compounds:
-            <ul style={{listStyleType: "none"}}>{graphState.abundantCompounds.map((comp, index) => {
-                return (
-                    <li key={comp}>
-                        <ToolTipBig title={"Unselect node for splitting"} placement={"right"}>
+                </div>
+                <br/>
+                chosen Compounds:
+                <ul style={{listStyleType: "none"}}>{graphState.abundantCompounds.map((comp, index) => {
+                    return (
+                        <li key={comp}>
                             <DeleteIcon
-                                onClick={() => dispatch({type: "SPLICEABUNDANTCOMPOUNDS", payload: index})}/>
-                        </ToolTipBig>
-                        {comp}
-                    </li>
-                )
-            })}</ul>
-            <div style={{display: "flex", justifyContent: "center"}}>
-                <ToolTipBig title={"Submit splitting nodes"} placement={"right"}>
+                                onClick={() => dispatch({type: "SPLICEABUNDANTCOMPOUNDS", payload: index})}/>{comp}
+                        </li>
+                    )
+                })}</ul>
+                <div style={{display:"flex", justifyContent: "center"}}>
                     <button className={"submitNodes"} onClick={() => handleAbundantCompoundsSubmit()}>Submit</button>
-                </ToolTipBig>
-            </div>
+                </div>
 
-        </div>
-    )
+            </div>
+        )
 
 
     return (
@@ -135,8 +106,10 @@ const AbundantNodeConfig = () => {
 export default AbundantNodeConfig
 
 
+
 const Compound = () => {
     const graphState = useSelector(state => state.graph)
+    console.log(graphState.abundantCompoundOptions)
     return (<Field
         // className={"compound"}
         dispatchType={"SETABUNDANTCOMPOUND"}

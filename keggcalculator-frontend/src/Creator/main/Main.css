@@ -1,4 +1,4 @@
-.main {
+.main{
     width: 98vw;
     display: grid;
     height: 65vh;
@@ -8,14 +8,13 @@
 "heatmap heatmap";
 }
 
-.interface {
+.interface{
     grid-area: interface;
 }
-
-.graph {
+.graph{
     grid-area: graph;
 }
 
-.footer {
+.footer{
     grid-area: heatmap;
 }

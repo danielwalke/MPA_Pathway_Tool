@@ -2,7 +2,7 @@ import {getNodePosition} from "./NodePosition";
 import clonedeep from "lodash/cloneDeep"
 import {getTaxaList} from "../graph/double click node/StuctureModalBody";
 
-export const getReactions = (graphState) => {
+export const getReactions = (graphState) =>{
     const reactionObjects = {}
     const reactionNames = []
     const links = clonedeep(graphState.data.links.filter(link => !link.isReversibleLink))
@@ -22,7 +22,7 @@ export const getReactions = (graphState) => {
             product.x = getNodePosition(productName).x
             product.y = getNodePosition(productName).y
             product.name = productName
-            product.opacity = typeof clonedeep(graphState.data.nodes).filter(node => node.id === productName)[0].opacity === "undefined" ? 1 : clonedeep(graphState.data.nodes).filter(node => node.id === productName)[0].opacity
+            product.opacity = typeof clonedeep(graphState.data.nodes).filter(node => node.id === productName)[0].opacity === "undefined"? 1: clonedeep(graphState.data.nodes).filter(node => node.id === productName)[0].opacity
             product.abbreviation = typeof clonedeep(graphState.abbreviationsObject[productName]) === "undefined" ? productName : clonedeep(graphState.abbreviationsObject[productName])
             reactionObjects[`${reactionName}`].products.push(product)
 
@@ -41,19 +41,19 @@ export const getReactions = (graphState) => {
             substrate.x = getNodePosition(substrateName).x
             substrate.y = getNodePosition(substrateName).y
             substrate.name = substrateName
-            substrate.opacity = typeof clonedeep(graphState.data.nodes.filter(node => node.id === substrateName)[0].opacity) === "undefined" ? 1 : clonedeep(graphState.data.nodes.filter(node => node.id === substrateName)[0].opacity)
+            substrate.opacity = typeof clonedeep(graphState.data.nodes.filter(node => node.id === substrateName)[0].opacity) === "undefined"? 1 : clonedeep(graphState.data.nodes.filter(node => node.id === substrateName)[0].opacity)
             substrate.abbreviation = typeof clonedeep(graphState.abbreviationsObject[substrateName]) === "undefined" ? substrateName : clonedeep(graphState.abbreviationsObject[substrateName])
             reactionObjects[`${reactionName}`].substrates.push(substrate)
         }
         return null;
     })
-    if (graphState.data.links.length === 0) {
+    if(graphState.data.links.length === 0){
         graphState.data.nodes.map(specialProtein => reactionNames.push(specialProtein.id))
     }
     return {reactionObjects, reactionNames}
 }
 
-export const addOutput = (output, reaction, compound, reactionCounter, compoundType, reversible) => {
+export const addOutput = (output, reaction, compound,reactionCounter, compoundType, reversible) => {
     output = output.concat(reactionCounter.toString(), ";") //step id
     output = output.concat(reaction.reactionName.replaceAll(";", "\t"), ";") //reaction name
     output = output.concat(reaction.koNumbersString, ";") //ko number ids
@@ -63,11 +63,11 @@ export const addOutput = (output, reaction, compound, reactionCounter, compoundT
     output = output.concat(compoundType, ";") //type of compound
     output = output.concat(reversible, ";") //reversibility
     let taxonomyCounter = 0
-    if (getTaxaList(reaction.taxa).length === 0) {
+    if(getTaxaList(reaction.taxa).length === 0){
         output = output.concat(";")
     }
-    for (const taxonomy of getTaxaList(reaction.taxa)) {
-        taxonomyCounter < getTaxaList(reaction.taxa).length - 1 ? output = output.concat(taxonomy, "&&") : output = output.concat(taxonomy, ";") //taxonomy
+    for(const taxonomy of getTaxaList(reaction.taxa)){
+        taxonomyCounter<getTaxaList(reaction.taxa).length-1? output = output.concat(taxonomy, "&&") : output = output.concat(taxonomy, ";") //taxonomy
         taxonomyCounter++
     }
     output = output.concat(reaction.x.toString(), ";") //reactionX

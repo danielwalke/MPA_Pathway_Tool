@@ -7,7 +7,6 @@ import TaxonomicRank from "../../double click node/TaxonomicRank";
 import {getTaxaList} from "../../double click node/StuctureModalBody";
 import TaxonomyNcbi from "../../../taxonomy/TaxonomyNcbi";
 import {makeStyles} from "@material-ui/core";
-import {ToolTipBig} from "../../../main/user-interface/UserInterface";
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -38,15 +37,7 @@ const PathwayTaxonomy = () => {
     const [isNcbiTaxonomy, setIsNcbiTaxonomy] = useState(true)
 
     const body = (
-        <div className={classes.paper} style={{
-            width: "80%",
-            maxHeight: "60vh",
-            position: "absolute",
-            left: "50%",
-            top: "50%",
-            transform: "translate(-50%,-50%)",
-            overflow: "auto"
-        }}>
+        <div className={classes.paper} style={{width: "80%", maxHeight:"60vh",position:"absolute",left:"50%", top:"50%", transform:"translate(-50%,-50%)", overflow:"auto"}}>
             <div style={{
                 margin: "2px",
                 padding: "3px",
@@ -61,44 +52,34 @@ const PathwayTaxonomy = () => {
                 </div>
                 <div>
                     <TaxonomicRank/>
-                    {!isNcbiTaxonomy ? <ToolTipBig title={"Type in a taxonomic name for the chosen rank"}
-                                                   placement={"right"}><TextField
-                            style={{width: "100%"}}
-                            placeholder={"lowest taxonomic rank"}
-                            size={"small"}
-                            className={"taxonomy"}
-                            label="taxonomy"
-                            variant="outlined"
-                            id="Tax"
-                            onChange={(e) => dispatch({
-                                type: "SETTAXONOMY",
-                                payload: e.target.value.toString()
-                            })}
-                        /></ToolTipBig> :
-                        <TaxonomyNcbi taxonomy={generalState.taxonomy} dispatchTaxonomy={"SETTAXONOMY"}/>}
-                    <ToolTipBig
-                        title={isNcbiTaxonomy ? "Choose your own taxonomic name" : `Choose taxonomic name from a list`}
-                        placement={"right"}>
-                        <button className={"downloadButton"} onClick={() => setIsNcbiTaxonomy(!isNcbiTaxonomy)}>Switch
-                        </button>
-                    </ToolTipBig>
+                    {!isNcbiTaxonomy? <TextField
+                        style={{width:"100%"}}
+                        placeholder={"lowest taxonomic rank"}
+                        size={"small"}
+                        className={"taxonomy"}
+                        label="taxonomy"
+                        variant="outlined"
+                        id="Tax"
+                        onChange={(e) => dispatch({
+                            type: "SETTAXONOMY",
+                            payload: e.target.value.toString()
+                        })}
+                    />:
+                    <TaxonomyNcbi taxonomy={generalState.taxonomy} dispatchTaxonomy={"SETTAXONOMY"}/>}
+                    <button className={"downloadButton"} onClick={()=> setIsNcbiTaxonomy(!isNcbiTaxonomy)}>Switch</button>
                 </div>
                 <div>
-                    <ToolTipBig title={"Add taxonomic requirement for the complete pathway"} placement={"right"}>
-                        <button className={"downloadButton"} onClick={() => dispatch({type: "ADDPATHWAYTAXONOMY"})}>add
-                            taxonomy to complete pathway
-                        </button>
-                    </ToolTipBig>
+                    <button className={"downloadButton"} onClick={() => dispatch({type: "ADDPATHWAYTAXONOMY"})}>add
+                        taxonomy to complete pathway
+                    </button>
                 </div>
                 <div>
                     <div>chosen Taxonomy:</div>
                     <ul style={{listStyleType: "none"}}>
                         {pathwayTaxonomies.map((taxon, index) => <li key={taxon.concat(index.toString())}>
-                            <ToolTipBig title={"Delete taxonomic requirement from complete pathway"}
-                                        placement={"right"}>
-                                <DeleteIcon
-                                    onClick={() => dispatch({type: "DELETEPATHWAYTAXONOMY", payload: taxon})}
-                                    style={{transform: "translate(0,4px)"}}/></ToolTipBig>{taxon}</li>)}
+                            <DeleteIcon
+                                onClick={() => dispatch({type: "DELETEPATHWAYTAXONOMY", payload: taxon})}
+                                style={{transform: "translate(0,4px)"}}/>{taxon}</li>)}
                     </ul>
                 </div>
             </div>
@@ -117,51 +98,37 @@ const PathwayTaxonomy = () => {
                         <div>{reactionName}</div>
                         <div>
                             <TaxonomicRank/>
-                            {!isNcbiTaxonomy ?
-                                <ToolTipBig title={"Type in a taxonomic name for the chosen rank"} placement={"right"}>
-                                    <TextField
-                                        style={{width: "100%"}}
-                                        placeholder={"lowest taxonomic rank"}
-                                        size={"small"}
-                                        className={"taxonomy"}
-                                        label="taxonomy"
-                                        variant="outlined"
-                                        id="TaxReaction"
-                                        onChange={(e) => dispatch({
-                                            type: "SETTAXONOMY",
-                                            payload: e.target.value.toString()
-                                        })}
-                                    /></ToolTipBig> :
+                            {!isNcbiTaxonomy? <TextField
+                                    style={{width:"100%"}}
+                                    placeholder={"lowest taxonomic rank"}
+                                    size={"small"}
+                                    className={"taxonomy"}
+                                    label="taxonomy"
+                                    variant="outlined"
+                                    id="TaxReaction"
+                                    onChange={(e) => dispatch({
+                                        type: "SETTAXONOMY",
+                                        payload: e.target.value.toString()
+                                    })}
+                                />:
                                 <TaxonomyNcbi taxonomy={generalState.taxonomy} dispatchTaxonomy={"SETTAXONOMY"}/>}
-                            <ToolTipBig
-                                title={isNcbiTaxonomy ? "Choose your own taxonomic name" : `Choose taxonomic name from a list`}
-                                placement={"right"}>
-                                <button className={"downloadButton"}
-                                        onClick={() => setIsNcbiTaxonomy(!isNcbiTaxonomy)}>Switch
-                                </button>
-                            </ToolTipBig>
+                            <button className={"downloadButton"} onClick={()=> setIsNcbiTaxonomy(!isNcbiTaxonomy)}>Switch</button>
                         </div>
                         <div>
-                            <ToolTipBig title={"Add taxonomic name for the chosen reaction"} placement={"right"}>
-                                <button className={"downloadButton"} style={{width: "20vw"}}
-                                        onClick={() => dispatch({type: "ADDTAXONOMY", payload: reactionName})}>Add
-                                    taxonomy
-                                </button>
-                            </ToolTipBig>
+                            <button className={"downloadButton"} style={{width: "20vw"}}
+                                    onClick={() => dispatch({type: "ADDTAXONOMY", payload: reactionName})}>Add taxonomy
+                            </button>
                         </div>
                         <div style={{height: "100%", overflow: "auto"}}>
                             <div>chosen Taxonomy:</div>
                             <ul style={{listStyleType: "none"}}>
-                                {getTaxaList(reaction.taxa).map((taxon, index) => <li
-                                    key={taxon.concat(index.toString())}>
-                                    <ToolTipBig title={"Delete taxonomic requirement from chosen reaction"}
-                                                placement={"right"}><DeleteIcon
-                                        key={taxon.concat(index.toString(), "delete")}
-                                        onClick={() => dispatch({
-                                            type: "DELETETAXONOMY",
-                                            payload: {reactionName, taxon}
-                                        })}
-                                        style={{transform: "translate(0,4px)"}}/></ToolTipBig>{taxon}</li>)}
+                                {getTaxaList(reaction.taxa).map((taxon, index) => <li key={taxon.concat(index.toString())}>
+                                    <DeleteIcon key={taxon.concat(index.toString(), "delete")}
+                                                onClick={() => dispatch({
+                                                    type: "DELETETAXONOMY",
+                                                    payload: {reactionName, taxon}
+                                                })}
+                                                style={{transform: "translate(0,4px)"}}/>{taxon}</li>)}
                             </ul>
                         </div>
 

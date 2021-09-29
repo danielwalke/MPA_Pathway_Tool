@@ -9,7 +9,7 @@
     display: none;
 }
 
-.autoCompleteContainer {
+.autoCompleteContainer{
     display: flex;
     justify-content: space-between;
 }

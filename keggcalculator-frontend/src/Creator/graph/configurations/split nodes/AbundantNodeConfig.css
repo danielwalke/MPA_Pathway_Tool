@@ -1,4 +1,4 @@
-.addNode {
+.addNode{
     background-color: rgb(150, 25, 130);
     border-radius: 0.8vw;
     color: white;
@@ -7,7 +7,7 @@
     font-size: clamp(12px, 1vw, 15px);
     font-family: Roboto;
     margin: 2px;
-    transform: translate(0, -3px);
+    transform: translate(0,-3px);
     padding: 1px;
 }
 
@@ -16,12 +16,12 @@
     cursor: pointer;
 }
 
-.addNode:disabled:hover {
+.addNode:disabled:hover{
     background-color: rgb(150, 25, 130);
     cursor: default;
 }
 
-.submitNodes {
+.submitNodes{
     background-color: rgb(150, 25, 130);
     border-radius: 0.8vw;
     color: white;
@@ -30,11 +30,11 @@
     font-size: clamp(12px, 1.4vw, 15px);
     font-family: Roboto;
     margin: 2px;
-    transform: translate(0, -3px);
+    transform: translate(0,-3px);
     padding: 5px 20px;
 }
 
-.submitNodes:hover {
+.submitNodes:hover{
     background-color: rgb(120, -5, 100);
     cursor: pointer;
 }

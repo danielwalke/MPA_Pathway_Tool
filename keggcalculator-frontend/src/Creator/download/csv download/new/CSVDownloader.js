@@ -14,7 +14,7 @@ const CsvDownloader = () => {
 
     const getLinksTarget = (reactionNode) => graphState.data.links.filter(link => link.target === reactionNode.id)
 
-    const getIsCompoundNode = (id) => {
+    const getIsCompoundNode = (id) =>{
         const node = graphState.data.nodes.find(node => node.id === id)
         return node.symbolType === "circle"
     }
@@ -23,7 +23,7 @@ const CsvDownloader = () => {
 
     const getReactionLinks = (links) => links.filter(link => !getIsCompoundNode(link.source) && !getIsCompoundNode(link.target))
 
-    const getId = (nodeId) => nodeId.substring(nodeId.length - 6, nodeId.length)
+    const getId = (nodeId) => nodeId.substring(nodeId.length-6, nodeId.length)
 
     const getReaction = (reactions, reactionNode) => {
         return reactions.find(reaction => reaction.reactionId === getId(reactionNode.id))
@@ -37,7 +37,7 @@ const CsvDownloader = () => {
         return getReaction(reactions, reactionNode).isForwardReaction
     }
 
-    const getStoichiometry = (isForwardReaction, reactionNode) => {
+    const getStoichiometry = (isForwardReaction,reactionNode) => {
         const stoichiometrySubstrates = isForwardReaction ? getStoichiometrySubstrates(reactionNode, generalState.reactionsInSelectArray) :
             getStoichiometryProducts(reactionNode, generalState.reactionsInSelectArray)
         const stoichiometryProducts = isForwardReaction ? getStoichiometryProducts(reactionNode, generalState.reactionsInSelectArray) :
@@ -45,18 +45,18 @@ const CsvDownloader = () => {
         return {substrates: stoichiometrySubstrates, products: stoichiometryProducts}
     }
 
-    const getReactionAbbreviation = (reactionNode) => {
+    const getReactionAbbreviation = (reactionNode) =>{
         const reaction = getReaction(generalState.reactionsInSelectArray, reactionNode)
         return typeof graphState.abbreviationsObject[`${reaction.reactionName}`] === "undefined" ? reaction.reactionName : graphState.abbreviationsObject[`${reaction.reactionName}`]
     }
 
     const addTaxonomy = (taxa, reaction) => {
-        for (const [rank, taxon] of Object.entries(taxa)) {
+        for(const [rank, taxon] of Object.entries(taxa)){
             reaction.addTaxonomy(rank.concat(":" + taxon))
         }
     }
 
-    const createNewReaction = (reactionNode) => {
+    const createNewReaction = (reactionNode) =>{
         const reaction = new Reaction(reactionNode.id)
         reaction._x = reactionNode.x
         reaction._y = reactionNode.y
@@ -64,13 +64,13 @@ const CsvDownloader = () => {
         reaction._reversible = getReaction(generalState.reactionsInSelectArray, reactionNode).reversible
         reaction._ecList = getReaction(generalState.reactionsInSelectArray, reactionNode).ecNumbersString
         reaction._koList = getReaction(generalState.reactionsInSelectArray, reactionNode).koNumbersString
-        addTaxonomy(getReaction(generalState.reactionsInSelectArray, reactionNode).taxa, reaction)
+        addTaxonomy(getReaction(generalState.reactionsInSelectArray, reactionNode).taxa,reaction)
         return reaction
     }
 
-    const addReactionLinks = (reaction, reactionSourceLinks, reactionTargetLinks) => {
+    const addReactionLinks = (reaction, reactionSourceLinks, reactionTargetLinks)=>{
         reactionSourceLinks.forEach(link => reaction.addLinkToReaction(link.target))
-        if (reaction.reversible) {
+        if(reaction.reversible){
             reactionTargetLinks.forEach(link => reaction.addLinkToReaction(link.source))
         }
 
@@ -80,7 +80,7 @@ const CsvDownloader = () => {
         return graphState.data.nodes.find(node => node.id === id)
     }
 
-    const getCompoundAbbreviation = (id) => {
+    const getCompoundAbbreviation = (id) =>{
         return typeof graphState.abbreviationsObject[`${id}`] === "undefined" ? id : graphState.abbreviationsObject[`${id}`]
     }
 
@@ -88,7 +88,7 @@ const CsvDownloader = () => {
         return stoichiometry[id]
     }
 
-    const addSubstrates = (reaction, compoundTargetLinks, stoichiometrySubstrates) => {
+    const addSubstrates = (reaction, compoundTargetLinks, stoichiometrySubstrates) =>{
         compoundTargetLinks.forEach(link => {
             const substrate = new Compound(link.source)
             substrate._x = getCompoundNode(substrate.name).x
@@ -101,7 +101,7 @@ const CsvDownloader = () => {
         })
     }
 
-    const addProducts = (reaction, compoundSourceLinks, stoichiometryProducts) => {
+    const addProducts = (reaction, compoundSourceLinks, stoichiometryProducts) =>{
         compoundSourceLinks.forEach(link => {
             const product = new Compound(link.target)
             product._x = getCompoundNode(product.name).x
@@ -115,14 +115,14 @@ const CsvDownloader = () => {
     }
 
 
-    const addCompounds = (reaction, compoundSourceLinks, compoundTargetLinks, stoichiometry) => {
+    const addCompounds = (reaction, compoundSourceLinks, compoundTargetLinks, stoichiometry) =>{
         addSubstrates(reaction, compoundTargetLinks, stoichiometry.substrates)
         addProducts(reaction, compoundSourceLinks, stoichiometry.products)
     }
 
-    const getReactions = () => {
+    const getReactions = () =>{
         const reactionNodes = getReactionNodes()
-        const reactions = reactionNodes.map(reactionNode => {
+        const reactions = reactionNodes.map(reactionNode =>{
             const sourceLinks = getLinksSource(reactionNode)
             const targetLinks = getLinksTarget(reactionNode)
             const compoundSourceLinks = getCompoundLinks(sourceLinks)
@@ -139,32 +139,32 @@ const CsvDownloader = () => {
         return reactions
     }
 
-    const writeKo = (output, koList) => {
-        koList.forEach(ko => output += ko.concat(","))
-        output = output.substring(0, output.length - 1) //delete last comma
-        output += ";"
+    const writeKo = (output, koList) =>{
+        koList.forEach(ko => output+=ko.concat(","))
+        output= output.substring(0, output.length-1) //delete last comma
+        output+= ";"
         return output
     }
-    const writeEc = (output, ecList) => {
-        ecList.forEach(ec => output += ec.concat(","))
-        output = output.substring(0, output.length - 1) //delete last comma
-        output += ";"
+    const writeEc = (output, ecList) =>{
+        ecList.forEach(ec => output+=ec.concat(","))
+        output= output.substring(0, output.length-1) //delete last comma
+        output+= ";"
         return output
     }
 
     const writeCsv = (reactions) => {
         let output = "stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp;linkedTo\n"
         reactions.forEach((reaction, index) => {
-            output += index.toString().concat(";")
-            output += reaction.name.concat(";")
+            output+=index.toString().concat(";")
+            output+=reaction.name.concat(";")
             output = writeKo(output, reaction.koList)
             output = writeEc(output, reaction.ecList)
-            output += ";;;".concat(reaction.reversible ? "reversible" : "irreversible" + ";")
+            output += ";;;".concat(reaction.reversible? "reversible" : "irreversible" + ";")
         })
         return output
     }
 
-    const download = () => {
+    const download = () =>{
         const reactions = getReactions()
         console.log(reactions)
         // const output = writeCsv(reactions)

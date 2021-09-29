@@ -2,10 +2,9 @@ import {requestGenerator} from "../../request/RequestGenerator";
 import clonedeep from "lodash/cloneDeep"
 import {handleSubmitKeggReaction} from "./substrate/SubmitHandling";
 import {endpoint_getReactionsBySubstrate} from "../../../App Configurations/RequestURLCollection";
-
 const productUrl = endpoint_getReactionsBySubstrate
 
-const getReverseReaction = (reactions) => {
+const getReverseReaction = (reactions) =>{
     reactions.forEach(reaction => {
         const stoichiometryProductsClone = clonedeep(reaction.stochiometryProductsString)
         const stoichiometrySubstratesClone = clonedeep(reaction.stochiometrySubstratesString)
@@ -45,7 +44,7 @@ export const handleSubmitProduct = (productId, keggState) => {
     for (const [key, values] of productReactionsMap.entries()) {
         if (productId === key) {
             values.map(value => {
-                if (value.taxonomies.length === 0) {
+                if(value.taxonomies.length===0){
                     value.taxonomies = [""]
                 }
                 value.isForwardReaction = true

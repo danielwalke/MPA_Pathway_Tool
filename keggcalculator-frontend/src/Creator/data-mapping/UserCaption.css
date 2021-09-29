@@ -1,5 +1,5 @@
-.captionContainer {
-    transform: translate(-10px, 0);
+.captionContainer{
+    transform: translate(-10px,0);
     max-width: 94vw;
     margin: 0 1vw;
     display: grid;
@@ -9,34 +9,33 @@
 "heat heat heat heat heat heat";
     justify-content: space-between;
 }
-
-.userCaption {
+.userCaption{
     grid-area: heat;
-    background: linear-gradient(90deg, rgb(0, 0, 255), rgb(255, 0, 0));
+    background: linear-gradient(90deg, rgb(0,0,255),rgb(255,0,0));
     height: 10px;
 }
 
-.min {
+.min{
     grid-area: min;
 }
 
-.min2 {
+.min2{
     grid-area: min2;
 }
 
-.mid {
+.mid{
     grid-area: mid;
 }
 
-.max3 {
+.max3{
     grid-area: max3;
 }
 
-.max2 {
+.max2{
     grid-area: max2;
 }
 
-.max {
+.max{
     grid-area: max;
     justify-self: end;
 }

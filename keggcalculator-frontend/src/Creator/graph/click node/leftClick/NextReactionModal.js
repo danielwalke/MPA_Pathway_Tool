@@ -23,21 +23,21 @@ const useStyles = makeStyles((theme) => ({
 
 const NextReactionModal = () => {
     const state = useSelector(state => state.keggReaction)
-    const dispatch = useDispatch()
+    const dispatch= useDispatch()
     const classes = useStyles()
     const body = (
-        <div className={classes.paper} style={{width: "40vw"}}>
+        <div className={classes.paper} style={{width:"40vw"}}>
             <Product className={"product"}/>
             <br/>
             <Reaction className={"reaction"}/>
         </div>
     )
 
-    return (
+    return(
         <Modal className={classes.modal} open={state.showNextReaction}
                onClose={() => {
                    dispatch({type: "SWITCHSHOWNEXTREACTION"})
-                   dispatch({type: "SETLOADING", payload: false})
+                   dispatch({type:"SETLOADING", payload:false})
                }}>
             {body}
         </Modal>

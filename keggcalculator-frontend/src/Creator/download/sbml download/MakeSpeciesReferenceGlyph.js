@@ -9,33 +9,25 @@ const MakeSpeciesReferenceGlyph = (props) => {
 
             const subGlyph = {
                 '@': {
-                    'layout:id': ["SpeciesReferenceGlyph_", item.glyphId].join(""),
-                    'layout:speciesReference': item.id,
-                    'layout:speciesGlyph': ["SpeciesGlyph_", item.glyphId].join(""),
-                    'layout:role': "substrate"
+                    'layout:id':["SpeciesReferenceGlyph_",item.glyphId].join(""),
+                    'layout:speciesReference':item.id,
+                    'layout:speciesGlyph':["SpeciesGlyph_",item.glyphId].join(""),
+                    'layout:role':"substrate"
                 },
                 '#': {
                     'layout:curve': {
-                        '#': {
-                            'layout:listOfCurveSegments': {
+                        '#': {'layout:listOfCurveSegments': {
                                 'layout:curveSegment': {
-                                    '@': {
-                                        'xmlns:xsi': "http://www.w3.org/2001/XMLSchema-instance",
-                                        'xsi:type': "LineSegment"
+                                    '@' : {
+                                        'xmlns:xsi':"http://www.w3.org/2001/XMLSchema-instance",
+                                        'xsi:type':"LineSegment"
                                     },
-                                    '#': {
+                                    '#' : {
                                         'layout:start': {'@': {'layout:x': item.x, 'layout:y': item.y}},
                                         'layout:end': {'@': {'layout:x': props[2], 'layout:y': props[3]}}
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+                                    }}}}}}}
 
-            speciesReferenceGlyph.push(subGlyph)
-        })
+            speciesReferenceGlyph.push(subGlyph)})
 
     props[1].map(
         item => {
@@ -43,32 +35,23 @@ const MakeSpeciesReferenceGlyph = (props) => {
 
             const prodGlyph = {
                 '@': {
-                    'layout:id': ["SpeciesReferenceGlyph_", item.glyphId].join(""),
-                    'layout:speciesReference': item.id,
-                    'layout:speciesGlyph': ["SpeciesGlyph_", item.glyphId].join(""),
-                    'layout:role': "product"
+                    'layout:id':["SpeciesReferenceGlyph_",item.glyphId].join(""),
+                    'layout:speciesReference':item.id,
+                    'layout:speciesGlyph':["SpeciesGlyph_",item.glyphId].join(""),
+                    'layout:role':"product"
                 },
                 '#': {
                     'layout:curve': {
-                        '#': {
-                            'layout:listOfCurveSegments': {
+                        '#': {'layout:listOfCurveSegments': {
                                 'layout:curveSegment': {
-                                    '@': {
-                                        'xmlns:xsi': "http://www.w3.org/2001/XMLSchema-instance",
-                                        'xsi:type': "LineSegment"
+                                    '@' : {
+                                        'xmlns:xsi':"http://www.w3.org/2001/XMLSchema-instance",
+                                        'xsi:type':"LineSegment"
                                     },
-                                    '#': {
-                                        'layout:start': {
-                                            '@': {'layout:x': props[2], 'layout:y': props[3]},
-                                            'layout:end': {'@': {'layout:x': item.x, 'layout:y': item.y}}
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+                                    '#' : {
+                                        'layout:start': {'@': {'layout:x': props[2], 'layout:y': props[3]},
+                                            'layout:end': {'@': {'layout:x': item.x, 'layout:y': item.y}}}
+                                    }}}}}}}
             speciesReferenceGlyph.push(prodGlyph)
         }
     )

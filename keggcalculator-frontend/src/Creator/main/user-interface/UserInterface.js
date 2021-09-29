@@ -6,38 +6,29 @@ import UploadModal from "../../upload/main/UploadModal";
 import MultiReactionModal from "../../keggReaction/multiple reactions/MultiReactionModal";
 import NodeConfigurationModal from "../../graph/configurations/NodeConfigurationModal";
 import TextField from "@material-ui/core/TextField";
-import {Drawer, makeStyles, Toolbar, useTheme, withStyles} from "@material-ui/core";
+import {Drawer, makeStyles, Toolbar, useTheme} from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import clsx from "clsx";
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
 import "../../download/DownloadGraph.css"
-import Tooltip from '@material-ui/core/Tooltip';
-
-export const ToolTipBig = withStyles({
-    tooltip: {
-        color: "white",
-        backgroundColor: "rgb(150, 25, 130)",
-        fontSize: "0.8em"
-    }
-})(Tooltip);
 
 const UserInterface = () => {
     const [open, setOpen] = React.useState(true)
     const [drawerOffSet, setDrawerOffset] = React.useState(0)
-    const [coordinates, setCoordinates] = React.useState({x: 0, y: 0})
+    const [coordinates, setCoordinates] = React.useState({x:0, y:0})
     const graphState = useSelector(state => state.graph)
     const dispatch = useDispatch()
 
-    useEffect(() => {
+    useEffect(()=>{
         const headerHeight = document.getElementsByClassName('MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary MuiPaper-elevation4')[0].clientHeight;
         const tabHeight = document.getElementsByClassName("MuiTabs-root")[0].clientHeight
-        setDrawerOffset(tabHeight + headerHeight)
-    }, [])
+        setDrawerOffset(tabHeight+headerHeight)
+    },[])
 
-    useEffect(() => {
-        setCoordinates({x: graphState.chosenCompound.x, y: graphState.chosenCompound.y})
-    }, [graphState.chosenCompound])
+    useEffect(()=>{
+        setCoordinates({x: graphState.chosenCompound.x,y: graphState.chosenCompound.y})
+    },[graphState.chosenCompound])
 
 
     const handleShowSpecReaction = () => {
@@ -47,8 +38,8 @@ const UserInterface = () => {
         dispatch({type: "SWITCHSHOWKEGGREACTION"})
     }
 
-    const handleXChange = async (value) => {
-        await dispatch({type: "SETDATA", payload: {nodes: [], links: []}})
+    const handleXChange = async(value) => {
+        await dispatch({type: "SETDATA", payload: {nodes:[], links:[]}})
         graphState.data.nodes.push({
             id: `${graphState.chosenCompound.id}`,
             opacity: graphState.chosenCompound.opacity,
@@ -63,8 +54,8 @@ const UserInterface = () => {
         await dispatch({type: "SETDATA", payload: data})
     }
 
-    const handleYChange = async (value) => {
-        await dispatch({type: "SETDATA", payload: {nodes: [], links: []}})
+    const handleYChange = async(value) => {
+        await dispatch({type: "SETDATA", payload: {nodes:[], links:[]}})
         graphState.data.nodes.push({
             id: `${graphState.chosenCompound.id}`,
             opacity: graphState.chosenCompound.opacity,
@@ -83,9 +74,10 @@ const UserInterface = () => {
     const theme = useTheme()
     const useStyles = makeStyles({
         drawerPaper: {
-            position: "absolute",
+            position:"absolute",
             top: `${drawerOffSet}px`,
-            height: "80vh"
+            height:"80vh"
+
         }
     });
 
@@ -93,17 +85,14 @@ const UserInterface = () => {
     return (
         <div>
             <Toolbar>
-                <ToolTipBig title={"Click to open the menu"} placement={"right"}>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={() => setOpen(true)}
-                        className={clsx({marginRight: theme.spacing(2)}, open && {display: "none"})}
-                    >
-                        {!open && <MenuIcon/>}
-                    </IconButton>
-                </ToolTipBig>
-
+                <IconButton
+                    color="inherit"
+                    aria-label="open drawer"
+                    onClick={() => setOpen(true)}
+                    className={clsx({marginRight: theme.spacing(2)}, open && {display: "none"})}
+                >
+                    {!open && <MenuIcon/>}
+                </IconButton>
             </Toolbar>
             <Drawer
                 style={{
@@ -119,97 +108,68 @@ const UserInterface = () => {
                 }}
             >
                 <div className={"interfaceContainer"}>
-                    <ToolTipBig title={"Click for closing the menu"} placement={"right"}>
-                        <IconButton onClick={() => setOpen(false)}>
-                            {<CloseIcon/>}
-                        </IconButton>
-                    </ToolTipBig>
+                    <IconButton onClick={() => setOpen(false)}>
+                        {<CloseIcon/>}
+                    </IconButton>
                     <div className={"uploadFilesContainer"}>
                         <div>
-                            <ToolTipBig title={"Click for entering the upload section"} placement={"right"}>
-                                <button className={"downloadButton"}
-                                        onClick={() => dispatch({type: "SWITCHUPLOADMODAL"})}>Upload
-                                </button>
-                            </ToolTipBig>
-                            <UploadModal setOpen={setOpen}/>
+                            <button className={"downloadButton"}
+                                    onClick={() => dispatch({type: "SWITCHUPLOADMODAL"})}>Upload
+                            </button>
+                            <UploadModal/>
                         </div>
                     </div>
                     <div className={"helpContainer"}>
-                        <ToolTipBig title={"Click for receiving help"} placement={"right"}>
-                            <button className={"downloadButton"}
-                                    onClick={() => {
-                                        dispatch({type: "ADD_HELP_TO_AUDIT_TRAIL"})
-                                        dispatch({type: "SWITCHSHOWUSERINFO"})
-                                    }}>Help
-                            </button>
-                        </ToolTipBig>
+                        <button className={"downloadButton"}
+                                onClick={() => dispatch({type: "SWITCHSHOWUSERINFO"})}>Help
+                        </button>
                     </div>
                     <div>
-                        <ToolTipBig title={"Click for changing the visualization of the pathway"} placement={"right"}>
-                            <button className={"downloadButton"}
-                                    onClick={() => {
-                                        dispatch({type: "SWITCHNODECONFIGURATIONMODAL"})
-                                    }}>node configurations
-                            </button>
-                        </ToolTipBig>
+                        <button className={"downloadButton"} onClick={() => {
+                            dispatch({type: "SWITCHNODECONFIGURATIONMODAL"})
+                        }}>node configurations
+                        </button>
                         <NodeConfigurationModal/>
                     </div>
                     <div className={"keggReaction"}>
-                        <ToolTipBig title={"Click for adding a reaction from KEGG"} placement={"right"}>
-                            <button className={"downloadButton"}
-                                    onClick={handleShowKeggReaction}>Add Kegg
-                                Reaction
-                            </button>
-                        </ToolTipBig>
+                        <button className={"downloadButton"} onClick={handleShowKeggReaction}>Kegg
+                            Reactions
+                        </button>
                     </div>
                     <div className={"userReaction"}>
-                        <ToolTipBig title={"Click for defining your own reaction"} placement={"right"}>
-                            <button className={"downloadButton"}
-                                    onClick={handleShowSpecReaction}>Add User-defined
-                                Reaction
-                            </button>
-                        </ToolTipBig>
+                        <button className={"downloadButton"} onClick={handleShowSpecReaction}>User-defined
+                            Reactions
+                        </button>
                     </div>
                     <div>
-                        <ToolTipBig title={"Click for importing multiple reactions"} placement={"right"}>
-                            <button className={"downloadButton"}
-                                    onClick={() => dispatch({type: "SWITCHMULTIREACTIONMODAL"})}>import multiple
-                                reactions
-                            </button>
-                        </ToolTipBig>
+                        <button className={"downloadButton"}
+                                onClick={() => dispatch({type: "SWITCHMULTIREACTIONMODAL"})}>import multiple reactions
+                        </button>
                         <MultiReactionModal/>
                     </div>
                     <div className={"downloadContainer"}>
                         <div>
-                            <ToolTipBig title={"Click for importing multiple reactions"} placement={"right"}>
-                                <button className={"downloadButton"}
-                                        onClick={() => dispatch({type: "SWITCHDOWNLOADMODAL"})}>Download
-                                </button>
-                            </ToolTipBig>
+                            <button className={"downloadButton"}
+                                    onClick={() => dispatch({type: "SWITCHDOWNLOADMODAL"})}>Download
+                            </button>
                         </div>
                         <DonwloadModal/>
                     </div>
-                    {graphState.doubleClickNode.length > 0 &&
-                    <div style={{width: "15vw", height: "25vh", overflow: "auto", margin: "3px"}}>
+                    {graphState.doubleClickNode.length > 0 && <div style={{width:"15vw", height:"25vh", overflow:"auto", margin:"3px"}}>
                         {graphState.chosenCompound.id}
                         <div>x:</div>
-                        <ToolTipBig title={"x-coordinate for chosen node"} placement={"right"}>
-                            <TextField type={"number"} id={"x coordinates"}
-                                       value={coordinates.x}
-                                       onChange={(e) => {
-                                           handleXChange(e.target.value)
-                                       }}/>
-                        </ToolTipBig>
+                        <TextField type={"number"} id={"x coordinates"}
+                                   value={coordinates.x}
+                                   onChange={(e) => {
+                                       handleXChange(e.target.value)
+                                   }}/>
                         <div>y:</div>
-                        <ToolTipBig title={"y-coordinate for chosen node"} placement={"right"}>
-                            <TextField type={"number"} id={"y coordinates"}
-                                       value={coordinates.y}
-                                       onChange={(e) => {
-                                           handleYChange(e.target.value)
-                                           // dispatch({type: "SETY", payload: e.target.value})
-                                       }}/>
-                        </ToolTipBig>
-
+                        <TextField type={"number"} id={"y coordinates"}
+                                   value={coordinates.y}
+                                   onChange={(e) => {
+                                       handleYChange(e.target.value)
+                                       // dispatch({type: "SETY", payload: e.target.value})
+                                   }}/>
                     </div>}
                 </div>
             </Drawer>

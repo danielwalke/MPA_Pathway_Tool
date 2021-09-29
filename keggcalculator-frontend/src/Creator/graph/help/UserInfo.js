@@ -9,7 +9,7 @@ const UserInfo = () => {
     const classes = useStyles()
 
     const body = (
-        <div className={classes.paper} style={{maxHeight: "60vh", overflow: "auto", width: "60vw"}}>
+        <div className={classes.paper} style={{maxHeight:"60vh", overflow:"auto", width:"60vw"}}>
             <h1>Help</h1>
             <div>
                 <p>The MPA_Pathway_Tool is a new stand-alone web application for creating your own metabolic pathways

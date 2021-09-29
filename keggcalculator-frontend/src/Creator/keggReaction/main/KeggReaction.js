@@ -26,8 +26,8 @@ const KeggReaction = () => {
     const classes = useStyles()
     const state = useSelector(state => state.general)
     const dispatch = useDispatch()
-    const body = (
-        <div className={classes.paper} style={{width: "40vw"}}>
+    const body=(
+        <div className={classes.paper} style={{width:"40vw"}}>
             <div>
                 <Substrate className={"substrate"}/>
                 <Product className={"product"}/>
@@ -36,7 +36,7 @@ const KeggReaction = () => {
         </div>
     )
 
-    return (
+    return(
         <Modal className={classes.modal} open={state.showKeggReaction}
                onClose={() => dispatch({type: "SWITCHSHOWKEGGREACTION"})}>
             {body}

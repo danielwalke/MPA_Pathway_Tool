@@ -1,4 +1,4 @@
-.heatmapContainer {
+.heatmapContainer{
     display: grid;
     gap: 2px;
     grid-template-rows: 1fr 1fr;
@@ -7,38 +7,35 @@
 "name sample0 sample1 sample2 sample3";
 }
 
-.sampleNameContainer0 {
+.sampleNameContainer0{
     grid-area: sampleName1;
 }
 
-.sampleNameContainer1 {
+.sampleNameContainer1{
     grid-area: sampleName2;
 }
 
-.sampleNameContainer2 {
+.sampleNameContainer2{
     grid-area: sampleName3;
 }
 
-.sampleNameContainer3 {
+.sampleNameContainer3{
     grid-area: sampleName4;
 }
 
-.sampleContainer {
+.sampleContainer{
     grid-area: name;
 }
 
-.nameContainer0 {
+.nameContainer0{
     grid-area: sample0;
 }
-
-.nameContainer1 {
+.nameContainer1{
     grid-area: sample1;
 }
-
-.nameContainer2 {
+.nameContainer2{
     grid-area: sample2;
 }
-
-.nameContainer3 {
+.nameContainer3{
     grid-area: sample3;
 }

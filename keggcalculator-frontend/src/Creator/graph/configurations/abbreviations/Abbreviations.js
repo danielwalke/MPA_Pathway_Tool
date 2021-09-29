@@ -3,7 +3,6 @@ import Modal from "@material-ui/core/Modal";
 import React from "react";
 import {makeStyles} from "@material-ui/core";
 import "./Abbreviation.css"
-import {ToolTipBig} from "../../../main/user-interface/UserInterface";
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -63,7 +62,6 @@ const Abbreviation = () => {
                 state.abbreviationsObject[`${filteredNode}`] = nodeAbbr
             })
         }
-        dispatch({type: "ADD_ABBREVIATION_TO_AUDIT_TRAIL", payload: state.abbreviationsObject})
         dispatch({type: "SETABBREVIATIONOBJECT", payload: state.abbreviationsObject})
 
     }
@@ -77,19 +75,15 @@ const Abbreviation = () => {
                 return (
                     <div key={node} className={"abbreviationContainer"}>
                         <div className={"abbreviation"}>
-                            <ToolTipBig title={"Enter an abbreviation"} placement={"right"}>
-                                <input name={"otherNodes"} type={"text"}
-                                       defaultValue={defValue}
-                                       onChange={(e) => handleAbbreviationChange(e, node)}/>
-                            </ToolTipBig>
+                            <input name={"otherNodes"} type={"text"}
+                                   defaultValue={defValue}
+                                   onChange={(e) => handleAbbreviationChange(e, node)}/>
                         </div>
                         <div className={"fullName"}>=> {node}</div>
                         <div className={"submitAbbreviation"}>
-                            <ToolTipBig title={"Submit your abbreviation"} placement={"right"}>
-                                <button name={"otherNodes"} className={"downloadButton"}
-                                        onClick={(e) => handleSubmitAbbreviation(e, node, defValue)}>Submit
-                                </button>
-                            </ToolTipBig>
+                            <button name={"otherNodes"} className={"downloadButton"}
+                                    onClick={(e) => handleSubmitAbbreviation(e, node, defValue)}>Submit
+                            </button>
                         </div>
 
                     </div>)
@@ -99,19 +93,15 @@ const Abbreviation = () => {
                 return (
                     <div key={compound} className={"abbreviationContainer"}>
                         <div className={"abbreviation"}>
-                            <ToolTipBig title={"Enter an abbreviation"} placement={"right"}>
-                                <input name={"abundantNodes"} type={"text"}
-                                       defaultValue={defValue}
-                                       onChange={(e) => handleAbbreviationChange(e, compound)}/>
-                            </ToolTipBig>
+                            <input name={"abundantNodes"} type={"text"}
+                                   defaultValue={defValue}
+                                   onChange={(e) => handleAbbreviationChange(e, compound)}/>
                         </div>
                         <div className={"fullName"}>=> {compound}</div>
                         <div className={"submitAbbreviation"}>
-                            <ToolTipBig title={"Submit your abbreviation"} placement={"right"}>
-                                <button name={"abundantNodes"} className={"downloadButton"}
-                                        onClick={(e) => handleSubmitAbbreviation(e, compound, defValue)}>Submit
-                                </button>
-                            </ToolTipBig>
+                            <button name={"abundantNodes"} className={"downloadButton"}
+                                    onClick={(e) => handleSubmitAbbreviation(e, compound, defValue)}>Submit
+                            </button>
                         </div>
 
                     </div>

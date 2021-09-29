@@ -13,14 +13,13 @@ const MakeSpeciesGlyphObjList = (speciesRaw) => {
             },
             '#': {
                 'layout:boundingBox': {
-                    '@': {'layout:id': "bb2"},
+                    '@': {'layout:id':"bb2"},
                     '#': {
                         'layout:position': {
                             '@': {
                                 'layout:x': String(species.x),
                                 'layout:y': String(species.y),
-                            }
-                        },
+                            }},
                         'layout:dimensions': {
                             '@': {
                                 'layout:width': "20",

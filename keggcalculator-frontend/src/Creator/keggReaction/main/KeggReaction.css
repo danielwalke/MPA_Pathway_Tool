@@ -11,7 +11,7 @@
     "reaction";
 }
 
-.close {
+.close{
     grid-area: close;
     color: white;
     font-size: clamp(5px, 1vw, 10px);

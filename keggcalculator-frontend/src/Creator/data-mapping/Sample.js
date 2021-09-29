@@ -2,7 +2,6 @@ import React from "react"
 import {useDispatch, useSelector} from "react-redux";
 import "./Sample.css"
 import {filterTaxon} from "./TaxonomyFilter";
-import {ToolTipBig} from "../main/user-interface/UserInterface";
 
 
 const matchKoOrEc = (proteinKoAndEc, reactionKoNumbers, reactionEcNumbers) => {
@@ -54,10 +53,10 @@ const handleSample = (e, index, state, dispatch) => {
         };
     })
 //     const sampleObject = sampleObjectList[index]
-    const data = {nodes: [], links: state.graph.data.links}
+    const data={nodes:[], links: state.graph.data.links}
     const nodes = []
     const compoundNodes = state.graph.data.nodes.filter(node => node.symbolType !== "diamond")
-    const newReactionNodes = reactionNodes.map(node => {
+    const newReactionNodes = reactionNodes.map(node=>{
         const reaction = reactions.filter(r => node.id === r.nodeId)[0]
         if (reaction.hasMatchedProtein) {
             if (+reaction.quantSum < state.mpaProteins.midQuantUser3) {
@@ -72,11 +71,11 @@ const handleSample = (e, index, state, dispatch) => {
         }
         return node
     })
-    compoundNodes.map(node => nodes.push(node))
+compoundNodes.map(node => nodes.push(node))
     newReactionNodes.map(node => nodes.push(node))
     data.nodes = nodes
     dispatch({type: "SETDATA", payload: data})
-    dispatch({type: "SETLOADING", payload: false})
+    dispatch({type:"SETLOADING", payload:false})
     console.timeEnd("calc")
 }
 
@@ -85,7 +84,7 @@ const Sample = () => {
     const dispatch = useDispatch()
     //getSampleColumnSizes(state.proteinState.sampleNames)
     return (
-        <div>
+        <div style={{}}>
             {state.mpaProteins.proteinSet.size > 0 &&
             <div style={{
                 display: "grid",
@@ -95,19 +94,18 @@ const Sample = () => {
             }}>
                 {state.mpaProteins.sampleNames.map((sampleName, index) => <div
                     style={{width: "inherit", overflowX: "scroll"}}>
-                    <ToolTipBig title={`Click for mapping experimental data of the sample ${sampleName} on the pathway`}
-                                placement={"top"}>
-                        <button
-                            key={"B".concat(index.toString())}
-                            className={"sampleButton"}
-                            onClick={(e) => handleSample(e, index, state, dispatch)}>
-                            {sampleName}
-                        </button>
-                    </ToolTipBig>
+                    <button
+                        key={"B".concat(index.toString())}
+                        className={"sampleButton"}
+                        onClick={(e) => handleSample(e, index, state, dispatch)}>
+                        {sampleName}
+                    </button>
                 </div>)}
             </div>
             }
         </div>
+
+
     )
 }
 export default Sample
