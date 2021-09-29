@@ -2,6 +2,8 @@ import clonedeep from "lodash/cloneDeep";
 
 const defaultState = {
     biggCompoundList: [],
+    kegg2BiggCompoundList: {},
+    listOfUniversalBiggSpecies: [],
     compoundList: [],//mount?
     compMap: new Map(),//mount
     loading: false,//general
@@ -55,7 +57,10 @@ const defaultState = {
     listOfReactionGlyphs: [], //positons of nodes in sbml file
     taxonomicNames: [], //taxonomic names received from server after submitting taxonomic rank
     mappingStart: "", //start time of mapping
-    mappingEnd: "" //end time of mapping
+    mappingEnd: "", //end time of mapping
+    autoCompleteCompoundsList: {},
+    biggIdSelectionList: {},
+    biggCompoundsForModel: new Map(), // Array of selected Bigg ids
 
 }
 
@@ -201,6 +206,16 @@ export const generalReducer = (state = defaultState, action) => {
             return {...state, mappingEnd: payload}
         case "SET_BIGG_COMPOUND_LIST":
             return {...state, biggCompoundList: payload}
+        case "SET_KEGG2BIGG_COMPOUND_LIST":
+            return {...state, kegg2BiggCompoundList: payload}
+        case "SET_LIST_OF_UNIVERSAL_BIGG_SPECIES":
+            return {...state, listOfUniversalBiggSpecies: payload}
+        case "SET_AUTO_COMPLETE_COMPOUNDS":
+            return {...state, autoCompleteCompoundsList: payload}
+        case "SET_BIGG_ID_SELECTION":
+            return {...state, biggIdSelectionList: payload}
+        case "SET_BIGG_COMPOUNDS_FOR_MODEL":
+            return {...state, biggCompoundsForModel: payload}
         default:
             return state;
     }

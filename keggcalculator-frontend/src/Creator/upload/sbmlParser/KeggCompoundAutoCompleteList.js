@@ -49,7 +49,7 @@ export const useResetCache = (data) => {
 }
 
 // Adapter for react-window
-const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) {
+export const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) {
     const {children, ...other} = props;
     const itemData = React.Children.toArray(children);
     const itemCount = itemData.length;
@@ -81,30 +81,34 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
 });
 
 const KeggCompoundAutoCompleteList = (props) => {
-    const [completeCompoundList, setCompleteCompoundList] = React.useState([])
-    const state = useSelector(state => state)
     const dispatch = useDispatch()
+    const state = useSelector(state => state)
     const classes = useStylesList();
+
+    const [completeCompoundList, setCompleteCompoundList] = React.useState([])
+
     useEffect(() => {
         setCompleteCompoundList(Object.values(state.general.compoundId2Name))
     }, [state.general.isAnnotationPurpose])
 
     return (
-        <Autocomplete
+            <Autocomplete
             onChange={(event, value) => {
-                props.autoCompounds[props.index] = value;
-                props.setAutoCompounds(props.autoCompounds)
+                // sets "autoCompounds" and updates the global state
+                props.data[props.index] = value;
+                dispatch({type: "SET_AUTO_COMPLETE_COMPOUNDS", payload: props.data})
+
+                // props.setAutoCompounds(props.autoCompounds)
             }} //dispatch({type:"SETANNOTATION", payload: value})
             id="AnnotationSelector"
-            style={{width: "70%"}}
-            disableListWrap
-            value={props.autoCompounds[props.index]}
+            style={{width: "50%"}}
+            value={props.data[props.index]}
             classes={classes}
             ListboxComponent={ListboxComponent}
             options={completeCompoundList}
-            renderInput={(params) => <TextField {...params} variant="outlined" label="KEGG Compound"/>}
-        />
-
+            renderInput={(params) => (
+                <TextField {...params} variant="outlined" label="KEGG Compound"/>)}
+            />
     );
 };
 

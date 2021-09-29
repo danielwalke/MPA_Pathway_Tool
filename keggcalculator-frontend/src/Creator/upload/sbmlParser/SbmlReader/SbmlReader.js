@@ -35,10 +35,11 @@ const SbmlReader = () => {
                    name={"module-file"}
                    onChange={(event) => onSBMLModuleFileChange(event, dispatch, state)}/>
             <br/>
-            <div
-                className={"fileName"}>{state.general.moduleFileNameSbml.length > 0 ? state.graph.moduleFileNameJson : "No file selected"}</div>
-            {state.general.isAnnotationPurpose && <AnnotationModal/>}
+            <div className={"fileName"}>
+                {state.general.moduleFileNameSbml.length > 0 ? state.graph.moduleFileNameJson : "No file selected"}
+            </div>
             {state.general.isMissingAnnotations && <AnnotationWarningModal/>}
+            {state.general.isAnnotationPurpose && <AnnotationModal/>}
             {state.general.isShowingReactionTable && <ReactionTableList/>}
         </div>
     );

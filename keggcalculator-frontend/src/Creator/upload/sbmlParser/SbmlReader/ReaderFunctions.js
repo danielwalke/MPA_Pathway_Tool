@@ -140,7 +140,7 @@ const getTaxonomyFromSbml = (annotations, taxa) => {
 }
 
 //checks if ListOfSpecies contains missing compound annotaations
-const checkMissingAnnotations = (listOfSpecies, dispatch) => {
+const checkMissingAnnotations = (listOfSpecies) => {
     const unAnnotatedIds = listOfSpecies.filter(species => species.keggId.match(/[K][0-9][0-9][0-9][0-9][0-9]/));
     const isMissingAnnotations = unAnnotatedIds.length > 0;
     return isMissingAnnotations

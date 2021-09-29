@@ -80,7 +80,6 @@ const GraphVisualization = () => {
         link: {
             highlightColor: "lightblue",
             strokeWidth: 2
-
         },
         d3: {
             gravity: -80,

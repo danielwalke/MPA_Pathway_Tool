@@ -9,7 +9,10 @@ import {useStyles} from "../../ModalStyles/ModalStyles";
 import {useDispatch, useSelector} from "react-redux";
 import {FixedSizeList as List} from "react-window";
 import KeggCompoundAutoCompleteList from "./KeggCompoundAutoCompleteList";
+import BiggCompoundAutoCompleteList from "./BiggCompoundAutoCompleteList";
 import {addCompoundsToReactions} from "./ReactionCompoundsAdder";
+import clonedeep from "lodash/cloneDeep";
+import {deepClone} from "react-d3-graph/lib/utils";
 
 const exchangeAt = (index, item, array) => {
     const lastItems = array.filter((item, arrayIndex) => arrayIndex > index)
@@ -42,15 +45,22 @@ const submit = (state, dispatch, listOfSpecies) => {
     dispatch({type: "SETISSHOWINGREACTIONTABLE", payload: true})
 }
 
-
 const AnnotationModal = () => {
     const dispatch = useDispatch()
     const state = useSelector(state => state)
-    const [autoCompleteCompounds, setAutoCompleteCompounds] = useState({}) //this state stores the value for the autocomplete selectzor
-    const [unAnnotatedCompounds, setUnAnnotatedCompounds] = useState([])
-    const [annotatedCompounds, setAnnotatedCompounds] = useState([])
     const classes = useStyles()
 
+    const [unAnnotatedCompounds, setUnAnnotatedCompounds] = useState([])
+    const [annotatedCompounds, setAnnotatedCompounds] = useState([])
+
+    const [universalBiggIdList, setUniversalBiggIdList] = useState([])
+
+    // const [autoCompleteCompounds, setAutoCompleteCompounds] = useState({}) //this state stores the value for the autocomplete selectzor
+    const autoCompleteCompoundsList = state.general.autoCompleteCompoundsList
+    const biggIdSelectionList = state.general.biggIdSelectionList
+
+    console.log(autoCompleteCompoundsList)
+    console.log(biggIdSelectionList)
 
     useEffect(() => {
         const newListOfSpecies = [];
@@ -62,15 +72,24 @@ const AnnotationModal = () => {
     useEffect(() => {
         const listOfSpecies = state.general.listOfSpecies;
         const unAnnotatedCompList = listOfSpecies.filter(species => species.keggId.match(`K[0-9][0-9][0-9][0-9][0-9]`));
-        const autoCompleteCompoundsList = {}
-        unAnnotatedCompList.map((comp, index) => autoCompleteCompoundsList[`${index}`] = comp.keggId)
-        setAutoCompleteCompounds(autoCompleteCompoundsList)
+
+        unAnnotatedCompList.map((comp, index) => {
+            autoCompleteCompoundsList[`${index}`] = comp.keggId
+            biggIdSelectionList[`${index}`] = ""
+        })
+        // setAutoCompleteCompounds(autoCompleteCompoundsList)
+        dispatch({type: "SET_AUTO_COMPLETE_COMPOUNDS", payload: autoCompleteCompoundsList})
+        dispatch({type: "SET_BIGG_ID_SELECTION", payload: biggIdSelectionList})
+
         setUnAnnotatedCompounds(unAnnotatedCompList)
         setAnnotatedCompounds(listOfSpecies.filter(species => !species.keggId.match(`K[0-9][0-9][0-9][0-9][0-9]`)))
+
+        setUniversalBiggIdList([...new Set(state.general.biggCompoundList.map(id => {return id.universalBiggId}))])
     }, [state.general.isAnnotationPurpose])
 
     //each row in the modal is virtualized with react-window -> each row is respective for an unannotated Compound
-    const AnnotationRow = ({index, style}) => {
+    const AnnotationRow = (props) => {
+        const {data, index, style} = props
         const unAnnotatedCompound = unAnnotatedCompounds[index];
         return (
             <div style={style}>
@@ -83,24 +102,26 @@ const AnnotationModal = () => {
                     height: "12vh"
                 }}>
                     <div style={{
-                        width: "20%",
+                        width: "32%",
                         overFlow: "auto"
                     }}>
-                        {unAnnotatedCompound.sbmlId.concat("_" + unAnnotatedCompound.sbmlName)}</div>
+                        {unAnnotatedCompound.sbmlId.concat("_" + unAnnotatedCompound.sbmlName)}
+                    </div>
                     {/*sbml Name and Id*/}
-                    <div style={{width: "54%"}}>
-                        <KeggCompoundAutoCompleteList autoCompounds={autoCompleteCompounds}
-                                                      setAutoCompounds={setAutoCompleteCompounds}
-                                                      index={index}/>{/*list of all kegg compounds*/}
+                    <div style={{width: "30%"}}>
+                        <KeggCompoundAutoCompleteList index={index}
+                                                      data={data}/>{/*list of all kegg compounds*/}
+                    </div>
+                    <div style={{width: "30%"}}>
+                        <BiggCompoundAutoCompleteList index={index}
+                                                      data={data}
+                                                      universalBiggIdList={universalBiggIdList}/>
                     </div>
                     <div style={{width: "8%"}}>
                         <button
-                            onClick={() => submitAnnotation(unAnnotatedCompound, autoCompleteCompounds[index], dispatch, setUnAnnotatedCompounds, index, unAnnotatedCompounds)} //state.general.annotation
+                            onClick={() => submitAnnotation(unAnnotatedCompound, autoCompleteCompoundsList[index], dispatch, setUnAnnotatedCompounds, index, unAnnotatedCompounds)} //state.general.annotation
                             className={"downloadButton"}>Submit{/*submit annotation*/}
                         </button>
-                    </div>
-                    <div style={{width: "18%", overflow: "auto", height: "10vh"}}>
-                        {autoCompleteCompounds[index]}
                     </div>
                 </div>
             </div>
@@ -109,20 +130,23 @@ const AnnotationModal = () => {
 
     const annotationModal = (
         <div className={classes.paper} style={{width: "80vw", height: "80vh", overflow: "auto"}}>
-            <List itemCount={unAnnotatedCompounds.length} onItemsRendered={unAnnotatedCompounds}
+            <List itemCount={unAnnotatedCompounds.length}
+                  itemData={autoCompleteCompoundsList}
+                  onItemsRendered={unAnnotatedCompounds}
+                  useIsScrolling={false}
                   height={window.innerHeight * 0.5}
                   itemSize={window.innerHeight * 0.1}>{AnnotationRow}</List>
             <button onClick={() => {
                 const newListOfSpecies = [];
                 annotatedCompounds.map(compound => newListOfSpecies.push(compound))
                 unAnnotatedCompounds.map(compound => newListOfSpecies.push(compound))
-                console.log(unAnnotatedCompounds)
                 submit(state, dispatch, newListOfSpecies)
             }} className={"downloadButton"} style={{width: "20vw"}}>finish
             </button>
             {/*submit all annotation*/}
         </div>
     )
+
     return (
         <div>
             <Modal className={classes.modal} open={state.general.isAnnotationPurpose}>
