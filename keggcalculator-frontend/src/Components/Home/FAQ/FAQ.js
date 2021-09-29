@@ -12,12 +12,10 @@ const FAQ = (props) => {
     }, [props, questionList])
     return (
         <div style={{width: "100%"}}>
-            <Typography style={{margin: "2px 0"}} variant="h7" component="h3">{name}</Typography>
-            {listOfQuestions.map((question, index) => <Question index={index + 1}
-                                                                panelId={"panel".concat((index + 1).toString())}
+            <Typography style={{margin:"2px 0"}} variant="h7" component="h3">{name}</Typography>
+            {listOfQuestions.map((question, index) => <Question index={index+1} panelId={"panel".concat((index+1).toString())}
                                                                 question={question.question}
-                                                                answer={question.answer}
-                                                                link={question.link}/>)}
+                                                                answer={question.answer}/>)}
         </div>
     );
 };

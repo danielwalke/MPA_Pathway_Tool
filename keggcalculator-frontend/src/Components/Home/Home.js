@@ -5,7 +5,7 @@ import Tab from "@material-ui/core/Tab";
 import SvgIcon from "@material-ui/core/SvgIcon";
 import CreateIcon from '@material-ui/icons/Create';
 import HomeIcon from '@material-ui/icons/Home';
-import {BrowserRouter, NavLink, Route, Switch} from "react-router-dom"
+import {BrowserRouter, NavLink, Route,Redirect, Switch} from "react-router-dom"
 import UploadPanel from "../Module Calculator/UploadPanel";
 import {requestGenerator} from "../../Request Generator/RequestGenerator";
 import {endpoint_getCompoundList} from "../../App Configurations/RequestURLCollection";
@@ -13,39 +13,34 @@ import {inject, observer} from "mobx-react";
 import App from "../../Creator/main/App"
 import Start from "./Start";
 import {makeStyles} from "@material-ui/core";
-import {getLastItemOfList} from "../../Creator/usefulFunctions/Arrays";
-import {Redirect} from 'react-router'
-import {host} from "../../App Configurations/SystemSettings";
-import Footer from "../Footer/Footer";
+import FluxHome from "../FluxHome/FluxHome";
+
+// const styles = theme =>({
+//     indicator:{
+//         backgroundColor: "red"
+//     }
+// })
 
 class Home extends Component {
 
     constructor(props) {
         super(props);
-        const lastTab = "home"//this.getLastTab(window.location.href)
         this.state = {
-            selectedTab: `/${lastTab}`,
+            selectedTab: "/home",
             reload: true,
         }
         this.changeState = this.changeState.bind(this)
-        this.getLastTab = this.getLastTab.bind(this)
-    }
-
-    getLastTab = (url) => {
-        const urlEntries = url.split("/")
-        return getLastItemOfList(urlEntries)
     }
 
     componentDidMount() {
-        //TODO: delete the following line after fixing haproxy error
-        if (host !== "http://127.0.0.1") window.location.href = 'http://141.44.141.132:9001/home'
         requestGenerator("GET", endpoint_getCompoundList, "", "").then(response => {
             this.props.ModuleStore.addCompounds(response.data);
         })
+        // this.changeState("selectedTab", "/home")
         this.changeState("reload", false)
     }
 
-    changeState(stateName, value) {
+    changeState(stateName, value){
         this.setState({[stateName]: value})
     };
 
@@ -61,19 +56,17 @@ class Home extends Component {
                             <BrowserRouter>
                                 <CustomTabs state={this.state} changeState={this.changeState}/>
                                 <Switch>
-                                    {this.state.reload ? <Redirect to={"/home"} target="_blank"/> : null}
+                                    {this.state.reload? <Redirect to={"/home"}/> : null}
                                     {/*<div><h3 style={{margin: "5% 0 0 0"}}>Under Construction</h3> <img style={{width: "70%", padding: "3%"}} src={underConstruction}/></div>*/}
                                     <Route path={"/home"}><Start changeState={this.changeState}/></Route>
-                                    <Route path={"/creator"}><App changeState={this.changeState}/></Route>
-                                    <Route path={"/calculator"}> <UploadPanel changeState={this.changeState}/></Route>
+                                    <Route path={"/creator"}><App/></Route>
+                                    <Route path={"/calculator"}> <UploadPanel/> </Route>
+                                    <Route path={"/fluxhome"}> <FluxHome changeState={this.changeState}/></Route>
                                 </Switch>
                             </BrowserRouter>
                         </div>
                     </div>
                 </main>
-                {this.state.selectedTab === "/home" && <footer>
-                    <Footer/>
-                </footer>}
             </div>
         );
     }
@@ -81,21 +74,21 @@ class Home extends Component {
 
 export default inject("ModuleStore")(observer(Home));
 
-const CustomTabs = (props) => {
+const CustomTabs = (props) =>{
     const useStyles = makeStyles({
-        indicator: {
-            backgroundColor: "rgb(150, 25, 130)",
-            height: "5px"
+        indicator:{
+            backgroundColor:"rgb(150, 25, 130)",
+            height:"5px"
         }
     })
     const classes = useStyles()
     const {state, changeState} = props
-    return (
+    return(
         <Tabs variant={"fullWidth"} textColor={"primary"} indicatorColor={"primary"} orientation={"horizontal"}
               scrollButtons={"auto"}
-              classes={
-                  {indicator: classes.indicator}
-              }
+            classes={
+                {indicator: classes.indicator}
+            }
               value={state.selectedTab}
               onChange={(event, tabValue) => changeState("selectedTab", tabValue)}>
             <Tab icon={<HomeIcon/>} to={"/home"}
@@ -109,6 +102,8 @@ const CustomTabs = (props) => {
                  value={"/calculator"} label={"Pathway-Calculator"}
                  to={"/calculator"} component={NavLink}
             />
+            <Tab icon={<CreateIcon/>} to={"/FluxHome"}
+                 value={"/FluxHome"} label={"Flux_Analysis"} component={NavLink}/>
         </Tabs>
     )
 }

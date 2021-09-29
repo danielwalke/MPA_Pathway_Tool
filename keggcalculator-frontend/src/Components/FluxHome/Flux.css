@@ -1,0 +1,121 @@
+.raw-to-product {
+    display: flex;
+    /*flex-direction: row;*/
+    justify-content: center;
+}
+
+/*.circle-raw, .circle-product {*/
+/*    width: 150px;*/
+/*    height: 150px;*/
+/*    border-radius: 50%;*/
+/*    color: white;*/
+/*    border-color: black;*/
+/*    border-style: solid;*/
+/*    border-width: 2px;*/
+/*}*/
+
+/*.reaction {*/
+/*    width: 100px;*/
+/*    height: 100px;*/
+/*    border-color: black;*/
+/*    border-style: solid;*/
+/*    border-width: 2px;*/
+/*    transform: rotate(45deg);*/
+/*    margin: 25px 20px;*/
+/*}*/
+
+/*.arrow-head {*/
+/*    font-size: 100px;*/
+/*    font-weight: 100;*/
+/*    font-family: sans-serif;*/
+/*    color: black;*/
+/*    margin: 15px 10px;*/
+/*}*/
+
+.card-module {
+    transition: 1s;
+    cursor: pointer;
+    width: 250px;
+    height: 300px;
+    color: #941680 !important;
+    background: white;
+    border-radius: 10% !important;
+    border-style: solid;
+    border-color: #941680;
+    border-width: thin;
+    user-select: none;
+}
+
+.card-module:hover {
+    transition: 0.5s;
+    backface-visibility: hidden;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px 0 gray;
+}
+
+.main{
+    width: 98vw;
+    display: grid;
+    height: 65vh;
+    grid-template-columns: 1% 99%;
+    grid-template-rows: 95% 5%;
+    grid-template-areas: "interface graph"
+"heatmap heatmap";
+}
+
+.interface{
+    grid-area: interface;
+}
+.graph{
+    grid-area: graph;
+}
+
+.footer{
+    grid-area: heatmap;
+}
+.side-bar{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #941680;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+
+}
+.submit{
+    padding-top: 2.5%;
+    border-radius: 20vw;
+    position: relative;
+    height: 10vh;
+    color: darkblue;
+    align-content: baseline;
+    background-color: white;
+    font-size: large;
+    font-weight: bold;
+    display: inline-flex;
+    flex-direction: column;
+    border: none;
+    margin: auto;
+    outline: none;
+    z-index: 1;
+}
+
+@media screen and (max-width: 700px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+    .sidebar a {float: left;}
+    div.content {margin-left: 0;}
+  }
+  
+  /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+  @media screen and (max-width: 400px) {
+    .sidebar a {
+      text-align: center;
+      float: none;
+    }
+  }

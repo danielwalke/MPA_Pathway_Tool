@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React,{Component} from "react";
 import "./RawToProduct.css"
 import circle from "../SVG Elements/circle.svg";
 import rightArrow from "../SVG Elements/right arrow.svg";
@@ -41,11 +41,11 @@ class RawToProduct extends Component {
         this.rawToProduct = this.rawToProduct.bind(this)
     }
 
-    changeState(stateField, value) {
+    changeState(stateField, value){
         this.setState({[stateField]: value})
     };
 
-    rawToProduct() {
+    rawToProduct(){
         return (
             <div className={"raw-to-product"}>
                 {/*for first circle*/}
@@ -55,15 +55,13 @@ class RawToProduct extends Component {
                         ((this.props.reactionNumber % 2) && this.props.reactionEntity.productEntity !== "")
                     )
                         ?
-                        <Tooltip
-                            title={((!(this.props.reactionNumber % 2) || this.props.reactionNumber === 0) && this.props.reactionEntity.rawEntity !== "")
-                                ?
-                                `${this.props.reactionEntity.rawEntity.compoundName} (${this.props.reactionEntity.rawEntity.compoundId})`
-                                :
-                                `${this.props.reactionEntity.productEntity.compoundName} (${this.props.reactionEntity.productEntity.compoundId})`
-                            }>
-                            <Chip color={"primary"}
-                                  className={((this.props.reactionNumber % 2) || this.props.reactionNumber === 0) ? "floatingDivCompoundForNormal cursor" : "floatingDivCompoundForBig cursor"}
+                        <Tooltip title={((!(this.props.reactionNumber % 2) || this.props.reactionNumber === 0) && this.props.reactionEntity.rawEntity !== "")
+                            ?
+                            `${this.props.reactionEntity.rawEntity.compoundName} (${this.props.reactionEntity.rawEntity.compoundId})`
+                            :
+                            `${this.props.reactionEntity.productEntity.compoundName} (${this.props.reactionEntity.productEntity.compoundId})`
+                        }>
+                            <Chip color={"primary"} className={((this.props.reactionNumber % 2) || this.props.reactionNumber === 0) ? "floatingDivCompoundForNormal cursor" : "floatingDivCompoundForBig cursor"}
                                   label={((!(this.props.reactionNumber % 2) || this.props.reactionNumber === 0) && this.props.reactionEntity.rawEntity !== "")
                                       ?
                                       `${this.props.reactionEntity.rawEntity.compoundId}`
@@ -83,18 +81,15 @@ class RawToProduct extends Component {
                 {/*For arrow*/}
                 {((!this.props.reactionNumber) || (this.props.reactionNumber % 2)) ?
                     <div className={"relativePosition"}>
-                        <img
-                            src={!(this.props.reactionNumber % 2) ? (this.props.reactionEntity.reversible ? leftArrow : rightArrow) : leftArrow}
-                            className={"mediumIcons"}
+                        <img src={!(this.props.reactionNumber % 2) ? (this.props.reactionEntity.reversible ? leftArrow : rightArrow) : leftArrow}
+                             className={"mediumIcons"}
                         />
                     </div> : ""}
                 {/*For reaction*/}
                 <div className={"relativePosition"}>
                     {this.props.reactionEntity.reaction !== "" &&
-                    <Tooltip
-                        title={`${this.props.reactionEntity.reaction.reactionName} (${this.props.reactionEntity.reaction.reactionId})`}>
-                        <Chip color={"primary"} className={"floatingDivReaction cursor"}
-                              label={this.props.reactionEntity.reaction.reactionId}/>
+                    <Tooltip title={`${this.props.reactionEntity.reaction.reactionName} (${this.props.reactionEntity.reaction.reactionId})`}>
+                        <Chip color={"primary"} className={"floatingDivReaction cursor"} label={this.props.reactionEntity.reaction.reactionId}/>
                     </Tooltip>}
                     <img src={diamond} className={"mediumIcons"}/>
                 </div>
@@ -108,13 +103,12 @@ class RawToProduct extends Component {
                     {((this.props.reactionEntity.productEntity !== "" && !(this.props.reactionNumber % 2)) ||
                         (this.props.reactionEntity.rawEntity !== "" && (this.props.reactionNumber % 2)))
                         ?
-                        <Tooltip
-                            title={(this.props.reactionEntity.productEntity !== "" && !(this.props.reactionNumber % 2))
-                                ?
-                                `${this.props.reactionEntity.productEntity.compoundName} (${this.props.reactionEntity.productEntity.compoundId})`
-                                :
-                                `${this.props.reactionEntity.rawEntity.compoundName} (${this.props.reactionEntity.rawEntity.compoundId})`
-                            }>
+                        <Tooltip title={(this.props.reactionEntity.productEntity !== "" && !(this.props.reactionNumber % 2))
+                            ?
+                            `${this.props.reactionEntity.productEntity.compoundName} (${this.props.reactionEntity.productEntity.compoundId})`
+                            :
+                            `${this.props.reactionEntity.rawEntity.compoundName} (${this.props.reactionEntity.rawEntity.compoundId})`
+                        }>
                             <Chip onClick={() => alert("hey")} color={"primary"}
                                   className={!(this.props.reactionNumber % 2) ? "floatingDivCompoundForNormal cursor" : "floatingDivCompoundForBig cursor"}
                                   label={(this.props.reactionEntity.productEntity !== "" && !(this.props.reactionNumber % 2))
@@ -151,28 +145,21 @@ class RawToProduct extends Component {
                          }}
                 >
                     <List style={{width: "250px"}}>
-                        <ListItem button onClick={(e) => {
-                            this.changeState("showDialog", !this.state.showDialog);
-                            this.changeState("anchorElement", null)
-                        }}>
+                        <ListItem button onClick={(e) => {this.changeState("showDialog", !this.state.showDialog); this.changeState("anchorElement", null)}}>
                             <ListItemIcon>
                                 <UpdateIcon color={"primary"}/>
                             </ListItemIcon>
                             <ListItemText primary={"Update Reaction details"}/>
                         </ListItem>
                         <Divider variant={"middle"}/>
-                        <ListItem button disabled={this.props.reactionEntity.productEntity === ""} onClick={(e) => {
-                            this.props.addReaction(this.props.reactionNumber);
-                            this.changeState("anchorElement", null)
-                        }}>
+                        <ListItem button disabled={this.props.reactionEntity.productEntity === ""} onClick={(e) => {this.props.addReaction(this.props.reactionNumber);this.changeState("anchorElement", null)}}>
                             <ListItemIcon>
                                 <AddCircleOutlineIcon color={"primary"}/>
                             </ListItemIcon>
                             <ListItemText primary={"Use the product as substrate (Get reaction from server)"}/>
                         </ListItem>
                         <Divider variant={"middle"}/>
-                        <ListItem button disabled={this.props.reactionEntity.productEntity === ""}
-                                  onClick={() => alert("under development")}>
+                        <ListItem button disabled={this.props.reactionEntity.productEntity === ""} onClick={() => alert("under development")}>
                             <ListItemIcon>
                                 <AddCircleOutlineIcon color={"primary"}/>
                             </ListItemIcon>
@@ -188,34 +175,22 @@ class RawToProduct extends Component {
         return (
             <div>
                 {this.rawToProduct()}
-                {this.state.showDialog && <Dialog open={this.state.showDialog}
-                                                  onClose={() => this.changeState("showDialog", !this.state.showDialog)}
-                                                  fullWidth maxWidth={"md"}>
+                {this.state.showDialog && <Dialog open={this.state.showDialog} onClose={() => this.changeState("showDialog", !this.state.showDialog)} fullWidth maxWidth={"md"}>
                     <DialogTitle style={{alignSelf: "center"}}>Reaction Details </DialogTitle>
                     <DialogContent>
-                        <Autocomplete_forResponse compound={true} disabled={false} label={"Substrate"}
-                                                  reactionIndex={this.props.reactionNumber}
-                                                  loadingText={"Enter at least three characters..."}
-                                                  attribute={"rawEntity"} data={this.props.reactionEntity.rawEntity}/>
+                        <Autocomplete_forResponse compound={true} disabled={false} label={"Substrate"} reactionIndex={this.props.reactionNumber}
+                                                  loadingText={"Enter at least three characters..."} attribute={"rawEntity"} data={this.props.reactionEntity.rawEntity}/>
                         {this.props.reactionEntity.reactionWithProduct !== "" && <div>
-                            <Autocomplete_forResponse compound={false} reaction={true} disabled={false}
-                                                      label={"Reaction"}
+                            <Autocomplete_forResponse compound={false} reaction={true} disabled={false} label={"Reaction"}
                                                       chosenPair={this.props.reactionEntity.productEntity === "" ? "" : this.props.reactionEntity.productEntity.compoundId}
-                                                      reactionIndex={this.props.reactionNumber}
-                                                      loadingText={"Fetching..."} attribute={"reaction"}
-                                                      data={this.props.reactionEntity.reaction}/>
-                            <Autocomplete_forResponse compound={false} reaction={false} disabled={false}
-                                                      label={"Product"}
+                                                      reactionIndex={this.props.reactionNumber} loadingText={"Fetching..."} attribute={"reaction"} data={this.props.reactionEntity.reaction}/>
+                            <Autocomplete_forResponse compound={false} reaction={false} disabled={false} label={"Product"}
                                                       chosenPair={this.props.reactionEntity.reaction === "" ? "" : this.props.reactionEntity.reaction.reactionId}
-                                                      reactionIndex={this.props.reactionNumber}
-                                                      loadingText={"Fetching..."} attribute={"productEntity"}
-                                                      data={this.props.reactionEntity.productEntity}/>
+                                                      reactionIndex={this.props.reactionNumber} loadingText={"Fetching..."} attribute={"productEntity"} data={this.props.reactionEntity.productEntity}/>
                         </div>}
                     </DialogContent>
                     <DialogActions>
-                        <Button style={{margin: "0 20px 0 0"}}
-                                onClick={() => this.changeState("showDialog", !this.state.showDialog)} color={"primary"}
-                                variant={"contained"}>
+                        <Button style={{margin: "0 20px 0 0"}} onClick={() => this.changeState("showDialog", !this.state.showDialog)} color={"primary"} variant={"contained"}>
                             Close
                         </Button>
                     </DialogActions>

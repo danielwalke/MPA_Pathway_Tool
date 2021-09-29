@@ -11,7 +11,7 @@ import PublishIcon from '@material-ui/icons/Publish';
 import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-class Module extends Component {
+class Module extends Component{
 
     constructor(props) {
         super(props);
@@ -22,17 +22,15 @@ class Module extends Component {
     };
 
     changeState = (stateName) => {
-        this.setState({[stateName]: !this.state[stateName]})
+      this.setState({[stateName]: !this.state[stateName]})
     };
 
     render() {
-        return (
+        return(
             <div style={{display: "flex", justifyContent: "center", flexDirection: "column"}} ref={this.moduleRef}>
-                {!this.state.moduleCreator &&
-                <div style={{display: "flex", padding: "10% 20%", justifyContent: "space-evenly"}}>
+                {!this.state.moduleCreator && <div style={{display: "flex", padding: "10% 20%", justifyContent: "space-evenly"}}>
                     <Card className={"card-module"} onClick={() => this.changeState("moduleCreator")}>
-                        <CardMedia
-                            style={{display: "flex", alignItems: "center", height: "70%", justifyContent: "center"}}>
+                        <CardMedia style={{display: "flex", alignItems: "center", height: "70%", justifyContent: "center"}}>
                             <AddCircleOutlineIcon style={{fontSize: "50px"}}/>
                         </CardMedia>
                         <CardContent style={{fontSize: "1.5rem"}}>
@@ -40,8 +38,7 @@ class Module extends Component {
                         </CardContent>
                     </Card>
                     <Card className={"card-module"}>
-                        <CardMedia
-                            style={{display: "flex", alignItems: "center", height: "70%", justifyContent: "center"}}>
+                        <CardMedia style={{display: "flex", alignItems: "center", height: "70%", justifyContent: "center"}}>
                             <PublishIcon style={{fontSize: "50px"}}/>
                         </CardMedia>
                         <CardContent style={{fontSize: "1.5rem"}}>
@@ -52,15 +49,14 @@ class Module extends Component {
                 {this.state.moduleCreator && this.props.ModuleStore.reactions.map((reaction, index) => {
                     console.log(index);
                     return <RawToProduct key={index} reactionEntity={reaction} reactionNumber={index}
-                                         addReaction={(currentIndex) => this.props.ModuleStore.addReaction(currentIndex)}
+                                         addReaction={(currentIndex) =>  this.props.ModuleStore.addReaction(currentIndex)}
                                          getReactionAndProduct={(reactionIndex, type, searchEntry) => this.props.ModuleStore.getData(reactionIndex, type, searchEntry)}
                     />
                 })}
                 {this.props.ModuleStore.backdropStatus &&
-                <Backdrop open={this.props.ModuleStore.backdropStatus}
-                          style={{zIndex: 1400, background: "rgba(200,200,200,0.75)"}}>
-                    Fetching reactions and products for chosen substrate... &nbsp;<CircularProgress/>
-                </Backdrop>
+                    <Backdrop open={this.props.ModuleStore.backdropStatus} style={{zIndex: 1400, background: "rgba(200,200,200,0.75)"}}>
+                       Fetching reactions and products for chosen substrate... &nbsp;<CircularProgress/>
+                    </Backdrop>
                 }
             </div>
         );

@@ -19,18 +19,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Question = (props) => {
-    const {panelId, index, answer, question, link} = props
+    const {panelId, index, answer, question} = props
     const [expanded, setExpanded] = React.useState(false)
 
-    const handleChange = (panel) => (e, isExpanded) => {
+    const handleChange = (panel) => (e, isExpanded) =>{
         setExpanded(isExpanded ? panel : false)
     }
-
     const classes = useStyles()
     return (
         <Accordion expanded={expanded === panelId} onChange={handleChange(panelId)}>
             <AccordionSummary
-                expandIcon={<ExpandMoreIcon/>}
+                expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1bh-content"
             >
                 <Typography className={classes.heading}>{index}) </Typography>
@@ -39,7 +38,6 @@ const Question = (props) => {
             <AccordionDetails>
                 <Typography>
                     {answer}
-                    {link.length > 0 && <a href={link}>here.</a>}
                 </Typography>
             </AccordionDetails>
         </Accordion>

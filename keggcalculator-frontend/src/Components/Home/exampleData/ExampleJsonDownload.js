@@ -3,7 +3,7 @@ import PathwayJson from "../../../exampleData/WoodLjungdahlpathway.json"
 import {saveAs} from "file-saver";
 import {Link} from "react-router-dom";
 
-const handleDownload = () => {
+const handleDownload = () =>{
     const jsonBlob = new Blob(new Array(JSON.stringify(PathwayJson, null, 2)), {type: "text/plain;charset=utf-8"})
     saveAs(jsonBlob, "Wood-Ljungdahl pathway.json")
 }
@@ -11,7 +11,7 @@ const handleDownload = () => {
 const ExampleJsonDownload = () => {
     return (
         <div>
-            <Link style={{
+            <Link   style={{
                 textDecoration: "none", color: "white", width: "80%",
                 backgroundColor: "rgb(150, 25, 130)",
                 borderRadius: "1.5vw",
@@ -21,7 +21,7 @@ const ExampleJsonDownload = () => {
                 fontFamily: "Roboto",
                 margin: "5",
                 padding: "8px"
-            }} onClick={() => handleDownload()}>download</Link>
+            }} onClick={()=>handleDownload()}>download</Link>
         </div>
     );
 };

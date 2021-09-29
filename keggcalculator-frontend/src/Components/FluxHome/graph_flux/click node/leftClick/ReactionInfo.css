@@ -1,0 +1,48 @@
+
+.infoWrapper{
+    transform: translate(-20%, 0%);
+    background-color: #FFF;
+    z-index: 1000;
+    display: grid;
+    overflow: auto;
+    width: 60vw;
+    height: 80vh;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.1fr 1fr 3fr 5fr 0.5fr;
+    grid-template-areas: "close close"
+"header header"
+    "koAndEc koAndEc"
+"heatmap heatmap"
+"caption caption";
+}
+.koAndEcListContainer{
+    grid-area: koAndEc;
+}
+.closeInfo{
+    grid-area: close;
+    color: white;
+    font-size: clamp(5px, 1.7vw, 10px);
+    background-color: rgb(150, 25, 130);
+    transition: all 400ms ease;
+}
+.closeInfo:hover {
+    background-color: rgb(120, -5, 100);
+    cursor: pointer;
+}
+.headerInfo{
+    grid-area: header;
+}
+.svgInfo{
+    height: 40vh;
+    grid-area: heatmap;
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
+
+.captionReaction{
+    width: 100%;
+    grid-area: caption;
+}
+
+/*style={{backgroundCoor: "lightblue", height:window.innerHeight*0.45, width: window.innerWidth*0.5}}*/

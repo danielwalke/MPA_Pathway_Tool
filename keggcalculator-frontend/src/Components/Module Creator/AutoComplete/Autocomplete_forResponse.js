@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React,{Component} from "react";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
 import grey from "@material-ui/core/colors/grey";
@@ -16,7 +16,7 @@ class Autocomplete_forResponse extends Component {
             loading: this.props.compound,
             options: this.props.compound ? [] : this.props.ModuleStore.getData(this.props.reactionIndex, this.props.attribute, this.props.data),
             displayText: this.props.loadingText,
-            value: this.props.ModuleStore.getValueTag(this.props.reactionIndex, this.props.attribute),
+            value: this.props.ModuleStore.getValueTag (this.props.reactionIndex, this.props.attribute),
         };
         this.routeFunctionCall = this.routeFunctionCall.bind(this)
         this.checkName = this.checkName.bind(this)
@@ -24,35 +24,35 @@ class Autocomplete_forResponse extends Component {
         this.getOptionLabel = this.getOptionLabel.bind(this)
     };
 
-    routeFunctionCall(event) {
-        if (this.props.compound) {
+    routeFunctionCall(event){
+        if(this.props.compound) {
             this.checkName(event);
-        } else {
+        }
+        else {
             //write code here
         }
     };
-
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (!this.props.compound && (prevProps.chosenPair !== this.props.chosenPair)) {
+        if(!this.props.compound && (prevProps.chosenPair !== this.props.chosenPair)) {
             this.setState({options: this.props.ModuleStore.getData(this.props.reactionIndex, this.props.attribute, "")});
         }
     }
 
 
-    checkName(e) {
+    checkName(e){
         this.setState({value: (e === null || e.target.value === undefined) ? "" : e.target.value}, () => {
-            if (this.state.value !== "" && this.state.value.length >= 3) {
+            if(this.state.value !== "" && this.state.value.length >= 3) {
                 let filteredData = [];
                 this.props.ModuleStore.CompoundList.map(compound => {
-                    if (compound.compoundId.toLowerCase().includes(this.state.value.toLowerCase()) || compound.compoundName.toLowerCase().includes(this.state.value.toLowerCase()))
+                    if(compound.compoundId.toLowerCase().includes(this.state.value.toLowerCase()) || compound.compoundName.toLowerCase().includes(this.state.value.toLowerCase()))
                         filteredData.push(compound)
                 });
                 this.setState({options: filteredData});
-                if (filteredData.length === 0) {
+                if(filteredData.length === 0 ){
                     this.setState({displayText: "No Compound found"})
                 }
             }
-            if (this.state.value === "" || this.state.value.length <= 2) {
+            if(this.state.value === "" || this.state.value.length <= 2){
                 this.setState({options: [], displayText: this.props.loadingText});
             }
             // if(this.state.value === "") {
@@ -61,30 +61,32 @@ class Autocomplete_forResponse extends Component {
         });
     };
 
-    addAttribute(chosenValue) {
-        if (chosenValue !== undefined) {
-            this.props.ModuleStore.addToReactionStack(this.props.reactionIndex, this.props.attribute, chosenValue);
-            if (this.props.compound) {
+    addAttribute(chosenValue){
+        if(chosenValue !== undefined) {
+            this.props.ModuleStore.addToReactionStack(this.props.reactionIndex,this.props.attribute, chosenValue);
+            if(this.props.compound) {
                 this.props.ModuleStore.switchBackdrop(true);
-                this.props.ModuleStore.getReactionWithProduct(chosenValue.compoundId).then(response => {
-                    if (response.status === 201) {
+                this.props.ModuleStore.getReactionWithProduct(chosenValue.compoundId).then(response =>{
+                    if(response.status === 201){
                         this.props.ModuleStore.addReactionWithProduct(response.data, this.props.reactionIndex);
                         this.props.ModuleStore.switchBackdrop(false);
                     }
                 });
             }
-        } else {
-            if (this.props.attribute !== "rawEntity") {
+        }
+        else {
+            if(this.props.attribute !== "rawEntity") {
                 this.setState({options: this.props.ModuleStore.getData(this.props.reactionIndex, this.props.attribute, "")})
             }
             this.props.ModuleStore.removeFromReactionStack(this.props.reactionIndex, this.props.attribute);
         }
     };
 
-    getOptionLabel(option) {
-        if (this.props.compound || !this.props.reaction) {
+    getOptionLabel(option){
+        if(this.props.compound || !this.props.reaction){
             return `${option.compoundName} (${option.compoundId})`
-        } else {
+        }
+        else {
             return `${option.reactionName} (${option.reactionId})`
         }
     };
@@ -104,7 +106,7 @@ class Autocomplete_forResponse extends Component {
                     renderInput={prop => (
                         <TextField
                             {...prop}
-                            label={this.props.label}
+                            label= {this.props.label}
                             fullWidth
                             multiline={true}
                             margin={"normal"}

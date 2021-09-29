@@ -1,0 +1,4 @@
+.structureBodyContainer{
+    display: grid;
+    grid-auto-rows: auto;
+}
