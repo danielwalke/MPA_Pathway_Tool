@@ -9,8 +9,8 @@ import ModuleStore from "./Components/State Management/ModuleStore";
 import {useDispatch} from "react-redux";
 
 const theme = createMuiTheme({
-    palette: {
-        primary: {
+    palette:{
+        primary:{
             main: '#941680'
         }
     }
@@ -18,11 +18,11 @@ const theme = createMuiTheme({
 
 function App() {
     const dispatch = useDispatch()
-    useEffect(() => {
+    useEffect(()=>{
         const headerHeight = document.getElementsByClassName('MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary MuiPaper-elevation4')[0].clientHeight;
         const tabHeight = document.getElementsByClassName("MuiTabs-root")[0].clientHeight
-        dispatch({type: "SETHEADERHEIGHT", payload: +tabHeight + headerHeight})
-    }, [])
+        dispatch({type:"SETHEADERHEIGHT", payload:+tabHeight+headerHeight})
+    },[])
     return (
         <Provider CalculatorStore={CalculatorStore} ModuleStore={ModuleStore}>
             <div className="App">
