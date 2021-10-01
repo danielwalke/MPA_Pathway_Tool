@@ -48,6 +48,7 @@ const defaultState = {
             }]
     */
     isMissingAnnotations: false, //boolean, which checks whether there are unannotated compounds in the given sbml file
+    showAnnotationWarning: false,
     isAnnotationPurpose: false, //boolean, which checks whether the user intents to make annotation for the compounds in the given sbml-file
     annotation: "",
     moduleFileNameSbml: "",
@@ -217,6 +218,8 @@ export const generalReducer = (state = defaultState, action) => {
             return {...state, biggIdSelectionList: payload}
         case "SET_BIGG_COMPOUNDS_FOR_MODEL":
             return {...state, biggCompoundsForModel: payload}
+        case "SHOW_ANNOTATION_WARNING":
+            return {...state, showAnnotationWarning: payload}
         default:
             return state;
     }

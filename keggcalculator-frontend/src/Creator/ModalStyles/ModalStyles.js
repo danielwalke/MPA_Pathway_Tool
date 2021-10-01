@@ -9,8 +9,9 @@ export const useStyles = makeStyles((theme) => ({
     paper: {
         backgroundColor: "white",
         fontFamily: "Roboto",
-        border: '2px solid rgb(150, 25, 130)',
+        // border: '2px solid rgb(150, 25, 130)',
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
+        borderRadius: "10px 10px 10px 10px",
     }
 }));

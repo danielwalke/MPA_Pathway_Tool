@@ -23,12 +23,11 @@ const SbmlReader = () => {
     return (
         <div>
             <ToolTipBig title={"Click for uploading a pathway as SBML"} placement={"right"}>
-                <label className={"uploadLabel"} htmlFor={"SBML_Module"}>Upload pathway as SBML <img src={UploadIcon}
-                                                                                                     style={{
-                                                                                                         width: `clamp(6px, 1.7vw, 12px)`,
-                                                                                                         transform: "translate(0,0.2vw)"
-                                                                                                     }}
-                                                                                                     alt={""}/></label>
+                <label className={"uploadLabel"}
+                       htmlFor={"SBML_Module"}> pload pathway as SBML
+                    <img src={UploadIcon} style={{width: `clamp(6px, 1.7vw, 12px)`, transform: "translate(0,0.2vw)"}}
+                         alt={""}/>
+                </label>
             </ToolTipBig>
             <input className={"moduleInput"} style={{display: "none"}} id={"SBML_Module"}
                    onClick={() => dispatch({type: "SETLOADING", payload: true})} type={"file"}
@@ -38,7 +37,7 @@ const SbmlReader = () => {
             <div className={"fileName"}>
                 {state.general.moduleFileNameSbml.length > 0 ? state.graph.moduleFileNameJson : "No file selected"}
             </div>
-            {state.general.isMissingAnnotations && <AnnotationWarningModal/>}
+            {state.general.showAnnotationWarning && <AnnotationWarningModal/>}
             {state.general.isAnnotationPurpose && <AnnotationModal/>}
             {state.general.isShowingReactionTable && <ReactionTableList/>}
         </div>

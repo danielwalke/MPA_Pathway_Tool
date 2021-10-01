@@ -9,8 +9,9 @@ import {useStyles} from "../../ModalStyles/ModalStyles";
 import {addCompoundsToReactions} from "./ReactionCompoundsAdder";
 
 const handleAnnotationPurpose = (dispatch) => {
+    dispatch({type: "SHOW_ANNOTATION_WARNING", payload: false}) //Annotation modal will show up
     dispatch({type: "SETISMISSINGANNOTATIONS", payload: false})
-    dispatch({type: "SETISANNOTATIONPURPOSE", payload: true}) //Annotation modal will show up
+    dispatch({type: "SETISANNOTATIONPURPOSE", payload: true})
 }
 
 const handleSkipPurpose = (state, dispatch) => {
@@ -35,23 +36,31 @@ const AnnotationWarningModal = () => {
     const {general} = state
     const dispatch = useDispatch();
     const classes = useStyles()
-    const annotationWarning = (<div className={classes.paper} style={{width: "45vw"}}>
-        <div style={{display: "flex"}}>
-            <p>You have unannotated compounds in your SBML- file! Do you want to annotate them now?</p>
-        </div>
-        <div style={{display: "flex"}}>
-            <button className={"downloadButton"} style={{width: "20vw"}}
-                    onClick={() => handleAnnotationPurpose(dispatch)}>Yes
-            </button>
-            <button style={{width: "20vw"}} className={"downloadButton"}
-                    onClick={() => handleSkipPurpose(state, dispatch)}>No
-            </button>
-        </div>
-    </div>)
+
+    const missingAnnotationWarning = (
+        <p>You have unannotated compounds in your SBML- file! Would you like to annotate them?</p>)
+
+    const annotatePrompt = (
+        <p>Would you like to check or alter your model annotation?</p>
+    )
+
     return (
         <div>
-            <Modal className={classes.modal} open={general.isMissingAnnotations}>
-                {annotationWarning}
+            <Modal className={classes.modal} open={general.showAnnotationWarning}>
+                <div className={classes.paper} style={{width: "45vw"}}>
+                    <div style={{display: "flex"}}>
+                        {general.isMissingAnnotations && missingAnnotationWarning}
+                        {!general.isMissingAnnotations && annotatePrompt}
+                    </div>
+                    <div style={{display: "flex"}}>
+                        <button className={"downloadButton"} style={{width: "20vw"}}
+                                onClick={() => handleAnnotationPurpose(dispatch)}>Yes
+                        </button>
+                        <button style={{width: "20vw"}} className={"downloadButton"}
+                                onClick={() => handleSkipPurpose(state, dispatch)}>No
+                        </button>
+                    </div>
+                </div>
             </Modal>
         </div>
     );

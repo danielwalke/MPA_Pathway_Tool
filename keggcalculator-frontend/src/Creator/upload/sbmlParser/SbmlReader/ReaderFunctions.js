@@ -52,7 +52,7 @@ const readSpecies = (dispatch, sbml, state) => {
         const annotations = species.getElementsByTagName("rdf:li").map(link => link.attributes["rdf:resource"])
         const keggAnnotations = annotations.filter(link => link.includes("kegg.compound")) //returns one link like "http://identifiers.org/kegg.compound/C00031", i.e. last 6 chars are respective kegg annotation
         const keggId = keggAnnotations.length > 0 ? keggAnnotations[0].substring(keggAnnotations[0].length - 6, keggAnnotations[0].length) : getCompoundId(index);
-        const keggName = typeof state.general.compoundId2Name[`${keggId}`] !== "undefined" ? state.general.compoundId2Name[`${keggId}`] : keggId
+        const keggName = state.general.compoundId2Name[`${keggId}`] ? state.general.compoundId2Name[`${keggId}`] : keggId
         return (
             {
                 sbmlId: sbmlId,
@@ -89,11 +89,11 @@ const readReactions = (dispatch, sbml, globalTaxa) => {
             const len = koAnnotationItems.length
             return koAnnotationItems[len - 1] //returns last item of each annotation, i.e. the respective KO- number
         });
-        const listOfReactantsElement = typeof reaction.getElementsByTagName("listOfReactants")[0] === "undefined" ? {} : reaction.getElementsByTagName("listOfReactants")[0]
-        const speciesRefsElementSubstrates = typeof reaction.getElementsByTagName("listOfReactants")[0] === "undefined" ? [] : listOfReactantsElement.getElementsByTagName("speciesReference")
+        const listOfReactantsElement = !reaction.getElementsByTagName("listOfReactants")[0] ? {} : reaction.getElementsByTagName("listOfReactants")[0]
+        const speciesRefsElementSubstrates = !reaction.getElementsByTagName("listOfReactants")[0] ? [] : listOfReactantsElement.getElementsByTagName("speciesReference")
         const substrates = getSpeciesFromReaction(speciesRefsElementSubstrates)
-        const listOfProductsElement = typeof reaction.getElementsByTagName("listOfProducts")[0] === "undefined" ? {} : reaction.getElementsByTagName("listOfProducts")[0] //I think in the {} should be speciesReference:[]?
-        const speciesRefsElementProducts = typeof reaction.getElementsByTagName("listOfProducts")[0] === "undefined" ? [] : listOfProductsElement.getElementsByTagName("speciesReference")
+        const listOfProductsElement = !reaction.getElementsByTagName("listOfProducts")[0] ? {} : reaction.getElementsByTagName("listOfProducts")[0] //I think in the {} should be speciesReference:[]?
+        const speciesRefsElementProducts = !reaction.getElementsByTagName("listOfProducts")[0] ? [] : listOfProductsElement.getElementsByTagName("speciesReference")
         const products = getSpeciesFromReaction(speciesRefsElementProducts);
         return {
             sbmlId: sbmlId,
@@ -200,19 +200,15 @@ export const onSBMLModuleFileChange = async (event, dispatch, state) => {
             dispatch({type: "ADD_PATHWAY_TO_AUDIT_TRAIL", payload: file.name})
             dispatch({type: "SET_PATHWAY_FILE", payload: file})
             dispatch({type: "SETISMISSINGANNOTATIONS", payload: isMissingAnnotations}) //if true, annotationWarningModal will show up
-            if (!isMissingAnnotations) { //all compounds are perfectly annotated :)
+            if (!isMissingAnnotations) {
+                //all compounds are perfectly annotated :)
                 //add additional information to each reaction
                 const newListOfReactions = addCompoundsToReactions(state, listOfReactions, listOfSpecies)
-                //set reactions
-                // const reactions = setReactionsInStore(state, newListOfReactions)
-                //set data for the Graph
-                // const data=  setReactionsAndCompoundsInStore(state, newListOfReactions, dispatch, listOfReactionGlyphs)
-                dispatch({type: "SETISSHOWINGREACTIONTABLE", payload: true})
+                // dispatch({type: "SETISSHOWINGREACTIONTABLE", payload: true})
                 dispatch({type: "SETLISTOFREACTIONS", payload: newListOfReactions})
-                // dispatch({type:"SETREACTIONSINARRAY", payload: reactions})
-                // dispatch({type: "SETDATA", payload: data})
                 dispatch({type: "SETLOADING", payload: false})
             }
+            dispatch({type: "SHOW_ANNOTATION_WARNING", payload: true})
         } catch (e) {
             console.error(e)
             window.alert("can't read the file")
