@@ -60,6 +60,7 @@ const defaultState = {
     mappingEnd: "", //end time of mapping
     autoCompleteCompoundsList: {},
     biggIdSelectionList: {},
+    biggSuggestedIds: {},
     biggCompoundsForModel: new Map(), // Array of selected Bigg ids
 
 }

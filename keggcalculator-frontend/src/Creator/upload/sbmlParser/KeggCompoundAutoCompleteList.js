@@ -95,14 +95,13 @@ const KeggCompoundAutoCompleteList = (props) => {
             <Autocomplete
             onChange={(event, value) => {
                 // sets "autoCompounds" and updates the global state
-                props.data[props.index] = value;
-                dispatch({type: "SET_AUTO_COMPLETE_COMPOUNDS", payload: props.data})
+                props.data.kegg[props.index] = value;
+                dispatch({type: "SET_AUTO_COMPLETE_COMPOUNDS", payload: props.data.kegg})
 
                 // props.setAutoCompounds(props.autoCompounds)
             }} //dispatch({type:"SETANNOTATION", payload: value})
             id="AnnotationSelector"
-            style={{width: "50%"}}
-            value={props.data[props.index]}
+            value={props.data.kegg[props.index]}
             classes={classes}
             ListboxComponent={ListboxComponent}
             options={completeCompoundList}
