@@ -85,7 +85,7 @@ const TaxonomicDetailsBody = (props) => {
             <div style={{width: "80vw", height: "90vh", overflow: "auto"}}>
                 <ToolTipBig title={"download the complete table with details as *.csv"} placement={"right"}>
                     <button className={"downloadButton"} onClick={() => downloadDetails()}
-                            style={{width: "20vw", margin: "5px"}}>Download details
+                            style={{width: "20vw", margin: "5px 0 2rem 0"}}>Download details
                     </button>
                 </ToolTipBig>
                 <table style={{margin: "5px 0"}}>
@@ -130,7 +130,7 @@ const Line = (props) => {
     if (isFirst) {
         return (
             <tr>
-                <th style={{border: "2px solid black"}} onClick={() => handleExpand(index)}>action</th>
+                <th style={{border: "2px solid rgb(150, 25, 130)"}} onClick={() => handleExpand(index)}>action</th>
                 {entries.map((entry, i) => {
                     if (isFilter && i === entryIndex) {
                         return (<th style={{border: "2px solid rgb(150, 25, 130)", minWidth: "7vw"}}>

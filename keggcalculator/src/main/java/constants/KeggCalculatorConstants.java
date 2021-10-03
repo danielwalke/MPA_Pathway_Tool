@@ -17,6 +17,7 @@ public class KeggCalculatorConstants {
 	public static final String UPLOAD_DIR = "upload/";
 	public static final String UPLOAD_TEMP_DIR = UPLOAD_DIR + "/temp";
 	public static final String GRAPH_DOWNLOAD_DIR = "graphDownload/";
+	public static final String POM_XML = "src/../pom.xml";
 	
 	//lists of kegg
 	public static final String REACTION_LIST_DIR = "src/main/resources/KEGG/essentialFiles/kegg_list_reaction_2020_09_30.csv";

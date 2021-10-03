@@ -36,6 +36,7 @@ import model.TaxonomyList;
 import model.TaxonomyListObject;
 import model.testparser.PathwayFinder;
 import model.testparser.PathwayFinderReverse;
+import parser.PomXmlParser;
 import services.KeggCalculatorService;
 import services.KeggCreatorService;
 import spark.Request;
@@ -315,6 +316,19 @@ public class KeggHandleRequests {
 			String subName) {
 		// TODO Auto-generated method stub
 		return creator.gson.toJson(creator.getFilteredTaxonomicNames(rank, subName));
+	}
+
+	public static Object readPomXml(KeggCreatorService creator) {
+		PomXmlParser parser = new PomXmlParser();
+		HashSet<String> dependencies = new HashSet<>();
+		try {
+			dependencies = parser.readPomXml();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		HashMap<String, String> dependencyMap = parser.readDependencies(dependencies);
+		return creator.gson.toJson(dependencyMap);
 	}
 
 }

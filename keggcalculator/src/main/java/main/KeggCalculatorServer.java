@@ -462,6 +462,16 @@ public class KeggCalculatorServer {
 			} 
 		});
 		
+		get("dependencies", (req, res) -> {
+			try {
+				return KeggHandleRequests.readPomXml(creator);
+			} catch (Exception e) {
+				res.status(500);
+				e.printStackTrace();
+				return "{\"message\":\"internal server error\"}";
+			} 
+		});
+		
 	}
 
 }
