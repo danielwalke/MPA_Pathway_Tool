@@ -462,7 +462,7 @@ public class KeggCalculatorServer {
 			} 
 		});
 		
-		get("dependencies", (req, res) -> {
+		get("keggcreator/dependencies", (req, res) -> {
 			try {
 				return KeggHandleRequests.readPomXml(creator);
 			} catch (Exception e) {

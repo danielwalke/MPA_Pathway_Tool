@@ -48,4 +48,4 @@ export const endpoint_getFilteredTaxonomicNames = host + "/keggcreator/filteredt
 
 export const endpoint_getTaxonomicDetails = host +  "/keggcalculator/detailedContent";
 
-export const endpoint_getDependencies = host + "/dependencies";
+export const endpoint_getDependencies = host + "/keggcreator/dependencies";

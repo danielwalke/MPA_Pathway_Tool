@@ -6,10 +6,6 @@ import {ToolTipBig} from "../../main/user-interface/UserInterface";
 const PopOverButton = (props) => {
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        console.log(props)
-    })
-
     return (
         <div>
             <ToolTipBig title={props.isText ? "Select a metabolite from list" : "Type in your own metabolite"}
