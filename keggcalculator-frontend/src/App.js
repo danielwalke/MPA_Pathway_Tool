@@ -7,6 +7,7 @@ import CalculatorStore from "./Components/State Management/CalculatorStore";
 import {Provider} from "mobx-react"
 import ModuleStore from "./Components/State Management/ModuleStore";
 import {useDispatch} from "react-redux";
+import {host} from "./App Configurations/SystemSettings";
 
 const theme = createMuiTheme({
     palette: {
@@ -17,6 +18,7 @@ const theme = createMuiTheme({
 })
 
 function App() {
+
     const dispatch = useDispatch()
     useEffect(() => {
         const headerHeight = document.getElementsByClassName('MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary MuiPaper-elevation4')[0].clientHeight;
