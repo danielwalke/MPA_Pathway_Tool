@@ -2,12 +2,12 @@ package jobs;
 
 import java.io.File;
 
-import calculator.Calculator2;
 import calculator.CalculatorOutputList;
 import constants.KeggCalculatorConstants;
 import json.KeggCalculatorJobJSON;
 import model.KeggDataObject;
 import model.MpaProteine;
+import parser.Calculator2;
 import parser.KeggDataParser;
 import parser.ModuleFileParser;
 import parser.MpaFileParser2;
@@ -105,8 +105,7 @@ public class KeggCalculatorJob implements Runnable {
 			calc.loopModules(keggData, keggDataUser, proteins, outputList);
 			
 			//write output-file
-			outputList.writeCSV(KeggCalculatorConstants.DOWNLOAD_DIR + this.job.jobID, false);
-			outputList.writeCSV(KeggCalculatorConstants.DOWNLOAD_DIR + this.job.jobID, true);
+			outputList.writeCSV(new File(KeggCalculatorConstants.DOWNLOAD_DIR + this.job.jobID + ".csv"));
 			outputList.writeCSVUnmatchedProteins(new File(KeggCalculatorConstants.DOWNLOAD_DIR + this.job.jobID + "_unmatchedProteins" + ".csv"));
 			
 			System.out.println("Done");

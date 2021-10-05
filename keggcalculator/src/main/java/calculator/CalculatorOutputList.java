@@ -87,120 +87,50 @@ public class CalculatorOutputList {
 		this.calcOutputList.add(calcOutput);
 	}
 
-	public void writeCSV(String outputCSV, boolean isDetails) {
+	public void writeCSV(File outputCSV) {
 		try {
-			if(isDetails) {
-				outputCSV += "_detailed.csv";
-			}else {
-				outputCSV += ".csv";
-			}
-			BufferedWriter br = new BufferedWriter(new FileWriter(new File(outputCSV)));
-			if(isDetails) br.write("index\t");
+			BufferedWriter br = new BufferedWriter(new FileWriter(outputCSV));
 			br.write("pathway\t");
-			if(isDetails) {
-				br.write("superkingdom\t");
-				br.write("kingdom\t");
-				br.write("phylum\t");
-				br.write("class\t");
-				br.write("order\t");
-				br.write("family\t");
-				br.write("genus\t");
-				br.write("species\t");
-			}			
-			br.write("identified reactions\t");
-			br.write("total reactions in pathway\t");
+//			br.write("module-name\t");
+			br.write("Steps found\t");
+			br.write("Total steps pathway\t");
 			br.write(getSampleHeaderString().trim());
 			int numberOfSamples = getSampleHeaderString().split("\t").length;
 			br.write("\n");
-			
-			for (int moduleIndex = 0; moduleIndex< this.calcOutputList.size(); moduleIndex++) {
-				CalculatorOutput calcOutput = this.calcOutputList.get(moduleIndex);
-				writePathwayHeader(br, calcOutput, moduleIndex, numberOfSamples, isDetails);
-				if(isDetails) writeTaxonomyQuants(br, calcOutput, moduleIndex, numberOfSamples);
+			for (CalculatorOutput calcOutput : this.calcOutputList) {
+//				int csvPatternInt = calcOutput.getModule().indexOf(".csv");
+//				br.write(calcOutput.getModule().substring(csvPatternInt - 6, csvPatternInt) + ",");
+				br.write(calcOutput.getModule().replace("\t", ";") + "\t");
+//				br.write(calcOutput.getModuleName().replace("\t", ";") + "\t");
+				br.write(calcOutput.getStepMpa() + "\t");
+				br.write(calcOutput.getStepTotal() + "\t");
+				if (calcOutput.getQuantList().isEmpty()) {
+					for(int sampleIterator =0; sampleIterator<numberOfSamples;sampleIterator++) {
+						br.write("nd");
+						if(sampleIterator<numberOfSamples-1) {
+							br.write("\t");
+						}
+					}
+				} else {
+					for(int quantIterator=0 ;quantIterator<calcOutput.getQuantList().size(); quantIterator++) {
+						double quant = calcOutput.getQuantList().get(quantIterator);
+						br.write(String.valueOf(quant));
+						if(quantIterator<calcOutput.getQuantList().size()-1) {
+							br.write("\t");
+						}						
+					}
+//					br.write(calcOutput.getQuantList().toString().substring(1,
+//							calcOutput.getQuantList().toString().length() - 1));
+				}
+				// br.write(Double.toString(calcOutput.getQuantMPA()));
+				br.write("\n");
+
 			}
 			br.flush();
 			br.close();
 		} catch (Exception e) {
 e.printStackTrace();
 		}
-	}
-
-	private void writeTaxonomyQuants(BufferedWriter br, CalculatorOutput calcOutput, int moduleIndex,
-			int numberOfSamples) throws IOException {
-		HashMap<Taxonomy, double[]> taxonomyQuants = calcOutput.getTaxonomyQuants();
-		HashMap<Taxonomy, Integer> taxonomySteps = calcOutput.getTaxonomySteps();
-		int taxonIndex = 0;
-		for( Entry<Taxonomy, double[]> taxonEntry : taxonomyQuants.entrySet()) {
-			Taxonomy taxon = taxonEntry.getKey();
-			double[] quants = taxonEntry.getValue();
-			br.write(String.valueOf(moduleIndex+1)+"." + String.valueOf(taxonIndex+1)+"\t"); //index 0.0
-			br.write(calcOutput.getModule().replace("\t", ";") + "\t"); //pathway name/ module name
-			br.write(taxon.getSuperkingdom().replace("\t", ";") + "\t");
-			br.write(taxon.getKingdom().replace("\t", ";") + "\t");
-			br.write(taxon.getPhylum().replace("\t", ";") + "\t");
-			br.write(taxon.getClassT().replace("\t", ";") + "\t");
-			br.write(taxon.getOrder().replace("\t", ";") + "\t");
-			br.write(taxon.getFamily().replace("\t", ";") + "\t");
-			br.write(taxon.getGenus().replace("\t", ";") + "\t");
-			br.write(taxon.getSpecies().replace("\t", ";") + "\t");
-			br.write(taxonomySteps.get(taxon) + "\t");
-			br.write(calcOutput.getStepTotal() + "\t");
-			taxonIndex++;
-			if(quants == null || quants.length == 0) {
-				for(int sampleIterator =0; sampleIterator<numberOfSamples;sampleIterator++) {
-					br.write("nd");
-					if(sampleIterator<numberOfSamples-1) {
-						br.write("\t");
-					}
-				}
-			}else {
-				for(int quantIterator=0 ;quantIterator<calcOutput.getQuantList().size(); quantIterator++) {
-					double quant = quants[quantIterator];
-					br.write(String.valueOf(quant));
-					if(quantIterator<calcOutput.getQuantList().size()-1) {
-						br.write("\t");
-					}						
-				}
-			}
-			br.write("\n");
-		}
-
-			
-	}
-
-	private void writePathwayHeader(BufferedWriter br, CalculatorOutput calcOutput, int moduleIndex,
-			int numberOfSamples, boolean isDetailed) throws IOException {
-		if(isDetailed) br.write(String.valueOf(moduleIndex+1)+"\t"); //index
-		br.write(calcOutput.getModule().replace("\t", ";") + "\t"); //pathway name/ module name
-		if(isDetailed) {
-			br.write("-\t");
-			br.write("-\t");
-			br.write("-\t");
-			br.write("-\t");
-			br.write("-\t");
-			br.write("-\t");
-			br.write("-\t");
-			br.write("-\t");
-		}
-		br.write(calcOutput.getStepMpa() + "\t");
-		br.write(calcOutput.getStepTotal() + "\t");
-		if (calcOutput.getQuantList().isEmpty()) {
-			for(int sampleIterator =0; sampleIterator<numberOfSamples;sampleIterator++) {
-				br.write("nd");
-				if(sampleIterator<numberOfSamples-1) {
-					br.write("\t");
-				}
-			}
-		} else {
-			for(int quantIterator=0 ;quantIterator<calcOutput.getQuantList().size(); quantIterator++) {
-				double quant = calcOutput.getQuantList().get(quantIterator);
-				br.write(String.valueOf(quant));
-				if(quantIterator<calcOutput.getQuantList().size()-1) {
-					br.write("\t");
-				}						
-			}
-		}
-		br.write("\n");		
 	}
 
 	public void setCalcOutputList(ArrayList<CalculatorOutput> listCalcOutput) {

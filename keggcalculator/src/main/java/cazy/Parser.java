@@ -76,7 +76,7 @@ public class Parser {
 			for(String ecNumber : entries.getValue()) {
 				String ecName = getName(ecNumber.replace("*", "-"));
 				fileString = fileString.concat("\n" + String.valueOf(stepId) + ";"); // id
-				fileString = fileString.concat(ecName.replace(";", "\t").concat("\\ " + getId(stepId)) + ";"); //reaction numbers
+				fileString = fileString.concat(ecName.replace(";", "\t").concat("\s" + getId(stepId)) + ";"); //reaction numbers
 				fileString = fileString.concat("" + ";"); //ko numbers
 				fileString = fileString.concat(ecNumber.replace("*", "-") + ";"); //ec numbers
 				fileString = fileString.concat(""+";");//stoichiometric coeff

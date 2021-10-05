@@ -15,6 +15,7 @@ import clonedeep from "lodash/cloneDeep"
 import {endpoint_TaxonomyById} from "../../App Configurations/RequestURLCollection";
 import {endpoint_getFbaSolution} from "../../App Configurations/RequestURLCollection";
 import {forEach} from "lodash/fp/_util";
+import {Button} from "react-bootstrap";
 
 
 const fbaSolution = endpoint_getFbaSolution
@@ -46,33 +47,82 @@ const FbaSolution = () =>{
 
 
     const getReaction = (reactions) =>{
-        reactions.forEach(reaction => {
-            const fbaSolution = clonedeep(reaction.fbaSolution)
-            const minFlux = clonedeep(reaction.minFlux)
-            const maxFlux = clonedeep(reaction.maxFlux)
+            const reaction = {};
+            const fbaSolution = clonedeep(reactions.fbaSolution)
+            const minFlux = clonedeep(reactions.minFlux)
+            const maxFlux = clonedeep(reactions.maxFlux)
             reaction.fbaSolution = fbaSolution
             reaction.minFlux = minFlux
             reaction.maxFlux = maxFlux
-        })
-        return reactions
+
+        return reaction
     }
 
 
+    const reactionMap = new Map();
+    const reaction_sOd = {};
+
+    const reaction_dummy = {
+        'R00955' : {
+            "fbaSolution" : 500,
+            "minFlux": 500,
+            "maxFlux": 500
+        },
+        'R06057' : {
+            "fbaSolution" : 100,
+            "minFlux": 100,
+            "maxFlux": 100
+        },
+        'R06044' : {
+            "fbaSolution" : 700,
+            "minFlux": 700,
+            "maxFlux": 700
+        }
+
+    };
 
     const getfbaflux = (reaction) => {
         const requestPromise = requestGenerator("POST", fbaSolution, {FBA: JSON.stringify(reaction)}, "", "")
             .then(response => {
-                console.log(response.data);
+                var data_reply = response.data;
+                console.log(data_reply);
                 const reactionList = []
                 const reactionsMap = new Map();
-                response.data.forEach(object => {
-                    const reactions = getReaction(object)
-                    reactionsMap.set(object.reactionId, reactions)
-                    reactionList.push(object.reactionId)
-                })
+                for(var i in response.data){
+                    var data_item =  response.data[i];
+                    console.log(data_item);
+                    for(var key in data_item){
+                        var item_data = data_item[key];
+
+
+                            reactionList[key] = {
+                                "fbaSolution" : item_data.fbaSolution,
+                                "minFlux": item_data.minFlux,
+                                "maxFlux": item_data.maxFlux
+                            }
+
+
+
+                        console.log(key);
+                        console.log(item_data.minFlux);
+                    }
+
+
+                    // data_item.forEach(object=>{
+                    //     const reaction_details = getReaction(object);
+                    //     reactionMap.set(object, reaction_details);
+                    //     reactionList.push(object);
+                    // })
+                }
+                console.log(reactionList);
+                dispatch({type: "SETFBAANDFLUX", payload: reaction_dummy});
+
                 return (
-                    {reactionList, reactionsMap}
+
+                    reactionList
                 )
+
+
             })
         return (
             requestPromise
@@ -81,30 +131,37 @@ const FbaSolution = () =>{
     }
 
     const solution = (selection) =>{
-
+        //havar met = {};
         var metabolites = {};
-        for (var i in selection.substrates){
+        var i = 0;
+        for (i in selection.substrates){
             var item = selection.substrates[i];
 
-            metabolites.push({
-            ["m_"+i]: {
-                    "metabolitesId" : item.name.slice(item.name.length - 6),
-                    "stoichiometry": parseFloat(- item.stoichiometry)
-                }
-            })
-        }
-        for(var i in selection.products){
-            var item = selection.products[i];
+            // metabolites.push(
+            //     "kafi" : {
+            //         "metabolitesId": item.name.slice(item.name.length - 6),
+            //         "stoichiometry": parseFloat(-item.stoichiometry)
+            //     }
+            // )
 
-            metabolites.push({
-                ["m_"+ i]:{
-                    "metabolitesId": item.name.slice(item.name.length - 6),
-                    "stoichiometry": parseFloat(item.stoichiometry)
-                }
-            })
+            metabolites["m_"+i] = {
+                "metaboliteId": item.name.slice(item.name.length - 6),
+                "stoichiometry": parseFloat(-item.stochiometry)
+            }
+            i++;
         }
+        for(var j in selection.products){
+            var item = selection.products[j];
+
+            metabolites["m_"+i] = {
+                "metaboliteId": item.name.slice(item.name.length - 6),
+                "stoichiometry": parseFloat(item.stochiometry)
+            }
+            i++;
+        }
+
         var json = Object.assign({}, metabolites);;
-        return json;
+        return metabolites;
     }
 
     var data = {
@@ -113,17 +170,22 @@ const FbaSolution = () =>{
     };
 
 
-
+    var exchange_value = false;
+    var cystol_info = "";
     for (var i in generalState.reactionsInSelectArray) {
         var item = generalState.reactionsInSelectArray[i];
-
+            generalState.exchangeReaction.forEach(reaction =>{
+                if(reaction.reactionId == item.reactionId){
+                    exchange_value = reaction.exchangeInfo;
+                }
+            });
             data.reactions.push({
                 "reactionId": item.reactionId,
                 "reactionName": item.reactionName,
                 "lowerBound": Math.floor(Math.random() * 100),
                 "upperBound": Math.floor(Math.random() * 1000),
                 "objectiveCoefficient": 0,
-                "exchangeReaction": item.reversible,
+                "exchangeReaction": exchange_value,
                 "metabolites" : solution(item)
                 // "metabolites": {
                 //
@@ -133,21 +195,46 @@ const FbaSolution = () =>{
                 //     }
                 // }
             })
+
         for(var j in item.substrates){
-            var mal_item = item.substrates[j];
-            data.metabolites.push({
-                "metaboliteId" : mal_item.name.slice(mal_item.name.length - 6),
-                "metaboliteName" : mal_item.name,
-                "compartment" : "cystol"
-            })
+            for( var k=0; k<j; k++){
+                var mal_item = item.substrates[j];
+                var prev_item = item.substrates[k];
+                if(mal_item.name != prev_item.name){
+                    generalState.cystolInformation.forEach(reaction =>{
+                        if(reaction.compoundId == mal_item.name.slice(mal_item.name.length -6)){
+                            cystol_info = reaction.compartment;
+                        }
+                    });
+                    data.metabolites.push({
+                        "metaboliteId" : mal_item.name.slice(mal_item.name.length - 6),
+                        "metaboliteName" : mal_item.name,
+                        "compartment" : cystol_info
+                    })
+                }
+
+            }
+
         }
         for(var j in item.products){
-            var mal_item = item.products[j];
-            data.metabolites.push({
-                "metaboliteId" : mal_item.name.slice(mal_item.name.length - 6),
-                "metaboliteName" : mal_item.name,
-                "compartment" : "external"
-            })
+            for(var k = 0; k<j; k++){
+                var mal_item = item.products[j];
+                var perv_item = item.products[k];
+                if(mal_item.name != prev_item.name){
+                    generalState.cystolInformation.forEach(reaction =>{
+                        if(reaction.compoundId == mal_item.name.slice(mal_item.name.length -6)){
+                            cystol_info = reaction.compartment;
+                        }
+                    });
+                    data.metabolites.push({
+                        "metaboliteId" : mal_item.name.slice(mal_item.name.length - 6),
+                        "metaboliteName" : mal_item.name,
+                        "compartment" : cystol_info
+                    })
+                }
+
+            }
+
         }
 
 
@@ -245,17 +332,29 @@ const FbaSolution = () =>{
     console.log("Real DATA");
     console.log(JSON.stringify(data));
 
-    console.log(getfbaflux(data));
-    //console.log(getfbaflux(data));
+    console.log("AFTER CREATION")
+    console.log(generalState);
 
+    for(var key in generalState.fbaSolution){
+        if(generalState.fbaSolution.hasOwnProperty(key)){
+            console.log(key);
+            var fluz = generalState.fbaSolution[key].fbaSolution;
+            console.log(fluz);
+        }
+    }
+    console.log(generalState.fbaSolution)
+    //console.log(getfbaflux(reaction_array));
+    //console.log(getfbaflux(data));
+    //var result = getfbaflux(reaction_array);
+    //dispatch({type: "SETFBAANDFLUX", payload: result})
+    //console.log(generalState);
 
 
 
 
 
     return (
-
-        <button onClick={()=> getfbaflux(data)}>ADD FLUX </button>
+        <Button onClick={()=> getfbaflux(reaction_array)}>ADD FLUX</Button>
 
         // <button name={"FLUX ANA"}
         //         className={"addKo"}

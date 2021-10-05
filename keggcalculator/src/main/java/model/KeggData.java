@@ -2,8 +2,6 @@ package model;
 
 import java.util.HashSet;
 
-import bigg.model.BiggCompoundObject;
-
 public class KeggData {
 
 	protected final HashSet<KeggModuleObject> modules;
@@ -13,8 +11,6 @@ public class KeggData {
 	protected final HashSet<KeggCompoundObject> compounds;
 	protected final HashSet<KeggHsaObject> hsaEntities;
 	
-	protected final HashSet<BiggCompoundObject> biggCompounds;
-	
 	public KeggData() {
 		this.modules = new HashSet<KeggModuleObject>();
 		this.reactions = new HashSet<KeggReactionObject>();
@@ -23,7 +19,6 @@ public class KeggData {
 		this.compounds = new HashSet<KeggCompoundObject>();
 		this.hsaEntities = new HashSet<KeggHsaObject>();
 		
-		this.biggCompounds = new HashSet<BiggCompoundObject>();
 	}
 
 }

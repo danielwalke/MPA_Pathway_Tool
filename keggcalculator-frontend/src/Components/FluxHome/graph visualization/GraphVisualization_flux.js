@@ -43,6 +43,7 @@ const handleNodePositionChange = (graphState, x, y, nodeId,dispatch)=>{
     })
     const data = {nodes: nodes, links: graphState.data.links}
     dispatch({type:"SETDATA", payload: data})
+
 }
 
 const GraphVisualization_flux = () => {
@@ -104,7 +105,7 @@ const GraphVisualization_flux = () => {
         link: {
             labelProperty: graphState.fbaSolution,
             linkColor: 'red',
-            strokeWidth:fluxRate(100), //this will change accordingly to flux rate
+            strokeWidth:showFluxrate(100), //this will change accordingly to flux rate
             linkStrength: 5
 
 

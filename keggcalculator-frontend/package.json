@@ -11,10 +11,10 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.21.0",
+    "bootstrap": "^5.1.1",
     "clsx": "^1.1.1",
     "d3": "^5.5.0",
     "file-saver": "^2.0.2",
-    "jszip": "^3.7.1",
     "lodash": "^4.17.21",
     "mobx": "^5.15.6",
     "mobx-react": "^6.3.0",
@@ -22,6 +22,7 @@
     "object-to-xml": "^2.0.0",
     "papaparse": "^5.3.1",
     "react": "^16.8.6",
+    "react-bootstrap": "^2.0.0-rc.0",
     "react-d3-graph": "2.5.0",
     "react-dom": "^16.13.1",
     "react-player": "^2.8.2",
@@ -30,11 +31,11 @@
     "react-scripts": "3.4.3",
     "react-select": "^3.1.1",
     "react-spinners": "^0.10.4",
-    "react-tooltip": "^4.2.21",
     "react-window": "^1.8.6",
     "react-xml-parser": "^1.1.8",
     "rebuild": "^0.1.2",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "styled-components": "^5.3.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,0 +1,59 @@
+{
+  "reactions": [
+    {
+      "reactionId": "R00955",
+      "reactionName": "UDP-glucose:alpha-D-galactose-1-phosphate uridylyltransferase; UDP-glucose + alpha-D-Galactose 1-phosphate <=> D-Glucose 1-phosphate + UDP-alpha-D-galactose R00955",
+      "lowerBound": 85,
+      "upperBound": 468,
+      "objectiveCoefficient": 0,
+      "exchangeReaction": "true",
+      "metabolites": {
+        "m_0": {
+          "metaboliteId": "C00103",
+          "stoichiometry": -1
+        },
+        "m_1": {
+          "metaboliteId": "C00446",
+          "stoichiometry": 1
+        }
+      }
+    },
+    {
+      "reactionId": "R06057",
+      "reactionName": "beta-D-galactopyranosyl-(1->3)-N-acetyl-D-hexosamine:phosphate galactosyltransferase; Lacto-N-biose + Orthophosphate <=> alpha-D-Galactose 1-phosphate + N-Acetyl-D-glucosamine R06057",
+      "lowerBound": 23,
+      "upperBound": 771,
+      "objectiveCoefficient": 0,
+      "exchangeReaction": "false",
+      "metabolites": {
+        "m_0": {
+          "metaboliteId": "C00446",
+          "stoichiometry": -1
+        },
+        "m_1": {
+          "metaboliteId": "C00009",
+          "stoichiometry": 1
+        }
+      }
+    },
+    {
+      "reactionId": "R06044",
+      "reactionName": "trehalose 6-phosphate:phosphate beta-D-glucosyltransferase; Trehalose 6-phosphate + Orthophosphate <=> D-Glucose 6-phosphate + beta-D-Glucose 1-phosphate R06044",
+      "lowerBound": 91,
+      "upperBound": 863,
+      "objectiveCoefficient": 0,
+      "exchangeReaction": "true",
+      "metabolites": {
+        "m_0": {
+          "metaboliteId": "C00009",
+          "stoichiometry": -1
+        },
+        "m_1": {
+          "metaboliteId": "C00092",
+          "stoichiometry": 1
+        }
+      }
+    }
+  ],
+  "metabolites": []
+}

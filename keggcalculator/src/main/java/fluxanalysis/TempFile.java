@@ -10,6 +10,7 @@ public class TempFile {
 	public static void createTempFile() {
 		try {
 			File tempModel = new File("temp/tempModel.txt");
+			System.out.println(tempModel.getAbsolutePath());
 			if (tempModel.createNewFile()) {
 				System.out.println("File created: " + tempModel.getName());
 			} else {
@@ -26,6 +27,9 @@ public class TempFile {
 		      FileWriter writer = new FileWriter("temp/tempModel.txt");
 		      writer.write(modelString);
 		      writer.close();
+//		      FileWriter writel = new FileWriter("temp/temp2.txt");
+//		      writel.write(modelString);
+//		      writel.close();
 		      System.out.println("Successfully wrote to the file.");
 		    } catch (IOException e) {
 		      System.out.println("An error occurred.");

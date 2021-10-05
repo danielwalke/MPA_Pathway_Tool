@@ -41,7 +41,8 @@ const defaultState = {
                 ecNumbers: ecNumbers,
                 koNumbers:koNumbers,
                 substrates: substrates,
-                products: products
+                products: products,
+
             }]
     */
     isMissingAnnotations: false, //boolean, which checks whether there are unannotated compounds in the given sbml file
@@ -53,7 +54,13 @@ const defaultState = {
     addLinkModal: false, //modal for adding new links useful for signaling pathway
     listOfReactionGlyphs: [], //positons of nodes in sbml file
     taxonomicNames:[], //taxonomic names received from server after submitting taxonomic rank
-    fbaSolution: [] //fluxRate received from server after submitting reaction id
+    fbaSolution: [], //fluxRate received from server after submitting reaction id
+    exchangeReaction: [],
+    cystolInformation: [],
+    new_data_gen : {
+        nodes: [],
+        links: [],
+    },
 }
 
 export const generalReducer = (state = defaultState, action) => {
@@ -191,6 +198,14 @@ export const generalReducer = (state = defaultState, action) => {
             return {...state, taxonomicNames: payload}
         case "SETFBAANDFLUX":
             return {...state, fbaSolution: payload}
+        case "SETEXCHANGEREACTION":
+            payload.map(reaction => state.exchangeReaction.push(reaction))
+            return {...state, exchangeReaction: state.exchangeReaction}
+        case "SETCYSTOLINFORMATION":
+            payload.map(reaction => state.cystolInformation.push(reaction))
+            return {...state, cystolInformation: state.cystolInformation}
+        case "SETNEWDATA1":
+            return {...state, new_data_gen: payload}
         default:
             return state;
     }

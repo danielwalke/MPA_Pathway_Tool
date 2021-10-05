@@ -40,6 +40,11 @@ const defaultState = {
     nodeSize: 150,
     compoundNodeColor: "#FF8000",
     fbaSolution: [],
+    // data_new : {
+    //     node: [],
+    //     links: [],
+    // },
+    // new_datalinks: [],
 }
 
 export const graphReducer = (state = defaultState, action) => {
@@ -131,6 +136,10 @@ export const graphReducer = (state = defaultState, action) => {
             return {...state, compoundNodeColor: payload}
         case "SET_FLUX":
             return {...state, fbaSolution: payload}
+        // case "SET_NEWDATA":
+        //     return {...state, data_new: payload}
+        // case "SET_NEWDATALINKS":
+        //     return {...state, new_datalinks: payload}
         default:
             return state;
     }

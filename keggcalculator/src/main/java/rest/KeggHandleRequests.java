@@ -3,7 +3,6 @@ package rest;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -115,18 +114,6 @@ public class KeggHandleRequests {
 	public static HttpServletResponse download(Request req, Response res, KeggCalculatorService calculator,
 			String jobID) {
 		return calculator.getDownload(req, res, jobID);
-	}
-	
-	// handles download of output-csv-file
-	public static HttpServletResponse downloadDetails(Request req, Response res, KeggCalculatorService calculator,
-			String jobID) {
-		return calculator.getDownloadDetails(req, res, jobID);
-	}
-	
-	// handles download of output-csv-file
-	public static String getDetailedContent(Request req, Response res, KeggCalculatorService calculator,
-			String jobID) throws IOException {
-		return calculator.getDetailedContent(req, res, jobID);
 	}
 	
 
@@ -318,6 +305,7 @@ public class KeggHandleRequests {
 
 	public static Object getFilteredTaxonomicNames(KeggCreatorService creator, String rank,
 			String subName) {
+		// TODO Auto-generated method stub
 		return creator.gson.toJson(creator.getFilteredTaxonomicNames(rank, subName));
 	}
 

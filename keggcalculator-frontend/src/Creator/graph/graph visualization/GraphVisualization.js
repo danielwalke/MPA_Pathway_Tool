@@ -97,6 +97,8 @@ const GraphVisualization = () => {
         // }else{
         //     nodeId = node.substring(node.length - 6, node.length)
         // }
+
+
         const compound = graphState.data.nodes.filter(graphNode => graphNode.id === node)[0]
         dispatch({type:"SETOLDDATA", payload: graphState.data})
         dispatch({type:"SETCHOSENCOMPOUND", payload: clonedeep(compound)})

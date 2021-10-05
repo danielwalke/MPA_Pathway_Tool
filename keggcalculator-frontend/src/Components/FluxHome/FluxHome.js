@@ -4,6 +4,11 @@ import "./interface.css";
 import GraphVisualization_flux from "./graph_flux/graph visualization/GraphVisualization_flux";
 import Fluxcreate from "./fluxcreate/Fluxcreate";
 import FbaSolution from "../../Creator/Flux/FbaSolution";
+import Graph_visualization_fba from "./graph_flux/graph visualization/Graph_visualization_fba";
+import NodeAndLinks from "./GraphCreator/NodeAndLinks";
+import {Button} from "react-bootstrap";
+import CreateFBA from "./CreateFBA";
+import ModalHeader from "react-bootstrap/ModalHeader";
 
 
 function FluxHome() {
@@ -12,37 +17,32 @@ function FluxHome() {
 
   return (
     <div>
-      <header>Flux Analysis</header>
+      <ModalHeader>Flux Analysis</ModalHeader>
       <div className={"interfaceContainer"}>
+
         <div>
           <button
             className={"downloadButton"}>
-            <Fluxcreate/>
-          </button>         
-        </div>
-        <div>
-          <button
-            className={"downloadButton"}>
-            Flux visualization
-          </button>         
-        </div>
-        <div>
-          <button
-            className={"downloadButton"}>
-            Flux Upload
+            <NodeAndLinks></NodeAndLinks>
+            {/*<Graph_visualization_fba/>*/}
           </button>         
         </div>
         <div>
           <button className={"downloadButton"}>
-            <FbaSolution></FbaSolution></button>
+            <FbaSolution></FbaSolution>
+            </button>
 
 
         </div>
       </div>
 
       <div className={"main"}>
-        <GraphVisualization_flux/>
+        <Graph_visualization_fba/>
       </div>
+
+
+
+
     </div>
   );
 }

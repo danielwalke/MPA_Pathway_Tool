@@ -8,7 +8,7 @@ def run_process(temp_model_path: str):
     write_to_tempFile(solution)
 
 def write_to_tempFile(result_str: str):
-    temp_results = open("temp\\tempResults.txt", "w")
+    temp_results = open("temp/tempResults.txt", "w")
     temp_results.write(result_str)
     temp_results.close()
 
