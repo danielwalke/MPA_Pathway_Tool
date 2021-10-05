@@ -10,17 +10,17 @@ import {endpoint_getDependencies} from "../../App Configurations/RequestURLColle
 
 const MetadataCalculator = (props) => {
 
-    const [dependencies, setDependencies] = useState([])
-    const [serverDependencies, setServerDependencies] = useState([])
-
-    useEffect(()=> {
-        const packageJson = require("../../../package.json");
-        setDependencies(packageJson.dependencies)
-        requestGenerator("GET", endpoint_getDependencies, "", "").then(resp => {
-            setServerDependencies(resp.data)
-        })
-
-    },[])
+    // const [dependencies, setDependencies] = useState([])
+    // const [serverDependencies, setServerDependencies] = useState([])
+    //
+    // useEffect(()=> {
+    //     const packageJson = require("../../../package.json");
+    //     setDependencies(packageJson.dependencies)
+    //     requestGenerator("GET", endpoint_getDependencies, "", "").then(resp => {
+    //         setServerDependencies(resp.data)
+    //     })
+    //
+    // },[])
 
     const handleDownloadMetadata = () => {
         let zip = require("jszip")()
@@ -37,17 +37,18 @@ const MetadataCalculator = (props) => {
         //TODO: Keep the following data modification dates up to date
         metaData += "KEGG\t30.09.2020\n"
         metaData += "NCBI\t08.07.2021\n"
-        metaData += "\n"
-        metaData += "dependencies(client-side)\tversion\n"
-        for(const dependency in dependencies){
-            const version = dependencies[dependency]
-            metaData += `${dependency}\t${version}\n`
-        }
-        metaData+= "\n\n"
-        metaData += "dependencies(server-side)\tversion\n"
-        for(const dependency in serverDependencies){
-            metaData += `${dependency}\t${serverDependencies[dependency]}\n`
-        }
+        metaData += "MPA_Pathway_Tool-Version 1\t03.10.21\n"
+        // metaData += "\n"
+        // metaData += "dependencies(client-side)\tversion\n"
+        // for(const dependency in dependencies){
+        //     const version = dependencies[dependency]
+        //     metaData += `${dependency}\t${version}\n`
+        // }
+        // metaData+= "\n\n"
+        // metaData += "dependencies(server-side)\tversion\n"
+        // for(const dependency in serverDependencies){
+        //     metaData += `${dependency}\t${serverDependencies[dependency]}\n`
+        // }
         const metaDataBlob = new Blob(new Array(metaData.trim()), {type: "text/plain;charset=utf-8"})
         const metaDataFile = new File(new Array(metaDataBlob), "metadata.txt")
         zip.file(metaDataFile.name, metaDataFile)
