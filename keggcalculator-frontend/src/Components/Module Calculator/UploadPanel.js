@@ -92,6 +92,7 @@ class UploadPanel extends Component {
                 formData.append("uploaded_file", this.props.CalculatorStore.getMPAFile[0]);
                 // let body = {"Content-Type": "multipart/form-data", "uploaded_file":this.props.CalculatorStore.getMPAFile[0]}
                 this.props.CalculatorStore.setJobIDAndMessage(jobID, message);
+                console.log(formData)
                 requestGenerator("POST", RequestURL.endpoint_uploadMPAFile, {jobid: jobID}, header, formData).then(response => {
                     if (response.status !== 200) {
                         this.props.CalculatorStore.setErrorMessage("MPA file processing failed");
@@ -124,7 +125,7 @@ class UploadPanel extends Component {
                 <div style={{display: "flex", padding: "20px 0 20px 0px"}}>
                     <div style={{height: "auto", width: "47%", padding: "0 1% 0 2.5%"}}>
                         <DropZone fileType={"MPAFile"}
-                                  message={"Drag a experimental data file here or click the upload file button"}
+                                  message={"Drag an experimental data file here or click the upload file button"}
                                   uploadFileButton={"Upload a experimental data file"}
                         />
                     </div>

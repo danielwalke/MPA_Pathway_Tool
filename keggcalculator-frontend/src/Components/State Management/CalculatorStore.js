@@ -47,6 +47,7 @@ class Calculator_Store {
         this.currentStatus = undefined;
         if (fileType === "MPAFile") {
             this.MPAFile = collection;
+            console.log(collection)
         } else {
             this.moduleFiles.push(collection);
         }
