@@ -62,7 +62,7 @@ const defaultState = {
     autoCompleteCompoundsList: {},
     biggIdSelectionList: {},
     biggSuggestedIds: {},
-    biggCompoundsForModel: new Map(), // Array of selected Bigg ids
+    sbmlIds: {},
 
 }
 
@@ -216,10 +216,10 @@ export const generalReducer = (state = defaultState, action) => {
             return {...state, autoCompleteCompoundsList: payload}
         case "SET_BIGG_ID_SELECTION":
             return {...state, biggIdSelectionList: payload}
-        case "SET_BIGG_COMPOUNDS_FOR_MODEL":
-            return {...state, biggCompoundsForModel: payload}
         case "SHOW_ANNOTATION_WARNING":
             return {...state, showAnnotationWarning: payload}
+        case "SET_REACTION_SBML_ID":
+            return {...state, sbmlIds: payload}
         default:
             return state;
     }

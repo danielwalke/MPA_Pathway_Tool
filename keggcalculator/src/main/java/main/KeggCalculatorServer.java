@@ -256,6 +256,17 @@ public class KeggCalculatorServer {
 				return "{\"message\":\"internal server error\"}";
 			}
 		});
+		
+		post("/keggcreator/reactiondatabycompounds", (req, res) -> {
+			try {
+//				TODO: create request access entry
+				res.status(201);
+				return KeggHandleRequests.reactionDataByCompounds(creator, req.queryParams("compoundIds"));
+			} catch (Exception e) {
+				res.status(500);
+				return "{\"message\":\"internal server error\"}";
+			}
+		});
 
 		/**
 		 * returns pathway absed on given substrate and product -> incomplete
@@ -366,16 +377,7 @@ public class KeggCalculatorServer {
 				res.status(201);
 				HashSet<KeggReaction> reactions = new HashSet<>();
 				for (KeggReactionObject reactionObject : creator.cloneKeggData().getReactions()) {
-					KeggReaction reaction = new KeggReaction(reactionObject.getReactionId(),
-							reactionObject.getReactionName(), reactionObject.isForwardReaction());
-					for (KeggECObject ec : reactionObject.getEcnumbers()) {
-						reaction.addEcNumberString(ec.getEcId());
-					}
-					for (KeggKOObject ko : reactionObject.getKonumbers()) {
-						reaction.addKONumberString(ko.getKoId());
-					}
-					reaction.setStochiometrySubstratesString(reactionObject.getStochiometrySubstrates());
-					reaction.setStochiometryProductsString(reactionObject.getStochiometryProducts());
+					KeggReaction reaction = reactionObject.toKeggReaction(reactionObject);
 					reactions.add(reaction);
 				}
 				return creator.gson.toJson(reactions);
@@ -385,6 +387,33 @@ public class KeggCalculatorServer {
 				return "{\"message\":\"internal server error\"}";
 			}
 		});
+		
+		post("/keggcreator/filteredreactions", (req, res) -> {
+			try {
+				return KeggHandleRequests.getFilteredKeggReactions(creator, req.queryParams("name"));
+			} catch (Exception e) {
+				res.status(500);
+				return "{\"message\":\"internal server error\"}";
+			}
+		});
+		
+		post("/keggcreator/filteredreactionids", (req, res) -> {
+			try {
+				return KeggHandleRequests.filteredKeggReactionIds(creator, req.queryParams("keggId"));
+			} catch (Exception e) {
+				res.status(500);
+				return "{\"message\":\"internal server error\"}";
+			}
+		});
+		
+		post("/keggcreator/filteredbiggreactionids", (req, res) -> {
+			try {
+				return KeggHandleRequests.filteredBiggReactionIds(creator, req.queryParams("biggId"));
+			} catch (Exception e) {
+				res.status(500);
+				return "{\"message\":\"internal server error\"}";
+			}
+		}); 
 
 		/**
 		 * returns list of existent taxa

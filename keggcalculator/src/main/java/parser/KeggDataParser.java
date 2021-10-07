@@ -15,6 +15,7 @@ import model.KeggECObject;
 import model.KeggHsaObject;
 import model.KeggKOObject;
 import model.KeggModuleObject;
+import model.KeggReaction;
 import model.KeggReactionObject;
 
 /**
@@ -532,6 +533,30 @@ public class KeggDataParser {
 			br.close();
 			keggData.setKegg2BiggCompoundMap(kegg2bigg);
 			
+		} catch(Exception e) {
+			
+			e.printStackTrace();
+		}
+	}
+	
+	public static void parseKegg2BiggReaction(KeggDataObject keggData, String file) {
+		try {	
+				BufferedReader br = new BufferedReader(new FileReader(new File(file)));
+				String line = br.readLine();
+				
+				line = br.readLine(); // skip header
+				while (line != null) {
+					String[] splitLine = line.split("\t");
+					String keggId = splitLine[0];
+					String biggId = splitLine[1];
+					KeggReaction reaction = keggData.getReaction(keggId);
+					if (reaction != null) {
+						// Bigg may contain R ids that are not included in kegg anymore						
+						reaction.addBiggReactionId(biggId);
+					}
+					line = br.readLine();
+				}
+				br.close();
 		} catch(Exception e) {
 			
 			e.printStackTrace();

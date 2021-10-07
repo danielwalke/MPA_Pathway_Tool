@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 
 public class KeggReaction {
 	protected final String reactionId;
+	protected final HashSet<String> biggReactionIds;
 	protected final String reactionName;
 	protected final HashSet<String> koNumbersString;
 	protected final HashSet<String> ecNumbersString;
@@ -19,6 +20,7 @@ public class KeggReaction {
 	public KeggReaction(String reactionid, String reactionName, boolean isForwardReaction) {
 		this.reactionId = reactionid;
 		this.reactionName = reactionName;
+		this.biggReactionIds = new HashSet<String>();
 		this.koNumbersString = new HashSet<String>();
 		this.ecNumbersString = new HashSet<String>();
 		this.stochiometrySubstratesString = new HashMap<String, String>();
@@ -90,5 +92,16 @@ public class KeggReaction {
 		return isForwardReaction;
 	}
 	
+	public void addBiggReactionIds(HashSet<String> biggReactionIds) {
+		this.biggReactionIds.addAll(biggReactionIds);
+	}
+	
+	public void addBiggReactionId(String biggReactionId) {
+		this.biggReactionIds.add(biggReactionId);
+	}
+	
+	public HashSet<String> getBiggReactionIds() {
+		return this.biggReactionIds;
+	}
 	
 }

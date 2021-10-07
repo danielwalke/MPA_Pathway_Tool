@@ -28,6 +28,7 @@ const handleSkipPurpose = (state, dispatch) => {
     // console.log(data);//check whether this is correct, then uncomment the next line
     // dispatch({type: "SETDATA", payload: data})
     dispatch({type: "SETLOADING", payload: false})
+    dispatch({type: "SHOW_ANNOTATION_WARNING", payload: false})
     dispatch({type: "SETISSHOWINGREACTIONTABLE", payload: true})
 }
 

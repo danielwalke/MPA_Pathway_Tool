@@ -321,4 +321,20 @@ public class KeggHandleRequests {
 		return creator.gson.toJson(creator.getFilteredTaxonomicNames(rank, subName));
 	}
 
+	public static Object getFilteredKeggReactions(KeggCreatorService creator, String nameInput) {
+		return creator.gson.toJson(creator.filteredKeggReactions(nameInput));
+	}
+
+	public static Object reactionDataByCompounds(KeggCreatorService creator, String compoundIds) {
+		return creator.gson.toJson(creator.getReactionDataByCompounds(compoundIds));
+	}
+
+	public static Object filteredKeggReactionIds(KeggCreatorService creator, String keggId) {
+		return creator.gson.toJson(creator.filteredKeggReactionIds(keggId));
+	}
+
+	public static Object filteredBiggReactionIds(KeggCreatorService creator, String biggId) {
+		return creator.gson.toJson(creator.getfilteredBiggReactionIds(biggId));
+	}
+
 }

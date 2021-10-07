@@ -2,7 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect, useState} from "react";
 import {Autocomplete} from "@material-ui/lab";
 import TextField from "@material-ui/core/TextField";
-import {ListboxComponent, useStylesList} from "./KeggCompoundAutoCompleteList";
+import {useStylesList} from "./KeggCompoundAutoCompleteList";
 
 const getGroupedOptions = (suggestedCompounds, allCompounds) => {
     /**

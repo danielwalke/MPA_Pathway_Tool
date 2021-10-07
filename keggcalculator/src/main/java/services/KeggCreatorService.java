@@ -12,9 +12,11 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Random;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
@@ -113,6 +115,7 @@ public class KeggCreatorService {
 		KeggDataParser.parseHsa2HsaName(keggData, KeggCalculatorConstants.HSA_NUMBER_LIST_DIR);
 		KeggDataParser.parseBiggCompounds(keggData, KeggCalculatorConstants.BIGG_COMPOUNDS);
 		KeggDataParser.parseKegg2BiggCompounds(keggData, KeggCalculatorConstants.KEGG_TO_BIGG_COMPOUNDS);
+		KeggDataParser.parseKegg2BiggReaction(keggData, KeggCalculatorConstants.KEGG_TO_BIGG_REACTIONS);
 //		KeggCalculatorServer server = new KeggCalculatorServer();
 //		server.setKeggData(this.keggData);
 	}
@@ -671,6 +674,104 @@ public class KeggCreatorService {
 			
 		}
 		return names;
+	}
+
+	public HashSet<KeggReaction> filteredKeggReactions(String nameInput) {
+		HashSet<KeggReaction> reactions = new HashSet<>();
+//		KeggDataObject keggDataClone = cloneKeggData();
+		
+		for(KeggReactionObject reaction : this.keggData.getReactions()) {
+			if(reaction.getReactionName().toLowerCase().contains(nameInput.toLowerCase()) && 
+					reactions.size()<101) {
+				
+				reactions.add(reaction.toKeggReaction(reaction));
+			}
+		}
+		return reactions;
+	}
+	
+	public HashSet<KeggReaction> filteredKeggReactionIds(String idInput) {
+		HashSet<KeggReaction> reactions = new HashSet<>();
+		
+		HashSet<KeggReactionObject> keggDataReactions = this.keggData.getReactions();
+		
+		for (KeggReactionObject id : keggDataReactions) {
+			if(id.getReactionId().toLowerCase().contains(idInput.toLowerCase()) && 
+					reactions.size()<101) {
+				
+				reactions.add(id.toKeggReaction(id));
+			}
+		}
+		
+		return reactions;
+	}
+	
+	public HashSet<KeggReaction> getfilteredBiggReactionIds(String biggId) {
+		HashSet<KeggReaction> reactions = new HashSet<>();
+		
+		HashSet<KeggReactionObject> keggDataReactions = this.keggData.getReactions();
+		
+		for (KeggReactionObject id : keggDataReactions) {
+			HashSet<String> dataBiggIds = id.getBiggReactionIds();
+			for (String item : dataBiggIds) {
+				if(item.toLowerCase().contains(biggId.toLowerCase()) && reactions.size()<101) {
+					reactions.add(id.toKeggReaction(id));
+				}
+			}
+		}
+		
+		return reactions;
+	}
+
+	public HashSet<KeggReaction> getReactionDataByCompounds(String compoundIds) {
+		String[] compounds = compoundIds.split(";");
+		LinkedHashSet<String> compoundSet = new LinkedHashSet<String>(Arrays.asList(compounds));
+		KeggDataObject keggDataClone = cloneKeggData();
+		
+		// initialize reaction sets with the first compound
+		HashSet<KeggReactionObject> initialReactionSet = getReactionsFromQueryCompound(keggDataClone, compounds[0]);
+		
+		HashSet<KeggReactionObject> allReactionHits = new HashSet<>(initialReactionSet);
+		HashSet<KeggReactionObject> sharedReactionHits = new HashSet<>(initialReactionSet);
+		
+		// drop first compound		
+		compoundSet.remove(compounds[0]);
+		
+		// iterate over remaining compounds		
+		for (String compound : compoundSet) {
+			HashSet<KeggReactionObject> reactionsFromCompound = getReactionsFromQueryCompound(keggDataClone, compound);
+			allReactionHits.addAll(reactionsFromCompound);
+			// keeps only elements that are also included in the assigned Hashset (reactionsFromCompound)	
+			sharedReactionHits.retainAll(reactionsFromCompound);
+		}
+		
+		HashSet<KeggReaction> reactionsForResponse = new HashSet<>();
+		
+		for (KeggReactionObject reactionObject : allReactionHits) {
+			reactionsForResponse.add(reactionObject.toKeggReaction(reactionObject));
+			
+			if (reactionsForResponse.size() == 100) {
+				break;
+			}
+		}
+		
+//		for (KeggReactionObject reaction : allReactionHits) {
+//			System.out.println(reaction.getReactionName());
+//		}
+//		System.out.println(allReactionHits.size());
+//		System.out.println("----------------------------------------");
+//		for (KeggReactionObject reaction : sharedReactionHits) {
+//			System.out.println(reaction.getReactionName());
+//		}
+		System.out.println(reactionsForResponse.size());
+
+		return reactionsForResponse;
+	}
+	
+	public static HashSet<KeggReactionObject> getReactionsFromQueryCompound(KeggDataObject keggData, String compound) {
+		KeggCompoundObject keggCompound = keggData.getCompound(compound);
+		HashSet<KeggReactionObject> reactionsFromCompound = keggCompound.getReactions();
+		return reactionsFromCompound;
 	}
 
 }

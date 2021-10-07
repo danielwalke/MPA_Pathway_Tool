@@ -49,6 +49,7 @@ public class KeggDataObject extends KeggData {
 		for (KeggReactionObject reaction : getReactions()) {
 			//set all reactions in cloned data
 			KeggReactionObject clonedReaction = new KeggReactionObject(reaction.getReactionId(), reaction.getReactionName());
+			clonedReaction.addBiggReactionIds(reaction.getBiggReactionIds());
 			clonedData.addReaction(clonedReaction);
 		}
 		for (KeggModuleObject module : getModules()) {

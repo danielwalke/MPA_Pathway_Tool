@@ -15,8 +15,7 @@ const SpecTaxonomy = () => {
     const [isTaxonomyNcbi, setIsTaxonomyNcbi] = useState(true)
     return (
         <div className={"taxonomyContainer"}>
-            <div className={"taxonomicRank"}><TaxonomicRank/>
-            </div>
+            <div className={"taxonomicRank"}><TaxonomicRank/></div>
             <div className={"switch"}>
                 <ToolTipBig
                     title={isTaxonomyNcbi ? "Choose your own taxonomic name" : `Choose taxonomic name from a list`}
@@ -27,9 +26,8 @@ const SpecTaxonomy = () => {
                 </ToolTipBig>
             </div>
             {!isTaxonomyNcbi ?
-                <ToolTipBig
-                    title={"Type in a taxonomic name"}
-                    placement={"left"}><TextField
+                <ToolTipBig title={"Type in a taxonomic name"} placement={"left"}>
+                    <TextField
                     placeholder={"lowest taxonomic rank"}
                     size={"small"}
                     className={"taxonomy"}
@@ -39,8 +37,8 @@ const SpecTaxonomy = () => {
                     onChange={(e) => dispatch({
                         type: "SETSPECTAXONOMY",
                         payload: e.target.value.toString()
-                    })}
-                /></ToolTipBig> :
+                    })}/>
+                </ToolTipBig> :
                 <TaxonomyNcbi taxonomy={specReactionState.specTaxonomy} dispatchTaxonomy={"SETSPECTAXONOMY"}/>}
             <ToolTipBig
                 title={"Add taxonomic requirement to the reaction"}

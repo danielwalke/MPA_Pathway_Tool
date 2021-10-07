@@ -142,6 +142,28 @@ public class KeggReactionObject extends KeggReaction {
 	public HashMap<String, KeggCompoundObject> getProductMap() {
 		return productMap;
 	}
+	
+	public KeggReaction toKeggReaction(KeggReactionObject reactionObject) {
+		/*
+		 * extracts reaction information from KeggReactionObjects and writes it to KeggReaction
+		 */
+		
+		KeggReaction reaction = new KeggReaction(
+				reactionObject.getReactionId(),
+				reactionObject.getReactionName(),
+				reactionObject.isForwardReaction());
+		for (KeggECObject ec : reactionObject.getEcnumbers()) {
+			reaction.addEcNumberString(ec.getEcId());
+		}
+		for (KeggKOObject ko : reactionObject.getKonumbers()) {
+			reaction.addKONumberString(ko.getKoId());
+		}
+		reaction.addBiggReactionIds(reactionObject.getBiggReactionIds());
+		reaction.setStochiometrySubstratesString(reactionObject.getStochiometrySubstrates());
+		reaction.setStochiometryProductsString(reactionObject.getStochiometryProducts());
+		
+		return reaction;
+	}
 
 
 	
