@@ -19,11 +19,16 @@ const EcSelector = (props) => {
     useEffect(() => {
         let ecNumberOptions = []
         state.general.reactionAnnotationTableOptions.forEach(reaction => {
-
-            ecNumberOptions.push(...reaction.ecNumbersString)
+            for (const ecNumber of reaction.ecNumbersString) {
+                // add ec number to options only if it isn't present already
+                if (!props.reactionRowInfo.ecNumbers.includes(ecNumber)) {
+                    ecNumberOptions.push(ecNumber)
+                }
+            }
         })
         setOptions(ecNumberOptions)
-    }, [state.general.reactionAnnotationTableOptions])
+
+    }, [state.general.reactionAnnotationTableOptions, props.reactionRowInfo.ecNumbers])
 
     return (
         <Autocomplete
@@ -33,10 +38,9 @@ const EcSelector = (props) => {
             options={options}
             value={props.reactionRowInfo.ecNumbers}
             onChange={(event, value) => {
-                console.log(event)
-                console.log(value)
+                // addition of selected ec number
                 const newListOfReactions = props.listOfReactions
-                newListOfReactions[props.index].ecNumbers = value
+                newListOfReactions[props.index].ecNumbers = [...value]
 
                 dispatch({type: "SETLISTOFREACTIONS", payload: newListOfReactions})
             }}
@@ -45,10 +49,14 @@ const EcSelector = (props) => {
                     <Chip
                         label={value}
                         onDelete={() => {
+                            // deletion of ec number
                             const newListOfReactions = props.listOfReactions
+                            const newEcNumbers = newListOfReactions[props.index].ecNumbers
                             const arrIndex = props.listOfReactions[props.index].ecNumbers.indexOf(value)
+
                             if (arrIndex > -1) {
-                                newListOfReactions[props.index].ecNumbers.splice(arrIndex, 1)
+                                newEcNumbers.splice(arrIndex, 1)
+                                newListOfReactions[props.index].ecNumbers = [...newEcNumbers]
                             }
 
                             dispatch({type: "SETLISTOFREACTIONS", payload: newListOfReactions})
@@ -59,7 +67,7 @@ const EcSelector = (props) => {
             renderInput={params => (
                 <TextField
                     // onChange={(event) => handleChange(event)}
-                    value={props.reactionRowInfo.keggId}
+                    value={props.reactionRowInfo.ecNumbers}
                     {...params}
                     label="EC Number Suggestions"
                     variant="outlined"

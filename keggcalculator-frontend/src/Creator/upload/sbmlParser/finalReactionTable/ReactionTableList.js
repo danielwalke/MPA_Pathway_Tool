@@ -104,21 +104,6 @@ const ReactionTableList = () => {
             dispatch({type: "SETLOADING", payload: false})
         }
 
-        const handleRestoreReaction = (reactionClone) => {
-            const newListOfReactions = listOfReactions.map(reaction => {
-                if (reaction.keggId === reactionClone.keggId) {
-                    reaction.sbmlId = reactionClone.sbmlId;
-                    reaction.sbmlName = reactionClone.sbmlName;
-                    reaction.koNumbers = reactionClone.koNumbers;
-                    reaction.ecNumbers = reactionClone.ecNumbers;
-                    reaction.substrates = reactionClone.substrates;
-                    reaction.products = reactionClone.products;
-                }
-                return reaction
-            })
-            setListOfReactions(newListOfReactions)
-        }
-
         const columns = [
             {id: 'reactionID', label: 'ID', minWidth: 170},
             {id: 'reactionName', label: 'name', minWidth: 100},
@@ -136,11 +121,12 @@ const ReactionTableList = () => {
                 flexDirection: "column",
                 justifyContent: "space-between"}}>
                 <div style={{
-                    maxHeight: "50%",
+                    height: "49.5%",
                     flexBasis: "0 0 auto",
                     borderRadius: "10px",
                     border: "1px solid rgba(0,0,0,.125)",
-                    padding: "20px 0px 20px 0px"}}>
+                    padding: "20px 0px 20px 0px",
+                    boxSizing: "border-box"}}>
                     <TableContainer style={{
                         overflow: "auto",
                         height: "100%",
@@ -170,13 +156,16 @@ const ReactionTableList = () => {
                         </Table>
                     </TableContainer>
                 </div>
+                <div style={{height: "1%"}}></div>
                 <div style={{
-                    height: "50%",
-                    flex: "1 1 auto",
+                    height: "49.5%",
+                    flex: "0 0 auto",
                     borderRadius: "10px",
                     border: "1px solid rgba(0,0,0,.125)",
-                    marginTop: "1%"}}>
-                    <DetailsContainer index={selectedRow} rowInfo={listOfReactions[selectedRow]}/>
+                    boxSizing: "border-box"}}>
+                    <DetailsContainer index={selectedRow}
+                                      rowInfo={listOfReactions[selectedRow]}
+                                      defaultReaction={previousListOfReactions[selectedRow]}/>
                 </div >
             </div>
         )
