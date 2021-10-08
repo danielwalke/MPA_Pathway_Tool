@@ -724,6 +724,7 @@ public class KeggCreatorService {
 	}
 
 	public HashSet<KeggReaction> getReactionDataByCompounds(String compoundIds) {
+	
 		String[] compounds = compoundIds.split(";");
 		LinkedHashSet<String> compoundSet = new LinkedHashSet<String>(Arrays.asList(compounds));
 		KeggDataObject keggDataClone = cloneKeggData();
@@ -731,7 +732,7 @@ public class KeggCreatorService {
 		// initialize reaction sets with the first compound
 		HashSet<KeggReactionObject> initialReactionSet = getReactionsFromQueryCompound(keggDataClone, compounds[0]);
 		
-		HashSet<KeggReactionObject> allReactionHits = new HashSet<>(initialReactionSet);
+//		HashSet<KeggReactionObject> allReactionHits = new HashSet<>(initialReactionSet);
 		HashSet<KeggReactionObject> sharedReactionHits = new HashSet<>(initialReactionSet);
 		
 		// drop first compound		
@@ -740,14 +741,14 @@ public class KeggCreatorService {
 		// iterate over remaining compounds		
 		for (String compound : compoundSet) {
 			HashSet<KeggReactionObject> reactionsFromCompound = getReactionsFromQueryCompound(keggDataClone, compound);
-			allReactionHits.addAll(reactionsFromCompound);
+//			allReactionHits.addAll(reactionsFromCompound);
 			// keeps only elements that are also included in the assigned Hashset (reactionsFromCompound)	
 			sharedReactionHits.retainAll(reactionsFromCompound);
 		}
 		
 		HashSet<KeggReaction> reactionsForResponse = new HashSet<>();
 		
-		for (KeggReactionObject reactionObject : allReactionHits) {
+		for (KeggReactionObject reactionObject : sharedReactionHits) {
 			reactionsForResponse.add(reactionObject.toKeggReaction(reactionObject));
 			
 			if (reactionsForResponse.size() == 100) {

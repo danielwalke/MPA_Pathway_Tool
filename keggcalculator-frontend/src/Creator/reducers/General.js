@@ -63,7 +63,7 @@ const defaultState = {
     biggIdSelectionList: {},
     biggSuggestedIds: {},
     sbmlIds: {},
-
+    reactionAnnotationTableOptions: [],
 }
 
 export const generalReducer = (state = defaultState, action) => {
@@ -220,6 +220,8 @@ export const generalReducer = (state = defaultState, action) => {
             return {...state, showAnnotationWarning: payload}
         case "SET_REACTION_SBML_ID":
             return {...state, sbmlIds: payload}
+        case "SET_ANNOATION_OPTIONS":
+            return {...state, reactionAnnotationTableOptions: payload}
         default:
             return state;
     }

@@ -18,11 +18,26 @@ import {setReactionsAndCompoundsInStore} from "../GraphDrawer";
 import RestoreIcon from '@material-ui/icons/Restore';
 import clonedeep from "lodash/cloneDeep";
 import "./RestoreIcon.css"
-import {Collapse, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
+import {
+    Card, CardHeader,
+    Collapse,
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow
+} from "@material-ui/core";
 import * as PropTypes from "prop-types";
 import IconButton from "@material-ui/core/IconButton";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
+import {requestGenerator} from "../../../request/RequestGenerator";
+import {
+    endpoint_getReactionsFromCompounds
+} from "../../../../App Configurations/RequestURLCollection";
+import DetailsContainer from "./DetailsContainer";
 
 const createRowData = (reactionList) => {
     return reactionList.map((reaction, index) => {
@@ -37,60 +52,22 @@ const createRowData = (reactionList) => {
 }
 
 const ReactionTableRow = (props) => {
-    // const reaction = props.row
-    const index = props.index
-    const [reactionRowInfo, setReactionRowInfo] = useState(props.row)
-    const [open, setOpen] = useState(true);
-
-    useEffect(() => {
-        console.log(reactionRowInfo)
-    },)
 
     return (
         <React.Fragment>
-            <TableRow sx={{'& > *': {borderBottom: 'unset'}}}>
-                <TableCell>
-                    <IconButton
-                        aria-label="expand row"
-                        size="small"
-                        onClick={() => setOpen(!open)}
-                    >
-                        {open ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/>}
-                    </IconButton>
-                </TableCell>
+            <TableRow onClick={() => {
+                props.handleRowClick(props.index)
+            }}
+                      sx={{'& > *': {borderBottom: 'unset'}}}
+                      hover
+                      selected={props.selectedRow === props.index}>
                 <TableCell component="th" scope="row">
-                    {reactionRowInfo.sbmlId}
+                    {props.row.sbmlId}
                 </TableCell>
                 <TableCell>
-                    {reactionRowInfo.sbmlName}
+                    {props.row.sbmlName}
                 </TableCell>
                 <TableCell>
-                </TableCell>
-            </TableRow>
-
-            <TableRow>
-                <TableCell style={{paddingBottom: 0, paddingTop: 0}} colSpan={5}>
-                    <Collapse in={open} timeout="auto" unmountOnExit>
-                        <div style={{display: "flex", flexDirection: "row", padding: "0.3em"}}>
-                            <SbmlIdChanger reactionRowInfo={reactionRowInfo}
-                                           setReactionRowInfo={setReactionRowInfo}/>
-                            <SbmlNameChanger reactionRowInfo={reactionRowInfo}
-                                             setReactionRowInfo={setReactionRowInfo}/>
-                            <ReactionKeggIdSelector reactionRowInfo={reactionRowInfo}
-                                                    setReactionRowInfo={setReactionRowInfo}/>
-                            {/*<EcSelector reaction={reaction} ecNumbers={reaction.ecNumbers}/>*/}
-                        </div>
-
-                        {/*<div><KoSelector reaction={reaction} koNumbers={reaction.koNumbers}/></div>*/}
-                        {/*<div><SubstrateSelector reaction={reaction} index={index} substrates={reaction.substrates}/>*/}
-                        {/*</div>*/}
-                        {/*<div><ProductSelector reaction={reaction} index={index} products={reaction.products}/></div>*/}
-                        {/*<div>{reaction.keggId}*/}
-                        {/*    <div data-tooltip={"reset reaction"} className={"CircleIcon"}*/}
-                        {/*         onClick={() => handleRestoreReaction(reactionClone)}><RestoreIcon/>*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
-                    </Collapse>
                 </TableCell>
             </TableRow>
         </React.Fragment>
@@ -104,16 +81,18 @@ const ReactionTableList = () => {
         const state = useSelector(state => state)
         const classes = useStyles();
         const [listOfReactions, setListOfReactions] = useState([]);
-        const [listOfReactionsClone, setListOfReactionsClone] = useState([])
+        const [selectedRow, setSelectedRow] = useState(0)
+        const [previousListOfReactions, setPreviousListOfReactions] = useState([])
 
         useEffect(() => {
+            setPreviousListOfReactions(clonedeep(state.general.listOfReactions))
+        }, [])
+
+        useEffect(() => {
+            // updates local store with current list of reactions
             setListOfReactions(state.general.listOfReactions)
-            setListOfReactionsClone(state.general.listOfReactions)
+            // setListOfReactionsClone(state.general.listOfReactions)
         }, [state.general.listOfReactions])
-
-        useEffect(() => {
-            console.log(listOfReactions)
-        }, [listOfReactions])
 
         const handleFinish = () => {
             //set reactions
@@ -140,68 +119,65 @@ const ReactionTableList = () => {
             setListOfReactions(newListOfReactions)
         }
 
-        // const reactionTable = (
-        //     <div className={classes.paper} style={{width: "95vw", height: "80vh", overflow: "auto"}}>
-        //         {listOfReactions.map((reaction, index) => {
-        //             const reactionClone = clonedeep(listOfReactionsClone[index])
-        //             console.log(reactionClone.sbmlName)
-        //             return (
-        //                 <div style={{
-        //                     display: "grid",
-        //                     gridTemplateColumns: "repeat(4,1fr) 2fr 2fr 1fr",
-        //                     border: "2px solid black",
-        //                     margin: "2px 0"
-        //                 }} key={index.toString().concat(reaction.sbmlId)}>
-        //                     <div><SbmlIdChanger index={index} reaction={reaction}/></div>
-        //                     <div><SbmlNameChanger index={index} reaction={reaction}/></div>
-        //                     <div><EcSelector reaction={reaction} ecNumbers={reaction.ecNumbers}/></div>
-        //                     <div><KoSelector reaction={reaction} koNumbers={reaction.koNumbers}/></div>
-        //                     <div><SubstrateSelector reaction={reaction} index={index} substrates={reaction.substrates}/>
-        //                     </div>
-        //                     <div><ProductSelector reaction={reaction} index={index} products={reaction.products}/></div>
-        //                     <div>{reaction.keggId}
-        //                         <div data-tooltip={"reset reaction"} className={"CircleIcon"}
-        //                              onClick={() => handleRestoreReaction(reactionClone)}><RestoreIcon/></div>
-        //                     </div>
-        //                     {/*<div><button className={"downloadButton"} onClick={()=>handleSubmit()}>submit changes</button></div>*/}
-        //                 </div>
-        //             )
-        //         })}
-        //         <button className={"downloadButton"} onClick={() => handleFinish()}>Finish</button>
-        //     </div>
-        // )
-
-        // const rows = createRowData(listOfReactions)
-
         const columns = [
             {id: 'reactionID', label: 'ID', minWidth: 170},
             {id: 'reactionName', label: 'name', minWidth: 100},
         ]
 
+        const handleRowClick = (index) => {
+            setSelectedRow(index)
+        }
+
         const dataTable = (
-            <div className={classes.paper} style={{width: "95vw",}}>
-                <TableContainer style={{overflow: "auto", height: "80vh"}}>
-                    <Table stickyHeader aria-label="sticky table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell/>
-                                {columns.map((column) => (
-                                    <TableCell key={column.id}>
-                                        {column.label}
-                                    </TableCell>
+            <div className={classes.paper} style={{
+                width: "95vw",
+                height: "80vh",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between"}}>
+                <div style={{
+                    maxHeight: "50%",
+                    flexBasis: "0 0 auto",
+                    borderRadius: "10px",
+                    border: "1px solid rgba(0,0,0,.125)",
+                    padding: "20px 0px 20px 0px"}}>
+                    <TableContainer style={{
+                        overflow: "auto",
+                        height: "100%",
+                        borderTop: "1px solid rgba(0,0,0,.125)",
+                        borderBottom: "1px solid rgba(0,0,0,.125)"
+                    }}>
+                        <Table stickyHeader aria-label="sticky table">
+                            <TableHead>
+                                <TableRow>
+                                    {columns.map((column) => (
+                                        <TableCell key={column.id}>
+                                            {column.label}
+                                        </TableCell>
+                                    ))}
+                                    <TableCell/>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {listOfReactions.map((row, index) => (
+                                    <ReactionTableRow key={row.sbmlName}
+                                                      row={row}
+                                                      index={index}
+                                                      handleRowClick={handleRowClick}
+                                                      selectedRow={selectedRow}/>
                                 ))}
-                                <TableCell/>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {listOfReactions.map((row, index) => (
-                                <ReactionTableRow key={row.sbmlName}
-                                                  row={row}
-                                                  index={index}/>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </div>
+                <div style={{
+                    height: "50%",
+                    flex: "1 1 auto",
+                    borderRadius: "10px",
+                    border: "1px solid rgba(0,0,0,.125)",
+                    marginTop: "1%"}}>
+                    <DetailsContainer index={selectedRow} rowInfo={listOfReactions[selectedRow]}/>
+                </div >
             </div>
         )
 
@@ -209,7 +185,6 @@ const ReactionTableList = () => {
         return (
             <div>
                 <Modal className={classes.modal} open={state.general.isShowingReactionTable}>
-                    {/*{reactionTable}*/}
                     {dataTable}
                 </Modal>
             </div>

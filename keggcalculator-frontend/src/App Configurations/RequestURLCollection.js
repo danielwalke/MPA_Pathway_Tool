@@ -52,4 +52,6 @@ export const endpoint_getBiggCompoundList = host + ":" + portNumber + "/keggcrea
 
 export const endpoint_getKegg2BiggCompoundList = host + ":" + portNumber + "/keggcreator/kegg2biggmap";
 
+export const endpoint_getReactionsFromCompounds = host + ":" + portNumber + "/keggcreator/reactiondatabycompounds";
+
 export const endpoint_getFilteredReactionNames = host + ":" + portNumber + "/keggcreator/filteredreactions";

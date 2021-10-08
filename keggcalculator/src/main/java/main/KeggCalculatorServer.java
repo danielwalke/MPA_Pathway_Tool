@@ -259,9 +259,14 @@ public class KeggCalculatorServer {
 		
 		post("/keggcreator/reactiondatabycompounds", (req, res) -> {
 			try {
-//				TODO: create request access entry
+				System.out.println("yo");
 				res.status(201);
-				return KeggHandleRequests.reactionDataByCompounds(creator, req.queryParams("compoundIds"));
+				if (req.queryParams("compoundIds").length() == 0) {
+					return "[]";
+				} else {
+					return KeggHandleRequests.reactionDataByCompounds(creator, req.queryParams("compoundIds"));
+
+				}				
 			} catch (Exception e) {
 				res.status(500);
 				return "{\"message\":\"internal server error\"}";

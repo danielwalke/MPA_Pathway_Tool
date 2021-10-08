@@ -18,7 +18,7 @@ const submit = (state, dispatch, compoundsForAnnotation) => {
     const newCompoundsForAnnotation = compoundsForAnnotation
 
     for (const [key, value] of Object.entries(newKeggCompounds)) {
-        newCompoundsForAnnotation[key].keggId = value.substring(-6)
+        newCompoundsForAnnotation[key].keggId = value.substring(value.length-6)
         newCompoundsForAnnotation[key].keggName = value
         newCompoundsForAnnotation[key].biggId = newBiggCompounds[key]
     }
