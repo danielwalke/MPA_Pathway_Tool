@@ -1,11 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect, useState} from "react";
 import TextField from "@material-ui/core/TextField";
-import AddCircleIcon from "@material-ui/icons/AddCircle";
-import {FormControl, InputLabel, MenuItem, Select} from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
-import {useStylesSelector} from "./Styles";
-import Checkbox from "@material-ui/core/Checkbox";
 import {Autocomplete} from "@material-ui/lab";
 import Chip from "@material-ui/core/Chip";
 
@@ -19,7 +14,7 @@ const KoSelector = (props) => {
         let ecNumberOptions = []
         state.general.reactionAnnotationTableOptions.forEach(reaction => {
             for (const kNumber of reaction.koNumbersString) {
-                // add ec number to options only if it isn't present already
+                // add ko number to options only if it isn't present already
                 if (!props.reactionRowInfo.koNumbers.includes(kNumber)) {
                     ecNumberOptions.push(kNumber)
                 }
@@ -34,6 +29,7 @@ const KoSelector = (props) => {
             size={"small"}
             id={"kNumberSelector"}
             multiple
+            limitTags={4}
             options={options}
             value={props.reactionRowInfo.koNumbers}
             onChange={(event, value) => {

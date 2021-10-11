@@ -6,7 +6,6 @@ import {useStylesList} from "./KeggCompoundAutoCompleteList";
 import {requestGenerator} from "../../request/RequestGenerator";
 import {
     endpoint_getFilteredTaxonomicNames,
-    endpoint_getReactionsFromCompounds
 } from "../../../App Configurations/RequestURLCollection";
 
 const ReactionKeggIdSelector = (props) => {

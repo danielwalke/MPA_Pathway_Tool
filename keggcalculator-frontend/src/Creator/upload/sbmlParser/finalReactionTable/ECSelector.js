@@ -35,6 +35,7 @@ const EcSelector = (props) => {
             size={"small"}
             id={"ecNumberSelector"}
             multiple
+            limitTags={4}
             options={options}
             value={props.reactionRowInfo.ecNumbers}
             onChange={(event, value) => {

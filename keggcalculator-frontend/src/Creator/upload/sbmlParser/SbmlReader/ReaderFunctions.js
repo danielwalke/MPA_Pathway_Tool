@@ -53,12 +53,14 @@ const readSpecies = (dispatch, sbml, state) => {
         const keggAnnotations = annotations.filter(link => link.includes("kegg.compound")) //returns one link like "http://identifiers.org/kegg.compound/C00031", i.e. last 6 chars are respective kegg annotation
         const keggId = keggAnnotations.length > 0 ? keggAnnotations[0].substring(keggAnnotations[0].length - 6, keggAnnotations[0].length) : getCompoundId(index);
         const keggName = state.general.compoundId2Name[`${keggId}`] ? state.general.compoundId2Name[`${keggId}`] : keggId
+        const biggMetabolite = annotations.filter(link => link.includes("bigg.metabolite"))
         return (
             {
                 sbmlId: sbmlId,
                 sbmlName: sbmlName,
                 keggId: keggId,
-                keggName: keggName
+                keggName: keggName,
+                biggMetabolite: biggMetabolite
             }
         )
     })
@@ -74,6 +76,8 @@ const readReactions = (dispatch, sbml, globalTaxa) => {
         const sbmlName = typeof reaction.attributes.name === "string" ? replaceXmlCharacters(reaction.attributes.name) : replaceXmlCharacters(reaction.attributes.id);
         const reversible = typeof reaction.attributes.reversible === "string" ? reaction.attributes.reversible : "true"
         const annotations = reaction.getElementsByTagName("rdf:li").map(link => link.attributes["rdf:resource"])
+        const biggReactionAnnotation = annotations.filter(link => link.includes("bigg.reaction"))
+        const biggReaction = biggReactionAnnotation[0] ? biggReactionAnnotation[0].split("/")[4] : ""
         const keggAnnotations = annotations.filter(link => link.includes("kegg.reaction")) //returns one link like "http://identifiers.org/kegg.reaction/R00212", i.e. last 6 chars are respective kegg annotation
         //possibly more than one reaction annotations in one reaction
         const keggId = keggAnnotations.length === 1 ? keggAnnotations[0].substring(keggAnnotations[0].length - 6, keggAnnotations[0].length) : `U${getUserReactionId(index)}`;
@@ -104,7 +108,8 @@ const readReactions = (dispatch, sbml, globalTaxa) => {
             substrates: substrates,
             products: products,
             reversible: reversible === "reversible",
-            taxonomy: getTaxonomyFromSbml(annotations, globalTaxa)
+            taxonomy: getTaxonomyFromSbml(annotations, globalTaxa),
+            biggReaction: biggReaction
         };
 
 

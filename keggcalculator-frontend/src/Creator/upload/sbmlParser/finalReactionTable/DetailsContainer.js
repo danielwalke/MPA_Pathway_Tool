@@ -12,6 +12,8 @@ import {endpoint_getReactionsFromCompounds} from "../../../../App Configurations
 import EcSelector from "./ECSelector";
 import KoSelector from "./KoSelector";
 import RestoreIcon from "@material-ui/icons/Restore";
+import BiggReactionSelector from "../BiggReactionSelector";
+import SubstrateSelector from "./SubstrateSelector";
 
 const CreateCompoundString = (compoundObject) => {
     let compoundArray = []
@@ -61,6 +63,7 @@ const DetailsContainer = (props) => {
 
         const newListOfReactions = listOfReactions
         console.log(defaultReaction)
+        newListOfReactions[props.index].biggReaction = defaultReaction.biggReaction
         newListOfReactions[props.index].keggId = defaultReaction.keggId
         newListOfReactions[props.index].sbmlId = defaultReaction.sbmlId
         newListOfReactions[props.index].sbmlName = defaultReaction.sbmlName
@@ -89,6 +92,10 @@ const DetailsContainer = (props) => {
                 <ReactionKeggIdSelector reactionRowInfo={props.rowInfo}
                                         listOfReactions={listOfReactions}
                                         index={props.index}/>
+                <BiggReactionSelector reactionRowInfo={props.rowInfo}
+                            listOfReactions={listOfReactions}
+                            index={props.index}/>
+                <SubstrateSelector reaction={reaction} index={index} substrates={reaction.substrates}/>
                 <EcSelector reactionRowInfo={props.rowInfo}
                             listOfReactions={listOfReactions}
                             index={props.index}/>
@@ -104,6 +111,7 @@ const DetailsContainer = (props) => {
                 <p>{props.rowInfo.sbmlId}</p>
                 <p>{props.rowInfo.sbmlName}</p>
                 <p>KEGG ID: {props.rowInfo.keggId}</p>
+                <p>BIGG Reaction: {props.rowInfo.biggReaction}</p>
                 <p>Substrates: {substrateString}</p>
                 <p>Products: {productsString}</p>
                 <p>EC Numbers: {ecString}</p>
@@ -127,13 +135,5 @@ export default DetailsContainer
 {/*            /!*</div>*!/*/
 }
 {/*            /!*<div><ProductSelector reaction={reaction} index={index} products={reaction.products}/></div>*!/*/
-}
-{/*            /!*<div>{reaction.keggId}*!/*/
-}
-{/*            /!*    <div data-tooltip={"reset reaction"} className={"CircleIcon"}*!/*/
-}
-{/*            /!*         onClick={() => handleRestoreReaction(reactionClone)}><RestoreIcon/>*!/*/
-}
-{/*            /!*    </div>*!/*/
 }
 

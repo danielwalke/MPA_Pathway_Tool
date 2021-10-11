@@ -119,19 +119,24 @@ const ReactionTableList = () => {
                 height: "80vh",
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "space-between"}}>
+                justifyContent: "space-between"
+            }}>
+                <h4>Annotation</h4>
                 <div style={{
-                    height: "49.5%",
-                    flexBasis: "0 0 auto",
+                    height: "30%",
+                    flex: "0 0 auto",
                     borderRadius: "10px",
                     border: "1px solid rgba(0,0,0,.125)",
                     padding: "20px 0px 20px 0px",
-                    boxSizing: "border-box"}}>
+                    boxSizing: "border-box",
+                    backgroundColor: "rgba(0,0,0,.125)"
+                }}>
                     <TableContainer style={{
                         overflow: "auto",
                         height: "100%",
                         borderTop: "1px solid rgba(0,0,0,.125)",
-                        borderBottom: "1px solid rgba(0,0,0,.125)"
+                        borderBottom: "1px solid rgba(0,0,0,.125)",
+                        backgroundColor: "white"
                     }}>
                         <Table stickyHeader aria-label="sticky table">
                             <TableHead>
@@ -158,19 +163,30 @@ const ReactionTableList = () => {
                 </div>
                 <div style={{height: "1%"}}></div>
                 <div style={{
-                    height: "49.5%",
+                    // height: "30%",
                     flex: "0 0 auto",
                     borderRadius: "10px",
                     border: "1px solid rgba(0,0,0,.125)",
-                    boxSizing: "border-box"}}>
-                    <DetailsContainer index={selectedRow}
-                                      rowInfo={listOfReactions[selectedRow]}
-                                      defaultReaction={previousListOfReactions[selectedRow]}/>
-                </div >
+                    boxSizing: "border-box",
+                    padding: "20px 0px 20px 0px",
+                    backgroundColor: "rgba(0,0,0,.125)"
+                }}>
+                    <div style={{
+                        overflow: "auto",
+                        height: "100%",
+                        borderTop: "1px solid rgba(0,0,0,.125)",
+                        borderBottom: "1px solid rgba(0,0,0,.125)",
+                        backgroundColor: "white"
+                    }}>
+                        <DetailsContainer index={selectedRow}
+                                          rowInfo={listOfReactions[selectedRow]}
+                                          defaultReaction={previousListOfReactions[selectedRow]}/>
+                    </div>
+                </div>
+                <button onClick={handleFinish}> Finish </button>
             </div>
         )
 
-        // onClose={() => dispatch({type: "SETISSHOWINGREACTIONTABLE", payload: false})}
         return (
             <div>
                 <Modal className={classes.modal} open={state.general.isShowingReactionTable}>

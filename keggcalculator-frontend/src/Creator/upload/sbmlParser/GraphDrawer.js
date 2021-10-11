@@ -13,10 +13,11 @@ import {getLastItemOfList} from "../../usefulFunctions/Arrays";
 import {NOT_KEY_COMPOUND_OPACITY} from "../../graph/Constants";
 
 
-export const setReactionsAndCompoundsInStore = (state, listOfReactions, dispatch, listOfReactionGlyphs) => {
+export const setReactionsAndCompoundsInStore = (state, listOfReactions, dispatch) => {
     const reactions = listOfReactions.map(reaction => {
-        const reactionId = reaction.sbmlId.concat(";" + reaction.sbmlName + " " + reaction.keggId); //retruns name like "R_PFK;Phosphofructokinase UXXXXX"
-        const r = new Reaction(reactionId)
+        const reactionName = reaction.sbmlId.concat(";" + reaction.sbmlName + " " + reaction.keggId); //retruns name like "R_PFK;Phosphofructokinase UXXXXX"
+        // Big TODO: this is absolutely messy, best practice would be a class that handles everything
+        const r = new Reaction(reactionName)
         const reactionGlyph = findReactionGlyph(state.general.listOfReactionGlyphs, reaction.keggId)
         r._x = typeof reactionGlyph === "object" && reactionGlyph !== null ? getReactionXPositionFromSbml(reactionGlyph) : 0
         r._y = typeof reactionGlyph === "object" && reactionGlyph !== null ? getReactionYPositionFromSbml(reactionGlyph) : 0
