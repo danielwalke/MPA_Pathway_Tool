@@ -18,7 +18,7 @@ const BiggReactionSelector = (props) => {
         state.general.reactionAnnotationTableOptions.forEach(reaction => {
             for (const biggReaction of reaction.biggReactionIds) {
                 // add bigg reaction id to options only if it isn't present already
-                if (!props.reactionRowInfo.biggReaction.includes(biggReaction)) {
+                if (!props.listOfReactions[props.index].biggReaction.includes(biggReaction)) {
                     ecNumberOptions.push(biggReaction)
                 }
             }
@@ -26,17 +26,13 @@ const BiggReactionSelector = (props) => {
         setOptions(ecNumberOptions)
     }, [state.general.reactionAnnotationTableOptions])
 
-    useEffect(() => {
-        console.log(options)
-    }, [options])
-
     return (
         <div>
             <Autocomplete
                 size={"small"}
                 id={"biggReactionSelector"}
                 options={options}
-                value={props.reactionRowInfo.biggReaction}
+                value={props.listOfReactions[props.index].biggReaction}
                 onChange={(event, value) => {
                     const newListOfReactions = props.listOfReactions
                     newListOfReactions[props.index].biggReaction = value
@@ -46,9 +42,9 @@ const BiggReactionSelector = (props) => {
                 renderInput={params => (
                     <TextField
                         // onChange={(event) => handleChange(event)}
-                        value={props.reactionRowInfo.biggReaction}
+                        value={props.listOfReactions[props.index].biggReaction}
                         {...params}
-                        label="BIGG ID Suggestions"
+                        label="BIGG Reaction"
                         variant="outlined"
                     />
                 )}

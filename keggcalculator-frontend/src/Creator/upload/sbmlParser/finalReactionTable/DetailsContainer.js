@@ -1,11 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import Modal from "@material-ui/core/Modal";
-import {useStyles} from "../../../ModalStyles/ModalStyles";
+import React, {useEffect} from 'react';
+
 import {useDispatch, useSelector} from "react-redux";
 import "../SBML.css"
 import SbmlIdChanger from "./SbmlIdChanger";
 import SbmlNameChanger from "./SbmlNameChanger";
-import clonedeep from "lodash/cloneDeep";
 import ReactionKeggIdSelector from "../ReactionKeggIdSelector";
 import {requestGenerator} from "../../../request/RequestGenerator";
 import {endpoint_getReactionsFromCompounds} from "../../../../App Configurations/RequestURLCollection";
@@ -13,9 +11,14 @@ import EcSelector from "./ECSelector";
 import KoSelector from "./KoSelector";
 import RestoreIcon from "@material-ui/icons/Restore";
 import BiggReactionSelector from "../BiggReactionSelector";
-import SubstrateSelector from "./SubstrateSelector";
+import CompoundSelector from "./CompoundSelector";
+import "../AnnotationTable.css"
+import "../../../ModalStyles/Modals.css"
 
 const CreateCompoundString = (compoundObject) => {
+    /**
+     * creates string of compound names
+     */
     let compoundArray = []
     compoundObject.forEach((compound) => {
             compoundArray.push(compound.sbmlName)
@@ -25,15 +28,13 @@ const CreateCompoundString = (compoundObject) => {
 }
 
 const DetailsContainer = (props) => {
+    /**
+    Setting and displaying reaction details
+     */
     const state = useSelector(state => state)
     const dispatch = useDispatch()
 
     const listOfReactions = state.general.listOfReactions
-
-    const substrateString = CreateCompoundString(props.rowInfo.substrates)
-    const productsString = CreateCompoundString(props.rowInfo.products)
-    const ecString = props.rowInfo.ecNumbers.join(", ")
-    const kString = props.rowInfo.koNumbers.join(", ")
 
     useEffect(() => {
         // retrieve reaction information from compounds when the selected row is changed
@@ -54,15 +55,15 @@ const DetailsContainer = (props) => {
             {compoundIds: compoundIdString},
             "", "").then(resp => {
                 dispatch({type: "SET_ANNOATION_OPTIONS", payload: resp.data})
-                console.log(resp.data)
             }
         )
     }, [props.index])
 
     const handleRestore = (defaultReaction) => {
-
+        /**
+         * writes cloned initial state into current state, for undoing changes
+         */
         const newListOfReactions = listOfReactions
-        console.log(defaultReaction)
         newListOfReactions[props.index].biggReaction = defaultReaction.biggReaction
         newListOfReactions[props.index].keggId = defaultReaction.keggId
         newListOfReactions[props.index].sbmlId = defaultReaction.sbmlId
@@ -76,64 +77,37 @@ const DetailsContainer = (props) => {
     }
 
     return (
-        <div style={{display: "flex", flexDirection: "row"}}>
-            <div style={{
-                width: "50%",
-                display: "flex",
-                flexDirection: "column",
-                padding: "1em",
-                justifyContent: "space-between"}}>
-                <SbmlIdChanger reactionRowInfo={props.rowInfo}
-                               listOfReactions={listOfReactions}
+        <div>
+            <div className={"detail-view"}>
+                <SbmlIdChanger listOfReactions={listOfReactions}
                                index={props.index}/>
-                <SbmlNameChanger reactionRowInfo={props.rowInfo}
-                                 listOfReactions={listOfReactions}
+                <SbmlNameChanger listOfReactions={listOfReactions}
                                  index={props.index}/>
-                <ReactionKeggIdSelector reactionRowInfo={props.rowInfo}
-                                        listOfReactions={listOfReactions}
+                <ReactionKeggIdSelector listOfReactions={listOfReactions}
                                         index={props.index}/>
-                <BiggReactionSelector reactionRowInfo={props.rowInfo}
-                            listOfReactions={listOfReactions}
+                <BiggReactionSelector listOfReactions={listOfReactions}
+                                      index={props.index}/>
+                <CompoundSelector listOfReactions={listOfReactions}
+                                  index={props.index}
+                                  propName={"substrates"}
+                                  label={"Substrates"}/>
+                <CompoundSelector listOfReactions={listOfReactions}
+                                  index={props.index}
+                                  propName={"products"}
+                                  label={"Products"}/>
+                <EcSelector listOfReactions={listOfReactions}
                             index={props.index}/>
-                <SubstrateSelector reaction={reaction} index={index} substrates={reaction.substrates}/>
-                <EcSelector reactionRowInfo={props.rowInfo}
-                            listOfReactions={listOfReactions}
-                            index={props.index}/>
-                <KoSelector reactionRowInfo={props.rowInfo}
-                            listOfReactions={listOfReactions}
+                <KoSelector listOfReactions={listOfReactions}
                             index={props.index}/>
             </div>
-            <div style={{
-                width: "50%",
-                display: "flex",
-                flexDirection: "column",
-                padding: "1em"}}>
-                <p>{props.rowInfo.sbmlId}</p>
-                <p>{props.rowInfo.sbmlName}</p>
-                <p>KEGG ID: {props.rowInfo.keggId}</p>
-                <p>BIGG Reaction: {props.rowInfo.biggReaction}</p>
-                <p>Substrates: {substrateString}</p>
-                <p>Products: {productsString}</p>
-                <p>EC Numbers: {ecString}</p>
-                <p>K Numbers: {kString}</p>
-                <div style = {{display:'inline-flex', alignItems: 'center',  }}
-                     data-tooltip={"reset reaction"}
-                     className={"CircleIcon"}
-                     onClick={() => handleRestore(props.defaultReaction)}>
+            <div className={"button-container-middle"}>
+                <button className={"download-button circle-icon"}
+                        onClick={() => handleRestore(props.defaultReaction)}>
                     Restore Reaction Settings <RestoreIcon/>
-                </div>
+                </button>
             </div>
         </div>
-
     )
 }
 
 export default DetailsContainer
-
-{/*            /!*<div><SubstrateSelector reaction={reaction} index={index} substrates={reaction.substrates}/>*!/*/
-}
-{/*            /!*</div>*!/*/
-}
-{/*            /!*<div><ProductSelector reaction={reaction} index={index} products={reaction.products}/></div>*!/*/
-}
-

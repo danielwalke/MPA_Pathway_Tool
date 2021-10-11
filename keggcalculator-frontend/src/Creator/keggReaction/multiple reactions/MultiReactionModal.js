@@ -15,7 +15,7 @@ const MultiReactionModal = () => {
         <div className={classes.paper}>
             <div className={"moduleListContainerloc"}>
                 <ToolTipBig title={"Import a complete KEGG module"} placement={"right"}>
-                    <button className={"downloadButton"} onClick={() => dispatch({type: "SWITCHSHOWMODULELIST"})}>
+                    <button className={"download-button"} onClick={() => dispatch({type: "SWITCHSHOWMODULELIST"})}>
                         KEGG- MODULE
                     </button>
                 </ToolTipBig>
@@ -23,7 +23,7 @@ const MultiReactionModal = () => {
             <div className={"ecReactionContainer"}>
                 <EcReactions/>
                 <ToolTipBig title={"Import multiple reactions by given EC numbers"} placement={"right"}>
-                    <button className={"downloadButton"} onClick={() => dispatch({type: "SWITCHSHOWECMODAL"})}>import by
+                    <button className={"download-button"} onClick={() => dispatch({type: "SWITCHSHOWECMODAL"})}>import by
                         EC- numbers
                     </button>
                 </ToolTipBig>
@@ -31,7 +31,7 @@ const MultiReactionModal = () => {
             <div className={"koReactionContainer"}>
                 <KoReactions/>
                 <ToolTipBig title={"Import multiple reactions by given K numbers"} placement={"right"}>
-                    <button className={"downloadButton"} onClick={() => dispatch({type: "SWITCHSHOWKOMODAL"})}>import by
+                    <button className={"download-button"} onClick={() => dispatch({type: "SWITCHSHOWKOMODAL"})}>import by
                         K- numbers
                     </button>
                 </ToolTipBig>
@@ -39,7 +39,7 @@ const MultiReactionModal = () => {
             <div>
                 <MultipleKeggReactions/>
                 <ToolTipBig title={"Import multiple reactions by given R numbers"} placement={"right"}>
-                    <button className={"downloadButton"}
+                    <button className={"download-button"}
                             onClick={() => dispatch({type: "SWITCHSHOWMULTIPLEKEGGREACTIONS"})}>import by reaction-
                         numbers
                     </button>

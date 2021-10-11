@@ -28,7 +28,7 @@ const GraphSvgExporter = (props) => {
     return (
         <div>
             <ToolTipBig title={"Click for downloading the pathway as SVG"} placement={"right"}>
-                <button className={"downloadButton"} disabled={props.graphState.data.nodes.length < 1}
+                <button className={"download-button"} disabled={props.graphState.data.nodes.length < 1}
                         onClick={(e) => download(e)}>download svg
                 </button>
             </ToolTipBig>

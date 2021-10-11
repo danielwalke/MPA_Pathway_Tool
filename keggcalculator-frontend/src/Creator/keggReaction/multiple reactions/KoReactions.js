@@ -95,7 +95,7 @@ const KoReactions = () => {
                     />
                 </ToolTipBig>
                 <ToolTipBig title={"Submit K numbers to query"} placement={"right"}>
-                    <button className={"downloadButton"}
+                    <button className={"download-button"}
                             onClick={() => dispatch({
                                 type: "SETKONUMBERSREQUEST",
                                 payload: state.koNumbersRequestText
@@ -127,7 +127,7 @@ const KoReactions = () => {
                             )}
                         /></ToolTipBig></div>
                 <ToolTipBig title={"Add a single K number to query"} placement={"right"}>
-                    <button className={"downloadButton"}
+                    <button className={"download-button"}
                             onClick={() => dispatch({type: "ADDKONUMBERREQUEST", payload: state.koNumberRequest})}>add
                         ko
                         number
@@ -169,7 +169,7 @@ const KoReactions = () => {
                                     />
                                 </ToolTipBig>
                                 <ToolTipBig title={"Submit chosen reaction"} placement={"right"}>
-                                    <button className={"downloadButton"} onClick={() => handleReactionSubmit()}>Submit
+                                    <button className={"download-button"} onClick={() => handleReactionSubmit()}>Submit
                                     </button>
                                 </ToolTipBig>
                             </div>
@@ -179,7 +179,7 @@ const KoReactions = () => {
                     )
                 })}
             </ul>
-            <button className={"downloadButton"} onClick={() => handleKoRequest()}>Submit</button>
+            <button className={"download-button"} onClick={() => handleKoRequest()}>Submit</button>
         </div>
     )
     return (

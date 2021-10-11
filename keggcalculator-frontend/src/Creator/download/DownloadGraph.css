@@ -1,4 +1,4 @@
-.downloadButton {
+.download-button {
     width: 80%;
     background-color: rgb(150, 25, 130);
     border-radius: 0.8vw;
@@ -11,13 +11,17 @@
     padding: 4px;
 }
 
-.downloadButton:hover {
+.download-button:hover {
     background-color: rgb(110, -15, 90);
     cursor: pointer;
 }
 
-.downloadButton:disabled:hover {
+.download-button:disabled:hover {
     background-color: rgb(150, 25, 130);
     cursor: default;
 }
 
+.button-container-middle {
+    display: flex;
+    justify-content: center;
+}

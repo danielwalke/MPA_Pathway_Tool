@@ -75,7 +75,7 @@ const StoichiometricMatrix = (props) => {
     const dispatch = useDispatch();
     return (<div>
             <ToolTipBig title={"Click for downloading the stoichiometric matrix as CSV"} placement={"right"}>
-                <button disabled={!props.graphState.data.nodes.length > 0} className={"downloadButton"}
+                <button disabled={!props.graphState.data.nodes.length > 0} className={"download-button"}
                         onClick={() => fetchStochiometricInformation(dispatch, props)}>stoichiometric matrix
                 </button>
             </ToolTipBig>

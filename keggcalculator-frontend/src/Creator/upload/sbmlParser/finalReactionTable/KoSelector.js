@@ -15,14 +15,14 @@ const KoSelector = (props) => {
         state.general.reactionAnnotationTableOptions.forEach(reaction => {
             for (const kNumber of reaction.koNumbersString) {
                 // add ko number to options only if it isn't present already
-                if (!props.reactionRowInfo.koNumbers.includes(kNumber)) {
+                if (!props.listOfReactions[props.index].koNumbers.includes(kNumber)) {
                     ecNumberOptions.push(kNumber)
                 }
             }
         })
         setOptions(ecNumberOptions)
 
-    }, [state.general.reactionAnnotationTableOptions, props.reactionRowInfo.koNumbers])
+    }, [state.general.reactionAnnotationTableOptions, props.listOfReactions[props.index].koNumbers])
 
     return (
         <Autocomplete
@@ -31,7 +31,8 @@ const KoSelector = (props) => {
             multiple
             limitTags={4}
             options={options}
-            value={props.reactionRowInfo.koNumbers}
+            value={props.listOfReactions[props.index].koNumbers}
+
             onChange={(event, value) => {
                 // addition of selected ec number
                 const newListOfReactions = props.listOfReactions
@@ -39,9 +40,11 @@ const KoSelector = (props) => {
 
                 dispatch({type: "SETLISTOFREACTIONS", payload: newListOfReactions})
             }}
+
             renderTags={(values) =>
                 values.map((value) => (
                     <Chip
+                        size="small"
                         label={value}
                         onDelete={() => {
                             // deletion of ec number
@@ -59,12 +62,13 @@ const KoSelector = (props) => {
                     />
                 ))
             }
+
             renderInput={params => (
                 <TextField
                     // onChange={(event) => handleChange(event)}
-                    value={props.reactionRowInfo.koNumbers}
+                    value={props.listOfReactions[props.index].koNumbers}
                     {...params}
-                    label="K Number Suggestions"
+                    label="K Numbers"
                     variant="outlined"
                 />
             )}

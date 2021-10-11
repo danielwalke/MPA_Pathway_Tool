@@ -33,7 +33,7 @@ const MergeNodesModal = () => {
                 />
             </ToolTipBig>
             <ToolTipBig title={"Add node for merging"} placement={"right"}>
-                <button className={"downloadButton"} onClick={() => dispatch({type: "ADDMERGENODE"})}>add</button>
+                <button className={"download-button"} onClick={() => dispatch({type: "ADDMERGENODE"})}>add</button>
             </ToolTipBig>
             <ul style={{listStyleType: "none"}}>
                 {graphState.mergeNodes.map((id, index) => {
@@ -70,11 +70,11 @@ const MergeNodesModal = () => {
                     />
                 </ToolTipBig>
                 <ToolTipBig title={"Submit the new name"} placement={"right"}>
-                    <button className={"downloadButton"}>submit node name</button>
+                    <button className={"download-button"}>submit node name</button>
                 </ToolTipBig>
             </div>
             <ToolTipBig title={"Submit merging nodes"} placement={"right"}>
-                <button className={"downloadButton"}
+                <button className={"download-button"}
                         disabled={(graphState.mergeNodes.length < 2 || graphState.mergeNodesName.length < 1)}
                         onClick={() => mergeNodes(graphState, dispatch)}>merge selected nodes
                 </button>

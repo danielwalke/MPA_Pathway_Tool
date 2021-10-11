@@ -36,7 +36,7 @@ const Metadata = (props) => {
     return (
         <div>
             <ToolTipBig title={"Click for downloading metadata about mapping as *.zip"} placement={"right"}>
-                <button disabled={graphState.data.nodes.length === 0} className={"downloadButton"}
+                <button disabled={graphState.data.nodes.length === 0} className={"download-button"}
                         onClick={handleDownloadMetadata}>download metadata
                 </button>
             </ToolTipBig>

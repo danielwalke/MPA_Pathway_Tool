@@ -7,21 +7,10 @@ import Modal from "@material-ui/core/Modal";
 import {useStyles} from "../../../ModalStyles/ModalStyles";
 import {useDispatch, useSelector} from "react-redux";
 import "../SBML.css"
-import EcSelector from "./ECSelector";
-import KoSelector from "./KoSelector";
-import SbmlIdChanger from "./SbmlIdChanger";
-import SbmlNameChanger from "./SbmlNameChanger";
-import ReactionKeggIdSelector from "../ReactionKeggIdSelector";
-import SubstrateSelector from "./SubstrateSelector";
-import ProductSelector from "./ProductSelector";
 import {setReactionsAndCompoundsInStore} from "../GraphDrawer";
-import RestoreIcon from '@material-ui/icons/Restore';
 import clonedeep from "lodash/cloneDeep";
 import "./RestoreIcon.css"
 import {
-    Card, CardHeader,
-    Collapse,
-    Paper,
     Table,
     TableBody,
     TableCell,
@@ -29,27 +18,8 @@ import {
     TableHead,
     TableRow
 } from "@material-ui/core";
-import * as PropTypes from "prop-types";
-import IconButton from "@material-ui/core/IconButton";
-import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import {requestGenerator} from "../../../request/RequestGenerator";
-import {
-    endpoint_getReactionsFromCompounds
-} from "../../../../App Configurations/RequestURLCollection";
-import DetailsContainer from "./DetailsContainer";
 
-const createRowData = (reactionList) => {
-    return reactionList.map((reaction, index) => {
-            const reactionClone = clonedeep(reactionList[index])
-            return {
-                reactionID: reactionClone.sbmlId,
-                reactionName: reactionClone.sbmlName,
-                details: []
-            }
-        }
-    )
-}
+import DetailsContainer from "./DetailsContainer";
 
 const ReactionTableRow = (props) => {
 
@@ -121,7 +91,7 @@ const ReactionTableList = () => {
                 flexDirection: "column",
                 justifyContent: "space-between"
             }}>
-                <h4>Annotation</h4>
+                <h5 className={"modal-header"}>Reaction Annotations</h5>
                 <div style={{
                     height: "30%",
                     flex: "0 0 auto",
@@ -142,9 +112,7 @@ const ReactionTableList = () => {
                             <TableHead>
                                 <TableRow>
                                     {columns.map((column) => (
-                                        <TableCell key={column.id}>
-                                            {column.label}
-                                        </TableCell>
+                                        <TableCell key={column.id}> {column.label} </TableCell>
                                     ))}
                                     <TableCell/>
                                 </TableRow>
@@ -163,7 +131,7 @@ const ReactionTableList = () => {
                 </div>
                 <div style={{height: "1%"}}></div>
                 <div style={{
-                    // height: "30%",
+                    height: "50%",
                     flex: "0 0 auto",
                     borderRadius: "10px",
                     border: "1px solid rgba(0,0,0,.125)",
@@ -172,11 +140,12 @@ const ReactionTableList = () => {
                     backgroundColor: "rgba(0,0,0,.125)"
                 }}>
                     <div style={{
-                        overflow: "auto",
                         height: "100%",
+                        width: "100%",
                         borderTop: "1px solid rgba(0,0,0,.125)",
                         borderBottom: "1px solid rgba(0,0,0,.125)",
-                        backgroundColor: "white"
+                        backgroundColor: "white",
+                        overflowY: "auto"
                     }}>
                         <DetailsContainer index={selectedRow}
                                           rowInfo={listOfReactions[selectedRow]}

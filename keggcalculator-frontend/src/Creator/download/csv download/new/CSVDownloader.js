@@ -173,7 +173,7 @@ const CsvDownloader = () => {
 
     return (
         <div>
-            <button disabled={graphState.data.nodes.length < 1} className={"downloadButton"}
+            <button disabled={graphState.data.nodes.length < 1} className={"download-button"}
                     onClick={download}>Download ral Csv
             </button>
         </div>

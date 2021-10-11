@@ -73,7 +73,7 @@ const ModuleListModal = () => {
                 />
             </ToolTipBig>
             <ToolTipBig title={"Submit the chosen KEGG module"} placement={"right"}>
-                <button disabled={!isRequestValid(state.module)} className={"downloadButton"}
+                <button disabled={!isRequestValid(state.module)} className={"download-button"}
                         onClick={() => handleSubmitModule()}>submit
                 </button>
             </ToolTipBig>

@@ -102,7 +102,7 @@ const SBMLDownloader = (props) => {
     return (
         <div>
             <ToolTipBig title={"Click for downloading the pathway as SBML"} placement={"right"}>
-                <button disabled={!props.graphState.data.nodes.length > 0} className={"downloadButton"}
+                <button disabled={!props.graphState.data.nodes.length > 0} className={"download-button"}
                         onClick={HandleSBMLDownload}>Download SBML
                 </button>
             </ToolTipBig>

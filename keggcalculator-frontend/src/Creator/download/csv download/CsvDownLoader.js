@@ -98,7 +98,7 @@ const CsvDownLoader = (props) => {
     return (
         <div>
             <ToolTipBig title={"Click for downloading the pathway as CSV"} placement={"right"}>
-                <button disabled={props.graphState.data.nodes.length < 1} className={"downloadButton"}
+                <button disabled={props.graphState.data.nodes.length < 1} className={"download-button"}
                         onClick={handleDownloadCsv}>Download Csv
                 </button>
             </ToolTipBig>

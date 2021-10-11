@@ -135,7 +135,7 @@ const AnnotationModal = () => {
             <div style={{flex: "0 0 auto"}} >
                 <button onClick={() => {
                     submit(state, dispatch, compoundsForAnnotation)
-                }} className={"downloadButton"} style={{width: "20vw"}}>finish
+                }} className={"download-button"} style={{width: "20vw"}}>finish
                 </button>
             </div>
             {/*submit all annotation*/}

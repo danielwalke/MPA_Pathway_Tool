@@ -58,7 +58,7 @@ const HeatMapCsvExporter = (props) => {
     return (
         <div>
             <ToolTipBig title={"Click for downloading mapped data as CSV"} placement={"right"}>
-                <button className={"downloadButton"}
+                <button className={"download-button"}
                         disabled={!props.graphState.data.nodes.length > 0 || !proteinState.proteinSet.size > 0}
                         onClick={() => handleHeatMapExport()}>Download Data
                 </button>

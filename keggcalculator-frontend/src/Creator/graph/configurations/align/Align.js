@@ -26,7 +26,7 @@ const Align = () => {
     return (
         <div>
             <ToolTipBig title={"Click for auto-aligning all nodes"} placement={"right"}>
-                <button className={"downloadButton"} onClick={() => handleAlign(graphState, dispatch)}>align</button>
+                <button className={"download-button"} onClick={() => handleAlign(graphState, dispatch)}>align</button>
             </ToolTipBig>
         </div>
     );

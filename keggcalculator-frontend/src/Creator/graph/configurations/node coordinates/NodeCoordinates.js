@@ -42,7 +42,7 @@ const NodeCoordinates = () => {
                                           }}/>
                         </div>
                         <div>
-                            <button className={"downloadButton"} onClick={() => handleCoordinateChange(node)}>submit
+                            <button className={"download-button"} onClick={() => handleCoordinateChange(node)}>submit
                             </button>
                         </div>
                     </div>

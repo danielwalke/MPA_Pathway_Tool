@@ -82,7 +82,7 @@ const AddLinkBody = () => {
                 <Checkbox checked={isReversible} onClick={() => setIsReversible(!isReversible)}/>
             </div>
             <div>
-                <button className={"downloadButton"} style={{width: "20vw"}} onClick={() => handleAddLink()}>submit
+                <button className={"download-button"} style={{width: "20vw"}} onClick={() => handleAddLink()}>submit
                     link
                 </button>
             </div>

@@ -127,7 +127,7 @@ const Start = (props) => {
                     <Typography variant="body2" component="p">
                         You can find more details in the following tutorial.
                     </Typography></CardContent><CardActionArea>
-                    <button className={"downloadButton"} style={{width: "30vw"}}
+                    <button className={"download-button"} style={{width: "30vw"}}
                             onClick={() => setShowVideos(true)}>Tutorial
                     </button>
                 </CardActionArea></Card>

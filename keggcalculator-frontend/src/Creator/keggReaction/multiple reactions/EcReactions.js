@@ -152,7 +152,7 @@ const EcReactions = () => {
                     />
                 </ToolTipBig>
                 <ToolTipBig title={"Submit EC numbers to query"} placement={"right"}>
-                    <button className={"downloadButton"} onClick={() => dispatch({
+                    <button className={"download-button"} onClick={() => dispatch({
                         type: "SETECNUMBERSREQUEST",
                         payload: state.ecNumbersRequestText
                     })}>set ec numbers
@@ -183,7 +183,7 @@ const EcReactions = () => {
                             )}
                         /></ToolTipBig></div>
                 <ToolTipBig title={"Add a single EC number to query"} placement={"right"}>
-                    <button className={"downloadButton"}
+                    <button className={"download-button"}
                             onClick={() => dispatch({type: "ADDECNUMBERREQUEST", payload: state.ecNumberRequest})}>add
                         ec number
                     </button>
@@ -222,7 +222,7 @@ const EcReactions = () => {
                                         />
                                     </ToolTipBig>
                                     <ToolTipBig title={"Submit chosen reaction"} placement={"right"}>
-                                        <button className={"downloadButton"}
+                                        <button className={"download-button"}
                                                 onClick={() => handleReactionSubmit()}>Submit
                                         </button>
                                     </ToolTipBig>
@@ -234,7 +234,7 @@ const EcReactions = () => {
                     )
                 })}
             </ul>
-            <button className={"downloadButton"} onClick={() => handleEcRequest()}>Submit</button>
+            <button className={"download-button"} onClick={() => handleEcRequest()}>Submit</button>
         </div>
     )
     return (

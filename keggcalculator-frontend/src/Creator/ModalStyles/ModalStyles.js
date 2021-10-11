@@ -8,7 +8,7 @@ export const useStyles = makeStyles((theme) => ({
     },
     paper: {
         backgroundColor: "white",
-        fontFamily: "Roboto",
+        // fontFamily: "Roboto",
         // border: '2px solid rgb(150, 25, 130)',
         boxShadow: theme.shadows[5],
         padding: theme.spacing(4, 4, 4),

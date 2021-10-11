@@ -20,7 +20,7 @@ const SpecTaxonomy = () => {
                 <ToolTipBig
                     title={isTaxonomyNcbi ? "Choose your own taxonomic name" : `Choose taxonomic name from a list`}
                     placement={"right"}>
-                    <button className={"downloadButton"} style={{width: "100%"}}
+                    <button className={"download-button"} style={{width: "100%"}}
                             onClick={() => setIsTaxonomyNcbi(!isTaxonomyNcbi)}>switch
                     </button>
                 </ToolTipBig>

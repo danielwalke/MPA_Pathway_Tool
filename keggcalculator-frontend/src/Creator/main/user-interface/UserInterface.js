@@ -127,7 +127,7 @@ const UserInterface = () => {
                     <div className={"uploadFilesContainer"}>
                         <div>
                             <ToolTipBig title={"Click for entering the upload section"} placement={"right"}>
-                                <button className={"downloadButton"}
+                                <button className={"download-button"}
                                         onClick={() => dispatch({type: "SWITCHUPLOADMODAL"})}>Upload
                                 </button>
                             </ToolTipBig>
@@ -136,7 +136,7 @@ const UserInterface = () => {
                     </div>
                     <div className={"helpContainer"}>
                         <ToolTipBig title={"Click for receiving help"} placement={"right"}>
-                            <button className={"downloadButton"}
+                            <button className={"download-button"}
                                     onClick={() => {
                                         dispatch({type: "ADD_HELP_TO_AUDIT_TRAIL"})
                                         dispatch({type: "SWITCHSHOWUSERINFO"})
@@ -146,7 +146,7 @@ const UserInterface = () => {
                     </div>
                     <div>
                         <ToolTipBig title={"Click for changing the visualization of the pathway"} placement={"right"}>
-                            <button className={"downloadButton"}
+                            <button className={"download-button"}
                                     onClick={() => {
                                         dispatch({type: "SWITCHNODECONFIGURATIONMODAL"})
                                     }}>node configurations
@@ -156,7 +156,7 @@ const UserInterface = () => {
                     </div>
                     <div className={"keggReaction"}>
                         <ToolTipBig title={"Click for adding a reaction from KEGG"} placement={"right"}>
-                            <button className={"downloadButton"}
+                            <button className={"download-button"}
                                     onClick={handleShowKeggReaction}>Add Kegg
                                 Reaction
                             </button>
@@ -164,7 +164,7 @@ const UserInterface = () => {
                     </div>
                     <div className={"userReaction"}>
                         <ToolTipBig title={"Click for defining your own reaction"} placement={"right"}>
-                            <button className={"downloadButton"}
+                            <button className={"download-button"}
                                     onClick={handleShowSpecReaction}>Add User-defined
                                 Reaction
                             </button>
@@ -172,7 +172,7 @@ const UserInterface = () => {
                     </div>
                     <div>
                         <ToolTipBig title={"Click for importing multiple reactions"} placement={"right"}>
-                            <button className={"downloadButton"}
+                            <button className={"download-button"}
                                     onClick={() => dispatch({type: "SWITCHMULTIREACTIONMODAL"})}>import multiple
                                 reactions
                             </button>
@@ -182,7 +182,7 @@ const UserInterface = () => {
                     <div className={"downloadContainer"}>
                         <div>
                             <ToolTipBig title={"Click for importing multiple reactions"} placement={"right"}>
-                                <button className={"downloadButton"}
+                                <button className={"download-button"}
                                         onClick={() => dispatch({type: "SWITCHDOWNLOADMODAL"})}>Download
                                 </button>
                             </ToolTipBig>

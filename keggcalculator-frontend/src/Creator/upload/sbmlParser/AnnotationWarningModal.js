@@ -54,10 +54,10 @@ const AnnotationWarningModal = () => {
                         {!general.isMissingAnnotations && annotatePrompt}
                     </div>
                     <div style={{display: "flex"}}>
-                        <button className={"downloadButton"} style={{width: "20vw"}}
+                        <button className={"download-button"} style={{width: "20vw"}}
                                 onClick={() => handleAnnotationPurpose(dispatch)}>Yes
                         </button>
-                        <button style={{width: "20vw"}} className={"downloadButton"}
+                        <button style={{width: "20vw"}} className={"download-button"}
                                 onClick={() => handleSkipPurpose(state, dispatch)}>No
                         </button>
                     </div>

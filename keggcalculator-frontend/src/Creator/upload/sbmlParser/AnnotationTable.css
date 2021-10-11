@@ -1,0 +1,15 @@
+.detail-view {
+    padding: 3% 5% 3% 5%;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: minmax(0,50%) minmax(0,50%);
+    grid-gap: 1em;
+}
+
+.circle-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+}

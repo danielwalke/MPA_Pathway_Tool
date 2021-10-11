@@ -86,7 +86,7 @@ const Abbreviation = () => {
                         <div className={"fullName"}>=> {node}</div>
                         <div className={"submitAbbreviation"}>
                             <ToolTipBig title={"Submit your abbreviation"} placement={"right"}>
-                                <button name={"otherNodes"} className={"downloadButton"}
+                                <button name={"otherNodes"} className={"download-button"}
                                         onClick={(e) => handleSubmitAbbreviation(e, node, defValue)}>Submit
                                 </button>
                             </ToolTipBig>
@@ -108,7 +108,7 @@ const Abbreviation = () => {
                         <div className={"fullName"}>=> {compound}</div>
                         <div className={"submitAbbreviation"}>
                             <ToolTipBig title={"Submit your abbreviation"} placement={"right"}>
-                                <button name={"abundantNodes"} className={"downloadButton"}
+                                <button name={"abundantNodes"} className={"download-button"}
                                         onClick={(e) => handleSubmitAbbreviation(e, compound, defValue)}>Submit
                                 </button>
                             </ToolTipBig>

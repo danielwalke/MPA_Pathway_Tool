@@ -79,13 +79,13 @@ const PathwayTaxonomy = () => {
                     <ToolTipBig
                         title={isNcbiTaxonomy ? "Choose your own taxonomic name" : `Choose taxonomic name from a list`}
                         placement={"right"}>
-                        <button className={"downloadButton"} onClick={() => setIsNcbiTaxonomy(!isNcbiTaxonomy)}>Switch
+                        <button className={"download-button"} onClick={() => setIsNcbiTaxonomy(!isNcbiTaxonomy)}>Switch
                         </button>
                     </ToolTipBig>
                 </div>
                 <div>
                     <ToolTipBig title={"Add taxonomic requirement for the complete pathway"} placement={"right"}>
-                        <button className={"downloadButton"} onClick={() => dispatch({type: "ADDPATHWAYTAXONOMY"})}>add
+                        <button className={"download-button"} onClick={() => dispatch({type: "ADDPATHWAYTAXONOMY"})}>add
                             taxonomy to complete pathway
                         </button>
                     </ToolTipBig>
@@ -136,14 +136,14 @@ const PathwayTaxonomy = () => {
                             <ToolTipBig
                                 title={isNcbiTaxonomy ? "Choose your own taxonomic name" : `Choose taxonomic name from a list`}
                                 placement={"right"}>
-                                <button className={"downloadButton"}
+                                <button className={"download-button"}
                                         onClick={() => setIsNcbiTaxonomy(!isNcbiTaxonomy)}>Switch
                                 </button>
                             </ToolTipBig>
                         </div>
                         <div>
                             <ToolTipBig title={"Add taxonomic name for the chosen reaction"} placement={"right"}>
-                                <button className={"downloadButton"} style={{width: "20vw"}}
+                                <button className={"download-button"} style={{width: "20vw"}}
                                         onClick={() => dispatch({type: "ADDTAXONOMY", payload: reactionName})}>Add
                                     taxonomy
                                 </button>

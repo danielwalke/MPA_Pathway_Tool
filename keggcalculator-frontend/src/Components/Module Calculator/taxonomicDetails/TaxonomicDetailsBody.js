@@ -84,7 +84,7 @@ const TaxonomicDetailsBody = (props) => {
         <div className={classes.paper}>
             <div style={{width: "80vw", height: "90vh", overflow: "auto"}}>
                 <ToolTipBig title={"download the complete table with details as *.csv"} placement={"right"}>
-                    <button className={"downloadButton"} onClick={() => downloadDetails()}
+                    <button className={"download-button"} onClick={() => downloadDetails()}
                             style={{width: "20vw", margin: "5px"}}>Download details
                     </button>
                 </ToolTipBig>

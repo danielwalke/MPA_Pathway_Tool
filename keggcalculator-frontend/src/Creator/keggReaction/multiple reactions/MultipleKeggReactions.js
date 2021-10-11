@@ -48,7 +48,7 @@ const MultipleKeggReactions = () => {
                 />
             </ToolTipBig>
             <ToolTipBig title={"Submit reactions"} placement={"right"}>
-                <button onClick={() => handleKeggReactionRequest()} className={"downloadButton"}>submit</button>
+                <button onClick={() => handleKeggReactionRequest()} className={"download-button"}>submit</button>
             </ToolTipBig>
         </div>
     )

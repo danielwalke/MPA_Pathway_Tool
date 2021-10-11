@@ -24,7 +24,7 @@ const SbmlReader = () => {
         <div>
             <ToolTipBig title={"Click for uploading a pathway as SBML"} placement={"right"}>
                 <label className={"uploadLabel"}
-                       htmlFor={"SBML_Module"}> pload pathway as SBML
+                       htmlFor={"SBML_Module"}> Upload pathway as SBML
                     <img src={UploadIcon} style={{width: `clamp(6px, 1.7vw, 12px)`, transform: "translate(0,0.2vw)"}}
                          alt={""}/>
                 </label>

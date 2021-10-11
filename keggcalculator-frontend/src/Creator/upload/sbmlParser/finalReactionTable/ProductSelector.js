@@ -152,7 +152,7 @@ const ProductSelector = (props) => {
                             </MenuItem>)}
                         </Select>
                     </FormControl>
-                    <button style={{width: "10vw"}} className={"downloadButton"} onClick={() => handleChanges()}>submit
+                    <button style={{width: "10vw"}} className={"download-button"} onClick={() => handleChanges()}>submit
                         changes
                     </button>
                 </div>}

@@ -29,7 +29,7 @@ const NodeConfigurationModal = () => {
                 <NodeModifModal/>
                 <ToolTipBig title={"Click for modifying size and color of nodes"} placement={"right"}>
                     <button onClick={() => dispatch({type: "SWITCH_NODE_MODIFICATION_MODAL"})}
-                            className={"downloadButton"}>node modification
+                            className={"download-button"}>node modification
                     </button>
                 </ToolTipBig>
             </div>
@@ -40,7 +40,7 @@ const NodeConfigurationModal = () => {
             <div className={"abbreviationWrapper"}>
                 <Abbreviations/>
                 <ToolTipBig title={"Click for adding abbreviations to nodes"} placement={"right"}>
-                    <button className={"downloadButton"} onClick={() => dispatch({type: "SWITCHSHOWABBREVIATIONS"})
+                    <button className={"download-button"} onClick={() => dispatch({type: "SWITCHSHOWABBREVIATIONS"})
                     }>abbreviation
                     </button>
                 </ToolTipBig>
@@ -48,7 +48,7 @@ const NodeConfigurationModal = () => {
             <div className={"splitNodesContainer"}>
                 <AbundantNodeConfig/>
                 <ToolTipBig title={"Click for splitting abundant nodes into single nodes"} placement={"right"}>
-                    <button className={"downloadButton"} onClick={() => dispatch({type: "SWITCHSHOWABUNDANTNODECONFIG"})
+                    <button className={"download-button"} onClick={() => dispatch({type: "SWITCHSHOWABUNDANTNODECONFIG"})
                     }>split nodes
                     </button>
                 </ToolTipBig>
@@ -56,7 +56,7 @@ const NodeConfigurationModal = () => {
             <div>
                 <MergeNodesModal/>
                 <ToolTipBig title={"Click for merging nodes"} placement={"right"}>
-                    <button className={"downloadButton"}
+                    <button className={"download-button"}
                             onClick={() => dispatch({type: "SWITCHSHOWMERGENODESMODAL"})}>merge nodes
                     </button>
                 </ToolTipBig>
@@ -64,7 +64,7 @@ const NodeConfigurationModal = () => {
             <div>
                 <PathwayTaxonomy/>
                 <ToolTipBig title={"Click for adding taxonomic requirements to reactions"} placement={"right"}>
-                    <button className={"downloadButton"}
+                    <button className={"download-button"}
                             onClick={() => dispatch({type: "SWITCHSHOWPATHWAYTAXONOMY"})}>add Taxonomy
                     </button>
                 </ToolTipBig>

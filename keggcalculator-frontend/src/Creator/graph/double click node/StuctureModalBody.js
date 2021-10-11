@@ -80,7 +80,7 @@ export const getStructureBody = (state, dispatch, generalState, isNcbiTaxonomy, 
                         <div><ReversibilityChange nodeId={nodeId}/></div>
                         <div>
                             <ToolTipBig title={"Change direction of chosen reaction"} placement={"right"}>
-                                <button className={"downloadButton"} style={{width: "15vw"}}
+                                <button className={"download-button"} style={{width: "15vw"}}
                                         onClick={() => handleSubmitDirection(state, dispatch, generalState)}>reverse
                                     reaction
                                 </button>
@@ -107,14 +107,14 @@ export const getStructureBody = (state, dispatch, generalState, isNcbiTaxonomy, 
                                 <ToolTipBig
                                     title={isNcbiTaxonomy ? "Choose your own taxonomic name" : `Choose taxonomic name from a list`}
                                     placement={"right"}>
-                                    <button className={"downloadButton"} style={{height: "100%"}}
+                                    <button className={"download-button"} style={{height: "100%"}}
                                             onClick={() => setIsNcbiTaxonomy(!isNcbiTaxonomy)}>Switch
                                     </button>
                                 </ToolTipBig>
                             </div>
                         </div>
                         <ToolTipBig title={"Add taxonomic requirement to reaction"} placement={"right"}>
-                            <button className={"downloadButton"} style={{width: "20vw"}}
+                            <button className={"download-button"} style={{width: "20vw"}}
                                     onClick={() => dispatch({type: "ADDTAXONOMY", payload: reactionName})}>Add taxonomy
                             </button>
                         </ToolTipBig>

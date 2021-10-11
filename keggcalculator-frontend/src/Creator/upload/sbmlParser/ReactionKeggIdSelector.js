@@ -28,7 +28,7 @@ const ReactionKeggIdSelector = (props) => {
     }
 
     useEffect(() => {
-        // fetch list of possible kegg ids
+        // get list of possible kegg ids
         setOptions(state.general.reactionAnnotationTableOptions.map(reaction => reaction.reactionId))
     },[state.general.reactionAnnotationTableOptions])
 
@@ -38,7 +38,7 @@ const ReactionKeggIdSelector = (props) => {
                 size={"small"}
                 id={"keggReactionSelector"}
                 options={options}
-                value={props.reactionRowInfo.keggId}
+                value={props.listOfReactions[props.index].keggId}
                 onChange={(event, value) => {
                     const newListOfReactions = props.listOfReactions
                     newListOfReactions[props.index].keggId = value
@@ -48,28 +48,14 @@ const ReactionKeggIdSelector = (props) => {
                 renderInput={params => (
                     <TextField
                         // onChange={(event) => handleChange(event)}
-                        value={props.reactionRowInfo.keggId}
+                        value={props.listOfReactions[props.index].keggId}
                         {...params}
-                        label="KEGG ID Suggestions"
+                        label="KEGG Reaction ID"
                         variant="outlined"
                     />
                 )}
             />
         </div>
-        
-        // <Autocomplete
-        //     onChange={(event, value) => {
-        //         // introduces selected value into state from parent, dispatches value into global state
-        //         props.data.bigg[props.index] = value;
-        //         dispatch({type: "SET_BIGG_ID_SELECTION", payload: props.data.bigg})
-        //     }}
-        //     id="AnnotationSelector"
-        //     value={props.data.bigg[props.index]}
-        //     classes={classes}
-        //     options={biggOptions}
-        //     renderInput={(params) => (
-        //         <TextField {...params} variant="outlined" label="BIGG Compound"/>)}
-        // />
     )
 }
 
