@@ -337,4 +337,16 @@ public class KeggHandleRequests {
 		return creator.gson.toJson(creator.getfilteredBiggReactionIds(biggId));
 	}
 
+	public static Object biggReactionIds(KeggCreatorService creator, String biggName) {
+		return creator.gson.toJson(creator.getBiggReactionIds(biggName));
+	}
+
+	public static Object getKeggReactionsFromIdAndName(KeggCreatorService creator, String reactionString) {
+		return creator.gson.toJson(creator.keggReactionFromIdAndName(reactionString));
+	}
+
+	public static Object getFilteredEcNumberList(KeggCreatorService creator, String reactionString) {
+		return creator.gson.toJson(creator.filteredEcNumberList(reactionString));
+	}
+
 }

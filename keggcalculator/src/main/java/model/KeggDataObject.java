@@ -20,6 +20,7 @@ public class KeggDataObject extends KeggData {
 	private final HashMap<String, KeggKOObject> koNumberMap;
 	private final HashMap<String, KeggCompoundObject> compoundMap;
 	private final HashMap<String, BiggCompoundObject> biggCompoundMap;
+	private final HashMap<String, String> biggReactionsMap;
 	private HashMap<String, HashMap<String, HashSet<String>>> kegg2biggCompound;
 	protected final HashMap<String, KeggHsaObject> hsaMap;
 	
@@ -33,11 +34,11 @@ public class KeggDataObject extends KeggData {
 		this.compoundMap = new HashMap<String, KeggCompoundObject>();
 		this.biggCompoundMap = new HashMap<String, BiggCompoundObject>();
 		this.kegg2biggCompound = new HashMap<String, HashMap<String, HashSet<String>>>();
+		this.biggReactionsMap = new HashMap<String, String>();
 		
 		this.hsaMap = new HashMap<>();
 	}
 
-	
 	//clones all data stored in keggData
 	public KeggDataObject cloneData() {
 		KeggDataObject clonedData = new KeggDataObject();
@@ -229,9 +230,29 @@ public class KeggDataObject extends KeggData {
 		this.reactions.add(r);
 	}
 	
+	public HashSet<String> getReactionNameIdSet() {
+		HashSet<String> reactionNameIdSet = new HashSet<String>();
+		for (KeggReactionObject reaction : this.reactions) {
+			reactionNameIdSet.add(reaction.reactionName + "  |  " + reaction.reactionId);
+		};
+		return reactionNameIdSet;
+	}
+	
+	public HashMap<String, String> getBiggReactionsMap() {
+		return biggReactionsMap;
+	}
+	
+	public String getBiggReactionId(String reactionName) {
+		return this.biggReactionsMap.get(reactionName);
+	}
+	
+	public void addBiggReaction(String reactionName, String reactionId) {
+		this.biggReactionsMap.put(reactionName, reactionId);
+	}
+	
 	/*
 	 * following method is performed because pathways with same reactions but different taxonomies have to be removed after a pathway was parsed and module added
-	 * thats why I deleted the "final" fromt reactions and reactionMap 
+	 * thats why I deleted the "final" from reactions and reactionMap 
 	 */
 	public void removeReactions() {//removes all reactions from store
 		this.reactions = new HashSet<KeggReactionObject>();

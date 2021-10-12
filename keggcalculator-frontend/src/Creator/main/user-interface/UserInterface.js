@@ -119,11 +119,13 @@ const UserInterface = () => {
                 }}
             >
                 <div className={"interfaceContainer"}>
-                    <ToolTipBig title={"Click for closing the menu"} placement={"right"}>
-                        <IconButton onClick={() => setOpen(false)}>
-                            {<CloseIcon/>}
-                        </IconButton>
-                    </ToolTipBig>
+                    <div style={{display:"flex", justifyContent:"center"}}>
+                        <ToolTipBig title={"Click for closing the menu"} placement={"right"}>
+                            <IconButton onClick={() => setOpen(false)}>
+                                {<CloseIcon/>}
+                            </IconButton>
+                        </ToolTipBig>
+                    </div>
                     <div className={"uploadFilesContainer"}>
                         <div>
                             <ToolTipBig title={"Click for entering the upload section"} placement={"right"}>

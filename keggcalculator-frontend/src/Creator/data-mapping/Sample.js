@@ -95,7 +95,7 @@ const Sample = () => {
             }}>
                 {state.mpaProteins.sampleNames.map((sampleName, index) => <div
                     style={{width: "inherit", overflowX: "scroll"}}>
-                    <ToolTipBig title={`Click for mapping experimental data of the sample ${sampleName} on the pathway`}
+                    <ToolTipBig title={` mapping experimental data of the sample ${sampleName} on the pathway`}
                                 placement={"top"}>
                         <button
                             key={"B".concat(index.toString())}

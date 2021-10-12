@@ -153,13 +153,13 @@ const Main = () => {
                             {paper: classes.drawerPaper}
                         }
                     >
-                        <ToolTipBig title={"Click to close the mapping user-interface"} placement={"top"}>
-                            <IconButton onClick={() => {
-                                setOpen(false)
-                            }}>
-                                {<CloseIcon/>}
-                            </IconButton>
-                        </ToolTipBig>
+                        <div style={{display: "flex", justifyContent: "center"}}>
+                            <ToolTipBig title={"Click to close the mapping user-interface"} placement={"top"}>
+                                    <IconButton onClick={() => setOpen(false)}>
+                                        {<CloseIcon/>}
+                                    </IconButton>
+                            </ToolTipBig>
+                        </div>
                         <div>
                             {proteinState.proteinSet.size === 0 && <h4>Waiting for experimental data...</h4>}
                         </div>

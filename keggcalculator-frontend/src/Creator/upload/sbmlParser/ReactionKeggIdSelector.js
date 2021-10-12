@@ -2,11 +2,8 @@ import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect, useState} from "react";
 import {Autocomplete} from "@material-ui/lab";
 import TextField from "@material-ui/core/TextField";
-import {useStylesList} from "./KeggCompoundAutoCompleteList";
 import {requestGenerator} from "../../request/RequestGenerator";
-import {
-    endpoint_getFilteredTaxonomicNames,
-} from "../../../App Configurations/RequestURLCollection";
+import {endpoint_getKeggReactionNames} from "../../../App Configurations/RequestURLCollection";
 
 const ReactionKeggIdSelector = (props) => {
     const state = useSelector(state => state)
@@ -15,21 +12,18 @@ const ReactionKeggIdSelector = (props) => {
 
     const dispatch = useDispatch()
 
-    function handleChange(event) {
-        requestGenerator("POST", endpoint_getFilteredTaxonomicNames, {}, "", "").then( //endpoint: sends max. 100 taxonomic names
+    const handleTyping = (string) => {
+        requestGenerator("GET", endpoint_getKeggReactionNames, {reactionString: string}, "", "").then( //endpoint: sends max. 100 taxonomic names
             resp => {
-                if (resp.data.length > 100) {
-                    resp.data.push("Type another letter for more names")
-                }
                 setOptions(resp.data)
-            }
-        )
-        return undefined;
+            })
     }
 
     useEffect(() => {
         // get list of possible kegg ids
-        setOptions(state.general.reactionAnnotationTableOptions.map(reaction => reaction.reactionId))
+        setOptions(state.general.reactionAnnotationTableOptions.map(reaction => {
+            return reaction.reactionId + " " + reaction.reactionName
+        }))
     },[state.general.reactionAnnotationTableOptions])
 
     return (
@@ -41,13 +35,12 @@ const ReactionKeggIdSelector = (props) => {
                 value={props.listOfReactions[props.index].keggId}
                 onChange={(event, value) => {
                     const newListOfReactions = props.listOfReactions
-                    newListOfReactions[props.index].keggId = value
-
+                    value ? newListOfReactions[props.index].keggId = value.substring(0, 6) : newListOfReactions[props.index].keggId = ""
                     dispatch({type: "SETLISTOFREACTIONS", payload: newListOfReactions})
                 }}
                 renderInput={params => (
                     <TextField
-                        // onChange={(event) => handleChange(event)}
+                        onChange={(event) => handleTyping(event.target.value)}
                         value={props.listOfReactions[props.index].keggId}
                         {...params}
                         label="KEGG Reaction ID"

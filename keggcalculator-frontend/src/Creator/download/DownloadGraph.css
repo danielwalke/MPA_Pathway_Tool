@@ -1,10 +1,12 @@
 .download-button {
     width: 80%;
     background-color: rgb(150, 25, 130);
-    border-radius: 0.8vw;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 0px 1px rgb(56, 9, 49);
     color: white;
-    transition: all 400ms ease-in-out;
-    text-transform: uppercase;
+    transition: all 200ms ease-in-out;
+    /*text-transform: uppercase;*/
     font-size: clamp(12px, 1vw, 22px);;
     /*font-family: Roboto, serif;*/
     margin: 2px;
@@ -22,6 +24,13 @@
 }
 
 .button-container-middle {
+    flex: 0 0 auto;
     display: flex;
     justify-content: center;
+}
+
+.button-container-space-between {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: space-between;
 }

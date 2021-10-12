@@ -563,4 +563,26 @@ public class KeggDataParser {
 		}
 	}
 
+	public static void parseBiggReactions(KeggDataObject keggData, String file) {
+		try {	
+			BufferedReader br = new BufferedReader(new FileReader(new File(file)));
+			String line = br.readLine();
+			
+			line = br.readLine(); // skip header
+			while (line != null) {
+				String[] splitLine = line.split("\t");
+				String biggId = splitLine[0];
+				String biggName = splitLine[1];
+								
+				String biggReactionString = biggName + "  |  " + biggId;
+				keggData.addBiggReaction(biggReactionString, biggId);
+
+				line = br.readLine();
+			}
+			br.close();
+	} catch(Exception e) {
+		
+		e.printStackTrace();
+	}}
+
 }

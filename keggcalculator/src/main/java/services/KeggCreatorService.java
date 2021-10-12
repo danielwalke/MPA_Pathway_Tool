@@ -116,6 +116,7 @@ public class KeggCreatorService {
 		KeggDataParser.parseBiggCompounds(keggData, KeggCalculatorConstants.BIGG_COMPOUNDS);
 		KeggDataParser.parseKegg2BiggCompounds(keggData, KeggCalculatorConstants.KEGG_TO_BIGG_COMPOUNDS);
 		KeggDataParser.parseKegg2BiggReaction(keggData, KeggCalculatorConstants.KEGG_TO_BIGG_REACTIONS);
+		KeggDataParser.parseBiggReactions(keggData, KeggCalculatorConstants.BIGG_REACTIONS);
 //		KeggCalculatorServer server = new KeggCalculatorServer();
 //		server.setKeggData(this.keggData);
 	}
@@ -773,6 +774,47 @@ public class KeggCreatorService {
 		KeggCompoundObject keggCompound = keggData.getCompound(compound);
 		HashSet<KeggReactionObject> reactionsFromCompound = keggCompound.getReactions();
 		return reactionsFromCompound;
+	}
+
+	public HashSet<String> getBiggReactionIds(String biggName) {
+		
+		HashMap<String, String> biggReactions = this.keggData.getBiggReactionsMap();
+		HashSet<String> responseReactions = new HashSet<String>();
+		 
+		for (String reactionString : biggReactions.keySet()) {
+			if (reactionString.toLowerCase().contains(biggName.toLowerCase()) && responseReactions.size()<101) {
+				responseReactions.add(reactionString);
+			}
+		}
+		
+		return responseReactions;
+	}
+
+	public HashSet<String> keggReactionFromIdAndName(String reactionString) {
+		// creates hashmap for reaction name - id combination
+		HashSet<String> responseIds = new HashSet<String>();
+		HashSet<String> keggReactions = this.keggData.getReactionNameIdSet();
+		
+		for (String keggId : keggReactions) {
+			if (keggId.toLowerCase().contains(reactionString.toLowerCase()) && responseIds.size()<101) {
+				responseIds.add(keggId);
+			}
+		}
+		
+		return responseIds;
+	}
+
+	public HashSet<String> filteredEcNumberList(String reactionString) {
+		HashSet<String> ecNumbersResponse = new HashSet<String>();
+		HashSet<String> ecNumbers = getEcNumberSet();
+		
+		for (String ecNumber : ecNumbers) {
+			if (ecNumber.toLowerCase().contains(reactionString.toLowerCase()) && ecNumbersResponse.size()<101) {
+				ecNumbersResponse.add(ecNumber);
+			}
+		}
+		
+		return ecNumbersResponse;
 	}
 
 }

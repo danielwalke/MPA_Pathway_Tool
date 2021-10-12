@@ -3,8 +3,8 @@
     max-width: 100%;
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: minmax(0,50%) minmax(0,50%);
-    grid-gap: 1em;
+    grid-template-columns: minmax(0,100%);
+    grid-gap: 1.5em;
 }
 
 .circle-icon {
@@ -12,4 +12,8 @@
     align-items: center;
     justify-content: center;
     width: auto;
+}
+
+.finish-button {
+    width: 8em;
 }

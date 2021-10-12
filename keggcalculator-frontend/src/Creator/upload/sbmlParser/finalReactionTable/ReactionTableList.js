@@ -85,7 +85,7 @@ const ReactionTableList = () => {
 
         const dataTable = (
             <div className={classes.paper} style={{
-                width: "95vw",
+                width: "80vw",
                 height: "80vh",
                 display: "flex",
                 flexDirection: "column",
@@ -93,66 +93,79 @@ const ReactionTableList = () => {
             }}>
                 <h5 className={"modal-header"}>Reaction Annotations</h5>
                 <div style={{
-                    height: "30%",
-                    flex: "0 0 auto",
-                    borderRadius: "10px",
-                    border: "1px solid rgba(0,0,0,.125)",
-                    padding: "20px 0px 20px 0px",
-                    boxSizing: "border-box",
-                    backgroundColor: "rgba(0,0,0,.125)"
-                }}>
-                    <TableContainer style={{
-                        overflow: "auto",
-                        height: "100%",
-                        borderTop: "1px solid rgba(0,0,0,.125)",
-                        borderBottom: "1px solid rgba(0,0,0,.125)",
-                        backgroundColor: "white"
-                    }}>
-                        <Table stickyHeader aria-label="sticky table">
-                            <TableHead>
-                                <TableRow>
-                                    {columns.map((column) => (
-                                        <TableCell key={column.id}> {column.label} </TableCell>
-                                    ))}
-                                    <TableCell/>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {listOfReactions.map((row, index) => (
-                                    <ReactionTableRow key={row.sbmlName}
-                                                      row={row}
-                                                      index={index}
-                                                      handleRowClick={handleRowClick}
-                                                      selectedRow={selectedRow}/>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                </div>
-                <div style={{height: "1%"}}></div>
-                <div style={{
-                    height: "50%",
-                    flex: "0 0 auto",
-                    borderRadius: "10px",
-                    border: "1px solid rgba(0,0,0,.125)",
-                    boxSizing: "border-box",
-                    padding: "20px 0px 20px 0px",
-                    backgroundColor: "rgba(0,0,0,.125)"
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    minHeight: "0",
+                    flex: "1 1 auto",
+                    padding: "0.5em 0 0.5em 0"
+                    // height: "100%"
                 }}>
                     <div style={{
-                        height: "100%",
-                        width: "100%",
-                        borderTop: "1px solid rgba(0,0,0,.125)",
-                        borderBottom: "1px solid rgba(0,0,0,.125)",
-                        backgroundColor: "white",
-                        overflowY: "auto"
+                        width: "49%",
+                        flex: "0 0 auto",
+                        borderRadius: "10px",
+                        border: "1px solid rgba(0,0,0,.125)",
+                        padding: "20px 0px 20px 0px",
+                        boxSizing: "border-box",
+                        backgroundColor: "rgba(0,0,0,.125)",
                     }}>
-                        <DetailsContainer index={selectedRow}
-                                          rowInfo={listOfReactions[selectedRow]}
-                                          defaultReaction={previousListOfReactions[selectedRow]}/>
+                        <TableContainer style={{
+                            overflow: "auto",
+                            height: "100%",
+                            borderTop: "1px solid rgba(0,0,0,.125)",
+                            borderBottom: "1px solid rgba(0,0,0,.125)",
+                            backgroundColor: "white",
+                        }}>
+                            <Table stickyHeader aria-label="sticky table">
+                                <TableHead>
+                                    <TableRow>
+                                        {columns.map((column) => (
+                                            <TableCell key={column.id}> {column.label} </TableCell>
+                                        ))}
+                                        <TableCell/>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {listOfReactions.map((row, index) => (
+                                        <ReactionTableRow key={row.sbmlName}
+                                                          row={row}
+                                                          index={index}
+                                                          handleRowClick={handleRowClick}
+                                                          selectedRow={selectedRow}/>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </div>
+                    <div style={{width: "1%"}}></div>
+                    <div style={{
+                        width: "49%",
+                        flex: "0 0 auto",
+                        borderRadius: "10px",
+                        border: "1px solid rgba(0,0,0,.125)",
+                        boxSizing: "border-box",
+                        padding: "20px 0px 20px 0px",
+                        backgroundColor: "rgba(0,0,0,.125)"
+                    }}>
+                        <div style={{
+                            height: "100%",
+                            width: "100%",
+                            borderTop: "1px solid rgba(0,0,0,.125)",
+                            borderBottom: "1px solid rgba(0,0,0,.125)",
+                            backgroundColor: "white",
+                            overflowY: "auto"
+                        }}>
+                            <DetailsContainer index={selectedRow}
+                                              rowInfo={listOfReactions[selectedRow]}
+                                              defaultReaction={previousListOfReactions[selectedRow]}/>
+                        </div>
                     </div>
                 </div>
-                <button onClick={handleFinish}> Finish </button>
+                <div className={"button-container-space-between"}>
+                    <button className={"download-button finish-button"} > Compounds </button>
+                    <button className={"download-button finish-button"} onClick={handleFinish}> Finish </button>
+                </div>
             </div>
         )
 

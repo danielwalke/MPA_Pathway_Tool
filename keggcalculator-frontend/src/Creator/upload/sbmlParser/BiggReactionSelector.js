@@ -2,7 +2,8 @@ import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect, useState} from "react";
 import TextField from "@material-ui/core/TextField";
 import {Autocomplete} from "@material-ui/lab";
-import Chip from "@material-ui/core/Chip";
+import {requestGenerator} from "../../request/RequestGenerator";
+import {endpoint_getBiggReactionNames} from "../../../App Configurations/RequestURLCollection";
 
 const BiggReactionSelector = (props) => {
 
@@ -12,18 +13,25 @@ const BiggReactionSelector = (props) => {
 
     const dispatch = useDispatch()
 
+    const handleTyping = (string) => {
+        requestGenerator("GET", endpoint_getBiggReactionNames, {biggName: string}, "", "").then( //endpoint: sends max. 100 taxonomic names
+            resp => {
+                setOptions(resp.data)
+            })
+    }
+
     useEffect(() => {
         // set list of possible bigg ids
-        let ecNumberOptions = []
+        let biggIdOptions = []
         state.general.reactionAnnotationTableOptions.forEach(reaction => {
             for (const biggReaction of reaction.biggReactionIds) {
                 // add bigg reaction id to options only if it isn't present already
                 if (!props.listOfReactions[props.index].biggReaction.includes(biggReaction)) {
-                    ecNumberOptions.push(biggReaction)
+                    biggIdOptions.push("  |  " + biggReaction)
                 }
             }
         })
-        setOptions(ecNumberOptions)
+        setOptions(biggIdOptions)
     }, [state.general.reactionAnnotationTableOptions])
 
     return (
@@ -35,13 +43,14 @@ const BiggReactionSelector = (props) => {
                 value={props.listOfReactions[props.index].biggReaction}
                 onChange={(event, value) => {
                     const newListOfReactions = props.listOfReactions
-                    newListOfReactions[props.index].biggReaction = value
+                    const setValue =  value ? value.split("  |  ")[1] : ""
+                    newListOfReactions[props.index].biggReaction = setValue
 
                     dispatch({type: "SETLISTOFREACTIONS", payload: newListOfReactions})
                 }}
                 renderInput={params => (
                     <TextField
-                        // onChange={(event) => handleChange(event)}
+                        onChange={(event) => handleTyping(event.target.value)}
                         value={props.listOfReactions[props.index].biggReaction}
                         {...params}
                         label="BIGG Reaction"

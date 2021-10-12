@@ -24,12 +24,14 @@ const CompoundSelector = (props) => {
         // set compounds that are contained in the reaction
         const compoundIds = []
         props.listOfReactions[props.index][`${props.propName}`].forEach(compound => {
-            compoundIds.push(compound.sbmlId)
+            compoundIds.push(compound.sbmlId + "  |  " + compound.sbmlName)
         })
-        setCompounds(compoundIds)
+        setCompounds(compoundIds )
 
         // set compound options from listOfSpecies
-        setOptions(listOfSpecies.map(compound => compound.sbmlId))
+        setOptions(listOfSpecies.map(compound => {
+            return compound.sbmlId + "  |  " + compound.sbmlName
+        }))
 
     }, [props.index, props.listOfReactions[props.index][`${props.propName}`]])
 
@@ -44,7 +46,9 @@ const CompoundSelector = (props) => {
 
             onChange={(event, value) => {
                 const newListOfReactions = props.listOfReactions
-                newListOfReactions[props.index][`${props.propName}`] = [...getSpeciesObject(listOfSpecies, value)]
+                const sbmlIds = value.map(string => string.split("  |  ")[0])
+                console.log(sbmlIds)
+                newListOfReactions[props.index][`${props.propName}`] = [...getSpeciesObject(listOfSpecies, sbmlIds)]
                 dispatch({type: "SETLISTOFREACTIONS", payload: newListOfReactions})
             }}
 
@@ -59,7 +63,7 @@ const CompoundSelector = (props) => {
                             const newCompounds = newListOfReactions[props.index][`${props.propName}`]
 
                             const arrIndex = props.listOfReactions[props.index][`${props.propName}`].findIndex(
-                                compound => compound.sbmlId === value)
+                                compound => compound.sbmlId + "  |  " + compound.sbmlName === value)
 
                             if (arrIndex > -1) {
                                 newCompounds.splice(arrIndex, 1)

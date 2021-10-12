@@ -3,6 +3,10 @@ import React, {useEffect, useState} from "react";
 import TextField from "@material-ui/core/TextField";
 import {Autocomplete} from "@material-ui/lab";
 import Chip from "@material-ui/core/Chip";
+import {requestGenerator} from "../../../request/RequestGenerator";
+import {
+    endpoint_getFilteredEcNumberList
+} from "../../../../App Configurations/RequestURLCollection";
 
 const EcSelector = (props) => {
     const state = useSelector(state => state)
@@ -16,13 +20,20 @@ const EcSelector = (props) => {
             for (const ecNumber of reaction.ecNumbersString) {
                 // add ec number to options only if it isn't present already
                 if (!props.listOfReactions[props.index].ecNumbers.includes(ecNumber)) {
-                    ecNumberOptions.push(ecNumber)
+                    ecNumberOptions.push(" " + ecNumber) // empty string is necessary! Typing sth yields response that has to be split by spaces
                 }
             }
         })
         setOptions(ecNumberOptions)
 
     }, [state.general.reactionAnnotationTableOptions, props.listOfReactions[props.index].ecNumbers])
+
+    const handleTyping = (string) => {
+        requestGenerator("GET", endpoint_getFilteredEcNumberList, {reactionName: string}, "", "").then( //endpoint: sends max. 100 taxonomic names
+            resp => {
+                setOptions(resp.data)
+            })
+    }
 
     return (
         <Autocomplete
@@ -36,7 +47,11 @@ const EcSelector = (props) => {
             onChange={(event, value) => {
                 // addition of selected ec number
                 const newListOfReactions = props.listOfReactions
-                newListOfReactions[props.index].ecNumbers = [...value]
+                const ecNumbers = value.map(ecNumberString => {
+                    const splitArray = ecNumberString.split(" ")
+                    return splitArray[splitArray.length-1]
+                })
+                newListOfReactions[props.index].ecNumbers = [...ecNumbers]
 
                 dispatch({type: "SETLISTOFREACTIONS", payload: newListOfReactions})
             }}
@@ -65,7 +80,7 @@ const EcSelector = (props) => {
 
             renderInput={params => (
                 <TextField
-                    // onChange={(event) => handleChange(event)}
+                    onChange={(event) => handleTyping(event.target.value)}
                     value={props.listOfReactions[props.index].ecNumbers}
                     {...params}
                     label="EC Numbers"

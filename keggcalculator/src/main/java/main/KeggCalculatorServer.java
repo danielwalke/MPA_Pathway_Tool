@@ -333,6 +333,18 @@ public class KeggCalculatorServer {
 				return "{\"message\":\"internal server error\"}";
 			}
 		});
+		
+		get("/keggcreator/filteredecnumberlist", (req, res) -> {
+			try {
+//				creator.requestAccess.get("ecnumberlist").add(KeggCreatorService.getAccessDate());
+				res.status(201);
+				return KeggHandleRequests.getFilteredEcNumberList(creator, req.queryParams("reactionName"));
+			} catch (Exception e) {
+				// this is an unexpected exception!
+				res.status(500);
+				return "{\"message\":\"internal server error\"}";
+			}
+		});
 
 		/**
 		 * returns list of reactions associated with given EC- number 1.1.1.-
@@ -393,6 +405,15 @@ public class KeggCalculatorServer {
 			}
 		});
 		
+		get("/keggcreator/keggreactionsfromidandname", (req,res) -> {
+			try {
+				return KeggHandleRequests.getKeggReactionsFromIdAndName(creator, req.queryParams("reactionString"));
+			} catch (Exception e) {
+				res.status(500);
+				return "{\"message\":\"internal server error\"}";
+			}
+		});
+		
 		post("/keggcreator/filteredreactions", (req, res) -> {
 			try {
 				return KeggHandleRequests.getFilteredKeggReactions(creator, req.queryParams("name"));
@@ -412,6 +433,7 @@ public class KeggCalculatorServer {
 		});
 		
 		post("/keggcreator/filteredbiggreactionids", (req, res) -> {
+			// retrieves only bigg ids that are associated to kegg reactions			
 			try {
 				return KeggHandleRequests.filteredBiggReactionIds(creator, req.queryParams("biggId"));
 			} catch (Exception e) {
@@ -419,6 +441,15 @@ public class KeggCalculatorServer {
 				return "{\"message\":\"internal server error\"}";
 			}
 		}); 
+		
+		get("/keggcreator/getbiggreactions", (req,res) -> {
+			try {
+				return KeggHandleRequests.biggReactionIds(creator, req.queryParams("biggName"));
+			} catch (Exception e) {
+				res.status(500);
+				return "{\"message\":\"internal server error\"}";
+			}
+		});
 
 		/**
 		 * returns list of existent taxa

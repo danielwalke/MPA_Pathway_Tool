@@ -71,7 +71,7 @@ const JSONDownloader = (props) => {
 
     return (
         <div>
-            <ToolTipBig title={"Click for downloading the pathway as JSON"} placement={"right"}>
+            <ToolTipBig title={" downloading the pathway as JSON"} placement={"right"}>
                 <button disabled={!props.graphState.data.nodes.length > 0} className={"download-button"}
                         onClick={handleJsonDownload}>Download Json
                 </button>
