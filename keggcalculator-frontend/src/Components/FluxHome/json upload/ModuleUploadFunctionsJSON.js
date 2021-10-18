@@ -16,35 +16,28 @@ import {useSelector} from "react-redux";
 
 
 export const handleJSONGraphUpload = (reactions, dispatch, graphState, generalState) => { //handle upload of JSON for graph visualisation
+
     const nodes = []
     const links = []
-
-
+    dispatch({type:"SET_KEGG_REACTION", payload:[]})
     reactions.forEach(reaction => {
-        //dispatch({type:"ADD_KEGG_REACTION", payload: reaction})
-        // for(var i in generalState.fbaSolution){
-        //     var item = generalState.fbaSolution[i];
+        //TODO embed this without bug
+        // for(var key in generalState.fbaSolution){
+        //     if(generalState.fbaSolution.hasOwnProperty(key)){
+        //         if(key == reaction.reactionId){
+        //             var fluxRate = generalState.fbaSolution[key].fbaSolution;
         //
+        //         }
+        //     }
         // }
-
-
-        for(var key in generalState.fbaSolution){
-            if(generalState.fbaSolution.hasOwnProperty(key)){
-                if(key == reaction.reactionId){
-                    var fluxRate = generalState.fbaSolution[key].fbaSolution;
-
-                }
-            }
-        }
-
-        //console.log(reaction.reactionName);
-        const reactionNode = createNode(reaction.reactionName, REACTION_NODE_COLOR, REACTION_NODE_SYMBOL, +reaction.x, +reaction.y, reaction.opacity, reaction.reversible, fluxRate)
-        //console.log(reactionNode);
+        console.log(reaction)
+        dispatch({type: "ADD_KEGG_REACTION", payload: reaction})
+        const reactionNode = createNode(reaction.reactionName, REACTION_NODE_COLOR, REACTION_NODE_SYMBOL, +reaction.x, +reaction.y, reaction.opacity, reaction.reversible)
         addNode(nodes, reactionNode)
         addReactionAbbreviations(graphState, reaction)
-        reaction.substrates.forEach(substrate =>addCompoundToData(substrate, reaction, reactionNode, links, nodes, graphState,true, fluxRate))
-        reaction.products.forEach(product => addCompoundToData(product, reaction, reactionNode, links, nodes, graphState,false, fluxRate))
-        //dispatch({type: "SETABBREVIATIONOBJECT", payload: graphState.abbreviationsObject})
+        reaction.substrates.forEach(substrate => addCompoundToData(substrate, reaction, reactionNode, links, nodes, graphState, true))
+        reaction.products.forEach(product => addCompoundToData(product, reaction, reactionNode, links, nodes, graphState, false))
+        dispatch({type: "SETABBREVIATIONOBJECT", payload: graphState.abbreviationsObject})
     })
     return {nodes, links}
 }

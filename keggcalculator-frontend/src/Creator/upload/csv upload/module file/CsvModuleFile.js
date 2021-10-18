@@ -1,6 +1,6 @@
 import {getNLastChars} from "../../../usefulFunctions/Strings";
 
-export const readFile = (string) => {
+export const readFile = (string, dispatch) => {
     const lines = string.split("\n")
     lines.shift() //skip header
     const reactions = []
@@ -34,6 +34,10 @@ export const readFile = (string) => {
         const reactionAbbr = entries[13]
         const compoundAbbr = entries[14]
         const keyComp = entries[15]
+        const exchangeReaction = entries.length>16 ? entries[16] : ""
+        const compoundLocation = entries.length>16 ? entries[17] : ""
+        if(entries.length>16) dispatch({type:"SETCYSTOLINFORMATION", payload:[{"compoundId": getNLastChars(compoundId,6), "compartment": compoundLocation}]})
+
         const reactionNames = reactions.map(reaction => reaction.reactionName)
         if (!reactionNames.includes(reactionName)) {
             const reaction = {
@@ -54,6 +58,8 @@ export const readFile = (string) => {
                 reversible: reversibility
             }
             reactions.push(reaction)
+
+            if(entries.length>16) dispatch({type: "SETEXCHANGEREACTION", payload: [{'reactionId' : getNLastChars(reactionName, 6),'exchangeInfo' : exchangeReaction}]})
         }
         const reaction = reactions.find(reaction => reaction.reactionName === reactionName)
         const compound = {
