@@ -817,4 +817,44 @@ public class KeggCreatorService {
 		return ecNumbersResponse;
 	}
 
+	public HashSet<String> filteredKNumberSet(String reactionString) {
+		HashSet<String> kNumberSet = new HashSet<String>();
+		HashSet<String> kNumberResponseSet = new HashSet<String>();
+		HashSet<KeggKOObject> kNumbers = keggData.getKoNumbers();
+		
+		for (KeggKOObject ko : kNumbers) {
+			String kNumberString = ko.getKoName() + " " + ko.getKoId();
+			
+			kNumberSet.add(kNumberString);
+		}
+		
+		for (String kNumber : kNumberSet) {
+			if (kNumber.toLowerCase().contains(reactionString.toLowerCase()) && kNumberResponseSet.size()<101) {
+				kNumberResponseSet.add(kNumber);
+			}
+		}
+			
+		return kNumberResponseSet;
+	}
+
+	public HashSet<String> filteredKeggCompoundSet(String compoundString) {
+		HashSet<String> compoundSet = new HashSet<String>();
+		HashSet<String> compoundSetResponseSet = new HashSet<String>();
+		HashSet<KeggCompoundObject> compounds = keggData.getCompounds();
+		
+		for (KeggCompoundObject compound : compounds) {
+			String compoundIdString = compound.getCompoundId() + " " + compound.getCompoundName();
+			
+			compoundSet.add(compoundIdString);
+		}
+		
+		for (String compound : compoundSet) {
+			if (compound.toLowerCase().contains(compoundString.toLowerCase()) && compoundSetResponseSet.size()<101) {
+				compoundSetResponseSet.add(compound);
+			}
+		}
+			
+		return compoundSetResponseSet;
+	}
+
 }

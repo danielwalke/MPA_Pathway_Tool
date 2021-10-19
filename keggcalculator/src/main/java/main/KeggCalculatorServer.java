@@ -177,6 +177,15 @@ public class KeggCalculatorServer {
 			}
 		});
 		
+		get("/keggcreator/filteredcompoundlist", (req, res) -> {
+			try {
+				return KeggHandleRequests.getFilteredKeggCompoundsSet(creator, req.queryParams("compoundString"));
+			} catch (Exception e) {
+				res.status(500);
+				return "{\"message\":\"internal server error\"}";
+			}
+		});
+		
 		/**
 		 * returns list of bigg compounds
 		 */
@@ -311,6 +320,18 @@ public class KeggCalculatorServer {
 				HashSet<String> koSet = creator.getKoNumberSet();
 				res.status(201);
 				return creator.gson.toJson(koSet);
+			} catch (Exception e) {
+				// this is an unexpected exception!
+				res.status(500);
+				return "{\"message\":\"internal server error\"}";
+			}
+		});
+		
+		get("/keggcreator/filteredknumberlist", (req, res) -> {
+
+//			creator.requestAccess.get("konumberlist").add(KeggCreatorService.getAccessDate());
+			try {
+				return KeggHandleRequests.getFilteredKNumberSet(creator, req.queryParams("reactionString"));
 			} catch (Exception e) {
 				// this is an unexpected exception!
 				res.status(500);

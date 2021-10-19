@@ -11,10 +11,6 @@ const DeleteModal = () => {
     const generalState = useSelector(state => state.general)
     const dispatch = useDispatch()
     const classes = useStyles()
-    console.log('general state')
-    console.log(generalState)
-    console.log('graph state')
-    console.log(state)
 
     const handleDeleteNode = (e) => {
         e.preventDefault()

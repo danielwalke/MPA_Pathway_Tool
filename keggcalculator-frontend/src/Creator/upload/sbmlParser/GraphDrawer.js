@@ -37,6 +37,8 @@ export const setReactionsAndCompoundsInStore = (state, listOfReactions, dispatch
         })
         return r
     })
+    console.log(reactions)
+
     return handleJSONGraphUpload(getReactions(reactions, dispatch), dispatch, state.graph)
 }
 const getReactions = (reactions, dispatch) => {
@@ -93,10 +95,16 @@ const getReactionXPositionFromSbml = (reactionGlyph) => reactionGlyph.layoutX
 const getReactionYPositionFromSbml = (reactionGlyph) => reactionGlyph.layoutY
 
 const getSbmlCompound = (sbmlCompound, typeOfCompound, reactionGlyph) => {
-    const speciesGlyph = typeof reactionGlyph === "object" && reactionGlyph !== null ? getSpeciesGlyph(sbmlCompound.sbmlId, reactionGlyph) : null
-    const compoundId = typeof speciesGlyph === "object" && speciesGlyph !== null ? `${sbmlCompound.sbmlId}_${getSpeciesGlyphIndex(speciesGlyph)};${sbmlCompound.sbmlName} ${sbmlCompound.keggId}` :
+
+    const speciesGlyph = typeof reactionGlyph === "object" && reactionGlyph !== null ?
+        getSpeciesGlyph(sbmlCompound.sbmlId, reactionGlyph) :
+        null
+
+    const compoundName = typeof speciesGlyph === "object" && speciesGlyph !== null ?
+        `${sbmlCompound.sbmlId}_${getSpeciesGlyphIndex(speciesGlyph)};${sbmlCompound.sbmlName} ${sbmlCompound.keggId}` :
         `${sbmlCompound.sbmlId};${sbmlCompound.sbmlName} ${sbmlCompound.keggId}`; //retruns name like "M_pep_c;Phosphoenolpyruvate K/G/CXXXXX"
-    const compound = new Compound(compoundId)
+
+    const compound = new Compound(compoundName)
     compound._id = sbmlCompound.keggId
     compound._x = typeof speciesGlyph === "object" && speciesGlyph !== null ? getSpeciesXPositionFromSbml(typeOfCompound, speciesGlyph) : 0
     compound._y = typeof speciesGlyph === "object" && speciesGlyph !== null ? getSpeciesYPositionFromSbml(typeOfCompound, speciesGlyph) : 0

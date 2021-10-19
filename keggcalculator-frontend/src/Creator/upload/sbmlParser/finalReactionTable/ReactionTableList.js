@@ -19,7 +19,7 @@ import {
     TableRow
 } from "@material-ui/core";
 
-import DetailsContainer from "./DetailsContainer";
+import ReactionDetailsContainer from "./ReactionDetailsContainer";
 
 const ReactionTableRow = (props) => {
 
@@ -65,13 +65,12 @@ const ReactionTableList = () => {
         }, [state.general.listOfReactions])
 
         const handleFinish = () => {
-            //set reactions
-            // const reactions = setReactionsInStore(state, state.general.listOfReactions)
             //set data for the Graph
             const data = setReactionsAndCompoundsInStore(state, state.general.listOfReactions, dispatch)
             dispatch({type: "SETISSHOWINGREACTIONTABLE", payload: false})
             dispatch({type: "SETDATA", payload: data})
             dispatch({type: "SETLOADING", payload: false})
+            dispatch({type: "SWITCHUPLOADMODAL"})
         }
 
         const columns = [
@@ -156,9 +155,9 @@ const ReactionTableList = () => {
                             backgroundColor: "white",
                             overflowY: "auto"
                         }}>
-                            <DetailsContainer index={selectedRow}
-                                              rowInfo={listOfReactions[selectedRow]}
-                                              defaultReaction={previousListOfReactions[selectedRow]}/>
+                            <ReactionDetailsContainer index={selectedRow}
+                                                      rowInfo={listOfReactions[selectedRow]}
+                                                      defaultReaction={previousListOfReactions[selectedRow]}/>
                         </div>
                     </div>
                 </div>

@@ -349,4 +349,12 @@ public class KeggHandleRequests {
 		return creator.gson.toJson(creator.filteredEcNumberList(reactionString));
 	}
 
+	public static Object getFilteredKNumberSet(KeggCreatorService creator, String reactionString) {
+		return creator.gson.toJson(creator.filteredKNumberSet(reactionString));
+	}
+
+	public static Object getFilteredKeggCompoundsSet(KeggCreatorService creator, String compoundString) {
+		return creator.gson.toJson(creator.filteredKeggCompoundSet(compoundString));
+	}
+
 }

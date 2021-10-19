@@ -61,3 +61,9 @@ export const endpoint_getBiggReactionNames = host + ":" + portNumber + "/keggcre
 export const endpoint_getKeggReactionNames = host + ":" + portNumber + "/keggcreator/keggreactionsfromidandname";
 
 export const endpoint_getFilteredEcNumberList = host + ":" + portNumber + "/keggcreator/filteredecnumberlist";
+
+export const endpoint_getFilteredKNumberList = host + ":" + portNumber + "/keggcreator/filteredknumberlist";
+
+export const endpoint_getFilteredCompoundList = host + ":" + portNumber + "/keggcreator/filteredcompoundlist";
+
+export const endpoint_getFilteredBiggCompoundList = host + ":" + portNumber + "/keggcreator/filteredbiggcompoundlist";

@@ -138,7 +138,6 @@ const AnnotationModal = () => {
                 }} className={"download-button"} style={{width: "20vw"}}>finish
                 </button>
             </div>
-            {/*submit all annotation*/}
         </div>
     )
 

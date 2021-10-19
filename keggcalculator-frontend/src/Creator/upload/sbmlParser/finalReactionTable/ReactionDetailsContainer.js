@@ -8,7 +8,7 @@ import ReactionKeggIdSelector from "../ReactionKeggIdSelector";
 import {requestGenerator} from "../../../request/RequestGenerator";
 import {endpoint_getReactionsFromCompounds} from "../../../../App Configurations/RequestURLCollection";
 import EcSelector from "./ECSelector";
-import KoSelector from "./KoSelector";
+import KSelector from "./KSelector";
 import RestoreIcon from "@material-ui/icons/Restore";
 import BiggReactionSelector from "../BiggReactionSelector";
 import CompoundSelector from "./CompoundSelector";
@@ -27,7 +27,7 @@ const CreateCompoundString = (compoundObject) => {
     return compoundArray.join(", ")
 }
 
-const DetailsContainer = (props) => {
+const ReactionDetailsContainer = (props) => {
     /**
     Setting and displaying reaction details
      */
@@ -97,10 +97,10 @@ const DetailsContainer = (props) => {
                                   label={"Products"}/>
                 <EcSelector listOfReactions={listOfReactions}
                             index={props.index}/>
-                <KoSelector listOfReactions={listOfReactions}
-                            index={props.index}/>
+                <KSelector listOfReactions={listOfReactions}
+                           index={props.index}/>
             </div>
-            <div className={"button-container-middle"}>
+            <div className={"button-bar button-center"}>
                 <button className={"download-button circle-icon"}
                         onClick={() => handleRestore(props.defaultReaction)}>
                     Restore Reaction Settings <RestoreIcon/>
@@ -110,4 +110,4 @@ const DetailsContainer = (props) => {
     )
 }
 
-export default DetailsContainer
+export default ReactionDetailsContainer

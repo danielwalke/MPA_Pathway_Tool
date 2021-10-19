@@ -1,3 +1,22 @@
+
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80vw;
+    height: 80vh;
+    overflow: auto;
+}
+
+.paper {
+    background-color: white;
+    /*fontFamily: Roboto;*/
+    /*border: 2px solid rgb(150, 25, 130);*/
+    box-shadow: 0px 3px 5px -1px rgba(0 0 0 51), 0px 5px 8px 0px rgba(0 0 0 36), 0px 1px 14px 0px rgba(0 0 0 31);
+    padding: 4rem;
+    border-radius: 10px 10px 10px 10px;
+}
+
 .modal-header {
     padding: 0.5em;
     margin: 0;

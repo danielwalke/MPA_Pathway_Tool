@@ -64,7 +64,7 @@ const readSpecies = (dispatch, sbml, state) => {
             }
         )
     })
-    console.log(listOfSpecies)
+    // console.log(listOfSpecies)
     return listOfSpecies
 }
 

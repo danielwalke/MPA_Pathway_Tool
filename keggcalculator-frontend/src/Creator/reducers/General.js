@@ -50,6 +50,8 @@ const defaultState = {
     isMissingAnnotations: false, //boolean, which checks whether there are unannotated compounds in the given sbml file
     showAnnotationWarning: false,
     isAnnotationPurpose: false, //boolean, which checks whether the user intents to make annotation for the compounds in the given sbml-file
+    showCompoundAnnotation: false,
+    showReactionAnnotation: false,
     annotation: "",
     moduleFileNameSbml: "",
     isShowingReactionTable: false, //shows final table with all reactions in the sbml file
@@ -188,6 +190,10 @@ export const generalReducer = (state = defaultState, action) => {
             return {...state, moduleFileNameSbml: payload}
         case "SETISANNOTATIONPURPOSE":
             return {...state, isAnnotationPurpose: payload}
+        case "SHOWCOMPOUNDANNOTATION":
+            return {...state, showCompoundAnnotation: payload}
+        case "SHOWREACTIONANNOTATION":
+            return {...state, showReactionAnnotation: payload}
         case "SETISSHOWINGREACTIONTABLE":
             return {...state, isShowingReactionTable: payload}
         case "SWITCHSHOWMULTIPLEKEGGREACTIONS":

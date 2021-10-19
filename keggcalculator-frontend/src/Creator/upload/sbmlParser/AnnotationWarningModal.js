@@ -7,29 +7,13 @@ import {useDispatch, useSelector} from "react-redux";
 import Modal from "@material-ui/core/Modal";
 import {useStyles} from "../../ModalStyles/ModalStyles";
 import {addCompoundsToReactions} from "./ReactionCompoundsAdder";
+import {setReactionsAndCompoundsInStore} from "./GraphDrawer";
 
 const handleAnnotationPurpose = (dispatch) => {
     dispatch({type: "SHOW_ANNOTATION_WARNING", payload: false}) //Annotation modal will show up
     dispatch({type: "SETISMISSINGANNOTATIONS", payload: false})
     dispatch({type: "SETISANNOTATIONPURPOSE", payload: true})
-}
-
-const handleSkipPurpose = (state, dispatch) => {
-    dispatch({type: "SETISMISSINGANNOTATIONS", payload: false})
-    //no annotation warning will show up
-    //add additional information to each reaction
-    const newListOfReactions = addCompoundsToReactions(state, state.general.listOfReactions, state.general.listOfSpecies)
-    //set reactions
-    // const reactions = setReactionsInStore(state, newListOfReactions)
-    //set data for the Graph
-    // const data = setReactionsAndCompoundsInStore(state, newListOfReactions, dispatch)
-    dispatch({type: "SETLISTOFREACTIONS", payload: newListOfReactions})
-    // dispatch({type:"SETREACTIONSINARRAY", payload: reactions})
-    // console.log(data);//check whether this is correct, then uncomment the next line
-    // dispatch({type: "SETDATA", payload: data})
-    dispatch({type: "SETLOADING", payload: false})
-    dispatch({type: "SHOW_ANNOTATION_WARNING", payload: false})
-    dispatch({type: "SETISSHOWINGREACTIONTABLE", payload: true})
+    dispatch({type: "SHOWCOMPOUNDANNOTATION", payload: true})
 }
 
 const AnnotationWarningModal = () => {
@@ -45,6 +29,36 @@ const AnnotationWarningModal = () => {
         <p>Would you like to check or alter your model annotation?</p>
     )
 
+    const handleFinish = () => {
+        //set data for the Graph
+        const data = setReactionsAndCompoundsInStore(state, state.general.listOfReactions, dispatch)
+        dispatch({type: "SETISSHOWINGREACTIONTABLE", payload: false})
+        dispatch({type: "SETDATA", payload: data})
+        dispatch({type: "SETLOADING", payload: false})
+    }
+
+    const handleSkipPurpose = () => {
+        dispatch({type: "SETISMISSINGANNOTATIONS", payload: false})
+        //no annotation warning will show up
+        //add additional information to each reaction
+        const newListOfReactions = addCompoundsToReactions(state, state.general.listOfReactions, state.general.listOfSpecies)
+        //set reactions
+        // const reactions = setReactionsInStore(state, newListOfReactions)
+        //set data for the Graph
+        // const data = setReactionsAndCompoundsInStore(state, newListOfReactions, dispatch)
+        dispatch({type: "SETLISTOFREACTIONS", payload: newListOfReactions})
+        // dispatch({type:"SETREACTIONSINARRAY", payload: reactions})
+        // console.log(data);//check whether this is correct, then uncomment the next line
+        // dispatch({type: "SETDATA", payload: data})
+        dispatch({type: "SETLOADING", payload: false})
+        dispatch({type: "SHOW_ANNOTATION_WARNING", payload: false})
+        dispatch({type: "SETISSHOWINGREACTIONTABLE", payload: false})
+        dispatch({type: "SWITCHUPLOADMODAL"})
+
+        // creates model representation
+        handleFinish()
+    }
+
     return (
         <div>
             <Modal className={classes.modal} open={general.showAnnotationWarning}>
@@ -58,7 +72,7 @@ const AnnotationWarningModal = () => {
                                 onClick={() => handleAnnotationPurpose(dispatch)}>Yes
                         </button>
                         <button style={{width: "20vw"}} className={"download-button"}
-                                onClick={() => handleSkipPurpose(state, dispatch)}>No
+                                onClick={() => handleSkipPurpose()}>No
                         </button>
                     </div>
                 </div>

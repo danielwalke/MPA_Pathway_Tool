@@ -22,7 +22,7 @@ const ReactionKeggIdSelector = (props) => {
     useEffect(() => {
         // get list of possible kegg ids
         setOptions(state.general.reactionAnnotationTableOptions.map(reaction => {
-            return reaction.reactionId + " " + reaction.reactionName
+            return reaction.reactionName + " " + reaction.reactionId
         }))
     },[state.general.reactionAnnotationTableOptions])
 
@@ -35,7 +35,13 @@ const ReactionKeggIdSelector = (props) => {
                 value={props.listOfReactions[props.index].keggId}
                 onChange={(event, value) => {
                     const newListOfReactions = props.listOfReactions
-                    value ? newListOfReactions[props.index].keggId = value.substring(0, 6) : newListOfReactions[props.index].keggId = ""
+                     if (value) {
+                         const splitArray = value.split(" ")
+                         newListOfReactions[props.index].keggId = splitArray[splitArray.length-1]
+                     } else {
+                         newListOfReactions[props.index].keggId = ""
+                     }
+
                     dispatch({type: "SETLISTOFREACTIONS", payload: newListOfReactions})
                 }}
                 renderInput={params => (
