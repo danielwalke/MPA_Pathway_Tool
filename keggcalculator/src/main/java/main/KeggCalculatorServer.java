@@ -590,6 +590,18 @@ public class KeggCalculatorServer {
 			} 
 		});
 		
+		post("fluxanalysis/threaded_fba", (req, res) -> {
+			try {
+				System.out.println("threaded_fba");
+				return KeggHandleRequests.getFBA(creator, req.body());
+//				return KeggHandleRequests.getFBA(creator, req.queryParams("FBA"));
+			} catch (Exception e) {
+				res.status(500);
+				e.printStackTrace();
+				return "{\"message\":\"internal server error\"}";
+			} 
+		});
+		
 	}
 
 }

@@ -36,6 +36,7 @@ class DropZone extends Component {
     constructor(props) {
         super(props);
         this.convertFileSize = this.convertFileSize.bind(this)
+        console.log(this.props.uploadFileButton)
     }
 
     uploadedFiles(collection) {
