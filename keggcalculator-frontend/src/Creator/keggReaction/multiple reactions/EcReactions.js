@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect} from "react"
 import {requestGenerator} from "../../request/RequestGenerator";
 import Modal from "@material-ui/core/Modal";
 import {makeStyles} from "@material-ui/core";
@@ -10,6 +10,7 @@ import {getLengthMinusNFirstChars} from "../../usefulFunctions/Strings";
 import {handleJSONGraphUpload} from "../../upload/json upload/ModuleUploadFunctionsJSON";
 import {endpoint_getReactionsByEcList, endpoint_getReactionUrl} from "../../../App Configurations/RequestURLCollection";
 import {ToolTipBig} from "../../main/user-interface/UserInterface";
+import {handleProcessReaction} from "./HandleProcessReaction";
 
 const reactionUrl = endpoint_getReactionUrl
 const ecUrl = endpoint_getReactionsByEcList
@@ -60,16 +61,7 @@ const addCompounds = (stoichiometryCompounds, compoundId2Name) => {
 
 //used for drawing nodes in graph
 export const handleDrawGraph = (reaction, state, dispatch, graphState, generalState, reactions) => {
-    reaction.opacity = 1
-    reaction.reactionName = `${reaction.reactionName} ${reaction.reactionId}`
-    reaction.taxa = {}
-    reaction.isForwardReaction = true
-    reaction.abbreviation = getLengthMinusNFirstChars(reaction.reactionName, 6)
-    reaction.reversible = false
-    reaction.x = 0
-    reaction.y = 0
-    reaction.substrates = addCompounds(reaction.stochiometrySubstratesString, state.compoundId2Name)
-    reaction.products = addCompounds(reaction.stochiometryProductsString, state.compoundId2Name)
+    handleProcessReaction(reaction, generalState)
     const data = handleJSONGraphUpload([...reactions, reaction], dispatch, graphState)
     dispatch({type: "ADDREACTIONSTOARRAY", payload: [reaction]})
     dispatch({type: "SETDATA", payload: data})
@@ -77,11 +69,13 @@ export const handleDrawGraph = (reaction, state, dispatch, graphState, generalSt
 
 const EcReactions = () => {
 
+
     const dispatch = useDispatch()
     const generalState = useSelector(state => state.general)
     const state = useSelector(state => state.keggReaction)
     const classes = useStyles()
     const graphState = useSelector(state => state.graph)
+
 
     const handleAutoChange = (e) => {
         const {value} = e.target

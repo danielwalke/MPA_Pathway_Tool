@@ -40,13 +40,15 @@ export const endpoint_getReactionList = host + ":" + portNumber + "/keggcreator/
 
 export const endpoint_getTaxonomyList = host + ":" + portNumber + "/keggcreator/taxonomylist";
 
-export const endpoint_TaxonomyById = host + ":" + portNumber + "/keggcreator/taxonomy";
+export const endpoint_TaxonomyById = host +  "/keggcreator/taxonomy";
 
-export const endpoint_getTaxonomicNames = host + ":" + portNumber + "/keggcreator/taxonomicNames";
+export const endpoint_getTaxonomicNames = host +  "/keggcreator/taxonomicNames";
 
-export const endpoint_getFilteredTaxonomicNames = host + ":" + portNumber + "/keggcreator/filteredtaxonomicNames";
+export const endpoint_getFilteredTaxonomicNames = host + "/keggcreator/filteredtaxonomicNames";
 
-export const endpoint_getTaxonomicDetails = host + ":" + portNumber + "/keggcalculator/detailedContent";
+export const endpoint_getTaxonomicDetails = host +  "/keggcalculator/detailedContent";
+
+export const endpoint_getDependencies = host + "/keggcreator/dependencies";
 
 export const endpoint_getBiggCompoundList = host + ":" + portNumber + "/keggcreator/biggcompoundlist";
 

@@ -8,6 +8,8 @@ import {handleDrawGraph} from "./EcReactions";
 import clonedeep from "lodash/cloneDeep";
 import {endpoint_getReactionUrl} from "../../../App Configurations/RequestURLCollection";
 import {ToolTipBig} from "../../main/user-interface/UserInterface";
+import {handleJSONGraphUpload} from "../../upload/json upload/ModuleUploadFunctionsJSON";
+import {handleProcessReaction} from "./HandleProcessReaction";
 
 const reactionUrl = endpoint_getReactionUrl
 
@@ -18,20 +20,22 @@ const MultipleKeggReactions = () => {
     const [keggReactionsString, setKeggReactionString] = useState("")
 
 
-    const handleKeggReactionRequest = () => {
+    const handleKeggReactionRequest = async () => {
         const keggReactions = keggReactionsString.split(";").filter(reaction => reaction.match(/[R][0-9][0-9][0-9][0-9][0-9]/))
         const reactions = state.general.keggReactions
         for (const keggReaction of keggReactions) {
-            requestGenerator("POST", reactionUrl, {reactionId: keggReaction}, "").then(response => {
+            await requestGenerator("POST", reactionUrl, {reactionId: keggReaction}, "").then(response => {
                 const reaction = clonedeep(response.data)
                 reaction.reactionName = reaction.reactionName.concat(" " + reaction.reactionId)
                 dispatch({type: "ADDREACTIONSTOARRAY", payload: [reaction]})
                 dispatch({type: "ADD_KEGG_REACTION", payload: reaction})
                 dispatch({type: "ADD_REACTION_NUMBERS_TO_AUDIT_TRAIL", payload: reaction})
+                handleProcessReaction(reaction, state.general)
                 reactions.push(reaction)
-                handleDrawGraph(reaction, state.keggReaction, dispatch, state.graph, state.general, reactions)
             })
         }
+        const data = handleJSONGraphUpload(reactions, dispatch, state.graph)
+        dispatch({type:"SETDATA",payload: data})
     }
 
     const multipleKeggReactions = (

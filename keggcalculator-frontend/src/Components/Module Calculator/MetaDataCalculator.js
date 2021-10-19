@@ -1,12 +1,26 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {saveAs} from "file-saver"
 import {inject, observer} from "mobx-react";
 import GetAppIcon from "@material-ui/icons/GetApp";
 import Button from "@material-ui/core/Button";
 import {ToolTipBig} from "../../Creator/main/user-interface/UserInterface";
+import {requestGenerator} from "../../Creator/request/RequestGenerator";
+import {endpoint_getDependencies} from "../../App Configurations/RequestURLCollection";
 
 
 const MetadataCalculator = (props) => {
+
+    // const [dependencies, setDependencies] = useState([])
+    // const [serverDependencies, setServerDependencies] = useState([])
+    //
+    // useEffect(()=> {
+    //     const packageJson = require("../../../package.json");
+    //     setDependencies(packageJson.dependencies)
+    //     requestGenerator("GET", endpoint_getDependencies, "", "").then(resp => {
+    //         setServerDependencies(resp.data)
+    //     })
+    //
+    // },[])
 
     const handleDownloadMetadata = () => {
         let zip = require("jszip")()
@@ -17,7 +31,24 @@ const MetadataCalculator = (props) => {
         expData.file(expDataFile.name, expDataFile)
         pathwayFiles.forEach(pathwayFile => pathwayFolder.file(pathwayFile.name, pathwayFile))
 
-        const metaData = `${props.CalculatorStore.startTime} - ${props.CalculatorStore.endTime}\texperimental data from ${expDataFile.name} were successfully mapped on the following pathways ${pathwayFiles.map(pathwayFile => `\n - ${pathwayFile.name}`)}`
+        let metaData = `${props.CalculatorStore.startTime} - ${props.CalculatorStore.endTime}\texperimental data from ${expDataFile.name} were successfully mapped on the following pathways ${pathwayFiles.map(pathwayFile => `\n - ${pathwayFile.name}`)}`
+        metaData += "\n\n"
+        metaData += "data\tmodification-date\n"
+        //TODO: Keep the following data modification dates up to date
+        metaData += "KEGG\t30.09.2020\n"
+        metaData += "NCBI\t08.07.2021\n"
+        metaData += "MPA_Pathway_Tool-Version 1\t03.10.21\n"
+        // metaData += "\n"
+        // metaData += "dependencies(client-side)\tversion\n"
+        // for(const dependency in dependencies){
+        //     const version = dependencies[dependency]
+        //     metaData += `${dependency}\t${version}\n`
+        // }
+        // metaData+= "\n\n"
+        // metaData += "dependencies(server-side)\tversion\n"
+        // for(const dependency in serverDependencies){
+        //     metaData += `${dependency}\t${serverDependencies[dependency]}\n`
+        // }
         const metaDataBlob = new Blob(new Array(metaData.trim()), {type: "text/plain;charset=utf-8"})
         const metaDataFile = new File(new Array(metaDataBlob), "metadata.txt")
         zip.file(metaDataFile.name, metaDataFile)

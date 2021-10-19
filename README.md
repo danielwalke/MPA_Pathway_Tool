@@ -83,6 +83,12 @@ npm start
 
 ## 3. Versions
 
+###### version 1.0.0 (03.10.2021):
+  + tooltips for every button and field
+  + function for taxonomic details after mapping
+  + metadata for mapping
+  + fixed some minor bugs
+
 ###### version 0.9.1 (15.06.2021):
   + function for changing coordiantes of nodes
   + function for auto-aligning nodes 

@@ -176,7 +176,7 @@ public class KeggCalculatorServer {
 				return "{\"message\":\"internal server error\"}";
 			}
 		});
-		
+
 		get("/keggcreator/filteredcompoundlist", (req, res) -> {
 			try {
 				return KeggHandleRequests.getFilteredKeggCompoundsSet(creator, req.queryParams("compoundString"));
@@ -185,7 +185,7 @@ public class KeggCalculatorServer {
 				return "{\"message\":\"internal server error\"}";
 			}
 		});
-		
+
 		/**
 		 * returns list of bigg compounds
 		 */
@@ -201,7 +201,7 @@ public class KeggCalculatorServer {
 				return "{\"message\":\"internal server error\"}";
 			}
 		});
-		
+
 		get("/keggcreator/kegg2biggmap", (req, res) -> {
 //			creator.requestAccess.get("biggcompoundlist").add(KeggCreatorService.getAccessDate());
 			try {
@@ -265,7 +265,7 @@ public class KeggCalculatorServer {
 				return "{\"message\":\"internal server error\"}";
 			}
 		});
-		
+
 		post("/keggcreator/reactiondatabycompounds", (req, res) -> {
 			try {
 				System.out.println("yo");
@@ -275,7 +275,7 @@ public class KeggCalculatorServer {
 				} else {
 					return KeggHandleRequests.reactionDataByCompounds(creator, req.queryParams("compoundIds"));
 
-				}				
+				}
 			} catch (Exception e) {
 				res.status(500);
 				return "{\"message\":\"internal server error\"}";
@@ -326,7 +326,7 @@ public class KeggCalculatorServer {
 				return "{\"message\":\"internal server error\"}";
 			}
 		});
-		
+
 		get("/keggcreator/filteredknumberlist", (req, res) -> {
 
 //			creator.requestAccess.get("konumberlist").add(KeggCreatorService.getAccessDate());
@@ -354,7 +354,7 @@ public class KeggCalculatorServer {
 				return "{\"message\":\"internal server error\"}";
 			}
 		});
-		
+
 		get("/keggcreator/filteredecnumberlist", (req, res) -> {
 			try {
 //				creator.requestAccess.get("ecnumberlist").add(KeggCreatorService.getAccessDate());
@@ -425,7 +425,7 @@ public class KeggCalculatorServer {
 				return "{\"message\":\"internal server error\"}";
 			}
 		});
-		
+
 		get("/keggcreator/keggreactionsfromidandname", (req,res) -> {
 			try {
 				return KeggHandleRequests.getKeggReactionsFromIdAndName(creator, req.queryParams("reactionString"));
@@ -434,7 +434,7 @@ public class KeggCalculatorServer {
 				return "{\"message\":\"internal server error\"}";
 			}
 		});
-		
+
 		post("/keggcreator/filteredreactions", (req, res) -> {
 			try {
 				return KeggHandleRequests.getFilteredKeggReactions(creator, req.queryParams("name"));
@@ -443,7 +443,7 @@ public class KeggCalculatorServer {
 				return "{\"message\":\"internal server error\"}";
 			}
 		});
-		
+
 		post("/keggcreator/filteredreactionids", (req, res) -> {
 			try {
 				return KeggHandleRequests.filteredKeggReactionIds(creator, req.queryParams("keggId"));
@@ -452,17 +452,17 @@ public class KeggCalculatorServer {
 				return "{\"message\":\"internal server error\"}";
 			}
 		});
-		
+
 		post("/keggcreator/filteredbiggreactionids", (req, res) -> {
-			// retrieves only bigg ids that are associated to kegg reactions			
+			// retrieves only bigg ids that are associated to kegg reactions
 			try {
 				return KeggHandleRequests.filteredBiggReactionIds(creator, req.queryParams("biggId"));
 			} catch (Exception e) {
 				res.status(500);
 				return "{\"message\":\"internal server error\"}";
 			}
-		}); 
-		
+		});
+
 		get("/keggcreator/getbiggreactions", (req,res) -> {
 			try {
 				return KeggHandleRequests.biggReactionIds(creator, req.queryParams("biggName"));
@@ -579,7 +579,7 @@ public class KeggCalculatorServer {
 				return "{\"message\":\"internal server error\"}";
 			} 
 		});
-		
+
 		post("fluxanalysis/fba", (req, res) -> {
 			try {
 				return KeggHandleRequests.getFBA(creator, req.queryParams("FBA"));
@@ -587,9 +587,9 @@ public class KeggCalculatorServer {
 				res.status(500);
 				e.printStackTrace();
 				return "{\"message\":\"internal server error\"}";
-			} 
+			}
 		});
-		
+
 		post("fluxanalysis/threaded_fba", (req, res) -> {
 			try {
 				System.out.println("threaded_fba");
@@ -599,9 +599,9 @@ public class KeggCalculatorServer {
 				res.status(500);
 				e.printStackTrace();
 				return "{\"message\":\"internal server error\"}";
-			} 
+			}
 		});
-		
+
 	}
 
 }

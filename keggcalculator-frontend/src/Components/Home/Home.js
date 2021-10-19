@@ -37,8 +37,6 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        //TODO: delete the following line after fixing haproxy error
-        if (host !== "http://127.0.0.1") window.location.href = 'http://141.44.141.132:9001/home'
         requestGenerator("GET", endpoint_getCompoundList, "", "").then(response => {
             this.props.ModuleStore.addCompounds(response.data);
         })

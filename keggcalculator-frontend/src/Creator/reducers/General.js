@@ -82,7 +82,11 @@ export const generalReducer = (state = defaultState, action) => {
         case "SETLOADING":
             return {...state, loading: payload}
         case "ADDREACTIONSTOARRAY":
-            payload.map(reaction => state.reactionsInSelectArray.push(reaction))
+            payload.forEach(reaction => {
+                if(!state.reactionsInSelectArray.includes(reaction)){
+                    state.reactionsInSelectArray.push(reaction)
+                }
+            })
             return {...state, reactionsInSelectArray: state.reactionsInSelectArray}
         case "SETREACTIONSINARRAY":
             return {...state, reactionsInSelectArray: payload}
@@ -203,7 +207,11 @@ export const generalReducer = (state = defaultState, action) => {
         case "SET_LIST_OF_REACTION_GLYPHS":
             return {...state, listOfReactionGlyphs: payload}
         case "ADD_KEGG_REACTION":
-            return {...state, keggReactions: [...state.keggReactions, payload]}
+            if(state.keggReactions.includes(payload)){
+                return state
+            }else{
+                return {...state, keggReactions: [...state.keggReactions, payload]}
+            }
         case "SET_KEGG_REACTION":
             return {...state, keggReactions: payload}
         case "SET_TAXONOMIC_NAMES":

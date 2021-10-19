@@ -152,12 +152,12 @@ const Start = (props) => {
                             </h4>
                             <ul style={{textAlign: "left", listStyleType:"none"}}>
                                 <li style={{margin:"2px"}}>Daniel Walke - daniel.walke@ovgu.de</li>
-                                <li style={{margin:"2px"}}>Kay Schallert</li>
-                                <li style={{margin:"2px"}}>Prasanna Ramesh</li>
-                                <li style={{margin:"2px"}}>Emanuel Lange</li>
-                                <li style={{margin:"2px"}}>Dr. Dirk Benndorf</li>
-                                <li style={{margin:"2px"}}>Prof. Udo Reichl</li>
-                                <li style={{margin:"2px"}}>Dr. Robert Heyer</li>
+                                <li style={{margin:"2px"}}>Kay Schallert - kay.schallert@ovgu.de</li>
+                                <li style={{margin:"2px"}}>Prasanna Ramesh - prasanna.ramesh@ovgu.de</li>
+                                <li style={{margin:"2px"}}>Emanuel Lange - emanuel.lange@ovgu.de</li>
+                                <li style={{margin:"2px"}}>Dr. Dirk Benndorf - benndorf@mpi-magdeburg.mpg.de</li>
+                                <li style={{margin:"2px"}}>Prof. Udo Reichl - ureichl@mpi-magdeburg.mpg.de</li>
+                                <li style={{margin:"2px"}}>Dr. Robert Heyer - heyer@mpi-magdeburg.mpg.de</li>
                             </ul>
                         </div>
                         </div>
