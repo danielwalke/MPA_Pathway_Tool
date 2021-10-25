@@ -40,8 +40,6 @@ const ecNumbersUrl = endpoint_getEcNumberList
 const koNumbersUrl = endpoint_getKoNumberList
 const reactionUrl = endpoint_getReactionList
 const taxonomyListLink = endpoint_getTaxonomyList
-const biggCompoundsUrl = endpoint_getBiggCompoundList
-const kegg2BiggCompoundsUrl = endpoint_getKegg2BiggCompoundList
 export const taxonomicRanks = ["superkingdom", "kingdom", "phylum", "class", "order", "family", "genus", "species"]
 
 export const useStylesMain = makeStyles({
@@ -74,14 +72,6 @@ const Main = () => {
             handleSetCompoundList(dispatch)
             requestGenerator("GET", ecNumbersUrl, "", "").then(response => dispatch({
                 type: "SETECNUMBERSET",
-                payload: response.data
-            }))
-            requestGenerator("GET", biggCompoundsUrl, "", "").then(response => dispatch({
-                type: "SET_BIGG_COMPOUND_LIST",
-                payload: response.data
-            }))
-            requestGenerator("GET", kegg2BiggCompoundsUrl, "", "").then(response => dispatch({
-                type: "SET_KEGG2BIGG_COMPOUND_LIST",
                 payload: response.data
             }))
             requestGenerator("GET", koNumbersUrl, "", "").then(response => dispatch({

@@ -1,29 +1,12 @@
-import {addCompoundsToReactions} from "./ReactionCompoundsAdder";
+import {addCompoundsToReactions} from "../ReactionCompoundsAdder";
 import {useDispatch, useSelector} from "react-redux";
-import {useStyles} from "../../ModalStyles/ModalStyles";
 import React, {useEffect, useState} from "react";
-import KeggCompoundAutoCompleteList from "./KeggCompoundAutoCompleteList";
-import BiggCompoundAnnotation from "./BiggCompoundAnnotation";
-import {FixedSizeList as List} from "react-window";
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
-import ReactionDetailsContainer from "./finalReactionTable/ReactionDetailsContainer";
-import CompoundDetailsContainer from "./finalReactionTable/CompoundDetailsContainer";
+import CompoundDetailsContainer from "./CompoundDetailsContainer";
+import clonedeep from "lodash/cloneDeep";
 
-const submit = (state, dispatch, compoundsForAnnotation) => {
-    const newKeggCompounds = state.general.autoCompleteCompoundsList
-    const newBiggCompounds = state.general.biggIdSelectionList
-    const newCompoundsForAnnotation = compoundsForAnnotation
-
-    console.log(state.general.autoCompleteCompoundsList)
-
-    for (const [key, value] of Object.entries(newKeggCompounds)) {
-        newCompoundsForAnnotation[key].keggId = value.substring(value.length-6)
-        newCompoundsForAnnotation[key].keggName = value
-        newCompoundsForAnnotation[key].biggId = newBiggCompounds[key]
-    }
-
-    //add additional information to each reaction
-    const newListOfReactions = addCompoundsToReactions(state, state.general.listOfReactions, newCompoundsForAnnotation)
+const submit = (state, dispatch) => {
+    const newListOfReactions = addCompoundsToReactions(state, state.general.listOfReactions, state.general.listOfSpecies)
 
     dispatch({type: "SETLISTOFREACTIONS", payload: newListOfReactions})
     dispatch({type: "SETLOADING", payload: false})
@@ -60,18 +43,20 @@ const CompoundAnnotation = () => {
 
     const [listOfSpecies, setListOfSpecies] = useState([])
     const [selectedRow, setSelectedRow] = useState(0)
+    const [previousLisOfCompounds, setPreviousLisOfCompounds] = useState([])
 
     useEffect(() => {
-        // updates local store with current list of reactions
+        setPreviousLisOfCompounds(clonedeep(state.general.listOfSpecies))
+    },[])
+
+    useEffect(() => {
+        // updates local store with current list of species
         setListOfSpecies(state.general.listOfSpecies)
-        // setListOfReactionsClone(state.general.listOfReactions)
     }, [state.general.listOfSpecies])
 
     const handleRowClick = (index) => {
         setSelectedRow(index)
     }
-
-    //each row in the modal is virtualized with react-window -> each row is respective for an unannotated Compound
 
     const columns = [
         {id: 'compoundID', label: 'ID', minWidth: 170},
@@ -109,7 +94,8 @@ const CompoundAnnotation = () => {
                     <div className={"inner-container"}>
                         {listOfSpecies.length > 0 &&
                         <CompoundDetailsContainer index={selectedRow}
-                                                  listOfSpecies={listOfSpecies}/>}
+                                                  listOfSpecies={listOfSpecies}
+                                                  defaultCompound={previousLisOfCompounds[selectedRow]}/>}
                     </div>
                 </div>
             </div>

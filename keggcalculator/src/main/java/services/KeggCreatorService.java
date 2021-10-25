@@ -151,22 +151,6 @@ public class KeggCreatorService {
 		}
 		return substrateSetComp;
 	}
-	
-	public HashSet<BiggCompound> getBiggSubstrateSet() {
-		KeggDataObject keggDataClone = cloneKeggData();
-		HashSet<BiggCompoundObject> substrateSet = keggDataClone.getBiggCompounds();
-		HashSet<BiggCompound> substrateSetComp = new HashSet<BiggCompound>();
-		for (BiggCompoundObject substrate : substrateSet) {
-			BiggCompound substrateComp = new BiggCompound(substrate.getCompoundId(), substrate.getCompoundName(), substrate.getUniversalBiggId());
-			substrateSetComp.add(substrateComp);
-		}
-		return substrateSetComp;
-	}
-	
-	public HashMap<String, HashMap<String, HashSet<String>>> getKegg2BiggCompoundMap() {
-		KeggDataObject keggDataClone = cloneKeggData();
-		return keggDataClone.getKegg2BiggCompoundMap();
-	}
 
 	public HashSet<String> getModuleSet() {
 		HashSet<String> moduleSet = new HashSet<>();
@@ -855,6 +839,25 @@ public class KeggCreatorService {
 		}
 			
 		return compoundSetResponseSet;
+	}
+
+	public HashSet<String> filteredBiggIdSet(String compoundString) {
+		HashSet<String> biggCompoundSet = new HashSet<String>();
+		HashSet<String> biggCompoundResponseSet = new HashSet<String>();
+		HashSet<BiggCompoundObject> biggCompounds = keggData.getBiggCompounds();
+		
+		for (BiggCompoundObject compound : biggCompounds) {
+			String compoundIdString =  compound.getCompoundName() + "  |  " + compound.getUniversalBiggId();
+			
+			biggCompoundSet.add(compoundIdString);
+		}
+		
+		for (String compound : biggCompoundSet) {
+			if (compound.toLowerCase().contains(compoundString.toLowerCase()) && biggCompoundResponseSet.size()<101) {
+				biggCompoundResponseSet.add(compound);
+			}
+		}
+		return biggCompoundResponseSet;
 	}
 
 }

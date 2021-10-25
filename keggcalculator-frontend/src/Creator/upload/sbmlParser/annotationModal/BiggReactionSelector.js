@@ -2,8 +2,8 @@ import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect, useState} from "react";
 import TextField from "@material-ui/core/TextField";
 import {Autocomplete} from "@material-ui/lab";
-import {requestGenerator} from "../../request/RequestGenerator";
-import {endpoint_getBiggReactionNames} from "../../../App Configurations/RequestURLCollection";
+import {requestGenerator} from "../../../request/RequestGenerator";
+import {endpoint_getBiggReactionNames} from "../../../../App Configurations/RequestURLCollection";
 
 const BiggReactionSelector = (props) => {
 

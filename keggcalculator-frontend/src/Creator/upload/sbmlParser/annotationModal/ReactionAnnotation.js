@@ -3,12 +3,10 @@ this component is a modal and responsible for showing all final information abou
  */
 
 import React, {useEffect, useState} from 'react';
-import {useStyles} from "../../ModalStyles/ModalStyles";
 import {useDispatch, useSelector} from "react-redux";
-import "./SBML.css"
-import {setReactionsAndCompoundsInStore} from "./GraphDrawer";
+import {setReactionsAndCompoundsInStore} from "../GraphDrawer";
 import clonedeep from "lodash/cloneDeep";
-import "./finalReactionTable/RestoreIcon.css"
+import "./RestoreIcon.css"
 import {
     Table,
     TableBody,
@@ -18,7 +16,7 @@ import {
     TableRow
 } from "@material-ui/core";
 
-import ReactionDetailsContainer from "./finalReactionTable/ReactionDetailsContainer";
+import ReactionDetailsContainer from "./ReactionDetailsContainer";
 
 const ReactionTableRow = (props) => {
 
@@ -53,7 +51,7 @@ const ReactionAnnotation = () => {
 
         useEffect(() => {
             setPreviousListOfReactions(clonedeep(state.general.listOfReactions))
-            setListOfReactions(state.general.listOfReactions)
+            // setListOfReactions(state.general.listOfReactions)
         }, [])
 
         useEffect(() => {
@@ -65,7 +63,7 @@ const ReactionAnnotation = () => {
             //set data for the Graph
             const data = setReactionsAndCompoundsInStore(state, state.general.listOfReactions, dispatch)
             dispatch({type: "SHOWREACTIONANNOTATION", payload: false})
-            dispatch({type: "SETISANNOTATIONPURPOSE", payload: false})
+            dispatch({type: "SHOWANNOTATIONTABLE", payload: false})
             dispatch({type: "SETDATA", payload: data})
             dispatch({type: "SETLOADING", payload: false})
             dispatch({type: "SWITCHUPLOADMODAL"})

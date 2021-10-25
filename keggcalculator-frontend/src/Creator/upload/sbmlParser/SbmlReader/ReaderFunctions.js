@@ -47,20 +47,28 @@ const replaceXmlCharacters = (string) => string.replaceAll("&lt;", "<").replaceA
 const readSpecies = (dispatch, sbml, state) => {
     const listOfSpeciesElement = sbml.getElementsByTagName("listOfSpecies")[0]
     const listOfSpecies = listOfSpeciesElement.children.map((species, index) => {
+
         const sbmlName = typeof species.attributes.name === "string" ? replaceXmlCharacters(species.attributes.name) : replaceXmlCharacters(species.attributes.id)
+
         const sbmlId = replaceXmlCharacters(species.attributes.id)
+
         const annotations = species.getElementsByTagName("rdf:li").map(link => link.attributes["rdf:resource"])
         const keggAnnotations = annotations.filter(link => link.includes("kegg.compound")) //returns one link like "http://identifiers.org/kegg.compound/C00031", i.e. last 6 chars are respective kegg annotation
+
         const keggId = keggAnnotations.length > 0 ? keggAnnotations[0].substring(keggAnnotations[0].length - 6, keggAnnotations[0].length) : getCompoundId(index);
-        const keggName = state.general.compoundId2Name[`${keggId}`] ? state.general.compoundId2Name[`${keggId}`] : keggId
-        const biggMetabolite = annotations.filter(link => link.includes("bigg.metabolite"))
+
+        // const keggName = state.general.compoundId2Name[`${keggId}`] ? state.general.compoundId2Name[`${keggId}`] : keggId
+
+        const biggMetabolite = annotations.find(link => link.includes("bigg.metabolite"))
+        const biggMetaboliteSplitArray = biggMetabolite ? biggMetabolite.split("/") : [""]
+
         return (
             {
                 sbmlId: sbmlId,
                 sbmlName: sbmlName,
                 keggId: keggId,
-                keggName: keggName,
-                biggMetabolite: biggMetabolite
+                // keggName: keggName,
+                biggId: biggMetaboliteSplitArray[biggMetaboliteSplitArray.length - 1]
             }
         )
     })
@@ -76,8 +84,10 @@ const readReactions = (dispatch, sbml, globalTaxa) => {
         const sbmlName = typeof reaction.attributes.name === "string" ? replaceXmlCharacters(reaction.attributes.name) : replaceXmlCharacters(reaction.attributes.id);
         const reversible = typeof reaction.attributes.reversible === "string" ? reaction.attributes.reversible : "true"
         const annotations = reaction.getElementsByTagName("rdf:li").map(link => link.attributes["rdf:resource"])
-        const biggReactionAnnotation = annotations.filter(link => link.includes("bigg.reaction"))
-        const biggReaction = biggReactionAnnotation[0] ? biggReactionAnnotation[0].split("/")[4] : ""
+
+        const biggReactionAnnotation = annotations.find(link => link.includes("bigg.reaction"))
+        const biggReactionSplitArray = biggReactionAnnotation ? biggReactionAnnotation.split("/") : [""]
+
         const keggAnnotations = annotations.filter(link => link.includes("kegg.reaction")) //returns one link like "http://identifiers.org/kegg.reaction/R00212", i.e. last 6 chars are respective kegg annotation
         //possibly more than one reaction annotations in one reaction
         const keggId = keggAnnotations.length === 1 ? keggAnnotations[0].substring(keggAnnotations[0].length - 6, keggAnnotations[0].length) : `U${getUserReactionId(index)}`;
@@ -109,7 +119,7 @@ const readReactions = (dispatch, sbml, globalTaxa) => {
             products: products,
             reversible: reversible === "reversible",
             taxonomy: getTaxonomyFromSbml(annotations, globalTaxa),
-            biggReaction: biggReaction
+            biggReaction: biggReactionSplitArray[biggReactionSplitArray.length-1]
         };
 
 
@@ -198,6 +208,7 @@ export const onSBMLModuleFileChange = async (event, dispatch, state) => {
             const listOfSpecies = readSpecies(dispatch, sbml, state)
             const listOfReactions = readReactions(dispatch, sbml, globalTaxa)
             const isMissingAnnotations = checkMissingAnnotations(listOfSpecies, dispatch)
+
             dispatch({type: "SETMODULEFILENAMESBML", payload: file.name})
             dispatch({type: "SET_LIST_OF_REACTION_GLYPHS", payload: listOfReactionGlyphs})
             dispatch({type: "SETLISTOFSPECIES", payload: listOfSpecies})
@@ -205,6 +216,7 @@ export const onSBMLModuleFileChange = async (event, dispatch, state) => {
             dispatch({type: "ADD_PATHWAY_TO_AUDIT_TRAIL", payload: file.name})
             dispatch({type: "SET_PATHWAY_FILE", payload: file})
             dispatch({type: "SETISMISSINGANNOTATIONS", payload: isMissingAnnotations}) //if true, annotationWarningModal will show up
+
             if (!isMissingAnnotations) {
                 //all compounds are perfectly annotated :)
                 //add additional information to each reaction

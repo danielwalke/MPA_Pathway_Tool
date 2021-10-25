@@ -1,19 +1,18 @@
-import {useDispatch} from "react-redux";
-import React, {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import React, {useEffect, useState} from "react";
 import {Autocomplete} from "@material-ui/lab";
 import TextField from "@material-ui/core/TextField";
-import {requestGenerator} from "../../request/RequestGenerator";
-import {
-    endpoint_getFilteredCompoundList
-} from "../../../App Configurations/RequestURLCollection";
+import {requestGenerator} from "../../../request/RequestGenerator";
+import {endpoint_getFilteredBiggCompoundList} from "../../../../App Configurations/RequestURLCollection";
 
-const CompoundKeggIdSelector = (props) => {
+const CompoundBiggIdSelector = (props) => {
+
     const [options, setOptions] = useState([])
 
     const dispatch = useDispatch()
 
     const handleTyping = (string) => {
-        requestGenerator("GET", endpoint_getFilteredCompoundList, {compoundString: string}, "", "").then( //endpoint: sends max. 100 taxonomic names
+        requestGenerator("GET", endpoint_getFilteredBiggCompoundList, {compoundString: string}, "", "").then( //endpoint: sends max. 100 taxonomic names
             resp => {
                 setOptions(resp.data)
             })
@@ -25,18 +24,19 @@ const CompoundKeggIdSelector = (props) => {
                 size={"small"}
                 id={"keggCompoundSelector"}
                 options={options}
-                value={props.listOfSpecies[props.index].keggId}
+                value={props.listOfSpecies[props.index].biggId}
                 onChange={(event, value) => {
                     const newListOfSpecies = props.listOfSpecies
-                    value ? newListOfSpecies[props.index].keggId = value.substring(0, 6) : newListOfSpecies[props.index].keggId = ""
+                    const setValue = value ? value.split("  |  ")[1] : ""
+                    newListOfSpecies[props.index].biggId = setValue
                     dispatch({type: "SETLISTOFSPECIES", payload: newListOfSpecies})
                 }}
                 renderInput={params => (
                     <TextField
                         onChange={(event) => handleTyping(event.target.value)}
-                        value={props.listOfSpecies[props.index].keggId}
+                        // value={props.listOfSpecies[props.index].biggId}
                         {...params}
-                        label="KEGG Compound ID"
+                        label="BIGG Compound ID"
                         variant="outlined"
                     />
                 )}
@@ -45,4 +45,4 @@ const CompoundKeggIdSelector = (props) => {
     )
 }
 
-export default CompoundKeggIdSelector
+export default CompoundBiggIdSelector

@@ -189,28 +189,11 @@ public class KeggCalculatorServer {
 		/**
 		 * returns list of bigg compounds
 		 */
-		get("/keggcreator/biggcompoundlist", (req, res) -> {
-//			creator.requestAccess.get("biggcompoundlist").add(KeggCreatorService.getAccessDate());
+		
+		get("/keggcreator/filteredbiggidlist", (req, res) -> {
 			try {
-				HashSet<BiggCompound> BiggSubstrateSet = creator.getBiggSubstrateSet();
-				res.status(201);
-				return creator.gson.toJson(BiggSubstrateSet);
+				return KeggHandleRequests.getFilteredBiggIdSet(creator, req.queryParams("compoundString"));
 			} catch (Exception e) {
-				// this is an unexpected exception!
-				res.status(500);
-				return "{\"message\":\"internal server error\"}";
-			}
-		});
-
-		get("/keggcreator/kegg2biggmap", (req, res) -> {
-//			creator.requestAccess.get("biggcompoundlist").add(KeggCreatorService.getAccessDate());
-			try {
-				HashMap<String, HashMap<String, HashSet<String>>> BiggSubstrateSet = creator.getKegg2BiggCompoundMap();
-				res.status(201);
-				System.out.println("Hello");
-				return creator.gson.toJson(BiggSubstrateSet);
-			} catch (Exception e) {
-				// this is an unexpected exception!
 				res.status(500);
 				return "{\"message\":\"internal server error\"}";
 			}

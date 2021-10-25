@@ -14,8 +14,5 @@ public class BiggCompound extends KeggCompound{
 		return universalBiggId;
 	}
 
-//	public void setUniversalBiggId(String universalBiggId) {
-//		this.universalBiggId = universalBiggId;
-//	}
-//	
+	
 }

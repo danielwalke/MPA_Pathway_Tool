@@ -12,15 +12,14 @@ import React from 'react';
 import UploadIcon from "../../../icons/uploadIconWhite.svg";
 import {onSBMLModuleFileChange} from "./ReaderFunctions";
 import {useDispatch, useSelector} from "react-redux";
-import AnnotationModal from "../AnnotationModal";
-import AnnotationWarningModal from "../AnnotationWarningModal";
-import ReactionTableList from "../finalReactionTable/ReactionTableList";
+import AnnotationWarningModal from "../annotationModal/AnnotationWarningModal";
 import {ToolTipBig} from "../../../main/user-interface/UserInterface";
-import BigAnnotationModal from "../BigAnnotationModal";
+import AnnotationModal from "../annotationModal/AnnotationModal";
 
 const SbmlReader = () => {
     const dispatch = useDispatch();
     const state = useSelector(state => state)
+    console.log(state)
     return (
         <div>
             <ToolTipBig title={"Click for uploading a pathway as SBML"} placement={"right"}>
@@ -39,9 +38,7 @@ const SbmlReader = () => {
                 {state.general.moduleFileNameSbml.length > 0 ? state.graph.moduleFileNameJson : "No file selected"}
             </div>
             {state.general.showAnnotationWarning && <AnnotationWarningModal/>}
-            {/*{state.general.isAnnotationPurpose && <AnnotationModal/>}*/}
-            {state.general.isAnnotationPurpose && <BigAnnotationModal/>}
-            {/*{state.general.isShowingReactionTable && <ReactionTableList/>}*/}
+            {state.general.showAnnotationTable && <AnnotationModal/>}
         </div>
     );
 };

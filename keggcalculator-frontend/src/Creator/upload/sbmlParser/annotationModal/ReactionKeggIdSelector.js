@@ -2,8 +2,8 @@ import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect, useState} from "react";
 import {Autocomplete} from "@material-ui/lab";
 import TextField from "@material-ui/core/TextField";
-import {requestGenerator} from "../../request/RequestGenerator";
-import {endpoint_getKeggReactionNames} from "../../../App Configurations/RequestURLCollection";
+import {requestGenerator} from "../../../request/RequestGenerator";
+import {endpoint_getKeggReactionNames} from "../../../../App Configurations/RequestURLCollection";
 
 const ReactionKeggIdSelector = (props) => {
     const state = useSelector(state => state)

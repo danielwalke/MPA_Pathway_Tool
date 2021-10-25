@@ -357,6 +357,10 @@ public class KeggHandleRequests {
 	public static Object getFilteredKeggCompoundsSet(KeggCreatorService creator, String compoundString) {
 		return creator.gson.toJson(creator.filteredKeggCompoundSet(compoundString));
 	}
+	
+	public static Object getFilteredBiggIdSet(KeggCreatorService creator, String compoundString) {
+		return creator.gson.toJson(creator.filteredBiggIdSet(compoundString));
+	}
 
 	public static Object readPomXml(KeggCreatorService creator) {
 		PomXmlParser parser = new PomXmlParser();

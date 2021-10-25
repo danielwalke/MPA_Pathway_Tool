@@ -1,9 +1,6 @@
 import clonedeep from "lodash/cloneDeep";
 
 const defaultState = {
-    biggCompoundList: [],
-    kegg2BiggCompoundList: {},
-    listOfUniversalBiggSpecies: [],
     compoundList: [],//mount?
     compMap: new Map(),//mount
     loading: false,//general
@@ -49,12 +46,11 @@ const defaultState = {
     */
     isMissingAnnotations: false, //boolean, which checks whether there are unannotated compounds in the given sbml file
     showAnnotationWarning: false,
-    isAnnotationPurpose: false, //boolean, which checks whether the user intents to make annotation for the compounds in the given sbml-file
+    showAnnotationTable: false, //boolean, which checks whether the user intents to make annotation for the compounds in the given sbml-file
     showCompoundAnnotation: false,
     showReactionAnnotation: false,
     annotation: "",
     moduleFileNameSbml: "",
-    isShowingReactionTable: false, //shows final table with all reactions in the sbml file
     showMultipleKeggReactionModal: false, //show modal for chosing multiple reactions from KEGG
     addLinkModal: false, //modal for adding new links useful for signaling pathway
     listOfReactionGlyphs: [], //positons of nodes in sbml file
@@ -192,14 +188,12 @@ export const generalReducer = (state = defaultState, action) => {
             return {...state, annotation: payload}
         case "SETMODULEFILENAMESBML":
             return {...state, moduleFileNameSbml: payload}
-        case "SETISANNOTATIONPURPOSE":
-            return {...state, isAnnotationPurpose: payload}
+        case "SHOWANNOTATIONTABLE":
+            return {...state, showAnnotationTable: payload}
         case "SHOWCOMPOUNDANNOTATION":
             return {...state, showCompoundAnnotation: payload}
         case "SHOWREACTIONANNOTATION":
             return {...state, showReactionAnnotation: payload}
-        case "SETISSHOWINGREACTIONTABLE":
-            return {...state, isShowingReactionTable: payload}
         case "SWITCHSHOWMULTIPLEKEGGREACTIONS":
             return {...state, showMultipleKeggReactionModal: !state.showMultipleKeggReactionModal}
         case "SWITCHSHOWADDLINKMODAL":
@@ -220,12 +214,6 @@ export const generalReducer = (state = defaultState, action) => {
             return {...state, mappingStart: payload}
         case "SET_MAPPING_END_TIME":
             return {...state, mappingEnd: payload}
-        case "SET_BIGG_COMPOUND_LIST":
-            return {...state, biggCompoundList: payload}
-        case "SET_KEGG2BIGG_COMPOUND_LIST":
-            return {...state, kegg2BiggCompoundList: payload}
-        case "SET_LIST_OF_UNIVERSAL_BIGG_SPECIES":
-            return {...state, listOfUniversalBiggSpecies: payload}
         case "SET_AUTO_COMPLETE_COMPOUNDS":
             return {...state, autoCompleteCompoundsList: payload}
         case "SET_BIGG_ID_SELECTION":

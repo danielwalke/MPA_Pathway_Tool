@@ -1,18 +1,16 @@
 import React, {useEffect} from 'react';
 
 import {useDispatch, useSelector} from "react-redux";
-import "../SBML.css"
-import SbmlIdChanger from "./SbmlIdChanger";
 import SbmlNameChanger from "./SbmlNameChanger";
-import ReactionKeggIdSelector from "../ReactionKeggIdSelector";
+import ReactionKeggIdSelector from "./ReactionKeggIdSelector";
 import {requestGenerator} from "../../../request/RequestGenerator";
 import {endpoint_getReactionsFromCompounds} from "../../../../App Configurations/RequestURLCollection";
 import EcSelector from "./ECSelector";
 import KSelector from "./KSelector";
 import RestoreIcon from "@material-ui/icons/Restore";
-import BiggReactionSelector from "../BiggReactionSelector";
+import BiggReactionSelector from "./BiggReactionSelector";
 import CompoundSelector from "./CompoundSelector";
-import "../AnnotationTable.css"
+import "./AnnotationTable.css"
 import "../../../ModalStyles/Modals.css"
 
 const CreateCompoundString = (compoundObject) => {
@@ -73,14 +71,12 @@ const ReactionDetailsContainer = (props) => {
         newListOfReactions[props.index].substrates = [...defaultReaction.substrates]
         newListOfReactions[props.index].products = [...defaultReaction.products]
 
-        dispatch({type: "SETLISTOFREACTIONS", payload: listOfReactions})
+        dispatch({type: "SETLISTOFREACTIONS", payload: newListOfReactions})
     }
 
     return (
         <div>
             <div className={"detail-view"}>
-                <SbmlIdChanger listOfReactions={listOfReactions}
-                               index={props.index}/>
                 <SbmlNameChanger listOfReactions={listOfReactions}
                                  index={props.index}/>
                 <ReactionKeggIdSelector listOfReactions={listOfReactions}
