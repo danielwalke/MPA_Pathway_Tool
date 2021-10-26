@@ -30,7 +30,19 @@ const CompoundTableRow = (props) => {
                 <TableCell>
                     {props.row.sbmlName}
                 </TableCell>
+                <TableCell align={"center"}>
+                    <span
+                        className={"indicator-circle"}
+                        style={props.row.keggId ? {backgroundColor: "lightGreen"} : {background: "#FF696D"}}>
+                        {props.row.keggId ? 'Yes' : 'No'}
+                    </span>
+                </TableCell >
                 <TableCell>
+                    <span
+                        className={"indicator-circle"}
+                        style={props.row.biggId ? {backgroundColor: "lightGreen"} : {background: "#FF696D"}}>
+                        {props.row.biggId ? 'Yes' : 'No'}
+                    </span>
                 </TableCell>
             </TableRow>
         </React.Fragment>
@@ -59,8 +71,10 @@ const CompoundAnnotation = () => {
     }
 
     const columns = [
-        {id: 'compoundID', label: 'ID', minWidth: 170},
+        {id: 'compoundID', label: 'ID', minWidth: 20},
         {id: 'compoundName', label: 'name', minWidth: 100},
+        {id: 'KEGG ID', label: 'KEGG', minWidth: 10},
+        {id: 'BIGG ID', label: 'BIGG', minWidth: 10},
     ]
 
     return (
@@ -69,13 +83,20 @@ const CompoundAnnotation = () => {
             <div className={"annotation-body"}>
                 <div className={"annotation-frame frame-margin-right"}>
                     <TableContainer className={"inner-container"}>
-                        <Table stickyHeader aria-label="compound table">
+                        <Table size="small" stickyHeader aria-label="compound table">
                             <TableHead>
+                                <TableRow>
+                                    <TableCell align="left" colSpan={2}>
+                                        Details
+                                    </TableCell>
+                                    <TableCell align="left" colSpan={2}>
+                                        Annotations
+                                    </TableCell>
+                                </TableRow>
                                 <TableRow>
                                     {columns.map((column) => (
                                         <TableCell key={column.id}> {column.label} </TableCell>
                                     ))}
-                                    <TableCell/>
                                 </TableRow>
                             </TableHead>
                             <TableBody>

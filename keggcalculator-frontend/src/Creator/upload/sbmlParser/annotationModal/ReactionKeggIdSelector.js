@@ -8,14 +8,18 @@ import {endpoint_getKeggReactionNames} from "../../../../App Configurations/Requ
 const ReactionKeggIdSelector = (props) => {
     const state = useSelector(state => state)
 
-    const [options, setOptions] = useState([])
+    const [options, setOptions] = useState(['Please enter a number or letter'])
 
     const dispatch = useDispatch()
 
     const handleTyping = (string) => {
         requestGenerator("GET", endpoint_getKeggReactionNames, {reactionString: string}, "", "").then( //endpoint: sends max. 100 taxonomic names
             resp => {
-                setOptions(resp.data)
+                if (resp.data.length > 100) {
+                    setOptions([...resp.data, 'Please enter another number or letter'])
+                } else {
+                    setOptions(resp.data)
+                }
             })
     }
 
@@ -32,6 +36,11 @@ const ReactionKeggIdSelector = (props) => {
                 size={"small"}
                 id={"keggReactionSelector"}
                 options={options}
+                noOptionsText={'I could\'t find this name'}
+                getOptionDisabled={(option) =>
+                    option === 'Please enter another number or letter' ||
+                    option === 'Please enter a number or letter'
+                }
                 value={props.listOfReactions[props.index].keggId}
                 onChange={(event, value) => {
                     const newListOfReactions = props.listOfReactions

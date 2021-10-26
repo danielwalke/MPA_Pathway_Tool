@@ -12,7 +12,7 @@ const EcSelector = (props) => {
     const state = useSelector(state => state)
     const dispatch = useDispatch()
 
-    const [options, setOptions] = useState([])
+    const [options, setOptions] = useState(['Please enter a number or letter'])
 
     useEffect(() => {
         let ecNumberOptions = []
@@ -31,7 +31,11 @@ const EcSelector = (props) => {
     const handleTyping = (string) => {
         requestGenerator("GET", endpoint_getFilteredEcNumberList, {reactionName: string}, "", "").then( //endpoint: sends max. 100 taxonomic names
             resp => {
-                setOptions(resp.data)
+                if (resp.data.length > 100) {
+                    setOptions([...resp.data, 'Please enter another number or letter'])
+                } else {
+                    setOptions(resp.data)
+                }
             })
     }
 
@@ -42,6 +46,11 @@ const EcSelector = (props) => {
             multiple
             limitTags={4}
             options={options}
+            noOptionsText={'I could\'t find this name'}
+            getOptionDisabled={(option) =>
+                option === 'Please enter another number or letter' ||
+                option === 'Please enter a number or letter'
+            }
             value={props.listOfReactions[props.index].ecNumbers}
 
             onChange={(event, value) => {

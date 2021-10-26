@@ -35,6 +35,32 @@ const ReactionTableRow = (props) => {
                     {props.row.sbmlName}
                 </TableCell>
                 <TableCell>
+                    <span
+                        className={"indicator-circle"}
+                        style={props.row.keggId ? {backgroundColor: "lightGreen"} : {background: "#FF696D"}}>
+                            {props.row.keggId ? 'Yes' : 'No'}
+                    </span>
+                </TableCell>
+                <TableCell>
+                    <span
+                        className={"indicator-circle"}
+                        style={props.row.biggId ? {backgroundColor: "lightGreen"} : {background: "#FF696D"}}>
+                            {props.row.biggId ? 'Yes' : 'No'}
+                    </span>
+                </TableCell>
+                <TableCell>
+                    <span
+                        className={"indicator-circle"}
+                        style={props.row.koNumbers.length > 0 ? {backgroundColor: "lightGreen"} : {background: "#FF696D"}}>
+                            {props.row.koNumbers.length > 0 ? 'Yes' : 'No'}
+                    </span>
+                </TableCell>
+                <TableCell>
+                    <span
+                        className={"indicator-circle"}
+                        style={props.row.ecNumbers.length > 0 ? {backgroundColor: "lightGreen"} : {background: "#FF696D"}}>
+                            {props.row.ecNumbers.length > 0 ? 'Yes' : 'No'}
+                    </span>
                 </TableCell>
             </TableRow>
         </React.Fragment>
@@ -75,8 +101,12 @@ const ReactionAnnotation = () => {
         }
 
         const columns = [
-            {id: 'reactionID', label: 'ID', minWidth: 170},
-            {id: 'reactionName', label: 'name', minWidth: 100},
+            {id: 'reactionID', label: 'ID', minWidth: 10},
+            {id: 'reactionName', label: 'name', minWidth: 10},
+            {id: 'KeggId', label: 'KEGG Reaction', minWidth: 10},
+            {id: 'BiggId', label: 'BIGG Reaction', minWidth: 10},
+            {id: 'K', label: 'K Number', minWidth: 10},
+            {id: 'EC', label: 'EC', minWidth: 10},
         ]
 
         const handleRowClick = (index) => {
@@ -89,13 +119,20 @@ const ReactionAnnotation = () => {
                 <div className={"annotation-body"}>
                     <div className={"annotation-frame frame-margin-right"}>
                         <TableContainer className={"inner-container"}>
-                            <Table stickyHeader aria-label="reaction table">
+                            <Table size="small" stickyHeader aria-label="reaction table">
                                 <TableHead>
+                                    <TableRow>
+                                        <TableCell align="left" colSpan={2}>
+                                            Details
+                                        </TableCell>
+                                        <TableCell align="left" colSpan={4}>
+                                            Annotations
+                                        </TableCell>
+                                    </TableRow>
                                     <TableRow>
                                         {columns.map((column) => (
                                             <TableCell key={column.id}> {column.label} </TableCell>
                                         ))}
-                                        <TableCell/>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>

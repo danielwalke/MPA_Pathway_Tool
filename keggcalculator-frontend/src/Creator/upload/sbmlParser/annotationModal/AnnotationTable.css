@@ -16,12 +16,14 @@
 
 .annotation-body {
     width: 100%;
+    min-width: 600px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     min-height: 0;
     flex: 1 1 auto;
-    padding: 0.5em 0 0.5em 0
+    padding: 0.5em 0 0.5em 0;
+    overflow-x: auto;
 }
 
 .annotation-frame {
@@ -32,6 +34,7 @@
     padding: 20px 0 20px 0;
     box-sizing: border-box;
     background-color: rgba(0,0,0,.125);
+    overflow: hidden;
 }
 
 .frame-margin-left {
@@ -90,4 +93,7 @@
 
 .finish-button {
     width: 8em;
+}
+
+.indicator-circle {
 }

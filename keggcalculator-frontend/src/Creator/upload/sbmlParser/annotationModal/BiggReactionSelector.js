@@ -9,14 +9,18 @@ const BiggReactionSelector = (props) => {
 
     const state = useSelector(state => state)
 
-    const [options, setOptions] = useState([])
+    const [options, setOptions] = useState(['Please enter a number or letter'])
 
     const dispatch = useDispatch()
 
     const handleTyping = (string) => {
         requestGenerator("GET", endpoint_getBiggReactionNames, {biggName: string}, "", "").then( //endpoint: sends max. 100 taxonomic names
             resp => {
-                setOptions(resp.data)
+                if (resp.data.length > 100) {
+                    setOptions([...resp.data, 'Please enter another number or letter'])
+                } else {
+                    setOptions(resp.data)
+                }
             })
     }
 
@@ -40,6 +44,11 @@ const BiggReactionSelector = (props) => {
                 size={"small"}
                 id={"biggReactionSelector"}
                 options={options}
+                noOptionsText={'I could\'t find this name'}
+                getOptionDisabled={(option) =>
+                    option === 'Please enter another number or letter' ||
+                    option === 'Please enter a number or letter'
+                }
                 value={props.listOfReactions[props.index].biggReaction}
                 onChange={(event, value) => {
                     const newListOfReactions = props.listOfReactions

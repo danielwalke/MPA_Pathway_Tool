@@ -1,5 +1,5 @@
 import {useDispatch} from "react-redux";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Autocomplete} from "@material-ui/lab";
 import TextField from "@material-ui/core/TextField";
 import {requestGenerator} from "../../../request/RequestGenerator";
@@ -9,13 +9,16 @@ import {
 
 const CompoundKeggIdSelector = (props) => {
     const [options, setOptions] = useState([])
-
     const dispatch = useDispatch()
 
     const handleTyping = (string) => {
         requestGenerator("GET", endpoint_getFilteredCompoundList, {compoundString: string}, "", "").then( //endpoint: sends max. 100 taxonomic names
             resp => {
-                setOptions(resp.data)
+                if (resp.data.length > 100) {
+                    setOptions([...resp.data, 'Please enter another number or letter'])
+                } else {
+                    setOptions(resp.data)
+                }
             })
     }
 
@@ -25,6 +28,11 @@ const CompoundKeggIdSelector = (props) => {
                 size={"small"}
                 id={"keggCompoundSelector"}
                 options={options}
+                noOptionsText={'I could\'t find this name'}
+                getOptionDisabled={(option) =>
+                    option === 'Please enter another number or letter' ||
+                    option === 'Please enter a number or letter'
+                }
                 value={props.listOfSpecies[props.index].keggId}
                 onChange={(event, value) => {
                     const newListOfSpecies = props.listOfSpecies

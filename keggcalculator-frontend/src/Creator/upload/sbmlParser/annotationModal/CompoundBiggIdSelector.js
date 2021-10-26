@@ -6,15 +6,17 @@ import {requestGenerator} from "../../../request/RequestGenerator";
 import {endpoint_getFilteredBiggCompoundList} from "../../../../App Configurations/RequestURLCollection";
 
 const CompoundBiggIdSelector = (props) => {
-
-    const [options, setOptions] = useState([])
-
+    const [options, setOptions] = useState(['Please enter a number or letter'])
     const dispatch = useDispatch()
 
     const handleTyping = (string) => {
         requestGenerator("GET", endpoint_getFilteredBiggCompoundList, {compoundString: string}, "", "").then( //endpoint: sends max. 100 taxonomic names
             resp => {
-                setOptions(resp.data)
+                if (resp.data.length > 100) {
+                    setOptions([...resp.data, 'Please enter another number or letter'])
+                } else {
+                    setOptions(resp.data)
+                }
             })
     }
 
@@ -24,6 +26,11 @@ const CompoundBiggIdSelector = (props) => {
                 size={"small"}
                 id={"keggCompoundSelector"}
                 options={options}
+                noOptionsText={'I could\'t find this name'}
+                getOptionDisabled={(option) =>
+                    option === 'Please enter another number or letter' ||
+                    option === 'Please enter a number or letter'
+                }
                 value={props.listOfSpecies[props.index].biggId}
                 onChange={(event, value) => {
                     const newListOfSpecies = props.listOfSpecies
