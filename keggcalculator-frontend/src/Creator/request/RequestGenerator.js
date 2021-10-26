@@ -1,5 +1,4 @@
 import axios from "axios";
-import {host, portNumber} from "../../App Configurations/SystemSettings";
 
 export const requestGenerator = (httpmethod, endpoint, params, header, body) => {
     return axios({
@@ -12,8 +11,8 @@ export const requestGenerator = (httpmethod, endpoint, params, header, body) => 
             return status>=200 && status<300;
         },
         proxy: {
-            host: host,
-            port: portNumber
+            host: "http://127.0.0.1",
+            port: 80
         }
     })
 }

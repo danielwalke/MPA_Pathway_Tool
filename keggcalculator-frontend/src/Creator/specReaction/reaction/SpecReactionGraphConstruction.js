@@ -1,7 +1,6 @@
 import {getStochiometryProductsString, getStochiometrySubstratesString} from "../functions/SpecReactionFunctions";
 import {getLengthMinusNFirstChars, getNLastChars} from "../../usefulFunctions/Strings";
 import {handleJSONGraphUpload} from "../../upload/json upload/ModuleUploadFunctionsJSON";
-import {NOT_KEY_COMPOUND_OPACITY} from "../../graph/Constants";
 
 const addReactionDetails = (reaction, specReactionStates) => {
     const reactionName = specReactionStates.specReaction
@@ -30,7 +29,7 @@ const getSubstrates = (compounds, stoichiometryCompoundsObject) =>{
                 y:0,
                 name: compound,
                 abbreviation: getLengthMinusNFirstChars(compound, 6),
-                opacity: index===0? 1:NOT_KEY_COMPOUND_OPACITY,
+                opacity: index===1? 1:0.4,
                 stochiometry:stoichiometryCompoundsObject[getNLastChars(compound,6)]
             }
         )

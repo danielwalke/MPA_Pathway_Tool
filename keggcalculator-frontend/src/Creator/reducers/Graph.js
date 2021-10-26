@@ -38,13 +38,8 @@ const defaultState = {
     mergeNodesName: "",
     nodeModificationModal: false,
     nodeSize: 150,
-    compoundNodeColor: "#FF8000",
-    fbaSolution: [],
-    // data_new : {
-    //     node: [],
-    //     links: [],
-    // },
-    // new_datalinks: [],
+    compoundNodeColor: "#FF8000"
+
 }
 
 export const graphReducer = (state = defaultState, action) => {
@@ -124,8 +119,6 @@ export const graphReducer = (state = defaultState, action) => {
             return {...state, mergeNodes: [...state.mergeNodes, state.mergeNode], mergeNode: ""}
         case "SPLICEMERGENODES":
             return {...state, mergeNodes: state.mergeNodes.filter(node => node !== payload)}
-        case "EMPTY_MERGE_NODES":
-            return {...state, mergeNodes: []}
         case "SETMERGENODESNAME":
             return {...state, mergeNodesName: payload}
         case "SWITCH_NODE_MODIFICATION_MODAL":
@@ -134,12 +127,6 @@ export const graphReducer = (state = defaultState, action) => {
             return {...state, nodeSize: payload}
         case "SET_COMPOUND_NODE_COLOR":
             return {...state, compoundNodeColor: payload}
-        case "SET_FLUX":
-            return {...state, fbaSolution: payload}
-        // case "SET_NEWDATA":
-        //     return {...state, data_new: payload}
-        // case "SET_NEWDATALINKS":
-        //     return {...state, new_datalinks: payload}
         default:
             return state;
     }

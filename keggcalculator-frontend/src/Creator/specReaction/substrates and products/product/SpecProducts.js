@@ -4,7 +4,9 @@ import {handleAddProduct} from "../../functions/SpecReactionFunctions";
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import "./SpecProduct.css"
+import {isRequestValid} from "../../../request/RequestValidation";
 import PopOverButton from "../PopOverButton";
+import {getCompoundId} from "../../../upload/sbmlParser/SbmlReader/ReaderFunctions";
 
 const SpecProducts = (props) => {
     const dispatch = useDispatch()
