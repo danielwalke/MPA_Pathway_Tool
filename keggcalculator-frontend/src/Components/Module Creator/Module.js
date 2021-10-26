@@ -8,6 +8,8 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import PublishIcon from '@material-ui/icons/Publish';
+import {requestGenerator} from "../../Request Generator/RequestGenerator";
+import {endpoint_getCompoundList} from "../../App Configurations/RequestURLCollection";
 import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
 

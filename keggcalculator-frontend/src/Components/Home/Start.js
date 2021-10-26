@@ -16,29 +16,24 @@ const Start = (props) => {
     const classes = useStyles()
     // const firstRowTitles = ["getting an overview", "upload pathway", "add KEGG reaction"]
     // const secondRowTitles = ["deleting nodes", "add user-defined reaction", "import KEGG MODULE"]
-    const firstRowTitles = ["initialize metabolic pathway", "add KEGG-reaction", "import a KEGG-MODULE"]
-    const secondRowTitles = ["import multiple reactions by EC- or K-numbers", "add a user-defined reaction", "add user-defined metabolites"]
-    const thirdRowTitles = ["set abbreviations", "download pathways", "split nodes"]
-    const fourthRowTitles = ["merge nodes force", "upload created pathway", "upload SBML-file"]
-    const fifthRowTitles = ["align nodes", "add taxonomic constraints", "deemphasizing nodes"]
+    // const thirdRowTitles = ["import multiple reactions", "download pathway", "reverting reactions"]
+    // const fourthRowTitles = ["enabling force", "setting abbreviations", "splitting nodes with multiple links"]
+    // const fifthRowTitles = ["add taxonomy", "change node coordinates", "deemphasizing nodes"]
     // const sixthRowTitles = ["mapping experimental data", "download mapped data", "Calculator"]
-    titleLists.push(firstRowTitles)
-    titleLists.push(secondRowTitles)
-    titleLists.push(thirdRowTitles)
-    titleLists.push(fourthRowTitles)
-    titleLists.push(fifthRowTitles)
+    // titleLists.push(firstRowTitles)
+    // titleLists.push(secondRowTitles)
+    // titleLists.push(thirdRowTitles)
+    // titleLists.push(fourthRowTitles)
+    // titleLists.push(fifthRowTitles)
     // titleLists.push(sixthRowTitles)
     const idLists = []
-    const firstRowIds = ["q0Wj1gC0GS0", "EQQxKYdW7tQ", "-P0sacAf-x0"]
-    const secondRowIds = ["gNoFnTf0zXI", "CXiAcWjeOiY", "02PMgIHH2jg"]
-    const thirdRowIds = ["r48oafgIOf4", "qMOH6QguLUg", "EB_RFOrioNc"]
-    const fourthRowIds = ["Jv0U7kLoX8k", "heMKNVIrQaE", "siSRsoeZCw8"]
-    const fifthRowIds = ["4I59DH_5-Ag", "QC9Zdwl8ScY", "AmYP__GYU9o"]
-    idLists.push(firstRowIds)
-    idLists.push(secondRowIds)
-    idLists.push(thirdRowIds)
-    idLists.push(fourthRowIds)
-    idLists.push(fifthRowIds)
+    // const firstRowIds = ["W4U9IxhQSTc", "wNv4l_YwsKQ", "wNv4l_YwsKQ"]
+    // const secondRowIds = ["wNv4l_YwsKQ", "wNv4l_YwsKQ", "wNv4l_YwsKQ"]
+    // idLists.push(firstRowIds)
+    // idLists.push(secondRowIds)
+    // idLists.push(secondRowIds)
+    // idLists.push(secondRowIds)
+    // idLists.push(secondRowIds)
     // idLists.push(secondRowIds)
 
     const videos = (
@@ -151,7 +146,7 @@ const Tutorial = (props) => {
             border: "1px solid black",
             padding: "5px"
         }}>
-            <div><h3>{title}</h3></div>
+            <div><h4>{title}</h4></div>
             <div>
                 <iframe
                     allowFullScreen="allowfullscreen"
