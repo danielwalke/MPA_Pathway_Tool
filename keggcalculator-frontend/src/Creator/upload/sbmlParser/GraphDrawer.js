@@ -10,7 +10,7 @@ import {handleJSONGraphUpload} from "../json upload/ModuleUploadFunctionsJSON";
 import {Reaction} from "../model/Reaction";
 import {Compound} from "../model/Compound";
 import {getLastItemOfList} from "../../usefulFunctions/Arrays";
-import {NOT_KEY_COMPOUND_OPACITY} from "../../graph/Constants";
+import {getStochiometrySubstratesString} from "../../specReaction/functions/SpecReactionFunctions";
 
 
 export const setReactionsAndCompoundsInStore = (state, listOfReactions, dispatch, listOfReactionGlyphs) => {
@@ -76,11 +76,12 @@ const getReactions=(reactions, dispatch) =>{
         })})
         return reaction
     })
+    console.log(reactionObjects)
     dispatch({type:"ADDREACTIONSTOARRAY", payload: reactionObjects})
     return reactionObjects
 }
 
-const getReactionOpacity = (reactionGlyph) => reactionGlyph.isKeyCompound ? 1 : NOT_KEY_COMPOUND_OPACITY
+const getReactionOpacity = (reactionGlyph) => reactionGlyph.isKeyCompound ? 1 : 0.4
 
 const findReactionGlyph = (listOfReactionGlyphs, reactionId) => listOfReactionGlyphs.find(reactionGlyphObject => reactionGlyphObject.layoutReaction === reactionId)
 
@@ -106,7 +107,7 @@ const getSbmlCompound = (sbmlCompound, typeOfCompound, reactionGlyph) => {
 
 const getSpeciesGlyphIndex = (speciesGlyph) => typeof speciesGlyph.layoutId === "undefined"? "" : getLastItemOfList(speciesGlyph.layoutId.split("_"))
 
-const getCompoundOpacity = speciesGlyph => speciesGlyph.isKeyCompound? 1: NOT_KEY_COMPOUND_OPACITY
+const getCompoundOpacity = speciesGlyph => speciesGlyph.isKeyCompound? 1: 0.4
 
 const getSpeciesGlyph = (sbmlId, reactionGlyph) => reactionGlyph.listOfSpeciesReferenceGlyphs.find(speciesGlyph => speciesGlyph.layoutSpeciesReference === sbmlId)
 
