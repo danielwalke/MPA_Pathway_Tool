@@ -1,8 +1,7 @@
 import {requestGenerator} from "../../request/RequestGenerator";
 import clonedeep from "lodash/cloneDeep"
 import {handleSubmitKeggReaction} from "./substrate/SubmitHandling";
-import {endpoint_getReactionsBySubstrate} from "../../../App Configurations/RequestURLCollection";
-const productUrl = endpoint_getReactionsBySubstrate
+const productUrl = "http://127.0.0.1/keggcreator/reactiondatabysubstrate"
 
 const getReverseReaction = (reactions) =>{
     reactions.forEach(reaction => {

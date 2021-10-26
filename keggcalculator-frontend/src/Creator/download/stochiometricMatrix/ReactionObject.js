@@ -55,7 +55,7 @@ export const getReactionObjects = (forwardReactions, backwardReactions,compoundS
             compoundSet.add(substrate)
             reaction.metabolites.push({
                 id: substrate,
-                stoichiometry: stoichiometry
+                stoichiometry: `${-stoichiometry}`
             })
             return(
                 {
@@ -73,7 +73,7 @@ export const getReactionObjects = (forwardReactions, backwardReactions,compoundS
             compoundSet.add(product)
             reaction.metabolites.push({
                 id: product,
-                stoichiometry: `${-stoichiometry}`
+                stoichiometry: stoichiometry
             })
             return(
                 {

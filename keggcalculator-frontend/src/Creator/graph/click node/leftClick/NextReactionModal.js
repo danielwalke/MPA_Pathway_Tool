@@ -1,12 +1,10 @@
 import Product from "../../../keggReaction/substrate and products/product/Product";
 import Reaction from "../../../keggReaction/reaction/Reaction";
-import Isexternal from "./Isexternal";
 import React from "react";
 import Modal from "@material-ui/core/Modal";
 
 import {makeStyles} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
-
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -32,8 +30,6 @@ const NextReactionModal = () => {
             <Product className={"product"}/>
             <br/>
             <Reaction className={"reaction"}/>
-            <br/>
-
         </div>
     )
 

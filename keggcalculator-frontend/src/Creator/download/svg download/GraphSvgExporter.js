@@ -1,12 +1,15 @@
 import React from "react";
 import {saveAs} from "file-saver";
 import * as d3 from "d3";
+import {useSelector} from "react-redux";
+import clonedeep from "lodash/cloneDeep";
 
 const GraphSvgExporter = (props) => {
 
     const fileName = "graph.svg"
 
     const download = (e) => {
+        const {graphState} = clonedeep(props)
         e.preventDefault()
         const nodeList = d3.selectAll("svg")._groups[0]
         let graph

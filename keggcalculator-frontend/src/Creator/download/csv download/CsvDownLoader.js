@@ -2,15 +2,10 @@ import React, {useEffect} from "react";
 import {saveAs} from "file-saver";
 import {useSelector} from "react-redux";
 import {getNodePosition} from "../NodePosition";
-import {addLocationInformation, addOutput, getReactions} from "../DownloadFunctions";
+import {addOutput, getReactions} from "../DownloadFunctions";
 import clonedeep from "lodash/cloneDeep";
 
 const CsvDownLoader = (props) => {
-
-    useEffect(()=>{
-        const {generalState, graphState} = clonedeep(props)
-        console.log(generalState.cystolInformation)
-    },[])
 
     const handleDownloadCsv = () => {
 
@@ -61,7 +56,7 @@ const CsvDownLoader = (props) => {
                 // let output = outputCsv.concat("stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp", "\n")
                 return reaction
             })
-            let output = "stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp;exchangeReaction;compoundLocation\n"
+            let output = "stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp\n"
             let reactionCounter = 0
             const compoundTypeSubstrate = "substrate"
             const compoundTypeProduct = "product"
@@ -69,11 +64,9 @@ const CsvDownLoader = (props) => {
                 for(const substrate of reaction.substrates){
                     // console.log(substrate.stochiometry)
                     output = addOutput(output, reaction, substrate, reactionCounter, compoundTypeSubstrate,reaction.reversible)
-                    output = addLocationInformation(output, generalState, reaction, substrate)
                 }
                 for(const product of reaction.products){
                     output = addOutput(output, reaction, product, reactionCounter, compoundTypeProduct,reaction.reversible)
-                    output = addLocationInformation(output, generalState, reaction, product)
                 }
                 if(reaction.substrates.length===0 && reaction.products.length === 0){
                     output = addOutput(output, reaction, {stochiometry:"", name:"",x:"",y:"",opacity:"",abbreviation:""}, reactionCounter, "")

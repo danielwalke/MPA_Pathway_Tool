@@ -1,6 +1,6 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {Snackbar, Typography} from "@material-ui/core";
+import {Card, Snackbar, Typography} from "@material-ui/core";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";

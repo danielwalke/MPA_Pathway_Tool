@@ -1,8 +1,7 @@
 import {requestGenerator} from "../../../Request Generator/RequestGenerator";
 import {getUserReactionId} from "../../specReaction/functions/SpecReactionFunctions";
-import {endpoint_getReactionUrl} from "../../../App Configurations/RequestURLCollection";
 
-const reactionUrl = endpoint_getReactionUrl
+const reactionUrl = "http://127.0.0.1/keggcreator/getreaction"
 
 const getSpecies = (speciesList) => {
     const speciesRefs = speciesList.getElementsByTagName("speciesReference")

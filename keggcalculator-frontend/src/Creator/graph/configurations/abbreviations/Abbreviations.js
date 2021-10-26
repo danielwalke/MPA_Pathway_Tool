@@ -49,6 +49,7 @@ const Abbreviation = () => {
 
     const handleSubmitAbbreviation = (e, node, defValue) => {
         // const node = state.abbreviation.node
+        console.log(defValue)
         const nodeAbbr = typeof state.abbreviation.abbreviation === "undefined" ? `${defValue}` : `${state.abbreviation.abbreviation}`
         if (e.target.name === "otherNodes") {
             if (typeof state.abbreviation.node !== "undefined") {

@@ -1,5 +1,4 @@
 import {handleJSONGraphUpload} from "../../../upload/json upload/ModuleUploadFunctionsJSON";
-import {NOT_KEY_COMPOUND_OPACITY} from "../../../graph/Constants";
 
 export const handleSubmitKeggReaction = (state, dispatch) =>{
     const data = handleJSONGraphUpload([...state.generalState.keggReactions, getJSONReaction(state)],dispatch, state.graphState)
@@ -53,5 +52,5 @@ const addCompounds = (compounds, stoichiometryCompounds, compoundIdToName,state)
 }
 
 const getOpacity = (state,compoundId)=>{
-    return (state.keggState.substrate === compoundId || state.keggState.product === compoundId) ? 1 : NOT_KEY_COMPOUND_OPACITY
+    return (state.keggState.substrate === compoundId || state.keggState.product === compoundId) ? 1 : 0.4
 }

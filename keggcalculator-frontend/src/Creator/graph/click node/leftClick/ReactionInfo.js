@@ -1,5 +1,6 @@
 import CloseIcon from '@material-ui/icons/Close';
-import React from "react";
+import React, {useRef, useEffect, useState} from "react";
+import * as d3 from "d3"
 import "./ReactionInfo.css"
 import {useDispatch, useSelector} from "react-redux";
 import Modal from "@material-ui/core/Modal";

@@ -7,10 +7,9 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import DeleteIcon from "@material-ui/icons/Delete";
 import {requestGenerator} from "../../request/RequestGenerator";
 import {handleDrawGraph} from "./EcReactions";
-import {endpoint_getReactionsByKoList, endpoint_getReactionUrl} from "../../../App Configurations/RequestURLCollection";
 
-const reactionUrl = endpoint_getReactionUrl
-const koUrl = endpoint_getReactionsByKoList
+const reactionUrl = "http://127.0.0.1/keggcreator/getreaction"
+const koUrl = "http://127.0.0.1/keggcreator/getreactionlistbykolist"
 const useStyles = makeStyles((theme) => ({
     modal: {
         display: 'flex',
@@ -31,7 +30,6 @@ const KoReactions = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const graphState = useSelector(state => state.graph)
-    const generalState = useSelector(state => state.general)
 
     const handleAutoChange = (e) => {
         const {value} = e.target
@@ -47,6 +45,7 @@ const KoReactions = () => {
         }
         requestGenerator("POST", koUrl, {koNumbers: koString.trim()}, "", "")
             .then(response => {
+                console.log(response.data)
                 dispatch({type: "SETKOTOREACTIONOBJECT", payload: response.data})
                 dispatch({type: "SWITCHLOADING"})
                 return null;
@@ -68,7 +67,7 @@ const KoReactions = () => {
         requestGenerator("POST", reactionUrl, {reactionId: reactionId}, "", "")
             .then(response => {
                 const reaction = response.data;
-                handleDrawGraph(reaction, state, dispatch, graphState, generalState, generalState.keggReactions);
+                handleDrawGraph(reaction, state, dispatch, graphState);
                 handleAddReaction(reaction);
                 return null;
             })

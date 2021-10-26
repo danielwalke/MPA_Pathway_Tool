@@ -1,7 +1,6 @@
 import {getNodePosition} from "./NodePosition";
 import clonedeep from "lodash/cloneDeep"
 import {getTaxaList} from "../graph/double click node/StuctureModalBody";
-import {getNLastChars} from "../usefulFunctions/Strings";
 
 export const getReactions = (graphState) =>{
     const reactionObjects = {}
@@ -78,23 +77,8 @@ export const addOutput = (output, reaction, compound,reactionCounter, compoundTy
     output = output.concat(reaction.abbreviation.replaceAll(";", "\t"), ";") //reaction abbreviation
     output = output.concat(compound.abbreviation.replaceAll(";", "\t"), ";") //compound abbreviation
     const keyCompound = compound.opacity === 1
-    output = output.concat(keyCompound.toString() + ";") //key compound
-
-    return output;
-}
-
-export const addLocationInformation = (output, generalState, reaction, substrate) => {
-    const compoundLocation = generalState.cystolInformation.filter(compound =>{
-        return  compound.compoundId && compound.compoundId === getNLastChars(substrate.name, 6)
-    })
-    const exchangeReaction = generalState.exchangeReaction.filter(r => {
-        return r.reactionId && r.reactionId === getNLastChars(reaction.reactionName, 6)
-    })
-    console.log(exchangeReaction)
-    const reactionExchange = `${exchangeReaction.length>0? exchangeReaction[0].exchangeInfo? "true": "false" : "-"};`
-    console.log(reactionExchange)
-    output = output.concat(reactionExchange)
-    output = output.concat(`${compoundLocation.length>0? compoundLocation[0].compartment : "-"}`)
+    output = output.concat(keyCompound.toString()) //key compound
     output = output.concat("\n") //next compound
     return output;
 }
+
