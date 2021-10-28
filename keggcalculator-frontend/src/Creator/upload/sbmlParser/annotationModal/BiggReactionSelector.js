@@ -9,9 +9,31 @@ const BiggReactionSelector = (props) => {
 
     const state = useSelector(state => state)
 
-    const [options, setOptions] = useState(['Please enter a number or letter'])
+    const [options, setOptions] = useState([])
 
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        // set list of possible bigg ids for selected kegg compounds
+        let biggIdOptions = []
+        state.general.reactionAnnotationTableOptions.forEach(reaction => {
+            for (const biggReaction of reaction.biggReactionIds) {
+                // add bigg reaction id to options only if it isn't present already
+                if (!props.listOfReactions[props.index].biggReaction.includes(biggReaction)) {
+                    biggIdOptions.push("  |  " + biggReaction)
+                }
+            }
+        })
+        setOptions(biggIdOptions)
+
+        if (options.length === 0) {
+            if (props.listOfReactions[props.index].biggReaction) {
+                handleTyping(props.listOfReactions[props.index].biggReaction)
+            } else {
+                setOptions(['Please enter a number or letter'])
+            }
+        }
+    }, [])
 
     const handleTyping = (string) => {
         requestGenerator("GET", endpoint_getBiggReactionNames, {biggName: string}, "", "").then( //endpoint: sends max. 100 taxonomic names
@@ -23,20 +45,6 @@ const BiggReactionSelector = (props) => {
                 }
             })
     }
-
-    useEffect(() => {
-        // set list of possible bigg ids
-        let biggIdOptions = []
-        state.general.reactionAnnotationTableOptions.forEach(reaction => {
-            for (const biggReaction of reaction.biggReactionIds) {
-                // add bigg reaction id to options only if it isn't present already
-                if (!props.listOfReactions[props.index].biggReaction.includes(biggReaction)) {
-                    biggIdOptions.push("  |  " + biggReaction)
-                }
-            }
-        })
-        setOptions(biggIdOptions)
-    }, [state.general.reactionAnnotationTableOptions])
 
     return (
         <div>

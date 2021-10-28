@@ -17,6 +17,7 @@ import {
 } from "@material-ui/core";
 
 import ReactionDetailsContainer from "./ReactionDetailsContainer";
+import {annotationIndicator} from "./AnnotationIndicator";
 
 const ReactionTableRow = (props) => {
 
@@ -35,32 +36,16 @@ const ReactionTableRow = (props) => {
                     {props.row.sbmlName}
                 </TableCell>
                 <TableCell>
-                    <span
-                        className={"indicator-circle"}
-                        style={props.row.keggId ? {backgroundColor: "lightGreen"} : {background: "#FF696D"}}>
-                            {props.row.keggId ? 'Yes' : 'No'}
-                    </span>
+                    {annotationIndicator(props.row.keggId)}
                 </TableCell>
                 <TableCell>
-                    <span
-                        className={"indicator-circle"}
-                        style={props.row.biggId ? {backgroundColor: "lightGreen"} : {background: "#FF696D"}}>
-                            {props.row.biggId ? 'Yes' : 'No'}
-                    </span>
+                    {annotationIndicator(props.row.biggReaction)}
                 </TableCell>
                 <TableCell>
-                    <span
-                        className={"indicator-circle"}
-                        style={props.row.koNumbers.length > 0 ? {backgroundColor: "lightGreen"} : {background: "#FF696D"}}>
-                            {props.row.koNumbers.length > 0 ? 'Yes' : 'No'}
-                    </span>
+                    {annotationIndicator(props.row.koNumbers)}
                 </TableCell>
                 <TableCell>
-                    <span
-                        className={"indicator-circle"}
-                        style={props.row.ecNumbers.length > 0 ? {backgroundColor: "lightGreen"} : {background: "#FF696D"}}>
-                            {props.row.ecNumbers.length > 0 ? 'Yes' : 'No'}
-                    </span>
+                    {annotationIndicator(props.row.ecNumbers)}
                 </TableCell>
             </TableRow>
         </React.Fragment>

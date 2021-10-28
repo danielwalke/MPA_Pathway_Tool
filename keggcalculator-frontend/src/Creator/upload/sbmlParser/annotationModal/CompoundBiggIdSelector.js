@@ -6,8 +6,17 @@ import {requestGenerator} from "../../../request/RequestGenerator";
 import {endpoint_getFilteredBiggCompoundList} from "../../../../App Configurations/RequestURLCollection";
 
 const CompoundBiggIdSelector = (props) => {
-    const [options, setOptions] = useState(['Please enter a number or letter'])
+    const [options, setOptions] = useState([])
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (props.listOfSpecies[props.index].biggId) {
+            handleTyping(props.listOfSpecies[props.index].biggId)
+        } else {
+            setOptions(['Please enter a number or letter'])
+        }
+
+    },[])
 
     const handleTyping = (string) => {
         requestGenerator("GET", endpoint_getFilteredBiggCompoundList, {compoundString: string}, "", "").then( //endpoint: sends max. 100 taxonomic names

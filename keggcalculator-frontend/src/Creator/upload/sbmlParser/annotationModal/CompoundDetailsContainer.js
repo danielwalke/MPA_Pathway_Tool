@@ -19,12 +19,12 @@ const CompoundDetailsContainer = (props) => {
         /**
          * writes cloned initial state into current state, for undoing changes
          */
-        const newListOfSpecies = props.listOfSpecies
+        const newListOfSpecies = [...props.listOfSpecies]
         newListOfSpecies[props.index].sbmlName = defaultCompound.sbmlName
         newListOfSpecies[props.index].keggId = defaultCompound.keggId
         newListOfSpecies[props.index].biggId = defaultCompound.biggId
 
-        dispatch({type: "SETLISTOFREACTIONS", payload: newListOfSpecies})
+        dispatch({type: "SETLISTOFSPECIES", payload: newListOfSpecies})
     }
 
     return (
@@ -38,7 +38,7 @@ const CompoundDetailsContainer = (props) => {
             <div className={"button-bar button-center"}>
                 <button className={"download-button circle-icon"}
                         onClick={() => handleRestore(props.defaultCompound)}>
-                    Restore Reaction Settings <RestoreIcon/>
+                    Restore Compound Settings <RestoreIcon/>
                 </button>
             </div>
         </div>

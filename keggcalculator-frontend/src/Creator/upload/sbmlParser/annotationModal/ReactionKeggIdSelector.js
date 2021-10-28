@@ -8,9 +8,24 @@ import {endpoint_getKeggReactionNames} from "../../../../App Configurations/Requ
 const ReactionKeggIdSelector = (props) => {
     const state = useSelector(state => state)
 
-    const [options, setOptions] = useState(['Please enter a number or letter'])
+    const [options, setOptions] = useState([])
 
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        // get list of possible kegg ids for selected compounds
+        setOptions(state.general.reactionAnnotationTableOptions.map(reaction => {
+            return reaction.reactionName + " " + reaction.reactionId
+        }))
+
+        if (options.length === 0) {
+            if (props.listOfReactions[props.index].keggId) {
+                handleTyping(props.listOfReactions[props.index].keggId)
+            } else {
+                setOptions(['Please enter a number or letter'])
+            }
+        }
+    },[])
 
     const handleTyping = (string) => {
         requestGenerator("GET", endpoint_getKeggReactionNames, {reactionString: string}, "", "").then( //endpoint: sends max. 100 taxonomic names
@@ -22,13 +37,6 @@ const ReactionKeggIdSelector = (props) => {
                 }
             })
     }
-
-    useEffect(() => {
-        // get list of possible kegg ids
-        setOptions(state.general.reactionAnnotationTableOptions.map(reaction => {
-            return reaction.reactionName + " " + reaction.reactionId
-        }))
-    },[state.general.reactionAnnotationTableOptions])
 
     return (
         <div>

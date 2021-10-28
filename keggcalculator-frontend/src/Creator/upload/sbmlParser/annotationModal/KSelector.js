@@ -10,7 +10,7 @@ const KSelector = (props) => {
     const state = useSelector(state => state)
     const dispatch = useDispatch()
 
-    const [options, setOptions] = useState(['Please enter a number or letter'])
+    const [options, setOptions] = useState([])
 
     useEffect(() => {
         let kNumberOptions = []
@@ -22,7 +22,12 @@ const KSelector = (props) => {
                 }
             }
         })
-        setOptions(kNumberOptions)
+
+        if (kNumberOptions.length === 0) {
+            setOptions(['Please enter a number or letter'])
+        } else {
+            setOptions(kNumberOptions)
+        }
 
     }, [state.general.reactionAnnotationTableOptions, props.listOfReactions[props.index].koNumbers])
 

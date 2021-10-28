@@ -61,7 +61,7 @@ const ReactionDetailsContainer = (props) => {
         /**
          * writes cloned initial state into current state, for undoing changes
          */
-        const newListOfReactions = listOfReactions
+        const newListOfReactions = [...listOfReactions]
         newListOfReactions[props.index].biggReaction = defaultReaction.biggReaction
         newListOfReactions[props.index].keggId = defaultReaction.keggId
         newListOfReactions[props.index].sbmlId = defaultReaction.sbmlId

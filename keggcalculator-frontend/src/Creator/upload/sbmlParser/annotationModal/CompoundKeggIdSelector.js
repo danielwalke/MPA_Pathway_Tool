@@ -11,6 +11,14 @@ const CompoundKeggIdSelector = (props) => {
     const [options, setOptions] = useState([])
     const dispatch = useDispatch()
 
+    useEffect(() => {
+        if (props.listOfSpecies[props.index].keggId) {
+            handleTyping(props.listOfSpecies[props.index].keggId)
+        } else {
+            setOptions(['Please enter a number or letter'])
+        }
+    },[])
+
     const handleTyping = (string) => {
         requestGenerator("GET", endpoint_getFilteredCompoundList, {compoundString: string}, "", "").then( //endpoint: sends max. 100 taxonomic names
             resp => {
@@ -38,6 +46,7 @@ const CompoundKeggIdSelector = (props) => {
                     const newListOfSpecies = props.listOfSpecies
                     value ? newListOfSpecies[props.index].keggId = value.substring(0, 6) : newListOfSpecies[props.index].keggId = ""
                     dispatch({type: "SETLISTOFSPECIES", payload: newListOfSpecies})
+                    console.log(value)
                 }}
                 renderInput={params => (
                     <TextField
