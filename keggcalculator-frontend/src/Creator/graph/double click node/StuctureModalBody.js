@@ -1,5 +1,5 @@
 import {handleSubmitDirection} from "./DirectionsChanger";
-import React from "react";
+import React, {useState} from "react";
 import TextField from "@material-ui/core/TextField";
 import DeleteIcon from "@material-ui/icons/Delete";
 import "./StructureModalBody.css"
@@ -7,6 +7,11 @@ import TaxonomicRank from "./TaxonomicRank";
 import ReversibilityChange from "./ReversibilityChange";
 import TaxonomyNcbi from "../../taxonomy/TaxonomyNcbi";
 import KeyCompoundChanger from "./KeyCompoundChanger";
+import {NOT_KEY_COMPOUND_OPACITY} from "../Constants";
+import "../click node/leftClick/DropDownMenu.css"
+import DropApp from "./DropApp";
+import DropCystol from "./DropCystol";
+import ObjectiveCo from "./ObjectiveCo";
 
 export const getTaxaList = (reactionTaxa) => {
     const taxaList = []
@@ -17,6 +22,8 @@ export const getTaxaList = (reactionTaxa) => {
     }
     return taxaList
 }
+
+
 
 export const getStructureBody = (state, dispatch, generalState, isNcbiTaxonomy, setIsNcbiTaxonomy) => {
     const compound = typeof state.data.nodes.filter(node => node.id === state.doubleClickNode)[0] === "undefined" ? {} : state.data.nodes.filter(node => node.id === state.doubleClickNode)[0]
@@ -44,24 +51,34 @@ export const getStructureBody = (state, dispatch, generalState, isNcbiTaxonomy, 
         e.preventDefault()
         const otherNodes = state.data.nodes.filter(node => node.id !== compound.id)
         const compoundIsTarget = state.data.links.filter(link => link.target === compound.id)
-        compoundIsTarget.map(link => link.opacity = 0.4)
+        compoundIsTarget.map(link => link.opacity = NOT_KEY_COMPOUND_OPACITY)
         const compoundIsSource = state.data.links.filter(link => link.source === compound.id)
-        compoundIsSource.map(link => link.opacity = 0.4)
+        compoundIsSource.map(link => link.opacity = NOT_KEY_COMPOUND_OPACITY)
         const otherLinks = state.data.links.filter(link => (link.source !== compound.id && link.target !== compound.id))
         compoundIsTarget.map(link => otherLinks.push(link))
         compoundIsSource.map(link => otherLinks.push(link))
-        compound.opacity = 0.4
+        compound.opacity = NOT_KEY_COMPOUND_OPACITY
         otherNodes.push(compound)
         const data = {nodes: otherNodes, links: otherLinks}
         dispatch({type: "SETDATA", payload: data})
     }
 
-    const body = (<div className={"structureBodyContainer"} style={{backgroundColor: "white", width:"75vw",overflow:"auto", maxHeight:"80vh",height:"80vh"}}>
+
+    //
+
+
+    const body = (<div className={"structureBodyContainer"} style={{backgroundColor: "white", width:"75vw",overflow:"auto", maxHeight:"80vh"}}>
         <div className={"nodeLabel"}><h3 style={{padding: "2px"}}>ID: {compound.id}</h3></div>
+        <br/>
+        <div>
+            <DropCystol node = {compound.id} />
+        </div>
+
         <div className={"keyCompoundChoice"}>
             <KeyCompoundChanger compound={compound} handleIsNotKeyCompound={handleIsNotKeyCompound}
                                 handleIsKeyCompound={handleIsKeyCompound}/>
         </div>
+
         <div className={"details"}>
             {nodeId.match(/[C]/) &&
             <img style={{maxWidth:"75vw"}} src={`https://www.genome.jp/Fig/compound/${nodeId}.gif`} alt={state.doubleClickNode}/>}
@@ -104,6 +121,22 @@ export const getStructureBody = (state, dispatch, generalState, isNcbiTaxonomy, 
                                 onClick={() => dispatch({type: "ADDTAXONOMY", payload: reactionName})}>Add taxonomy
                         </button>
                     </div>
+                    <div>
+                        <DropApp nodeId = {compound.id}/>
+                    </div>
+                    <div>
+                        <ObjectiveCo nodeId = {compound.id}/>
+
+                    </div>
+
+
+
+
+
+
+
+
+
                     <div><p style={{fontWeight:"bold"}}>chosen taxonomic constraints:</p></div>
                     <div>
                         <ul style={{listStyleType: "none"}}>

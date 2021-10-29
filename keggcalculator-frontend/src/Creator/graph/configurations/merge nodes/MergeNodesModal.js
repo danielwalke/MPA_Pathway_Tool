@@ -2,7 +2,6 @@ import Modal from "@material-ui/core/Modal";
 import React from "react";
 import {useStyles} from "../../../ModalStyles/ModalStyles";
 import {useDispatch, useSelector} from "react-redux";
-import Field from "../../../specReaction/substrates and products/Field";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -93,6 +92,7 @@ const mergeNodes = (graphState, dispatch) => {
     mergeNodes.push({id: graphState.mergeNodesName, opacity: 1, symbolType: symbolType, x:0, y:0, color: color})
     const data = {nodes: mergeNodes, links: mergeLinks}
     dispatch({type:"SETDATA", payload: data})
+    dispatch({type:"EMPTY_MERGE_NODES"})
 }
 
 export default MergeNodesModal

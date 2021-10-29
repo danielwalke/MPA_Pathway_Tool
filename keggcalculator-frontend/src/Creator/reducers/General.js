@@ -1,6 +1,4 @@
 import clonedeep from "lodash/cloneDeep";
-import {taxonomicRanks} from "../main/Main";
-import {clone} from "../graph/double click node/DirectionsChanger";
 
 const defaultState = {
     compoundList: [],//mount?
@@ -43,7 +41,8 @@ const defaultState = {
                 ecNumbers: ecNumbers,
                 koNumbers:koNumbers,
                 substrates: substrates,
-                products: products
+                products: products,
+
             }]
     */
     isMissingAnnotations: false, //boolean, which checks whether there are unannotated compounds in the given sbml file
@@ -53,7 +52,18 @@ const defaultState = {
     isShowingReactionTable: false, //shows final table with all reactions in the sbml file
     showMultipleKeggReactionModal: false, //show modal for chosing multiple reactions from KEGG
     addLinkModal: false, //modal for adding new links useful for signaling pathway
-    listOfReactionGlyphs: [] //positons of nodes in sbml file
+    listOfReactionGlyphs: [], //positons of nodes in sbml file
+    taxonomicNames:[], //taxonomic names received from server after submitting taxonomic rank
+    fbaSolution: [], //fluxRate received from server after submitting reaction id
+    exchangeReaction: [],
+    cystolInformation: [],
+    objectiveCoeffecient : [],
+    new_data_gen : {
+        nodes: [],
+        links: [],
+    },
+    new_click_node: "",
+    showfbastructure : false,
 }
 
 export const generalReducer = (state = defaultState, action) => {
@@ -187,6 +197,25 @@ export const generalReducer = (state = defaultState, action) => {
             return {...state, listOfReactionGlyphs: payload}
         case "ADD_KEGG_REACTION":
             return {...state, keggReactions: [...state.keggReactions, payload]}
+        case "SET_TAXONOMIC_NAMES":
+            return {...state, taxonomicNames: payload}
+        case "SETFBAANDFLUX":
+            return {...state, fbaSolution: payload}
+        case "SETEXCHANGEREACTION":
+            payload.map(reaction => state.exchangeReaction.push(reaction))
+            return {...state, exchangeReaction: state.exchangeReaction}
+        case "SETCYSTOLINFORMATION":
+            payload.map(reaction => state.cystolInformation.push(reaction))
+            return {...state, cystolInformation: state.cystolInformation}
+        case "SETOBJECTIVECOEFFECIENT":
+            payload.map(reaction => state.objectiveCoeffecient.push(reaction))
+            return {...state, objectiveCoeffecient: state.objectiveCoeffecient}
+        case "SETNEWDATA1":
+            return {...state, new_data_gen: payload}
+        case "SETCLICKNODE_FBA":
+            return {...state, new_click_node: payload}
+        case "SWITCHSHOWFBASTRUCTURE":
+            return {...state, showfbastructure: !state.showfbastructure}
         default:
             return state;
     }

@@ -9,15 +9,6 @@ const NodeCoordinates = () => {
     const graphState = useSelector(state => state.graph)
     const classes = useStyles()
 
-
-    const handleDelete = (node) => {
-        const newDataNodes = graphState.data.nodes.filter(graphNode => graphNode.id !== node.id)
-        const sourceLinks = graphState.data.links.filter(links => links.source !== node.id)
-        const newLinks = sourceLinks.filter(links => links.target !== node.id)
-        const newData = {nodes: newDataNodes, links: newLinks}
-        dispatch({type: "SETDATA", payload: newData})
-    }
-
     const handleCoordinateChange = async(node) => {
         await dispatch({type: "SETDATA", payload: {nodes:[], links:graphState.data.links}})
         graphState.data.nodes.push({

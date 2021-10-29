@@ -5,7 +5,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import "./StructureModalBody.css"
 import TaxonomicRank from "./TaxonomicRank";
 import ReversibilityChange from "./ReversibilityChange";
-import TaxonomyNcbi from "../../taxonomy/TaxonomyNcbi";
+import TaxonomyNcbi from "../../../../Creator/taxonomy/TaxonomyNcbi";
 import KeyCompoundChanger from "./KeyCompoundChanger";
 import {NOT_KEY_COMPOUND_OPACITY} from "../Constants";
 
@@ -20,11 +20,11 @@ export const getTaxaList = (reactionTaxa) => {
 }
 
 export const getStructureBody = (state, dispatch, generalState, isNcbiTaxonomy, setIsNcbiTaxonomy) => {
-    const compound = typeof state.data.nodes.filter(node => node.id === state.doubleClickNode)[0] === "undefined" ? {} : state.data.nodes.filter(node => node.id === state.doubleClickNode)[0]
-    const nodeId = state.doubleClickNode.substring(state.doubleClickNode.length - 6, state.doubleClickNode.length)
+    const compound = typeof generalState.new_data_gen.nodes.filter(node => node.id === generalState.new_click_node)[0] === "undefined" ? {} : generalState.new_data_gen.nodes.filter(node => node.id === generalState.new_click_node)[0]
+    const nodeId = generalState.new_click_node
     const reaction = nodeId.match(/[R,U]/) ? generalState.reactionsInSelectArray.filter(r => r.reactionName === state.doubleClickNode)[0] : {}
     const reactionName = nodeId.match(/[R,U]/) ? reaction.reactionName : {}
-
+    console.log(nodeId);
     const handleIsKeyCompound = (e) => {
         e.preventDefault()
         const otherNodes = state.data.nodes.filter(node => node.id !== compound.id)

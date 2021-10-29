@@ -4,6 +4,18 @@
     justify-content: center;
 }
 
+.main{
+    width: 98vw;
+    display: grid;
+    height: 65vh;
+    grid-template-columns: 1% 99%;
+    grid-template-rows: 95% 5%;
+    grid-template-areas: "interface graph"
+"heatmap heatmap";
+}
+
+
+
 /*.circle-raw, .circle-product {*/
 /*    width: 150px;*/
 /*    height: 150px;*/

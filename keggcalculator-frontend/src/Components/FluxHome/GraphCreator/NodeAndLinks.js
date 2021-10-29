@@ -32,10 +32,10 @@ const NodeAndLinks = () => {
 
 
     return(
-        <div>
-            <Button onClick={handleClick}>
+        <div onClick={handleClick}>
+            {/*<Button onClick={handleClick}>*/}
                 CREATE NODES
-            </Button>
+            {/*</Button>*/}
         </div>
     )
 

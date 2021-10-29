@@ -18,7 +18,8 @@ const defaultState = {
     ecNumbers: [],
     showReactionDetails: false,
     isSpecificCompoundInputSubstrate: false,
-    isSpecificCompoundInputProduct: false
+    isSpecificCompoundInputProduct: false,
+    specfbaSolution: [],
 }
 
 export const specificReactionReducer = (state= defaultState, action) => {
@@ -94,7 +95,8 @@ export const specificReactionReducer = (state= defaultState, action) => {
                 specKoNumbers: [],
                 ecNumbers: [],
                 specTaxonomy: "",
-                specTaxonomies: []
+                specTaxonomies: [],
+                specfbaSolution: []
             }
         case "SWITCHSHOWREACTIONDETAILS":
             return {...state, showReactionDetails: !state.showReactionDetails}
@@ -102,6 +104,7 @@ export const specificReactionReducer = (state= defaultState, action) => {
             return {...state, isSpecificCompoundInputSubstrate: !state.isSpecificCompoundInputSubstrate}
         case "SWITCHISSPECCOMPOUNDINPUTPRODUCT":
             return {...state, isSpecificCompoundInputProduct: !state.isSpecificCompoundInputProduct}
+
         default:
             return state;
     }

@@ -4,8 +4,6 @@ import TextField from "@material-ui/core/TextField";
 import grey from "@material-ui/core/colors/grey";
 import {inject, observer} from "mobx-react";
 import "./Autocomplete_forResponse.css"
-import {requestGenerator} from "../../../Request Generator/RequestGenerator";
-import {endpoint_getReactionAndProduct} from "../../../App Configurations/RequestURLCollection";
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";

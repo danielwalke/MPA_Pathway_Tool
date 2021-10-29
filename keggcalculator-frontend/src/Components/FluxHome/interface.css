@@ -15,3 +15,7 @@
 .reactions{
     display: flex;
 }
+
+.interface{
+    grid-area: interface;
+}

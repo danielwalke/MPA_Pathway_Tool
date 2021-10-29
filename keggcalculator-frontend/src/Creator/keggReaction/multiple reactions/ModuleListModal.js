@@ -7,6 +7,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import {isRequestValid} from "../../request/RequestValidation";
 import {requestGenerator} from "../../request/RequestGenerator";
 import {handleGraphUpload, handleReactionListUpload} from "../../upload/csv upload/module file/ModuleUploadFunctions";
+import {endpoint_getModule} from "../../../App Configurations/RequestURLCollection";
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(2, 4, 3),
     }
 }));
-const moduleUrl = "http://127.0.0.1/keggcreator/module"
+const moduleUrl = endpoint_getModule
 const ModuleListModal = () => {
     const state = useSelector(state => state.general)
     const graphState = useSelector(state => state.graph)

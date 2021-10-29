@@ -4,7 +4,6 @@ import UploadIcon from "../../../icons/uploadIconWhite.svg";
 import "../../main/Upload.css"
 import {getMax, getMin} from "../../../usefulFunctions/Math";
 import {taxonomicRanks} from "../../../main/Main";
-import {saveAs} from "file-saver";
 const MpaInput = () => {
     const dispatch = useDispatch()
     const state = {
@@ -15,9 +14,7 @@ const MpaInput = () => {
         mpaProteins: useSelector(state => state.mpaProteins),
     }
 
-    const getFile = (files) => files[0]
     const getFileSize = file => file.size
-    const needChunks =  fileSize => fileSize>500000000
     const getChunks = (file, start, chunks) => {
         const chunk = file.slice(start,start+500000000)
         chunks.push(chunk)
@@ -51,6 +48,7 @@ const MpaInput = () => {
         // }
 
         try {
+            dispatch({type:"SETLOADING", payload:true})
             event.preventDefault()
             let files = event.target.files;
             let reader = new FileReader()
@@ -113,7 +111,6 @@ const MpaInput = () => {
                             taxa: taxa,
                             quants: quantArray
                         }
-                        console.log(protein)
                         proteinSet.add(protein)
                         return null
                     })
@@ -137,9 +134,7 @@ const MpaInput = () => {
             window.alert("Your file format is wrong.")
             console.error(e)
         }
-
-
-        dispatch({type: "SWITCHLOADING"})
+        dispatch({type:"SETLOADING", payload:false})
     }
 
     return (
