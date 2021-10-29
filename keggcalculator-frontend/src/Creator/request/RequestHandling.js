@@ -17,6 +17,7 @@ export const handleSetCompoundList = (dispatch) => {
             {compMap, compoundId2Name}
         )
     }).then(({compMap}) => {
+        console.log(compoundId2Name)
         dispatch({type: "SETCOMPMAP", payload: compMap})
         dispatch({type: "SETCOMPOUNDID2NAME", payload: compoundId2Name})
         dispatch({type: "SETOPTIONS", payload: getCompName(compMap)})

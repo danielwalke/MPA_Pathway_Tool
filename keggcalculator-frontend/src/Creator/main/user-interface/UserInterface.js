@@ -13,6 +13,16 @@ import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
 import "../../download/DownloadGraph.css"
 import Tooltip from '@material-ui/core/Tooltip';
+import Loading from "../../loading/Loading";
+import ModuleListModal from "../../keggReaction/multiple reactions/ModuleListModal";
+import KeggReaction from "../../keggReaction/main/KeggReaction";
+import SpecUserReaction from "../../specReaction/main/SpecUserReaction";
+import NextReactionModal from "../../graph/click node/leftClick/NextReactionModal";
+import UserInfo from "../../graph/help/UserInfo";
+import StructureModal from "../../graph/double click node/StructureModal";
+import DeleteModal from "../../graph/click node/delete_rightClick/DeleteModal";
+import ReactionDetails from "../../specReaction/reaction/ReactionDetails";
+import ReactionInfo from "../../graph/click node/leftClick/ReactionInfo";
 
 export const ToolTipBig = withStyles({
     tooltip: {
@@ -91,7 +101,17 @@ const UserInterface = () => {
 
     const classes = useStyles()
     return (
-        <div>
+        <div className={"interface"}>
+            <Loading className={"loadingContainer"}/>
+            <ModuleListModal/>
+            {graphState.showInfo ? <ReactionInfo/> : null}
+            <KeggReaction/>
+            <SpecUserReaction/>
+            <NextReactionModal/>
+            <UserInfo/>
+            <StructureModal/>
+            <DeleteModal/>
+            <ReactionDetails/>
             <Toolbar>
                 <ToolTipBig title={"Click to open the menu"} placement={"right"}>
                     <IconButton
