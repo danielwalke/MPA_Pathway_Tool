@@ -13,18 +13,20 @@ import {
     TableCell,
     TableContainer,
     TableHead,
-    TableRow
+    TableRow, TableSortLabel
 } from "@material-ui/core";
 
 import ReactionDetailsContainer from "./ReactionDetailsContainer";
 import {annotationIndicator} from "./AnnotationIndicator";
+import SearchField from "./SearchField";
+import {filterArray, getComparator, stableSort} from "./Sorting";
 
 const ReactionTableRow = (props) => {
 
     return (
         <React.Fragment>
             <TableRow onClick={() => {
-                props.handleRowClick(props.index)
+                props.handleRowClick(props.index, props.row.index)
             }}
                       sx={{'& > *': {borderBottom: 'unset'}}}
                       hover
@@ -60,15 +62,41 @@ const ReactionAnnotation = () => {
         const [selectedRow, setSelectedRow] = useState(0)
         const [previousListOfReactions, setPreviousListOfReactions] = useState([])
 
+        const [tableArray, setTableArray] = useState([])
+        const [listOfReactionsIndex, setListOfReactionsIndex] = useState(0)
+        const [order, setOrder] = useState('asc')
+        const [orderBy, setOrderBy] = useState('sbmlId')
+        const [filterBy, setFilterBy] = useState('')
+
+        const columns = [
+            {id: 'sbmlId', label: 'ID', minWidth: 10},
+            {id: 'sbmlName', label: 'name', minWidth: 10},
+            {id: 'keggId', label: 'KEGG Reaction', minWidth: 10},
+            {id: 'biggId', label: 'BIGG Reaction', minWidth: 10},
+            {id: 'koNumbers', label: 'K Number', minWidth: 10},
+            {id: 'ecNumbers', label: 'EC', minWidth: 10},
+        ]
+
         useEffect(() => {
             setPreviousListOfReactions(clonedeep(state.general.listOfReactions))
-            // setListOfReactions(state.general.listOfReactions)
         }, [])
 
         useEffect(() => {
             // updates local store with current list of reactions
             setListOfReactions(state.general.listOfReactions)
         }, [state.general.listOfReactions])
+
+        useEffect(() => {
+            const filteredArray = filterArray(listOfReactions, filterBy)
+            const sortedArray = stableSort(filteredArray, getComparator(order, orderBy))
+            setTableArray(sortedArray)
+
+        }, [listOfReactions, order, orderBy, filterBy])
+
+        useEffect(() => {
+            tableArray.length > 0 && setListOfReactionsIndex(tableArray[0].index)
+            setSelectedRow(0)
+        }, [tableArray])
 
         const handleFinish = () => {
             //set data for the Graph
@@ -85,59 +113,76 @@ const ReactionAnnotation = () => {
             dispatch({type: "SHOWCOMPOUNDANNOTATION", payload: true})
         }
 
-        const columns = [
-            {id: 'reactionID', label: 'ID', minWidth: 10},
-            {id: 'reactionName', label: 'name', minWidth: 10},
-            {id: 'KeggId', label: 'KEGG Reaction', minWidth: 10},
-            {id: 'BiggId', label: 'BIGG Reaction', minWidth: 10},
-            {id: 'K', label: 'K Number', minWidth: 10},
-            {id: 'EC', label: 'EC', minWidth: 10},
-        ]
-
-        const handleRowClick = (index) => {
-            setSelectedRow(index)
+        const handleRowClick = (tableIndex, reactionIndex) => {
+            setSelectedRow(tableIndex)
+            setListOfReactionsIndex(reactionIndex)
         }
+
+        const handleRequestSort = (event, columnId) => {
+            const isAsc = orderBy === columnId && order === 'asc';
+            setOrder(isAsc ? 'desc' : 'asc');
+            setOrderBy(columnId);
+        };
+
+        const createSortHandler = (columnId) => (event) => {
+            handleRequestSort(event, columnId);
+        };
 
         return (
             <div className={"annotation-modal-content"}>
                 <h5 className={"modal-header"}>Reaction Annotations</h5>
                 <div className={"annotation-body"}>
                     <div className={"annotation-frame frame-margin-right"}>
-                        <TableContainer className={"inner-container"}>
-                            <Table size="small" stickyHeader aria-label="reaction table">
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell align="left" colSpan={2}>
-                                            Details
-                                        </TableCell>
-                                        <TableCell align="left" colSpan={4}>
-                                            Annotations
-                                        </TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        {columns.map((column) => (
-                                            <TableCell key={column.id}> {column.label} </TableCell>
+                        <div className={"inner-container"}>
+                            <div className={"search-field-container"}>
+                                <SearchField setFilterBy={setFilterBy}/>
+                            </div>
+                            {tableArray && <TableContainer className={"table-container"}>
+                                <Table size="small" stickyHeader aria-label="reaction table">
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell align="left" colSpan={2}>
+                                                Details
+                                            </TableCell>
+                                            <TableCell align="left" colSpan={4}>
+                                                Annotations
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            {columns.map((column) => (
+                                                <TableCell key={column.id}
+                                                           sortDirection={orderBy === column.id ? order : false}>
+                                                    <TableSortLabel
+                                                        active={orderBy === column.id}
+                                                        direction={orderBy === column.id ? order : 'asc'}
+                                                        onClick={createSortHandler(column.id)}
+                                                    >
+                                                        {column.label}
+                                                    </TableSortLabel>
+                                                </TableCell>
+                                            ))}
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {tableArray.map((row, tableIndex) => (
+                                            <ReactionTableRow key={tableIndex}
+                                                              row={row}
+                                                              index={tableIndex}
+                                                              handleRowClick={handleRowClick}
+                                                              selectedRow={selectedRow}/>
                                         ))}
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {listOfReactions.map((row, index) => (
-                                        <ReactionTableRow key={index}
-                                                          row={row}
-                                                          index={index}
-                                                          handleRowClick={handleRowClick}
-                                                          selectedRow={selectedRow}/>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>}
+                        </div>
                     </div>
                     <div className={"annotation-frame frame-margin-left"}>
-                        <div className={"inner-container"}>
+                        <div className={"inner-container table-container"}>
                             {listOfReactions.length > 0 &&
-                            <ReactionDetailsContainer index={selectedRow}
-                                                      rowInfo={listOfReactions[selectedRow]}
-                                                      defaultReaction={previousListOfReactions[selectedRow]}/>}
+                            <ReactionDetailsContainer
+                                index={listOfReactionsIndex}
+                                rowInfo={listOfReactions[listOfReactionsIndex]}
+                                defaultReaction={previousListOfReactions[listOfReactionsIndex]}/>}
                         </div>
                     </div>
                 </div>

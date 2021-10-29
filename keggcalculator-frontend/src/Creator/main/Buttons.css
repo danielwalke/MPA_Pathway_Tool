@@ -28,3 +28,13 @@
 .submit:hover {
     background-color: #D0D0D0;
 }
+
+.button-no-styling {
+    border: none;
+    box-shadow: none;
+    background: none;
+}
+
+.button-no-styling:hover {
+    cursor: pointer;
+}

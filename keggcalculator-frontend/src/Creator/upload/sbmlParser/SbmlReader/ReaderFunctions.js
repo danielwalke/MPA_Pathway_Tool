@@ -68,7 +68,8 @@ const readSpecies = (dispatch, sbml, state) => {
                 sbmlName: sbmlName,
                 keggId: keggId,
                 // keggName: keggName,
-                biggId: biggMetaboliteSplitArray[biggMetaboliteSplitArray.length - 1]
+                biggId: biggMetaboliteSplitArray[biggMetaboliteSplitArray.length - 1],
+                index: index,
             }
         )
     })
@@ -119,7 +120,8 @@ const readReactions = (dispatch, sbml, globalTaxa) => {
             products: products,
             reversible: reversible === "reversible",
             taxonomy: getTaxonomyFromSbml(annotations, globalTaxa),
-            biggReaction: biggReactionSplitArray[biggReactionSplitArray.length-1]
+            biggReaction: biggReactionSplitArray[biggReactionSplitArray.length-1],
+            index: index
         };
 
 

@@ -20,9 +20,9 @@ const CompoundDetailsContainer = (props) => {
          * writes cloned initial state into current state, for undoing changes
          */
         const newListOfSpecies = [...props.listOfSpecies]
-        newListOfSpecies[props.index].sbmlName = defaultCompound.sbmlName
-        newListOfSpecies[props.index].keggId = defaultCompound.keggId
-        newListOfSpecies[props.index].biggId = defaultCompound.biggId
+        newListOfSpecies[props.listOfSpeciesIndex].sbmlName = defaultCompound.sbmlName
+        newListOfSpecies[props.listOfSpeciesIndex].keggId = defaultCompound.keggId
+        newListOfSpecies[props.listOfSpeciesIndex].biggId = defaultCompound.biggId
 
         dispatch({type: "SETLISTOFSPECIES", payload: newListOfSpecies})
     }
@@ -30,11 +30,11 @@ const CompoundDetailsContainer = (props) => {
     return (
         <div className={"detail-view"}>
             <CompoundSbmlNameChanger listOfSpecies={props.listOfSpecies}
-                                     index={props.index}/>
+                                     index={props.listOfSpeciesIndex}/>
             <CompoundKeggIdSelector listOfSpecies={props.listOfSpecies}
-                                    index={props.index}/>
+                                    index={props.listOfSpeciesIndex}/>
             <CompoundBiggIdSelector listOfSpecies={props.listOfSpecies}
-                                    index={props.index}/>
+                                    index={props.listOfSpeciesIndex}/>
             <div className={"button-bar button-center"}>
                 <button className={"download-button circle-icon"}
                         onClick={() => handleRestore(props.defaultCompound)}>

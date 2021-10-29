@@ -34,6 +34,8 @@ const ReactionDetailsContainer = (props) => {
 
     const listOfReactions = state.general.listOfReactions
 
+    console.log(props.index)
+
     useEffect(() => {
         // retrieve reaction information from compounds when the selected row is changed
         const reaction = props.rowInfo
