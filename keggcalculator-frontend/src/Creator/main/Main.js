@@ -7,7 +7,7 @@ import {makeStyles} from "@material-ui/core";
 import "../download/DownloadGraph.css"
 import {queryKeggInformation} from "./lib/Fetching";
 import SampleFooter from "./components/SampleFooter";
-import {dontTriggerWindowExitWarning, isHostLocalHost, triggerLoadingWarning} from "./lib/LoadingWarning";
+import {triggerWindowExitWarning, isHostLocalHost, triggerLoadingWarning} from "./lib/LoadingWarning";
 //BUG: API doppelt C00668 bei C00267 => einmal linke Seite, einmal Rechte vllt anpassen in meiner api
 
 export const taxonomicRanks = ["superkingdom", "kingdom", "phylum", "class", "order", "family", "genus", "species"]
@@ -36,7 +36,7 @@ const Main = () => {
     useEffect(async () => {
             triggerLoadingWarning(dispatch)
             await queryKeggInformation(dispatch)
-            if (!isHostLocalHost) dontTriggerWindowExitWarning()
+            if (!isHostLocalHost) triggerWindowExitWarning()
         }, [])
 
     return (
