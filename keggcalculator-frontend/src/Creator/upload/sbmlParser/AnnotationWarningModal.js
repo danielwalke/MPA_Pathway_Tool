@@ -7,9 +7,6 @@ import {useDispatch, useSelector} from "react-redux";
 import Modal from "@material-ui/core/Modal";
 import {useStyles} from "../../ModalStyles/ModalStyles";
 import {addCompoundsToReactions} from "./ReactionCompoundsAdder";
-import {setReactionsInStore} from "./ReactionsSetter";
-import {setReactionsAndCompoundsInStore} from "./GraphDrawer";
-import clonedeep from "lodash/cloneDeep";
 
 const handleAnnotationPurpose = (dispatch) =>{
     dispatch({type:"SETISMISSINGANNOTATIONS", payload: false})

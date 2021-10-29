@@ -1,0 +1,25 @@
+.slider_custom{
+    width: 100mm;
+    border: #61dafb;
+    border-width: 2px;
+    margin-left: 100px;
+    margin-top: 20px;
+}
+.button_custom{
+    width: auto;
+    border: #941680;
+    border-radius: 1px;
+    margin-left: 40px;
+}
+.custom_box{
+    width: auto;
+    margin-left: 20px;
+    border: #941680;
+    border-radius: 3px;
+    
+}
+.caption_container{
+    width: auto;
+    text-align: left;
+    margin-left: 10px;
+}

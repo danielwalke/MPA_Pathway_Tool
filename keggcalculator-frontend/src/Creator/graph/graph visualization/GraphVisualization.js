@@ -3,6 +3,7 @@ import {Graph} from "react-d3-graph";
 import {useDispatch, useSelector} from "react-redux";
 import {handleSubmit} from "../../keggReaction/substrate and products/SubmitHandler";
 import clonedeep from "lodash/cloneDeep"
+import {NOT_KEY_COMPOUND_OPACITY} from "../Constants";
 
 const onClickNode = (nodeId, dispatch, graphState, keggState) => {
     const setProducts = ({productList, prodReactionsMap}) => {
@@ -96,6 +97,8 @@ const GraphVisualization = () => {
         // }else{
         //     nodeId = node.substring(node.length - 6, node.length)
         // }
+
+
         const compound = graphState.data.nodes.filter(graphNode => graphNode.id === node)[0]
         dispatch({type:"SETOLDDATA", payload: graphState.data})
         dispatch({type:"SETCHOSENCOMPOUND", payload: clonedeep(compound)})
@@ -109,7 +112,7 @@ const GraphVisualization = () => {
         const otherLinks = graphState.data.links.filter(link => link.source !== source || link.target !==target)
         chosenLinks.map(chosenLink=>{
             if(chosenLink.opacity===1){
-                chosenLink.opacity = 0.4
+                chosenLink.opacity = NOT_KEY_COMPOUND_OPACITY
             }else{
                 chosenLink.opacity=1
             }

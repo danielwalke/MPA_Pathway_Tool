@@ -19,7 +19,6 @@ function DropCystol(nodeId){
     var reactionList = [];
     var value1 = '';
 
-
     const [value,setValue]=useState('');
     const handleSelect=(e)=>{
         console.log(e)
@@ -51,7 +50,7 @@ function DropCystol(nodeId){
                 id="dropdown-menu-align-left"
                 onSelect={handleSelect}
             >
-                <Dropdown.Item eventKey="cystol">cystol</Dropdown.Item>
+                <Dropdown.Item eventKey="cytosol">cytosol</Dropdown.Item>
                 <Dropdown.Item eventKey="external">external</Dropdown.Item>
             </DropdownButton>
             <h4>You selected {value}</h4>

@@ -18,19 +18,26 @@ import UserCaptionThree from "../data-mapping/UserCaptionThree";
 import ModuleListModal from "../keggReaction/multiple reactions/ModuleListModal";
 import {requestGenerator} from "../request/RequestGenerator";
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
-import {Drawer, makeStyles, Toolbar, useTheme} from "@material-ui/core";
+import {Drawer, makeStyles, Toolbar} from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import "../download/DownloadGraph.css"
+import {
+    endpoint_getEcNumberList,
+    endpoint_getKoNumberList,
+    endpoint_getModuleList, endpoint_getReactionList, endpoint_getTaxonomyList, endpoint_getFbaSolution
+} from "../../App Configurations/RequestURLCollection";
+import Graph_visualization_fba from "../../Components/FluxHome/graph_flux/graph visualization/Graph_visualization_fba";
 //main class for graph visualization and UI for modifying graph
 //BUG: API doppelt C00668 bei C00267 => einmal linke Seite, einmal Rechte vllt anpassen in meiner api
 //FILTER: in api filter after compounds who only have reactions-> others dont make sense
 // const ModuleStore = React.createContext(); //idea for storing all states a separate store
-const moduleUrl = "http://127.0.0.1/keggcreator/modulelist"
-const ecNumbersUrl = "http://127.0.0.1/keggcreator/ecnumberlist"
-const koNumbersUrl = "http://127.0.0.1/keggcreator/konumberlist"
-const reactionUrl= "http://127.0.0.1/keggcreator/reactions"
-const taxonomyListLink = "http://127.0.0.1/keggcreator/taxonomylist"
+const moduleUrl = endpoint_getModuleList
+const ecNumbersUrl = endpoint_getEcNumberList
+const koNumbersUrl = endpoint_getKoNumberList
+const reactionUrl= endpoint_getReactionList
+const taxonomyListLink = endpoint_getTaxonomyList
+const fbaSolution = endpoint_getFbaSolution
 export const taxonomicRanks = ["superkingdom", "kingdom", "phylum", "class", "order", "family", "genus", "species"]
 
 export const useStylesMain = makeStyles({
@@ -56,6 +63,7 @@ const Main = () => {
     const graphState = useSelector(state => state.graph)
     const dispatch = useDispatch()
     const proteinState = useSelector(state => state.mpaProteins)
+    const generalState = useSelector(state => state.general)
     const exit = () => "Are you sure you want to exit?"
     useEffect(() => {     //first effect triggered after page loads first time (componentDidMount)
             dispatch({type: "SWITCHLOADING"})
@@ -74,11 +82,16 @@ const Main = () => {
             }))
         requestGenerator("GET", reactionUrl, "","").then(resp=>{
             dispatch({type:"SETKEGGREACTIONS", payload: resp.data})
+
         })
-        requestGenerator("POST", taxonomyListLink, "","").then(resp=>{
-            dispatch({type:"SET_TAXONOMY_NCBI_LIST", payload: resp.data})
-        })
+        // requestGenerator("GET", fbaSolution, "", "").then(resp=>{
+        //     dispatch({type:"SETFLUXREACTION", payload: resp.data})
+        // })
             window.onbeforeunload = exit
+        console.log(generalState);
+        console.log(graphState);
+        console.log("KAFI");
+        console.log(proteinState);
         }, []
     )
 
@@ -100,7 +113,9 @@ const Main = () => {
                 <div className={"interface"}><UserInterface/></div>
                 <div className={"graph"}>
                     <GraphVisualization dispatch={dispatch}/>
+
                 </div>
+
                 <div className={open? "footer" :  ""}>
                     <Toolbar>
                         <IconButton

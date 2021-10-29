@@ -1,12 +1,27 @@
 import Modal from "@material-ui/core/Modal";
 import React, {useState} from "react";
-import {useStyles} from "../../../ModalStyles/ModalStyles";
 import {useDispatch, useSelector} from "react-redux";
 import TextField from "@material-ui/core/TextField";
 import DeleteIcon from "@material-ui/icons/Delete";
 import TaxonomicRank from "../../double click node/TaxonomicRank";
 import {getTaxaList} from "../../double click node/StuctureModalBody";
 import TaxonomyNcbi from "../../../taxonomy/TaxonomyNcbi";
+import {makeStyles} from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+    modal: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    paper: {
+        backgroundColor: "white",
+        fontFamily: "Roboto",
+        border: '2px solid rgb(150, 25, 130)',
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3),
+    }
+}));
 
 const PathwayTaxonomy = () => {
     const classes = useStyles()
@@ -22,7 +37,7 @@ const PathwayTaxonomy = () => {
     const [isNcbiTaxonomy, setIsNcbiTaxonomy] = useState(true)
 
     const body = (
-        <div className={classes.paper} style={{width: "90vw"}}>
+        <div className={classes.paper} style={{width: "80%", maxHeight:"60vh",position:"absolute",left:"50%", top:"50%", transform:"translate(-50%,-50%)", overflow:"auto"}}>
             <div style={{
                 margin: "2px",
                 padding: "3px",
@@ -127,7 +142,8 @@ const PathwayTaxonomy = () => {
 
     return (
         <div>
-            <Modal style={{width: "85vw", margin: "5vw", overflow: "auto"}}
+            {/*style={{width: "80vw", overflow: "auto"}}*/}
+            <Modal className={classes.modal}
                    open={graphState.showPathwayTaxonomy}
                    onClose={() => dispatch({type: "SWITCHSHOWPATHWAYTAXONOMY"})}>
                 {body}

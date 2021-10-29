@@ -6,6 +6,8 @@ const defaultState = {
     },
     chosenNode: "",//graphClick
     showInfo: false,//graphClick
+    chosenNode2: "",
+    showInfo2: false,
     dataLinks: [],
     svgHeight: window.innerHeight * 0.8,
     moduleFileName: "",
@@ -38,8 +40,15 @@ const defaultState = {
     mergeNodesName: "",
     nodeModificationModal: false,
     nodeSize: 150,
-    compoundNodeColor: "#FF8000"
-
+    compoundNodeColor: "#FF8000",
+    fbaSolution: [],
+    clickednodefba : "",
+    // data_new : {
+    //     node: [],
+    //     links: [],
+    // },
+    // new_datalinks: [],
+    showKnockout: false,
 }
 
 export const graphReducer = (state = defaultState, action) => {
@@ -51,6 +60,10 @@ export const graphReducer = (state = defaultState, action) => {
             return {...state, showInfo: payload}
         case "SETCHOSENNODE":
             return {...state, chosenNode: payload}
+        case "SETSHOWINFO2":
+            return {...state, showInfo2: payload}
+        case "SETCHOSENNODE2":
+            return {...state, chosenNode2: payload}
         case "SETCHOSENQUANTS":
             return {...state, chosenQuants: payload}
         case "SETDATALINKS":
@@ -119,6 +132,8 @@ export const graphReducer = (state = defaultState, action) => {
             return {...state, mergeNodes: [...state.mergeNodes, state.mergeNode], mergeNode: ""}
         case "SPLICEMERGENODES":
             return {...state, mergeNodes: state.mergeNodes.filter(node => node !== payload)}
+        case "EMPTY_MERGE_NODES":
+            return {...state, mergeNodes: []}
         case "SETMERGENODESNAME":
             return {...state, mergeNodesName: payload}
         case "SWITCH_NODE_MODIFICATION_MODAL":
@@ -127,6 +142,16 @@ export const graphReducer = (state = defaultState, action) => {
             return {...state, nodeSize: payload}
         case "SET_COMPOUND_NODE_COLOR":
             return {...state, compoundNodeColor: payload}
+        case "SET_FLUX":
+            return {...state, fbaSolution: payload}
+        // case "SET_NEWDATA":
+        //     return {...state, data_new: payload}
+        // case "SET_NEWDATALINKS":
+        //     return {...state, new_datalinks: payload}
+        case "SETCLICKFBANODDE":
+            return {...state, clickednodefba: payload}
+        case "SETSHOWKNOCKOUT":
+            return {...state, showKnockout: payload}
         default:
             return state;
     }

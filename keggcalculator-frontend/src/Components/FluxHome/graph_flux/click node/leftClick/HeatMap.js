@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {useSelector} from "react-redux";
 import "./Heatmap.css"
-import {filterTaxon} from "../../../data-mapping/TaxonomyFilter";
+import {filterTaxon} from "../../../../../Creator/data-mapping/TaxonomyFilter";
 
 const HeatMap = () => {
     const [matchedProteins, setMatchedProteins] = useState([])

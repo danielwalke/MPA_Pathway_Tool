@@ -16,27 +16,31 @@ import {useSelector} from "react-redux";
 
 
 export const handleJSONGraphUpload = (reactions, dispatch, graphState, generalState) => { //handle upload of JSON for graph visualisation
-
+    var flux = 0.0
+    var minFlux = 0.0
+    var maxFlux = 0.0
     const nodes = []
     const links = []
     dispatch({type:"SET_KEGG_REACTION", payload:[]})
     reactions.forEach(reaction => {
         //TODO embed this without bug
-        // for(var key in generalState.fbaSolution){
-        //     if(generalState.fbaSolution.hasOwnProperty(key)){
-        //         if(key == reaction.reactionId){
-        //             var fluxRate = generalState.fbaSolution[key].fbaSolution;
-        //
-        //         }
-        //     }
-        // }
-        console.log(reaction)
+        for(var key in generalState.fbaSolution){
+            if(generalState.fbaSolution.hasOwnProperty(key)){
+                if(key == reaction.reactionId){
+                    flux = generalState.fbaSolution[key].fbaSolution;
+                    minFlux = generalState.fbaSolution[key].minFlux;
+                    maxFlux = generalState.fbaSolution[key].maxFlux;
+
+                }
+            }
+        }
+        console.log("This is " + flux)
         dispatch({type: "ADD_KEGG_REACTION", payload: reaction})
-        const reactionNode = createNode(reaction.reactionName, REACTION_NODE_COLOR, REACTION_NODE_SYMBOL, +reaction.x, +reaction.y, reaction.opacity, reaction.reversible)
+        const reactionNode = createNode(reaction.reactionName, REACTION_NODE_COLOR, REACTION_NODE_SYMBOL, +reaction.x, +reaction.y, reaction.opacity, reaction.reversible, flux)
         addNode(nodes, reactionNode)
         addReactionAbbreviations(graphState, reaction)
-        reaction.substrates.forEach(substrate => addCompoundToData(substrate, reaction, reactionNode, links, nodes, graphState, true))
-        reaction.products.forEach(product => addCompoundToData(product, reaction, reactionNode, links, nodes, graphState, false))
+        reaction.substrates.forEach(substrate => addCompoundToData(substrate, reaction, reactionNode, links, nodes, graphState, true, flux))
+        reaction.products.forEach(product => addCompoundToData(product, reaction, reactionNode, links, nodes, graphState, false, flux))
         dispatch({type: "SETABBREVIATIONOBJECT", payload: graphState.abbreviationsObject})
     })
     return {nodes, links}
@@ -52,7 +56,10 @@ const linkInData = (links, newLink) => {
 }
 
 // return a node object
-const createNode = (id, color, symbolType, x, y, opacity, reversible,flux) => {
+const createNode = (id, color, symbolType, x, y, opacity, reversible, flux) => {
+    if(flux<0){
+        reversible = true;
+    }
     return (
         {
             id: id,
@@ -86,13 +93,19 @@ const createLink = (source, target, opacity, isReversibleLink, flux) => {
         c = 'blue';
         d = 3.5;
     }
-    else if(flux>700 & flux<=100){
+    else if(flux>700 & flux<=1000){
         c = 'purple';
         d = 4.0;
     }
-    else{
+    else if(flux <0 & flux>=-100){
         c = 'black';
-        d = 4.5
+        d = 4.5;
+        //isReversibleLink = true;
+        //isReversibleLink = true;
+    }
+    else{
+        c = 'grey';
+
     }
     return (
         {

@@ -11,6 +11,7 @@ import MakeSpeciesGlyphObjList from "./MakeSpeciesGlyphObjList";
 import MakeCompartmentObjList from "./MakeCompartmentObjList";
 import {requestGenerator} from "../../request/RequestGenerator";
 import MakeRenderInformationObj from "./MakeRenderInformationObj";
+import {endpoint_getTaxonomyIdList} from "../../../App Configurations/RequestURLCollection";
 
 const SBMLDownloader = (props) => {
 
@@ -27,7 +28,7 @@ const SBMLDownloader = (props) => {
         // console.log(requestList)
 
 
-        const taxonomyUrl = "http://127.0.0.1/keggcreator/taxonomyIdList"
+        const taxonomyUrl = endpoint_getTaxonomyIdList
 
         requestGenerator("POST", taxonomyUrl, {
             taxonomyList: {"taxonomyList": requestList}}, "").then(response => {

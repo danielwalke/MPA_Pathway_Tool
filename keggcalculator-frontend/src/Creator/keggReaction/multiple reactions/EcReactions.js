@@ -6,16 +6,11 @@ import {useDispatch, useSelector} from "react-redux";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
 import DeleteIcon from "@material-ui/icons/Delete";
-import {
-    COMPOUND_NODE_COLOR,
-    COMPOUND_NODE_SYMBOL,
-    REACTION_NODE_COLOR,
-    REACTION_NODE_SYMBOL
-} from "../../graph/Constants";
 import {getLengthMinusNFirstChars} from "../../usefulFunctions/Strings";
 import {handleJSONGraphUpload} from "../../upload/json upload/ModuleUploadFunctionsJSON";
-const reactionUrl = "http://127.0.0.1/keggcreator/getreaction"
-const ecUrl = "http://127.0.0.1/keggcreator/getreactionlistbyeclist"
+import {endpoint_getReactionsByEcList, endpoint_getReactionUrl} from "../../../App Configurations/RequestURLCollection";
+const reactionUrl = endpoint_getReactionUrl
+const ecUrl = endpoint_getReactionsByEcList
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -63,7 +58,7 @@ const addCompounds = (stoichiometryCompounds, compoundId2Name) => {
 }
 
 //used for drawing nodes in graph
-export const handleDrawGraph = (reaction, state, dispatch, graphState,generalState) =>{
+export const handleDrawGraph = (reaction, state, dispatch, graphState,generalState, reactions) =>{
     reaction.opacity = 1
     reaction.reactionName = `${reaction.reactionName} ${reaction.reactionId}`
     reaction.taxa = {}
@@ -74,7 +69,7 @@ export const handleDrawGraph = (reaction, state, dispatch, graphState,generalSta
     reaction.y = 0
     reaction.substrates = addCompounds(reaction.stochiometrySubstratesString, state.compoundId2Name)
     reaction.products = addCompounds(reaction.stochiometryProductsString, state.compoundId2Name)
-    const data = handleJSONGraphUpload([...generalState.keggReactions, reaction],dispatch, graphState)
+    const data = handleJSONGraphUpload([...reactions, reaction],dispatch, graphState)
     dispatch({type:"ADDREACTIONSTOARRAY", payload:[reaction]})
     dispatch({type: "SETDATA", payload: data})
 }
@@ -101,7 +96,7 @@ const EcReactions = () => {
         requestGenerator("POST", reactionUrl, {reactionId: reactionId}, "", "")
             .then(response => {
                 const reaction  = response.data;
-                handleDrawGraph(reaction, state, dispatch,graphState,generalState);
+                handleDrawGraph(reaction, state, dispatch,graphState,generalState, generalState.keggReactions);
                 return null;
             })
     }

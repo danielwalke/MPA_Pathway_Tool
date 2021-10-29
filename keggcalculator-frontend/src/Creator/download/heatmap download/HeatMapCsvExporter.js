@@ -10,6 +10,7 @@ const HeatMapCsvExporter = (props) => {
     const dispatch = useDispatch()
 
     const handleHeatMapExport = () => {
+        dispatch({type:"SETLOADING", payload:true})
         proteinState = clonedeep(proteinState)
         const {generalState, graphState} = clonedeep(props)
         console.time("HeatMap")
