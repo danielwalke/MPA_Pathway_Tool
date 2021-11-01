@@ -2,54 +2,56 @@ import {getNodePosition} from "./NodePosition";
 import clonedeep from "lodash/cloneDeep"
 import {getTaxaList} from "../graph/double click node/StuctureModalBody";
 
+const readNodeInformation = (reactionObjects, reactionNames, reactionName, compoundName, graphState) => {
+    if (!reactionNames.includes(reactionName)) {
+        reactionNames.push(reactionName)
+    }
+    if (!reactionObjects[`${reactionName}`]) {
+        reactionObjects[`${reactionName}`] = {}
+        reactionObjects[`${reactionName}`].products = []
+        reactionObjects[`${reactionName}`].substrates = []
+    }
+    const compound = {}
+    compound.x = getNodePosition(compoundName).x
+    compound.y = getNodePosition(compoundName).y
+    compound.name = compoundName
+
+    const nodeOpacity = clonedeep(graphState.data.nodes).filter(node => node.id === compoundName)[0].opacity
+    const nodeAbbreviation = clonedeep(graphState.abbreviationsObject[compoundName])
+
+    compound.opacity = nodeOpacity ? nodeOpacity : 1
+    compound.abbreviation = nodeAbbreviation ? nodeAbbreviation : compoundName
+
+    return compound
+}
+
 export const getReactions = (graphState) => {
     const reactionObjects = {}
     const reactionNames = []
     const links = clonedeep(graphState.data.links.filter(link => !link.isReversibleLink))
+
     links.map(link => {
         if (link.source.match(/\s[R,U][0-9][0-9][0-9][0-9][0-9]/) !== null) {
             const reactionName = link.source
             const productName = link.target
-            if (!reactionNames.includes(reactionName)) {
-                reactionNames.push(reactionName)
-            }
-            if (typeof reactionObjects[`${reactionName}`] === "undefined") {
-                reactionObjects[`${reactionName}`] = {}
-                reactionObjects[`${reactionName}`].products = []
-                reactionObjects[`${reactionName}`].substrates = []
-            }
-            const product = {}
-            product.x = getNodePosition(productName).x
-            product.y = getNodePosition(productName).y
-            product.name = productName
-            product.opacity = typeof clonedeep(graphState.data.nodes).filter(node => node.id === productName)[0].opacity === "undefined" ? 1 : clonedeep(graphState.data.nodes).filter(node => node.id === productName)[0].opacity
-            product.abbreviation = typeof clonedeep(graphState.abbreviationsObject[productName]) === "undefined" ? productName : clonedeep(graphState.abbreviationsObject[productName])
+            const product = readNodeInformation(reactionObjects, reactionNames, reactionName, productName, graphState)
+
             reactionObjects[`${reactionName}`].products.push(product)
 
         } else {
             const reactionName = link.target
             const substrateName = link.source
-            if (!reactionNames.includes(reactionName)) {
-                reactionNames.push(reactionName)
-            }
-            if (typeof reactionObjects[`${reactionName}`] === "undefined") {
-                reactionObjects[`${reactionName}`] = {}
-                reactionObjects[`${reactionName}`].products = []
-                reactionObjects[`${reactionName}`].substrates = []
-            }
-            const substrate = {}
-            substrate.x = getNodePosition(substrateName).x
-            substrate.y = getNodePosition(substrateName).y
-            substrate.name = substrateName
-            substrate.opacity = typeof clonedeep(graphState.data.nodes.filter(node => node.id === substrateName)[0].opacity) === "undefined" ? 1 : clonedeep(graphState.data.nodes.filter(node => node.id === substrateName)[0].opacity)
-            substrate.abbreviation = typeof clonedeep(graphState.abbreviationsObject[substrateName]) === "undefined" ? substrateName : clonedeep(graphState.abbreviationsObject[substrateName])
+            const substrate = readNodeInformation(reactionObjects, reactionNames, reactionName, substrateName, graphState)
+
             reactionObjects[`${reactionName}`].substrates.push(substrate)
         }
         return null;
     })
+
     if (graphState.data.links.length === 0) {
         graphState.data.nodes.map(specialProtein => reactionNames.push(specialProtein.id))
     }
+
     return {reactionObjects, reactionNames}
 }
 

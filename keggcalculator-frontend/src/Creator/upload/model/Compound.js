@@ -7,6 +7,7 @@ export class Compound {
     _typeOfCompound
     _stoichiometry
     _id
+    _biggId
 
     constructor(name) {
         this.name = name

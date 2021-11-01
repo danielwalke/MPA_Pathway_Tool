@@ -27,6 +27,7 @@ export const setReactionsAndCompoundsInStore = (state, listOfReactions, dispatch
         r._taxonomy = reaction.taxonomy
         r._koList = reaction.koNumbers
         r._ecList = reaction.ecNumbers
+        r._biggId = reaction.biggReaction
         reaction.substrates.forEach(substrate => {
             const compound = getSbmlCompound(substrate, "substrate", reactionGlyph)
             r.addSubstrate(compound)
@@ -57,6 +58,7 @@ const getReactions = (reactions, dispatch) => {
         reaction.y = r._y
         reaction.stochiometrySubstratesString = new Map()
         reaction.stochiometryProductsString = new Map()
+        reaction.biggId = r._biggId
         reaction.substrates = r._substrates.map(substrate => {
             reaction.stochiometrySubstratesString.set(substrate._id, substrate._stoichiometry)
             return ({
@@ -65,7 +67,8 @@ const getReactions = (reactions, dispatch) => {
                 name: substrate.name,
                 opacity: substrate._opacity,
                 abbreviation: substrate._abbreviation,
-                stochiometry: substrate._stoichiometry
+                stochiometry: substrate._stoichiometry,
+                biggId: substrate._biggId
             })
         })
         reaction.products = r._products.map(product => {
@@ -76,7 +79,8 @@ const getReactions = (reactions, dispatch) => {
                 name: product.name,
                 opacity: product._opacity,
                 abbreviation: product._abbreviation,
-                stochiometry: product._stoichiometry
+                stochiometry: product._stoichiometry,
+                biggId: product._biggId
             })
         })
         return reaction
@@ -112,6 +116,7 @@ const getSbmlCompound = (sbmlCompound, typeOfCompound, reactionGlyph) => {
     compound._typeOfCompound = typeOfCompound
     compound._stoichiometry = sbmlCompound.stoichiometry
     compound._opacity = typeof speciesGlyph === "object" && speciesGlyph !== null ? getCompoundOpacity(speciesGlyph) : 1
+    compound._biggId = sbmlCompound.biggId
     return compound
 }
 

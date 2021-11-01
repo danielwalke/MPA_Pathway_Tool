@@ -1,132 +1,93 @@
 import React from "react"
-import {getReactions} from "../DownloadFunctions"
-import clonedeep from "lodash/cloneDeep";
-import {getNodePosition} from "../NodePosition"
 
-const MakeReactionList = (generalState, graphState) => {
+const getKeggId = comp => comp.name.substring(comp.name.length - 6, comp.name.length)
+
+const makeUniqueSpeciesId = (abbreviation, compoundId, abbreviationList, compoundList) => {
+    /**
+     * Goes through abbreviations and checks if a compound object has an already known kegg compound id (these will be
+     * used as sbml compound ids).
+     * If compounds with the same kegg id have different abbreviations, they will receive differen sbml ids
+     */
+
+    // Is abbreviation unknown?
+    if (!abbreviationList[abbreviation]) {
+        abbreviationList[abbreviation] = {}
+        abbreviationList[abbreviation].count = 1
+        // compound unknown?
+        if (!compoundList[compoundId]) {
+            // unkown: create new sbml id
+            abbreviationList[abbreviation].id = compoundId
+            compoundList[compoundId] = 1
+        } else {
+            // known, but diff abbreviation: create new sbml id with index
+            abbreviationList[abbreviation].id = [compoundId, "_", compoundList[compoundId]].join("")
+            compoundList[compoundId] += 1
+        }
+    } else {
+        // do nothing
+        abbreviationList[abbreviation].count += 1
+        // abbreviationList[abbreviation].id = keggCompound
+    }
+
+    return abbreviationList[abbreviation].id
+}
+
+const makeUniqueGlyphId = (compoundId, x, y, stoichiometry, index, speciesGlyphList) => {
+    /**
+     * recursively creates unique compound glyph ids
+     */
+
+        // create glyph id
+    let glyphId = [compoundId, "_", index].join("")
+    // get current index value
+    let count = parseInt(glyphId.split("_")[1])
+
+    // if glyph id is new, create entry
+    if (!speciesGlyphList[glyphId]) {
+        speciesGlyphList[glyphId] = {x: x, y: y, stoichiometry: stoichiometry}
+        return glyphId
+        // if glyph id is present and all properties are equal, don't create new glyph id
+    } else if (speciesGlyphList[glyphId].x === x &&
+        speciesGlyphList[glyphId].y === y &&
+        speciesGlyphList[glyphId].stoichiometry === stoichiometry
+    ) {
+        return glyphId
+        // if glyph id is used and properties are different start another recursion until a unique id is created
+    } else {
+        // start next recursion
+        return makeUniqueGlyphId(compoundId, x, y, stoichiometry, count + 1, speciesGlyphList)
+    }
+}
+
+const MakeReactionList = (reactionsInSelectArray, reactionTaxonomies) => {
+    /**
+     * Updates substrate and product objects with unique glyph and unique sbml ids
+     */
+
+    const speciesGlyphList = {}
 
     const abbreviationList = {}
     const compoundList = {}
 
-    const checkForUniqueSpeciesAbbreviations = (abbreviation, compoundId) => {
-
-        const keggCompound = compoundId
-
-        if (abbreviationList[abbreviation] === undefined) {
-            abbreviationList[abbreviation] = {}
-            abbreviationList[abbreviation].count = 1
-            if (compoundList[keggCompound] === undefined) {
-                abbreviationList[abbreviation].id = keggCompound
-                compoundList[keggCompound] = 1
-            } else {
-                abbreviationList[abbreviation].id = [keggCompound, "_", compoundList[keggCompound]].join("")
-                compoundList[keggCompound] += 1
-            }
-        } else {
-            abbreviationList[abbreviation].count += 1
-            // abbreviationList[abbreviation].id = keggCompound
-        }
-
-        return abbreviationList[abbreviation].id
+    const updateCompoundObj = (compounds) => {
+        compounds.map(compound => {
+            compound.glyphId = makeUniqueGlyphId(
+                getKeggId(compound), compound.x, compound.y, compound.stoichiometry, 1, speciesGlyphList)
+            compound.sbmlId = makeUniqueSpeciesId(
+                compound.abbreviation, getKeggId(compound), abbreviationList, compoundList)
+        })
     }
 
-    const glyphCompoundList = {}
+    const reactionList = reactionsInSelectArray.map(reaction => {
+        reaction.taxonomyIds = reactionTaxonomies.filter(tax => tax.reactionId === reaction.reactionId)
 
-    const makeUniqueGlyphId = (compoundId, x, y, stoichiometry, index) => {
+        updateCompoundObj(reaction.substrates)
+        updateCompoundObj(reaction.products)
 
-        let glyphId = [compoundId, "_", index].join("")
-        let count = parseInt(glyphId.substring(glyphId.length - 1))
-
-        if (glyphCompoundList[glyphId] === undefined
-        ) {
-            glyphCompoundList[glyphId] = {x: x, y: y, stoichiometry: stoichiometry}
-            return glyphId
-        } else if (glyphCompoundList[glyphId].x === x &&
-            glyphCompoundList[glyphId].y === y &&
-            glyphCompoundList[glyphId].stoichiometry === stoichiometry
-        ) {
-            return glyphId
-        } else {
-            // start next recursion
-            let newGlyph = glyphId.substring(0, glyphId.length - 2)
-            return makeUniqueGlyphId(newGlyph, x, y, stoichiometry, count + 1)
-        }
-    }
-
-    const {reactionObjects, reactionNames} = getReactions(graphState)
-    const filteredReactions = reactionNames.map(
-        name => generalState.reactionsInSelectArray.filter(
-            reaction => reaction.reactionName === name)[0])
-
-    const requestList = []
-
-    const reactionsRaw = filteredReactions.map(reaction => {
-        reaction.abbreviation = typeof graphState.abbreviationsObject[`${reaction.reactionName}`] === "undefined" ? reaction.reactionName : graphState.abbreviationsObject[`${reaction.reactionName}`]
-        reaction.opacity = clonedeep(graphState.data.nodes.filter(node => node.id = reaction.reactionName)[0].opacity)
-        reaction.reversible = reaction.reversible
-        reaction.x = getNodePosition(reaction.reactionName).x
-        reaction.y = getNodePosition(reaction.reactionName).y
-
-        if (graphState.data.links.length === 0) {
-            reaction.substrates = []
-            reaction.products = []
-        } else {
-            if (reaction.isForwardReaction) {
-                reaction.substrates = reactionObjects[`${reaction.reactionName}`].substrates.map(substrate => {
-                    const substrateId = substrate.name.substring(substrate.name.length - 6, substrate.name.length)
-                    console.warn(substrateId)
-                    substrate.stochiometry = reaction.stochiometrySubstratesString[`${substrateId}`]
-
-                    substrate.id = checkForUniqueSpeciesAbbreviations(substrate.abbreviation, substrateId)
-                    substrate.glyphId = makeUniqueGlyphId(substrateId, substrate.x, substrate.y, substrate.stochiometry, 0)
-                    return substrate
-                })
-                reaction.products = reactionObjects[`${reaction.reactionName}`].products.map(product => {
-                    const productId = product.name.substring(product.name.length - 6, product.name.length)
-                    product.stochiometry = reaction.stochiometryProductsString[`${productId}`]
-
-                    product.id = checkForUniqueSpeciesAbbreviations(product.abbreviation, productId)
-                    product.glyphId = makeUniqueGlyphId(productId, product.x, product.y, product.stochiometry, 0)
-                    return product
-                })
-            } else {
-                reaction.substrates = reactionObjects[`${reaction.reactionName}`].substrates.map(substrate => {
-                    const substrateId = substrate.name.substring(substrate.name.length - 6, substrate.name.length)
-                    substrate.stochiometry = reaction.stochiometryProductsString[`${substrateId}`]
-
-                    substrate.id = checkForUniqueSpeciesAbbreviations(substrate.abbreviation, substrateId)
-                    substrate.glyphId = makeUniqueGlyphId(substrateId, substrate.x, substrate.y, substrate.stochiometry, 0)
-                    return substrate
-                })
-                reaction.products = reactionObjects[`${reaction.reactionName}`].products.map(product => {
-                    const productId = product.name.substring(product.name.length - 6, product.name.length)
-                    product.stochiometry = reaction.stochiometrySubstratesString[`${productId}`]
-
-                    product.id = checkForUniqueSpeciesAbbreviations(product.abbreviation, productId)
-                    product.glyphId = makeUniqueGlyphId(productId, product.x, product.y, product.stochiometry, 0)
-                    return product
-                })
-            }
-        }
-
-        for (const taxon of Object.entries(reaction.taxa)) {
-
-            const requestListObj = {
-                reactionId: reaction.reactionId,
-                name: taxon[0],
-                rank: taxon[1]
-            }
-            requestList.push(requestListObj)
-        }
-
-        // const taxaProp = Object.getOwnPropertyNames(reaction.taxa)[0]
-
-        // reaction["opacity"] = 1
-        // let output = outputCsv.concat("stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp", "\n")
         return reaction
     })
 
-    return [reactionsRaw, requestList]
+    return reactionList
 }
 
 export default MakeReactionList

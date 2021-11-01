@@ -13,7 +13,7 @@ const MakeSpeciesReferenceObj = (reactant) => {
     const reference = reactant.map(comps => {
         const ref = {
             '@': {
-                species: comps.id,
+                species: comps.sbmlId,
                 name: comps.abbreviation.substring(0, comps.abbreviation.length - 7),
                 stoichiometry: comps.stochiometry,
                 constant: "true"

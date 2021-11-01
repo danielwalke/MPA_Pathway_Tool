@@ -15,6 +15,7 @@ export class Reaction {
     _substrateObjects
     _productObjects
     _taxonomy
+    _biggId
 
     constructor(name) {
         this._reactionName = name
@@ -27,6 +28,7 @@ export class Reaction {
         this._substrateObjects = []
         this._productObjects = []
         this._taxonomy = {}
+        this._biggId = ""
     }
 
     addProductObject(compound, coefficient) {

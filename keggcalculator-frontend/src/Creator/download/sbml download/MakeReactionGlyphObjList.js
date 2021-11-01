@@ -1,15 +1,15 @@
 import React from "react";
 import MakeSpeciesReferenceGlyph from "./MakeSpeciesReferenceGlyph";
 
-const MakeReactionGlyphObjList = (reactionsRaw) => {
+const MakeReactionGlyphObjList = (reactionList) => {
 
-    const reactionGlyphObjList = reactionsRaw.map(item => {
+    const reactionGlyphObjList = reactionList.map(reaction => {
 
         const reactionGlyphObject = {
             '@': {
-                'layout:id': ['glyph_', item.reactionId].join(""),
-                'layout:reaction': item.reactionId,
-                'render:objectRole': item.opacity === 1 ? "keyCompound" : "nonKeyCompound"
+                'layout:id': 'glyph_' + reaction.reactionId,
+                'layout:reaction': reaction.reactionId,
+                'render:objectRole': reaction.opacity === 1 ? "keyCompound" : "nonKeyCompound"
             },
             '#': {
                 'layout:curve': {
@@ -23,8 +23,8 @@ const MakeReactionGlyphObjList = (reactionsRaw) => {
                                     },
                                     '#': {
                                         //Todo: Set Start and Endpoints to substrate and product coordinates
-                                        'layout:start': {'@': {'layout:x': item.x, 'layout:y': item.y}},
-                                        'layout:end': {'@': {'layout:x': item.x, 'layout:y': item.y}}
+                                        'layout:start': {'@': {'layout:x': reaction.x, 'layout:y': reaction.y}},
+                                        'layout:end': {'@': {'layout:x': reaction.x, 'layout:y': reaction.y}}
                                     }
                                 }
                             }
@@ -32,7 +32,8 @@ const MakeReactionGlyphObjList = (reactionsRaw) => {
                     }
                 },
                 'layout:listOfSpeciesReferenceGlyphs': {
-                    'layout:speciesReferenceGlyph': MakeSpeciesReferenceGlyph([item.substrates, item.products, item.x, item.y])
+                    'layout:speciesReferenceGlyph': MakeSpeciesReferenceGlyph({
+                        substrates: reaction.substrates, products: reaction.products, x: reaction.x, y: reaction.y})
                 }
             }
         }

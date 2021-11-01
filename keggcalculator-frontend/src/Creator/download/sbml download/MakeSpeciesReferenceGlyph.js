@@ -2,16 +2,18 @@ import React from "react";
 
 const MakeSpeciesReferenceGlyph = (props) => {
 
+    // TODO: Refactor
+
     const speciesReferenceGlyph = []
-    props[0].map(
-        item => {
+    props.substrates.map(
+        compound => {
             // const abbreviation = item.abbreviation.substring(0, item.abbreviation.length - 7).replace(/ /g, "_")
 
             const subGlyph = {
                 '@': {
-                    'layout:id': ["SpeciesReferenceGlyph_", item.glyphId].join(""),
-                    'layout:speciesReference': item.id,
-                    'layout:speciesGlyph': ["SpeciesGlyph_", item.glyphId].join(""),
+                    'layout:id': "SpeciesReferenceGlyph_" + compound.glyphId,
+                    'layout:speciesReference': compound.id,
+                    'layout:speciesGlyph': "SpeciesGlyph_" + compound.glyphId,
                     'layout:role': "substrate"
                 },
                 '#': {
@@ -24,8 +26,8 @@ const MakeSpeciesReferenceGlyph = (props) => {
                                         'xsi:type': "LineSegment"
                                     },
                                     '#': {
-                                        'layout:start': {'@': {'layout:x': item.x, 'layout:y': item.y}},
-                                        'layout:end': {'@': {'layout:x': props[2], 'layout:y': props[3]}}
+                                        'layout:start': {'@': {'layout:x': compound.x, 'layout:y': compound.y}},
+                                        'layout:end': {'@': {'layout:x': props.x, 'layout:y': props.y}}
                                     }
                                 }
                             }
@@ -37,15 +39,15 @@ const MakeSpeciesReferenceGlyph = (props) => {
             speciesReferenceGlyph.push(subGlyph)
         })
 
-    props[1].map(
-        item => {
+    props.products.map(
+        compound => {
             // const abbreviation = item.abbreviation.substring(0, item.abbreviation.length - 7).replace(/ /g, "_")
 
             const prodGlyph = {
                 '@': {
-                    'layout:id': ["SpeciesReferenceGlyph_", item.glyphId].join(""),
-                    'layout:speciesReference': item.id,
-                    'layout:speciesGlyph': ["SpeciesGlyph_", item.glyphId].join(""),
+                    'layout:id': "SpeciesReferenceGlyph_" + compound.glyphId,
+                    'layout:speciesReference': compound.id,
+                    'layout:speciesGlyph': "SpeciesGlyph_" + compound.glyphId,
                     'layout:role': "product"
                 },
                 '#': {
@@ -59,8 +61,8 @@ const MakeSpeciesReferenceGlyph = (props) => {
                                     },
                                     '#': {
                                         'layout:start': {
-                                            '@': {'layout:x': props[2], 'layout:y': props[3]},
-                                            'layout:end': {'@': {'layout:x': item.x, 'layout:y': item.y}}
+                                            '@': {'layout:x': props.x, 'layout:y': props.y},
+                                            'layout:end': {'@': {'layout:x': compound.x, 'layout:y': compound.y}}
                                         }
                                     }
                                 }

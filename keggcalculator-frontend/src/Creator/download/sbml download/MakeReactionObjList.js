@@ -1,69 +1,77 @@
 import React from "react";
 import MakeSpeciesReferenceObj from "./MakeSpeciesReferenceObj";
 
-const MakeReactionObjectList = (reactionsRaw, taxonomyIdArray) => {
+const MakeReactionObjectList = (reactionsInSelectArray, reactionTaxonomies) => {
 
-    const reactionObj = reactionsRaw.map(item => {
+    const reactionObj = reactionsInSelectArray.map(reaction => {
 
-        const taxonomyIds = taxonomyIdArray.filter(taxon => item.reactionId == taxon.reactionId)
-
-        const rIdForRDF = ['#', item.reactionId].join("")
-
+        const taxonomyIds = reaction.taxonomyIds
+        const rIdForRDF = '#' + reaction.reactionId
         const references = {'rdf:li': []}
-        if (item.reactionId != "") {
-            references['rdf:li'].push({'@': {'rdf:resource': ['http://identifiers.org/kegg.reaction/', item.reactionId].join("")}})
+
+        if (reaction.reactionId !== "" && !reaction.reactionId.startsWith("U")) {
+            references['rdf:li'].push({'@': {'rdf:resource': 'http://identifiers.org/kegg.reaction/' + reaction.reactionId}})
         }
-        if (item.koNumbersString.length != 0) {
-            item.koNumbersString.map(ko => {
-                references['rdf:li'].push({'@': {'rdf:resource': ['https://www.kegg.jp/entry/', ko].join("")}})
+        if (reaction.koNumbersString.length != 0) {
+            reaction.koNumbersString.map(ko => {
+                references['rdf:li'].push({'@': {'rdf:resource': 'https://www.kegg.jp/entry/' + ko}})
             })
         }
-        if (item.ecNumbersString.length != 0) {
-            item.ecNumbersString.map(ec => {
-                references['rdf:li'].push({'@': {'rdf:resource': ['http://identifiers.org/ec-code/', ec].join("")}})
+        if (reaction.ecNumbersString.length != 0) {
+            reaction.ecNumbersString.map(ec => {
+                references['rdf:li'].push({'@': {'rdf:resource': 'http://identifiers.org/ec-code/' + ec}})
             })
         }
         if (taxonomyIds.length > 0) {
             taxonomyIds.map(id => {
-                references['rdf:li'].push({'@': {'rdf:resource': ['https://www.uniprot.org/taxonomy/', id.id].join("")}})
+                references['rdf:li'].push({'@': {'rdf:resource': 'https://www.uniprot.org/taxonomy/' + id.id}})
             })
         }
+        if (reaction.biggId) {
+            references['rdf:li'].push({'@': {'rdf:resource': 'http://identifiers.org/bigg.reaction/' + reaction.biggId}})
+        }
 
-        const reactionObject = {
-            '@': {
-                id: item.reactionId,
-                reversible: item.reversible.toString(),
-                name: item.abbreviation,
-                metaid: item.reactionId
-            },
+        const annotationXml = {
+            '@': {'xmlns:sbml': "http://www.sbml.org/sbml/level3/version1/core"},
             '#': {
-                listOfReactants: {'#': MakeSpeciesReferenceObj(item.substrates)},
-                listOfProducts: {'#': MakeSpeciesReferenceObj(item.products)},
-                'annotation': {
-                    '@': {'xmlns:sbml': "http://www.sbml.org/sbml/level3/version1/core"},
+                'rdf:RDF': {
+                    '@': {'xmlns:rdf': "http://www.w3.org/1999/02/22-rdf-syntax-ns#"},
                     '#': {
-                        'rdf:RDF': {
-                            '@': {'xmlns:rdf': "http://www.w3.org/1999/02/22-rdf-syntax-ns#"},
+                        'rdf:Description': {
+                            '@': {'rdf:about': rIdForRDF},
                             '#': {
-                                'rdf:Description': {
-                                    '@': {'rdf:about': rIdForRDF},
+                                'bqbiol:is': {
+                                    '@': {'xmlns:bqbiol': "http://biomodels.net/biology-qualifiers/"},
                                     '#': {
-                                        'bqbiol:is': {
-                                            '@': {'xmlns:bqbiol': "http://biomodels.net/biology-qualifiers/"},
-                                            '#': {
-                                                'rdf:Bag': {'#': references}
-                                            }
-                                        }
+                                        'rdf:Bag': {'#': references}
                                     }
                                 }
                             }
                         }
                     }
                 }
-
             }
         }
-        return reactionObject
+
+        const xmlChildren = {
+            listOfReactants: {'#': MakeSpeciesReferenceObj(reaction.substrates)},
+            listOfProducts: {'#': MakeSpeciesReferenceObj(reaction.products)},
+        }
+
+        if (references['rdf:li'].length > 0) {
+            xmlChildren.annotation = annotationXml
+        }
+
+        const reactionListObject = {
+            '@': {
+                id: reaction.reactionId,
+                reversible: reaction.reversible.toString(),
+                name: reaction.abbreviation,
+                metaid: reaction.reactionId
+            },
+            '#': xmlChildren
+        }
+        return reactionListObject
     })
     return reactionObj
 }
