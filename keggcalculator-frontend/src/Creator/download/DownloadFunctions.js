@@ -56,6 +56,10 @@ export const getReactions = (graphState) => {
 }
 
 export const addOutput = (output, reaction, compound, reactionCounter, compoundType, reversible) => {
+
+    const reactionBiggId = reaction.biggId ? reaction.biggId : ""
+    const compoundBiggId = compound.biggId ? compound.biggId : ""
+
     output = output.concat(reactionCounter.toString(), ";") //step id
     output = output.concat(reaction.reactionName.replaceAll(";", "\t"), ";") //reaction name
     output = output.concat(reaction.koNumbersString, ";") //ko number ids
@@ -79,7 +83,9 @@ export const addOutput = (output, reaction, compound, reactionCounter, compoundT
     output = output.concat(reaction.abbreviation.replaceAll(";", "\t"), ";") //reaction abbreviation
     output = output.concat(compound.abbreviation.replaceAll(";", "\t"), ";") //compound abbreviation
     const keyCompound = compound.opacity === 1
-    output = output.concat(keyCompound.toString()) //key compound
+    output = output.concat(keyCompound.toString(), ";") //key compound
+    output = output.concat(reactionBiggId, ";")
+    output = output.concat(compoundBiggId)
     output = output.concat("\n") //next compound
     return output;
 }

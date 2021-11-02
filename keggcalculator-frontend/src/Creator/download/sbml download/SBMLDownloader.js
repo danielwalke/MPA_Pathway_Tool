@@ -9,9 +9,7 @@ import MakeSpeciesObjList from "./MakeSpeciesObjList";
 import MakeReactionGlyphObjList from "./MakeReactionGlyphObjList";
 import MakeSpeciesGlyphObjList from "./MakeSpeciesGlyphObjList";
 import MakeCompartmentObjList from "./MakeCompartmentObjList";
-import {requestGenerator} from "../../request/RequestGenerator";
 import MakeRenderInformationObj from "./MakeRenderInformationObj";
-import {endpoint_getTaxonomyIdList} from "../../../App Configurations/RequestURLCollection";
 import {useDispatch} from "react-redux";
 import {ToolTipBig} from "../../main/user-interface/UserInterface";
 import {requestTaxonomiesForReactions} from "./RequestTaxonomiesForReactions";
@@ -19,11 +17,11 @@ import {requestTaxonomiesForReactions} from "./RequestTaxonomiesForReactions";
 const SBMLDownloader = (props) => {
 
     const dispatch = useDispatch()
-    const {generalState, graphState} = clonedeep(props)
+    const generalState = clonedeep(props)
 
     const handleSbmlDownload = async () => {
 
-        const pathwayName = "MPA-Pathway"
+        const pathwayName = "mpapathway"
 
         const reactionTaxonomies = await requestTaxonomiesForReactions(generalState.reactionsInSelectArray)
         const reactionList = MakeReactionList(generalState.reactionsInSelectArray, reactionTaxonomies)

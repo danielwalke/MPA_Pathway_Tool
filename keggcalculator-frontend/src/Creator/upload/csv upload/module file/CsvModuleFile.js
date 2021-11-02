@@ -34,6 +34,8 @@ export const readFile = (string) => {
         const reactionAbbr = entries[13]
         const compoundAbbr = entries[14]
         const keyComp = entries[15]
+        const reactionBiggId = entries[16] ? entries[16] : ""
+        const compoundBiggId = entries[17] ? entries[17] : ""
         const reactionNames = reactions.map(reaction => reaction.reactionName)
         if (!reactionNames.includes(reactionName)) {
             const reaction = {
@@ -51,7 +53,8 @@ export const readFile = (string) => {
                 taxa: taxonomy,
                 abbreviation: reactionAbbr,
                 isForwardReaction: true,
-                reversible: reversibility
+                reversible: reversibility,
+                biggId: reactionBiggId
             }
             reactions.push(reaction)
         }
@@ -63,6 +66,7 @@ export const readFile = (string) => {
             stochiometry: stoichiometricCoeff,
             x: compoundX,
             y: compoundY,
+            biggId: compoundBiggId
         }
         if(compoundId.length>0){
             if (typeOfCompound === "substrate") {

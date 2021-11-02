@@ -2472,3 +2472,14 @@ java.net.BindException: Address already in use: bind
 2021-11-01 13:15:37,509 INFO o.e.j.s.s.HouseKeeper [Thread-1] Scavenging every 660000ms
 2021-11-01 13:15:37,570 INFO o.e.j.s.AbstractConnector [Thread-1] Started ServerConnector@157ae33f{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
 2021-11-01 13:15:37,570 INFO o.e.j.s.Server [Thread-1] Started @2153ms
+2021-11-02 15:27:25,204 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-11-02 15:27:25,243 INFO o.e.j.u.l.Log [Thread-1] Logging initialized @2442ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-11-02 15:27:25,284 INFO s.e.j.EmbeddedJettyServer [Thread-1] == Spark has ignited ...
+2021-11-02 15:27:25,284 INFO s.e.j.EmbeddedJettyServer [Thread-1] >> Listening on 0.0.0.0:80
+2021-11-02 15:27:25,286 INFO o.e.j.s.Server [Thread-1] jetty-9.4.4.v20170414
+2021-11-02 15:27:25,326 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-1] DefaultSessionIdManager workerName=node0
+2021-11-02 15:27:25,326 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-1] No SessionScavenger set, using defaults
+2021-11-02 15:27:25,330 INFO o.e.j.s.s.HouseKeeper [Thread-1] Scavenging every 660000ms
+2021-11-02 15:27:25,410 INFO o.e.j.s.AbstractConnector [Thread-1] Started ServerConnector@7713d26b{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-11-02 15:27:25,410 INFO o.e.j.s.Server [Thread-1] Started @2611ms
+2021-11-02 16:42:40,834 INFO s.h.m.MatcherFilter [qtp1460933258-97] The requested route [/] has not been mapped in Spark for Accept: [null]

@@ -8,7 +8,10 @@ import {ToolTipBig} from "../../main/user-interface/UserInterface";
 
 export const createCsvBlob = (generalState, graphState) => {
     const {reactionObjects, reactionNames} = getReactions(graphState)
+
+    // TODO: couldn't we simply use reactionsInSelectArray here?
     const reactions = reactionNames.map(name => generalState.reactionsInSelectArray.filter(reaction => reaction.reactionName === name)[0])
+
     reactions.map(reaction => {
         reaction.abbreviation = typeof graphState.abbreviationsObject[`${reaction.reactionName}`] === "undefined" ? reaction.reactionName : graphState.abbreviationsObject[`${reaction.reactionName}`]
         reaction.opacity = graphState.data.nodes.filter(node => node.id === reaction.reactionName)[0].opacity
@@ -52,7 +55,8 @@ export const createCsvBlob = (generalState, graphState) => {
         // let output = outputCsv.concat("stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp", "\n")
         return reaction
     })
-    let output = "stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp\n"
+
+    let output = "stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp;compoundBiggId;reactionBiggId\n"
     let reactionCounter = 0
     const compoundTypeSubstrate = "substrate"
     const compoundTypeProduct = "product"
