@@ -146,7 +146,7 @@ const GraphVisualization = () => {
         )
     }
     return (
-        <div style={{display:"flex", justifyContent: "center"}}>
+        <div style={{display:"flex", justifyContent: "center"}} className={"graph"}>
             <Card style={{width:"60vw", height: "80vh", padding: "10px"}}>
                 <Typography variant="h5" component="h1" style={{fontSize:"2rem"}}> Upload a pathway or start
                     building your own pathway from scratch!</Typography>
