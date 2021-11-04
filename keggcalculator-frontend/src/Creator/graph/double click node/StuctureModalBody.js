@@ -10,7 +10,7 @@ import KeyCompoundChanger from "./KeyCompoundChanger";
 import {NOT_KEY_COMPOUND_OPACITY} from "../Constants";
 import "../click node/leftClick/DropDownMenu.css"
 import DropApp from "./DropApp";
-import DropCystol from "./DropCystol";
+import DropCytosol from "./DropCytosol";
 import ObjectiveCo from "./ObjectiveCo";
 
 export const getTaxaList = (reactionTaxa) => {
@@ -71,7 +71,7 @@ export const getStructureBody = (state, dispatch, generalState, isNcbiTaxonomy, 
         <div className={"nodeLabel"}><h3 style={{padding: "2px"}}>ID: {compound.id}</h3></div>
         <br/>
         <div>
-            <DropCystol node = {compound.id} />
+            <DropCytosol node = {compound.id} />
         </div>
 
         <div className={"keyCompoundChoice"}>

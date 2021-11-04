@@ -57,9 +57,9 @@ const linkInData = (links, newLink) => {
 
 // return a node object
 const createNode = (id, color, symbolType, x, y, opacity, reversible, flux) => {
-    if(flux<0){
-        reversible = true;
-    }
+    // if(flux<0){
+    //     reversible = true;
+    // }
     return (
         {
             id: id,
@@ -77,9 +77,16 @@ const createNode = (id, color, symbolType, x, y, opacity, reversible, flux) => {
 const createLink = (source, target, opacity, isReversibleLink, flux) => {
     var c = "";
     var d = 0.0;
-    if(flux >=0 & flux <=100 ){
-        c = 'red';
+    var sour = source;
+    var tar = target;
+
+    if(flux == 0){
+        c = 'grey';
         d = 1;
+    }
+    else if(flux >=1 & flux <=100 ){
+        c = 'red';
+        d = 1.5;
     }
     else if(flux>100 & flux<=200){
         c = 'yellow';
@@ -89,29 +96,43 @@ const createLink = (source, target, opacity, isReversibleLink, flux) => {
         c = 'green';
         d = 2.5;
     }
-    else if (flux>500 & flux <=700){
-        c = 'blue';
-        d = 3.5;
-    }
-    else if(flux>700 & flux<=1000){
+    else if (flux>500 & flux <=1000){
         c = 'purple';
-        d = 4.0;
+        d = 3.0;
     }
-    else if(flux <0 & flux>=-100){
-        c = 'black';
-        d = 4.5;
-        //isReversibleLink = true;
-        //isReversibleLink = true;
-    }
-    else{
-        c = 'grey';
+    else if(flux<0 & flux>=-100){
+        c = 'orange';
+        d = 3.5;
+        sour = target;
+        tar = source;
 
     }
+    else if(flux<-100 & flux>=-200){
+        c = 'black';
+        d = 4.0;
+        sour = target;
+        tar = source;
+    }
+    else if(flux<-200 & flux>=-500){
+        c = 'cyan';
+        d = 4.5;
+        sour = target;
+        tar = source;
+    }
+    else if(flux<-500 & flux>=-1000){
+        c = 'blue';
+        d = 5.0;
+        sour = target;
+        tar = source;
+        //isReversibleLink = true;
+        //isReversibleLink = true;
+    }
+
     return (
         {
             color: c,
-            source: source,
-            target: target,
+            source: sour,
+            target: tar,
             opacity: 7,
             strokeWidth: d,
             isReversibleLink: isReversibleLink,

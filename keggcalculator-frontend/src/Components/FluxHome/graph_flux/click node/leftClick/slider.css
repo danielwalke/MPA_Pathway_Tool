@@ -23,3 +23,12 @@
     text-align: left;
     margin-left: 10px;
 }
+
+.toggleButton{
+    color: darkgray;
+    margin-top: 10px;
+}
+.toggle{
+    color: blueviolet;
+    margin-outside: 5px;
+}

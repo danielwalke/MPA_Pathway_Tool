@@ -103,65 +103,10 @@ const Graph_visualization_fba = () =>{
                         data={generalState.new_data_gen}
                         config={myConfig}
                         onClickNode={(nodeId) => onClickNode(nodeId, graphState, generalState, dispatch)}
+
                     />
-                    <Information/>
+
                 </div>
-                <div>
-
-
-                    {/*<Card border="dark" style={{ width: '18rem' }}>*/}
-                    {/*    <Card.Header>Color Information</Card.Header>*/}
-                    {/*    <Card.Body>*/}
-                    {/*        <Card.Title>Flux and Informations</Card.Title>*/}
-                    {/*        <Card.Text>*/}
-
-                    {/*            <Table>*/}
-                    {/*                <thead>*/}
-                    {/*                <tr>*/}
-                    {/*                    <th>FluxRate</th>*/}
-                    {/*                    <th>Color</th>*/}
-                    {/*                    <th>Stroke Width</th>*/}
-                    {/*                </tr>*/}
-                    {/*                </thead>*/}
-                    {/*                <tbody>*/}
-                    {/*                <tr>*/}
-                    {/*                    <td>Flux 0-100</td>*/}
-                    {/*                    <td>Red</td>*/}
-                    {/*                    <td>@mdo</td>*/}
-                    {/*                </tr>*/}
-                    {/*                <tr>*/}
-                    {/*                    <td>Flux 100-200</td>*/}
-                    {/*                    <td>Yellow</td>*/}
-                    {/*                    <td>@fat</td>*/}
-                    {/*                </tr>*/}
-                    {/*                <tr>*/}
-                    {/*                    <td>Flux 200-500</td>*/}
-                    {/*                    <td>Green</td>*/}
-                    {/*                    <td>@twitter</td>*/}
-                    {/*                </tr>*/}
-                    {/*                <tr>*/}
-                    {/*                    <td>Flux 500-700</td>*/}
-                    {/*                    <td>Blue</td>*/}
-                    {/*                    <td>@twitter</td>*/}
-                    {/*                </tr>*/}
-                    {/*                <tr>*/}
-                    {/*                    <td>Flux 700-100</td>*/}
-                    {/*                    <td>Purple</td>*/}
-                    {/*                    <td>@twitter</td>*/}
-                    {/*                </tr>*/}
-                    {/*                <tr>*/}
-                    {/*                    <td>Flux -0</td>*/}
-                    {/*                    <td>Black</td>*/}
-                    {/*                    <td>@twitter</td>*/}
-                    {/*                </tr>*/}
-                    {/*                </tbody>*/}
-                    {/*            </Table>*/}
-                    {/*        </Card.Text>*/}
-                    {/*    </Card.Body>*/}
-                    {/*</Card>*/}
-                    <br />
-                </div>
-
             </div>
 
 

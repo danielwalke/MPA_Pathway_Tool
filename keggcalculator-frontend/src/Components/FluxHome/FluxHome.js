@@ -19,6 +19,9 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import {Drawer, useTheme} from "@material-ui/core";
 import UserInterface from "../../Creator/main/user-interface/UserInterface";
+import Information from "./graph_flux/graph visualization/Information";
+import DownloadCSV from "./download/DownloadCSV";
+import Loading from "../../Creator/loading/Loading";
 function FluxHome() {
     const [open, setOpen] = React.useState(true)
     const [drawerOffSet, setDrawerOffset] = React.useState(0)
@@ -26,6 +29,7 @@ function FluxHome() {
     const dispatch = useDispatch()
     const proteinState = useSelector(state => state.mpaProteins)
     const generalState = useSelector(state => state.general)
+    const fbaState = useSelector(state => state.fba)
     const theme = useTheme()
     const useStyles = makeStyles({
         drawerPaper: {
@@ -78,13 +82,20 @@ function FluxHome() {
                               <div>
                                   <button
                                       className={"downloadButton"}>
-                                      <NodeAndLinks></NodeAndLinks>
+                                      <NodeAndLinks/>
                                       {/*<Graph_visualization_fba/>*/}
                                   </button>
                               </div>
                               <div>
                                   <button className={"downloadButton"}>
-                                      <FbaSolution></FbaSolution>
+                                      <FbaSolution/>
+                                  </button>
+
+
+                              </div>
+                              <div>
+                                  <button className={"downloadButton"}>
+                                      <DownloadCSV generalState={generalState} graphState={graphState} fbaState = {fbaState}/>
                                   </button>
 
 
@@ -94,9 +105,16 @@ function FluxHome() {
                                   <p>Please Click ADD Flux to calculate the Flux</p>
                               </div>
 
+                              <div>
+                                  <Information/>
+                              </div>
+
 
                           </Drawer>
                       </div>
+                      {/*<div>*/}
+                      {/*    {generalState.new_data_gen.length<1 ? <Loading/> : null}*/}
+                      {/*</div>*/}
 
                       <div className={"graph"}><Graph_visualization_fba dispatch={dispatch}/></div>
 

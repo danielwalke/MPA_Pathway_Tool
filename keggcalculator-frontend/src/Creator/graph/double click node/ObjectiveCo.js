@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown'
 import {useDispatch, useSelector} from "react-redux";
+import {InputLabel, MenuItem, Select} from "@material-ui/core";
+import FormControl from "@material-ui/core/FormControl";
 
 
 function ObjectiveCo(nodeId){
@@ -13,25 +15,35 @@ function ObjectiveCo(nodeId){
     const generalState = useSelector(state => state.general)
 
     var reactionid = nodeId.nodeId.slice(nodeId.nodeId.length - 6);
-    console.log(reactionid);
+    //console.log(reactionid);
 
     var reactionList = [];
     var value1 = 0;
 
-    const [value,setValue]=useState('');
-    const handleSelect=(e)=>{
-        console.log(e)
-        setValue(e)
-        value1 = e
-        console.log(value1)
-        reactionList.push({
-            'reactionId' : reactionid,
-            'objectiveCoefficient' : value1
-        });
-        console.log(reactionList);
-        dispatch({type: "SETOBJECTIVECOEFFECIENT", payload: reactionList})
-    }
+    const [val, setValue]=useState('');
+    const handleChange=(e)=>{
+        //console.log(e.target.value);
+        setValue(e.target.value);
+        value1 = e.target.value;
+        //console.log(value1)
+        const found = generalState.objectiveCoeffecient.some(el => el.reactionId === reactionid);
 
+        if(!found){
+            reactionList.push({
+                'reactionId' : reactionid,
+                'objectiveCoefficient' : value1
+            });
+            dispatch({type: "SETOBJECTIVECOEFFECIENT", payload: reactionList})
+        }
+        else{
+            generalState.objectiveCoeffecient.forEach(reaction =>{
+                if(reaction.reactionId == reactionid){
+                    reaction.objectiveCoefficient = value1;
+                }
+            })
+        }
+    }
+    // console.log(generalState)
 
 
     //
@@ -42,16 +54,20 @@ function ObjectiveCo(nodeId){
 
     return (
         <div className="App container">
-            <h4>You selected {value}</h4>
-            <DropdownButton
-                alignRight
-                title="Set Objective Coeffecient"
-                id="dropdown-menu-align-left"
-                onSelect={handleSelect}
-            >
-                <Dropdown.Item eventKey="0">0</Dropdown.Item>
-                <Dropdown.Item eventKey="1">1</Dropdown.Item>
-            </DropdownButton>
+            <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Objective Coeffecient</InputLabel>
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={val}
+                    label="Objective"
+                    onChange={handleChange}
+                >
+                    <MenuItem value={0}>0</MenuItem>
+                    <MenuItem value={1}>1</MenuItem>
+
+                </Select>
+            </FormControl>
 
         </div>
     );
