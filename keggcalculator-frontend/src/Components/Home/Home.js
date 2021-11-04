@@ -103,7 +103,7 @@ const CustomTabs = (props) =>{
                  to={"/calculator"} component={NavLink}
             />
             <Tab icon={<CreateIcon/>} to={"/FluxHome"}
-                 value={"/FluxHome"} label={"Flux_Analysis"} component={NavLink}/>
+                 value={"/FluxHome"} label={"Flux-Analysis"} component={NavLink}/>
         </Tabs>
     )
 }

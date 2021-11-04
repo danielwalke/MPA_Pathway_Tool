@@ -21,11 +21,12 @@ const NodeAndLinks = () => {
         const data_new = {nodes: nodes, links: links}
 
         dispatch({type: "SETNEWDATA1", payload: data_new})
+        dispatch({type: "SETNEWDATA", payload: data_new})
         dispatch({type: "SWITCHISMODULESIMPORT"})
         dispatch({type: "SETNEWDATALINKS", payload: links})
-        console.log(nodes, links);
-        console.log(reaction);
-        console.log(fbaState);
+        // console.log(nodes, links);
+        // console.log(reaction);
+        // console.log(fbaState);
 
     }
 

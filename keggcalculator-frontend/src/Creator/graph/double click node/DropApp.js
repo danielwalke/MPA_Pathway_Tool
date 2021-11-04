@@ -3,6 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown'
 import {useDispatch, useSelector} from "react-redux";
+import {InputLabel, MenuItem, Select} from "@material-ui/core";
+import FormControl from "@material-ui/core/FormControl";
+import {reaction} from "mobx";
 
 
 function DropApp(nodeId){
@@ -18,41 +21,54 @@ function DropApp(nodeId){
     var reactionList = [];
     var value1 = false;
 
-    const [value,setValue]=useState('');
-    const handleSelect=(e)=>{
-        console.log(e)
-        setValue(e)
-        value1 = e
-        console.log(value1)
-        reactionList.push({
-            'reactionId' : reactionid,
-            'exchangeInfo' : value1
-        });
-        console.log(reactionList);
-        dispatch({type: "SETEXCHANGEREACTION", payload: reactionList})
-    }
+    const [val, setValue]= React.useState('');
+    const handleChange = (e) =>{
+        //console.log(e.target.value);
+        setValue(e.target.value);
+        value1 = e.target.value;
+       // console.log(value1)
+
+        const found = generalState.exchangeReaction.some(el => el.reactionId === reactionid);
+        //console.log(found);
+        if(!found){
+            reactionList.push({
+                'reactionId' : reactionid,
+                'exchangeInfo' : value1
+            });
+            dispatch({type: "SETEXCHANGEREACTION", payload: reactionList})
+        }
+        else{
+            generalState.exchangeReaction.forEach(reaction =>{
+                if(reaction.reactionId == reactionid){
+                    reaction.exchangeInfo = value1;
+                }
+            });
+        }
+
+       // console.log(reactionList);
 
 
 
-    //
-    //
-
-
-
+    };
+    //console.log(generalState.exchangeReaction);
 
     return (
         <div className="App container">
+            <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Reaction Info</InputLabel>
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={val}
+                    label="Reaction Type"
+                    onChange={handleChange}
+                >
+                    <MenuItem value={true}>Exchange Reaction</MenuItem>
+                    <MenuItem value={false}>Not An Exchange Reaction</MenuItem>
+                </Select>
+            </FormControl>
 
-            <DropdownButton
-                alignRight
-                title="Set the reaction Type"
-                id="dropdown-menu-align-left"
-                onSelect={handleSelect}
-            >
-                <Dropdown.Item eventKey="true">Exchange Reaction</Dropdown.Item>
-                <Dropdown.Item eventKey="false">Not An Exchange Reaction</Dropdown.Item>
-            </DropdownButton>
-            <h4>You selected {value}</h4>
+
         </div>
     );
 }
