@@ -33,9 +33,9 @@ const Main = () => {
 
     const dispatch = useDispatch()
 
-    useEffect(async () => {
+    useEffect(() => {
             triggerLoadingWarning(dispatch)
-            await queryKeggInformation(dispatch)
+            queryKeggInformation(dispatch)
             if (!isHostLocalHost) triggerWindowExitWarning()
         }, [])
 
