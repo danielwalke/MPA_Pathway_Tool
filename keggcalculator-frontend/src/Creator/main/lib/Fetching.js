@@ -23,11 +23,11 @@ const setKeggReactionsInStore = (keggReactions, dispatch) => dispatch({type: "SE
 
 const queryKeggReactions = dispatch => requestGenerator("GET", endpoint_getReactionList, "", "").then(keggReactions => setKeggReactionsInStore(keggReactions, dispatch))
 
-const setKeggCompoundsInStore = async (compoundNameToIdMap, compoundIdToName, dispatch) =>{
-    await dispatch({type: "SETCOMPMAP", payload: compoundNameToIdMap})
-    await dispatch({type: "SETCOMPOUNDID2NAME", payload: compoundIdToName})
-    await dispatch({type: "SETOPTIONS", payload: getCompName(compoundNameToIdMap)})
-    await dispatch({type: "SETLOADING", payload: false})
+const setKeggCompoundsInStore = (compoundNameToIdMap, compoundIdToName, dispatch) =>{
+    dispatch({type: "SETCOMPMAP", payload: compoundNameToIdMap})
+    dispatch({type: "SETCOMPOUNDID2NAME", payload: compoundIdToName})
+    dispatch({type: "SETOPTIONS", payload: getCompName(compoundNameToIdMap)})
+    dispatch({type: "SETLOADING", payload: false})
 }
 
 const getKeggCompoundNameToIdMap = keggCompounds => {
@@ -42,15 +42,18 @@ const getKeggCompoundIdToName = keggCompounds => {
     return keggCompoundIdToName
 }
 
-const queryKeggCompounds = async dispatch => {
-    const keggCompounds =  await requestGenerator("GET", endpoint_getCompoundList, "", "")
-    const keggCompoundNameToIdMap = getKeggCompoundNameToIdMap(keggCompounds)
-    const keggCompoundIdToName = getKeggCompoundIdToName(keggCompounds)
-    await setKeggCompoundsInStore(keggCompoundNameToIdMap, keggCompoundIdToName, dispatch)
+const queryKeggCompounds = dispatch => {
+    requestGenerator("GET", endpoint_getCompoundList, "", "").then((keggCompounds)=>{
+        const keggCompoundNameToIdMap = getKeggCompoundNameToIdMap(keggCompounds)
+        const keggCompoundIdToName = getKeggCompoundIdToName(keggCompounds)
+        setKeggCompoundsInStore(keggCompoundNameToIdMap, keggCompoundIdToName, dispatch)
+    })
+
+
 }
 
-export const queryKeggInformation = async(dispatch) => {
-    await queryKeggCompounds(dispatch)
+export const queryKeggInformation = (dispatch) => {
+    queryKeggCompounds(dispatch)
     queryEcNumbers(dispatch)
     queryKoNumbers(dispatch)
     queryKeggModules(dispatch)
