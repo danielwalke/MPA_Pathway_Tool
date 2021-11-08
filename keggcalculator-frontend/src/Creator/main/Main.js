@@ -88,10 +88,7 @@ const Main = () => {
         //     dispatch({type:"SETFLUXREACTION", payload: resp.data})
         // })
             window.onbeforeunload = exit
-        console.log(generalState);
-        console.log(graphState);
-        console.log("KAFI");
-        console.log(proteinState);
+
         }, []
     )
 

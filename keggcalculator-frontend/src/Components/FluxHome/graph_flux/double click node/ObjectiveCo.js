@@ -5,10 +5,9 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import {useDispatch, useSelector} from "react-redux";
 import {InputLabel, MenuItem, Select} from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
-import {reaction} from "mobx";
 
 
-function DropApp(nodeId){
+function ObjectiveCo(nodeId){
     const state = useSelector(state => state.keggReaction)
 
     const dispatch = useDispatch();
@@ -16,61 +15,62 @@ function DropApp(nodeId){
     const generalState = useSelector(state => state.general)
 
     var reactionid = nodeId.nodeId.slice(nodeId.nodeId.length - 6);
-    console.log(reactionid);
+    //console.log(reactionid);
 
     var reactionList = [];
-    var value1 = false;
+    var value1 = 0;
 
-    const [val, setValue]= React.useState('');
-    const handleChange = (e) =>{
+    const [val, setValue]=useState('');
+    const handleChange=(e)=>{
         //console.log(e.target.value);
         setValue(e.target.value);
         value1 = e.target.value;
-       // console.log(value1)
+        //console.log(value1)
+        const found = generalState.objectiveCoeffecient.some(el => el.reactionId === reactionid);
 
-        const found = generalState.exchangeReaction.some(el => el.reactionId === reactionid);
-        //console.log(found);
         if(!found){
             reactionList.push({
                 'reactionId' : reactionid,
-                'exchangeInfo' : value1
+                'objectiveCoefficient' : value1
             });
-            dispatch({type: "SETEXCHANGEREACTION", payload: reactionList})
+            dispatch({type: "SETOBJECTIVECOEFFECIENT", payload: reactionList})
         }
         else{
-            generalState.exchangeReaction.forEach(reaction =>{
+            generalState.objectiveCoeffecient.forEach(reaction =>{
                 if(reaction.reactionId == reactionid){
-                    reaction.exchangeInfo = value1;
+                    reaction.objectiveCoefficient = value1;
                 }
-            });
+            })
         }
+    }
+    // console.log(generalState)
 
-       // console.log(reactionList);
+
+    //
+    //
 
 
 
-    };
-    //console.log(generalState.exchangeReaction);
 
     return (
         <div className="App container">
             <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Reaction Info</InputLabel>
+                <InputLabel id="demo-simple-select-label">Objective Coeffecient</InputLabel>
                 <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={val}
-                    label="Reaction Type"
+                    label="Objective"
                     onChange={handleChange}
                 >
-                    <MenuItem value={true}>Exchange Reaction</MenuItem>
-                    <MenuItem value={false}>Not An Exchange Reaction</MenuItem>
+                    <MenuItem value={0}>0</MenuItem>
+                    <MenuItem value={1}>1</MenuItem>
+
                 </Select>
             </FormControl>
-
 
         </div>
     );
 }
 
-export default DropApp;
+export default ObjectiveCo;

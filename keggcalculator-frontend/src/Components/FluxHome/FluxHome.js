@@ -22,6 +22,7 @@ import UserInterface from "../../Creator/main/user-interface/UserInterface";
 import Information from "./graph_flux/graph visualization/Information";
 import DownloadCSV from "./download/DownloadCSV";
 import Loading from "../../Creator/loading/Loading";
+import StructureModal from "./graph_flux/double click node/StructureModal";
 function FluxHome() {
     const [open, setOpen] = React.useState(true)
     const [drawerOffSet, setDrawerOffset] = React.useState(0)
@@ -79,6 +80,7 @@ function FluxHome() {
                                       {<CloseIcon/>}
                                   </IconButton>
                               </div>
+                              <StructureModal/>
                               <div>
                                   <button
                                       className={"downloadButton"}>
@@ -86,6 +88,8 @@ function FluxHome() {
                                       {/*<Graph_visualization_fba/>*/}
                                   </button>
                               </div>
+                              {generalState.fbaSolution.length == 0 ? <Loading/> : null}
+
                               <div>
                                   <button className={"downloadButton"}>
                                       <FbaSolution/>
@@ -112,9 +116,11 @@ function FluxHome() {
 
                           </Drawer>
                       </div>
-                      {/*<div>*/}
-                      {/*    {generalState.new_data_gen.length<1 ? <Loading/> : null}*/}
+
+                      {/*<div className={"graph"}>*/}
+                      {/*    {generalState.new_data_gen.nodes.length<0 ? <GraphVisualization/> : <Graph_visualization_fba dispatch = {dispatch}/>}*/}
                       {/*</div>*/}
+
 
                       <div className={"graph"}><Graph_visualization_fba dispatch={dispatch}/></div>
 

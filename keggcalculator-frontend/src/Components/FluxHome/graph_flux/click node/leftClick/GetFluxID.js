@@ -24,7 +24,7 @@ const Input = styled(MuiInput)`
 
 const useStyles = makeStyles((theme) => ({
     buttonToggle: {
-        color: 'black',
+        backgroundColor: 'mediumpurple',
 
     },
     toggleGroup: {
@@ -43,6 +43,8 @@ const SliderRanger = styled(Slider)(({theme}) =>({
         },
     },
 }))
+
+
 
 const minDistance = 5;
 const GetFluxID = (nodeId) => {
@@ -167,6 +169,8 @@ const GetFluxID = (nodeId) => {
             }
         });
 
+        setFlux([0, 0])
+
         //console.log(fbaState);
         console.log("Clicked the button KnockOut")
 
@@ -197,7 +201,7 @@ const GetFluxID = (nodeId) => {
             }
         });
 
-
+        setFlux([minflux, maxflux]);
         //console.log(fbaState.new_data_backup);
     }
 
@@ -350,6 +354,9 @@ const GetFluxID = (nodeId) => {
                     <Button variant="contained" onClick={() => handleSubmitKnockout(name, generalState, fbaState, dispatch)}>Knockout</Button>
                     <Button variant="contained" onClick={() => handleSubmitReset(name, generalState, fbaState)}>Reset</Button>
                     <ToggleButton
+                        sx = {{
+                            backgroundColor: 'purple',
+                        }}
                         value="min"
                         selected={minValuetoggle}
                         onChange={() =>
@@ -369,6 +376,7 @@ const GetFluxID = (nodeId) => {
                         >
                         Maximize
                         </ToggleButton>
+
 
                 </Stack>
             </div>
