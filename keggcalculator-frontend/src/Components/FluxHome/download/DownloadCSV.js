@@ -65,7 +65,7 @@ const DownloadCSV = (props) =>{
                 // let output = outputCsv.concat("stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp", "\n")
                 return reaction
             })
-            let output = "stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp;flux;minFlux;maxFlux;exchangeReaction;compoundLocation\n"
+            let output = "ReactionNumberId;FVA_min;FVA_max;FBA\n"
             let reactionCounter = 0
             const compoundTypeSubstrate = "substrate"
             const compoundTypeProduct = "product"
@@ -85,8 +85,8 @@ const DownloadCSV = (props) =>{
                 reactionCounter++;
             }
             let blob = new Blob(new Array(output.trim()), {type: "text/plain;charset=utf-8"});
-            console.log(blob)
-            saveAs(blob, "ModuleGraph.csv")
+
+            saveAs(blob, "FbaFormat.csv")
         }catch (e){
             window.alert(e)
         }

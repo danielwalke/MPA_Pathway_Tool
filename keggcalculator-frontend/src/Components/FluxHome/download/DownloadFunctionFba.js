@@ -58,20 +58,20 @@ export const getReactions = (generalState, graphState) =>{
 }
 
 export const addOutput = (output, reaction, compound,reactionCounter, compoundType, reversible, generalState) => {
-    output = output.concat(reactionCounter.toString(), ";") //step id
+    //output = output.concat(reactionCounter.toString(), ";") //step id
     output = output.concat(reaction.reactionName.replaceAll(";", "\t"), ";") //reaction name
-    output = output.concat(reaction.koNumbersString, ";") //ko number ids
-    output = output.concat(reaction.ecNumbersString, ";") //ec number ids
-    output = output.concat(compound.stochiometry, ";") //stochiometric coeff
-    output = output.concat(compound.name.replaceAll(";", "\t"), ";") //compound id
-    output = output.concat(compoundType, ";") //type of compound
-    output = output.concat(reversible, ";") //reversibility
+    //output = output.concat(reaction.koNumbersString, ";") //ko number ids
+    //output = output.concat(reaction.ecNumbersString, ";") //ec number ids
+    //output = output.concat(compound.stochiometry, ";") //stochiometric coeff
+    //output = output.concat(compound.name.replaceAll(";", "\t"), ";") //compound id
+    //output = output.concat(compoundType, ";") //type of compound
+    //output = output.concat(reversible, ";") //reversibility
     let taxonomyCounter = 0
     if(getTaxaList(reaction.taxa).length === 0){
-        output = output.concat(";")
+        //output = output.concat(";")
     }
     for(const taxonomy of getTaxaList(reaction.taxa)){
-        taxonomyCounter<getTaxaList(reaction.taxa).length-1? output = output.concat(taxonomy, "&&") : output = output.concat(taxonomy, ";") //taxonomy
+        //taxonomyCounter<getTaxaList(reaction.taxa).length-1? output = output.concat(taxonomy, "&&") : output = output.concat(taxonomy, ";") //taxonomy
         taxonomyCounter++
     }
     var flux = 0.0;
@@ -91,17 +91,18 @@ export const addOutput = (output, reaction, compound,reactionCounter, compoundTy
     console.log(flux)
 
 
-    output = output.concat(reaction.x.toString(), ";") //reactionX
-    output = output.concat(reaction.y.toString(), ";") //reactionY
-    output = output.concat(compound.x.toString(), ";") //compound X
-    output = output.concat(compound.y.toString(), ";") //compound Y
-    output = output.concat(reaction.abbreviation.replaceAll(";", "\t"), ";") //reaction abbreviation
-    output = output.concat(compound.abbreviation.replaceAll(";", "\t"), ";") //compound abbreviation
+    //output = output.concat(reaction.x.toString(), ";") //reactionX
+    //output = output.concat(reaction.y.toString(), ";") //reactionY
+    //output = output.concat(compound.x.toString(), ";") //compound X
+    //output = output.concat(compound.y.toString(), ";") //compound Y
+    //output = output.concat(reaction.abbreviation.replaceAll(";", "\t"), ";") //reaction abbreviation
+    //output = output.concat(compound.abbreviation.replaceAll(";", "\t"), ";") //compound abbreviation
     const keyCompound = compound.opacity === 1
-    output = output.concat(keyCompound.toString() + ";") //key compound
-    output = output.concat(flux + ';')
+    //output = output.concat(keyCompound.toString() + ";") //key compound
+
     output = output.concat(minFlux + ';')
     output = output.concat(maxFlux + ';')
+    output = output.concat(flux + ';')
     return output;
 }
 
@@ -130,8 +131,8 @@ export const addLocationInformation = (output, generalState, reaction, substrate
     //console.log(exchangeReaction)
     const reactionExchange = `${exchangeReaction.length>0? exchangeReaction[0].exchangeInfo? "true": "false" : "truefalse"};`
     //console.log(reactionExchange)
-    output = output.concat(reactionExchange)
-    output = output.concat(`${compoundLocation.length>0? compoundLocation[0].compartment : "external"}`)
+    //output = output.concat(reactionExchange)
+    //output = output.concat(`${compoundLocation.length>0? compoundLocation[0].compartment : "external"}`)
 
     output = output.concat("\n") //next compound
     //console.log(output)
