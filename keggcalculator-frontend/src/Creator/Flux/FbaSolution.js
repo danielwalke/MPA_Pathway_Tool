@@ -82,6 +82,7 @@ const FbaSolution = () =>{
     };
 
     const getfbaflux = (reaction) => {
+        dispatch({type: "SWITCHLOADING"})
         const requestPromise = requestGenerator("POST", fbaSolution,  "", "", reaction)
             .then(response => {
                 var data_reply = response.data;
@@ -117,6 +118,7 @@ const FbaSolution = () =>{
                 }
                 console.log(reactionList);
                 dispatch({type: "SETFBAANDFLUX", payload: reactionList});
+                dispatch({type: "SWITCHLOADING", payload: false});
 
                 return (
 

@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import DeleteIcon from "@material-ui/icons/Delete";
 import TaxonomicRank from "../../double click node/TaxonomicRank";
 import {getTaxaList} from "../../double click node/StuctureModalBody";
-import TaxonomyNcbi from "../../../taxonomy/TaxonomyNcbi";
+import TaxonomyNcbi from "../../../../../Creator/taxonomy/TaxonomyNcbi";
 import {makeStyles} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({

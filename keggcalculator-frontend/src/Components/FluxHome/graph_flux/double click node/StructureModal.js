@@ -2,7 +2,7 @@ import Modal from "@material-ui/core/Modal";
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getStructureBody} from "./StuctureModalBody";
-import {useStyles} from "../../ModalStyles/ModalStyles";
+import {useStyles} from "../../../../Creator/ModalStyles/ModalStyles";
 
 const StructureModal = () => {
     const generalState = useSelector(state => state.general)

@@ -1,5 +1,5 @@
 import {handleSubmitDirection} from "./DirectionsChanger";
-import React from "react";
+import React, {useState} from "react";
 import TextField from "@material-ui/core/TextField";
 import DeleteIcon from "@material-ui/icons/Delete";
 import "./StructureModalBody.css"
@@ -8,6 +8,10 @@ import ReversibilityChange from "./ReversibilityChange";
 import TaxonomyNcbi from "../../../../Creator/taxonomy/TaxonomyNcbi";
 import KeyCompoundChanger from "./KeyCompoundChanger";
 import {NOT_KEY_COMPOUND_OPACITY} from "../Constants";
+import "../click node/leftClick/DropDownMenu.css"
+import DropApp from "./DropApp";
+import DropCytosol from "./DropCytosol";
+import ObjectiveCo from "./ObjectiveCo";
 
 export const getTaxaList = (reactionTaxa) => {
     const taxaList = []
@@ -19,12 +23,14 @@ export const getTaxaList = (reactionTaxa) => {
     return taxaList
 }
 
+
+
 export const getStructureBody = (state, dispatch, generalState, isNcbiTaxonomy, setIsNcbiTaxonomy) => {
-    const compound = typeof generalState.new_data_gen.nodes.filter(node => node.id === generalState.new_click_node)[0] === "undefined" ? {} : generalState.new_data_gen.nodes.filter(node => node.id === generalState.new_click_node)[0]
-    const nodeId = generalState.new_click_node
+    const compound = typeof state.data.nodes.filter(node => node.id === state.doubleClickNode)[0] === "undefined" ? {} : state.data.nodes.filter(node => node.id === state.doubleClickNode)[0]
+    const nodeId = state.doubleClickNode.substring(state.doubleClickNode.length - 6, state.doubleClickNode.length)
     const reaction = nodeId.match(/[R,U]/) ? generalState.reactionsInSelectArray.filter(r => r.reactionName === state.doubleClickNode)[0] : {}
     const reactionName = nodeId.match(/[R,U]/) ? reaction.reactionName : {}
-    console.log(nodeId);
+
     const handleIsKeyCompound = (e) => {
         e.preventDefault()
         const otherNodes = state.data.nodes.filter(node => node.id !== compound.id)
@@ -57,12 +63,22 @@ export const getStructureBody = (state, dispatch, generalState, isNcbiTaxonomy, 
         dispatch({type: "SETDATA", payload: data})
     }
 
+
+    //
+
+
     const body = (<div className={"structureBodyContainer"} style={{backgroundColor: "white", width:"75vw",overflow:"auto", maxHeight:"80vh"}}>
         <div className={"nodeLabel"}><h3 style={{padding: "2px"}}>ID: {compound.id}</h3></div>
-        <div className={"keyCompoundChoice"}>
-            <KeyCompoundChanger compound={compound} handleIsNotKeyCompound={handleIsNotKeyCompound}
-                                handleIsKeyCompound={handleIsKeyCompound}/>
-        </div>
+        <br/>
+        {/*<div>*/}
+        {/*    <DropCytosol node = {compound.id} />*/}
+        {/*</div>*/}
+
+        {/*<div className={"keyCompoundChoice"}>*/}
+        {/*    <KeyCompoundChanger compound={compound} handleIsNotKeyCompound={handleIsNotKeyCompound}*/}
+        {/*                        handleIsKeyCompound={handleIsKeyCompound}/>*/}
+        {/*</div>*/}
+
         <div className={"details"}>
             {nodeId.match(/[C]/) &&
             <img style={{maxWidth:"75vw"}} src={`https://www.genome.jp/Fig/compound/${nodeId}.gif`} alt={state.doubleClickNode}/>}
@@ -70,41 +86,57 @@ export const getStructureBody = (state, dispatch, generalState, isNcbiTaxonomy, 
             <img style={{maxWidth:"75vw"}} src={`https://www.genome.jp/Fig/glycan/${nodeId}.gif`} alt={state.doubleClickNode}/>}
             {nodeId.match(/[R,U]/) && (
                 <div style={{display: "grid", gridAutoRows: "auto"}}>
-                    <div style={{display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10vw"}}>
-                        <div><ReversibilityChange nodeId={nodeId}/></div>
-                        <div>
-                            <button className={"downloadButton"} style={{width: "15vw"}}
-                                    onClick={() => handleSubmitDirection(state, dispatch, generalState)}>reverse
-                                reaction
-                            </button>
-                        </div>
+                    {/*<div style={{display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10vw"}}>*/}
+                    {/*    <div><ReversibilityChange nodeId={nodeId}/></div>*/}
+                    {/*    <div>*/}
+                    {/*        <button className={"downloadButton"} style={{width: "15vw"}}*/}
+                    {/*                onClick={() => handleSubmitDirection(state, dispatch, generalState)}>reverse*/}
+                    {/*            reaction*/}
+                    {/*        </button>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
+                    {/*<div style={{margin: "2px"}}><TaxonomicRank/>*/}
+                    {/*    <div style={{display:"grid", gridTemplateColumns:"5fr 1fr"}}>*/}
+                    {/*        <div>{!isNcbiTaxonomy ? <TextField*/}
+                    {/*                style={{width: "100%"}}*/}
+                    {/*                placeholder={"lowest taxonomic rank"}*/}
+                    {/*                size={"small"}*/}
+                    {/*                className={"taxonomy"}*/}
+                    {/*                label="taxonomy"*/}
+                    {/*                variant="outlined"*/}
+                    {/*                id="TaxReaction"*/}
+                    {/*                onChange={(e) => dispatch({*/}
+                    {/*                    type: "SETTAXONOMY",*/}
+                    {/*                    payload: e.target.value.toString()*/}
+                    {/*                })}*/}
+                    {/*            /> :*/}
+                    {/*            <TaxonomyNcbi taxonomy={generalState.taxonomy} dispatchTaxonomy={"SETTAXONOMY"}/>}</div>*/}
+                    {/*        <div>*/}
+                    {/*            <button className={"downloadButton"} style={{height:"100%"}}*/}
+                    {/*                    onClick={() => setIsNcbiTaxonomy(!isNcbiTaxonomy)}>Switch*/}
+                    {/*            </button>*/}
+                    {/*        </div>*/}
+                    {/*    </div>*/}
+                    {/*    <button className={"downloadButton"} style={{width: "20vw"}}*/}
+                    {/*            onClick={() => dispatch({type: "ADDTAXONOMY", payload: reactionName})}>Add taxonomy*/}
+                    {/*    </button>*/}
+                    {/*</div>*/}
+                    {/*<div>*/}
+                    {/*    <DropApp nodeId = {compound.id}/>*/}
+                    {/*</div>*/}
+                    <div>
+                        <ObjectiveCo nodeId = {compound.id}/>
+
                     </div>
-                    <div style={{margin: "2px"}}><TaxonomicRank/>
-                        <div style={{display:"grid", gridTemplateColumns:"5fr 1fr"}}>
-                            <div>{!isNcbiTaxonomy ? <TextField
-                                    style={{width: "100%"}}
-                                    placeholder={"lowest taxonomic rank"}
-                                    size={"small"}
-                                    className={"taxonomy"}
-                                    label="taxonomy"
-                                    variant="outlined"
-                                    id="TaxReaction"
-                                    onChange={(e) => dispatch({
-                                        type: "SETTAXONOMY",
-                                        payload: e.target.value.toString()
-                                    })}
-                                /> :
-                                <TaxonomyNcbi taxonomy={generalState.taxonomy} dispatchTaxonomy={"SETTAXONOMY"}/>}</div>
-                            <div>
-                                <button className={"downloadButton"} style={{height:"100%"}}
-                                        onClick={() => setIsNcbiTaxonomy(!isNcbiTaxonomy)}>Switch
-                                </button>
-                            </div>
-                        </div>
-                        <button className={"downloadButton"} style={{width: "20vw"}}
-                                onClick={() => dispatch({type: "ADDTAXONOMY", payload: reactionName})}>Add taxonomy
-                        </button>
-                    </div>
+
+
+
+
+
+
+
+
+
                     <div><p style={{fontWeight:"bold"}}>chosen taxonomic constraints:</p></div>
                     <div>
                         <ul style={{listStyleType: "none"}}>

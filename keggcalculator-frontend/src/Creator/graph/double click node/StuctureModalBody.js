@@ -124,10 +124,10 @@ export const getStructureBody = (state, dispatch, generalState, isNcbiTaxonomy, 
                     <div>
                         <DropApp nodeId = {compound.id}/>
                     </div>
-                    <div>
-                        <ObjectiveCo nodeId = {compound.id}/>
+                    {/*<div>*/}
+                    {/*    <ObjectiveCo nodeId = {compound.id}/>*/}
 
-                    </div>
+                    {/*</div>*/}
 
 
 

@@ -47,6 +47,8 @@ const onClickNode = (nodeId, graphState, generalState, dispatch) => {
 
 }
 
+
+
 const style = {
     color : 'black',
     textAlign: 'center',
@@ -117,7 +119,7 @@ const Graph_visualization_fba = () =>{
             <div>
 
                 <div>
-                    <GraphVisualization/>
+                    <GraphVisualization dispatch = {dispatch}/>
                 </div>
             </div>
 

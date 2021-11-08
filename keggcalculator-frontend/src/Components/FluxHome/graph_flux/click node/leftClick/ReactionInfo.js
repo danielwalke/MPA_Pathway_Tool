@@ -20,6 +20,7 @@ const ReactionInfo = () => {
         mpaProteins: useSelector(state => state.mpaProteins),
     }
 
+
     const handleClose = (event, dispatch) => {
         event.preventDefault()
         dispatch({type: "SETSHOWINFO", payload: false})
@@ -51,7 +52,8 @@ const ReactionInfo = () => {
         </div>
         <div className={"koAndEcListContainer"}>
             <KoAndEcLists/>
-            <GetFluxID node = {state.graph.chosenNode}/>
+            {Object.keys(state.general.fbaSolution).length > 0 ? <GetFluxID node = {state.graph.chosenNode}/> : null}
+
 
         </div>
         <ReactionCaption className={"captionReaction"}/>
