@@ -17,6 +17,8 @@ import {getLastItemOfList} from "../../Creator/usefulFunctions/Arrays";
 import {Redirect} from 'react-router'
 import {host} from "../../App Configurations/SystemSettings";
 import Footer from "../Footer/Footer";
+import FluxAnalysisMain from "../../Flux Analysis/flux-analysis-main-component/FluxAnalysisMain";
+import DeviceHubIcon from '@mui/icons-material/DeviceHub';
 
 class Home extends Component {
 
@@ -63,6 +65,7 @@ class Home extends Component {
                                     {/*<div><h3 style={{margin: "5% 0 0 0"}}>Under Construction</h3> <img style={{width: "70%", padding: "3%"}} src={underConstruction}/></div>*/}
                                     <Route path={"/home"}><Start changeState={this.changeState}/></Route>
                                     <Route path={"/creator"}><App changeState={this.changeState}/></Route>
+                                    <Route path={"/fluxanalysis"}> <FluxAnalysisMain changeState={this.changeState}/> </Route>
                                     <Route path={"/calculator"}> <UploadPanel changeState={this.changeState}/></Route>
                                 </Switch>
                             </BrowserRouter>
@@ -91,15 +94,15 @@ const CustomTabs = (props) => {
     return (
         <Tabs variant={"fullWidth"} textColor={"primary"} indicatorColor={"primary"} orientation={"horizontal"}
               scrollButtons={"auto"}
-              classes={
-                  {indicator: classes.indicator}
-              }
+              classes={{indicator: classes.indicator}}
               value={state.selectedTab}
               onChange={(event, tabValue) => changeState("selectedTab", tabValue)}>
             <Tab icon={<HomeIcon/>} to={"/home"}
                  value={"/home"} label={"Home"} component={NavLink}/>
             <Tab icon={<CreateIcon/>} to={"/creator"}
                  value={"/creator"} label={"Pathway-Creator"} component={NavLink}/>
+            <Tab icon={<DeviceHubIcon/>} to={"/fluxanalysis"}
+                 value={"/fluxanalysis"} label={"Flux-Analysis"} component={NavLink}></Tab>
             <Tab icon={<SvgIcon>
                 <path xmlns="http://www.w3.org/2000/svg"
                       d="M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M13.03,7.06L14.09,6l1.41,1.41 L16.91,6l1.06,1.06l-1.41,1.41l1.41,1.41l-1.06,1.06L15.5,9.54l-1.41,1.41l-1.06-1.06l1.41-1.41L13.03,7.06z M6.25,7.72h5v1.5h-5 V7.72z M11.5,16h-2v2H8v-2H6v-1.5h2v-2h1.5v2h2V16z M18,17.25h-5v-1.5h5V17.25z M18,14.75h-5v-1.5h5V14.75z"/>

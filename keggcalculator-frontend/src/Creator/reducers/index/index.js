@@ -6,6 +6,7 @@ import {keggReactionReducer} from "../KeggReaction";
 import {graphReducer} from "../Graph";
 import {auditTrailReducer} from "../AuditTrail";
 import {fileReducer} from "../Files";
+import {fluxAnalysisReducer} from "../../../Flux Analysis/flux-analysis-reducer/FluxAnalysisReducer";
 
 export const allReducers = combineReducers({
     general: generalReducer,
@@ -14,5 +15,6 @@ export const allReducers = combineReducers({
     specificReaction: specificReactionReducer,
     mpaProteins: mpaProteinReducer,
     auditTrail: auditTrailReducer,
-    files: fileReducer
+    files: fileReducer,
+    fluxAnalysis: fluxAnalysisReducer
 })

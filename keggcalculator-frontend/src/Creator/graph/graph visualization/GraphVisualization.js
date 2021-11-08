@@ -37,7 +37,7 @@ const onRightClickNode = (e, nodeId, dispatch, graphState) => {
 
 }
 
-const handleNodePositionChange = (graphState, x, y, nodeId, dispatch) => {
+export const handleNodePositionChange = (graphState, x, y, nodeId, dispatch) => {
     const nodes = graphState.data.nodes.map(node => {
         if (node.id === nodeId) {
             node.x = +x
@@ -82,7 +82,8 @@ const GraphVisualization = () => {
             highlightColor: "lightblue",
             strokeWidth: 2,
             markerHeight: 6,
-            markerWidth: 6
+            markerWidth: 6,
+            color: "#d3d3d3",
         },
         d3: {
             gravity: -80,
