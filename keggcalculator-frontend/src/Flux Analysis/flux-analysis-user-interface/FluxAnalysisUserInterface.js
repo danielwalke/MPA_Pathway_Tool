@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useReducer, useState} from "react";
 import {Drawer, makeStyles, Toolbar, useTheme} from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import clsx from "clsx";
@@ -6,10 +6,18 @@ import MenuIcon from "@material-ui/icons/Menu";
 import {ToolTipBig} from "../../Creator/main/user-interface/UserInterface";
 import CloseIcon from "@material-ui/icons/Close";
 import "../../Creator/main/user-interface/UserInterface.css"
+import {getDummyFluxData} from "../services/DummyFlux";
+import {useDispatch, useSelector} from "react-redux";
+import {createFbaGraphDummyData} from "../services/CreateFbaGraphData";
+import graphModal from "../flux-analysis-modals/GraphModal";
 
 export default function FluxAnalysisUserInterface() {
     const [open, setOpen] = useState(true)
     const [drawerOffSet, setDrawerOffset] = useState(0)
+
+    const dispatch = useDispatch()
+    const generalState = useSelector(state => state.general)
+    const fluxState = useSelector(state => state.fluxAnalysis)
 
     const theme = useTheme()
     const useStyles = makeStyles({
@@ -26,6 +34,12 @@ export default function FluxAnalysisUserInterface() {
         const tabHeight = document.getElementsByClassName("MuiTabs-root")[0].clientHeight
         setDrawerOffset(tabHeight + headerHeight)
     }, [])
+
+    const handleOptimizeClick = async () => {
+        const dummyDataResponse = await getDummyFluxData(generalState.reactionsInSelectArray)
+        const newGraphData = createFbaGraphDummyData(fluxState, dummyDataResponse.data)
+        dispatch({type: "SET_FLUX_GRAPH", payload: newGraphData.data})
+    }
 
     return(
         <div className={"interface"}>
@@ -56,7 +70,7 @@ export default function FluxAnalysisUserInterface() {
                     </div>
                     <div className={"helpContainer"}>
                         <ToolTipBig title={"perform FBA and FVA for the displayed network"} placement={"right"}>
-                            <button className={"download-button"}>
+                            <button className={"download-button"} onClick={() => handleOptimizeClick()}>
                                 Optimize
                             </button>
                         </ToolTipBig>

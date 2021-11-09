@@ -1,19 +1,58 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Graph} from "react-d3-graph";
-import {isColliding} from "../../Creator/graph/collision/CollisionCheck";
 import {handleNodePositionChange} from "../../Creator/graph/graph visualization/GraphVisualization";
+import clonedeep from "lodash/cloneDeep";
+import {getKeggId} from "../services/CreateFbaGraphData";
+import GraphModal from "../flux-analysis-modals/GraphModal";
+
+const findReactionObj = (adjacentReactionNode, generalState) => {
+    const reactionNodeId = getKeggId(adjacentReactionNode)
+    return (generalState.reactionsInSelectArray.find(reactionObj => reactionNodeId === reactionObj.reactionId))
+}
 
 export default function FluxAnalysisGraphVisualization() {
 
     const graphState = useSelector(state => state.graph)
     const fluxState = useSelector(state => state.fluxAnalysis)
+    const generalState = useSelector(state => state.general)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch({type: "SET_FLUX_GRAPH", payload: graphState.data})
-        console.log(graphState.data)
+        dispatch({type: "SET_FLUX_GRAPH", payload: clonedeep(graphState.data)})
     }, [])
+
+    const onClickNode = (nodeId) => {
+        const id = getKeggId(nodeId)
+        let nodeType = "reaction"
+        let reactionObject
+        let compoundObject
+        let adjacentLinks
+
+        if (id.startsWith("R") || id.startsWith("U")) {
+
+        } else {
+            nodeType = "compound"
+            adjacentLinks = graphState.data.links.find(link => link.source === nodeId)
+            if(adjacentLinks) {
+                reactionObject = findReactionObj(adjacentLinks.target, generalState)
+                compoundObject = reactionObject.substrates.find(sub => getKeggId(sub.name) === id)
+            } else {
+                adjacentLinks = graphState.data.links.find(link => link.target === nodeId)
+                if(adjacentLinks) {
+                    reactionObject = findReactionObj(adjacentLinks.source, generalState)
+                    compoundObject = reactionObject.products.find(prod => getKeggId(prod.name) === id)
+                } else {
+                    console.log("something went wrong")
+                }
+            }
+        }
+
+        dispatch({type: "SHOW_GRAPH_MODAL", payload: true})
+
+        console.log(compoundObject)
+
+    }
 
     const labelCallbackNodes = (node) => {
         if (typeof graphState.abbreviationsObject[`${node.id}`] !== "undefined") {
@@ -38,25 +77,27 @@ export default function FluxAnalysisGraphVisualization() {
         },
         link: {
             highlightColor: "lightblue",
-            strokeWidth: 2
-
+            strokeWidth: 2,
+            markerHeight: 6,
+            markerWidth: 6
         },
         d3: {
             gravity: -80,
             linkStrength: 1.2,
-            disableLinkForce: true
+            disableLinkForce: true,
         }
     };
 
     if (fluxState.data.nodes.length > 0) {
         return (
-            <div>
+            <div >
                 <Graph
                     bottom={0}
                     id="graph"
                     data={fluxState.data}
                     config={myConfig}
                     onNodePositionChange={(id, x, y) => handleNodePositionChange(fluxState, x, y, id, dispatch)}
+                    onClickNode={(nodeId) => onClickNode(nodeId)}
                 />
             </div>
         );

@@ -65,3 +65,5 @@ export const endpoint_getFilteredKNumberList = host + ":" + portNumber + "/keggc
 export const endpoint_getFilteredCompoundList = host + ":" + portNumber + "/keggcreator/filteredcompoundlist";
 
 export const endpoint_getFilteredBiggCompoundList = host + ":" + portNumber + "/keggcreator/filteredbiggidlist";
+
+export const endpoint_getDummyFBAData = host + ":" + portNumber + "/fluxanalysis/fbaDummy";
