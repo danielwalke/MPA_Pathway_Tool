@@ -28,9 +28,11 @@ export default function FluxAnalysisGraphVisualization() {
         let reactionObject
         let compoundObject
         let adjacentLinks
+        let dataObject
 
         if (id.startsWith("R") || id.startsWith("U")) {
-
+            reactionObject = findReactionObj(nodeId, generalState)
+            dataObject = reactionObject
         } else {
             nodeType = "compound"
             adjacentLinks = graphState.data.links.find(link => link.source === nodeId)
@@ -46,11 +48,15 @@ export default function FluxAnalysisGraphVisualization() {
                     console.log("something went wrong")
                 }
             }
+        dataObject = compoundObject
         }
 
-        dispatch({type: "SHOW_GRAPH_MODAL", payload: true})
+        dataObject.type = nodeType
 
-        console.log(compoundObject)
+        dispatch({type: "SHOW_GRAPH_MODAL", payload: true})
+        dispatch({type: "SET_GRAPH_MODAl_INPUT", payload: dataObject})
+
+        console.log(dataObject)
 
     }
 

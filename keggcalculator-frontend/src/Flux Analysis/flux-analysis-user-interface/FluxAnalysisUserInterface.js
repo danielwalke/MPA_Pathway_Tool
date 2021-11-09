@@ -38,6 +38,11 @@ export default function FluxAnalysisUserInterface() {
     const handleOptimizeClick = async () => {
         const dummyDataResponse = await getDummyFluxData(generalState.reactionsInSelectArray)
         const newGraphData = createFbaGraphDummyData(fluxState, dummyDataResponse.data)
+
+        generalState.reactionsInSelectArray.forEach(reaction => {
+            const fluxObj = dummyDataResponse.data.find(flux => flux.reactionId === reaction.reactionId)
+            reaction.flux = fluxObj.fbaFlux
+        })
         dispatch({type: "SET_FLUX_GRAPH", payload: newGraphData.data})
     }
 

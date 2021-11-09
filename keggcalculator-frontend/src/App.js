@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import './App.css';
 import Home from "./Components/Home/Home";
-import {createMuiTheme} from "@material-ui/core";
+import {createTheme} from "@material-ui/core";
 import {ThemeProvider} from "@material-ui/styles";
 import CalculatorStore from "./Components/State Management/CalculatorStore";
 import {Provider} from "mobx-react"
@@ -9,7 +9,7 @@ import ModuleStore from "./Components/State Management/ModuleStore";
 import {useDispatch} from "react-redux";
 import {host} from "./App Configurations/SystemSettings";
 
-const theme = createMuiTheme({
+const theme = createTheme({
     palette: {
         primary: {
             main: '#941680'

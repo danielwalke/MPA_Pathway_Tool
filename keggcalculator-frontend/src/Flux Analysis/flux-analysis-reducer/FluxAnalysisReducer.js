@@ -4,7 +4,8 @@ const defaultState = {
         links: [],
     },
     showGraphModal: false,
-    graphModalInput: {}
+    graphModalInput: {},
+    flux: []
 }
 
 export const fluxAnalysisReducer = (state = defaultState, action) => {
@@ -16,6 +17,8 @@ export const fluxAnalysisReducer = (state = defaultState, action) => {
             return {...state, showGraphModal: payload}
         case "SET_GRAPH_MODAl_INPUT":
             return {...state, graphModalInput: payload}
+        case "SET_FLUX":
+            return {...state, flux: payload}
         default:
             return state;
     }

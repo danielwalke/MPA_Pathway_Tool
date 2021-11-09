@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import FluxAnalysisUserInterface from "../flux-analysis-user-interface/FluxAnalysisUserInterface";
 import FluxAnalysisGraphVisualization from "../flux-analysis-graph-visualization/FluxAnalysisGraphVisualization";
 import GraphModal from "../flux-analysis-modals/GraphModal";
@@ -6,17 +6,29 @@ import {useSelector} from "react-redux";
 
 export default function FluxAnalysisMain(){
     const fluxState = useSelector(state => state.fluxAnalysis)
-    const [windowCoordinates, setWindowCoordinates] = useState({x: "", y: ""})
+    const generalState = useSelector(state => state.general)
+    const [mouseCoordinates, setMouseCoordinates] = useState({x: "", y: ""})
+
+    useEffect(() => {
+        generalState.reactionsInSelectArray.forEach(reaction => {
+            if (!reaction.lowerBound) reaction.lowerBound = -1000.0
+            if (!reaction.upperBound) reaction.upperBound = 1000.0
+            if (!reaction.objectiveCoefficient) reaction.objectiveCoefficient = 0
+            reaction.flux = 0
+        })
+    },[])
 
     return (
         <div className={"mainContainer"}
-             onClick={(e) => setWindowCoordinates({x: String(e.clientX), y: String(e.clientY)})}>
+             onClick={(e) => {
+                 !fluxState.showGraphModal && setMouseCoordinates({x: String(e.clientX), y: String(e.clientY)}
+             )}}>
             <div className={"main"}>
                 <FluxAnalysisUserInterface />
                 <FluxAnalysisGraphVisualization />
                 {
                     fluxState.showGraphModal &&
-                    <GraphModal windowCoordinates={windowCoordinates} />
+                    <GraphModal mouseCoordinates={mouseCoordinates} />
                 }
             </div>
         </div>
