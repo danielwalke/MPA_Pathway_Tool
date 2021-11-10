@@ -22,8 +22,8 @@ export default function FluxIndicator({flux}) {
             alignItems: "center"
         }}>
             <ArrowUpwardIcon/>
-            <p>Flux:</p>
-            <p>{flux}</p>
+            <span>Flux:</span>
+            <span>{parseFloat(flux).toFixed(2)}</span>
         </div>
     )
 }

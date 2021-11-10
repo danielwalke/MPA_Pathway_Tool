@@ -1,7 +1,8 @@
-import {createTheme, Slider} from "@material-ui/core";
-import React from "react";
+import {createTheme, Slider, StylesProvider} from "@material-ui/core";
+import React, {useEffect, useState} from "react";
 import { ThemeProvider } from "@material-ui/styles";
-export default function StyledSlider({bounds, setBounds}) {
+
+export default function StyledSlider({bounds, setBounds, setFinalBounds}) {
 
     const marks = [
         {value: 0.0,},
@@ -45,18 +46,21 @@ export default function StyledSlider({bounds, setBounds}) {
     });
 
     return (
-        <ThemeProvider theme={PrettoSlider}>
-        <Slider
-            style={{width: "90%", paddingBottom: "0"}}
-            getAriaLabel={() => 'Flux Bounds'}
-            value={bounds}
-            onChange={(event, value) => {setBounds(value)}}
-            valueLabelDisplay="auto"
-            // getAriaValueText={valuetext}
-            min={-1000.0}
-            max={1000.0}
-            marks={marks}
-        />
-        </ThemeProvider>
+            <StylesProvider injectFirst>
+            <Slider
+                style={{width: "90%", paddingBottom: "0"}}
+                getAriaLabel={() => 'Flux Bounds'}
+                value={bounds}
+                onChange={(event, value) => setBounds(value)}
+                onChangeCommitted={(event, value) => {
+                    setFinalBounds(value)
+                }}
+                valueLabelDisplay="auto"
+                // getAriaValueText={valuetext}
+                min={-1000.0}
+                max={1000.0}
+                marks={marks}
+            />
+        </StylesProvider>
     )
 }

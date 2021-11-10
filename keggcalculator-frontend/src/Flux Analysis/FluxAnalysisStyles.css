@@ -7,3 +7,40 @@
     align-items: flex-start;
     text-align: left;
 }
+
+.MuiSlider-root {
+    color: rgb(150, 25, 130);
+    height: 8px;
+    margin-bottom: 4px;
+}
+
+.MuiSlider-thumb {
+    height: 20px;
+    width: 20px;
+    background-color: #fff;
+    border: 2px solid currentColor;
+    marginTop: -8px;
+    marginLeft: -12;
+
+}
+
+.MuiSlider-thumb:focus :hover :active {
+                                   box-shadow: inherit
+                               }
+
+.MuiSlider-active {}
+
+.MuiSlider-valueLabel {
+    left: calc(-50%)
+}
+
+.MuiSlider-track {
+    height: 8px;
+    border-radius: 4px
+}
+
+
+.MuiSlider-rail {
+    height: 8px;
+    border-radius: 4px
+}

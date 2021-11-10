@@ -57,8 +57,8 @@ export function createFbaGraphDummyData(graphData, fluxData) {
             reaction = fluxData.find(reaction => reaction.reactionId === targetNode)
         }
 
-        // link.strokeWidth = getStyleFromFlux(reaction.fbaFlux).width
-        link.strokeWidth = 5
+        link.strokeWidth = getStyleFromFlux(reaction.fbaFlux).width
+        // link.strokeWidth = 5
         link.color = getStyleFromFlux(reaction.fbaFlux).hexColor
 
     })

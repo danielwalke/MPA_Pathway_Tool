@@ -96,10 +96,21 @@
 
 .spaced-buttons {
     justify-content: space-between;
+    width: 100%;
 }
 
 .finish-button {
     width: 8em;
+}
+
+.big-button {
+    height: 2rem;
+    border: 2px solid rgb(150, 25, 130);
+}
+
+.not-toggled {
+    color: black;
+    background-color: #fff;
 }
 
 .indicator-circle {
