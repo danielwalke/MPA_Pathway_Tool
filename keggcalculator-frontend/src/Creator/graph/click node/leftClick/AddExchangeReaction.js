@@ -15,8 +15,12 @@ export function findRandomCompoundObj(compoundNodeId, graphState, generalState) 
     const reactionNodeId = link.source === compoundNodeId ? link.target : link.source
     const reactionObj = generalState.reactionsInSelectArray.find(
         reaction => reaction.reactionId === getKeggId(reactionNodeId))
+
+    const substrateNameSplit = compoundNodeId.includes("__") ?
+        compoundNodeId.split("__")[1] : compoundNodeId
+
     return [...reactionObj.substrates, ...reactionObj.products].find(
-        compound => compound.name === compoundNodeId)
+        compound => compound.name === substrateNameSplit)
 }
 
 export default function AddExchangeReaction() {
@@ -41,7 +45,10 @@ export default function AddExchangeReaction() {
 
             if (substrateNode) {
                 console.log(substrateNode)
+                console.log(graphState)
+
                 const compoundObj = findRandomCompoundObj(substrateName, graphState, generalState)
+                console.log(compoundObj)
                 setCompoundObj(compoundObj)
 
                 const productObj = {
