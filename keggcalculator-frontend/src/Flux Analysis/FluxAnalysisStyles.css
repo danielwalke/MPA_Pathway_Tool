@@ -44,3 +44,8 @@
     height: 8px;
     border-radius: 4px
 }
+
+.flux-indicator {
+    width: 90%;
+    height: 4.5rem;
+}

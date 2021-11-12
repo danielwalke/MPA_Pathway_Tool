@@ -15,8 +15,8 @@ const onClickNode = (nodeId, dispatch, graphState, keggState) => {
         dispatch({type: "SETPRODUCTREACTIONMAP", payload: prodReactionsMap})
     }
     // the graph configuration, you only need to pass down properties
-// that you want to override, otherwise default ones will be used
-    if (nodeId.match(/[R,UP][0-9][0-9][0-9][0-9][0-9]/) != null) {
+    // that you want to override, otherwise default ones will be used
+    if (nodeId.match(/[R,U][0-9][0-9][0-9][0-9][0-9]/) != null) {
         dispatch({type: "SETCHOSENNODE", payload: nodeId.substring(nodeId.length - 6, nodeId.length)})
         dispatch({type: "SETSHOWINFO", payload: true})
     }
@@ -137,7 +137,7 @@ const GraphVisualization = () => {
                     id="graph"
                     data={graphState.data}
                     config={myConfig}
-                    onClickNode={(nodeId) => onClickNode(nodeId, dispatch, graphState, keggState)}
+                    onClickNode={(nodeId, x, y) => onClickNode(nodeId, dispatch, graphState, keggState, x, y)}
                     onRightClickNode={(event, nodeId) => onRightClickNode(event, nodeId, dispatch, graphState)}
                     onDoubleClickNode={(node) => handleDoubleClick(node)}
                     onClickLink={(source, target) => handleClickLink(source, target)}

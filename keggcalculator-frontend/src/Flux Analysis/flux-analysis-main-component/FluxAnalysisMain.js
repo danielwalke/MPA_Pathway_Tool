@@ -18,7 +18,8 @@ export default function FluxAnalysisMain(){
             if (!reaction.lowerBound) reaction.lowerBound = -1000.0
             if (!reaction.upperBound) reaction.upperBound = 1000.0
             if (!reaction.objectiveCoefficient) reaction.objectiveCoefficient = 0
-            reaction.flux = 0
+            if (!reaction.type) reaction.type = "nonexchange"
+            reaction.flux = undefined
         })
     },[])
 

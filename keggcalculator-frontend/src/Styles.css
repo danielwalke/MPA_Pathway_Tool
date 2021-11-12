@@ -1,0 +1,18 @@
+
+.separator-line {
+    margin: 1rem 0 1rem 0;
+    display: flex;
+    align-items: center;
+    font-size: calc(1rem * 0.75);
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.separator-line::before,
+.separator-line::after {
+    content: '';
+    height: 1px;
+    background-color: silver;
+    flex-grow: 1;
+    margin: 0 0.35rem 0 0.35rem;
+}
+

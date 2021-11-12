@@ -4,7 +4,6 @@ import {Graph} from "react-d3-graph";
 import {handleNodePositionChange} from "../../Creator/graph/graph visualization/GraphVisualization";
 import clonedeep from "lodash/cloneDeep";
 import {getKeggId} from "../services/CreateFbaGraphData";
-import GraphModal from "../flux-analysis-modals/GraphModal";
 
 const findReactionObj = (adjacentReactionNode, generalState) => {
     const reactionNodeId = getKeggId(adjacentReactionNode)
@@ -34,6 +33,7 @@ export default function FluxAnalysisGraphVisualization() {
             reactionObject = findReactionObj(nodeId, generalState)
             dataObject = reactionObject
         } else {
+            // find the corresponding compound object from reactionsInSelectArray, to extract compound Information
             nodeType = "compound"
             adjacentLinks = graphState.data.links.find(link => link.source === nodeId)
             if(adjacentLinks) {

@@ -18,7 +18,20 @@
     cursor: pointer;
 }
 
-.download-button:disabled:hover {
-    background-color: rgb(150, 25, 130);
+.download-button:disabled {
+    background-color: lightgray;
     cursor: default;
+    color: black;
+}
+
+.button-5rem {
+    width: 5rem;
+}
+
+.button-7rem {
+    width: 7rem;
+}
+
+.button-10rem {
+    width: 10rem;
 }

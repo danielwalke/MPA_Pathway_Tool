@@ -18,13 +18,13 @@ const Product = () => {
     }
 
     return (
-        <div className={"productContainer"}>
+        <div className={"input-container"}>
             <ToolTipBig title={"Search a product"} placement={"left"}>
                 <Autocomplete
                     size={"small"}
                     id="productBox"
                     options={getProdList()}
-                    className={"product"}
+                    className={"input-area"}
                     name={"product"}
                     onChange={(event, value) => {
                         dispatch({type: "SETPRODUCT", payload: value})
@@ -40,7 +40,7 @@ const Product = () => {
                     )}
                 />
             </ToolTipBig>
-            <SubmitProduct className={"submit"}/>
+            <SubmitProduct />
         </div>
 
     )

@@ -6,6 +6,8 @@ export async function requestTaxonomiesForReactions(reactionsInSelectArray) {
     const taxonomyUrl = endpoint_getTaxonomyIdList
     const taxonomiesForRequest = []
 
+    console.log(reactionsInSelectArray)
+
     reactionsInSelectArray.forEach(reaction => {
         for (const taxon of Object.entries(reaction.taxa)) {
             const requestListObj = {

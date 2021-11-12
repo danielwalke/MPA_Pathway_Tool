@@ -8,6 +8,7 @@ import "../download/DownloadGraph.css"
 import {queryKeggInformation} from "./lib/Fetching";
 import SampleFooter from "./components/SampleFooter";
 import {triggerWindowExitWarning, isHostLocalHost, triggerLoadingWarning} from "./lib/LoadingWarning";
+import {resetFluxData} from "../../Flux Analysis/services/CreateFbaGraphData";
 //BUG: API doppelt C00668 bei C00267 => einmal linke Seite, einmal Rechte vllt anpassen in meiner api
 
 export const taxonomicRanks = ["superkingdom", "kingdom", "phylum", "class", "order", "family", "genus", "species"]
@@ -37,6 +38,7 @@ const Main = () => {
             triggerLoadingWarning(dispatch)
             queryKeggInformation(dispatch)
             if (!isHostLocalHost) triggerWindowExitWarning()
+            // resetFluxData()
         }, [])
 
     return (

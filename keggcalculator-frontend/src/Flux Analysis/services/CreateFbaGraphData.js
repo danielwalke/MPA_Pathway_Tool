@@ -1,3 +1,4 @@
+import clonedeep from "lodash/cloneDeep";
 
 export function getKeggId(nodeId) {
     const splitArray = nodeId.split(" ")
@@ -58,11 +59,26 @@ export function createFbaGraphDummyData(graphData, fluxData) {
         }
 
         link.strokeWidth = getStyleFromFlux(reaction.fbaFlux).width
-        // link.strokeWidth = 5
+        link.strokeWidth = 5
         link.color = getStyleFromFlux(reaction.fbaFlux).hexColor
 
     })
 
     return fluxGraphData
+}
 
+export function resetFluxData(reactionsInSelectArray, fluxdata, dispatch) {
+    console.log("reset")
+    const newReactionsInSelectArray = clonedeep(reactionsInSelectArray)
+    newReactionsInSelectArray.forEach(reaction => {
+        reaction.flux = undefined
+    })
+    const newFluxdata = clonedeep(fluxdata)
+    newFluxdata.links.forEach(link => {
+        link.strokeWidth = undefined
+        link.color = undefined
+    })
+
+    dispatch({type: "SETREACTIONSINARRAY", payload: newReactionsInSelectArray})
+    dispatch({type: "SET_FLUX_GRAPH", payload: newFluxdata})
 }

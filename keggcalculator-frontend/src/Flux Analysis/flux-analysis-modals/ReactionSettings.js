@@ -1,13 +1,16 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import StyledSlider from "./StyledSlider";
 import FluxIndicator from "./FluxIndicator";
 import "../../Creator/upload/sbmlParser/annotationModal/AnnotationTable.css"
+import "../FluxAnalysisStyles.css"
 import {useDispatch, useSelector} from "react-redux";
 import {TextField} from "@material-ui/core";
+import {resetFluxData} from "../services/CreateFbaGraphData";
 
 export default function ReactionSettings({dataObj}) {
 
     const generalState = useSelector(state => state.general)
+    const fluxAnalysis = useSelector(state => state.fluxAnalysis)
 
     const dispatch = useDispatch()
 
@@ -16,6 +19,7 @@ export default function ReactionSettings({dataObj}) {
     const [objectiveCoeff, setObjectiveCoeff] = useState(dataObj.objectiveCoefficient)
     const [minimize, setMinimize] = useState(false)
     const [maximize, setMaximize] = useState(false)
+    const [flux, setFlux] = useState(dataObj.flux)
 
     useEffect(() => {
         setObjectiveCoeff(dataObj.objectiveCoefficient)
@@ -30,23 +34,43 @@ export default function ReactionSettings({dataObj}) {
     },[])
 
     useEffect(() => {
-        updateState()
-    },[finalBounds])
-
-    useEffect(() => {
-        updateState()
-    },[objectiveCoeff])
+        if (objectiveCoeff !== "" && finalBounds[0] !== "" && finalBounds[1] !== "") {
+            updateState()
+        }
+    },[finalBounds[0], finalBounds[1], objectiveCoeff])
 
     const updateState = () => {
         const reactionIndex = generalState.reactionsInSelectArray.findIndex(
             reaction => reaction.reactionId === dataObj.reactionId)
+
         const newReactionsInSelectArray = [...generalState.reactionsInSelectArray]
+
         newReactionsInSelectArray[reactionIndex].lowerBound = finalBounds[0]
         newReactionsInSelectArray[reactionIndex].upperBound = finalBounds[1]
         newReactionsInSelectArray[reactionIndex].objectiveCoefficient = objectiveCoeff
-        console.log(objectiveCoeff)
-        console.log(newReactionsInSelectArray[reactionIndex])
+
         dispatch({type: "SETREACTIONSINARRAY", payload: newReactionsInSelectArray})
+    }
+
+    const resetFlux = () => {
+        resetFluxData(generalState.reactionsInSelectArray, fluxAnalysis.data, dispatch)
+        setFlux(undefined)
+    }
+
+    const resetReaction = () => {
+        setObjectiveCoeff(0.0)
+        setBounds([-1000.0, 1000.0])
+        setFinalBounds([-1000.0, 1000.0])
+        setMaximize(false)
+        setMinimize(false)
+    }
+
+    const koReaction = () => {
+        setObjectiveCoeff(0.0)
+        setBounds([0.0, 0.0])
+        setFinalBounds([0.0, 0.0])
+        setMaximize(false)
+        setMinimize(false)
     }
 
     const handleClick = (input) => {
@@ -55,23 +79,30 @@ export default function ReactionSettings({dataObj}) {
                 if (!minimize) {
                     setObjectiveCoeff(-1.0)
                     setMaximize(false)
-                    setMinimize(true)
                 } else {
                     setObjectiveCoeff(0.0)
-                    setMinimize(false)
                 }
+                setMinimize(!minimize)
                 break
+
             case "maximize":
                 if (!maximize) {
                     setObjectiveCoeff(1.0)
-                    setMaximize(true)
                     setMinimize(false)
                 } else {
                     setObjectiveCoeff(0.0)
-                    setMaximize(false)
                 }
+                setMaximize(!maximize)
                 break
+
+            case "reset":
+                resetReaction()
+                break
+
+            case "ko":
+                koReaction()
         }
+        resetFlux()
     }
 
     return (
@@ -84,12 +115,16 @@ export default function ReactionSettings({dataObj}) {
             <StyledSlider
                 bounds={bounds}
                 setBounds={setBounds}
-                setFinalBounds={setFinalBounds}/>
-            <FluxIndicator flux={dataObj.flux}/>
+                setFinalBounds={setFinalBounds}
+                setFlux={setFlux}/>
+            <div className={"flux-indicator"}>
+                {flux && <FluxIndicator flux={flux}/> }
+            </div>
             <div
                 style={{padding: "0.2em"}}
                 className={"button-bar spaced-buttons"}>
                 <TextField
+                    InputLabelProps={{ shrink: true }}
                     size={"small"}
                     style={{width: "25%"}}
                     type={"number"}
@@ -101,18 +136,26 @@ export default function ReactionSettings({dataObj}) {
                     onChange={(event) => {
                         setFinalBounds([event.target.value, bounds[1]])
                         setBounds([event.target.value, bounds[1]])
+                        resetFlux()
                     }}
                 />
                 <TextField
+                    InputLabelProps={{ shrink: true }}
                     size={"small"}
                     style={{width: "25%"}}
                     type={"number"}
-                    label={"Objective Coefficient"}
+                    label={"Objective Coeff."}
                     variant="outlined"
                     max={1.0}
                     min={-1.0}
-                    value={objectiveCoeff}/>
+                    value={objectiveCoeff}
+                    onChange={(event) => {
+                        setObjectiveCoeff(event.target.value)
+                        resetFlux()
+                    }}
+                />
                 <TextField
+                    InputLabelProps={{ shrink: true }}
                     size={"small"}
                     style={{width: "25%"}}
                     type={"number"}
@@ -124,6 +167,7 @@ export default function ReactionSettings({dataObj}) {
                     onChange={(event) => {
                         setFinalBounds([bounds[0], event.target.value])
                         setBounds([bounds[0], event.target.value])
+                        resetFlux()
                     }}/>
 
             </div>

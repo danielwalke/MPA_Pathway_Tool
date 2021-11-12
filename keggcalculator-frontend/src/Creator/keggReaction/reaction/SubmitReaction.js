@@ -1,9 +1,9 @@
 import {useDispatch, useSelector} from "react-redux";
 import {handleSubmitReaction} from "../substrate and products/SubmitHandler";
 import React from "react"
-import "./Reaction.css"
 import {isRequestValid} from "../../request/RequestValidation";
 import {ToolTipBig} from "../../main/user-interface/UserInterface";
+import "../../download/DownloadGraph.css"
 
 const SubmitReaction = () => {
 
@@ -14,10 +14,10 @@ const SubmitReaction = () => {
     }
     const dispatch = useDispatch()
     return (
-        <ToolTipBig title={"Submit chosen reaction"} placement={"right"}>
+        <ToolTipBig title={"Submit chosen Reaction"} placement={"right"}>
             <button
                 disabled={!isRequestValid(state.keggState.reaction)}
-                className={"submitButtonReaction"}
+                className={"download-button button-5rem"}
                 onClick={(event) => {
                     event.preventDefault()
                     handleSubmitReaction(state, dispatch)

@@ -1,5 +1,5 @@
-import React, {useEffect, useRef, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import React, {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
 import "../FluxAnalysisStyles.css"
 import ReactionSettings from "./ReactionSettings";
 
@@ -10,27 +10,21 @@ export default function GraphModalBody() {
 
     useEffect(() => {
         setDataObj(fluxState.graphModalInput)
-    },[fluxState.graphModalInput])
+    }, [fluxState.graphModalInput])
 
-    if (dataObj.type) {
-        if (dataObj.type === "compound") {
-            return (
-                <div className={"graph-modal-compound"}>
-                    <span>ID: {dataObj.name}</span>
-                    <span>Abbreviation: {dataObj.abbreviation}</span>
-                </div>
-            )
-        } else if (dataObj.type === "reaction") {
-            console.log("hi")
-            return (
-                <div className={"graph-modal-compound"}>
-                    <span>ID: {dataObj.reactionId}</span>
-                    <ReactionSettings dataObj={dataObj} setDataObj={setDataObj}/>
-                </div>
-            )
-        }
-    }
     return (
-        <div></div>
+        <div className={"graph-modal-compound"}>
+            {dataObj.type === "compound" &&
+            <React.Fragment>
+                <span>ID: {dataObj.name}</span>
+                <span>Abbreviation: {dataObj.abbreviation}</span>
+            </React.Fragment>
+            }
+            {dataObj.type === "reaction" &&
+            <React.Fragment>
+                <span>ID: {dataObj.reactionId}</span>
+                <ReactionSettings dataObj={dataObj} setDataObj={setDataObj}/>
+            </React.Fragment>}
+        </div>
     )
 }

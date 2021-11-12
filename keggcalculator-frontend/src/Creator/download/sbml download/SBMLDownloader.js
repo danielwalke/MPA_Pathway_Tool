@@ -17,14 +17,14 @@ import {requestTaxonomiesForReactions} from "./RequestTaxonomiesForReactions";
 const SBMLDownloader = (props) => {
 
     const dispatch = useDispatch()
-    const generalState = clonedeep(props)
+    const state = clonedeep(props)
 
     const handleSbmlDownload = async () => {
 
         const pathwayName = "mpapathway"
 
-        const reactionTaxonomies = await requestTaxonomiesForReactions(generalState.reactionsInSelectArray)
-        const reactionList = MakeReactionList(generalState.reactionsInSelectArray, reactionTaxonomies)
+        const reactionTaxonomies = await requestTaxonomiesForReactions(state.generalState.reactionsInSelectArray)
+        const reactionList = MakeReactionList(state.generalState.reactionsInSelectArray, reactionTaxonomies)
         const [speciesObjArray, compartmentObjArray] = MakeSpeciesList(reactionList)
 
         const reactionXmlList = MakeReactionObjList(reactionList)

@@ -1,36 +1,8 @@
-.productContainer {
-    display: grid;
-    grid-template-columns: 80% 20%;
-    grid-template-areas: "product submit";
+.input-container {
+    display: flex;
 }
 
-.product {
-    grid-area: product;
-}
-
-.submit {
-    grid-area: submit;
-}
-
-.submitButtonProduct {
-    background-color: rgb(150, 25, 130);
-    border-radius: 0.8vw;
-    color: white;
-    transition: all 400ms ease-in-out;
-    text-transform: uppercase;
-    font-size: clamp(12px, 1vw, 15px);
-    font-family: Roboto;
+.input-area {
+    flex: 1 1 auto;
     margin: 2px;
-    transform: translate(0, -3px);
-    padding: 1px;
-}
-
-.submitButtonProduct:hover {
-    background-color: rgb(120, -5, 100);
-    cursor: pointer;
-}
-
-.submitButtonProduct:disabled:hover {
-    background-color: rgb(150, 25, 130);
-    cursor: default;
 }

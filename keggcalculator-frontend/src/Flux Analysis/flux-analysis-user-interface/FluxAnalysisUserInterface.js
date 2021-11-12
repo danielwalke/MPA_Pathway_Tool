@@ -9,7 +9,6 @@ import "../../Creator/main/user-interface/UserInterface.css"
 import {getDummyFluxData} from "../services/DummyFlux";
 import {useDispatch, useSelector} from "react-redux";
 import {createFbaGraphDummyData} from "../services/CreateFbaGraphData";
-import graphModal from "../flux-analysis-modals/GraphModal";
 
 export default function FluxAnalysisUserInterface() {
     const [open, setOpen] = useState(true)
@@ -38,12 +37,14 @@ export default function FluxAnalysisUserInterface() {
     const handleOptimizeClick = async () => {
         const dummyDataResponse = await getDummyFluxData(generalState.reactionsInSelectArray)
         const newGraphData = createFbaGraphDummyData(fluxState, dummyDataResponse.data)
+        const newReactionsInSelectArray = [...generalState.reactionsInSelectArray]
 
-        generalState.reactionsInSelectArray.forEach(reaction => {
+        newReactionsInSelectArray.forEach(reaction => {
             const fluxObj = dummyDataResponse.data.find(flux => flux.reactionId === reaction.reactionId)
             reaction.flux = fluxObj.fbaFlux
         })
         dispatch({type: "SET_FLUX_GRAPH", payload: newGraphData.data})
+        dispatch({type: "SETREACTIONSINARRAY", payload: newReactionsInSelectArray})
     }
 
     return(

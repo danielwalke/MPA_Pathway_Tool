@@ -2,34 +2,22 @@ import Product from "../../../keggReaction/substrate and products/product/Produc
 import Reaction from "../../../keggReaction/reaction/Reaction";
 import React from "react";
 import Modal from "@material-ui/core/Modal";
-
-import {makeStyles} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
-
-const useStyles = makeStyles((theme) => ({
-    modal: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    paper: {
-        backgroundColor: theme.palette.background.paper,
-        fontFamily: "Roboto",
-        border: '2px solid rgb(150, 25, 130)',
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3),
-    }
-}));
+import {useStyles} from "../../../ModalStyles/ModalStyles";
+import AddExchangeReaction from "./AddExchangeReaction";
+import "../../../../Styles.css"
 
 const NextReactionModal = () => {
     const state = useSelector(state => state.keggReaction)
     const dispatch = useDispatch()
     const classes = useStyles()
     const body = (
-        <div className={classes.paper} style={{width: "40vw"}}>
-            <Product className={"product"}/>
-            <br/>
-            <Reaction className={"reaction"}/>
+        <div className={classes.paper} style={{width: "40vw", display: "flex", flexDirection: "column"}}>
+            <div className={"separator-line"}>add KEGG reaction to compound</div>
+            <Product />
+            <Reaction />
+            <div className={"separator-line"}>add exchange reaction to compound</div>
+            <AddExchangeReaction/>
         </div>
     )
 
@@ -38,6 +26,7 @@ const NextReactionModal = () => {
                onClose={() => {
                    dispatch({type: "SWITCHSHOWNEXTREACTION"})
                    dispatch({type: "SETLOADING", payload: false})
+                   dispatch({type: "SETSUBSTRATE", payload: ""})
                }}>
             {body}
         </Modal>

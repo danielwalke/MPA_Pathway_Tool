@@ -99,3 +99,28 @@ export const handleAddTaxonomy = (e, dispatch, state, generalState) => {
     e.preventDefault()
     dispatch({type: "ADDSPECTAXONOMY", payload: {taxonomicRank: generalState.taxonomicRank, taxon: state.specTaxonomy}})
 }
+
+export function checkAndGenerateNewReactionId(reactionsInSelectArray) {
+    let highestIndex = -1
+    reactionsInSelectArray.forEach(reaction => {
+        if(reaction.reactionId.startsWith("U")) {
+            const reactionIndex = parseInt(reaction.reactionId.slice(1), 10)
+            if (reactionIndex > highestIndex) {
+                highestIndex = reactionIndex
+            }
+        }
+    })
+
+    const newIndex = (highestIndex + 1).toString()
+
+    if(newIndex.length <= 5) {
+        let newId = "U"
+        for (let i = 0; i<5-newIndex.length; i++) newId += "0"
+        newId += newIndex
+        return newId
+    } else {
+        window.alert(
+            "Reaction out of range! Can't add this reaction.")
+        return undefined
+    }
+}
