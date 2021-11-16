@@ -22,6 +22,7 @@ import model.KeggReactionObject;
 import rest.KeggHandleRequests;
 import services.KeggCalculatorService;
 import services.KeggCreatorService;
+import services.MantisService;
 
 /**
  * 
@@ -51,6 +52,7 @@ public class KeggCalculatorServer {
 
 		// Calculator
 		KeggCalculatorService calculator = new KeggCalculatorService();
+		MantisService mantis = new MantisService();
 
 		File dl = new File(KeggCalculatorConstants.DOWNLOAD_DIR);
 		if (!dl.exists())
@@ -472,6 +474,31 @@ public class KeggCalculatorServer {
 			} 
 		});
 		
+
+		post("/keggcreator/startMantis", (req, res) -> {
+			creator.requestAccess.get("startMantis").add(KeggCreatorService.getAccessDate());
+			return KeggHandleRequests.startMantis(req, res, mantis, creator);
+		});
+
+		post("/keggcreator/csvMantis", (req, res) -> {
+			creator.requestAccess.get("csvMantis").add(KeggCreatorService.getAccessDate());
+			return KeggHandleRequests.handleCSVMantis(req, res, mantis, req.queryParams("jobID"));
+		});
+
+
+		// the download link
+		get("/keggcreator/statusMantis", (req, res) -> {
+			creator.requestAccess.get("statusMantis").add(KeggCreatorService.getAccessDate());
+			return KeggHandleRequests.statusMantis(req, res, mantis, req.queryParams("jobid"));
+		});
+		
+		
+
+		get("/keggcreator/downloadMantis/:name", (req, res) -> {
+			creator.requestAccess.get("downloadMantis").add(KeggCreatorService.getAccessDate());
+			// UUID jobID = UUID.fromString(req.queryParams("jobid"));
+			return KeggHandleRequests.downloadMantis(req, res, mantis, req.params("name"));
+		});
 	}
 
 }

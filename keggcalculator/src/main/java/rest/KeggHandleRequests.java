@@ -25,6 +25,7 @@ import fluxanalysis.DummyFBAResponseObj;
 import fluxanalysis.dummyFBAMain;
 import json.KeggCalculatorJobJSON;
 import json.KeggCreatorJobJSON;
+import json.MantisJobJson;
 import model.KeggDataObject;
 import model.KeggECObject;
 import model.KeggHsaObject;
@@ -39,6 +40,7 @@ import model.testparser.PathwayFinderReverse;
 import parser.PomXmlParser;
 import services.KeggCalculatorService;
 import services.KeggCreatorService;
+import services.MantisService;
 import spark.Request;
 import spark.Response;
 import model.TaxonomyNcbi;
@@ -329,6 +331,62 @@ public class KeggHandleRequests {
 		}
 		HashMap<String, String> dependencyMap = parser.readDependencies(dependencies);
 		return creator.gson.toJson(dependencyMap);
+	}
+	
+	
+	public static String startMantis(Request req, Response res, MantisService mantis, KeggCreatorService creator) {
+		// parse JSON object
+		System.out.println(req.body());
+		try {
+			MantisJobJson jobObject = mantis.gson.fromJson(req.body(), MantisJobJson.class);
+			System.out.println(jobObject);
+			// generate new job ID
+			jobObject.jobID = UUID.randomUUID().toString();
+			System.out.println(UUID.randomUUID().toString());
+			mantis.currentJobs.put(jobObject.jobID, jobObject);
+			System.out.println(jobObject.jobID);
+			File jobDir = new File("upload/" + jobObject.jobID);
+			if (!jobDir.exists())
+				jobDir.mkdir();
+			// create job thread
+			mantis.submitJob(jobObject.jobID);
+			// return job with new jobID
+			return mantis.gson.toJson(jobObject);
+		} catch (JsonSyntaxException e) {
+			System.out.println("malformed json");
+			return "{\"message\":\"malformed json\"}";
+		} catch (Exception e) {
+			System.out.println("unknown error");
+			return "{\"message\":\"unknown error\"}";
+		}
+
+	}
+
+	// handles csv-file from MetaProteomeAnalyzer, upload
+	public static String handleCSVMantis(Request req, Response res, MantisService mantis, String jobID) {
+		if (mantis.getJobObject(jobID) != null) {
+			// receive upload
+			String sourceFileName = mantis.receiveUpload(req,
+					KeggCalculatorConstants.UPLOAD_DIR + "/" + jobID + "/");
+			return "{\"message\": \"upload successful: " + sourceFileName + "\"}";
+		} else {
+			return "{\"message\": \"upload rejected, not a valid job\"}";
+		}
+	}
+
+	// handles status about uploaded files
+	public static String statusMantis(Request req, Response res, MantisService mantis, String jobID) {
+		if (mantis.getJobObject(jobID) != null) {
+			return mantis.gson.toJson(mantis.getJobObject(jobID));
+		} else {
+			return "{\"message\": \"not a valid job\"}";
+		}
+	}
+
+	// handles download of output-csv-file
+	public static HttpServletResponse downloadMantis(Request req, Response res, MantisService mantis,
+			String jobID) {
+		return mantis.getDownload(req, res, jobID);
 	}
 
 }

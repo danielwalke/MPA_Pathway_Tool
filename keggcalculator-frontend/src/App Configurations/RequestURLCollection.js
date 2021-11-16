@@ -49,3 +49,11 @@ export const endpoint_getFilteredTaxonomicNames = host + "/keggcreator/filteredt
 export const endpoint_getTaxonomicDetails = host +  "/keggcalculator/detailedContent";
 
 export const endpoint_getDependencies = host + "/keggcreator/dependencies";
+
+export const endpoint_uploadMantisFile = host + "/keggcreator/csvMantis";
+
+export const endpoint_startMantis = host + "/keggcreator/startMantis";
+
+export const endpoint_mantisJobStatus = host + "/keggcreator/statusMantis";
+
+export const endpoint_downloadMantisResults = host + "/keggcreator/downloadMantis";
