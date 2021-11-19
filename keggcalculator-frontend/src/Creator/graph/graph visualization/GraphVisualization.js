@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Graph} from "react-d3-graph";
 import {useDispatch, useSelector} from "react-redux";
 import {handleSubmit} from "../../keggReaction/substrate and products/SubmitHandler";
@@ -16,11 +16,11 @@ const onClickNode = (nodeId, dispatch, graphState, keggState) => {
     }
     // the graph configuration, you only need to pass down properties
     // that you want to override, otherwise default ones will be used
-    if (nodeId.match(/[R,U][0-9][0-9][0-9][0-9][0-9]/) != null) {
+    if ((/[R,U][0-9][0-9][0-9][0-9][0-9]/).test(nodeId)) {
         dispatch({type: "SETCHOSENNODE", payload: nodeId.substring(nodeId.length - 6, nodeId.length)})
         dispatch({type: "SETSHOWINFO", payload: true})
     }
-    if (nodeId.match(/[C,G][0-9][0-9][0-9][0-9][0-9]/) != null) {
+    if ((/[C,G][0-9][0-9][0-9][0-9][0-9]/).test(nodeId)) {
         dispatch({type: "SWITCHSHOWNEXTREACTION"})
         dispatch({type: "SWITCHLOADING"})
         dispatch({type: "SETSUBSTRATE", payload: nodeId})
@@ -37,25 +37,73 @@ const onRightClickNode = (e, nodeId, dispatch, graphState) => {
 
 }
 
-export const handleNodePositionChange = (graphState, x, y, nodeId, dispatch) => {
-    const nodes = graphState.data.nodes.map(node => {
+export const handleNodePositionChange = (graphData, x, y, nodeId, dispatch) => {
+
+    const nodes = graphData.data.nodes.map(node => {
         if (node.id === nodeId) {
             node.x = +x
             node.y = +y
         }
         return node
     })
+
     const targetNode = nodes.find(node => node.id === nodeId)
     const otherNodes = nodes.filter(node => node.id !== nodeId)
     const newNodes = isColliding(targetNode, otherNodes)
-    const data = {nodes: newNodes, links: graphState.data.links}
+
+    const linksForGraphState = graphData.data.links.map(
+        link => {
+            const newLink = {...link}
+            newLink.strokeWidth = undefined
+            newLink.color = undefined
+            return newLink
+        })
+
+    const data = {nodes: newNodes, links: linksForGraphState}
+    const fluxGraphData = {nodes: newNodes, links: graphData.data.links}
+
     dispatch({type: "SETDATA", payload: data})
+    dispatch({type: "SET_FLUX_GRAPH", payload: fluxGraphData})
+}
+
+export const handleZoomChange = (dispatch, prevZoom, nextZoom) => {
+    console.log(nextZoom)
+    if(prevZoom !== nextZoom) {
+        dispatch({type: "SET_CURRENT_ZOOM", payload: nextZoom})
+    }
+}
+
+export const setGraphPosition = (dispatch) => {
+    const graphElement = document.getElementById('graph-graph-container-zoomable')
+    const transformValue = graphElement ? graphElement.getAttribute('transform') : null
+    transformValue && dispatch({type: "SET_CURRENT_TRANSFORMATION", payload: transformValue})
 }
 
 const GraphVisualization = () => {
+    const state = useSelector(state => state)
     const graphState = useSelector(state => state.graph)
     const keggState = useSelector(state => state.keggReaction)
     const dispatch = useDispatch()
+
+    console.log(state)
+
+    // failed attempt to set graph position
+    // useEffect(() => {
+    //     return(
+    //         () => setGraphPosition()
+    //     )
+    // },[graphState.data])
+    //
+    // useEffect(() => {
+    //     const graphElement = document.getElementById('graph-graph-container-zoomable')
+    //     if (graphElement && graphState.currentTransformation) {
+    //         graphElement.setAttribute('transform', graphState.currentTransformation)
+    //     }
+    // },[graphState.currentTransformation])
+
+    useEffect(() => {
+        myConfig.node.labelProperty = labelCallbackNodes
+    }, [graphState.abbreviationsObject, graphState.data.nodes])
 
     const labelCallbackNodes = (node) => {
         if (typeof graphState.abbreviationsObject[`${node.id}`] !== "undefined") {
@@ -66,13 +114,14 @@ const GraphVisualization = () => {
         } else {
             return node.id
         }
-
     }
+
     const myConfig = {
         height: 0.75 * window.innerHeight,
         width: 0.95 * window.innerWidth,
         nodeHighlightBehavior: true,
         directed: true,
+        // initialZoom: graphState.currentZoom,
         node: {
             size: graphState.nodeSize,
             highlightStrokeColor: "blue",
@@ -91,14 +140,6 @@ const GraphVisualization = () => {
             disableLinkForce: graphState.isForceDisabled
         }
     };
-
-    React.useEffect(() => {
-        myConfig.node.labelProperty = labelCallbackNodes
-    }, [graphState.abbreviationsObject, graphState.data.nodes])
-
-    useEffect(() => {
-        console.log("graph changed graph vis!")
-    },[graphState.data])
 
     const handleDoubleClick = (node) => {
         // let nodeId
@@ -132,17 +173,6 @@ const GraphVisualization = () => {
         dispatch({type: "SETDATA", payload: data})
     }
 
-    const handleZoomChange = (prevZoom, nextZoom) => {
-        console.log(nextZoom)
-        if(prevZoom !== nextZoom) {
-            dispatch({type: "SET_CURRENT_ZOOM", payload: nextZoom})
-        }
-    }
-
-    const onZoomChange = function(previousZoom, newZoom) {
-        window.alert(`Graph is now zoomed at ${newZoom} from ${previousZoom}`);
-    };
-
     if (graphState.data.nodes.length > 0) {
         return (
             <div>
@@ -156,7 +186,7 @@ const GraphVisualization = () => {
                     onDoubleClickNode={(node) => handleDoubleClick(node)}
                     onClickLink={(source, target) => handleClickLink(source, target)}
                     onNodePositionChange={(id, x, y) => handleNodePositionChange(graphState, x, y, id, dispatch)}
-                    onZoomChange={onZoomChange}
+                    // onZoomChange={(prevZoom, newZoom) => handleZoomChange(dispatch, prevZoom, newZoom)}
                 />
             </div>
         )

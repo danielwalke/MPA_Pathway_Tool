@@ -20,7 +20,6 @@ export default function FluxAnalysisUserInterface() {
     const dispatch = useDispatch()
     const generalState = useSelector(state => state.general)
     const fluxState = useSelector(state => state.fluxAnalysis)
-    const graphState = useSelector(state => state.graph)
 
     const theme = useTheme()
     const useStyles = makeStyles({

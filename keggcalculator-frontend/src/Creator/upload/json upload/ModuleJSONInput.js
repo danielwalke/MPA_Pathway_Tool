@@ -35,12 +35,11 @@ const ModuleJSONInput = () => {
     return (
         <div>
             <ToolTipBig title={"Click for uploading a pathway as JSON"} placement={"right"}>
-                <label className={"uploadLabel"} htmlFor={"JSON_Module"}>Upload pathway as JSON <img src={UploadIcon}
-                                                                                                     style={{
-                                                                                                         width: `clamp(6px, 1.7vw, 12px)`,
-                                                                                                         transform: "translate(0,0.2vw)"
-                                                                                                     }}
-                                                                                                     alt={""}/></label>
+                <label className={"uploadLabel"} htmlFor={"JSON_Module"}>Upload pathway as JSON
+                    <img src={UploadIcon}
+                         style={{width: `clamp(6px, 1.7vw, 12px)`, transform: "translate(0,0.2vw)"}}
+                         alt={""}/>
+                </label>
             </ToolTipBig>
             <input className={"moduleInput"} style={{display: "none"}} id={"JSON_Module"}
                    onClick={() => dispatch({type: "SETLOADING", payload: true})} type={"file"}

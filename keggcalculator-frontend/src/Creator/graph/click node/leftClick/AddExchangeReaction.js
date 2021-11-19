@@ -31,91 +31,91 @@ export default function AddExchangeReaction() {
     const generalState = useSelector(state => state.general)
     const graphState = useSelector(state => state.graph)
     const [substrateName, setSubstrateName] = useState("")
-    const [compoundObj, setCompoundObj] = useState({})
-    const [compoundObjForReaction, setCompoundObjForReaction] = useState({})
+
     const [hasExchangeReaction, setHasExchangeReaction] = useState(false)
 
     useEffect(() => {
-        if (keggState.substrate) setSubstrateName(keggState.substrate)
-    },[keggState.substrate, generalState.reactionsInSelectArray])
-
-    useEffect(() => {
-        if (substrateName) {
-            const substrateNode = graphState.data.nodes.find(node => node.id === substrateName)
-
-            if (substrateNode) {
-                console.log(substrateNode)
-                console.log(graphState)
-
-                const compoundObj = findRandomCompoundObj(substrateName, graphState, generalState)
-                console.log(compoundObj)
-                setCompoundObj(compoundObj)
-
-                const productObj = {
-                    abbreviation: compoundObj.abbreviation,
-                    name: compoundObj.name,
-                    opacity: 1,
-                    stoichiometry: 1,
-                    x: (substrateNode.x).toString(),
-                    y: (substrateNode.y).toString()
-                }
-                setCompoundObjForReaction(productObj)
-            }
+        if (keggState.substrate) {
+            setSubstrateName(keggState.substrate)
+            console.log(keggState.substrate)
         }
-    },[substrateName])
+    },[keggState.substrate])
 
-    useEffect(() => {
-        // check if an exchange reaction exists for this compound
-        generalState.reactionsInSelectArray.forEach(reaction => {
-            if (reaction.isExchangeReaction) {
-                const exchangeCompound = reaction.products[0]
-                if (exchangeCompound && exchangeCompound.name === compoundObj.name) {
-                    setHasExchangeReaction(true)
-                }
-            }
-        })
-    },[compoundObj, generalState.reactionsInSelectArray.length])
+    // useEffect(() => {
+    //     if (substrateName) {
+    //         const substrateNode = graphState.data.nodes.find(node => node.id === substrateName)
+    //
+    //         if (substrateNode) {
+    //
+    //             const compoundObj = findRandomCompoundObj(substrateName, graphState, generalState)
+    //             setCompoundObj(compoundObj)
+    //
+    //             const productObj = {
+    //                 abbreviation: compoundObj.abbreviation,
+    //                 name: compoundObj.name,
+    //                 opacity: 1,
+    //                 stoichiometry: 1,
+    //                 x: (substrateNode.x).toString(),
+    //                 y: (substrateNode.y).toString()
+    //             }
+    //             setCompoundObjForReaction(productObj)
+    //         }
+    //     }
+    // },[substrateName])
 
-    const addExchangeReaction = () => {
-        const compoundId = getKeggId(substrateName)
-        const reactionId = checkAndGenerateNewReactionId(generalState.reactionsInSelectArray)
-        const x = String(parseInt(compoundObjForReaction.x) + 4)
-        const y = compoundObjForReaction.y
-        const exchangeReaction = {
-            abbreviation: "EX_" + compoundId,
-            ecNumbersString: [],
-            isForwardReaction: true,
-            koNumbersString: [],
-            opacity: 1,
-            products: [compoundObjForReaction],
-            reactionId: reactionId,
-            reactionName: "Exchange " + reactionId,
-            reversible: true,
-            stochiometryProductsString: {},
-            stochiometrySubstratesString: {},
-            substrates: [],
-            taxa: [],
-            x: x.toString(),
-            y: y.toString(),
-            isExchangeReaction: true
-        }
-        exchangeReaction.stochiometryProductsString[compoundId] = 1
+    // useEffect(() => {
+    //     // check if an exchange reaction exists for this compound
+    //     generalState.reactionsInSelectArray.forEach(reaction => {
+    //         if (reaction.isExchangeReaction) {
+    //             const exchangeCompound = reaction.products[0]
+    //             if (exchangeCompound && exchangeCompound.name === compoundObj.name) {
+    //                 setHasExchangeReaction(true)
+    //             }
+    //         }
+    //     })
+    // },[compoundObj, generalState.reactionsInSelectArray.length])
 
-        const data = handleJSONGraphUpload([...generalState.keggReactions, exchangeReaction], dispatch, graphState)
-        // dispatch({type: "ADD_USER_REACTION_TO_AUDIT_TRAIL", payload: reaction})
-        dispatch({type: "SETDATA", payload: data})
-        dispatch({type: "ADDREACTIONSTOARRAY", payload: [exchangeReaction]})
-        console.log(exchangeReaction)
-    }
+    // const addExchangeReaction = () => {
+    //     const compoundId = getKeggId(substrateName)
+    //     const reactionId = checkAndGenerateNewReactionId(generalState.reactionsInSelectArray)
+    //     const x = String(parseInt(compoundObjForReaction.x) + 4)
+    //     const y = compoundObjForReaction.y
+    //     const exchangeReaction = {
+    //         abbreviation: "EX_" + compoundId,
+    //         ecNumbersString: [],
+    //         isForwardReaction: true,
+    //         koNumbersString: [],
+    //         opacity: 1,
+    //         products: [compoundObjForReaction],
+    //         reactionId: reactionId,
+    //         reactionName: "Exchange " + reactionId,
+    //         reversible: true,
+    //         stochiometryProductsString: {},
+    //         stochiometrySubstratesString: {},
+    //         substrates: [],
+    //         taxa: [],
+    //         x: x.toString(),
+    //         y: y.toString(),
+    //         isExchangeReaction: true
+    //     }
+    //     exchangeReaction.stochiometryProductsString[compoundId] = 1
+    //
+    //     const data = handleJSONGraphUpload([...generalState.keggReactions, exchangeReaction], dispatch, graphState)
+    //     // dispatch({type: "ADD_USER_REACTION_TO_AUDIT_TRAIL", payload: reaction})
+    //     dispatch({type: "SETDATA", payload: data})
+    //     dispatch({type: "ADDREACTIONSTOARRAY", payload: [exchangeReaction]})
+    //     console.log(exchangeReaction)
+    // }
 
     return(
         <div style={{display: "flex", justifyContent: "center"}}>
             <button
                 className={"download-button button-7rem"}
                 style={{height: "2.5rem"}}
-                disabled={!compoundObjForReaction.hasOwnProperty("name") ||
-                !compoundObj.hasOwnProperty("name") || hasExchangeReaction}
-                onClick={() => {addExchangeReaction()}}>
+                // disabled={!compoundObjForReaction.hasOwnProperty("name") ||
+                // !compoundObj.hasOwnProperty("name") || hasExchangeReaction}
+                // onClick={() => {addExchangeReaction()}}
+                >
                 Add Exchange Reaction
             </button>
         </div>

@@ -98,7 +98,8 @@ export function createFbaGraphData(graphData, fluxData) {
             }
         }
 
-        link.strokeWidth = getStyleFromFlux(reaction.fbaSolution).width
+
+        // link.strokeWidth = getStyleFromFlux(reaction.fbaSolution).width
         link.strokeWidth = 5
         link.color = getStyleFromFlux(reaction.fbaSolution).hexColor
 

@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Graph} from "react-d3-graph";
 import {handleNodePositionChange} from "../../Creator/graph/graph visualization/GraphVisualization";
 import clonedeep from "lodash/cloneDeep";
-import {getKeggId} from "../services/CreateFbaGraphData";
+import {getKeggId, resetFluxData} from "../services/CreateFbaGraphData";
 
 const findReactionObj = (adjacentReactionNode, generalState) => {
     const reactionNodeId = getKeggId(adjacentReactionNode)
@@ -25,6 +25,7 @@ export default function FluxAnalysisGraphVisualization() {
 
     useEffect(() => {
         setGraphEquality(checkGraphEquality(graphState.data, fluxState.data))
+        console.log(fluxState)
     }, [fluxState.data])
 
     const onClickNode = (nodeId) => {
@@ -45,7 +46,8 @@ export default function FluxAnalysisGraphVisualization() {
             if(adjacentLinks) {
                 reactionObject = findReactionObj(adjacentLinks.target, generalState)
                 compoundObject = reactionObject.substrates.find(sub => getKeggId(sub.name) === id)
-            } else {
+            }
+            if (!adjacentLinks || !compoundObject)  {
                 adjacentLinks = graphState.data.links.find(link => link.target === nodeId)
                 if(adjacentLinks) {
                     reactionObject = findReactionObj(adjacentLinks.source, generalState)
@@ -92,6 +94,7 @@ export default function FluxAnalysisGraphVisualization() {
         width: 0.95 * window.innerWidth,
         nodeHighlightBehavior: true,
         directed: true,
+        // initialZoom: graphState.currentZoom,
         node: {
             size: graphState.nodeSize,
             highlightStrokeColor: "blue",
@@ -120,6 +123,7 @@ export default function FluxAnalysisGraphVisualization() {
                     config={myConfig}
                     onNodePositionChange={(id, x, y) => handleNodePositionChange(fluxState, x, y, id, dispatch)}
                     onClickNode={(nodeId) => onClickNode(nodeId)}
+                    // onZoomChange={(prevZoom, newZoom) => handleZoomChange(dispatch, prevZoom, newZoom)}
                 />
             </div>
         );

@@ -6,15 +6,14 @@ import {saveAs} from "file-saver";
 import clonedeep from "lodash/cloneDeep"
 import {ToolTipBig} from "../../main/user-interface/UserInterface";
 
-const getCompoundBiggId = (compoundObjectArray, reactionObjectsCompoundName) => {
+const getCompoundInformation = (compoundObjectArray, reactionObjectsCompoundName) => {
 
     const compoundObject = compoundObjectArray.find(comp => comp.name === reactionObjectsCompoundName)
 
-    if (compoundObject.biggId) {
-        return compoundObject.biggId
+    return {
+        biggId: compoundObject.biggId ? compoundObject.biggId : "",
+        compartment: compoundObject.compartment ? compoundObject.compartment : "cytosol"
     }
-
-    return ""
 }
 
 const JSONDownloader = (props) => {
@@ -28,9 +27,12 @@ const JSONDownloader = (props) => {
 
             // TODO: couldn't we simply export reactionsInSelectArray?
 
-            const reactions = reactionNames.map(name => generalState.reactionsInSelectArray.filter(reaction => reaction.reactionName === name)[0])
+            const reactions = reactionNames.map(
+                name => generalState.reactionsInSelectArray.filter(reaction => reaction.reactionName === name)[0])
+
             reactions.map(reaction => {
-                reaction.abbreviation = typeof graphState.abbreviationsObject[`${reaction.reactionName}`] === "undefined" ? reaction.reactionName : graphState.abbreviationsObject[`${reaction.reactionName}`]
+                reaction.abbreviation = !graphState.abbreviationsObject[`${reaction.reactionName}`] ?
+                    reaction.reactionName : graphState.abbreviationsObject[`${reaction.reactionName}`]
                 reaction.opacity = graphState.data.nodes.filter(node => node.id === reaction.reactionName)[0].opacity
                 const reversible = graphState.data.nodes.filter(node => node.id === reaction.reactionName)[0].reversible
                 reaction.reversible = reversible
@@ -43,46 +45,51 @@ const JSONDownloader = (props) => {
                 } else {
                     if (reaction.isForwardReaction) {
                         reaction.substrates = reactionObjects[`${reaction.reactionName}`].substrates.map(substrate => {
+
                             const substrateId = substrate.name.substring(substrate.name.length - 6, substrate.name.length)
-                            substrate.stochiometry = reaction.stochiometrySubstratesString instanceof Map ? reaction.stochiometrySubstratesString.get(substrateId) :
+                            const { biggId, compartment } = getCompoundInformation(reaction.substrates, substrate.name)
+                            substrate.biggId = biggId
+                            substrate.compartment = compartment
+                            substrate.stoichiometry = reaction.stochiometrySubstratesString instanceof Map ? reaction.stochiometrySubstratesString.get(substrateId) :
                                 reaction.stochiometrySubstratesString[substrateId]
 
-                            substrate.biggId = getCompoundBiggId(reaction.substrates, substrate.name)
 
                             return substrate
                         })
                         reaction.products = reactionObjects[`${reaction.reactionName}`].products.map(product => {
                             const productId = product.name.substring(product.name.length - 6, product.name.length)
-                            product.stochiometry = reaction.stochiometryProductsString instanceof Map ? reaction.stochiometryProductsString.get(productId) :
+                            const { biggId, compartment } = getCompoundInformation(reaction.products, product.name)
+                            product.biggId = biggId
+                            product.compartment = compartment
+                            product.stoichiometry = reaction.stochiometryProductsString instanceof Map ? reaction.stochiometryProductsString.get(productId) :
                                 reaction.stochiometryProductsString[productId]
-
-                                product.biggId = getCompoundBiggId(reaction.products, product.name)
 
                             return product
                         })
                     } else {
                         reaction.substrates = reactionObjects[`${reaction.reactionName}`].substrates.map(substrate => {
                             const substrateId = substrate.name.substring(substrate.name.length - 6, substrate.name.length)
-                            substrate.stochiometry = reaction.stochiometryProductsString instanceof Map ? reaction.stochiometryProductsString.get(substrateId) :
+                            const { biggId, compartment } = getCompoundInformation(reaction.substrates, substrate.name)
+                            substrate.biggId = biggId
+                            substrate.compartment = compartment
+                            substrate.stoichiometry = reaction.stochiometryProductsString instanceof Map ? reaction.stochiometryProductsString.get(substrateId) :
                                 reaction.stochiometryProductsString[substrateId]
-
-                                substrate.biggId = getCompoundBiggId(reaction.substrates, substrate.name)
 
                             return substrate
                         })
                         reaction.products = reactionObjects[`${reaction.reactionName}`].products.map(product => {
                             const productId = product.name.substring(product.name.length - 6, product.name.length)
-                            product.stochiometry = reaction.stochiometrySubstratesString instanceof Map ? reaction.stochiometrySubstratesString.get(productId) :
+                            const { biggId, compartment } = getCompoundInformation(reaction.products, product.name)
+                            product.biggId = biggId
+                            product.compartment = compartment
+                            product.stoichiometry = reaction.stochiometrySubstratesString instanceof Map ? reaction.stochiometrySubstratesString.get(productId) :
                                 reaction.stochiometrySubstratesString[productId]
-
-                                product.biggId = getCompoundBiggId(reaction.products, product.name)
 
                             return product
                         })
                     }
                 }
                 // reaction["opacity"] = 1
-                console.log(reaction)
                 return reaction
             })
             let blob = new Blob(new Array(JSON.stringify(reactions, null, 2)), {type: "text/plain;charset=utf-8"});

@@ -19,7 +19,6 @@ import AnnotationModal from "../annotationModal/AnnotationModal";
 const SbmlReader = () => {
     const dispatch = useDispatch();
     const state = useSelector(state => state)
-    console.log(state)
     return (
         <div>
             <ToolTipBig title={"Click for uploading a pathway as SBML"} placement={"right"}>
