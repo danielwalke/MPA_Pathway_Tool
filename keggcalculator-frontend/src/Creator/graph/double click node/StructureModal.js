@@ -11,6 +11,7 @@ const StructureModal = () => {
     const [isNcbiTaxonomy, setIsNcbiTaxonomy] = useState(true)
     const classes = useStyles()
     let body;
+
     if (state.doubleClickNode.length > 0) {
         body = getStructureBody(state, dispatch, generalState, isNcbiTaxonomy, setIsNcbiTaxonomy)
     }
@@ -19,7 +20,9 @@ const StructureModal = () => {
         <div>
             <Modal className={classes.modal} open={state.showStructure}
                    onClose={() => dispatch({type: "SWITCHSHOWSTRUCTURE"})}>
-                {body}
+                <div className={classes.paper} style={{display: "flex", width: "80vw", overflowY: "auto", maxHeight: "80vh"}}>
+                    {body}
+                </div>
             </Modal>
         </div>
     )

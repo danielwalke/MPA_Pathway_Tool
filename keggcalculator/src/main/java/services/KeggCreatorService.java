@@ -615,13 +615,17 @@ public class KeggCreatorService {
 			
 			String line;
 			
-			while((line=reader.readLine())!=null) strBuilder.append(line);
+			while((line=reader.readLine())!=null) {
+				strBuilder.append(line);
+				strBuilder.append(System.getProperty("line.separator"));
+			}
 			
             System.out.println("Running Python starts");
             
             int exitCode = process.waitFor();
             System.out.println(strBuilder.toString());
             System.out.println("Exit Code : "+ exitCode);
+            
 			results = TempFile.readTempFile("temp/tempResults.txt");
             
             return results;

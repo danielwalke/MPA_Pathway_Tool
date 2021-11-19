@@ -10,8 +10,9 @@ import {allReducers} from "./Creator/reducers/index";
 const moduleStore = createStore(allReducers)
 ReactDOM.render(
     <React.StrictMode>
-        <Provider store={moduleStore}> <App/></Provider>
-
+        <Provider store={moduleStore}>
+            <App/>
+        </Provider>
     </React.StrictMode>,
     document.getElementById('root')
 );

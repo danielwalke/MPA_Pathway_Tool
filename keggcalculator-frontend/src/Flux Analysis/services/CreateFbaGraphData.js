@@ -19,7 +19,7 @@ function getStyleFromFlux(flux) {
     }
     const hexColor = RGBToHex(color.r, color.g, color.b).toUpperCase()
 
-    console.log("("+color.r+","+color.g+","+color.b+")")
+    // console.log("("+color.r+","+color.g+","+color.b+")")
 
     return {width, hexColor}
 }
@@ -61,6 +61,46 @@ export function createFbaGraphDummyData(graphData, fluxData) {
         link.strokeWidth = getStyleFromFlux(reaction.fbaFlux).width
         link.strokeWidth = 5
         link.color = getStyleFromFlux(reaction.fbaFlux).hexColor
+
+    })
+
+    return fluxGraphData
+}
+
+export function createFbaGraphData(graphData, fluxData) {
+
+    const fluxGraphData = {
+        data: {
+            nodes: [...graphData.data.nodes],
+            links: [...graphData.data.links]
+        }
+    }
+
+    fluxGraphData.data.links.forEach(link => {
+        const sourceNode = getKeggId(link.source)
+        const targetNode = getKeggId(link.target)
+
+        let reaction
+
+        for (const reactionFlux of fluxData) {
+            const reactionId = Object.keys(reactionFlux)[0]
+
+            try {
+                if(reactionId === sourceNode || reactionId === targetNode) {
+                    reaction = reactionFlux[reactionId]
+                    break;
+                } else {
+                    reaction.fbaSolution = null
+                    throw "Can't find reaction from graph in fba data!"
+                }
+            } catch (e) {
+                console.error(e)
+            }
+        }
+
+        link.strokeWidth = getStyleFromFlux(reaction.fbaSolution).width
+        link.strokeWidth = 5
+        link.color = getStyleFromFlux(reaction.fbaSolution).hexColor
 
     })
 

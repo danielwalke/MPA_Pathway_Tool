@@ -10,10 +10,6 @@ export default function FluxAnalysisMain(){
     const [mouseCoordinates, setMouseCoordinates] = useState({x: "", y: ""})
 
     useEffect(() => {
-        console.log(generalState.reactionsInSelectArray)
-    },[generalState.reactionsInSelectArray])
-
-    useEffect(() => {
         generalState.reactionsInSelectArray.forEach(reaction => {
             if (!reaction.lowerBound) reaction.lowerBound = -1000.0
             if (!reaction.upperBound) reaction.upperBound = 1000.0

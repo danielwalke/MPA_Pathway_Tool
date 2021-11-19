@@ -11,24 +11,22 @@ const AnnotationModal = () => {
     const state = useSelector(state => state)
 
     return (
-        <div>
-            <Modal className={classes.modal} open={state.general.showAnnotationTable}>
-                <div className={classes.paper}>
-                    <div className={"annotation-modal"}>
-                        {
-                            state.general.showAnnotationTable &&
-                            state.general.showCompoundAnnotation &&
-                            <CompoundAnnotation/>
-                        }
-                        {
-                            state.general.showAnnotationTable &&
-                            state.general.showReactionAnnotation &&
-                            <ReactionAnnotation/>
-                        }
-                    </div>
+        <Modal className={classes.modal} open={state.general.showAnnotationTable}>
+            <div className={classes.paper}>
+                <div className={"annotation-modal"}>
+                    {
+                        state.general.showAnnotationTable &&
+                        state.general.showCompoundAnnotation &&
+                        <CompoundAnnotation/>
+                    }
+                    {
+                        state.general.showAnnotationTable &&
+                        state.general.showReactionAnnotation &&
+                        <ReactionAnnotation/>
+                    }
                 </div>
-            </Modal>
-        </div>
+            </div>
+        </Modal>
     );
 };
 

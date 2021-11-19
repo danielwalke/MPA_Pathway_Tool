@@ -37,8 +37,8 @@ const defaultState = {
     mergeNodesName: "",
     nodeModificationModal: false,
     nodeSize: 150,
-    compoundNodeColor: "#FF8000"
-
+    compoundNodeColor: "#FF8000",
+    currentZoom: null
 }
 
 export const graphReducer = (state = defaultState, action) => {
@@ -128,6 +128,8 @@ export const graphReducer = (state = defaultState, action) => {
             return {...state, nodeSize: payload}
         case "SET_COMPOUND_NODE_COLOR":
             return {...state, compoundNodeColor: payload}
+        case "SET_CURRENT_ZOOM":
+            return {...state, currentZoom: payload}
         default:
             return state;
     }

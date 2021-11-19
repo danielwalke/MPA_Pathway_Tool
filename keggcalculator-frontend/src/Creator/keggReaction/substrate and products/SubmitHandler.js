@@ -44,14 +44,13 @@ export const handleSubmitProduct = (productId, keggState) => {
     const reactionList = []
     for (const [key, values] of productReactionsMap.entries()) {
         if (productId === key) {
-            values.map(value => {
+            values.forEach(value => {
                 if (value.taxonomies.length === 0) {
                     value.taxonomies = [""]
                 }
                 value.isForwardReaction = true
                 value.reactionName = value.reactionName.concat(" " + value.reactionId)
                 reactionList.push(value)
-                return null
             })
         }
     }

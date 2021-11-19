@@ -23,27 +23,29 @@ def build_model(temp_model_path: str):
 
     metabolites_dict = {}
 
+    print(metabolites_array)
+
     # generate metabolites
     for metabolite in metabolites_array:
         # stores each metabolite object in a dict
         metabolites_dict[metabolite['metaboliteId']] = cobra.Metabolite(
-                id=metabolite['metaboliteId'],
-                name=metabolite['metaboliteName'],
-                compartment=metabolite['compartment']
-            )
+            id=metabolite['metaboliteId'],
+            name=metabolite['metaboliteName'],
+            compartment=metabolite['compartment']
+        )
 
     # generate reactions
     for reaction_el in reactions_array:
 
-        metabolite_keys = reaction_el['metabolites'].keys()
+        metabolites = reaction_el['metabolites']
 
         # initialize dict for addition of metabolites to reaction
         reaction_metabolites = {}
 
-        for metabolite_el in metabolite_keys:
+        for metabolite_el in metabolites:
             # extract metabolite ids and stoichiometry
-            metabolite_id = reaction_el['metabolites'][metabolite_el]['metaboliteId']
-            stoichiometry = reaction_el['metabolites'][metabolite_el]['stoichiometry']
+            metabolite_id = metabolite_el['metaboliteId']
+            stoichiometry = metabolite_el['stoichiometry']
 
             # extract corresponding obj for metabolite key and add it to reaction_metabolites dict
             metabolite_object = metabolites_dict[metabolite_id]
@@ -62,7 +64,6 @@ def build_model(temp_model_path: str):
                 ub=reaction_el['upperBound']
             )
 
-
         else:
             reaction = cobra.Reaction(reaction_el['reactionId'])
             reaction.name = reaction_el['reactionName']
@@ -77,4 +78,3 @@ def build_model(temp_model_path: str):
         getattr(model.reactions, reaction_el['reactionId']).objective_coefficient = reaction_el['objectiveCoefficient']
 
     return model
-

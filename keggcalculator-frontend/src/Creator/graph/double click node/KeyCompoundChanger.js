@@ -21,10 +21,13 @@ const KeyCompoundChanger = (props) => {
     }
 
     return (
-        <div><ToolTipBig title={isKeyCompound ? "Reduce opacity of chosen node" : "Increase opacity of chosen node"}
+        <div>
+            <ToolTipBig title={isKeyCompound ? "Reduce opacity of chosen node" : "Increase opacity of chosen node"}
                          placement={"right"}>
-            <Checkbox checked={isKeyCompound} onClick={(e) => changeOpacity(e)}/>
-        </ToolTipBig>key-Compound?</div>
+                <Checkbox checked={isKeyCompound} onClick={(e) => changeOpacity(e)}/>
+            </ToolTipBig>
+            key-Compound?
+        </div>
     );
 };
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Graph} from "react-d3-graph";
 import {useDispatch, useSelector} from "react-redux";
 import {handleSubmit} from "../../keggReaction/substrate and products/SubmitHandler";
@@ -96,6 +96,9 @@ const GraphVisualization = () => {
         myConfig.node.labelProperty = labelCallbackNodes
     }, [graphState.abbreviationsObject, graphState.data.nodes])
 
+    useEffect(() => {
+        console.log("graph changed graph vis!")
+    },[graphState.data])
 
     const handleDoubleClick = (node) => {
         // let nodeId
@@ -129,6 +132,17 @@ const GraphVisualization = () => {
         dispatch({type: "SETDATA", payload: data})
     }
 
+    const handleZoomChange = (prevZoom, nextZoom) => {
+        console.log(nextZoom)
+        if(prevZoom !== nextZoom) {
+            dispatch({type: "SET_CURRENT_ZOOM", payload: nextZoom})
+        }
+    }
+
+    const onZoomChange = function(previousZoom, newZoom) {
+        window.alert(`Graph is now zoomed at ${newZoom} from ${previousZoom}`);
+    };
+
     if (graphState.data.nodes.length > 0) {
         return (
             <div>
@@ -142,6 +156,7 @@ const GraphVisualization = () => {
                     onDoubleClickNode={(node) => handleDoubleClick(node)}
                     onClickLink={(source, target) => handleClickLink(source, target)}
                     onNodePositionChange={(id, x, y) => handleNodePositionChange(graphState, x, y, id, dispatch)}
+                    onZoomChange={onZoomChange}
                 />
             </div>
         )

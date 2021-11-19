@@ -1,15 +1,10 @@
-import {handleSubmitDirection} from "./DirectionsChanger";
 import React from "react";
-import TextField from "@material-ui/core/TextField";
-import DeleteIcon from "@material-ui/icons/Delete";
 import "./StructureModalBody.css"
-import TaxonomicRank from "./TaxonomicRank";
-import ReversibilityChange from "./ReversibilityChange";
-import TaxonomyNcbi from "../../taxonomy/TaxonomyNcbi";
 import KeyCompoundChanger from "./KeyCompoundChanger";
 import {NOT_KEY_COMPOUND_OPACITY} from "../Constants";
 import LabelPositionChanger from "./LabelPositionChanger";
-import {ToolTipBig} from "../../main/user-interface/UserInterface";
+import CreatorGraphReactionDetails from "./CreatorGraphReactionDetails";
+import CreatorGraphComponentCompartment from "./CreatorGraphComponentCompartment";
 
 export const getTaxaList = (reactionTaxa) => {
     const taxaList = []
@@ -22,10 +17,11 @@ export const getTaxaList = (reactionTaxa) => {
 }
 
 export const getStructureBody = (state, dispatch, generalState, isNcbiTaxonomy, setIsNcbiTaxonomy) => {
-    const compound = typeof state.data.nodes.filter(node => node.id === state.doubleClickNode)[0] === "undefined" ? {} : state.data.nodes.filter(node => node.id === state.doubleClickNode)[0]
+    const compound = !state.data.nodes.filter(node => node.id === state.doubleClickNode)[0] ?
+        {} : state.data.nodes.filter(node => node.id === state.doubleClickNode)[0]
     const nodeId = state.doubleClickNode.substring(state.doubleClickNode.length - 6, state.doubleClickNode.length)
-    const reaction = nodeId.match(/[R,U]/) ? generalState.reactionsInSelectArray.filter(r => r.reactionName === state.doubleClickNode)[0] : {}
-    const reactionName = nodeId.match(/[R,U]/) ? reaction.reactionName : {}
+    const reaction = nodeId.match(/[R,U]/) ? generalState.reactionsInSelectArray.filter(
+        r => r.reactionName === state.doubleClickNode)[0] : {}
 
     const handleIsKeyCompound = (e) => {
         e.preventDefault()
@@ -56,89 +52,48 @@ export const getStructureBody = (state, dispatch, generalState, isNcbiTaxonomy, 
         compound.opacity = NOT_KEY_COMPOUND_OPACITY
         otherNodes.push(compound)
         const data = {nodes: otherNodes, links: otherLinks}
+
         dispatch({type: "SETDATA", payload: data})
     }
 
-    const body = (<div className={"structureBodyContainer"}
-                       style={{backgroundColor: "white", width: "75vw", overflow: "auto", maxHeight: "80vh"}}>
-        <div className={"nodeLabel"}><h3 style={{padding: "2px"}}>ID: {compound.id}</h3></div>
-        <div className={"keyCompoundChoice"}>
-            <KeyCompoundChanger compound={compound} handleIsNotKeyCompound={handleIsNotKeyCompound}
-                                handleIsKeyCompound={handleIsKeyCompound}/>
-            <LabelPositionChanger compound={compound}/>
-        </div>
-        <div className={"details"}>
-            {nodeId.match(/[C]/) &&
-            <img style={{maxWidth: "75vw"}} src={`https://www.genome.jp/Fig/compound/${nodeId}.gif`}
-                 alt={state.doubleClickNode}/>}
-            {nodeId.match(/[G]/) &&
-            <img style={{maxWidth: "75vw"}} src={`https://www.genome.jp/Fig/glycan/${nodeId}.gif`}
-                 alt={state.doubleClickNode}/>}
-            {nodeId.match(/[R,U]/) && (
-                <div style={{display: "grid", gridAutoRows: "auto"}}>
-                    <div style={{display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10vw"}}>
-                        <div><ReversibilityChange nodeId={nodeId}/></div>
-                        <div>
-                            <ToolTipBig title={"Change direction of chosen reaction"} placement={"right"}>
-                                <button className={"download-button"} style={{width: "15vw"}}
-                                        onClick={() => handleSubmitDirection(state, dispatch, generalState)}>reverse
-                                    reaction
-                                </button>
-                            </ToolTipBig>
-                        </div>
-                    </div>
-                    <div style={{margin: "2px"}}><TaxonomicRank/>
-                        <div style={{display: "grid", gridTemplateColumns: "5fr 1fr"}}>
-                            <div>{!isNcbiTaxonomy ? <TextField
-                                    style={{width: "100%"}}
-                                    placeholder={"lowest taxonomic rank"}
-                                    size={"small"}
-                                    className={"taxonomy"}
-                                    label="taxonomy"
-                                    variant="outlined"
-                                    id="TaxReaction"
-                                    onChange={(e) => dispatch({
-                                        type: "SETTAXONOMY",
-                                        payload: e.target.value.toString()
-                                    })}
-                                /> :
-                                <TaxonomyNcbi taxonomy={generalState.taxonomy} dispatchTaxonomy={"SETTAXONOMY"}/>}</div>
-                            <div>
-                                <ToolTipBig
-                                    title={isNcbiTaxonomy ? "Choose your own taxonomic name" : `Choose taxonomic name from a list`}
-                                    placement={"right"}>
-                                    <button className={"download-button"} style={{height: "100%"}}
-                                            onClick={() => setIsNcbiTaxonomy(!isNcbiTaxonomy)}>Switch
-                                    </button>
-                                </ToolTipBig>
-                            </div>
-                        </div>
-                        <ToolTipBig title={"Add taxonomic requirement to reaction"} placement={"right"}>
-                            <button className={"download-button"} style={{width: "20vw"}}
-                                    onClick={() => dispatch({type: "ADDTAXONOMY", payload: reactionName})}>Add taxonomy
-                            </button>
-                        </ToolTipBig>
-                    </div>
-                    <div><p style={{fontWeight: "bold"}}>chosen taxonomic constraints:</p></div>
+    const body = (
+        <div className={"structureBodyContainer"}>
+            <div >
+                <h3 style={{padding: "2px"}}>
+                    ID: {compound.id}
+                </h3>
+            </div>
+
+            <div style={{width: "100%"}}>
+                <KeyCompoundChanger compound={compound} handleIsNotKeyCompound={handleIsNotKeyCompound}
+                                    handleIsKeyCompound={handleIsKeyCompound}/>
+                <LabelPositionChanger compound={compound}/>
+            </div>
+
+            <div style={{width: "100%"}}>
+                {nodeId.match(/[C]/) &&
                     <div>
-                        <ul style={{listStyleType: "none"}}>
-                            {getTaxaList(reaction.taxa).map((taxon, index) => <li key={taxon.concat(index.toString())}>
-                                <ToolTipBig title={"Delete taxonomic requirement from reaction"} placement={"left"}>
-                                    <DeleteIcon
-                                        onClick={() => dispatch({
-                                            type: "DELETETAXONOMY",
-                                            payload: {reactionName, taxon}
-                                        })}
-                                        style={{transform: "translate(0,4px)", cursor: "pointer"}}/></ToolTipBig>{taxon}
-                            </li>)}
-                        </ul>
+                        <CreatorGraphComponentCompartment compoundId={state.doubleClickNode}/>
+                        <img style={{maxWidth: "75vw"}} src={`https://www.genome.jp/Fig/compound/${nodeId}.gif`}
+                             alt={state.doubleClickNode}/>
                     </div>
-                    <div><img style={{maxWidth: "75vw"}} src={`https://www.genome.jp/Fig/reaction/${nodeId}.gif`}
-                              alt={state.doubleClickNode}/></div>
-                </div>
-            )}
+                }
+
+                {nodeId.match(/[G]/) &&
+                    <div>
+                        <CreatorGraphComponentCompartment compoundId={state.doubleClickNode}/>
+                        <img style={{maxWidth: "75vw"}} src={`https://www.genome.jp/Fig/glycan/${nodeId}.gif`}
+                             alt={state.doubleClickNode}/>
+                    </div>
+                }
+
+                {nodeId.match(/[R,U]/) &&
+                <CreatorGraphReactionDetails
+                    isNcbiTaxonomy={isNcbiTaxonomy} setIsNcbiTaxonomy={setIsNcbiTaxonomy} nodeId={nodeId}
+                    reaction={reaction}/>}
+            </div>
         </div>
-    </div>)
+    )
 
 
     return body;

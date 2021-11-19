@@ -18,13 +18,13 @@ const theme = createTheme({
 })
 
 function App() {
-
     const dispatch = useDispatch()
     useEffect(() => {
         const headerHeight = document.getElementsByClassName('MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary MuiPaper-elevation4')[0].clientHeight;
         const tabHeight = document.getElementsByClassName("MuiTabs-root")[0].clientHeight
         dispatch({type: "SETHEADERHEIGHT", payload: +tabHeight + headerHeight})
     }, [])
+
     return (
         <Provider CalculatorStore={CalculatorStore} ModuleStore={ModuleStore}>
             <div className="App">

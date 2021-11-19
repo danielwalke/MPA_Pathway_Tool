@@ -1,14 +1,14 @@
-export const isColliding = (nodeTarget, nodes) => {
-    const {x, y} = nodeTarget
-    nodes.forEach(node => {
-        if ((node.labelPosition === "right" || typeof node.labelPosition === "undefined") && isInXRangeRight(node, x) && isInYRange(node, y)) {
+export const isColliding = (targetNode, otherNodes) => {
+    const {x, y} = targetNode
+    otherNodes.forEach(node => {
+        if ((node.labelPosition === "right" || !node.labelPosition) && isInXRangeRight(node, x) && isInYRange(node, y)) {
             node.labelPosition = "left"
         } else if (node.labelPosition === "left" && isInXRangeLeft(node, x) && isInYRange(node, y)) {
             node.labelPosition = "right"
         }
     })
-    nodes.push(nodeTarget)
-    return nodes
+    otherNodes.push(targetNode)
+    return otherNodes
 }
 
 

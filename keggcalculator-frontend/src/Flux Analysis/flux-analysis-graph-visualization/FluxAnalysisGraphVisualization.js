@@ -12,6 +12,8 @@ const findReactionObj = (adjacentReactionNode, generalState) => {
 
 export default function FluxAnalysisGraphVisualization() {
 
+    const [graphEquality, setGraphEquality] = useState(false)
+
     const graphState = useSelector(state => state.graph)
     const fluxState = useSelector(state => state.fluxAnalysis)
     const generalState = useSelector(state => state.general)
@@ -20,6 +22,10 @@ export default function FluxAnalysisGraphVisualization() {
     useEffect(() => {
         dispatch({type: "SET_FLUX_GRAPH", payload: clonedeep(graphState.data)})
     }, [])
+
+    useEffect(() => {
+        setGraphEquality(checkGraphEquality(graphState.data, fluxState.data))
+    }, [fluxState.data])
 
     const onClickNode = (nodeId) => {
         const id = getKeggId(nodeId)
@@ -57,7 +63,6 @@ export default function FluxAnalysisGraphVisualization() {
         dispatch({type: "SET_GRAPH_MODAl_INPUT", payload: dataObject})
 
         console.log(dataObject)
-
     }
 
     const labelCallbackNodes = (node) => {
@@ -69,6 +74,17 @@ export default function FluxAnalysisGraphVisualization() {
         } else {
             return node.id
         }
+    }
+
+    const checkGraphEquality = (creatorGraphData, fluxGraphData) => {
+        for (let index = 0; index < creatorGraphData.length; index++) {
+            if (creatorGraphData.nodes[index].x !== fluxGraphData.nodes[index].x ||
+                creatorGraphData.nodes[index].y !== fluxGraphData.nodes[index].y) {
+                return false
+                break
+            }
+        }
+        return true
     }
 
     const myConfig = {
@@ -94,7 +110,7 @@ export default function FluxAnalysisGraphVisualization() {
         }
     };
 
-    if (fluxState.data.nodes.length > 0) {
+    if (fluxState.data.nodes.length > 0 && graphEquality) {
         return (
             <div >
                 <Graph

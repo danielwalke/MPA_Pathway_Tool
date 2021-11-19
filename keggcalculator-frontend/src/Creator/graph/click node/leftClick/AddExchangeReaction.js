@@ -76,10 +76,6 @@ export default function AddExchangeReaction() {
         })
     },[compoundObj, generalState.reactionsInSelectArray.length])
 
-    useEffect(() => {
-        console.log(compoundObjForReaction)
-    },[compoundObjForReaction])
-
     const addExchangeReaction = () => {
         const compoundId = getKeggId(substrateName)
         const reactionId = checkAndGenerateNewReactionId(generalState.reactionsInSelectArray)

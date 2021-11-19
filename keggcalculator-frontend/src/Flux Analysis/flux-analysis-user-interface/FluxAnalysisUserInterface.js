@@ -1,4 +1,4 @@
-import React, {useEffect, useReducer, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Drawer, makeStyles, Toolbar, useTheme} from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import clsx from "clsx";
@@ -8,7 +8,10 @@ import CloseIcon from "@material-ui/icons/Close";
 import "../../Creator/main/user-interface/UserInterface.css"
 import {getDummyFluxData} from "../services/DummyFlux";
 import {useDispatch, useSelector} from "react-redux";
-import {createFbaGraphDummyData} from "../services/CreateFbaGraphData";
+import {createFbaGraphData, createFbaGraphDummyData} from "../services/CreateFbaGraphData";
+import {parseRequestArray} from "../services/ParseRequestArray";
+import {requestGenerator} from "../../Creator/request/RequestGenerator";
+import {endpoint_postNetworkForFBA} from "../../App Configurations/RequestURLCollection";
 
 export default function FluxAnalysisUserInterface() {
     const [open, setOpen] = useState(true)
@@ -17,6 +20,7 @@ export default function FluxAnalysisUserInterface() {
     const dispatch = useDispatch()
     const generalState = useSelector(state => state.general)
     const fluxState = useSelector(state => state.fluxAnalysis)
+    const graphState = useSelector(state => state.graph)
 
     const theme = useTheme()
     const useStyles = makeStyles({
@@ -29,19 +33,27 @@ export default function FluxAnalysisUserInterface() {
     const classes = useStyles()
 
     useEffect(() => {
-        const headerHeight = document.getElementsByClassName('MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary MuiPaper-elevation4')[0].clientHeight;
+        const headerHeight = document.getElementsByClassName(
+            'MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary MuiPaper-elevation4')[0].clientHeight;
         const tabHeight = document.getElementsByClassName("MuiTabs-root")[0].clientHeight
         setDrawerOffset(tabHeight + headerHeight)
     }, [])
 
     const handleOptimizeClick = async () => {
-        const dummyDataResponse = await getDummyFluxData(generalState.reactionsInSelectArray)
-        const newGraphData = createFbaGraphDummyData(fluxState, dummyDataResponse.data)
-        const newReactionsInSelectArray = [...generalState.reactionsInSelectArray]
+        const requestReactionObj = await parseRequestArray(generalState.reactionsInSelectArray)
+        const response = await requestGenerator(
+            "POST", endpoint_postNetworkForFBA, "", "", requestReactionObj)
+        const newGraphData = createFbaGraphData(fluxState, response.data)
 
+        // const dummyDataResponse = await getDummyFluxData(generalState.reactionsInSelectArray)
+        // const newGraphData = createFbaGraphDummyData(fluxState, dummyDataResponse.data)
+
+        const newReactionsInSelectArray = [...generalState.reactionsInSelectArray]
         newReactionsInSelectArray.forEach(reaction => {
-            const fluxObj = dummyDataResponse.data.find(flux => flux.reactionId === reaction.reactionId)
-            reaction.flux = fluxObj.fbaFlux
+            const fluxObj = response.data.find(flux =>
+                Object.keys(flux)[0] === reaction.reactionId)
+            console.log(fluxObj)
+            reaction.flux = fluxObj[Object.keys(fluxObj)[0]].fbaSolution
         })
         dispatch({type: "SET_FLUX_GRAPH", payload: newGraphData.data})
         dispatch({type: "SETREACTIONSINARRAY", payload: newReactionsInSelectArray})

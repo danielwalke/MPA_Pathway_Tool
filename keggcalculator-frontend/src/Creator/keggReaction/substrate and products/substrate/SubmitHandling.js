@@ -12,11 +12,14 @@ const getKEGGID = (string) => string.substring(string.length - 6, string.length)
 
 const getJSONReaction = (state) => {
     const reactionArray = state.generalState.reactionsInSelectArray
+    // transforms everything to kegg ids
     state.keggState.reaction = getKEGGID(state.keggState.reaction)
     state.keggState.substrate = getKEGGID(state.keggState.substrate)
     state.keggState.product = getKEGGID(state.keggState.product)
+    // searches for reaction in reaction array
     const reaction = getReaction(state.keggState.reaction, reactionArray)
     const substrateId = state.keggState.substrate
+
     reaction.substrates = isSubstrateIdInStochiometrySubstrates(reaction, substrateId) ? getCompounds(reaction.stochiometrySubstratesString, state.generalState.compoundId2Name, state)
         : getCompounds(reaction.stochiometryProductsString, state.generalState.compoundId2Name, state)
     reaction.products = isSubstrateIdInStochiometrySubstrates(reaction, substrateId) ? getCompounds(reaction.stochiometryProductsString, state.generalState.compoundId2Name, state)
