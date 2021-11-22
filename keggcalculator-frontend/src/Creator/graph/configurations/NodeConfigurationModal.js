@@ -16,6 +16,7 @@ const NodeConfigurationModal = () => {
     const state = useSelector(state => state.general)
     const graphState = useSelector(state => state.graph)
     const dispatch = useDispatch();
+
     const body = (
         <div className={classes.paper} style={{width: "20vw"}}>
             <div className={"configForceContainer"}>

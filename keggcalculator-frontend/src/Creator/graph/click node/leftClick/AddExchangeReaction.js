@@ -4,6 +4,12 @@ import {getKeggId} from "../../../../Flux Analysis/services/CreateFbaGraphData";
 import {checkAndGenerateNewReactionId} from "../../../specReaction/functions/SpecReactionFunctions";
 import {handleJSONGraphUpload} from "../../../upload/json upload/ModuleUploadFunctionsJSON";
 import "../../../download/DownloadGraph.css"
+import {handleSubmitKeggReaction} from "../../../keggReaction/substrate and products/substrate/SubmitHandling";
+
+export function removeSplitIndex(nodeId) {
+    const splitArray = nodeId.includes("__") ? nodeId.split("__") : [nodeId]
+    return splitArray[splitArray.length-1]
+}
 
 export function findRandomCompoundObj(compoundNodeId, graphState, generalState) {
     /**
@@ -16,11 +22,8 @@ export function findRandomCompoundObj(compoundNodeId, graphState, generalState) 
     const reactionObj = generalState.reactionsInSelectArray.find(
         reaction => reaction.reactionId === getKeggId(reactionNodeId))
 
-    const substrateNameSplit = compoundNodeId.includes("__") ?
-        compoundNodeId.split("__")[1] : compoundNodeId
-
     return [...reactionObj.substrates, ...reactionObj.products].find(
-        compound => compound.name === substrateNameSplit)
+        compound => removeSplitIndex(compound.name) === removeSplitIndex(compoundNodeId))
 }
 
 export default function AddExchangeReaction() {
@@ -34,22 +37,21 @@ export default function AddExchangeReaction() {
     const [compoundObj, setCompoundObj] = useState({})
     const [compoundObjForReaction, setCompoundObjForReaction] = useState({})
     const [hasExchangeReaction, setHasExchangeReaction] = useState(false)
+    console.log(generalState)
+    console.log(graphState)
 
     useEffect(() => {
         if (keggState.substrate) setSubstrateName(keggState.substrate)
-    },[keggState.substrate, generalState.reactionsInSelectArray])
+    },[keggState.substrate])
 
     useEffect(() => {
         if (substrateName) {
             const substrateNode = graphState.data.nodes.find(node => node.id === substrateName)
 
             if (substrateNode) {
-                console.log(substrateNode)
-                console.log(graphState)
-
                 const compoundObj = findRandomCompoundObj(substrateName, graphState, generalState)
-                console.log(compoundObj)
                 setCompoundObj(compoundObj)
+                console.log(compoundObj)
 
                 const productObj = {
                     abbreviation: compoundObj.abbreviation,
@@ -66,19 +68,21 @@ export default function AddExchangeReaction() {
 
     useEffect(() => {
         // check if an exchange reaction exists for this compound
-        generalState.reactionsInSelectArray.forEach(reaction => {
-            if (reaction.isExchangeReaction) {
-                const exchangeCompound = reaction.products[0]
-                if (exchangeCompound && exchangeCompound.name === compoundObj.name) {
-                    setHasExchangeReaction(true)
+        if (compoundObj.hasOwnProperty("name")) {
+            for (const reaction of generalState.reactionsInSelectArray) {
+                if (reaction.exchangeReaction) {
+                    const exchangeCompound = reaction.products[0]
+                    const compoundId = getKeggId(compoundObj.name)
+
+                    if (exchangeCompound && exchangeCompound.name.endsWith(compoundId)) {
+                        setHasExchangeReaction(true)
+                        break;
+                    }
                 }
             }
-        })
-    },[compoundObj, generalState.reactionsInSelectArray.length])
+        }
 
-    useEffect(() => {
-        console.log(compoundObjForReaction)
-    },[compoundObjForReaction])
+    },[compoundObj, generalState.reactionsInSelectArray.length])
 
     const addExchangeReaction = () => {
         const compoundId = getKeggId(substrateName)
@@ -101,15 +105,23 @@ export default function AddExchangeReaction() {
             taxa: [],
             x: x.toString(),
             y: y.toString(),
-            isExchangeReaction: true
+            exchangeReaction: true
         }
+
         exchangeReaction.stochiometryProductsString[compoundId] = 1
 
-        const data = handleJSONGraphUpload([...generalState.keggReactions, exchangeReaction], dispatch, graphState)
+        const state = {
+            graphState: graphState,
+            keggState: keggState,
+            generalState: generalState
+        }
+
+        handleSubmitKeggReaction(state, dispatch, exchangeReaction)
+
+        // const data = handleJSONGraphUpload([...generalState.keggReactions, exchangeReaction], dispatch, graphState)
         // dispatch({type: "ADD_USER_REACTION_TO_AUDIT_TRAIL", payload: reaction})
-        dispatch({type: "SETDATA", payload: data})
-        dispatch({type: "ADDREACTIONSTOARRAY", payload: [exchangeReaction]})
-        console.log(exchangeReaction)
+        // dispatch({type: "SETDATA", payload: data})
+        // dispatch({type: "ADDREACTIONSTOARRAY", payload: [exchangeReaction]})
     }
 
     return(

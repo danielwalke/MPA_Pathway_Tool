@@ -20,7 +20,7 @@ const SubmitProduct = () => {
                     const reactionList = handleSubmitProduct(productId, keggState)
                     dispatch({type: "ADD_PRODUCT_TO_AUDIT_TRAIL", payload: keggState.product})
                     dispatch({type: "SETREACTIONS", payload: reactionList})
-                    dispatch({type: "ADDREACTIONSTOARRAY", payload: reactionList})
+                    // dispatch({type: "ADDREACTIONSTOARRAY", payload: reactionList})
                 }}> Submit Product
             </button>
         </ToolTipBig>

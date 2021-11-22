@@ -48,17 +48,21 @@ const AbundantNodeConfig = () => {
                 splitNodeDist = 40
             }
 
-            const abundantLinks = graphState.data.links.filter(link => link.source === comp || link.target === comp)
+            const abundantLinks = graphState.data.links.filter(
+                link => link.source === comp || link.target === comp)
 
-            abundantLinks.map((link, index) => {
-                if (link.source === comp) {
-                    nodes.push({id: `${index}__${link.source}`, color: COMPOUND_NODE_COLOR, opacity: 0.4, x: origNodeX, y: origNodeY+splitNodeDist*index})
-                } else {
-                    nodes.push({id: `${index}__${link.target}`, color: COMPOUND_NODE_COLOR, opacity: 0.4, x: origNodeX, y: origNodeY+splitNodeDist*index})
+            let index = 0
+            abundantLinks.map(link => {
+                // add nodes for non reversed links
+                if (!link.isReversibleLink) {
+                    if (link.source === comp) {
+                        nodes.push({id: `${index}__${link.source}`, color: COMPOUND_NODE_COLOR, opacity: 0.4, x: origNodeX, y: origNodeY+splitNodeDist*index})
+                    } else {
+                        nodes.push({id: `${index}__${link.target}`, color: COMPOUND_NODE_COLOR, opacity: 0.4, x: origNodeX, y: origNodeY+splitNodeDist*index})
+                    }
                 }
-                return null
-            })
-            abundantLinks.map((link, index) => {
+
+                // modify links
                 if (link.source === comp) {
                     link.source = `${index}__${link.source}`
                     link.opacity = 0.4
@@ -66,13 +70,18 @@ const AbundantNodeConfig = () => {
                     link.target = `${index}__${link.target}`
                     link.opacity = 0.4
                 }
-                return null;
+
+                !link.isReversibleLink && index ++
+                return null
             })
-            console.log(nodes)
+
             data.links = graphState.data.links
             return null;
         })
+
         data.nodes = nodes.filter(node => !graphState.abundantCompounds.includes(node.id))
+
+        console.log(data)
         dispatch({type: "SETDATA", payload: data})
         dispatch({
             type: "ADD_SPLIT_NODES_TO_AUDIT_TRAIL", payload: graphState.abundantCompounds

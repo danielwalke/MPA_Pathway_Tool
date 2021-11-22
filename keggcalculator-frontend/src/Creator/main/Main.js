@@ -38,7 +38,6 @@ const Main = () => {
             triggerLoadingWarning(dispatch)
             queryKeggInformation(dispatch)
             if (!isHostLocalHost) triggerWindowExitWarning()
-            // resetFluxData()
         }, [])
 
     return (

@@ -1,5 +1,5 @@
 import Modal from "@material-ui/core/Modal";
-import React from "react";
+import React, {useEffect} from "react";
 import {useStyles} from "../../ModalStyles/ModalStyles";
 import {useDispatch, useSelector} from "react-redux";
 import MpaInput from "../csv upload/experimental data/MpaInput";
@@ -13,6 +13,7 @@ const UploadModal = (props) => {
     const classes = useStyles();
     const state = useSelector(state => state.general)
     const dispatch = useDispatch()
+
     const body = (
         <div className={classes.paper}>
             <MpaInput setOpen={props.setOpen}/>

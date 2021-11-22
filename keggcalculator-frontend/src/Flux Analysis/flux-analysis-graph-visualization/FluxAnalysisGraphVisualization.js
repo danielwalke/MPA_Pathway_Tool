@@ -24,8 +24,10 @@ export default function FluxAnalysisGraphVisualization() {
     }, [])
 
     useEffect(() => {
-        setGraphEquality(checkGraphEquality(graphState.data, fluxState.data))
-        console.log(fluxState)
+        if(fluxState.data.nodes.length > 0) {
+            const graphEquality = checkGraphEquality(graphState.data.nodes, fluxState.data.nodes)
+            setGraphEquality(graphEquality)
+        }
     }, [fluxState.data])
 
     const onClickNode = (nodeId) => {
@@ -78,10 +80,12 @@ export default function FluxAnalysisGraphVisualization() {
         }
     }
 
-    const checkGraphEquality = (creatorGraphData, fluxGraphData) => {
-        for (let index = 0; index < creatorGraphData.length; index++) {
-            if (creatorGraphData.nodes[index].x !== fluxGraphData.nodes[index].x ||
-                creatorGraphData.nodes[index].y !== fluxGraphData.nodes[index].y) {
+    const checkGraphEquality = (creatorGraphNodes, fluxGraphNodes) => {
+        for (let index = 0; index < creatorGraphNodes.length; index++) {
+
+            if (creatorGraphNodes[index].x !== fluxGraphNodes[index].x ||
+                creatorGraphNodes[index].y !== fluxGraphNodes[index].y) {
+                console.log("false")
                 return false
                 break
             }

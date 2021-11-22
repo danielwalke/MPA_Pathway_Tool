@@ -13,7 +13,7 @@ const Reaction = () => {
     const getReactionList = () => {
         if (state.reactions != null) {
             const redList = []
-            state.reactions.map((reaction) => redList.push(reaction.reactionName))
+            state.reactions.forEach((reaction) => redList.push(reaction.reactionName))
             return (redList)
         }
     }
