@@ -17,7 +17,7 @@ export const handleSubmitKeggReaction = (state, dispatch, reaction) => {
     const reactionsInSelectArrayWithCoordinates = [...state.generalState.reactionsInSelectArray, addedReaction].map(
         reaction => {
             const reactionNode = nodes.find(node => node.id === reaction.reactionName)
-            if (!reaction.exchangeReaction) {
+            if (!reaction.exchangeReaction || reactionNode) {
                 reaction.x = reactionNode ? reactionNode.x : 0.0
                 reaction.y = reactionNode ? reactionNode.y : 0.0
             }
@@ -46,8 +46,6 @@ const getJSONReaction = (state) => {
     const reaction = getReaction(state.keggState.reaction, reactionArray)
     const substrateId = state.keggState.substrate
 
-    console.log(reaction)
-
     reaction.substrates = isSubstrateIdInStochiometrySubstrates(reaction, substrateId) ?
         getCompounds(reaction.stochiometrySubstratesString, state.generalState.compoundId2Name, state)
         : getCompounds(reaction.stochiometryProductsString, state.generalState.compoundId2Name, state)
@@ -58,7 +56,7 @@ const getJSONReaction = (state) => {
     reaction.opacity = 1
     reaction.x = 0
     reaction.y = 0
-    console.log(reaction)
+
     return reaction
 }
 

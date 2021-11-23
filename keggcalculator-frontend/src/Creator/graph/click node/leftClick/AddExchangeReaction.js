@@ -7,6 +7,9 @@ import "../../../download/DownloadGraph.css"
 import {handleSubmitKeggReaction} from "../../../keggReaction/substrate and products/substrate/SubmitHandling";
 
 export function removeSplitIndex(nodeId) {
+    /**
+     * Splits nodeId at "__" and returns the original node name
+     */
     const splitArray = nodeId.includes("__") ? nodeId.split("__") : [nodeId]
     return splitArray[splitArray.length-1]
 }
@@ -37,14 +40,14 @@ export default function AddExchangeReaction() {
     const [compoundObj, setCompoundObj] = useState({})
     const [compoundObjForReaction, setCompoundObjForReaction] = useState({})
     const [hasExchangeReaction, setHasExchangeReaction] = useState(false)
-    console.log(generalState)
-    console.log(graphState)
 
     useEffect(() => {
+        // get selected node Id
         if (keggState.substrate) setSubstrateName(keggState.substrate)
     },[keggState.substrate])
 
     useEffect(() => {
+        // retrieve the compound data object from the array of reactions and write a new compound Obj for exchange reaction
         if (substrateName) {
             const substrateNode = graphState.data.nodes.find(node => node.id === substrateName)
 
@@ -67,7 +70,7 @@ export default function AddExchangeReaction() {
     },[substrateName])
 
     useEffect(() => {
-        // check if an exchange reaction exists for this compound
+        // check if an exchange reaction exists for this compound (for button enabling)
         if (compoundObj.hasOwnProperty("name")) {
             for (const reaction of generalState.reactionsInSelectArray) {
                 if (reaction.exchangeReaction) {
@@ -117,11 +120,6 @@ export default function AddExchangeReaction() {
         }
 
         handleSubmitKeggReaction(state, dispatch, exchangeReaction)
-
-        // const data = handleJSONGraphUpload([...generalState.keggReactions, exchangeReaction], dispatch, graphState)
-        // dispatch({type: "ADD_USER_REACTION_TO_AUDIT_TRAIL", payload: reaction})
-        // dispatch({type: "SETDATA", payload: data})
-        // dispatch({type: "ADDREACTIONSTOARRAY", payload: [exchangeReaction]})
     }
 
     return(

@@ -27,8 +27,8 @@ export function parseRequestArray(reactionsInSelectArray) {
         listOfReactions.push({
             reactionId: reaction.reactionId,
             reactionName: reaction.reactionName,
-            lowerBound: reaction.lowerBound,
-            upperBound: reaction.upperBound,
+            lowerBound: typeof reaction.lowerBound === 'string' ? parseFloat(reaction.lowerBound) : reaction.lowerBound,
+            upperBound: typeof reaction.upperBound === 'string' ? parseFloat(reaction.upperBound) : reaction.upperBound,
             objectiveCoefficient: reaction.objectiveCoefficient,
             exchangeReaction: reaction.exchangeReaction ? reaction.exchangeReaction : false,
             metabolites: metabolites

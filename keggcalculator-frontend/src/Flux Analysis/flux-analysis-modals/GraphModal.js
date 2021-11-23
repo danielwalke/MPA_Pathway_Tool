@@ -29,17 +29,31 @@ function useOutsideAlerter(ref) {
 
 export default function GraphModal(props) {
 
-    const [initCoordinates, setInitCoordinates] = useState({x: "", y: ""})
+    const [modalCoordinates, setModalCoordinates] = useState({x: "", y: ""})
     const settingsWindow = useRef(null)
 
     useOutsideAlerter(settingsWindow)
 
     useEffect(() => {
-        setInitCoordinates(props.mouseCoordinates)
+        const browserWidth = window.innerWidth || document.body.clientWidth
+        const browserHeight = window.innerHeight || document.body.clientHeight
+        const offset = {x: "", y: ""}
+        const coordinates = modalCoordinates
+
+        if (browserHeight && browserWidth) {
+            offset.x = props.mouseCoordinates.x > browserWidth * 0.66 ? "- 27rem" : ""
+            offset.y = props.mouseCoordinates.y > browserHeight * 0.5 ? "- 16rem" : ""
+         }
+
+        coordinates.x = `calc(${props.mouseCoordinates.x}px ${offset.x})`
+        coordinates.y = `calc(${props.mouseCoordinates.y}px ${offset.y})`
+
+        setModalCoordinates(coordinates)
     },[])
 
-    const y = String(Number(initCoordinates.y) + 1)
-    const x = String(Number(initCoordinates.x) + 1)
+    useEffect(() => {
+        console.log(modalCoordinates)
+    },[modalCoordinates])
 
     return (
         <div style={{
@@ -56,8 +70,8 @@ export default function GraphModal(props) {
                     backgroundColor: "white",
                     boxShadow: "-1px 3px 14px 3px rgba(0,0,0,0.48)",
                     position: "absolute",
-                    top: y + "px",
-                    left: x + "px",
+                    top: modalCoordinates.y,
+                    left: modalCoordinates.x,
                 }}>
                 <GraphModalBody/>
             </div>

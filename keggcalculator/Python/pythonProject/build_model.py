@@ -55,6 +55,8 @@ def build_model(temp_model_path: str):
             if len(reaction_metabolites) != 1:
                 print('Exchange Reaction either has 0 or more than one Metabolites assigned to it!')
 
+            print(reaction_el)
+
             # adds exchange reaction
             model.add_boundary(
                 list(reaction_metabolites)[0],

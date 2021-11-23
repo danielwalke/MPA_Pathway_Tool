@@ -12,8 +12,6 @@ const findReactionObj = (adjacentReactionNode, generalState) => {
 
 export default function FluxAnalysisGraphVisualization() {
 
-    const [graphEquality, setGraphEquality] = useState(false)
-
     const graphState = useSelector(state => state.graph)
     const fluxState = useSelector(state => state.fluxAnalysis)
     const generalState = useSelector(state => state.general)
@@ -22,13 +20,6 @@ export default function FluxAnalysisGraphVisualization() {
     useEffect(() => {
         dispatch({type: "SET_FLUX_GRAPH", payload: clonedeep(graphState.data)})
     }, [])
-
-    useEffect(() => {
-        if(fluxState.data.nodes.length > 0) {
-            const graphEquality = checkGraphEquality(graphState.data.nodes, fluxState.data.nodes)
-            setGraphEquality(graphEquality)
-        }
-    }, [fluxState.data])
 
     const onClickNode = (nodeId) => {
         const id = getKeggId(nodeId)
@@ -80,19 +71,6 @@ export default function FluxAnalysisGraphVisualization() {
         }
     }
 
-    const checkGraphEquality = (creatorGraphNodes, fluxGraphNodes) => {
-        for (let index = 0; index < creatorGraphNodes.length; index++) {
-
-            if (creatorGraphNodes[index].x !== fluxGraphNodes[index].x ||
-                creatorGraphNodes[index].y !== fluxGraphNodes[index].y) {
-                console.log("false")
-                return false
-                break
-            }
-        }
-        return true
-    }
-
     const myConfig = {
         height: 0.75 * window.innerHeight,
         width: 0.95 * window.innerWidth,
@@ -117,7 +95,7 @@ export default function FluxAnalysisGraphVisualization() {
         }
     };
 
-    if (fluxState.data.nodes.length > 0 && graphEquality) {
+    if (fluxState.data.nodes.length > 0) {
         return (
             <div >
                 <Graph
@@ -126,7 +104,10 @@ export default function FluxAnalysisGraphVisualization() {
                     data={fluxState.data}
                     config={myConfig}
                     onNodePositionChange={(id, x, y) => handleNodePositionChange(fluxState, x, y, id, dispatch)}
-                    onClickNode={(nodeId) => onClickNode(nodeId)}
+                    onClickNode={(nodeId) => {
+                        console.log("Hello")
+                        onClickNode(nodeId)
+                    }}
                     // onZoomChange={(prevZoom, newZoom) => handleZoomChange(dispatch, prevZoom, newZoom)}
                 />
             </div>

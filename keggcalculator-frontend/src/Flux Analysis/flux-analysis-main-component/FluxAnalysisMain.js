@@ -19,6 +19,8 @@ export default function FluxAnalysisMain(){
         })
     },[])
 
+    console.log(fluxState.showGraphModal)
+
     return (
         <div className={"mainContainer"}
              onClick={(e) => {
