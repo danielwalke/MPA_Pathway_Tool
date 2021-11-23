@@ -58,11 +58,12 @@ const replaceStringBounds = (value, bound, reversible) => {
 }
 
 const readCompartments = (dispatch, sbml) => {
-    const listOfCompartmentsElement = sbml.getElementsByTagName("listOfSpecies")[0]
+    const listOfCompartmentsElement = sbml.getElementsByTagName("listOfCompartments")[0]
     const compartments = []
 
     if (listOfCompartmentsElement) {
         for (const compartment of listOfCompartmentsElement.children) {
+            console.log(compartment.attributes["id"])
             compartments.push(compartment.attributes["id"])
         }
     }
