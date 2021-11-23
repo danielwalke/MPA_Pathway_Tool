@@ -23,6 +23,8 @@ import Information from "./graph_flux/graph visualization/Information";
 import DownloadCSV from "./download/DownloadCSV";
 import Loading from "../../Creator/loading/Loading";
 import StructureModal from "./graph_flux/double click node/StructureModal";
+import CircularComponent from "./CircularComponent";
+
 function FluxHome() {
     const [open, setOpen] = React.useState(true)
     const [drawerOffSet, setDrawerOffset] = React.useState(0)
@@ -116,13 +118,15 @@ function FluxHome() {
 
                           </Drawer>
                       </div>
-
+                      <div><CircularComponent/></div>
                       {/*<div className={"graph"}>*/}
                       {/*    {generalState.new_data_gen.nodes.length<0 ? <GraphVisualization/> : <Graph_visualization_fba dispatch = {dispatch}/>}*/}
                       {/*</div>*/}
 
 
                       <div className={"graph"}><Graph_visualization_fba dispatch={dispatch}/></div>
+
+
 
                   </div>
 
