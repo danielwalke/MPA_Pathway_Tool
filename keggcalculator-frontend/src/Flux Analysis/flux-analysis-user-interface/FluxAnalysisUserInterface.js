@@ -12,14 +12,11 @@ import {createFbaGraphData, createFbaGraphDummyData} from "../services/CreateFba
 import {parseRequestArray} from "../services/ParseRequestArray";
 import {requestGenerator} from "../../Creator/request/RequestGenerator";
 import {endpoint_postNetworkForFBA} from "../../App Configurations/RequestURLCollection";
+import FluxBalanceAnalysis from "../flux-analysis-fba/FluxBalanceAnalysis";
 
 export default function FluxAnalysisUserInterface() {
     const [open, setOpen] = useState(true)
     const [drawerOffSet, setDrawerOffset] = useState(0)
-
-    const dispatch = useDispatch()
-    const generalState = useSelector(state => state.general)
-    const fluxState = useSelector(state => state.fluxAnalysis)
 
     const theme = useTheme()
     const useStyles = makeStyles({
@@ -37,26 +34,6 @@ export default function FluxAnalysisUserInterface() {
         const tabHeight = document.getElementsByClassName("MuiTabs-root")[0].clientHeight
         setDrawerOffset(tabHeight + headerHeight)
     }, [])
-
-    const handleOptimizeClick = async () => {
-        const requestReactionObj = await parseRequestArray(generalState.reactionsInSelectArray)
-        const response = await requestGenerator(
-            "POST", endpoint_postNetworkForFBA, "", "", requestReactionObj)
-        const newGraphData = createFbaGraphData(fluxState, response.data)
-
-        // const dummyDataResponse = await getDummyFluxData(generalState.reactionsInSelectArray)
-        // const newGraphData = createFbaGraphDummyData(fluxState, dummyDataResponse.data)
-
-        const newReactionsInSelectArray = [...generalState.reactionsInSelectArray]
-        newReactionsInSelectArray.forEach(reaction => {
-            const fluxObj = response.data.find(flux =>
-                Object.keys(flux)[0] === reaction.reactionId)
-            console.log(fluxObj)
-            reaction.flux = fluxObj[Object.keys(fluxObj)[0]].fbaSolution
-        })
-        dispatch({type: "SET_FLUX_GRAPH", payload: newGraphData.data})
-        dispatch({type: "SETREACTIONSINARRAY", payload: newReactionsInSelectArray})
-    }
 
     return(
         <div className={"interface"}>
@@ -85,13 +62,7 @@ export default function FluxAnalysisUserInterface() {
                             </IconButton>
                         </ToolTipBig>
                     </div>
-                    <div className={"helpContainer"}>
-                        <ToolTipBig title={"perform FBA and FVA for the displayed network"} placement={"right"}>
-                            <button className={"download-button"} onClick={() => handleOptimizeClick()}>
-                                Optimize
-                            </button>
-                        </ToolTipBig>
-                    </div>
+                    <FluxBalanceAnalysis />
                 </div>
             </Drawer>
         </div>
