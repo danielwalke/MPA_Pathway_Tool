@@ -72,15 +72,15 @@ const DownloadCSV = (props) =>{
             for(const reaction of reactions){
                 for(const substrate of reaction.substrates){
                     // console.log(substrate.stochiometry)
-                    output = addOutput(output, reaction, substrate, reactionCounter, compoundTypeSubstrate,reaction.reversible, generalState)
+                    output = addOutput(output, reaction, generalState)
                     output = addLocationInformation(output, generalState, reaction, substrate)
                 }
                 for(const product of reaction.products){
-                    output = addOutput(output, reaction, product, reactionCounter, compoundTypeProduct,reaction.reversible, generalState)
+                    output = addOutput(output, reaction, generalState)
                     output = addLocationInformation(output, generalState, reaction, product)
                 }
                 if(reaction.substrates.length===0 && reaction.products.length === 0){
-                    output = addOutput(output, reaction, {stochiometry:"", name:"",x:"",y:"",opacity:"",abbreviation:""}, reactionCounter, "", "", generalState)
+                    output = addOutput(output, reaction, generalState)
                 }
                 reactionCounter++;
             }

@@ -1,0 +1,86 @@
+.container_circular{
+  position: relative;
+  height: 900px;
+  width: 800px;
+  top: 100px;
+  overflow: hidden;
+  align-content: center;
+  left: 500px;
+}
+.button_add{
+  position: absolute;
+  float: right;
+  bottom: 0;
+  right: 30px;
+  bottom: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.center_div{
+  position: absolute;
+  background: transparent;
+  border: 1px dashed black;
+  border-radius: 10px;
+  width: 150px;
+  height: 150px;
+  left: 0;
+  right: 0;
+  top: -50px;
+  bottom: 0;
+  margin: auto;
+}
+.circle{
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  display: inline-block;
+  border: 1px solid white;
+  position: relative;
+  top: 50px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+.circle_box{
+  position: absolute;
+  background: lightblue;
+  border-radius: 5px;
+  width: 77px;
+  height: 77px;
+  bottom: 50px;
+  transform: rotate(45deg);
+}
+.circle_box:nth-child(1){
+  top: -30px;
+  left: 41%;
+}
+.circle_box:nth-child(2){
+  top: 30px;
+  right: 15px;
+}
+.circle_box:nth-child(3){
+  top: 170px;
+  right: -40px;
+}
+.circle_box:nth-child(4){
+  top: 330px;
+  right: 10px;
+}
+.circle_box:nth-child(5){
+  top: 30px;
+  left: 15px;
+}
+.circle_box:nth-child(6){
+  top: 170px;
+  left: -40px;
+}
+
+.text_content{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  font-size: 10px
+}
