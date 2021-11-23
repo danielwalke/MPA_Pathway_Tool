@@ -42,9 +42,40 @@ const getSpeciesFromReaction = (speciesRefsElement) => {
 
 const replaceXmlCharacters = (string) => string.replaceAll("&lt;", "<").replaceAll("&gt;", ">")
 
+const replaceStringBounds = (value, bound, reversible) => {
+    let returnValue
+    switch (bound) {
+        case "upperBound":
+            returnValue = parseFloat(value) ? parseFloat(value) : 1000.0
+            break
+        case "lowerBound":
+            returnValue = parseFloat(value) ?
+                parseFloat(value) : reversible ?
+                    -1000.0 : 0.0
+            break
+    }
+    return returnValue
+}
+
+const readCompartments = (dispatch, sbml) => {
+    const listOfCompartmentsElement = sbml.getElementsByTagName("listOfSpecies")[0]
+    const compartments = []
+
+    if (listOfCompartmentsElement) {
+        for (const compartment of listOfCompartmentsElement.children) {
+            compartments.push(compartment.attributes["id"])
+        }
+    }
+
+    if (compartments.length > 2) {
+        throw "More than two compartments."
+    }
+
+    return compartments
+}
 
 //read species from sbml file
-const readSpecies = (dispatch, sbml, state) => {
+const readSpecies = (dispatch, sbml) => {
     const listOfSpeciesElement = sbml.getElementsByTagName("listOfSpecies")[0]
     const listOfSpecies = listOfSpeciesElement.children.map((species, index) => {
 
@@ -57,18 +88,18 @@ const readSpecies = (dispatch, sbml, state) => {
 
         const keggId = keggAnnotations.length > 0 ? keggAnnotations[0].substring(keggAnnotations[0].length - 6, keggAnnotations[0].length) : getCompoundId(index);
 
-        // const keggName = state.general.compoundId2Name[`${keggId}`] ? state.general.compoundId2Name[`${keggId}`] : keggId
-
         const biggMetabolite = annotations.find(link => link.includes("bigg.metabolite"))
         const biggMetaboliteSplitArray = biggMetabolite ? biggMetabolite.split("/") : [""]
+
+        const compartment = species.attributes["compartment"]
 
         return (
             {
                 sbmlId: sbmlId,
                 sbmlName: sbmlName,
                 keggId: keggId,
-                // keggName: keggName,
                 biggId: biggMetaboliteSplitArray[biggMetaboliteSplitArray.length - 1],
+                compartment: compartment,
                 index: index,
             }
         )
@@ -77,14 +108,70 @@ const readSpecies = (dispatch, sbml, state) => {
     return listOfSpecies
 }
 
+const readListOfObjectives = (dispatchh, sbml) => {
+    const objectives = []
+    const listOfObjectivesElement = sbml.getElementsByTagName("fbc:listOfObjectives")[0]
+
+    if (listOfObjectivesElement) {
+        const activeObjective = listOfObjectivesElement.attributes["fbc:activeObjective"]
+
+        for (const objective of listOfObjectivesElement.children) {
+            if (objective.attributes["fbc:id"] === activeObjective) {
+                objective.getElementsByTagName("fbc:listOfFluxObjectives")[0].children.forEach(
+                    reaction => {
+                        objectives.push({
+                            reactionId: reaction.attributes["fbc:reaction"],
+                            objectiveCoefficient: reaction.attributes["fbc:coefficient"]
+                        })
+                    }
+                )
+                break
+            }
+        }
+    }
+
+    return objectives
+}
+
+const readListOfParameters = (dispatch, sbml) => {
+    if (sbml.getElementsByTagName("listOfParameters")[0]) {
+        const listOfParametersChildren = sbml.getElementsByTagName("listOfParameters")[0].children
+
+        return listOfParametersChildren.map(parameter => {
+            return {
+                id: parameter.attributes.id,
+                value: parameter.attributes.value
+            }
+        })
+    } else {
+        return []
+    }
+
+}
+
 //read reactions from sbml file
-const readReactions = (dispatch, sbml, globalTaxa) => {
+const readReactions = (dispatch, sbml, globalTaxa, listOfObjectives, listOfParameters) => {
     const listOfReactionsElement = sbml.getElementsByTagName("listOfReactions")[0]
     const listOfReactions = listOfReactionsElement.children.map((reaction, index) => {
         const sbmlId = replaceXmlCharacters(reaction.attributes.id);
         const sbmlName = typeof reaction.attributes.name === "string" ? replaceXmlCharacters(reaction.attributes.name) : replaceXmlCharacters(reaction.attributes.id);
-        const reversible = typeof reaction.attributes.reversible === "string" ? reaction.attributes.reversible : "true"
+        const reversible = reaction.attributes["reversible"] === "true"
         const annotations = reaction.getElementsByTagName("rdf:li").map(link => link.attributes["rdf:resource"])
+
+        let lowerBoundParam = listOfParameters.find(param => param.id === reaction.attributes["fbc:lowerFluxBound"])
+        let upperBoundParam = listOfParameters.find(param => param.id === reaction.attributes["fbc:upperFluxBound"])
+
+        lowerBoundParam = lowerBoundParam ? lowerBoundParam : {id: undefined, value: undefined}
+        upperBoundParam = upperBoundParam ? upperBoundParam : {id: undefined, value: undefined}
+
+        lowerBoundParam.value = replaceStringBounds(lowerBoundParam.value, "lowerBound", reversible)
+        upperBoundParam.value = replaceStringBounds(upperBoundParam.value, "upperBound", reversible)
+
+        const lowerBound = lowerBoundParam.value
+        const upperBound = upperBoundParam.value
+
+        const objectiveCoefficient = listOfObjectives.some(reaction => reaction.reactionId === sbmlId) ?
+            parseFloat(listOfObjectives.find(reaction => reaction.reactionId === sbmlId).objectiveCoefficient) : 0.0
 
         const biggReactionAnnotation = annotations.find(link => link.includes("bigg.reaction"))
         const biggReactionSplitArray = biggReactionAnnotation ? biggReactionAnnotation.split("/") : [""]
@@ -118,14 +205,17 @@ const readReactions = (dispatch, sbml, globalTaxa) => {
             koNumbers: koNumbers,
             substrates: substrates,
             products: products,
-            reversible: reversible === "reversible",
+            reversible: reversible,
             taxonomy: getTaxonomyFromSbml(annotations, globalTaxa),
             biggReaction: biggReactionSplitArray[biggReactionSplitArray.length-1],
-            index: index
+            upperBound: upperBound,
+            lowerBound: lowerBound,
+            objectiveCoefficient: objectiveCoefficient,
+            index: index,
         };
 
-
     })
+    console.log(listOfReactions)
     return listOfReactions
 }
 
@@ -207,8 +297,11 @@ export const onSBMLModuleFileChange = async (event, dispatch, state) => {
             const globalTaxa = findGlobalTaxa(sbml) !== null ? findGlobalTaxa(sbml) : {}
             const listOfSpeciesGlyphs = sbml.getElementsByTagName("layout:listOfSpeciesGlyphs").length > 0 ? readListOfSpeciesGlyphs(sbml) : []
             const listOfReactionGlyphs = sbml.getElementsByTagName("layout:listOfReactionGlyphs").length > 0 ? readListOfReactionGlyphs(sbml, listOfSpeciesGlyphs) : []
+            const listOfCompartments = readCompartments(dispatch, sbml)
             const listOfSpecies = readSpecies(dispatch, sbml, state)
-            const listOfReactions = readReactions(dispatch, sbml, globalTaxa)
+            const listOfObjectives = readListOfObjectives(dispatch, sbml)
+            const listOfParameters = readListOfParameters(dispatch, sbml)
+            const listOfReactions = readReactions(dispatch, sbml, globalTaxa, listOfObjectives, listOfParameters)
             const isMissingAnnotations = checkMissingAnnotations(listOfSpecies, dispatch)
 
             dispatch({type: "SETMODULEFILENAMESBML", payload: file.name})
@@ -228,9 +321,9 @@ export const onSBMLModuleFileChange = async (event, dispatch, state) => {
                 dispatch({type: "SETLOADING", payload: false})
             }
             dispatch({type: "SHOW_ANNOTATION_WARNING", payload: true})
-        } catch (e) {
-            console.error(e)
-            window.alert("can't read the file")
+        } catch (err) {
+            console.error(err)
+            window.alert("Can't read this file.")
         }
     }
 }

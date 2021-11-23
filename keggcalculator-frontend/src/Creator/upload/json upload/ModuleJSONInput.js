@@ -11,6 +11,19 @@ export const onModuleFileChange = (file, dispatch, state) => {
         const result = e.target.result.trim()
         try {
             const reactions = JSON.parse(result)
+
+            reactions.forEach(
+                reaction => {
+                    reaction.lowerBound = reaction.lowerBound ?
+                        reaction.lowerBound : reaction.reversible ?
+                            -1000.0 : 0.0
+                    reaction.upperBound = reaction.lowerBound ?
+                        reaction.upperBound : 1000.0
+                    reaction.objectiveCoefficient = reaction.objectiveCoefficient ?
+                        reaction.objectiveCoefficient : 0.0
+                }
+            )
+
             const {nodes, links} = handleJSONGraphUpload(reactions, dispatch, state.graph)
             const data = {nodes: nodes, links: links}
             dispatch({type: "SETDATA", payload: data})

@@ -11,7 +11,8 @@ export default function FluxAnalysisMain(){
 
     useEffect(() => {
         generalState.reactionsInSelectArray.forEach(reaction => {
-            if (!reaction.lowerBound) reaction.lowerBound = -1000.0
+            console.log(reaction)
+            reaction.lowerBound = !reaction.lowerBound && !reaction.reversible ? 0.0 : -1000.0
             if (!reaction.upperBound) reaction.upperBound = 1000.0
             if (!reaction.objectiveCoefficient) reaction.objectiveCoefficient = 0
             if (!reaction.hasOwnProperty("exchangeReaction")) reaction.exchangeReaction = false
@@ -24,6 +25,7 @@ export default function FluxAnalysisMain(){
     return (
         <div className={"mainContainer"}
              onClick={(e) => {
+                 console.log("HEllo")
                  !fluxState.showGraphModal && setMouseCoordinates({x: String(e.clientX), y: String(e.clientY)}
              )}}>
             <div className={"main"}>

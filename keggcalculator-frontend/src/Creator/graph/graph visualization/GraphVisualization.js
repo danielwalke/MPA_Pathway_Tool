@@ -181,7 +181,10 @@ const GraphVisualization = () => {
                     id="graph"
                     data={graphState.data}
                     config={myConfig}
-                    onClickNode={(nodeId, x, y) => onClickNode(nodeId, dispatch, graphState, keggState, x, y)}
+                    onClickNode={(nodeId, x, y) => {
+                        console.log("Hello")
+                        onClickNode(nodeId, dispatch, graphState, keggState, x, y)
+                    }}
                     onRightClickNode={(event, nodeId) => onRightClickNode(event, nodeId, dispatch, graphState)}
                     onDoubleClickNode={(node) => handleDoubleClick(node)}
                     onClickLink={(source, target) => handleClickLink(source, target)}

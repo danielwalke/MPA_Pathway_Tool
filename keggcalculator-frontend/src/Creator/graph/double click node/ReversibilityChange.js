@@ -57,6 +57,9 @@ const ReversibilityChange = (props) => {
     const changeReversibilityInReactions = () => {
         const reaction = state.general.reactionsInSelectArray.find(reaction => reaction.reactionId === node.id.substring(node.id.length - 6, node.id.length))
         reaction.reversible = !reaction.reversible
+        reaction.lowerBound = reaction.lowerBound ?
+            reaction.lowerBound : reaction.reversible ?
+                -1000.0 : 0.0
     }
 
     return (

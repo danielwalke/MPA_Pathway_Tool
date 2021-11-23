@@ -36,6 +36,12 @@ export const readFile = (string) => {
         const keyComp = entries[15]
         const reactionBiggId = entries[16] ? entries[16] : ""
         const compoundBiggId = entries[17] ? entries[17] : ""
+        const compoundCompartment = entries[18] ? entries[18] : "internal"
+        const reactionLowerBound = entries[19] ? parseFloat(entries[19]) : reversibility ? -1000.0 : 0.0
+        const reactionupperBound = entries[20] ? parseFloat(entries[20]) : 1000.0
+        const reactionObjectiveCoefficient = entries[21] ? parseFloat(entries[21]) : 0.0
+        const reactionExchangeReaction = entries[22] ? entries[22] === "true" : false
+
         const reactionNames = reactions.map(reaction => reaction.reactionName)
         if (!reactionNames.includes(reactionName)) {
             const reaction = {
@@ -54,7 +60,11 @@ export const readFile = (string) => {
                 abbreviation: reactionAbbr,
                 isForwardReaction: true,
                 reversible: reversibility,
-                biggId: reactionBiggId
+                biggId: reactionBiggId,
+                lowerBound: reactionLowerBound,
+                upperBound: reactionupperBound,
+                objectiveCoefficient: reactionObjectiveCoefficient,
+                exchangeReaction: reactionExchangeReaction
             }
             reactions.push(reaction)
         }
@@ -66,7 +76,8 @@ export const readFile = (string) => {
             stochiometry: stoichiometricCoeff,
             x: compoundX,
             y: compoundY,
-            biggId: compoundBiggId
+            biggId: compoundBiggId,
+            compartment: compoundCompartment
         }
         if(compoundId.length>0){
             if (typeOfCompound === "substrate") {

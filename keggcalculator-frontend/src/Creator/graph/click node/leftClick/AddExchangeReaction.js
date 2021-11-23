@@ -93,6 +93,8 @@ export default function AddExchangeReaction() {
         const x = String(parseInt(compoundObjForReaction.x) + 4)
         const y = compoundObjForReaction.y
         const exchangeReaction = {
+            lowerBound: -1000.0,
+            upperBound: 1000.0,
             abbreviation: "EX_" + compoundId,
             ecNumbersString: [],
             isForwardReaction: true,
