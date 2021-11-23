@@ -82,7 +82,6 @@ const DeleteModal = () => {
             console.log(newReactions)
 
             dispatch({type: "SET_KEGG_REACTION", payload: newKeggReactions})
-            dispatch({type: "SETREACTIONSINARRAY", payload: newReactions})
 
         } else if (keggIdFromNode.startsWith("R") || keggIdFromNode.startsWith("U")) {
 
@@ -102,6 +101,7 @@ const DeleteModal = () => {
         const newData = {nodes: newDataNodes, links: newLinks}
 
         // console.log(newKeggReactions)
+        dispatch({type: "SETREACTIONSINARRAY", payload: newReactions})
         dispatch({type: "SETDATA", payload: newData})
         dispatch({type: "SWITCHDELETEMODAL"})
     }
