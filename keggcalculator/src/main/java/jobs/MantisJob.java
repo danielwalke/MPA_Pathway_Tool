@@ -7,10 +7,11 @@ import calculator.CalculatorOutputList;
 import constants.KeggCalculatorConstants;
 import json.KeggCalculatorJobJSON;
 import json.MantisJobJson;
+import mantis.MantisFile;
+import mantis.MantisParser;
+import mantis.MantisProtein;
 import model.KeggDataObject;
-import model.MpaProteine;
 import parser.KeggDataParser;
-import parser.MantisParser;
 import parser.ModuleFileParser;
 import parser.MpaFileParser2;
 
@@ -55,7 +56,17 @@ public class MantisJob implements Runnable{
 		try {
 			//read input file here
 			String mantisFileName ="upload/" + this.job.jobID + "/" + this.job.mantisFile;
-			MantisParser.readInputFile(mantisFileName);
+			MantisFile file = new MantisFile();
+			file.setFileName(mantisFileName);
+			String mantisFastaFile = "upload/" + this.job.jobID + "/" + this.job.mantisFile + "_fasta.faa";
+			file.setFastaFilePath(mantisFastaFile);
+			MantisParser.readFile(file);
+			
+			//write fast file for mantis
+			MantisParser.writeFastaFile(file);
+			for(MantisProtein protein : file.getMantisProteins()) {
+				System.out.println(protein.getQuants());
+			}
 			
 			//send input file to mantis here
 			

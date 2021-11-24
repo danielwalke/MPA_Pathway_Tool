@@ -17,15 +17,15 @@ public class MantisParser {
 		MantisFile file = new MantisFile();
 		file.setFileName("C:\\Users\\danie\\Desktop\\MantisTest.csv");
 		file.setFastaFilePath("C:\\Users\\danie\\Desktop\\MantisTestInput.faa");
-		readFile(file);
-		writeFastaFile(file);
+		MantisParser.readFile(file);
+		MantisParser.writeFastaFile(file);
 		for(MantisProtein protein : file.getMantisProteins()) {
 			System.out.println(protein.getQuants());
 		}
 		
 	}
 	
-	private static void writeFastaFile(MantisFile file) {
+	public static void writeFastaFile(MantisFile file) {
 		try {
 			String outputString = "";
 			BufferedWriter writer = new BufferedWriter(new FileWriter(new File(file.getFastaFilePath())));
