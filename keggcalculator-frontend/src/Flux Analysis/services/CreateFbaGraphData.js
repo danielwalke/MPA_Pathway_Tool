@@ -98,7 +98,6 @@ export function createFbaGraphData(graphData, fluxData) {
             }
         }
 
-
         // link.strokeWidth = getStyleFromFlux(reaction.fbaSolution).width
         link.strokeWidth = 5
         link.color = getStyleFromFlux(reaction.fbaSolution).hexColor
@@ -109,17 +108,13 @@ export function createFbaGraphData(graphData, fluxData) {
 }
 
 export function resetFluxData(reactionsInSelectArray, fluxdata, dispatch) {
-    console.log("reset")
-    const newReactionsInSelectArray = clonedeep(reactionsInSelectArray)
-    newReactionsInSelectArray.forEach(reaction => {
-        reaction.flux = undefined
-    })
+
     const newFluxdata = clonedeep(fluxdata)
     newFluxdata.links.forEach(link => {
         link.strokeWidth = undefined
         link.color = undefined
     })
 
-    dispatch({type: "SETREACTIONSINARRAY", payload: newReactionsInSelectArray})
+    dispatch({type: "SET_FBA_RESULTS", payload: []})
     dispatch({type: "SET_FLUX_GRAPH", payload: newFluxdata})
 }

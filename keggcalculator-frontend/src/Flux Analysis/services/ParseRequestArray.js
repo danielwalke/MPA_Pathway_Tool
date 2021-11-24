@@ -1,5 +1,45 @@
 import {getKeggId} from "./CreateFbaGraphData";
 
+const writeMetabolitesToReaction = (compounds, listOfMetabolites, reactionMetabolites, stoichiometrySign) => {
+    /**
+     * Pushes metabolites of every reaction into list of Metabolites and writes metabolite object for reaction request
+     * object.
+     *
+     * @param compounds - substrates/products Array from reaction object of reactionsInSelectArray
+     * @param listOfMetabolites - list of all metabolites for request object
+     * @param reactionMetabolites - list of metabolites involved in a reaction for request reaction object
+     * @param stoichiometrySign - sign for stoichiometric coefficients; -1 for substrates, 1 for products
+     */
+    try {
+        let sign
+        if (typeof stoichiometrySign === "number") {
+            sign = stoichiometrySign
+        } else {
+            throw "Stoichiometry sign should be -1 or +1."
+        }
+
+        for (const compound of compounds) {
+
+            listOfMetabolites.push({
+                metaboliteId: getKeggId(compound.name),
+                metaboliteName: compound.name,
+                compartment: compound.compartment ? compound.compartment : 'cytosol'
+            })
+
+            reactionMetabolites.push({
+                metaboliteId: getKeggId(compound.name),
+                stoichiometry: compound.stoichiometry ?
+                    sign * parseFloat(compound.stoichiometry) : compound.stochiometry ?
+                        sign * parseFloat(compound.stochiometry) : sign
+            })
+        }
+
+    } catch (e) {
+        console.error(e)
+    }
+
+}
+
 export function parseRequestArray(reactionsInSelectArray) {
 
     const listOfReactions = []
@@ -8,21 +48,8 @@ export function parseRequestArray(reactionsInSelectArray) {
     reactionsInSelectArray.forEach(reaction => {
         const metabolites = []
 
-        for (const component of [...reaction.substrates, ...reaction.products]) {
-
-            listOfMetabolites.push({
-                metaboliteId: getKeggId(component.name),
-                metaboliteName: component.name,
-                compartment: component.compartment ? component.compartment : 'cytosol'
-            })
-
-            metabolites.push({
-                metaboliteId: getKeggId(component.name),
-                stoichiometry: component.stoichiometry ?
-                    parseFloat(component.stoichiometry) : component.stochiometry ?
-                        parseFloat(component.stochiometry) : 1.0
-            })
-        }
+        writeMetabolitesToReaction(reaction.substrates, listOfMetabolites, metabolites, -1)
+        writeMetabolitesToReaction(reaction.products, listOfMetabolites, metabolites, +1)
 
         listOfReactions.push({
             reactionId: reaction.reactionId,

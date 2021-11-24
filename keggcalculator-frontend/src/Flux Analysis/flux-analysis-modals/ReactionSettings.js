@@ -48,6 +48,7 @@ export default function ReactionSettings({dataObj}) {
         newReactionsInSelectArray[reactionIndex].lowerBound = finalBounds[0]
         newReactionsInSelectArray[reactionIndex].upperBound = finalBounds[1]
         newReactionsInSelectArray[reactionIndex].objectiveCoefficient = objectiveCoeff
+        newReactionsInSelectArray[reactionIndex].reversible = finalBounds[0] < 0.0
 
         dispatch({type: "SETREACTIONSINARRAY", payload: newReactionsInSelectArray})
     }

@@ -17,7 +17,7 @@ export const fluxAnalysisReducer = (state = defaultState, action) => {
             return {...state, showGraphModal: payload}
         case "SET_GRAPH_MODAl_INPUT":
             return {...state, graphModalInput: payload}
-        case "SET_FLUX":
+        case "SET_FBA_RESULTS":
             return {...state, flux: payload}
         default:
             return state;

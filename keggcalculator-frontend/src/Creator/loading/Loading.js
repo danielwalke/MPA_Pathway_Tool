@@ -7,12 +7,11 @@ import CloseIcon from "@material-ui/icons/Close";
 
 const Loading = () => {
     const state = useSelector(state => state.general)
-    return (<div>
-        <SnackbarLoader state={state}/>
-        {/*<Card style={{bottom: "-10vh",left:"0", position: 'absolute', zIndex: "2000000000", display:"flex"}}><ClipLoader*/}
-        {/*                  size={"5vh"}*/}
-        {/*                  loading={state.loading}/><div>Loading..</div></Card>*/}
-    </div>)
+    return (
+        <div>
+            <SnackbarLoader state={state}/>
+        </div>
+    )
 }
 
 export default Loading

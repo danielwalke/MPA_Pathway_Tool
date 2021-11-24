@@ -13,6 +13,8 @@ import {parseRequestArray} from "../services/ParseRequestArray";
 import {requestGenerator} from "../../Creator/request/RequestGenerator";
 import {endpoint_postNetworkForFBA} from "../../App Configurations/RequestURLCollection";
 import FluxBalanceAnalysis from "../flux-analysis-fba/FluxBalanceAnalysis";
+import Loading from "../../Creator/loading/Loading";
+import DownloadFbaResults from "../flux-analysis-download/DownloadFbaResults";
 
 export default function FluxAnalysisUserInterface() {
     const [open, setOpen] = useState(true)
@@ -37,6 +39,7 @@ export default function FluxAnalysisUserInterface() {
 
     return(
         <div className={"interface"}>
+            <Loading />
             <Toolbar>
                 <ToolTipBig title={"Click to open the menu"} placement={"right"}>
                     <IconButton
@@ -63,6 +66,7 @@ export default function FluxAnalysisUserInterface() {
                         </ToolTipBig>
                     </div>
                     <FluxBalanceAnalysis />
+                    <DownloadFbaResults />
                 </div>
             </Drawer>
         </div>
