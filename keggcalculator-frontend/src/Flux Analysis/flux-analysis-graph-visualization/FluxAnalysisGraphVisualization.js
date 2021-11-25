@@ -29,6 +29,8 @@ export default function FluxAnalysisGraphVisualization() {
         let adjacentLinks
         let dataObject
 
+        const node = graphState.data.nodes.filter(node => node.id === nodeId)
+
         if (id.startsWith("R") || id.startsWith("U")) {
             reactionObject = findReactionObj(nodeId, generalState)
             dataObject = reactionObject
@@ -54,6 +56,7 @@ export default function FluxAnalysisGraphVisualization() {
 
         dataObject.type = nodeType
 
+        dispatch({type: "SET_SELECTED_NODE", payload: node})
         dispatch({type: "SHOW_GRAPH_MODAL", payload: true})
         dispatch({type: "SET_GRAPH_MODAl_INPUT", payload: dataObject})
 

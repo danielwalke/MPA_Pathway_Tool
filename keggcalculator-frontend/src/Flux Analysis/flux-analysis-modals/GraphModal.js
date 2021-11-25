@@ -51,10 +51,6 @@ export default function GraphModal(props) {
         setModalCoordinates(coordinates)
     },[])
 
-    useEffect(() => {
-        console.log(modalCoordinates)
-    },[modalCoordinates])
-
     return (
         <div style={{
             height: "100vh",

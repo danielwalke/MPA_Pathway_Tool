@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import ReversibilityChange from "./ReversibilityChange";
-import {handleSubmitDirection} from "./DirectionsChanger";
+import {invertDirection} from "./DirectionsChanger";
 import {ToolTipBig} from "../../main/user-interface/UserInterface";
 import TaxonomicRank from "./TaxonomicRank";
 import {Checkbox, TextField} from "@material-ui/core";
@@ -44,8 +44,8 @@ export default function CreatorGraphReactionDetails({isNcbiTaxonomy, setIsNcbiTa
                 <div>
                     <ToolTipBig title={"Change direction of chosen reaction"} placement={"right"}>
                         <button className={"download-button"} style={{width: "15vw"}}
-                                onClick={() => handleSubmitDirection(graphState, dispatch, generalState)}>reverse
-                            reaction
+                                onClick={() => invertDirection(graphState, dispatch, generalState)}>
+                            reverse reaction
                         </button>
                     </ToolTipBig>
                 </div>

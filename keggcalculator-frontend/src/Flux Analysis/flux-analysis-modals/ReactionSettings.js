@@ -6,6 +6,7 @@ import "../FluxAnalysisStyles.css"
 import {useDispatch, useSelector} from "react-redux";
 import {TextField} from "@material-ui/core";
 import {resetFluxData} from "../services/CreateFbaGraphData";
+import {changeLinkOrientation} from "../../Creator/graph/double click node/ReversibilityChange";
 
 export default function ReactionSettings({dataObj}) {
 
@@ -54,7 +55,8 @@ export default function ReactionSettings({dataObj}) {
     }
 
     const resetFlux = () => {
-        resetFluxData(generalState.reactionsInSelectArray, fluxAnalysis.data, dispatch)
+        resetFluxData(fluxAnalysis.data, dispatch)
+        // const {data, reversibile} = changeReversibilityInGraph(dataObj.reactionId, )
         setFlux(undefined)
     }
 

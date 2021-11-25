@@ -107,14 +107,14 @@ export function createFbaGraphData(graphData, fluxData) {
     return fluxGraphData
 }
 
-export function resetFluxData(reactionsInSelectArray, fluxdata, dispatch) {
+export function resetFluxData(fluxGraph, dispatch) {
 
-    const newFluxdata = clonedeep(fluxdata)
-    newFluxdata.links.forEach(link => {
+    const newfluxGraph = clonedeep(fluxGraph)
+    fluxGraph.links.forEach(link => {
         link.strokeWidth = undefined
         link.color = undefined
     })
 
     dispatch({type: "SET_FBA_RESULTS", payload: []})
-    dispatch({type: "SET_FLUX_GRAPH", payload: newFluxdata})
+    dispatch({type: "SET_FLUX_GRAPH", payload: newfluxGraph})
 }
