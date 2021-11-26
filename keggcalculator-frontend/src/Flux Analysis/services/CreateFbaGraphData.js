@@ -1,4 +1,5 @@
 import clonedeep from "lodash/cloneDeep";
+import {changeLinkOrientation} from "../../Creator/graph/double click node/ChangeLinkOrientation";
 
 export function getKeggId(nodeId) {
     const splitArray = nodeId.split(" ")
@@ -109,12 +110,8 @@ export function createFbaGraphData(graphData, fluxData) {
 
 export function resetFluxData(fluxGraph, dispatch) {
 
-    const newfluxGraph = clonedeep(fluxGraph)
-    fluxGraph.links.forEach(link => {
-        link.strokeWidth = undefined
-        link.color = undefined
-    })
+    const {data, reversibleState} = changeLinkOrientation("", fluxGraph, "", false, false)
 
     dispatch({type: "SET_FBA_RESULTS", payload: []})
-    dispatch({type: "SET_FLUX_GRAPH", payload: newfluxGraph})
+    dispatch({type: "SET_FLUX_GRAPH", payload: data})
 }

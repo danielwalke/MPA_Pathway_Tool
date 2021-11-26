@@ -27,7 +27,7 @@ export default function StyledSlider({bounds, setBounds, setFinalBounds, setFlux
                 onChangeCommitted={(event, value) => {
                     setFinalBounds(value)
                     setFlux(undefined)
-                    resetFluxData(generalState.reactionsInSelectArray, fluxAnalysis.data, dispatch)
+                    // resetFluxData(fluxAnalysis, dispatch)
                 }}
                 valueLabelDisplay="auto"
                 // getAriaValueText={valuetext}

@@ -6,12 +6,15 @@ import "../FluxAnalysisStyles.css"
 import {useDispatch, useSelector} from "react-redux";
 import {TextField} from "@material-ui/core";
 import {resetFluxData} from "../services/CreateFbaGraphData";
-import {changeLinkOrientation} from "../../Creator/graph/double click node/ReversibilityChange";
+import {
+    changeLinkOrientation,
+    changeLinkOrientation2
+} from "../../Creator/graph/double click node/ChangeLinkOrientation";
 
 export default function ReactionSettings({dataObj}) {
 
     const generalState = useSelector(state => state.general)
-    const fluxAnalysis = useSelector(state => state.fluxAnalysis)
+    const fluxState = useSelector(state => state.fluxAnalysis)
 
     const dispatch = useDispatch()
 
@@ -20,7 +23,7 @@ export default function ReactionSettings({dataObj}) {
     const [objectiveCoeff, setObjectiveCoeff] = useState(dataObj.objectiveCoefficient)
     const [minimize, setMinimize] = useState(false)
     const [maximize, setMaximize] = useState(false)
-    const [flux, setFlux] = useState(dataObj.flux)
+    const [flux, setFlux] = useState(null)
 
     useEffect(() => {
         setObjectiveCoeff(dataObj.objectiveCoefficient)
@@ -32,6 +35,8 @@ export default function ReactionSettings({dataObj}) {
             setMaximize(false)
             setMinimize(true)
         }
+
+        console.log(dataObj)
     },[])
 
     useEffect(() => {
@@ -39,6 +44,34 @@ export default function ReactionSettings({dataObj}) {
             updateState()
         }
     },[finalBounds[0], finalBounds[1], objectiveCoeff])
+
+    const setLinks = () => {
+        let nodeReversibility
+        let linkDirection
+
+        if (finalBounds[0] < 0 && finalBounds[1] > 0) {
+            // lb < 0, ub > 0
+            nodeReversibility = "reversible"
+            linkDirection = "forward"
+        } else if (finalBounds[0] >= 0 && finalBounds[1] >= 0) {
+            // lb > 0, ub > 0 or lb = ub = 0
+            nodeReversibility = "irreversible"
+            linkDirection = "forward"
+        } else {
+            // lb < 0 , ub < 0
+            nodeReversibility = "irreversible"
+            linkDirection = "reverse"
+        }
+
+        const data = changeLinkOrientation2(
+            fluxState.selectedNode[0], fluxState, generalState, nodeReversibility, linkDirection)
+
+        console.log(data)
+
+        dispatch({type: "SET_FLUX_GRAPH", payload: data})
+        dispatch({type: "SETDATA", payload: data})
+        console.log(generalState)
+    }
 
     const updateState = () => {
         const reactionIndex = generalState.reactionsInSelectArray.findIndex(
@@ -49,15 +82,16 @@ export default function ReactionSettings({dataObj}) {
         newReactionsInSelectArray[reactionIndex].lowerBound = finalBounds[0]
         newReactionsInSelectArray[reactionIndex].upperBound = finalBounds[1]
         newReactionsInSelectArray[reactionIndex].objectiveCoefficient = objectiveCoeff
-        newReactionsInSelectArray[reactionIndex].reversible = finalBounds[0] < 0.0
+        // newReactionsInSelectArray[reactionIndex].reversible = finalBounds[0] < 0.0
+
+        setLinks()
 
         dispatch({type: "SETREACTIONSINARRAY", payload: newReactionsInSelectArray})
     }
 
     const resetFlux = () => {
-        resetFluxData(fluxAnalysis.data, dispatch)
-        // const {data, reversibile} = changeReversibilityInGraph(dataObj.reactionId, )
-        setFlux(undefined)
+        resetFluxData(fluxState, dispatch)
+        setFlux(null)
     }
 
     const resetReaction = () => {
@@ -139,7 +173,7 @@ export default function ReactionSettings({dataObj}) {
                     onChange={(event) => {
                         setFinalBounds([event.target.value, bounds[1]])
                         setBounds([event.target.value, bounds[1]])
-                        resetFlux()
+                        // resetFlux()
                     }}
                 />
                 <TextField
@@ -170,7 +204,7 @@ export default function ReactionSettings({dataObj}) {
                     onChange={(event) => {
                         setFinalBounds([bounds[0], event.target.value])
                         setBounds([bounds[0], event.target.value])
-                        resetFlux()
+                        // resetFlux()
                     }}/>
 
             </div>

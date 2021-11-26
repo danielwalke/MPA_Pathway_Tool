@@ -13,6 +13,7 @@ export default function FluxAnalysisMain(){
     useEffect(() => {
         generalState.reactionsInSelectArray.forEach(reaction => {
             // initialize reactions that don't have required properties
+            console.log(reaction.lowerBound)
             reaction.lowerBound = typeof reaction.lowerBound !== "undefined" ?
                 reaction.lowerBound : reaction.reversible ?
                     -1000.0 : 0.0

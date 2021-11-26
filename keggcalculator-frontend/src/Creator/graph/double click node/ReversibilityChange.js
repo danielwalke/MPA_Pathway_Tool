@@ -3,7 +3,8 @@ import {Checkbox} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import {ToolTipBig} from "../../main/user-interface/UserInterface";
 import {getNLastChars} from "../../usefulFunctions/Strings";
-import {changeLinkOrientation} from "./ChangeLinkOrientation";
+import {changeLinkOrientation, changeLinkOrientation2} from "./ChangeLinkOrientation";
+import {reaction} from "mobx";
 
 const ReversibilityChange = (props) => {
     const [reversible, setReversible] = useState(false)
@@ -16,18 +17,37 @@ const ReversibilityChange = (props) => {
     }, [])
 
     const updateReversibility = () => {
-        const {data, reversibleState} = changeLinkOrientation(
-            node, state.graph, state.general, true, false)
-        setReversible(reversibleState)
+
+        const reactionObj = state.general.reactionsInSelectArray.find(reaction => reaction.reactionName === node.id)
+
+        let nodeReversibility
+        if (reversible) {
+            nodeReversibility = "irreversible"
+            reactionObj.lowerBound = 0.0
+            reactionObj.upperBound = 1000.0
+        } else {
+            nodeReversibility = "reversible"
+            reactionObj.lowerBound = -1000.0
+            reactionObj.upperBound = 1000.0
+        }
+
+        console.log(nodeReversibility)
+
+        const data = changeLinkOrientation2(
+            node, state.graph, state.general, nodeReversibility, "forward")
+
+        setReversible(!reversible)
         dispatch({type: "SETDATA", payload: data})
     }
 
     return (
         <div style={{display: "flex"}}>
-            <div><ToolTipBig title={reversible ? "Make reaction irreversible" : "Make reaction reversible"}
+            <div>
+                <ToolTipBig title={reversible ? "Make reaction irreversible" : "Make reaction reversible"}
                              placement={"right"}>
                 <Checkbox checked={reversible} onChange={() => updateReversibility()}/>
-            </ToolTipBig></div>
+                </ToolTipBig>
+            </div>
             <div>Reversible</div>
         </div>
     );

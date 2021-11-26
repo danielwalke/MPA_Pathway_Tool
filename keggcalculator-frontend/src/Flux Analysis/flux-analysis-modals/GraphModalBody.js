@@ -23,7 +23,7 @@ export default function GraphModalBody() {
             {dataObj.type === "reaction" &&
             <React.Fragment>
                 <span>ID: {dataObj.reactionId}</span>
-                <ReactionSettings dataObj={dataObj} setDataObj={setDataObj}/>
+                <ReactionSettings dataObj={dataObj}/>
             </React.Fragment>}
         </div>
     )
