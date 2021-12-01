@@ -6,10 +6,7 @@ import "../FluxAnalysisStyles.css"
 import {useDispatch, useSelector} from "react-redux";
 import {TextField} from "@material-ui/core";
 import {resetFluxData} from "../services/CreateFbaGraphData";
-import {
-    changeLinkOrientation,
-    changeLinkOrientation2
-} from "../../Creator/graph/double click node/ChangeLinkOrientation";
+import {changeLinkOrientation} from "../../Creator/graph/double click node/ChangeLinkOrientation";
 
 export default function ReactionSettings({dataObj}) {
 
@@ -26,7 +23,7 @@ export default function ReactionSettings({dataObj}) {
     const [flux, setFlux] = useState(null)
 
     useEffect(() => {
-        setObjectiveCoeff(dataObj.objectiveCoefficient)
+        // setObjectiveCoeff(dataObj.objectiveCoefficient)
 
         if (dataObj.objectiveCoefficient === 1.0) {
             setMaximize(true)
@@ -35,17 +32,26 @@ export default function ReactionSettings({dataObj}) {
             setMaximize(false)
             setMinimize(true)
         }
-
-        console.log(dataObj)
-    },[])
+        },[])
 
     useEffect(() => {
-        if (objectiveCoeff !== "" && finalBounds[0] !== "" && finalBounds[1] !== "") {
-            updateState()
+        const areDefaultParametersSet = objectiveCoeff !== "" && finalBounds[0] !== "" && finalBounds[1] !== ""
+        const arePrametersDefault = dataObj.lowerBound === finalBounds[0] &&
+            dataObj.upperBound === finalBounds[1] && dataObj.objectiveCoefficient === objectiveCoeff
+
+        console.log(arePrametersDefault)
+
+        if (areDefaultParametersSet) {
+            updateState(!arePrametersDefault)
         }
     },[finalBounds[0], finalBounds[1], objectiveCoeff])
 
-    const setLinks = () => {
+    useEffect(() => {
+        console.log([dataObj.lowerBound, dataObj.upperBound])
+        console.log(finalBounds)
+    },[finalBounds])
+
+    const setLinks = (resetLinkStyle) => {
         let nodeReversibility
         let linkDirection
 
@@ -63,17 +69,14 @@ export default function ReactionSettings({dataObj}) {
             linkDirection = "reverse"
         }
 
-        const data = changeLinkOrientation2(
-            fluxState.selectedNode[0], fluxState, generalState, nodeReversibility, linkDirection)
-
-        console.log(data)
+        const data = changeLinkOrientation(
+            fluxState.selectedNode[0], fluxState, generalState, nodeReversibility, linkDirection, resetLinkStyle)
 
         dispatch({type: "SET_FLUX_GRAPH", payload: data})
         dispatch({type: "SETDATA", payload: data})
-        console.log(generalState)
     }
 
-    const updateState = () => {
+    const updateState = (resetLinkStyle) => {
         const reactionIndex = generalState.reactionsInSelectArray.findIndex(
             reaction => reaction.reactionId === dataObj.reactionId)
 
@@ -84,7 +87,11 @@ export default function ReactionSettings({dataObj}) {
         newReactionsInSelectArray[reactionIndex].objectiveCoefficient = objectiveCoeff
         // newReactionsInSelectArray[reactionIndex].reversible = finalBounds[0] < 0.0
 
-        setLinks()
+        console.log(newReactionsInSelectArray)
+
+        console.log('Ive been updated')
+
+        setLinks(resetLinkStyle)
 
         dispatch({type: "SETREACTIONSINARRAY", payload: newReactionsInSelectArray})
     }

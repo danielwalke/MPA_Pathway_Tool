@@ -6,10 +6,6 @@ import {useDispatch, useSelector} from "react-redux";
 
 export default function StyledSlider({bounds, setBounds, setFinalBounds, setFlux}) {
 
-    const generalState = useSelector(state => state.general)
-    const fluxAnalysis = useSelector(state => state.fluxAnalysis)
-    const dispatch = useDispatch()
-
     const marks = [
         {value: 0.0,},
         {value: -500.0,},
@@ -26,7 +22,7 @@ export default function StyledSlider({bounds, setBounds, setFinalBounds, setFlux
                 onChange={(event, value) => setBounds(value)}
                 onChangeCommitted={(event, value) => {
                     setFinalBounds(value)
-                    setFlux(undefined)
+                    setFlux(null)
                     // resetFluxData(fluxAnalysis, dispatch)
                 }}
                 valueLabelDisplay="auto"

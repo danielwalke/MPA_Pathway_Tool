@@ -3,8 +3,7 @@ import {Checkbox} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import {ToolTipBig} from "../../main/user-interface/UserInterface";
 import {getNLastChars} from "../../usefulFunctions/Strings";
-import {changeLinkOrientation, changeLinkOrientation2} from "./ChangeLinkOrientation";
-import {reaction} from "mobx";
+import {changeLinkOrientation} from "./ChangeLinkOrientation";
 
 const ReversibilityChange = (props) => {
     const [reversible, setReversible] = useState(false)
@@ -33,8 +32,8 @@ const ReversibilityChange = (props) => {
 
         console.log(nodeReversibility)
 
-        const data = changeLinkOrientation2(
-            node, state.graph, state.general, nodeReversibility, "forward")
+        const data = changeLinkOrientation(
+            node, state.graph, state.general, nodeReversibility, "forward", false)
 
         setReversible(!reversible)
         dispatch({type: "SETDATA", payload: data})

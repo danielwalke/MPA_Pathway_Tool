@@ -110,8 +110,6 @@ export function createFbaGraphData(graphData, fluxData) {
 
 export function resetFluxData(fluxGraph, dispatch) {
 
-    const {data, reversibleState} = changeLinkOrientation("", fluxGraph, "", false, false)
-
-    dispatch({type: "SET_FBA_RESULTS", payload: []})
-    dispatch({type: "SET_FLUX_GRAPH", payload: data})
+    // dispatch({type: "SET_FBA_RESULTS", payload: []})
+    // dispatch({type: "SET_FLUX_GRAPH", payload: data})
 }

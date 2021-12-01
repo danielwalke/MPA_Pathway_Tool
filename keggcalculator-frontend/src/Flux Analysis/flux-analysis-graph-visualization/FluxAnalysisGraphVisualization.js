@@ -58,7 +58,7 @@ export default function FluxAnalysisGraphVisualization() {
 
         dispatch({type: "SET_SELECTED_NODE", payload: node})
         dispatch({type: "SHOW_GRAPH_MODAL", payload: true})
-        dispatch({type: "SET_GRAPH_MODAl_INPUT", payload: dataObject})
+        dispatch({type: "SET_GRAPH_MODAl_INPUT", payload: {...dataObject}})
 
         console.log(dataObject)
     }

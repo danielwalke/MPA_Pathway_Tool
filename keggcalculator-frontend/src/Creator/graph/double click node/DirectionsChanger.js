@@ -1,5 +1,5 @@
 import {getNLastChars} from "../../usefulFunctions/Strings";
-import {changeLinkOrientation, changeLinkOrientation2} from "./ChangeLinkOrientation";
+import {changeLinkOrientation} from "./ChangeLinkOrientation";
 
 export const invertDirection = (state, dispatch, generalState) => {
 
@@ -13,7 +13,7 @@ export const invertDirection = (state, dispatch, generalState) => {
     const nodeReversibility = node.reversible ? "reversible" : "irreversible"
     const linkDirection = nodeReversibility === "reversible" ? "forward" : direction
 
-    const data = changeLinkOrientation2(node, state, generalState, nodeReversibility, linkDirection)
+    const data = changeLinkOrientation(node, state, generalState, nodeReversibility, linkDirection, false)
 
     dispatch({type: "SETDATA", payload: data})
 }

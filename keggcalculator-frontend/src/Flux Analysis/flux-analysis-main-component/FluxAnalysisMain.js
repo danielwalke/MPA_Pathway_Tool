@@ -3,7 +3,6 @@ import FluxAnalysisUserInterface from "../flux-analysis-user-interface/FluxAnaly
 import FluxAnalysisGraphVisualization from "../flux-analysis-graph-visualization/FluxAnalysisGraphVisualization";
 import GraphModal from "../flux-analysis-modals/GraphModal";
 import {useSelector} from "react-redux";
-import Loading from "../../Creator/loading/Loading";
 
 export default function FluxAnalysisMain(){
     const fluxState = useSelector(state => state.fluxAnalysis)
@@ -13,7 +12,6 @@ export default function FluxAnalysisMain(){
     useEffect(() => {
         generalState.reactionsInSelectArray.forEach(reaction => {
             // initialize reactions that don't have required properties
-            console.log(reaction.lowerBound)
             reaction.lowerBound = typeof reaction.lowerBound !== "undefined" ?
                 reaction.lowerBound : reaction.reversible ?
                     -1000.0 : 0.0
