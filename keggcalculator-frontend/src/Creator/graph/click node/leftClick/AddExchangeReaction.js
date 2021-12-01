@@ -56,7 +56,7 @@ export default function AddExchangeReaction() {
                 setCompoundObj(compoundObj)
                 console.log(compoundObj)
 
-                const productObj = {
+                const substrateObj = {
                     abbreviation: compoundObj.abbreviation,
                     name: compoundObj.name,
                     opacity: 1,
@@ -64,7 +64,7 @@ export default function AddExchangeReaction() {
                     x: (substrateNode.x).toString(),
                     y: (substrateNode.y).toString()
                 }
-                setCompoundObjForReaction(productObj)
+                setCompoundObjForReaction(substrateObj)
             }
         }
     },[substrateName])
@@ -74,7 +74,7 @@ export default function AddExchangeReaction() {
         if (compoundObj.hasOwnProperty("name")) {
             for (const reaction of generalState.reactionsInSelectArray) {
                 if (reaction.exchangeReaction) {
-                    const exchangeCompound = reaction.products[0]
+                    const exchangeCompound = reaction.substrates[0]
                     const compoundId = getKeggId(compoundObj.name)
 
                     if (exchangeCompound && exchangeCompound.name.endsWith(compoundId)) {
@@ -100,13 +100,13 @@ export default function AddExchangeReaction() {
             isForwardReaction: true,
             koNumbersString: [],
             opacity: 1,
-            products: [compoundObjForReaction],
+            products: [],
             reactionId: reactionId,
             reactionName: "Exchange " + reactionId,
             reversible: true,
             stochiometryProductsString: {},
             stochiometrySubstratesString: {},
-            substrates: [],
+            substrates: [compoundObjForReaction],
             taxa: [],
             x: x.toString(),
             y: y.toString(),

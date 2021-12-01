@@ -22,6 +22,8 @@ export default function FluxBalanceAnalysis() {
             "POST", endpoint_postNetworkForFBA, "", "", requestReactionObj)
         const newGraphData = createFbaGraphData(fluxState, response.data)
 
+        console.log(newGraphData)
+
         // const dummyDataResponse = await getDummyFluxData(generalState.reactionsInSelectArray)
         // const newGraphData = createFbaGraphDummyData(fluxState, dummyDataResponse.data)
 

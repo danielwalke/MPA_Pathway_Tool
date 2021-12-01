@@ -20,7 +20,7 @@ export default function ReactionSettings({dataObj}) {
     const [objectiveCoeff, setObjectiveCoeff] = useState(dataObj.objectiveCoefficient)
     const [minimize, setMinimize] = useState(false)
     const [maximize, setMaximize] = useState(false)
-    const [flux, setFlux] = useState(null)
+    const [flux, setFlux] = useState(dataObj.flux)
 
     useEffect(() => {
         // setObjectiveCoeff(dataObj.objectiveCoefficient)
@@ -39,19 +39,12 @@ export default function ReactionSettings({dataObj}) {
         const arePrametersDefault = dataObj.lowerBound === finalBounds[0] &&
             dataObj.upperBound === finalBounds[1] && dataObj.objectiveCoefficient === objectiveCoeff
 
-        console.log(arePrametersDefault)
-
-        if (areDefaultParametersSet) {
-            updateState(!arePrametersDefault)
+        if (areDefaultParametersSet && !arePrametersDefault) {
+            updateState()
         }
     },[finalBounds[0], finalBounds[1], objectiveCoeff])
 
-    useEffect(() => {
-        console.log([dataObj.lowerBound, dataObj.upperBound])
-        console.log(finalBounds)
-    },[finalBounds])
-
-    const setLinks = (resetLinkStyle) => {
+    const setLinks = () => {
         let nodeReversibility
         let linkDirection
 
@@ -70,13 +63,13 @@ export default function ReactionSettings({dataObj}) {
         }
 
         const data = changeLinkOrientation(
-            fluxState.selectedNode[0], fluxState, generalState, nodeReversibility, linkDirection, resetLinkStyle)
+            fluxState.selectedNode[0], fluxState, generalState, nodeReversibility, linkDirection)
 
         dispatch({type: "SET_FLUX_GRAPH", payload: data})
-        dispatch({type: "SETDATA", payload: data})
+        // dispatch({type: "SETDATA", payload: data})
     }
 
-    const updateState = (resetLinkStyle) => {
+    const updateState = () => {
         const reactionIndex = generalState.reactionsInSelectArray.findIndex(
             reaction => reaction.reactionId === dataObj.reactionId)
 
@@ -87,17 +80,13 @@ export default function ReactionSettings({dataObj}) {
         newReactionsInSelectArray[reactionIndex].objectiveCoefficient = objectiveCoeff
         // newReactionsInSelectArray[reactionIndex].reversible = finalBounds[0] < 0.0
 
-        console.log(newReactionsInSelectArray)
-
-        console.log('Ive been updated')
-
-        setLinks(resetLinkStyle)
+        setLinks()
 
         dispatch({type: "SETREACTIONSINARRAY", payload: newReactionsInSelectArray})
     }
 
     const resetFlux = () => {
-        resetFluxData(fluxState, dispatch)
+        resetFluxData(fluxState, dispatch, generalState)
         setFlux(null)
     }
 

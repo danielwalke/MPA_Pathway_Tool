@@ -71,10 +71,11 @@ function createIrreversibleLinks(substrateObjs, productObjs, node, previousAdjac
     return reactionLinks
 }
 
-function setLinks(links, node, reactionDataObj, nodeReversibility, linkDirection, resetLinkStyle) {
+function setLinks(links, node, reactionDataObj, nodeReversibility, linkDirection) {
 
     const substrateObjs = reactionDataObj.substrates
     const productObjs = reactionDataObj.products
+    const resetLinkStyle = true
 
     const previousAdjacentLinks = [] // previous Links adjacent to clicked node
     const changedLinks = [] // alternated links
@@ -84,7 +85,18 @@ function setLinks(links, node, reactionDataObj, nodeReversibility, linkDirection
     for (const link of links) {
 
         if (resetLinkStyle) {
-            console.log("reset")
+            let opacity
+
+            if (link.opacity == 0) {
+                console.log(link)
+                const forwardLink = links.find(
+                    searchLink => searchLink.source === link.target && searchLink.target === link.source)
+                opacity = forwardLink.opacity
+            } else {
+                opacity = link.opacity
+            }
+
+            link.opacity = opacity
             link.strokeWidth = undefined
             link.color = undefined
         }
@@ -132,7 +144,7 @@ const setNodes = (nodeId, graphState, makeNodeReversible) => {
         })
 }
 
-export function changeLinkOrientation(node, graphState, generalState, nodeReversibility, linkDirection, resetLinkStyle) {
+export function changeLinkOrientation(node, graphState, generalState, nodeReversibility, linkDirection) {
 
     /**
      * Handles resetting, addition/deletion of reverse links and setting of link directions for a specified reaction node
@@ -147,14 +159,27 @@ export function changeLinkOrientation(node, graphState, generalState, nodeRevers
      * @return {{Object}} data object for graph
      */
 
+    console.log(nodeReversibility || linkDirection)
     const reactionObj = generalState.reactionsInSelectArray.find(
         reaction => reaction.reactionId === getNLastChars(node.id, 6))
 
-    const links = setLinks(graphState.data.links, node, reactionObj , nodeReversibility, linkDirection, resetLinkStyle)
-    const nodes = setNodes(node.id, graphState, nodeReversibility)
+    let links
 
-    reactionObj.reversible = nodeReversibility === "reversible"
-    reactionObj.isForwardReaction = linkDirection === "forward"
+    links = setLinks(graphState.data.links, node, reactionObj, nodeReversibility, linkDirection)
+
+
+    let nodes
+
+    if (nodeReversibility) {
+        nodes = setNodes(node.id, graphState, nodeReversibility)
+        reactionObj.reversible = nodeReversibility === "reversible"
+    } else {
+        nodes = graphState.data.nodes
+    }
+
+    if (linkDirection) {
+        reactionObj.isForwardReaction = linkDirection === "forward"
+    }
 
     return {nodes: nodes, links: links}
 }

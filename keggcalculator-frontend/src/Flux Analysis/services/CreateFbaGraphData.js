@@ -70,46 +70,99 @@ export function createFbaGraphDummyData(graphData, fluxData) {
 
 export function createFbaGraphData(graphData, fluxData) {
 
-    const fluxGraphData = {
-        data: {
-            nodes: [...graphData.data.nodes],
-            links: [...graphData.data.links]
+    const newLinks = []
+
+    for (const link of graphData.data.links) {
+
+        // ignore reverse links
+        if (link.isReversibleLink ) {continue}
+
+        const sourceNodeId = getKeggId(link.source)
+        const targetNodeId = getKeggId(link.target)
+
+        const fluxObj = fluxData.find(flux => Object.keys(flux)[0] === sourceNodeId || Object.keys(flux)[0] === targetNodeId)
+        const fbaFlux = fluxObj ? Object.values(fluxObj)[0].fbaSolution : null
+
+        const anyNodeReversible = graphData.data.nodes.filter(
+            node => node.id === link.source || node.id === link.target).some(node => node.reversible)
+
+        console.log("link: ")
+        console.log(link)
+        console.log("adjacent nodes: ")
+        console.log(graphData.data.nodes.filter(
+            node => node.id === link.source || node.id === link.target))
+        console.log(fbaFlux)
+        console.log(anyNodeReversible)
+
+        if (anyNodeReversible && fbaFlux < 0) {
+        // flux < 0 -> reverse link
+            newLinks.push({
+                source: link.target,
+                target: link.source,
+                opacity: link.opacity,
+                strokeWidth: 5,
+                color: getStyleFromFlux(fbaFlux).hexColor,
+                isReversibleLink: true
+            })
+
+            newLinks.push({
+                source: link.source,
+                target: link.target,
+                opacity: "0",
+                strokeWidth: 5,
+                color: getStyleFromFlux(fbaFlux).hexColor,
+                isReversibleLink: false
+            })
+            continue
+        } else if (anyNodeReversible && fbaFlux > 0) {
+            newLinks.push({
+                source: link.target,
+                target: link.source,
+                opacity: "0",
+                strokeWidth: 5,
+                color: getStyleFromFlux(fbaFlux).hexColor,
+                isReversibleLink: true
+            })
+
+            newLinks.push({
+                source: link.source,
+                target: link.target,
+                opacity: link.opacity,
+                strokeWidth: 5,
+                color: getStyleFromFlux(fbaFlux).hexColor,
+                isReversibleLink: false
+            })
+            continue
         }
+
+        // flux is > 0 -> forward link
+        newLinks.push({
+            source: link.source,
+            target: link.target,
+            opacity: link.opacity,
+            strokeWidth: 5,
+            color: getStyleFromFlux(fbaFlux).hexColor,
+            isReversibleLink: link.isReversibleLink
+        })
+
     }
 
-    fluxGraphData.data.links.forEach(link => {
-        const sourceNode = getKeggId(link.source)
-        const targetNode = getKeggId(link.target)
-
-        let reaction
-
-        for (const reactionFlux of fluxData) {
-            const reactionId = Object.keys(reactionFlux)[0]
-
-            try {
-                if(reactionId === sourceNode || reactionId === targetNode) {
-                    reaction = reactionFlux[reactionId]
-                    break;
-                } else {
-                    reaction.fbaSolution = null
-                    throw "Can't find reaction from graph in fba data!"
-                }
-            } catch (e) {
-                console.error(e)
-            }
+    const fluxGraphData = {
+        data: {
+            nodes: graphData.data.nodes,
+            links: newLinks
         }
-
-        // link.strokeWidth = getStyleFromFlux(reaction.fbaSolution).width
-        link.strokeWidth = 5
-        link.color = getStyleFromFlux(reaction.fbaSolution).hexColor
-
-    })
+    }
 
     return fluxGraphData
 }
 
-export function resetFluxData(fluxGraph, dispatch) {
+export function resetFluxData(fluxState, dispatch, generalState) {
 
-    // dispatch({type: "SET_FBA_RESULTS", payload: []})
-    // dispatch({type: "SET_FLUX_GRAPH", payload: data})
+    if (fluxState.selectedNode.id) {
+        const data = changeLinkOrientation(fluxState.selectedNode, fluxState, generalState)
+
+        dispatch({type: "SET_FBA_RESULTS", payload: []})
+        dispatch({type: "SET_FLUX_GRAPH", payload: data})
+    }
 }
