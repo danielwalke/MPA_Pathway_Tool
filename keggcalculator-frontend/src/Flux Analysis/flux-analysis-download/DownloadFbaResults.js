@@ -1,13 +1,12 @@
 import {ToolTipBig} from "../../Creator/main/user-interface/UserInterface";
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {saveAs} from "file-saver";
 import {createFluxAnalysisCsv} from "../services/CreateFluxAnalysisCsv";
 
 export default function DownloadFbaResults() {
 
     const fluxState = useSelector(state => state.fluxAnalysis)
-    const dispatch = useDispatch()
 
     const handleFbaResultDownload = () => {
         try {
@@ -23,7 +22,7 @@ export default function DownloadFbaResults() {
         <div>
             <ToolTipBig title={"Download results of FVA and FBA as .csv"} placement={"right"}>
                 <button
-                    disabled={fluxState.flux.length === 0}
+                    disabled={!fluxState.flux}
                     className={"download-button"}
                     onClick={() => handleFbaResultDownload()}>
                     Download Results

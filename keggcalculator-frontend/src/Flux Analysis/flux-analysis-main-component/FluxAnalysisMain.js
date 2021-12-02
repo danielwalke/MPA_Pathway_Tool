@@ -5,6 +5,7 @@ import GraphModal from "../flux-analysis-modals/GraphModal";
 import {useSelector} from "react-redux";
 
 export default function FluxAnalysisMain(){
+    const state = useSelector(state => state)
     const fluxState = useSelector(state => state.fluxAnalysis)
     const generalState = useSelector(state => state.general)
     const [mouseCoordinates, setMouseCoordinates] = useState({x: "", y: ""})
@@ -20,6 +21,10 @@ export default function FluxAnalysisMain(){
             if (!reaction.hasOwnProperty("exchangeReaction")) reaction.exchangeReaction = false
         })
     },[])
+
+    useEffect(() => {
+        console.log(state)
+    },[state])
 
     return (
         <div className={"mainContainer"}

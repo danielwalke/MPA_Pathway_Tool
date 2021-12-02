@@ -5,7 +5,7 @@ import "../../Creator/upload/sbmlParser/annotationModal/AnnotationTable.css"
 import "../FluxAnalysisStyles.css"
 import {useDispatch, useSelector} from "react-redux";
 import {TextField} from "@material-ui/core";
-import {resetFluxData} from "../services/CreateFbaGraphData";
+import {getKeggId} from "../services/CreateFbaGraphData";
 import {changeLinkOrientation} from "../../Creator/graph/double click node/ChangeLinkOrientation";
 
 export default function ReactionSettings({dataObj}) {
@@ -15,12 +15,20 @@ export default function ReactionSettings({dataObj}) {
 
     const dispatch = useDispatch()
 
+    const getInitialFlux = () => {
+        if (fluxState.flux) {
+            return fluxState.flux.get(getKeggId(dataObj.reactionId)).fbaSolution
+        } else {
+            return null
+        }
+    }
+
     const [bounds, setBounds] = useState([dataObj.lowerBound, dataObj.upperBound]);
     const [finalBounds, setFinalBounds] = useState([dataObj.lowerBound, dataObj.upperBound])
     const [objectiveCoeff, setObjectiveCoeff] = useState(dataObj.objectiveCoefficient)
     const [minimize, setMinimize] = useState(false)
     const [maximize, setMaximize] = useState(false)
-    const [flux, setFlux] = useState(dataObj.flux)
+    const [flux, setFlux] = useState(getInitialFlux())
 
     useEffect(() => {
         // setObjectiveCoeff(dataObj.objectiveCoefficient)
@@ -66,7 +74,7 @@ export default function ReactionSettings({dataObj}) {
             fluxState.selectedNode[0], fluxState, generalState, nodeReversibility, linkDirection)
 
         dispatch({type: "SET_FLUX_GRAPH", payload: data})
-        // dispatch({type: "SETDATA", payload: data})
+        dispatch({type: "SETDATA", payload: data})
     }
 
     const updateState = () => {
@@ -80,14 +88,14 @@ export default function ReactionSettings({dataObj}) {
         newReactionsInSelectArray[reactionIndex].objectiveCoefficient = objectiveCoeff
         // newReactionsInSelectArray[reactionIndex].reversible = finalBounds[0] < 0.0
 
+        setFlux(null)
         setLinks()
 
-        dispatch({type: "SETREACTIONSINARRAY", payload: newReactionsInSelectArray})
-    }
+        if (fluxState.flux) {
+            dispatch({type: "SET_FBA_RESULTS", payload: null})
+        }
 
-    const resetFlux = () => {
-        resetFluxData(fluxState, dispatch, generalState)
-        setFlux(null)
+        dispatch({type: "SETREACTIONSINARRAY", payload: newReactionsInSelectArray})
     }
 
     const resetReaction = () => {
@@ -135,7 +143,6 @@ export default function ReactionSettings({dataObj}) {
             case "ko":
                 koReaction()
         }
-        resetFlux()
     }
 
     return (
@@ -169,7 +176,6 @@ export default function ReactionSettings({dataObj}) {
                     onChange={(event) => {
                         setFinalBounds([event.target.value, bounds[1]])
                         setBounds([event.target.value, bounds[1]])
-                        // resetFlux()
                     }}
                 />
                 <TextField
@@ -184,7 +190,6 @@ export default function ReactionSettings({dataObj}) {
                     value={objectiveCoeff}
                     onChange={(event) => {
                         setObjectiveCoeff(event.target.value)
-                        resetFlux()
                     }}
                 />
                 <TextField
@@ -200,7 +205,6 @@ export default function ReactionSettings({dataObj}) {
                     onChange={(event) => {
                         setFinalBounds([bounds[0], event.target.value])
                         setBounds([bounds[0], event.target.value])
-                        // resetFlux()
                     }}/>
 
             </div>

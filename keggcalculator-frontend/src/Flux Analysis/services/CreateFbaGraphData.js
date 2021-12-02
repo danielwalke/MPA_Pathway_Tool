@@ -1,5 +1,5 @@
 import clonedeep from "lodash/cloneDeep";
-import {changeLinkOrientation} from "../../Creator/graph/double click node/ChangeLinkOrientation";
+import {changeLinkOrientation, createLink} from "../../Creator/graph/double click node/ChangeLinkOrientation";
 
 export function getKeggId(nodeId) {
     const splitArray = nodeId.split(" ")
@@ -80,71 +80,61 @@ export function createFbaGraphData(graphData, fluxData) {
         const sourceNodeId = getKeggId(link.source)
         const targetNodeId = getKeggId(link.target)
 
-        const fluxObj = fluxData.find(flux => Object.keys(flux)[0] === sourceNodeId || Object.keys(flux)[0] === targetNodeId)
-        const fbaFlux = fluxObj ? Object.values(fluxObj)[0].fbaSolution : null
+        const fluxObj = fluxData.get(sourceNodeId) ?
+            fluxData.get(sourceNodeId) : fluxData.get(targetNodeId)
+        const fbaFlux = fluxObj ? fluxObj.fbaSolution : null
 
         const anyNodeReversible = graphData.data.nodes.filter(
             node => node.id === link.source || node.id === link.target).some(node => node.reversible)
 
-        console.log("link: ")
-        console.log(link)
-        console.log("adjacent nodes: ")
-        console.log(graphData.data.nodes.filter(
-            node => node.id === link.source || node.id === link.target))
-        console.log(fbaFlux)
-        console.log(anyNodeReversible)
-
+        // for links connected to reversible nodes, check which link needs to be displlayed according to fba flux
         if (anyNodeReversible && fbaFlux < 0) {
-        // flux < 0 -> reverse link
-            newLinks.push({
-                source: link.target,
-                target: link.source,
-                opacity: link.opacity,
-                strokeWidth: 5,
-                color: getStyleFromFlux(fbaFlux).hexColor,
-                isReversibleLink: true
-            })
-
-            newLinks.push({
-                source: link.source,
-                target: link.target,
-                opacity: "0",
-                strokeWidth: 5,
-                color: getStyleFromFlux(fbaFlux).hexColor,
-                isReversibleLink: false
-            })
+            // reverse link
+            newLinks.push(createLink(
+                link.target,
+                link.source,
+                link.opacity,
+                5,
+                getStyleFromFlux(fbaFlux).hexColor,
+                true))
+            // fwd link
+            newLinks.push(createLink(
+                link.source,
+                link.target,
+                "0",
+                5,
+                getStyleFromFlux(fbaFlux).hexColor,
+                false))
             continue
-        } else if (anyNodeReversible && fbaFlux > 0) {
-            newLinks.push({
-                source: link.target,
-                target: link.source,
-                opacity: "0",
-                strokeWidth: 5,
-                color: getStyleFromFlux(fbaFlux).hexColor,
-                isReversibleLink: true
-            })
 
-            newLinks.push({
-                source: link.source,
-                target: link.target,
-                opacity: link.opacity,
-                strokeWidth: 5,
-                color: getStyleFromFlux(fbaFlux).hexColor,
-                isReversibleLink: false
-            })
+        } else if (anyNodeReversible && fbaFlux > 0) {
+            // reverse link
+            newLinks.push(createLink(
+                link.target,
+                link.source,
+                "0",
+                5,
+                getStyleFromFlux(fbaFlux).hexColor,
+                true))
+
+            newLinks.push(createLink(
+                link.source,
+                link.target,
+                link.opacity,
+                5,
+                getStyleFromFlux(fbaFlux).hexColor,
+                false))
             continue
         }
 
-        // flux is > 0 -> forward link
-        newLinks.push({
-            source: link.source,
-            target: link.target,
-            opacity: link.opacity,
-            strokeWidth: 5,
-            color: getStyleFromFlux(fbaFlux).hexColor,
-            isReversibleLink: link.isReversibleLink
-        })
-
+        // non reversible links
+        newLinks.push(createLink(
+            link.source,
+            link.target,
+            link.opacity,
+            5,
+            getStyleFromFlux(fbaFlux).hexColor,
+            link.isReversibleLink))
     }
 
     const fluxGraphData = {
@@ -159,9 +149,12 @@ export function createFbaGraphData(graphData, fluxData) {
 
 export function resetFluxData(fluxState, dispatch, generalState) {
 
+    console.log(fluxState.selectedNode)
+
     if (fluxState.selectedNode.id) {
         const data = changeLinkOrientation(fluxState.selectedNode, fluxState, generalState)
 
+        console.log("reset")
         dispatch({type: "SET_FBA_RESULTS", payload: []})
         dispatch({type: "SET_FLUX_GRAPH", payload: data})
     }

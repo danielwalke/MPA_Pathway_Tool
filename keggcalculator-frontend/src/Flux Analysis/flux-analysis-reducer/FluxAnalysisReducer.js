@@ -6,7 +6,7 @@ const defaultState = {
     showGraphModal: false,
     graphModalInput: {},
     selectedNode: {},
-    flux: []
+    flux: null
 }
 
 export const fluxAnalysisReducer = (state = defaultState, action) => {

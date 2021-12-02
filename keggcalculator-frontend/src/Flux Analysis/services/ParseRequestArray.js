@@ -83,3 +83,13 @@ export function parseDummyRequestArray(reactionsInSelectArray) {
 
     return requestObj;
 }
+
+export function responseToMap(responseArray) {
+    const fbaDataMap = new Map()
+
+    responseArray.forEach(reaction => {
+        fbaDataMap.set(Object.keys(reaction)[0], Object.values(reaction)[0])
+    })
+
+    return fbaDataMap
+}

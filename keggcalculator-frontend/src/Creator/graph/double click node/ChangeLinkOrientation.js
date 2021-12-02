@@ -1,6 +1,6 @@
 import {getNLastChars} from "../../usefulFunctions/Strings";
 
-function createLink(source, target, opacity, strokeWidth, color, reversible) {
+export function createLink(source, target, opacity, strokeWidth, color, reversible) {
     return {
         source: source,
         target: target,
@@ -85,10 +85,9 @@ function setLinks(links, node, reactionDataObj, nodeReversibility, linkDirection
     for (const link of links) {
 
         if (resetLinkStyle) {
+            // get opacity of fwd link, if link opacity is 0
             let opacity
-
             if (link.opacity == 0) {
-                console.log(link)
                 const forwardLink = links.find(
                     searchLink => searchLink.source === link.target && searchLink.target === link.source)
                 opacity = forwardLink.opacity
@@ -109,8 +108,6 @@ function setLinks(links, node, reactionDataObj, nodeReversibility, linkDirection
         }
     }
 
-    console.log(previousAdjacentLinks)
-
     // create node adjacent links
     switch (nodeReversibility) {
         case "reversible":
@@ -124,8 +121,6 @@ function setLinks(links, node, reactionDataObj, nodeReversibility, linkDirection
             changedLinks.push(...previousAdjacentLinks)
             break;
     }
-
-    console.log(changedLinks)
 
     newLinks.push(...changedLinks)
 
@@ -159,17 +154,12 @@ export function changeLinkOrientation(node, graphState, generalState, nodeRevers
      * @return {{Object}} data object for graph
      */
 
-    console.log(nodeReversibility || linkDirection)
     const reactionObj = generalState.reactionsInSelectArray.find(
         reaction => reaction.reactionId === getNLastChars(node.id, 6))
 
-    let links
-
-    links = setLinks(graphState.data.links, node, reactionObj, nodeReversibility, linkDirection)
-
+    const links = setLinks(graphState.data.links, node, reactionObj, nodeReversibility, linkDirection)
 
     let nodes
-
     if (nodeReversibility) {
         nodes = setNodes(node.id, graphState, nodeReversibility)
         reactionObj.reversible = nodeReversibility === "reversible"

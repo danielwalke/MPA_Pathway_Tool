@@ -108,7 +108,6 @@ export default function FluxAnalysisGraphVisualization() {
                     config={myConfig}
                     onNodePositionChange={(id, x, y) => handleNodePositionChange(fluxState, x, y, id, dispatch)}
                     onClickNode={(nodeId) => {
-                        console.log("Hello")
                         onClickNode(nodeId)
                     }}
                     // onZoomChange={(prevZoom, newZoom) => handleZoomChange(dispatch, prevZoom, newZoom)}
