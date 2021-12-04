@@ -48,6 +48,9 @@ export function parseRequestArray(reactionsInSelectArray) {
     reactionsInSelectArray.forEach(reaction => {
         const metabolites = []
 
+        for (const metabolite of [...reaction.substrates, ...reaction.products]) {
+        }
+
         writeMetabolitesToReaction(reaction.substrates, listOfMetabolites, metabolites, -1)
         writeMetabolitesToReaction(reaction.products, listOfMetabolites, metabolites, +1)
 

@@ -64,7 +64,7 @@ export const addOutput = (output, reaction, compound, reactionCounter, compoundT
     output = output.concat(reaction.reactionName.replaceAll(";", "\t"), ";") //reaction name
     output = output.concat(reaction.koNumbersString, ";") //ko number ids
     output = output.concat(reaction.ecNumbersString, ";") //ec number ids
-    output = output.concat(compound.stochiometry, ";") //stochiometric coeff
+    output = output.concat(compound.stoichiometry, ";") //stochiometric coeff
     output = output.concat(compound.name.replaceAll(";", "\t"), ";") //compound id
     output = output.concat(compoundType, ";") //type of compound
     output = output.concat(reversible, ";") //reversibility
@@ -84,9 +84,14 @@ export const addOutput = (output, reaction, compound, reactionCounter, compoundT
     output = output.concat(compound.abbreviation.replaceAll(";", "\t"), ";") //compound abbreviation
     const keyCompound = compound.opacity === 1
     output = output.concat(keyCompound.toString(), ";") //key compound
+    output = output.concat(compoundBiggId, ";")
     output = output.concat(reactionBiggId, ";")
-    output = output.concat(compoundBiggId)
+    console.log(compound)
+    output = output.concat(compound.compartment ? compound.compartment : "cytosol", ";")
+    output = output.concat(reaction.lowerBound ? reaction.lowerBound : "-1000.0", ";")
+    output = output.concat(reaction.upperBound ? reaction.upperBound : "1000.0", ";")
+    output = output.concat(reaction.objectiveCoefficient ? reaction.objectiveCoefficient : "0.0", ";")
+    output = output.concat(reaction.exchangeReaction ? reaction.exchangeReaction : "false", ";")
     output = output.concat("\n") //next compound
     return output;
 }
-

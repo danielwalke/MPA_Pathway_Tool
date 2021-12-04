@@ -4,6 +4,15 @@ import {useDispatch, useSelector} from "react-redux";
 import {handleJSONGraphUpload} from "./ModuleUploadFunctionsJSON";
 import {ToolTipBig} from "../../main/user-interface/UserInterface";
 
+const correctStochiometryProp = (compounds) => {
+    compounds.forEach(compounds => {
+        if (compounds.hasOwnProperty('stochiometry')) {
+            compounds.stoichiometry = compounds.stochiometry
+            delete compounds.stochiometry
+        }
+    })
+}
+
 export const onModuleFileChange = (file, dispatch, state) => {
     let reader = new FileReader()
     reader.readAsText(file)
@@ -21,6 +30,9 @@ export const onModuleFileChange = (file, dispatch, state) => {
                         reaction.upperBound : 1000.0
                     reaction.objectiveCoefficient = reaction.objectiveCoefficient ?
                         reaction.objectiveCoefficient : 0.0
+
+                    correctStochiometryProp(reaction.substrates)
+                    correctStochiometryProp(reaction.products)
                 }
             )
 

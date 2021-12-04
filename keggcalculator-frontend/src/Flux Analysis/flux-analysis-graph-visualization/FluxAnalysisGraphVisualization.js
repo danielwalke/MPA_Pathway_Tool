@@ -98,6 +98,13 @@ export default function FluxAnalysisGraphVisualization() {
         }
     };
 
+    // const event = document.getElementById(notification.attributes.originEventId)
+    // await event.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
+    // setTimeout(()=>{
+    //     event.click()
+    // },500)
+
+
     if (fluxState.data.nodes.length > 0) {
         return (
             <div >

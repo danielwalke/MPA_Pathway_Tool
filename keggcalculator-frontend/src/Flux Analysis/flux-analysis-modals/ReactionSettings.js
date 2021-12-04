@@ -8,7 +8,7 @@ import {TextField} from "@material-ui/core";
 import {getKeggId} from "../services/CreateFbaGraphData";
 import {changeLinkOrientation} from "../../Creator/graph/double click node/ChangeLinkOrientation";
 
-export default function ReactionSettings({dataObj}) {
+export default function ReactionSettings({dataObj, setDataObj}) {
 
     const generalState = useSelector(state => state.general)
     const fluxState = useSelector(state => state.fluxAnalysis)
@@ -43,11 +43,11 @@ export default function ReactionSettings({dataObj}) {
         },[])
 
     useEffect(() => {
-        const areDefaultParametersSet = objectiveCoeff !== "" && finalBounds[0] !== "" && finalBounds[1] !== ""
-        const arePrametersDefault = dataObj.lowerBound === finalBounds[0] &&
-            dataObj.upperBound === finalBounds[1] && dataObj.objectiveCoefficient === objectiveCoeff
+        const areParametersSet = objectiveCoeff !== "" && finalBounds[0] !== "" && finalBounds[1] !== ""
+        const didParametersChange = dataObj.lowerBound !== finalBounds[0] ||
+            dataObj.upperBound !== finalBounds[1] || dataObj.objectiveCoefficient !== objectiveCoeff
 
-        if (areDefaultParametersSet && !arePrametersDefault) {
+        if (areParametersSet && didParametersChange) {
             updateState()
         }
     },[finalBounds[0], finalBounds[1], objectiveCoeff])
@@ -81,6 +81,10 @@ export default function ReactionSettings({dataObj}) {
         const reactionIndex = generalState.reactionsInSelectArray.findIndex(
             reaction => reaction.reactionId === dataObj.reactionId)
 
+        dataObj.lowerBound = finalBounds[0]
+        dataObj.upperBound = finalBounds[1]
+        dataObj.objectiveCoefficient = objectiveCoeff
+
         const newReactionsInSelectArray = [...generalState.reactionsInSelectArray]
 
         newReactionsInSelectArray[reactionIndex].lowerBound = finalBounds[0]
@@ -113,6 +117,12 @@ export default function ReactionSettings({dataObj}) {
         setMaximize(false)
         setMinimize(false)
     }
+
+    useEffect(() => {
+        console.log(minimize)
+        console.log(maximize)
+        console.log(objectiveCoeff)
+    },[minimize, maximize, objectiveCoeff])
 
     const handleClick = (input) => {
         switch (input) {

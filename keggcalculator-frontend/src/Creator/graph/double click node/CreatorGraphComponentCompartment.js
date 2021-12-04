@@ -58,7 +58,6 @@ export default function CreatorGraphComponentCompartment({compoundId}) {
                     labelId="compound compartment"
                     value={compartment}
                     onChange={(e) => {
-                        console.log("Changed")
                         setCompartment(e.target.value)}
                     }
                 >

@@ -15,9 +15,12 @@ export default function FluxBalanceAnalysis() {
     const [buttonDisabled, setButtonDisabled] = useState(false)
 
     const handleOptimizeClick = async () => {
-        triggerLoadingWarning(dispatch)
+        if (!generalState.loading) {
+            triggerLoadingWarning(dispatch)
+        }
         setButtonDisabled(true)
         const requestReactionObj = await parseRequestArray(generalState.reactionsInSelectArray)
+
         const response = await requestGenerator(
             "POST", endpoint_postNetworkForFBA, "", "", requestReactionObj)
         const fbaData = await responseToMap(response.data)

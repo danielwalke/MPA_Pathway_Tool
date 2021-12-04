@@ -34,9 +34,9 @@ export const readFile = (string) => {
         const reactionAbbr = entries[13]
         const compoundAbbr = entries[14]
         const keyComp = entries[15]
-        const reactionBiggId = entries[16] ? entries[16] : ""
-        const compoundBiggId = entries[17] ? entries[17] : ""
-        const compoundCompartment = entries[18] ? entries[18] : "internal"
+        const compoundBiggId = entries[16] ? entries[16] : ""
+        const reactionBiggId = entries[17] ? entries[17] : ""
+        const compoundCompartment = entries[18] ? entries[18] : "cytosol"
         const reactionLowerBound = entries[19] ? parseFloat(entries[19]) : reversibility ? -1000.0 : 0.0
         const reactionupperBound = entries[20] ? parseFloat(entries[20]) : 1000.0
         const reactionObjectiveCoefficient = entries[21] ? parseFloat(entries[21]) : 0.0

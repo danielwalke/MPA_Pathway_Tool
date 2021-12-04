@@ -60,9 +60,10 @@ export default function AddExchangeReaction() {
                     abbreviation: compoundObj.abbreviation,
                     name: compoundObj.name,
                     opacity: 1,
-                    stoichiometry: 1,
+                    stoichiometry: "1",
                     x: (substrateNode.x).toString(),
-                    y: (substrateNode.y).toString()
+                    y: (substrateNode.y).toString(),
+                    compartment: 'external'
                 }
                 setCompoundObjForReaction(substrateObj)
             }

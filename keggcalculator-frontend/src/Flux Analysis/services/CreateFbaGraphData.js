@@ -107,7 +107,7 @@ export function createFbaGraphData(graphData, fluxData) {
                 false))
             continue
 
-        } else if (anyNodeReversible && fbaFlux > 0) {
+        } else if (anyNodeReversible && fbaFlux > 0 || anyNodeReversible && fbaFlux === 0) {
             // reverse link
             newLinks.push(createLink(
                 link.target,
