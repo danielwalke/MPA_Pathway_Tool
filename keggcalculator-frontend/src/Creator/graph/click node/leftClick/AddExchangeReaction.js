@@ -29,6 +29,44 @@ export function findRandomCompoundObj(compoundNodeId, graphState, generalState) 
         compound => removeSplitIndex(compound.name) === removeSplitIndex(compoundNodeId))
 }
 
+function updateCompounds(compounds, compoundId, prop, value) {
+    return compounds.map(
+        compound => {
+            const newCompound = {...compound}
+            if (compound.name === compoundId) {
+                newCompound[prop] = value
+            }
+            return newCompound
+        }
+    )
+}
+
+export function updateCompoundInAdjacentReactions(nodeId, graphState, generalState, prop, value) {
+
+    const adjacentReactions = graphState.data.links.map(link => {
+        if (link.source === nodeId) {
+            return link.target
+        } else if (link.target === nodeId) {
+            return link.source
+        }
+    })
+
+    const newReactionsInSelectArray = generalState.reactionsInSelectArray.map(
+        reaction => {
+            const newReaction = {...reaction}
+            if (adjacentReactions.includes(reaction.reactionName)) {
+
+                newReaction.substrates = updateCompounds(reaction.substrates, nodeId, prop, value)
+                newReaction.products = updateCompounds(reaction.products, nodeId, prop, value)
+            }
+            return newReaction
+        }
+    )
+
+    return newReactionsInSelectArray
+}
+
+
 export default function AddExchangeReaction() {
 
     const dispatch = useDispatch()
@@ -54,7 +92,6 @@ export default function AddExchangeReaction() {
             if (substrateNode) {
                 const compoundObj = findRandomCompoundObj(substrateName, graphState, generalState)
                 setCompoundObj(compoundObj)
-                console.log(compoundObj)
 
                 const substrateObj = {
                     abbreviation: compoundObj.abbreviation,
@@ -116,13 +153,15 @@ export default function AddExchangeReaction() {
 
         exchangeReaction.stochiometryProductsString[compoundId] = 1
 
+        const newReactionsInSelectArray = updateCompoundInAdjacentReactions(substrateName, graphState, generalState, "compartment", "external")
+
         const state = {
             graphState: graphState,
             keggState: keggState,
             generalState: generalState
         }
 
-        handleSubmitKeggReaction(state, dispatch, exchangeReaction)
+        handleSubmitKeggReaction(state, dispatch, exchangeReaction, newReactionsInSelectArray)
     }
 
     return(

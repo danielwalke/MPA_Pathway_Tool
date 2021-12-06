@@ -42,6 +42,8 @@ export const readFile = (string) => {
         const reactionObjectiveCoefficient = entries[21] ? parseFloat(entries[21]) : 0.0
         const reactionExchangeReaction = entries[22] ? entries[22] === "true" : false
 
+        console.log(entries[18])
+
         const reactionNames = reactions.map(reaction => reaction.reactionName)
         if (!reactionNames.includes(reactionName)) {
             const reaction = {

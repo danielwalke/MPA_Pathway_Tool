@@ -3006,3 +3006,23 @@ java.net.BindException: Address already in use: bind
 2021-12-04 12:23:01,415 INFO o.e.j.s.s.HouseKeeper [Thread-1] Scavenging every 660000ms
 2021-12-04 12:23:01,528 INFO o.e.j.s.AbstractConnector [Thread-1] Started ServerConnector@62333fd2{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
 2021-12-04 12:23:01,528 INFO o.e.j.s.Server [Thread-1] Started @8528ms
+2021-12-05 14:10:03,569 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-12-05 14:10:03,609 INFO o.e.j.u.l.Log [Thread-1] Logging initialized @4165ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-12-05 14:10:03,655 INFO s.e.j.EmbeddedJettyServer [Thread-1] == Spark has ignited ...
+2021-12-05 14:10:03,655 INFO s.e.j.EmbeddedJettyServer [Thread-1] >> Listening on 0.0.0.0:80
+2021-12-05 14:10:03,658 INFO o.e.j.s.Server [Thread-1] jetty-9.4.4.v20170414
+2021-12-05 14:10:03,693 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-1] DefaultSessionIdManager workerName=node0
+2021-12-05 14:10:03,693 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-1] No SessionScavenger set, using defaults
+2021-12-05 14:10:03,697 INFO o.e.j.s.s.HouseKeeper [Thread-1] Scavenging every 600000ms
+2021-12-05 14:10:03,773 INFO o.e.j.s.AbstractConnector [Thread-1] Started ServerConnector@157ae33f{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-12-05 14:10:03,773 INFO o.e.j.s.Server [Thread-1] Started @4331ms
+2021-12-06 08:09:37,586 INFO s.s.StaticFilesConfiguration [main] StaticResourceHandler configured with folder = web
+2021-12-06 08:09:37,664 INFO o.e.j.u.l.Log [Thread-1] Logging initialized @4052ms to org.eclipse.jetty.util.log.Slf4jLog
+2021-12-06 08:09:37,764 INFO s.e.j.EmbeddedJettyServer [Thread-1] == Spark has ignited ...
+2021-12-06 08:09:37,765 INFO s.e.j.EmbeddedJettyServer [Thread-1] >> Listening on 0.0.0.0:80
+2021-12-06 08:09:37,771 INFO o.e.j.s.Server [Thread-1] jetty-9.4.4.v20170414
+2021-12-06 08:09:37,850 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-1] DefaultSessionIdManager workerName=node0
+2021-12-06 08:09:37,850 INFO o.e.j.s.s.DefaultSessionIdManager [Thread-1] No SessionScavenger set, using defaults
+2021-12-06 08:09:37,857 INFO o.e.j.s.s.HouseKeeper [Thread-1] Scavenging every 600000ms
+2021-12-06 08:09:38,013 INFO o.e.j.s.AbstractConnector [Thread-1] Started ServerConnector@1c20f6a1{HTTP/1.1,[http/1.1]}{0.0.0.0:80}
+2021-12-06 08:09:38,014 INFO o.e.j.s.Server [Thread-1] Started @4405ms

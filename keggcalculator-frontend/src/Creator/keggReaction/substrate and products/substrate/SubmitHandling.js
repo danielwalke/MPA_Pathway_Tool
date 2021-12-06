@@ -9,12 +9,13 @@ const setCoordinatesFromGraphData = (compoundArr, graphNodes) => {
     })
 }
 
-export const handleSubmitKeggReaction = (state, dispatch, reaction) => {
+export const handleSubmitKeggReaction = (state, dispatch, reaction, reactionsInSelectArray) => {
     // refresh positions of reactions in reactionsInSelectArray
     const addedReaction = reaction ? reaction : getJSONReaction(state)
+    const reactionArray = reactionsInSelectArray ? reactionsInSelectArray : state.generalState.reactionsInSelectArray
 
     const nodes = state.graphState.data.nodes
-    const reactionsInSelectArrayWithCoordinates = [...state.generalState.reactionsInSelectArray, addedReaction].map(
+    const reactionsInSelectArrayWithCoordinates = [...reactionArray, addedReaction].map(
         reaction => {
             const reactionNode = nodes.find(node => node.id === reaction.reactionName)
             if (!reaction.exchangeReaction || reactionNode) {
@@ -28,8 +29,9 @@ export const handleSubmitKeggReaction = (state, dispatch, reaction) => {
             return reaction
         }
     )
+
     const data = handleJSONGraphUpload(reactionsInSelectArrayWithCoordinates, dispatch, state.graphState)
-    dispatch({type: "ADDREACTIONSTOARRAY", payload: reactionsInSelectArrayWithCoordinates})
+    dispatch({type: "SETREACTIONSINARRAY", payload: reactionsInSelectArrayWithCoordinates})
     dispatch({type: "ADD_REACTION_TO_AUDIT_TRAIL", payload: addedReaction})
     dispatch({type: "SETDATA", payload: data})
 }
