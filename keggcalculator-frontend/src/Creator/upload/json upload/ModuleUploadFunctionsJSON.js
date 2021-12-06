@@ -18,7 +18,6 @@ export const handleJSONGraphUpload = (reactions, dispatch, graphState) => { //ha
     const links = []
     dispatch({type:"SET_KEGG_REACTION", payload:[]})
     reactions.forEach(reaction => {
-        console.log(reaction)
         dispatch({type: "ADD_KEGG_REACTION", payload: reaction})
         const reactionNode = createNode(reaction.reactionName, REACTION_NODE_COLOR, REACTION_NODE_SYMBOL, +reaction.x, +reaction.y, reaction.opacity, reaction.reversible)
         addNode(nodes, reactionNode)

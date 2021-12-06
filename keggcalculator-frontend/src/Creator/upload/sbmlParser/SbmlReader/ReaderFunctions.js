@@ -8,6 +8,7 @@ import {getLastItemOfList} from "../../../usefulFunctions/Arrays";
 import clonedeep from "lodash/cloneDeep"
 import {requestGenerator} from "../../../request/RequestGenerator";
 import {endpoint_TaxonomyById} from "../../../../App Configurations/RequestURLCollection";
+import {getNLastChars} from "../../../usefulFunctions/Strings";
 //get specific compound id in the appropriate format
 export const getCompoundId = (index) => {
     if (index < 10) {
@@ -150,11 +151,62 @@ const readListOfParameters = (dispatch, sbml) => {
 
 }
 
+function checkforUserReaction(id) {
+    return id.match(/^U\d{5}$/)
+}
+
+export function generateUserKeggId(newIndex) {
+    if(newIndex.toString().length <= 5) {
+        const n = newIndex.toString().length
+        let newKeggId = 'U'
+        for (let i = 0; i < 5-n; i++) {newKeggId += '0'}
+        return newKeggId + newIndex.toString()
+    } else {
+        window.alert(
+            "Reaction out of range! Can't add this reaction.")
+        return undefined
+    }
+}
+
+function findNewKeggId(usedIndices) {
+    let newIndex = 0
+    while(usedIndices.has(newIndex)) {
+        newIndex++
+    }
+
+    return {newKeggId: generateUserKeggId(newIndex), index: newIndex}
+}
+
+function mergeReactionLists(listOfUserReations, listOfNewUserReactions, listOfReactions, usedIndices) {
+    for (const reaction of listOfNewUserReactions) {
+        const indexFromReaction = parseInt(getNLastChars(reaction.keggId, 5))
+        if (usedIndices.has(indexFromReaction)) {
+            const {newKeggId, index} = findNewKeggId(usedIndices)
+            reaction.keggId = newKeggId
+            usedIndices.add(index)
+        } else {
+            usedIndices.add(indexFromReaction)
+        }
+    }
+
+    for (const reaction of listOfUserReations) {
+        reaction.keggId = reaction.sbmlId
+    }
+
+    return [...listOfReactions, ...listOfUserReations, ...listOfNewUserReactions]
+}
+
 //read reactions from sbml file
 const readReactions = (dispatch, sbml, globalTaxa, listOfObjectives, listOfParameters) => {
     const listOfReactionsElement = sbml.getElementsByTagName("listOfReactions")[0]
-    const listOfReactions = listOfReactionsElement.children.map((reaction, index) => {
+    const listOfUserReations = [] // sbml reactions that are not annotated and have sbmlIds beginning with U
+    const usedIndices = new Set() // indices used in sbml ids of user reactions from sbml
+    const listOfNewUserReactions = [] // sbml reactions that are not annotated and dont possess sbmlIds beginning with U
+    const listOfReactions = [] // reactions with kegg id
+    let testIndex = 0
+    listOfReactionsElement.children.forEach((reaction, index) => {
         const sbmlId = replaceXmlCharacters(reaction.attributes.id);
+        const isUserReaction = checkforUserReaction(sbmlId)
         const sbmlName = typeof reaction.attributes.name === "string" ? replaceXmlCharacters(reaction.attributes.name) : replaceXmlCharacters(reaction.attributes.id);
         const reversible = reaction.attributes["reversible"] === "true"
         const annotations = reaction.getElementsByTagName("rdf:li").map(link => link.attributes["rdf:resource"])
@@ -179,7 +231,7 @@ const readReactions = (dispatch, sbml, globalTaxa, listOfObjectives, listOfParam
 
         const keggAnnotations = annotations.filter(link => link.includes("kegg.reaction")) //returns one link like "http://identifiers.org/kegg.reaction/R00212", i.e. last 6 chars are respective kegg annotation
         //possibly more than one reaction annotations in one reaction
-        const keggId = keggAnnotations.length === 1 ? keggAnnotations[0].substring(keggAnnotations[0].length - 6, keggAnnotations[0].length) : `U${getUserReactionId(index)}`;
+        const keggId = keggAnnotations.length === 1 ? getNLastChars(keggAnnotations[0], 6) : `U${getUserReactionId(index)}`;
         const ecAnnotations = annotations.filter(link => link.includes("ec-code")) //"http://identifiers.org/ec-code/2.3.1.54"
         const ecNumbers = ecAnnotations.map(ecAnnotation => {
             const ecAnnotationItems = ecAnnotation.split("/")
@@ -198,7 +250,8 @@ const readReactions = (dispatch, sbml, globalTaxa, listOfObjectives, listOfParam
         const listOfProductsElement = !reaction.getElementsByTagName("listOfProducts")[0] ? {} : reaction.getElementsByTagName("listOfProducts")[0] //I think in the {} should be speciesReference:[]?
         const speciesRefsElementProducts = !reaction.getElementsByTagName("listOfProducts")[0] ? [] : listOfProductsElement.getElementsByTagName("speciesReference")
         const products = getSpeciesFromReaction(speciesRefsElementProducts);
-        return {
+
+        const newReaction = {
             sbmlId: sbmlId,
             sbmlName: sbmlName,
             keggId: keggId,
@@ -208,16 +261,25 @@ const readReactions = (dispatch, sbml, globalTaxa, listOfObjectives, listOfParam
             products: products,
             reversible: reversible,
             taxonomy: getTaxonomyFromSbml(annotations, globalTaxa),
-            biggReaction: biggReactionSplitArray[biggReactionSplitArray.length-1],
+            biggReaction: biggReactionSplitArray[biggReactionSplitArray.length - 1],
             upperBound: upperBound,
             lowerBound: lowerBound,
             objectiveCoefficient: objectiveCoefficient,
             index: index,
         };
 
+        if (isUserReaction) {
+            // user reaction from sbml
+            listOfUserReations.push(newReaction)
+            usedIndices.add(parseInt(getNLastChars(sbmlId,5)))
+        } else if (checkforUserReaction(keggId)) {
+            // new user reaction
+            listOfNewUserReactions.push(newReaction)
+        } else {
+            listOfReactions.push(newReaction)
+        }
     })
-    console.log(listOfReactions)
-    return listOfReactions
+    return mergeReactionLists(listOfUserReations, listOfNewUserReactions, listOfReactions, usedIndices)
 }
 
 const getTaxonomyNumber = (annotations) => {
@@ -291,7 +353,7 @@ export const onSBMLModuleFileChange = async (event, dispatch, state) => {
     let reader = new FileReader()
     reader.readAsText(file)
     reader.onload = e => {
-        try {
+        // try {
             const result = e.target.result.trim()
             const parser = new xmlParser()
             const sbml = parser.parseFromString(result)
@@ -322,9 +384,9 @@ export const onSBMLModuleFileChange = async (event, dispatch, state) => {
                 dispatch({type: "SETLOADING", payload: false})
             }
             dispatch({type: "SHOW_ANNOTATION_WARNING", payload: true})
-        } catch (err) {
-            console.error(err)
-            window.alert("Can't read this file.")
-        }
+        // } catch (err) {
+        //     console.error(err)
+        //     window.alert("Can't read this file.")
+        // }
     }
 }

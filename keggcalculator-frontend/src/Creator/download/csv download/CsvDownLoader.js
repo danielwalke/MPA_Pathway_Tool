@@ -58,7 +58,7 @@ export const createCsvBlob = (generalState, graphState) => {
     //     return reaction
     // })
 
-    let output = "stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;"+
+    let output = "stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversible;"+
         "taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp;compoundBiggId;"+
         "reactionBiggId;compoundCompartment;reactionLowerBound;reactionupperBound;reactionObjectiveCoefficient;"+
         "reactionExchangeReaction\n"

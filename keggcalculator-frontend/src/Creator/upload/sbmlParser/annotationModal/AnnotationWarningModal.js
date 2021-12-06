@@ -21,6 +21,7 @@ const handleSkipPurpose = (dispatch, state) => {
     //no annotation warning will show up
     //add additional information to each reaction
     const newListOfReactions = addCompoundsToReactions(state, state.general.listOfReactions, state.general.listOfSpecies)
+    console.log(newListOfReactions)
     //set reactions
     // const reactions = setReactionsInStore(state, newListOfReactions)
     //set data for the Graph

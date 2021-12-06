@@ -12,7 +12,7 @@ export const readFile = (string) => {
         const stoichiometricCoeff = entries[4]
         const compoundId = entries[5].replaceAll("\t", ";")
         const typeOfCompound = entries[6]
-        const reversibility = entries[7] === "reversible"
+        const reversibility = entries[7] === "reversible" || entries[7] === "true"
         const taxonomy = {}
         if (entries[8].includes("&&")) {
             const taxa = entries[8].split("&&")
@@ -28,6 +28,7 @@ export const readFile = (string) => {
             taxonomy[name] = rank
         }
         const reactionX = entries[9]
+        console.log(entries[9])
         const reactionY = entries[10]
         const compoundX = entries[11]
         const compoundY = entries[12]
@@ -41,8 +42,6 @@ export const readFile = (string) => {
         const reactionupperBound = entries[20] ? parseFloat(entries[20]) : 1000.0
         const reactionObjectiveCoefficient = entries[21] ? parseFloat(entries[21]) : 0.0
         const reactionExchangeReaction = entries[22] ? entries[22] === "true" : false
-
-        console.log(entries[18])
 
         const reactionNames = reactions.map(reaction => reaction.reactionName)
         if (!reactionNames.includes(reactionName)) {

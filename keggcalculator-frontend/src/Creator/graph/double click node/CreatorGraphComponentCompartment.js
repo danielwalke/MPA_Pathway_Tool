@@ -4,11 +4,14 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import {useStyles} from "../../ModalStyles/ModalStyles";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {updateCompoundInAdjacentReactions} from "../click node/leftClick/AddExchangeReaction";
 
 export default function CreatorGraphComponentCompartment({compoundId}) {
 
     const generalState = useSelector(state => state.general)
+    const graphState = useSelector(state => state.graph)
+    const dispatch = useDispatch()
     const [compartment, setCompartment] = useState('cytosol')
     const classes = useStyles()
 
@@ -29,25 +32,29 @@ export default function CreatorGraphComponentCompartment({compoundId}) {
     },[])
 
     useEffect(() => {
-        generalState.reactionsInSelectArray.forEach(
-            reaction => {
-                reaction.substrates.forEach(
-                    substrate => {
-                        if(substrate.name === compoundId) {
-                            substrate.compartment = compartment
-                        }
-                    }
-                )
+        const newReactionArray = updateCompoundInAdjacentReactions(compoundId, graphState, generalState, "compartment", compartment)
+        console.log(newReactionArray)
+        dispatch({type: "SETREACTIONSINARRAY", payload: newReactionArray})
 
-                reaction.products.forEach(
-                    product => {
-                        if (product.name === compoundId) {
-                            product.compartment = compartment
-                        }
-                    }
-                )
-            }
-        )
+        // generalState.reactionsInSelectArray.forEach(
+        //     reaction => {
+        //         reaction.substrates.forEach(
+        //             substrate => {
+        //                 if(substrate.name === compoundId) {
+        //                     substrate.compartment = compartment
+        //                 }
+        //             }
+        //         )
+        //
+        //         reaction.products.forEach(
+        //             product => {
+        //                 if (product.name === compoundId) {
+        //                     product.compartment = compartment
+        //                 }
+        //             }
+        //         )
+        //     }
+        // )
     },[compartment])
 
     return(

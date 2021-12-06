@@ -14,6 +14,7 @@ import {NOT_KEY_COMPOUND_OPACITY} from "../../graph/Constants";
 
 
 export const setReactionsAndCompoundsInStore = (state, listOfReactions, dispatch) => {
+    console.log(state.general.listOfReactionGlyphs)
     const reactions = listOfReactions.map(reaction => {
         const reactionName = reaction.sbmlId.concat(";" + reaction.sbmlName + " " + reaction.keggId); //retruns name like "R_PFK;Phosphofructokinase UXXXXX"
         // Big TODO: this is absolutely messy, best practice would be a class that handles everything
@@ -38,7 +39,6 @@ export const setReactionsAndCompoundsInStore = (state, listOfReactions, dispatch
         })
         return r
     })
-    console.log(reactions)
 
     return handleJSONGraphUpload(getReactions(reactions, dispatch), dispatch, state.graph)
 }
@@ -109,6 +109,7 @@ const getSbmlCompound = (sbmlCompound, typeOfCompound, reactionGlyph) => {
         `${sbmlCompound.sbmlId};${sbmlCompound.sbmlName} ${sbmlCompound.keggId}`; //retruns name like "M_pep_c;Phosphoenolpyruvate K/G/CXXXXX"
 
     const compound = new Compound(compoundName)
+
     compound._id = sbmlCompound.keggId
     compound._x = typeof speciesGlyph === "object" && speciesGlyph !== null ? getSpeciesXPositionFromSbml(typeOfCompound, speciesGlyph) : 0
     compound._y = typeof speciesGlyph === "object" && speciesGlyph !== null ? getSpeciesYPositionFromSbml(typeOfCompound, speciesGlyph) : 0
@@ -124,7 +125,12 @@ const getSpeciesGlyphIndex = (speciesGlyph) => typeof speciesGlyph.layoutId === 
 
 const getCompoundOpacity = speciesGlyph => speciesGlyph.isKeyCompound ? 1 : NOT_KEY_COMPOUND_OPACITY
 
-const getSpeciesGlyph = (sbmlId, reactionGlyph) => reactionGlyph.listOfSpeciesReferenceGlyphs.find(speciesGlyph => speciesGlyph.layoutSpeciesReference === sbmlId)
+const getSpeciesGlyph = (sbmlId, reactionGlyph) => {
+    console.log(reactionGlyph)
+    console.log(sbmlId)
+    return reactionGlyph.listOfSpeciesReferenceGlyphs.find(
+        speciesGlyph => speciesGlyph.speciesGlyph.includes(sbmlId))
+}
 
 const getSpeciesXPositionFromSbml = (typeOfCompound, speciesGlyph) => typeOfCompound === "substrate" ? speciesGlyph.layOutStartX : speciesGlyph.layOutEndX
 

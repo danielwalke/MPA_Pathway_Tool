@@ -13,7 +13,6 @@ listOfSpecies: [
 export const addCompoundsToReactions = (state, listOfReactions, listOfSpecies) => {
     const newListOfReactions = listOfReactions.map(reaction => {
         //override substartes and products with additional information
-        console.log(reaction)
 
         reaction.substrates.map(substrate => {
             const species = listOfSpecies.filter(speciesReference => speciesReference.sbmlId === substrate.sbmlId)[0] //filters all species information from listOfSpecies

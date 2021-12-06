@@ -25,6 +25,8 @@ export function findRandomCompoundObj(compoundNodeId, graphState, generalState) 
     const reactionObj = generalState.reactionsInSelectArray.find(
         reaction => reaction.reactionId === getKeggId(reactionNodeId))
 
+    console.log(compoundNodeId)
+
     return [...reactionObj.substrates, ...reactionObj.products].find(
         compound => removeSplitIndex(compound.name) === removeSplitIndex(compoundNodeId))
 }

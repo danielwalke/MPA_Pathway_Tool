@@ -1,4 +1,4 @@
-import {getCompoundId} from "../../upload/sbmlParser/SbmlReader/ReaderFunctions";
+import {generateUserKeggId, getCompoundId} from "../../upload/sbmlParser/SbmlReader/ReaderFunctions";
 
 export const getStochiometrySubstratesString = (state) => {
     const object = {}
@@ -113,14 +113,5 @@ export function checkAndGenerateNewReactionId(reactionsInSelectArray) {
 
     const newIndex = (highestIndex + 1).toString()
 
-    if(newIndex.length <= 5) {
-        let newId = "U"
-        for (let i = 0; i<5-newIndex.length; i++) newId += "0"
-        newId += newIndex
-        return newId
-    } else {
-        window.alert(
-            "Reaction out of range! Can't add this reaction.")
-        return undefined
-    }
+    return generateUserKeggId(newIndex)
 }

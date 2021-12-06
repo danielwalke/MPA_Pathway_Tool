@@ -30,6 +30,8 @@ export const onModuleFileChange = (file, dispatch, state) => {
                         reaction.upperBound : 1000.0
                     reaction.objectiveCoefficient = reaction.objectiveCoefficient ?
                         reaction.objectiveCoefficient : 0.0
+                    reaction.x = parseInt(reaction.x)
+                    reaction.y = parseInt(reaction.y)
 
                     correctStochiometryProp(reaction.substrates)
                     correctStochiometryProp(reaction.products)
