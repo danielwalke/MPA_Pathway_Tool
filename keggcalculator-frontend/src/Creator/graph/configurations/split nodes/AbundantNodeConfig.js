@@ -81,7 +81,6 @@ const AbundantNodeConfig = () => {
 
         data.nodes = nodes.filter(node => !graphState.abundantCompounds.includes(node.id))
 
-        console.log(data)
         dispatch({type: "SETDATA", payload: data})
         dispatch({
             type: "ADD_SPLIT_NODES_TO_AUDIT_TRAIL", payload: graphState.abundantCompounds

@@ -21,6 +21,8 @@ export default function FluxBalanceAnalysis() {
         setButtonDisabled(true)
         const requestReactionObj = await parseRequestArray(generalState.reactionsInSelectArray)
 
+        console.log(requestReactionObj)
+
         const response = await requestGenerator(
             "POST", endpoint_postNetworkForFBA, "", "", requestReactionObj)
         const fbaData = await responseToMap(response.data)

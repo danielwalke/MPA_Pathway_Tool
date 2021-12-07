@@ -14,7 +14,6 @@ import {NOT_KEY_COMPOUND_OPACITY} from "../../graph/Constants";
 
 
 export const setReactionsAndCompoundsInStore = (state, listOfReactions, dispatch) => {
-    console.log(state.general.listOfReactionGlyphs)
     const reactions = listOfReactions.map(reaction => {
         const reactionName = reaction.sbmlId.concat(";" + reaction.sbmlName + " " + reaction.keggId); //retruns name like "R_PFK;Phosphofructokinase UXXXXX"
         // Big TODO: this is absolutely messy, best practice would be a class that handles everything
@@ -29,20 +28,25 @@ export const setReactionsAndCompoundsInStore = (state, listOfReactions, dispatch
         r._koList = reaction.koNumbers
         r._ecList = reaction.ecNumbers
         r._biggId = reaction.biggReaction
+
         reaction.substrates.forEach(substrate => {
-            const compound = getSbmlCompound(substrate, "substrate", reactionGlyph)
+            const compound = getSbmlCompound(substrate, "substrate", reactionGlyph, state.general.listOfSpeciesGlyphs)
             r.addSubstrate(compound)
         })
         reaction.products.forEach(product => {
-            const compound = getSbmlCompound(product, "product", reactionGlyph)
+            const compound = getSbmlCompound(product, "product", reactionGlyph, state.general.listOfSpeciesGlyphs)
             r.addProduct(compound)
         })
+
         return r
     })
 
-    return handleJSONGraphUpload(getReactions(reactions, dispatch), dispatch, state.graph)
+    const reactionArray = getReactions(reactions, dispatch)
+    dispatch({type: "ADDREACTIONSTOARRAY", payload: reactionArray})
+
+    return handleJSONGraphUpload(reactionArray, dispatch, state.graph)
 }
-const getReactions = (reactions, dispatch) => {
+const getReactions = (reactions) => {
     const reactionObjects = reactions.map(r => {
         const reaction = {}
         reaction.reactionId = r._reactionName.substring(r._reactionName.length - 6, r._reactionName.length)
@@ -54,11 +58,12 @@ const getReactions = (reactions, dispatch) => {
         reaction.isForwardReaction = true
         reaction.opacity = r._opacity
         reaction.abbreviation = r._abbreviation
-        reaction.x = r._x
-        reaction.y = r._y
+        reaction.x = parseFloat(r._x)
+        reaction.y = parseFloat(r._y)
         reaction.stochiometrySubstratesString = new Map()
         reaction.stochiometryProductsString = new Map()
         reaction.biggId = r._biggId
+        reaction.exchangeReaction = false
         reaction.substrates = r._substrates.map(substrate => {
             reaction.stochiometrySubstratesString.set(substrate._id, substrate._stoichiometry)
             return ({
@@ -67,8 +72,9 @@ const getReactions = (reactions, dispatch) => {
                 name: substrate.name,
                 opacity: substrate._opacity,
                 abbreviation: substrate._abbreviation,
-                stochiometry: substrate._stoichiometry,
-                biggId: substrate._biggId
+                stoichiometry: substrate._stoichiometry,
+                biggId: substrate._biggId,
+                compartment: substrate._compartment
             })
         })
         reaction.products = r._products.map(product => {
@@ -79,13 +85,19 @@ const getReactions = (reactions, dispatch) => {
                 name: product.name,
                 opacity: product._opacity,
                 abbreviation: product._abbreviation,
-                stochiometry: product._stoichiometry,
-                biggId: product._biggId
+                stoichiometry: product._stoichiometry,
+                biggId: product._biggId,
+                compartment: product._compartment
             })
         })
+
+        if (reaction.products.length === 0 &&
+            reaction.substrates.length === 1 &&
+            reaction.substrates[0].compartment === 'external') {
+            reaction.exchangeReaction = true
+        }
         return reaction
     })
-    dispatch({type: "ADDREACTIONSTOARRAY", payload: reactionObjects})
     return reactionObjects
 }
 
@@ -93,45 +105,60 @@ const getReactionOpacity = (reactionGlyph) => reactionGlyph.isKeyCompound ? 1 : 
 
 const findReactionGlyph = (listOfReactionGlyphs, reactionId) => listOfReactionGlyphs.find(reactionGlyphObject => reactionGlyphObject.layoutReaction === reactionId)
 
-
 const getReactionXPositionFromSbml = (reactionGlyph) => reactionGlyph.layoutX
 
 const getReactionYPositionFromSbml = (reactionGlyph) => reactionGlyph.layoutY
 
-const getSbmlCompound = (sbmlCompound, typeOfCompound, reactionGlyph) => {
+const getSbmlCompound = (sbmlCompound, typeOfCompound, reactionGlyph, speciesGlyphs) => {
 
     const speciesGlyph = typeof reactionGlyph === "object" && reactionGlyph !== null ?
-        getSpeciesGlyph(sbmlCompound.sbmlId, reactionGlyph) :
+        getSpeciesGlyph(sbmlCompound.sbmlId, reactionGlyph, speciesGlyphs) :
         null
 
-    const compoundName = typeof speciesGlyph === "object" && speciesGlyph !== null ?
-        `${sbmlCompound.sbmlId}_${getSpeciesGlyphIndex(speciesGlyph)};${sbmlCompound.sbmlName} ${sbmlCompound.keggId}` :
-        `${sbmlCompound.sbmlId};${sbmlCompound.sbmlName} ${sbmlCompound.keggId}`; //retruns name like "M_pep_c;Phosphoenolpyruvate K/G/CXXXXX"
+    const speciesGlyphSplitArray = speciesGlyph.layoutId.split('_')
 
+    let prefix
+    if (speciesGlyphSplitArray.length <= 2) {
+        prefix = sbmlCompound.sbmlId
+    } else {
+        const index = speciesGlyphSplitArray[2] === '1' ? '' : `_${speciesGlyphSplitArray[2]}`
+        prefix = sbmlCompound.sbmlId + index
+    }
+
+    const compoundName = `${prefix}; ${sbmlCompound.sbmlName} ${sbmlCompound.keggId}`; //retruns name like "M_pep_c;Phosphoenolpyruvate K/G/CXXXXX"
     const compound = new Compound(compoundName)
 
+    const coordinates = typeof speciesGlyph === "object" && speciesGlyph !== null ?
+        speciesGlyph.getCoordinates() : {x: 0, y: 0}
+
+        console.log(sbmlCompound.compartment)
+
     compound._id = sbmlCompound.keggId
-    compound._x = typeof speciesGlyph === "object" && speciesGlyph !== null ? getSpeciesXPositionFromSbml(typeOfCompound, speciesGlyph) : 0
-    compound._y = typeof speciesGlyph === "object" && speciesGlyph !== null ? getSpeciesYPositionFromSbml(typeOfCompound, speciesGlyph) : 0
+    compound._x = coordinates.x
+    compound._y = coordinates.y
     compound._abbreviation = sbmlCompound.sbmlName
     compound._typeOfCompound = typeOfCompound
     compound._stoichiometry = sbmlCompound.stoichiometry
     compound._opacity = typeof speciesGlyph === "object" && speciesGlyph !== null ? getCompoundOpacity(speciesGlyph) : 1
     compound._biggId = sbmlCompound.biggId
+    compound._compartment = sbmlCompound.compartment
     return compound
 }
 
-const getSpeciesGlyphIndex = (speciesGlyph) => typeof speciesGlyph.layoutId === "undefined" ? "" : getLastItemOfList(speciesGlyph.layoutId.split("_"))
-
 const getCompoundOpacity = speciesGlyph => speciesGlyph.isKeyCompound ? 1 : NOT_KEY_COMPOUND_OPACITY
 
-const getSpeciesGlyph = (sbmlId, reactionGlyph) => {
-    console.log(reactionGlyph)
-    console.log(sbmlId)
-    return reactionGlyph.listOfSpeciesReferenceGlyphs.find(
-        speciesGlyph => speciesGlyph.speciesGlyph.includes(sbmlId))
+const getSpeciesGlyph = (sbmlId, reactionGlyph, speciesGlyphs) => {
+    const speciesGlyphsWithCompound = speciesGlyphs.filter(glyph => glyph.layoutSpecies === sbmlId)
+    const listOfSpeciesGlyphIdsInReaction = reactionGlyph.listOfSpeciesReferenceGlyphs.map(glyph => glyph.speciesGlyph)
+
+    let speciesGlyphSelection
+
+    for (const speciesGlyph of speciesGlyphsWithCompound) {
+        if (listOfSpeciesGlyphIdsInReaction.some(glyphId => glyphId === speciesGlyph.layoutId)) {
+            speciesGlyphSelection = speciesGlyph
+            break;
+        }
+    }
+
+    return speciesGlyphSelection
 }
-
-const getSpeciesXPositionFromSbml = (typeOfCompound, speciesGlyph) => typeOfCompound === "substrate" ? speciesGlyph.layOutStartX : speciesGlyph.layOutEndX
-
-const getSpeciesYPositionFromSbml = (typeOfCompound, speciesGlyph) => typeOfCompound === "substrate" ? speciesGlyph.layOutStartY : speciesGlyph.layOutEndY

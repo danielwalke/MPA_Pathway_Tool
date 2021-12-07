@@ -2,7 +2,7 @@ import React from "react"
 
 const getKeggId = comp => comp.name.substring(comp.name.length - 6, comp.name.length)
 
-const MakeSpeciesList = (reactionsInSelectArray) => {
+const makeSpeciesList = (reactionsInSelectArray) => {
     /**
      * Takes an Array of reaction objects, extracts information on reaction substrates/products and corresponding graph
      * positions and returns an array with unique entries for each component.
@@ -26,14 +26,16 @@ const MakeSpeciesList = (reactionsInSelectArray) => {
 
     for (const compound of uniqueCompoundsArray) {
 
+        const compartment = compound.compartment ? compound.compartment : 'cytosol'
+
         const compoundObj = {
             name: compound.abbreviation,
             keggId: getKeggId(compound),
             biggId: compound.biggId ? compound.biggId : "",
             glyphId: compound.glyphId,
             sbmlId: compound.sbmlId,
-            compartment: "c",
-            compartmentName: "cytosol",    // TODO: take this from compound in general state
+            compartment: compartment,
+            compartmentName: compartment,
             hasOnlySubstanceUnits: "true",
             boundaryCondition: "false",
             constant: "false",
@@ -45,8 +47,8 @@ const MakeSpeciesList = (reactionsInSelectArray) => {
         speciesObjArray.push(compoundObj)
 
         const compartmentObj = {
-            compartment: "c",
-            compartmentName: "cytosol",
+            compartment: compartment,
+            compartmentName: compartment,
             constant: "true"
         }
 
@@ -59,4 +61,4 @@ const MakeSpeciesList = (reactionsInSelectArray) => {
     return [speciesObjArray, uniqueCompartmentsArray]
 }
 
-export default MakeSpeciesList
+export default makeSpeciesList

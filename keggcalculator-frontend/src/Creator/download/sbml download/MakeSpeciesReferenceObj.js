@@ -1,6 +1,6 @@
 import React from "react";
 
-const MakeSpeciesReferenceObj = (reactant) => {
+const makeSpeciesReferenceObj = (reactant) => {
 
     /**
      *      Input: <ReactionObject>.products / <ReactionObject>.substrates
@@ -15,7 +15,7 @@ const MakeSpeciesReferenceObj = (reactant) => {
             '@': {
                 species: comps.sbmlId,
                 name: comps.abbreviation.substring(0, comps.abbreviation.length - 7),
-                stoichiometry: comps.stochiometry,
+                stoichiometry: comps.stoichiometry ? comps.stoichiometry : comps.stochiometry,
                 constant: "true"
             }
         }
@@ -25,4 +25,4 @@ const MakeSpeciesReferenceObj = (reactant) => {
     return {'speciesReference': reference}
 }
 
-export default MakeSpeciesReferenceObj
+export default makeSpeciesReferenceObj

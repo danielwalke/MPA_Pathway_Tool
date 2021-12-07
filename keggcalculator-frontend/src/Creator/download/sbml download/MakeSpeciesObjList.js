@@ -1,6 +1,6 @@
 import React from "react";
 
-const MakeSpeciesObjList = (speciesRaw) => {
+const makeSpeciesObjList = (speciesRaw) => {
     const speciesXmlList = speciesRaw.map(compound => {
 
         const cIdForRDF = '#' + compound.sbmlId
@@ -61,4 +61,4 @@ const MakeSpeciesObjList = (speciesRaw) => {
     return uniqueSpeciesXmlList
 }
 
-export default MakeSpeciesObjList
+export default makeSpeciesObjList

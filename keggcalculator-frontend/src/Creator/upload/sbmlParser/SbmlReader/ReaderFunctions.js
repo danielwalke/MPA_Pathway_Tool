@@ -64,7 +64,6 @@ const readCompartments = (dispatch, sbml) => {
 
     if (listOfCompartmentsElement) {
         for (const compartment of listOfCompartmentsElement.children) {
-            console.log(compartment.attributes["id"])
             compartments.push(compartment.attributes["id"])
         }
     }
@@ -77,8 +76,34 @@ const readCompartments = (dispatch, sbml) => {
 }
 
 //read species from sbml file
-const readSpecies = (dispatch, sbml) => {
+
+function getCompartment(listOfCompartments) {
+    const sbmlToMpaCompartments = new Map()
+    let unknownCompartments = false
+
+    listOfCompartments.forEach(comp => {
+        if (/^Internal_Species$/.test(comp) || /^c$/.test(comp) || /^internal$/.test(comp) || /^cytosol$/.test(comp)) {
+            sbmlToMpaCompartments.set(comp, 'cytosol')
+        } else if (/^External_Species$/.test(comp) || /^e$/.test(comp) || /^external$/.test(comp)) {
+            sbmlToMpaCompartments.set(comp, 'external')
+        } else {
+            if (!unknownCompartments) {unknownCompartments = true}
+            sbmlToMpaCompartments.set(comp, 'cytosol')
+        }
+    })
+
+    if (unknownCompartments) {
+        window.alert("Your model contains unknown compartment names. All compartment names were set to 'internal'." +
+            " Please assign exchange compounds to be 'external' if you would like to perform FBA.")
+    }
+
+    return sbmlToMpaCompartments
+}
+
+const readSpecies = (dispatch, sbml, listOfCompartments) => {
     const listOfSpeciesElement = sbml.getElementsByTagName("listOfSpecies")[0]
+    const compartmentMapping = getCompartment(listOfCompartments)
+
     const listOfSpecies = listOfSpeciesElement.children.map((species, index) => {
 
         const sbmlName = typeof species.attributes.name === "string" ? replaceXmlCharacters(species.attributes.name) : replaceXmlCharacters(species.attributes.id)
@@ -94,6 +119,7 @@ const readSpecies = (dispatch, sbml) => {
         const biggMetaboliteSplitArray = biggMetabolite ? biggMetabolite.split("/") : [""]
 
         const compartment = species.attributes["compartment"]
+        if (!listOfCompartments.includes(compartment)) {throw 'compartment not contained in listOfCompartments!'}
 
         return (
             {
@@ -101,7 +127,7 @@ const readSpecies = (dispatch, sbml) => {
                 sbmlName: sbmlName,
                 keggId: keggId,
                 biggId: biggMetaboliteSplitArray[biggMetaboliteSplitArray.length - 1],
-                compartment: compartment,
+                compartment: compartmentMapping.get(compartment),
                 index: index,
             }
         )
@@ -244,9 +270,13 @@ const readReactions = (dispatch, sbml, globalTaxa, listOfObjectives, listOfParam
             const len = koAnnotationItems.length
             return koAnnotationItems[len - 1] //returns last item of each annotation, i.e. the respective KO- number
         });
-        const listOfReactantsElement = !reaction.getElementsByTagName("listOfReactants")[0] ? {} : reaction.getElementsByTagName("listOfReactants")[0]
-        const speciesRefsElementSubstrates = !reaction.getElementsByTagName("listOfReactants")[0] ? [] : listOfReactantsElement.getElementsByTagName("speciesReference")
+
+        const listOfReactantsElement = !reaction.getElementsByTagName("listOfReactants")[0] ?
+            {} : reaction.getElementsByTagName("listOfReactants")[0]
+        const speciesRefsElementSubstrates = !reaction.getElementsByTagName("listOfReactants")[0] ?
+            [] : listOfReactantsElement.getElementsByTagName("speciesReference")
         const substrates = getSpeciesFromReaction(speciesRefsElementSubstrates)
+
         const listOfProductsElement = !reaction.getElementsByTagName("listOfProducts")[0] ? {} : reaction.getElementsByTagName("listOfProducts")[0] //I think in the {} should be speciesReference:[]?
         const speciesRefsElementProducts = !reaction.getElementsByTagName("listOfProducts")[0] ? [] : listOfProductsElement.getElementsByTagName("speciesReference")
         const products = getSpeciesFromReaction(speciesRefsElementProducts);
@@ -357,22 +387,31 @@ export const onSBMLModuleFileChange = async (event, dispatch, state) => {
             const result = e.target.result.trim()
             const parser = new xmlParser()
             const sbml = parser.parseFromString(result)
+
             const globalTaxa = findGlobalTaxa(sbml) !== null ? findGlobalTaxa(sbml) : {}
-            const listOfSpeciesGlyphs = sbml.getElementsByTagName("layout:listOfSpeciesGlyphs").length > 0 ? readListOfSpeciesGlyphs(sbml) : []
-            const listOfReactionGlyphs = sbml.getElementsByTagName("layout:listOfReactionGlyphs").length > 0 ? readListOfReactionGlyphs(sbml, listOfSpeciesGlyphs) : []
+            const listOfSpeciesGlyphs = sbml.getElementsByTagName("layout:listOfSpeciesGlyphs").length > 0 ?
+                readListOfSpeciesGlyphs(sbml) : []
+            const listOfReactionGlyphs = sbml.getElementsByTagName("layout:listOfReactionGlyphs").length > 0 ?
+                readListOfReactionGlyphs(sbml) : []
+
             const listOfCompartments = readCompartments(dispatch, sbml)
-            const listOfSpecies = readSpecies(dispatch, sbml, state)
+            const listOfSpecies = readSpecies(dispatch, sbml, listOfCompartments)
             const listOfObjectives = readListOfObjectives(dispatch, sbml)
             const listOfParameters = readListOfParameters(dispatch, sbml)
             const listOfReactions = readReactions(dispatch, sbml, globalTaxa, listOfObjectives, listOfParameters)
+
             const isMissingAnnotations = checkMissingAnnotations(listOfSpecies, dispatch)
 
             dispatch({type: "SETMODULEFILENAMESBML", payload: file.name})
             dispatch({type: "SET_LIST_OF_REACTION_GLYPHS", payload: listOfReactionGlyphs})
+            dispatch({type: "SET_LIST_OF_SPECIES_GLYPHS", payload: listOfSpeciesGlyphs})
+
             dispatch({type: "SETLISTOFSPECIES", payload: listOfSpecies})
             dispatch({type: "SETLISTOFREACTIONS", payload: listOfReactions})
+
             dispatch({type: "ADD_PATHWAY_TO_AUDIT_TRAIL", payload: file.name})
             dispatch({type: "SET_PATHWAY_FILE", payload: file})
+
             dispatch({type: "SETISMISSINGANNOTATIONS", payload: isMissingAnnotations}) //if true, annotationWarningModal will show up
 
             if (!isMissingAnnotations) {

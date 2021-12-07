@@ -59,7 +59,7 @@ const makeUniqueGlyphId = (compoundId, x, y, stoichiometry, index, speciesGlyphL
     }
 }
 
-const MakeReactionList = (reactionsInSelectArray, reactionTaxonomies) => {
+const makeReactionList = (reactionsInSelectArray, reactionTaxonomies) => {
     /**
      * Updates substrate and product objects with unique glyph and unique sbml ids
      */
@@ -68,6 +68,8 @@ const MakeReactionList = (reactionsInSelectArray, reactionTaxonomies) => {
 
     const abbreviationList = {}
     const compoundList = {}
+
+    const listOfObjectives = []
 
     const updateCompoundObj = (compounds) => {
         compounds.map(compound => {
@@ -84,11 +86,23 @@ const MakeReactionList = (reactionsInSelectArray, reactionTaxonomies) => {
         updateCompoundObj(reaction.substrates)
         updateCompoundObj(reaction.products)
 
+        if (reaction.objectiveCoefficient && reaction.objectiveCoefficient != 0) {
+            listOfObjectives.push(
+                {
+                    reactionId: reaction.reactionId,
+                    objectiveCoefficient: reaction.objectiveCoefficient
+                })
+        }
+
         return reaction
     })
 
-    return reactionList
+    if (listOfObjectives.length === 0) {
+        throw 'Please define at least one reaction to be optimized for your model. Otherwise the exported sbml is not valid.'
+    }
+
+    return {reactionList: reactionList, listOfObjectives: listOfObjectives}
 }
 
-export default MakeReactionList
+export default makeReactionList
 

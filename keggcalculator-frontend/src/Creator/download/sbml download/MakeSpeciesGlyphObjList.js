@@ -1,6 +1,6 @@
 import React from "react";
 
-const MakeSpeciesGlyphObjList = (speciesRaw) => {
+const makeSpeciesGlyphObjList = (speciesRaw) => {
     const speciesGlyphObjList = speciesRaw.map(compound => {
 
         // const name = species.name.substring(0, species.name.length - 7).replace(/ /g, "_").replace(/^[\d\W_]*/,"")
@@ -37,4 +37,4 @@ const MakeSpeciesGlyphObjList = (speciesRaw) => {
     return speciesGlyphObjList
 }
 
-export default MakeSpeciesGlyphObjList
+export default makeSpeciesGlyphObjList

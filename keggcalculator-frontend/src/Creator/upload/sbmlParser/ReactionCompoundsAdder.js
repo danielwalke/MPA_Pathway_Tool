@@ -19,7 +19,8 @@ export const addCompoundsToReactions = (state, listOfReactions, listOfSpecies) =
             substrate.sbmlName = species.sbmlName;
             substrate.keggId = species.keggId;
             substrate.keggName = species.keggName;
-            substrate.biggId = species.biggId
+            substrate.biggId = species.biggId;
+            substrate.compartment = species.compartment;
             return substrate;
         })
         reaction.products.map(product => {
@@ -28,6 +29,7 @@ export const addCompoundsToReactions = (state, listOfReactions, listOfSpecies) =
             product.keggId = species.keggId;
             product.keggName = species.keggName;
             product.biggId = species.biggId;
+            product.compartment = species.compartment;
             return product;
         })
         return reaction;

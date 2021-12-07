@@ -19,14 +19,16 @@ export const getTaxaList = (reactionTaxa) => {
 export const getStructureBody = (state, dispatch, generalState, isNcbiTaxonomy, setIsNcbiTaxonomy) => {
     const compound = !state.data.nodes.filter(node => node.id === state.doubleClickNode)[0] ?
         {} : state.data.nodes.filter(node => node.id === state.doubleClickNode)[0]
+
     const nodeId = state.doubleClickNode.substring(state.doubleClickNode.length - 6, state.doubleClickNode.length)
-    const reaction = nodeId.match(/[R,U]/) ? generalState.reactionsInSelectArray.filter(
-        r => r.reactionName === state.doubleClickNode)[0] : {}
+    const reaction = nodeId.match(/[R,U]/) ?
+        generalState.reactionsInSelectArray.filter(r => r.reactionName === state.doubleClickNode)[0] : {}
 
     const handleIsKeyCompound = (e) => {
         e.preventDefault()
         const otherNodes = state.data.nodes.filter(node => node.id !== compound.id)
         compound.opacity = 1
+
         otherNodes.push(compound)
         const compoundIsTarget = state.data.links.filter(link => link.target === compound.id)
         compoundIsTarget.map(link => link.opacity = 1)
@@ -36,6 +38,8 @@ export const getStructureBody = (state, dispatch, generalState, isNcbiTaxonomy, 
         compoundIsTarget.map(link => otherLinks.push(link))
         compoundIsSource.map(link => otherLinks.push(link))
         const data = {nodes: otherNodes, links: otherLinks}
+
+
         dispatch({type: "SETDATA", payload: data})
     }
 
@@ -65,7 +69,8 @@ export const getStructureBody = (state, dispatch, generalState, isNcbiTaxonomy, 
             </div>
 
             <div style={{width: "100%"}}>
-                <KeyCompoundChanger compound={compound} handleIsNotKeyCompound={handleIsNotKeyCompound}
+                <KeyCompoundChanger compound={compound}
+                                    handleIsNotKeyCompound={handleIsNotKeyCompound}
                                     handleIsKeyCompound={handleIsKeyCompound}/>
                 <LabelPositionChanger compound={compound}/>
             </div>

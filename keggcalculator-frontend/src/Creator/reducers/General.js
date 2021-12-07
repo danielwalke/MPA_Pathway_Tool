@@ -54,6 +54,7 @@ const defaultState = {
     showMultipleKeggReactionModal: false, //show modal for chosing multiple reactions from KEGG
     addLinkModal: false, //modal for adding new links useful for signaling pathway
     listOfReactionGlyphs: [], //positons of nodes in sbml file
+    listOfSpeciesGlyphs: [],
     taxonomicNames: [], //taxonomic names received from server after submitting taxonomic rank
     mappingStart: "", //start time of mapping
     mappingEnd: "", //end time of mapping
@@ -200,6 +201,8 @@ export const generalReducer = (state = defaultState, action) => {
             return {...state, addLinkModal: !state.addLinkModal}
         case "SET_LIST_OF_REACTION_GLYPHS":
             return {...state, listOfReactionGlyphs: payload}
+        case "SET_LIST_OF_SPECIES_GLYPHS":
+            return {...state, listOfSpeciesGlyphs: payload}
         case "ADD_KEGG_REACTION":
             if(state.keggReactions.includes(payload)){
                 return state

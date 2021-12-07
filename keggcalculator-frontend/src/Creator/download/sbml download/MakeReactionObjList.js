@@ -1,7 +1,7 @@
 import React from "react";
-import MakeSpeciesReferenceObj from "./MakeSpeciesReferenceObj";
+import makeSpeciesReferenceObj from "./MakeSpeciesReferenceObj";
 
-const MakeReactionObjectList = (reactionsInSelectArray, reactionTaxonomies) => {
+const makeReactionObjectList = (reactionsInSelectArray, reactionTaxonomies) => {
 
     const reactionObj = reactionsInSelectArray.map(reaction => {
 
@@ -54,8 +54,8 @@ const MakeReactionObjectList = (reactionsInSelectArray, reactionTaxonomies) => {
         }
 
         const xmlChildren = {
-            listOfReactants: {'#': MakeSpeciesReferenceObj(reaction.substrates)},
-            listOfProducts: {'#': MakeSpeciesReferenceObj(reaction.products)},
+            listOfReactants: {'#': makeSpeciesReferenceObj(reaction.substrates)},
+            listOfProducts: {'#': makeSpeciesReferenceObj(reaction.products)},
         }
 
         if (references['rdf:li'].length > 0) {
@@ -77,4 +77,4 @@ const MakeReactionObjectList = (reactionsInSelectArray, reactionTaxonomies) => {
 }
 
 
-export default MakeReactionObjectList
+export default makeReactionObjectList

@@ -1,23 +1,16 @@
 class SpeciesGlyph {
     _layoutId
     _layoutSpecies
-    _layoutSpeciesReference
     _isKeyCompound
+    _x
+    _y
 
     constructor(layoutId, layoutSpecies) {
         this._isKeyCompound = true
         this._layoutSpecies = layoutSpecies;
         this._layoutId = layoutId;
-        this._layoutSpeciesReference = ""
-    }
-
-
-    get layoutSpeciesReference() {
-        return this._layoutSpeciesReference;
-    }
-
-    set layoutSpeciesReference(value) {
-        this._layoutSpeciesReference = value;
+        this._x = 0.0
+        this._y = 0.0
     }
 
     get isKeyCompound() {
@@ -34,6 +27,15 @@ class SpeciesGlyph {
 
     get layoutSpecies() {
         return this._layoutSpecies;
+    }
+
+    setCoordinates(x, y) {
+        this._x = x
+        this._y = y
+    }
+
+    getCoordinates() {
+        return {x: this._x, y: this._y}
     }
 }
 

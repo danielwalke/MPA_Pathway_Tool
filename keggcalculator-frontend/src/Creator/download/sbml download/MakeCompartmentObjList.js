@@ -1,6 +1,6 @@
 import React from "react";
 
-const MakeCompartmentObjList = (compartmentsRaw) => {
+const makeCompartmentObjList = (compartmentsRaw) => {
     return compartmentsRaw.map(compartment => {
         return {
             '@': {
@@ -12,4 +12,4 @@ const MakeCompartmentObjList = (compartmentsRaw) => {
     })
 }
 
-export default MakeCompartmentObjList
+export default makeCompartmentObjList
