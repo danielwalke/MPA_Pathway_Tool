@@ -59,6 +59,19 @@ const makeUniqueGlyphId = (compoundId, x, y, stoichiometry, index, speciesGlyphL
     }
 }
 
+const createParameterFromBound = (boundary, listOfParametersMap) => {
+    let parameter
+    if (listOfParametersMap.has(boundary)) {
+        parameter = listOfParametersMap.get(boundary)
+    } else {
+        const parameterName = `par_${listOfParametersMap.size}`
+        listOfParametersMap.set(boundary, parameterName)
+        parameter = parameterName
+    }
+
+    return parameter
+}
+
 const makeReactionList = (reactionsInSelectArray, reactionTaxonomies) => {
     /**
      * Updates substrate and product objects with unique glyph and unique sbml ids
@@ -70,6 +83,8 @@ const makeReactionList = (reactionsInSelectArray, reactionTaxonomies) => {
     const compoundList = {}
 
     const listOfObjectives = []
+    const parametersMap = new Map()
+    const reactionToParameterMap = new Map()
 
     const updateCompoundObj = (compounds) => {
         compounds.map(compound => {
@@ -83,6 +98,9 @@ const makeReactionList = (reactionsInSelectArray, reactionTaxonomies) => {
     const reactionList = reactionsInSelectArray.map(reaction => {
         reaction.taxonomyIds = reactionTaxonomies.filter(tax => tax.reactionId === reaction.reactionId)
 
+        let lowerBound
+        let upperBound
+
         updateCompoundObj(reaction.substrates)
         updateCompoundObj(reaction.products)
 
@@ -94,6 +112,18 @@ const makeReactionList = (reactionsInSelectArray, reactionTaxonomies) => {
                 })
         }
 
+        if (reaction.lowerBound && reaction.upperBound) {
+            lowerBound = reaction.lowerBound
+            upperBound = reaction.upperBound
+        } else {
+            lowerBound = reaction.reversible ? -1000.0 : 0.0
+            upperBound = 1000.0
+        }
+
+        const lowerBoundPar = createParameterFromBound(parseFloat(lowerBound), parametersMap)
+        const upperBoundPar = createParameterFromBound(parseFloat(upperBound), parametersMap)
+        reactionToParameterMap.set(reaction.reactionId, {lowerBound: lowerBoundPar, upperBound: upperBoundPar})
+
         return reaction
     })
 
@@ -101,7 +131,12 @@ const makeReactionList = (reactionsInSelectArray, reactionTaxonomies) => {
         throw 'Please define at least one reaction to be optimized for your model. Otherwise the exported sbml is not valid.'
     }
 
-    return {reactionList: reactionList, listOfObjectives: listOfObjectives}
+    return {
+        reactionList: reactionList,
+        listOfObjectives: listOfObjectives,
+        reactionToParameterMap: reactionToParameterMap,
+        parametersMap: parametersMap
+    }
 }
 
 export default makeReactionList

@@ -1,7 +1,7 @@
 import React from "react";
 import makeSpeciesReferenceObj from "./MakeSpeciesReferenceObj";
 
-const makeReactionObjectList = (reactionsInSelectArray, reactionTaxonomies) => {
+const makeReactionObjectList = (reactionsInSelectArray, reactionToParameterMap) => {
 
     const reactionObj = reactionsInSelectArray.map(reaction => {
 
@@ -67,7 +67,9 @@ const makeReactionObjectList = (reactionsInSelectArray, reactionTaxonomies) => {
                 id: reaction.reactionId,
                 reversible: reaction.reversible.toString(),
                 name: reaction.abbreviation,
-                metaid: reaction.reactionId
+                metaid: reaction.reactionId,
+                'fbc:lowerFluxBound': reactionToParameterMap.get(reaction.reactionId).lowerBound,
+                'fbc:upperFluxBound': reactionToParameterMap.get(reaction.reactionId).upperBound
             },
             '#': xmlChildren
         }

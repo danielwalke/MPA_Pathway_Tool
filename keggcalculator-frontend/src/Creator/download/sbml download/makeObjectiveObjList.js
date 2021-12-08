@@ -1,11 +1,9 @@
 function getObjectiveXmlObj(objective) {
 
     return {
-        'fbc:fluxObjective': {
-            '@': {
-                'fbc:reaction': 'test',
-                'fbc:coefficient': 'test'
-            }
+        '@': {
+            'fbc:reaction': objective.reactionId,
+            'fbc:coefficient': objective.objectiveCoefficient
         }
     }
 }
@@ -21,13 +19,14 @@ export function makeObjectiveObjList(listOfObjectives) {
                         'fbc:id': "obj",
                         'fbc:type': "maximize"
                     },
-                    '#': {
-                        'fbc:listOfFluxObjectives': {
-                            '#': listOfObjectives.map(objective => getObjectiveXmlObj(objective))
+                    'fbc:listOfFluxObjectives': {
+                        '#': {
+                            'fbc:fluxObjective': listOfObjectives.map(objective => getObjectiveXmlObj(objective))
                         }
                     }
                 }
+            }
         }
-    }
+
     return listOfObjectivesObj
 }

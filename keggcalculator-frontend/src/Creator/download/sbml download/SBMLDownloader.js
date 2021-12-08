@@ -14,6 +14,7 @@ import {useDispatch} from "react-redux";
 import {ToolTipBig} from "../../main/user-interface/UserInterface";
 import {requestTaxonomiesForReactions} from "./RequestTaxonomiesForReactions";
 import {makeObjectiveObjList} from "./makeObjectiveObjList";
+import {makeParameterObjList} from "./makeParameterObjList";
 
 const SBMLDownloader = (props) => {
 
@@ -25,19 +26,20 @@ const SBMLDownloader = (props) => {
         const pathwayName = "mpapathway"
 
         const reactionTaxonomies = await requestTaxonomiesForReactions(state.generalState.reactionsInSelectArray)
-        const {reactionList, listOfObjectives} = makeReactionList(
+        const {reactionList, listOfObjectives, reactionToParameterMap, parametersMap} = makeReactionList(
             state.generalState.reactionsInSelectArray, reactionTaxonomies)
         const [speciesObjArray, compartmentObjArray] = makeSpeciesList(reactionList)
 
-        const reactionXmlList = makeReactionObjList(reactionList)
+        const reactionXmlList = makeReactionObjList(reactionList, reactionToParameterMap)
         const speciesXmlList = makeSpeciesObjList(speciesObjArray)
         const compartmentXmlList = makeCompartmentObjList(compartmentObjArray)
+
         let objectivesXmlList
         if (listOfObjectives.length > 0) {
             objectivesXmlList = makeObjectiveObjList(listOfObjectives)
         }
 
-        console.log(objectivesXmlList)
+        const parametersXmlList = makeParameterObjList(parametersMap)
 
         const reactionGlyphXmlList = makeReactionGlyphObjList(reactionList)
         const speciesGlyphXmlList = makeSpeciesGlyphObjList(speciesObjArray)
@@ -62,6 +64,7 @@ const SBMLDownloader = (props) => {
                     '@': {id: pathwayName, 'fbc:strict': "true"},
                     '#': {
                         'fbc:listOfObjectives': objectivesXmlList,
+                        'listOfParameters': parametersXmlList,
                         listOfSpecies: {species: speciesXmlList},
                         listOfReactions: {reaction: reactionXmlList},
                         listOfCompartments: {compartment: compartmentXmlList},
@@ -92,10 +95,9 @@ const SBMLDownloader = (props) => {
             }
         }
 
-        console.log(objectToXML(sbml))
         dispatch({type: "ADD_SBML_DOWNLOAD_TO_AUDIT_TRAIL"})
         let blob = new Blob(new Array(objectToXML(sbml).trim()), {type: "text/plain;charset=utf-8"});
-        // saveAs(blob, "ModuleGraph.xml")
+        saveAs(blob, "ModuleGraph.xml")
     }
 
     return (

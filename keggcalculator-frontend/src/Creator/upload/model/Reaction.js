@@ -16,6 +16,9 @@ export class Reaction {
     _productObjects
     _taxonomy
     _biggId
+    _lowerBound
+    _upperBound
+    _objectiveCoefficient
 
     constructor(name) {
         this._reactionName = name
@@ -29,6 +32,9 @@ export class Reaction {
         this._productObjects = []
         this._taxonomy = {}
         this._biggId = ""
+        this._lowerBound = 0.0
+        this._upperBound = 1000.0
+        this._objectiveCoefficient = 0.0
     }
 
     addProductObject(compound, coefficient) {
@@ -145,5 +151,37 @@ export class Reaction {
 
     set reversible(value) {
         this._reversible = value;
+    }
+
+    get biggId() {
+        return this._biggId;
+    }
+
+    set biggId(value) {
+        this._biggId = value;
+    }
+
+    get lowerBound() {
+        return this._lowerBound;
+    }
+
+    set lowerBound(value) {
+        this._lowerBound = value;
+    }
+
+    get upperBound() {
+        return this._upperBound;
+    }
+
+    set upperBound(value) {
+        this._upperBound = value;
+    }
+
+    get objectiveCoefficient() {
+        return this._objectiveCoefficient;
+    }
+
+    set objectiveCoefficient(value) {
+        this._objectiveCoefficient = value;
     }
 }

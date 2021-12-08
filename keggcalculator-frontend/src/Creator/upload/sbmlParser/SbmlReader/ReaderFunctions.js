@@ -229,7 +229,6 @@ const readReactions = (dispatch, sbml, globalTaxa, listOfObjectives, listOfParam
     const usedIndices = new Set() // indices used in sbml ids of user reactions from sbml
     const listOfNewUserReactions = [] // sbml reactions that are not annotated and dont possess sbmlIds beginning with U
     const listOfReactions = [] // reactions with kegg id
-    let testIndex = 0
     listOfReactionsElement.children.forEach((reaction, index) => {
         const sbmlId = replaceXmlCharacters(reaction.attributes.id);
         const isUserReaction = checkforUserReaction(sbmlId)

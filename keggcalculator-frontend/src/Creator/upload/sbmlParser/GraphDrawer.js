@@ -27,7 +27,10 @@ export const setReactionsAndCompoundsInStore = (state, listOfReactions, dispatch
         r._taxonomy = reaction.taxonomy
         r._koList = reaction.koNumbers
         r._ecList = reaction.ecNumbers
-        r._biggId = reaction.biggReaction
+        r.biggId = reaction.biggReaction
+        r.lowerBound = reaction.lowerBound
+        r.upperBound = reaction.upperBound
+        r.objectiveCoefficient = reaction.objectiveCoefficient
 
         reaction.substrates.forEach(substrate => {
             const compound = getSbmlCompound(substrate, "substrate", reactionGlyph, state.general.listOfSpeciesGlyphs)
@@ -64,6 +67,9 @@ const getReactions = (reactions) => {
         reaction.stochiometryProductsString = new Map()
         reaction.biggId = r._biggId
         reaction.exchangeReaction = false
+        reaction.lowerBound = r._lowerBound
+        reaction.upperBound = r._upperBound
+        reaction.objectiveCoefficient = r._objectiveCoefficient
         reaction.substrates = r._substrates.map(substrate => {
             reaction.stochiometrySubstratesString.set(substrate._id, substrate._stoichiometry)
             return ({
@@ -130,8 +136,6 @@ const getSbmlCompound = (sbmlCompound, typeOfCompound, reactionGlyph, speciesGly
 
     const coordinates = typeof speciesGlyph === "object" && speciesGlyph !== null ?
         speciesGlyph.getCoordinates() : {x: 0, y: 0}
-
-        console.log(sbmlCompound.compartment)
 
     compound._id = sbmlCompound.keggId
     compound._x = coordinates.x
