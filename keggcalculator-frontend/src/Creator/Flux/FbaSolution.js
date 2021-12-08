@@ -86,13 +86,12 @@ const FbaSolution = () =>{
         const requestPromise = requestGenerator("POST", fbaSolution,  "", "", reaction)
             .then(response => {
                 var data_reply = response.data;
-                console.log(data_reply);
-                console.log("KIKIK IKIKI");
+
                 const reactionList = []
                 const reactionsMap = new Map();
                 for(var i in response.data){
                     var data_item =  response.data[i];
-                    console.log(data_item);
+
                     for(var key in data_item){
                         var item_data = data_item[key];
 
@@ -119,7 +118,7 @@ const FbaSolution = () =>{
                 console.log(reactionList);
                 dispatch({type: "SETFBAANDFLUX", payload: reactionList});
                 dispatch({type: "SWITCHLOADING", payload: false});
-
+                dispatch({type: "SETFBAVALUES", payload: reactionList});
                 return (
 
                     reactionList
