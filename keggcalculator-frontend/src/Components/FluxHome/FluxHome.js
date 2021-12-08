@@ -23,7 +23,7 @@ import Information from "./graph_flux/graph visualization/Information";
 import DownloadCSV from "./download/DownloadCSV";
 import Loading from "../../Creator/loading/Loading";
 import StructureModal from "./graph_flux/double click node/StructureModal";
-import CircularComponent from "./CircularComponent";
+import CircularComponent from "../ExternalSpecies/ExternalSpecies";
 
 function FluxHome() {
     const [open, setOpen] = React.useState(true)
@@ -101,7 +101,7 @@ function FluxHome() {
                               </div>
                               <div>
                                   <button className={"downloadButton"}>
-                                      <DownloadCSV generalState={generalState} graphState={graphState} fbaState = {fbaState}/>
+                                      <DownloadCSV generalState={generalState} graphState={graphState} fbaState={fbaState}/>
                                   </button>
 
 
@@ -118,7 +118,7 @@ function FluxHome() {
 
                           </Drawer>
                       </div>
-                      <div><CircularComponent/></div>
+
                       {/*<div className={"graph"}>*/}
                       {/*    {generalState.new_data_gen.nodes.length<0 ? <GraphVisualization/> : <Graph_visualization_fba dispatch = {dispatch}/>}*/}
                       {/*</div>*/}

@@ -13,7 +13,7 @@ const DownloadCSV = (props) =>{
         const {generalState, graphState, fbaState} = clonedeep(props)
         console.log(generalState.cystolInformation)
     },[])
-
+    const state = useSelector(state => state.general)
 
     const handleDownloadCsv = () => {
 
@@ -60,27 +60,38 @@ const DownloadCSV = (props) =>{
                         })
                     }
                 }
-                console.log(reaction)
+                //console.log(reaction)
                 // reaction["opacity"] = 1
                 // let output = outputCsv.concat("stepId;ReactionNumberId;koNumberIds;ecNumberIds;stochCoeff;compoundId;typeOfCompound;reversibility;taxonomy;reactionX;reactionY;CompoundX;CompoundY;reactionAbbr;compoundAbbr;keyComp", "\n")
                 return reaction
             })
-            let output = "ReactionNumberId;FVA_min;FVA_max;FBA\n"
+            let output = "ReactionName;FVA_min;FVA_max;FBA\n"
             let reactionCounter = 0
             const compoundTypeSubstrate = "substrate"
             const compoundTypeProduct = "product"
+            console.log(state)
+            console.log(generalState)
             for(const reaction of reactions){
                 for(const substrate of reaction.substrates){
                     // console.log(substrate.stochiometry)
-                    output = addOutput(output, reaction, generalState)
+                    var flux = state.fbaSolution[reaction.reactionId].fbaSolution;
+                    var minFlux = state.fbaSolution[reaction.reactionId].minFlux;
+                    var maxFlux = state.fbaSolution[reaction.reactionId].maxFlux;
+                    output = addOutput(output, reaction, state, flux, minFlux, maxFlux)
                     output = addLocationInformation(output, generalState, reaction, substrate)
                 }
                 for(const product of reaction.products){
-                    output = addOutput(output, reaction, generalState)
-                    output = addLocationInformation(output, generalState, reaction, product)
+                    var flux = state.fbaSolution[reaction.reactionId].fbaSolution;
+                    var minFlux = state.fbaSolution[reaction.reactionId].minFlux;
+                    var maxFlux = state.fbaSolution[reaction.reactionId].maxFlux;
+                    output = addOutput(output, reaction, state, flux, minFlux, maxFlux)
+                    output = addLocationInformation(output, state, reaction, product)
                 }
                 if(reaction.substrates.length===0 && reaction.products.length === 0){
-                    output = addOutput(output, reaction, generalState)
+                    var flux = state.fbaSolution[reaction.reactionId].fbaSolution;
+                    var minFlux = state.fbaSolution[reaction.reactionId].minFlux;
+                    var maxFlux = state.fbaSolution[reaction.reactionId].maxFlux;
+                    output = addOutput(output, reaction, state, flux, minFlux, maxFlux)
                 }
                 reactionCounter++;
             }

@@ -6,6 +6,13 @@ const defaultState = {
     new_dataLinks: [],
     isModulesImport: false,
     objectiveCoeffecientUpdated: [],
+    data_circular: {
+        nodes : [],
+        links : [],
+    },
+    deleteNodeCircular: "",
+    showDeleteModalCircular: false,
+    fbaValues: [],
 
 }
 
@@ -21,7 +28,14 @@ export const fbaReducer = (state = defaultState, action) => {
         case "SETOBJECTIVECOEFFECIENTUPDATE":
             payload.map(reaction => state.objectiveCoeffecientUpdated.push(reaction))
             return {...state, objectiveCoeffecientUpdated: state.objectiveCoeffecientUpdated}
-
+        case "SETDATACIRCULAR":
+            return {...state, data_circular: payload}
+        case "SETDELETENODECIRCULAR":
+            return {...state, deleteNodeCircular: payload}
+        case "SWITCHDELETEMODALCIRCULAR":
+            return {...state, showDeleteModal: !state.showDeleteModal}
+        case "SETFBAVALUES":
+            return {...state, fbaValues: payload}
         default:
             return state;
 

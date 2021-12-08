@@ -2,9 +2,10 @@ import {getNodePosition} from "../../../Creator/download/NodePosition";
 import clonedeep from "lodash/cloneDeep"
 import {getTaxaList} from "../../../Creator/graph/double click node/StuctureModalBody";
 import {getNLastChars} from "../../../Creator/usefulFunctions/Strings";
+import {reaction} from "mobx";
 
-
-
+import {useSelector} from "react-redux";
+import React from "react";
 
 export const getReactions = (generalState, graphState) =>{
     const reactionObjects = {}
@@ -57,27 +58,17 @@ export const getReactions = (generalState, graphState) =>{
     return {reactionObjects, reactionNames}
 }
 
-export const addOutput = (output, reaction, generalState) => {
 
+
+
+export const addOutput = (output, reaction, state, flux, minFlux, maxFlux) => {
+    const genState = clonedeep(state)
     output = output.concat(reaction.reactionName.replaceAll(";", "\t"), ";") //reaction name
-
+    //const generalState = useSelector(state => state.general)
     let taxonomyCounter = 0
 
-    var flux = 0.0;
-    var minFlux = 0.0;
-    var maxFlux = 0.0
 
-    for(var key in generalState.fbaSolution){
-        if(generalState.fbaSolution.hasOwnProperty(key)){
-            if(key == reaction.reactionId){
-                flux = generalState.fbaSolution[key].fbaSolution;
-                minFlux = generalState.fbaSolution[key].minFlux;
-                maxFlux = generalState.fbaSolution[key].maxFlux;
 
-            }
-        }
-    }
-    console.log(flux)
 
 
 

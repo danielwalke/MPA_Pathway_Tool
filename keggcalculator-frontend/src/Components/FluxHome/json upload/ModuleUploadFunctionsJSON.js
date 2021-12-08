@@ -34,7 +34,7 @@ export const handleJSONGraphUpload = (reactions, dispatch, graphState, generalSt
                 }
             }
         }
-        console.log("This is " + flux)
+        console.log("This is " + maxFlux)
         dispatch({type: "ADD_KEGG_REACTION", payload: reaction})
         const reactionNode = createNode(reaction.reactionName, REACTION_NODE_COLOR, REACTION_NODE_SYMBOL, +reaction.x, +reaction.y, reaction.opacity, reaction.reversible, flux)
         addNode(nodes, reactionNode)

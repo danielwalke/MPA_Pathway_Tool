@@ -14,6 +14,7 @@ import App from "../../Creator/main/App"
 import Start from "./Start";
 import {makeStyles} from "@material-ui/core";
 import FluxHome from "../FluxHome/FluxHome";
+import ExternalSpecies from "../ExternalSpecies/ExternalSpecies";
 
 // const styles = theme =>({
 //     indicator:{
@@ -62,6 +63,7 @@ class Home extends Component {
                                     <Route path={"/creator"}><App/></Route>
                                     <Route path={"/calculator"}> <UploadPanel/> </Route>
                                     <Route path={"/fluxhome"}> <FluxHome changeState={this.changeState}/></Route>
+                                    <Route path={"/externalSpecies"}><ExternalSpecies changeState = {this.changeState}/></Route>
                                 </Switch>
                             </BrowserRouter>
                         </div>
@@ -104,6 +106,8 @@ const CustomTabs = (props) =>{
             />
             <Tab icon={<CreateIcon/>} to={"/FluxHome"}
                  value={"/FluxHome"} label={"Flux-Analysis"} component={NavLink}/>
+            <Tab icon={<CreateIcon/>} to={"/ExternalSpecies"}
+                 value={"/ExternalSpecies"} label={"External-Species"} component={NavLink}/>
         </Tabs>
     )
 }
