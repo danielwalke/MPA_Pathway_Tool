@@ -81,7 +81,7 @@ public class KeggCalculatorServer {
 		webSocketIdleTimeoutMillis(5 * 60 * 1000);
 
 		// define the Port
-		port(80);
+		port(1024);
 
 		exception(Exception.class, (exception, request, response) -> {
 			exception.printStackTrace();
@@ -102,7 +102,7 @@ public class KeggCalculatorServer {
 
 		before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
 
-		// to test server health
+		// to test server health 
 		get("/hello", (req, res) -> "Hello World!!");
 
 		/*

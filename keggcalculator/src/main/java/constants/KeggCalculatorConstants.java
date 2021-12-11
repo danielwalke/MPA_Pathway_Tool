@@ -10,6 +10,10 @@ package constants;
  */
 public class KeggCalculatorConstants {
 	
+	public static final String PYTHON_PATH = "/home/dwalke/anaconda3/bin/python";
+	public static final String MANTIS_PATH = "/home/dwalke/Schreibtisch/mantis";
+	public static final String FULL_UPLOAD_PATH = "/home/dwalke/MPA_Pathway_Tool/keggcalculator/upload";
+	
 	//directions for web-url uploads and downloads -> used in Calculator
 	//public static final String UPLOAD_TEMP_LOCATION = "temp";
 	public static final String WEB_URL = "http://localhost:80/";

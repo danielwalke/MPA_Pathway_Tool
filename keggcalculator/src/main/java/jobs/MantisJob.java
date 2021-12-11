@@ -1,19 +1,19 @@
 package jobs;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.List;
 
-import calculator.Calculator2;
-import calculator.CalculatorOutputList;
 import constants.KeggCalculatorConstants;
-import json.KeggCalculatorJobJSON;
 import json.MantisJobJson;
 import mantis.MantisFile;
 import mantis.MantisParser;
 import mantis.MantisProtein;
-import model.KeggDataObject;
-import parser.KeggDataParser;
-import parser.ModuleFileParser;
-import parser.MpaFileParser2;
 
 public class MantisJob implements Runnable{
 
@@ -61,13 +61,19 @@ public class MantisJob implements Runnable{
 			String mantisFastaFile = "upload/" + this.job.jobID + "/" + this.job.mantisFile + "_fasta.faa";
 			file.setFastaFilePath(mantisFastaFile);
 			MantisParser.readFile(file);
+			System.out.println("User file read");
 			
 			//write fast file for mantis
 			MantisParser.writeFastaFile(file);
 			for(MantisProtein protein : file.getMantisProteins()) {
 				System.out.println(protein.getQuants());
 			}
+			System.out.println("____________");
+			System.out.println("FASTA file created");
 			
+			String absoluteFastaPath = new File(mantisFastaFile).getAbsolutePath();
+			
+			startProcessBuilder(absoluteFastaPath, this.job.jobID);
 			//send input file to mantis here
 			
 			//write output-file for mantis
@@ -90,5 +96,56 @@ public class MantisJob implements Runnable{
 			this.job.downloadLink = KeggCalculatorConstants.WEB_URL + "/keggcalculator/download/" + this.job.jobID;
 			System.out.println("job finished");			
 		}
+	}
+
+	private void startProcessBuilder(String absoluteFastaPath, String jobId) {
+		try {
+			String shellPath = writeShellFile(absoluteFastaPath, jobId);
+			List<String> commandList =Arrays.asList("/bin/bash","-i", shellPath); 
+			ProcessBuilder mantisBuilder = new ProcessBuilder(commandList);
+			mantisBuilder.redirectErrorStream(true);
+            Process mantisProcess = mantisBuilder.start();
+            BufferedReader mantisProcessReader = new BufferedReader(new InputStreamReader(mantisProcess.getInputStream()));
+            String mantisProcessLine;
+            while((mantisProcessLine=mantisProcessReader.readLine())!= null) {
+            	System.out.println(mantisProcessLine);
+            }
+            } catch (RuntimeException e) {
+            	e.printStackTrace();
+            } catch (Exception e) {
+            	e.printStackTrace();
+            } finally {
+            	System.out.println("Done");
+            }
+	}
+
+	private String writeShellFile(String absoluteFastaPath, String jobId) {
+		String filePath = "upload/" + jobId + "/" + jobId + ".sh";
+		try {
+			String mantisDir = KeggCalculatorConstants.FULL_UPLOAD_PATH + "/" + jobId + "/mantis";
+			new File(mantisDir).mkdir();
+			BufferedWriter writer = new BufferedWriter(new FileWriter(new File(filePath)));
+			writer.write(
+				"conda init --all\n"
+				+ "echo \"conda initialized\"\n"
+				+ "conda activate mantis_env\n"
+				+ "conda env list\n"
+				+ "echo \"environtment setted\"\n"
+				+ KeggCalculatorConstants.PYTHON_PATH + " "  
+				+ KeggCalculatorConstants.MANTIS_PATH
+				+ " run_mantis -t "
+				+ absoluteFastaPath
+				+ " -o "
+				+ mantisDir
+				+ "\necho \"mantis finished\"\n");
+			writer.flush();
+			writer.close();
+			return filePath;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "";
+		}
+		
 	}
 }
