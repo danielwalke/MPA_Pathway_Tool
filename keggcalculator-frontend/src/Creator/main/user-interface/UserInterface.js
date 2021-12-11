@@ -23,6 +23,7 @@ import StructureModal from "../../graph/double click node/StructureModal";
 import DeleteModal from "../../graph/click node/delete_rightClick/DeleteModal";
 import ReactionDetails from "../../specReaction/reaction/ReactionDetails";
 import ReactionInfo from "../../graph/click node/leftClick/ReactionInfo";
+import Mantis from "../../mantis/Mantis";
 
 export const ToolTipBig = withStyles({
     tooltip: {
@@ -144,6 +145,16 @@ const UserInterface = () => {
                             {<CloseIcon/>}
                         </IconButton>
                     </ToolTipBig>
+                    <div className={"mantisContainer"}>
+                        <div>
+                            <ToolTipBig title={"Click for entering the mantis section"} placement={"right"}>
+                                <button className={"downloadButton"}
+                                        onClick={() => dispatch({type: "SET_IS_MANTIS_MODAL_OPEN", payload: true})}>Mantis
+                                </button>
+                            </ToolTipBig>
+                            <Mantis/>
+                        </div>
+                    </div>
                     <div className={"uploadFilesContainer"}>
                         <div>
                             <ToolTipBig title={"Click for entering the upload section"} placement={"right"}>

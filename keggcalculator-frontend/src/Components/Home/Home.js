@@ -17,6 +17,7 @@ import {getLastItemOfList} from "../../Creator/usefulFunctions/Arrays";
 import {Redirect} from 'react-router'
 import {host} from "../../App Configurations/SystemSettings";
 import Footer from "../Footer/Footer";
+import Main from "../../communities/Main";
 
 class Home extends Component {
 
@@ -63,7 +64,8 @@ class Home extends Component {
                                     {/*<div><h3 style={{margin: "5% 0 0 0"}}>Under Construction</h3> <img style={{width: "70%", padding: "3%"}} src={underConstruction}/></div>*/}
                                     <Route path={"/home"}><Start changeState={this.changeState}/></Route>
                                     <Route path={"/creator"}><App changeState={this.changeState}/></Route>
-                                    <Route path={"/calculator"}> <UploadPanel changeState={this.changeState}/></Route>
+                                    <Route path={"/calculator"}><UploadPanel changeState={this.changeState}/></Route>
+                                    <Route path={"/communities"}><Main/></Route>
                                 </Switch>
                             </BrowserRouter>
                         </div>
@@ -107,6 +109,8 @@ const CustomTabs = (props) => {
                  value={"/calculator"} label={"Pathway-Calculator"}
                  to={"/calculator"} component={NavLink}
             />
+            <Tab icon={<CreateIcon/>} to={"/communities"}
+                 value={"/communities"} label={"Pathway-Communities"} component={NavLink}/>
         </Tabs>
     )
 }

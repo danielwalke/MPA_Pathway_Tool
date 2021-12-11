@@ -6,4 +6,4 @@ export const triggerWindowExitWarning = () => window.onbeforeunload = exit
 
 export const triggerLoadingWarning = dispatch => dispatch({type: "SWITCHLOADING"})
 
-export const isHostLocalHost = host === "http://127.0.0.1"
+export const isHostLocalHost = host.includes("http://127.0.0.1")

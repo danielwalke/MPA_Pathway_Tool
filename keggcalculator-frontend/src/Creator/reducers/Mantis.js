@@ -4,7 +4,10 @@ const defaultState = {
     errorMessage: "",
     jobMessage: "",
     downloadLink: "",
-    mantisFile: undefined
+    mantisFile: undefined,
+    isMantisModalOpen: false,
+    isMantisLoading: false
+
 }
 
 export const mantisReducer = (state = defaultState, action) => {
@@ -22,6 +25,10 @@ export const mantisReducer = (state = defaultState, action) => {
             return {...state, downloadLink: payload}
         case "SET_MANTIS_FILE":
             return {...state, mantisFile: payload}
+        case "SET_IS_MANTIS_MODAL_OPEN":
+            return {...state, isMantisModalOpen: payload}
+        case "SET_IS_MANTIS_LOADING":
+            return {...state, isMantisLoading: payload}
         default:
             return state;
     }

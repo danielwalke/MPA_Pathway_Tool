@@ -34,7 +34,6 @@ const onRightClickNode = (e, nodeId, dispatch, graphState) => {
     e.preventDefault()
     dispatch({type: "SWITCHDELETEMODAL"})
     dispatch({type: "SETDELETENODE", payload: nodeId})
-
 }
 
 const handleNodePositionChange = (graphState, x, y, nodeId, dispatch) => {
@@ -56,6 +55,7 @@ const GraphVisualization = () => {
     const graphState = useSelector(state => state.graph)
     const keggState = useSelector(state => state.keggReaction)
     const dispatch = useDispatch()
+
 
     const labelCallbackNodes = (node) => {
         if (typeof graphState.abbreviationsObject[`${node.id}`] !== "undefined") {

@@ -32,7 +32,7 @@ public class MantisService {
 	public Gson gson;
 	public HashMap<String, MantisJobJson> currentJobs;
 	private DeleteThread deleteThread;
-	
+
 	private ExecutorService threadPool;
 
 	public MantisService() {
@@ -42,18 +42,16 @@ public class MantisService {
 		this.deleteThread = new DeleteThread();
 		this.threadPool.execute(new Thread(this.deleteThread));
 	}
-	
+
 	//starts thread for calculator
 	public void submitJob(String jobID) {
-		System.out.println("submit job");
-		System.out.println(currentJobs.get(jobID));
 		this.threadPool.execute(new MantisJob(currentJobs.get(jobID)));
 		this.deleteThread.addJob(jobID);
 	}
-	
+
 	//returns clone from job- object
 	public synchronized MantisJobJson getJobObject(String jobID) {
-		MantisJobJson newObject = new MantisJobJson();	
+		MantisJobJson newObject = new MantisJobJson();
 		MantisJobJson job = this.currentJobs.get(jobID);
 		if (job != null) {
 			newObject.cloneFrom(job);
@@ -65,7 +63,7 @@ public class MantisService {
 
 	//returns uploaded files from user
 	public String receiveUpload(spark.Request req, String destination) {
-		// init the return value, return null means the upload failed 
+		// init the return value, return null means the upload failed
 		String sourceFileName = null;
 		// TODO: Moved to params, refactor this!
 		long maxFileSize = 1099511600000L;
@@ -94,16 +92,16 @@ public class MantisService {
 			e.printStackTrace();
 		}
 		if (destination != null && sourceFileName != null) {
-			
+
 			return sourceFileName;
 		} else {
 			return null;
 		}
 	}
-	
+
 	//returns download of output file of the calculator
 	public HttpServletResponse getDownload(Request request, Response response, String jobid) {
-        Path path = Paths.get(KeggCalculatorConstants.DOWNLOAD_DIR + "/" + jobid + ".csv");
+        Path path = Paths.get(KeggCalculatorConstants.DOWNLOAD_DIR + "/" + jobid + "/" +  "mantisOutput.csv");
         byte[] data = null;
         try {
             data = Files.readAllBytes(path);

@@ -7,6 +7,7 @@ import {graphReducer} from "../Graph";
 import {auditTrailReducer} from "../AuditTrail";
 import {fileReducer} from "../Files";
 import {mantisReducer} from "../Mantis";
+import {communityReducer} from "../Communities";
 
 export const allReducers = combineReducers({
     general: generalReducer,
@@ -16,5 +17,6 @@ export const allReducers = combineReducers({
     mpaProteins: mpaProteinReducer,
     auditTrail: auditTrailReducer,
     files: fileReducer,
-    mantis: mantisReducer
+    mantis: mantisReducer,
+    communities: communityReducer
 })

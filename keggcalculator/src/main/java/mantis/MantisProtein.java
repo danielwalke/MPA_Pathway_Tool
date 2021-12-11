@@ -13,6 +13,8 @@ public class MantisProtein {
 	private final ArrayList<Double> quants;
 	private final HashMap<String, String> taxa;
 	private String description;
+	private HashSet<String> kNumbers;
+	private HashSet<String> ecNumbers;
 
 	public MantisProtein() {
 		this.uuid = UUID.randomUUID().toString();
@@ -22,7 +24,30 @@ public class MantisProtein {
 		this.name = "";
 		this.sequence = "";
 		this.description = "";
+		this.kNumbers = new HashSet<>();
+		this.ecNumbers = new HashSet<>();
 	}
+	
+	public void addKNumber(String kNumber) {
+		this.kNumbers.add(kNumber);
+	}
+
+	public void addEcNumber(String ecNumber) {
+		this.ecNumbers.add(ecNumber);
+	}
+	
+	public HashSet<String> getkNumbers() {
+		return kNumbers;
+	}
+
+
+
+
+	public HashSet<String> getEcNumbers() {
+		return ecNumbers;
+	}
+
+
 
 
 	public String getUuid() {
