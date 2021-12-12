@@ -82,7 +82,7 @@ public class MantisJob implements Runnable {
 			readMantisOutput(this.job.jobID, file);
 
 			this.job.downloadLink = writeMpaFile(file);
-
+			System.out.println(this.job.downloadLink);
 			System.out.println("Mantis job finished");
 			
 			this.job.message = "finished";
@@ -184,7 +184,7 @@ public class MantisJob implements Runnable {
 				for (int linkIndex = 14; linkIndex < lineEntries.length; linkIndex++) {
 					links.add(lineEntries[linkIndex].trim());
 				}
-				if (refFile == "kofam_merged") {
+				if (refFile.equals("kofam_merged")) {
 					fillInformationInProtein(id, kNumber, links, file);
 				}
 				line = reader.readLine();
@@ -201,9 +201,9 @@ public class MantisJob implements Runnable {
 	}
 
 	private void fillInformationInProtein(String id, String kNumber, HashSet<String> links, MantisFile file) {
-		MantisProtein mantisProtein = file.getMantisProtein(id);
+		MantisProtein mantisProtein = file.getMantisProtein(id.trim());
 		mantisProtein.addKNumber(kNumber);
-		addEcNumbers(links, mantisProtein);
+		addEcNumbers(links, mantisProtein);	
 	}
 
 	private void addEcNumbers(HashSet<String> links, MantisProtein mantisProtein) {

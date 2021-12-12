@@ -59,7 +59,7 @@ public class MantisProtein {
 	}
 	
 	public void addTaxa(String scientificName, String taxonomicRank) {
-		this.taxa.put(scientificName, taxonomicRank);
+		this.taxa.put(taxonomicRank, scientificName); //reversed order than in mpa file reasoned
 	}
 
 	public String getId() {

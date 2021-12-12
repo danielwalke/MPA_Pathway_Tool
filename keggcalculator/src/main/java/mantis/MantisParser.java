@@ -33,7 +33,7 @@ public class MantisParser {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(new File(file.getFastaFilePath())));
 			for (Entry<String, MantisProtein> proteinEntry : file.getMantisProteins().entrySet()) {
 				MantisProtein protein = proteinEntry.getValue();
-				outputString += "> " + protein.getId().concat(protein.getUuid()) + "\t" + protein.getName() + "\n";
+				outputString += "> " + protein.getUuid() + "\t" + protein.getName() + "\n";
 				int numberOfSequenceLines = (int) Math.ceil(protein.getSequence().length() / 60.0);
 				for (int sequenceLineNumber = 0; sequenceLineNumber < numberOfSequenceLines; sequenceLineNumber++) {
 					String subSequence = "";
@@ -63,7 +63,7 @@ public class MantisParser {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(new File(file.getFileName())));
 			String line = reader.readLine();
-			String[] headerEntries = line.split("\t");
+			String[] headerEntries = line.split(";");
 			for (int entryIterator = 12; entryIterator < headerEntries.length; entryIterator++) {
 				String sampleHeader = headerEntries[entryIterator];
 				file.addSampleHeader(sampleHeader);
@@ -79,6 +79,7 @@ public class MantisParser {
 				for (int taxonIterator = 0; taxonIterator < taxonomicRanks.size(); taxonIterator++) {
 					String taxonomy = fileEntries[taxonIterator + 3];
 					String taxonomicRank = taxonomicRanks.get(taxonIterator);
+					System.out.println(taxonomicRank + "\t" + taxonomy);
 					protein.addTaxa(taxonomy, taxonomicRank);
 				}
 				protein.setDescription(fileEntries[11]);
