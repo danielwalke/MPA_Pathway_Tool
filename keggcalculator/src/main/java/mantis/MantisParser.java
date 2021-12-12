@@ -9,6 +9,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map.Entry;
+
+import json.MantisJobJson;
+
 import java.lang.*;
 
 public class MantisParser {
@@ -16,9 +19,10 @@ public class MantisParser {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		MantisFile file = new MantisFile();
+		MantisJobJson job = new MantisJobJson();
 		file.setFileName("C:\\Users\\danie\\Desktop\\MantisTest.csv");
 		file.setFastaFilePath("C:\\Users\\danie\\Desktop\\MantisTestInput.faa");
-		MantisParser.readFile(file);
+		MantisParser.readFile(file, job);
 		MantisParser.writeFastaFile(file);
 		for (Entry<String, MantisProtein> proteinEntry : file.getMantisProteins().entrySet()) {
 			MantisProtein protein = proteinEntry.getValue();
@@ -59,7 +63,7 @@ public class MantisParser {
 		}
 	}
 
-	public static void readFile(MantisFile file) {
+	public static void readFile(MantisFile file, MantisJobJson job) {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(new File(file.getFileName())));
 			String line = reader.readLine();
@@ -97,6 +101,7 @@ public class MantisParser {
 			}
 			reader.close();
 		} catch (IOException e) {
+			job.message = "could not read given file";
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

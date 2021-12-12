@@ -376,6 +376,8 @@ public class KeggHandleRequests {
 
 	// handles status about uploaded files
 	public static String statusMantis(Request req, Response res, MantisService mantis, String jobID) {
+		System.out.println(mantis.getJobObject(jobID));
+		System.out.println(mantis.getJobObject(jobID).jobID);
 		if (mantis.getJobObject(jobID) != null) {
 			return mantis.gson.toJson(mantis.getJobObject(jobID));
 		} else {

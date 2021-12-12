@@ -489,7 +489,7 @@ public class KeggCalculatorServer {
 		// the download link
 		get("/keggcreator/statusMantis", (req, res) -> {
 			creator.requestAccess.get("statusMantis").add(KeggCreatorService.getAccessDate());
-			return KeggHandleRequests.statusMantis(req, res, mantis, req.queryParams("jobid"));
+			return KeggHandleRequests.statusMantis(req, res, mantis, req.queryParams("jobID"));
 		});
 		
 		

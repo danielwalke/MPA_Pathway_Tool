@@ -3,7 +3,7 @@ import {ToolTipBig} from "../../main/user-interface/UserInterface";
 import UploadIcon from "../../icons/uploadIconWhite.svg";
 import {useDispatch, useSelector} from "react-redux";
 import {onMantisFileChange, startMantisJob} from "./lib";
-import {Snackbar, Typography} from "@material-ui/core";
+import {makeStyles, Snackbar, Typography} from "@material-ui/core";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {requestGenerator} from "../../../Request Generator/RequestGenerator";
 import {saveAs} from "file-saver"
@@ -41,25 +41,28 @@ const UploadMantis = () => {
             <br/>
             <div
                 className={"fileName"}>{mantisState.mantisFileName.length > 0 ? mantisState.mantisFileName : "No file selected"}</div>
-            <div style={{display:"grid", gridTemplateColumns: "repeat(3, 1fr)"}}>
+            <div style={{display:"grid", gridTemplateColumns: "2fr 2fr 2fr"}}>
                 <button className={"downloadButton"} onClick={()=> startMantisJob(dispatch, mantisState)} disabled={mantisState.mantisFile === undefined}>
                     Start Mantis
                 </button>
                 <button className={"downloadButton"}  disabled={mantisState.downloadLink.length === 0} onClick={()=> handleDownload()}>
                     Download
                 </button>
-                <Snackbar anchorOrigin={{vertical: "bottom", horizontal: "right"}}
-                          open={generalState.loading}
-                          message={
-                              <div>
-                                  {generalState.loading && <div style={{display: "flex"}}>
-                                      <Typography style={{display: "flex", alignItems: "center"}}>{mantisState.jobMessage}</Typography>
-                                      &nbsp;&nbsp;
-                                      <CircularProgress/>
-                                  </div>}
-                              </div>
-                          }
-                />
+                <div style={{display:"flex",justifyContent: "end", position: "relative"}}>
+                    <Snackbar anchorOrigin={{vertical: "bottom", horizontal: "right"}}
+                              style={{position: "absolute", bottom: 0,right: 0}}
+                              open={mantisState.isMantisLoading}
+                              message={
+                                  <div>
+                                      {mantisState.isMantisLoading && <div style={{display: "flex"}}>
+                                          <Typography style={{display: "flex", alignItems: "center"}}>{mantisState.jobMessage}</Typography>
+                                          &nbsp;&nbsp;
+                                          <CircularProgress size={20}/>
+                                      </div>}
+                                  </div>
+                              }
+                    />
+                </div>
             </div>
 
         </div>

@@ -61,13 +61,14 @@ public class MantisJob implements Runnable {
 		}
 		// start calculator
 		try {
+			this.job.message = "parse user file";
 			// read input file here
 			String mantisFileName = "upload/" + this.job.jobID + "/" + this.job.mantisFile;
 			MantisFile file = new MantisFile();
 			file.setFileName(mantisFileName);
 			String mantisFastaFile = "upload/" + this.job.jobID + "/" + this.job.mantisFile + "_fasta.faa";
 			file.setFastaFilePath(mantisFastaFile);
-			MantisParser.readFile(file);
+			MantisParser.readFile(file, this.job);
 			// write fast file for mantis
 			MantisParser.writeFastaFile(file);
 			for (Entry<String, MantisProtein> proteinEntry : file.getMantisProteins().entrySet()) {
@@ -76,12 +77,14 @@ public class MantisJob implements Runnable {
 			}
 
 			String absoluteFastaPath = new File(mantisFastaFile).getAbsolutePath();
-
+			this.job.message = "execute mantis";
 			startProcessBuilder(absoluteFastaPath);
 
 			readMantisOutput(this.job.jobID, file);
 
+			this.job.message = "write output file";
 			this.job.downloadLink = writeMpaFile(file);
+			
 			System.out.println(this.job.downloadLink);
 			System.out.println("Mantis job finished");
 			

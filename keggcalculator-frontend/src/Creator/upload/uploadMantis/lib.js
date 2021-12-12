@@ -41,12 +41,13 @@ export const startMantisJob = (dispatch, state) =>{
     })
 }
 
-
+//TODO Exceptio handling for wrong file structure
 const fetchStatus = (jobID, dispatch) => {
     requestGenerator("GET", RequestURL.endpoint_mantisJobStatus, {jobID: jobID}, "", "").then(response => {
         if (response.status === 200) {
             const {message} = response.data;
             console.log(message)
+            dispatch({type:"SET_MANTIS_JOB_MESSAGE", payload: message})
             if (message === "finished") {
                 dispatch({type:"SET_MANTIS_JOB_MESSAGE", payload: message})
                 dispatch({type:"SET_MANTIS_DOWNLOAD_LINK", payload: `${RequestURL.endpoint_downloadMantisResults}/${jobID}`})
