@@ -67,7 +67,6 @@ const createNode = (id, color, symbolType, x, y, opacity, reversible) => {
                 size: 100,
             })
     }
-
 }
 
 //return a link object

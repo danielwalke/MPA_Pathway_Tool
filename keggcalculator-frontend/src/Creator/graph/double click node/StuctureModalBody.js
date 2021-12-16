@@ -5,6 +5,7 @@ import {NOT_KEY_COMPOUND_OPACITY} from "../Constants";
 import LabelPositionChanger from "./LabelPositionChanger";
 import CreatorGraphReactionDetails from "./CreatorGraphReactionDetails";
 import CreatorGraphComponentCompartment from "./CreatorGraphComponentCompartment";
+import {updateCompoundInAdjacentReactions} from "../click node/leftClick/AddExchangeReaction";
 
 export const getTaxaList = (reactionTaxa) => {
     const taxaList = []
@@ -39,6 +40,7 @@ export const getStructureBody = (state, dispatch, generalState, isNcbiTaxonomy, 
         compoundIsSource.map(link => otherLinks.push(link))
         const data = {nodes: otherNodes, links: otherLinks}
 
+        updateReactionArray(compound.opacity)
 
         dispatch({type: "SETDATA", payload: data})
     }
@@ -57,7 +59,14 @@ export const getStructureBody = (state, dispatch, generalState, isNcbiTaxonomy, 
         otherNodes.push(compound)
         const data = {nodes: otherNodes, links: otherLinks}
 
+        updateReactionArray(NOT_KEY_COMPOUND_OPACITY)
+
         dispatch({type: "SETDATA", payload: data})
+    }
+
+    const updateReactionArray = (opacityValue) => {
+        const newReactionsInSelectArray = updateCompoundInAdjacentReactions(compound.id, state, generalState, "opacity", opacityValue)
+        dispatch({type: 'SETREACTIONSINARRAY', payload: newReactionsInSelectArray})
     }
 
     const body = (

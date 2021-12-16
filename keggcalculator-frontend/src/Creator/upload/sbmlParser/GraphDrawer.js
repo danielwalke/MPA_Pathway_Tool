@@ -121,7 +121,7 @@ const getSbmlCompound = (sbmlCompound, typeOfCompound, reactionGlyph, speciesGly
         getSpeciesGlyph(sbmlCompound.sbmlId, reactionGlyph, speciesGlyphs) :
         null
 
-    const speciesGlyphSplitArray = speciesGlyph.layoutId.split('_')
+    const speciesGlyphSplitArray = speciesGlyph ? speciesGlyph.layoutId.split('_') : []
 
     let prefix
     if (speciesGlyphSplitArray.length <= 2) {

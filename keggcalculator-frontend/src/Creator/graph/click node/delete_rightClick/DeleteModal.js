@@ -72,7 +72,7 @@ const DeleteModal = () => {
         let newReactions
         console.log(state.deleteNode)
 
-        if (keggIdFromNode.startsWith("C") || keggIdFromNode.startsWith("K")) {
+        if (keggIdFromNode.startsWith("C") || keggIdFromNode.startsWith("K") || keggIdFromNode.startsWith("G")) {
             const containingReactionIds = getListOfContainingReactions(state.data.links, state.deleteNode)
 
             const newReactions = deleteCompoundFromReactionArray(
