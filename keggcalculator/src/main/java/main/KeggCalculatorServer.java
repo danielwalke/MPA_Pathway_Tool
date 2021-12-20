@@ -22,6 +22,7 @@ import model.KeggKOObject;
 import model.KeggReaction;
 import model.KeggReactionObject;
 import rest.KeggHandleRequests;
+import services.FbaService;
 import services.KeggCalculatorService;
 import services.KeggCreatorService;
 
@@ -53,6 +54,7 @@ public class KeggCalculatorServer {
 
 		// Calculator
 		KeggCalculatorService calculator = new KeggCalculatorService();
+		FbaService fba = new FbaService();
 
 		File dl = new File(KeggCalculatorConstants.DOWNLOAD_DIR);
 		if (!dl.exists())
@@ -575,7 +577,6 @@ public class KeggCalculatorServer {
 
 		post("fluxanalysis/threaded_fba", (req, res) -> {
 			try {
-				System.out.println("threaded_fba");
 				return KeggHandleRequests.getFBA(creator, req.body());
 //				return KeggHandleRequests.getFBA(creator, req.queryParams("FBA"));
 			} catch (Exception e) {
@@ -583,6 +584,24 @@ public class KeggCalculatorServer {
 				e.printStackTrace();
 				return "{\"message\":\"internal server error\"}";
 			}
+		});
+		
+		post("fluxanalysis/startFba", (req, res) -> {
+			try {
+				return KeggHandleRequests.startFbaJob(fba, req, res);
+			} catch (Exception e) {
+				res.status(500);
+				e.printStackTrace();
+				return "{\"message\":\"internal server error\"}";
+			}
+		});
+		
+		post("fluxanalysis/uploadNetwork", (req, res) -> {
+			return KeggHandleRequests.handleNetworkUpload(req, res, fba, req.queryParams("jobId"));
+		});
+		
+		get("fluxanalysis/fbaStatus", (req, res) -> {
+			return KeggHandleRequests.fbaStatus(req, res, fba, req.queryParams("jobId"));
 		});
 
 	}

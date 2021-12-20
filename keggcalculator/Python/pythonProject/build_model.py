@@ -31,7 +31,6 @@ def build_model(temp_model_path: str):
             name=metabolite['metaboliteName'],
             compartment=metabolite['compartment']
         )
-        print(metabolite['metaboliteId'] + ' ' + metabolite['compartment'])
 
     # generate reactions
     for reaction_el in reactions_array:
@@ -53,9 +52,6 @@ def build_model(temp_model_path: str):
         if reaction_el['exchangeReaction']:
             if len(reaction_metabolites) != 1:
                 print('Exchange Reaction either has 0 or more than one Metabolites assigned to it!')
-
-            print(metabolite_object.name)
-            print(metabolite_object.compartment)
 
             # adds exchange reaction
             model.add_boundary(

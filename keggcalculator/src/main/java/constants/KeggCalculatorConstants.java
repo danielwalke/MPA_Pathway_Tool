@@ -16,6 +16,8 @@ public class KeggCalculatorConstants {
 	public static final String DOWNLOAD_DIR = "download/";
 	public static final String UPLOAD_DIR = "upload/";
 	public static final String UPLOAD_TEMP_DIR = UPLOAD_DIR + "/temp";
+	public static final String FBA_UPLOAD = "fbatempfiles/";
+	public static final String FBA_TEMP_DIR = FBA_UPLOAD + "temp";
 	public static final String GRAPH_DOWNLOAD_DIR = "graphDownload/";
 	public static final String POM_XML = "src/../pom.xml";
 	

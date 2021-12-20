@@ -3,8 +3,8 @@ import build_model
 import perform_fba
 
 
-def run_process(temp_model_path: str):
-    model = build_model.build_model(temp_model_path)
+def run_process(network_path: str, result_desination: str):
+    model = build_model.build_model(network_path)
 
     # print("Reactions")
     # print("---------")
@@ -26,16 +26,17 @@ def run_process(temp_model_path: str):
     #           (x.id, "{" + ", ".join(associated_ids) + "}"))
 
     solution = perform_fba.optimize(model)
-    write_to_tempFile(solution)
+    write_to_tempFile(solution, result_desination)
 
 
-def write_to_tempFile(result_str: str):
-    temp_results = open("temp\\tempResults.txt", "w")
+def write_to_tempFile(result_str: str, result_desination: str):
+    temp_results = open(result_desination, "w")
     temp_results.write(result_str)
     temp_results.close()
 
 
 if __name__ == '__main__':
+    print('python activated!')
     # readsbml(sys.argv[1])
     # summation(sys.argv[1], sys.argv[2])
-    run_process(sys.argv[1])
+    run_process(sys.argv[1], sys.argv[2])

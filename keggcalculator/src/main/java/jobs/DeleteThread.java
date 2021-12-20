@@ -22,6 +22,7 @@ public class DeleteThread implements Runnable {
 		while (true) {
 			try {
 				// check if any job has expired
+				System.out.println("checking jobs...");
 				HashSet<String> remove = new HashSet<String>(); 
 				for (String job : this.activeJobs.keySet()) {
 					if (this.activeJobs.get(job) >= 30) {

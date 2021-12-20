@@ -69,3 +69,9 @@ export const endpoint_getFilteredBiggCompoundList = host + ":" + portNumber + "/
 export const endpoint_getDummyFBAData = host + ":" + portNumber + "/fluxanalysis/fbaDummy";
 
 export const endpoint_postNetworkForFBA = host + ":" + portNumber + "/fluxanalysis/threaded_fba";
+
+export const endpoint_startFba = host + ":" + portNumber + "/fluxanalysis/startFba";
+
+export const endpoint_uploadNetwork = host + ":" + portNumber + "/fluxanalysis/uploadNetwork";
+
+export const endpoint_fbaStatus = host + ":" + portNumber + "/fluxanalysis/fbaStatus";

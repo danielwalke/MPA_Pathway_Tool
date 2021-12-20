@@ -23,6 +23,7 @@ import constants.KeggCalculatorConstants;
 import fluxanalysis.DummyFBAArray;
 import fluxanalysis.DummyFBAResponseObj;
 import fluxanalysis.DummyFBAMain;
+import json.FbaJobJson;
 import json.KeggCalculatorJobJSON;
 import json.KeggCreatorJobJSON;
 import model.KeggDataObject;
@@ -37,6 +38,7 @@ import model.TaxonomyListObject;
 import model.testparser.PathwayFinder;
 import model.testparser.PathwayFinderReverse;
 import parser.PomXmlParser;
+import services.FbaService;
 import services.KeggCalculatorService;
 import services.KeggCreatorService;
 import spark.Request;
@@ -76,6 +78,33 @@ public class KeggHandleRequests {
 			return "{\"message\":\"unknown error\"}";
 		}
 
+	}
+	
+	public static String startFbaJob(FbaService fba, Request req, Response res) {
+		try {
+			System.out.println(req.body());
+			FbaJobJson fbaJobObject = fba.gson.fromJson(req.body(), FbaJobJson.class);
+			
+			fbaJobObject.jobId = UUID.randomUUID().toString();
+			
+			fba.currentFbaJobs.put(fbaJobObject.jobId, fbaJobObject);
+			File fbaJobDir = new File(KeggCalculatorConstants.UPLOAD_DIR + fbaJobObject.jobId);
+			
+			if (!fbaJobDir.exists()) {
+				fbaJobDir.mkdir();
+			}
+			
+			fba.submitJob(fbaJobObject.jobId);
+			
+			return fba.gson.toJson(fbaJobObject);
+		} catch (JsonSyntaxException e) {
+			System.out.println("malformed json");
+			return "{\"message\":\"malformed json\"}";
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("unknown error");
+			return "{\"message\":\"unknown error\"}";
+		}
 	}
 
 	// handles csv-file from MetaProteomeAnalyzer, upload
@@ -373,6 +402,25 @@ public class KeggHandleRequests {
 		}
 		HashMap<String, String> dependencyMap = parser.readDependencies(dependencies);
 		return creator.gson.toJson(dependencyMap);
+	}
+	
+	public static String handleNetworkUpload(Request req, Response res, FbaService fba, String jobId) {
+		System.out.println(fba.getJobObject(jobId));
+		if (fba.getJobObject(jobId) != null) {
+			String sourceFileName = fba.writeUploadedNetwork(
+					req, KeggCalculatorConstants.UPLOAD_DIR, jobId);
+			return "{\"message\": \"upload successful: " + sourceFileName + "\"}";
+		} else {
+			return "{\"message\": \"upload rejected, not a valid job\"}";
+		}
+	}
+	
+	public static String fbaStatus(Request req, Response res, FbaService fba, String jobId) {
+		if (fba.getJobObject(jobId) != null) {
+			return fba.gson.toJson(fba.getJobObject(jobId));
+		} else {
+			return "{\"message\": \"not a valid job\"}";
+		}
 	}
 
 }

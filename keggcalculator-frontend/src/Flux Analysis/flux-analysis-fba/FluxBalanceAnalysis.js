@@ -6,6 +6,7 @@ import {endpoint_postNetworkForFBA} from "../../App Configurations/RequestURLCol
 import {createFbaGraphData} from "../services/CreateFbaGraphData";
 import {useDispatch, useSelector} from "react-redux";
 import {triggerLoadingWarning} from "../../Creator/main/lib/LoadingWarning";
+import {startFBAJob} from "./fbaJobSubmission";
 
 export default function FluxBalanceAnalysis() {
 
@@ -19,13 +20,13 @@ export default function FluxBalanceAnalysis() {
             triggerLoadingWarning(dispatch)
         }
         setButtonDisabled(true)
-        const requestReactionObj = await parseRequestArray(generalState.reactionsInSelectArray)
+        const requestReactionObj = parseRequestArray(generalState.reactionsInSelectArray)
 
-        console.log(requestReactionObj)
+        const response = await startFBAJob(dispatch, requestReactionObj)
 
-        const response = await requestGenerator(
-            "POST", endpoint_postNetworkForFBA, "", "", requestReactionObj)
-        const fbaData = await responseToMap(response.data)
+        console.log(JSON.parse(response))
+
+        const fbaData = await responseToMap(JSON.parse(response))
         const newGraphData = createFbaGraphData(fluxState, fbaData)
 
         // const dummyDataResponse = await getDummyFluxData(generalState.reactionsInSelectArray)
