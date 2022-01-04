@@ -40,7 +40,8 @@ export const startMantisJob = (dispatch, state) =>{
         }
     })
 }
-
+//Communities: modelled biomass andamount of exchanged
+//TODO: contact pedro about bigg indentifier
 //TODO Exceptio handling for wrong file structure
 const fetchStatus = (jobID, dispatch) => {
     requestGenerator("GET", RequestURL.endpoint_mantisJobStatus, {jobID: jobID}, "", "").then(response => {

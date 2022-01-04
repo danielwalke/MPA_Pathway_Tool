@@ -4,6 +4,7 @@ import {inject, observer} from "mobx-react";
 import GetAppIcon from "@material-ui/icons/GetApp";
 import Button from "@material-ui/core/Button";
 import {ToolTipBig} from "../../Creator/main/user-interface/UserInterface";
+import {MPA_PATHWAY_TOOL_VERSION, MPA_VERSION} from "../../App Configurations/SystemSettings";
 
 
 const MetadataCalculator = (props) => {
@@ -17,7 +18,8 @@ const MetadataCalculator = (props) => {
         expData.file(expDataFile.name, expDataFile)
         pathwayFiles.forEach(pathwayFile => pathwayFolder.file(pathwayFile.name, pathwayFile))
 
-        let metaData = `${props.CalculatorStore.startTime} - ${props.CalculatorStore.endTime}\texperimental data from ${expDataFile.name} were successfully mapped on the following pathways ${pathwayFiles.map(pathwayFile => `\n - ${pathwayFile.name}`)}`
+        let metaData = "MPA_PATHWAY_TOOL version:" + MPA_PATHWAY_TOOL_VERSION + "\n"
+        metaData += `${props.CalculatorStore.startTime} - ${props.CalculatorStore.endTime}\texperimental data from ${expDataFile.name} were successfully mapped on the following pathways ${pathwayFiles.map(pathwayFile => `\n - ${pathwayFile.name}`)}`
         metaData += "\n\n"
         metaData += "data\tmodification-date\n"
         //TODO: Keep the following data modification dates up to date

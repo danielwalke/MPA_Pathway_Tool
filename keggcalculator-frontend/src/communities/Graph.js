@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {Graph} from "react-d3-graph";
 import {getNodes} from "./Circle";
 import {useDispatch, useSelector} from "react-redux";
+import {Modal} from "@material-ui/core";
+import CommunityModal from "./CommunityModal";
 
 const GraphVisualizer = (props) => {
 
@@ -52,6 +54,11 @@ const GraphVisualizer = (props) => {
 
     }
 
+    const handleLeftClick = (nodeId) => {
+        dispatch({type:"SWITCH_IS_COMMUNITY_MODAL_OPEN"})
+        dispatch({type:"SET_COMMUNITY_NODE_ID", payload: nodeId})
+    }
+
 
     return (
         <div>
@@ -62,7 +69,11 @@ const GraphVisualizer = (props) => {
                 config={myConfig}
                 freezeAllDragEvents={true}
                 onRightClickNode={onRightClickNode}
+                onClickNode={nodeId => handleLeftClick(nodeId)}
             />}
+            <Modal open={communityState.isModalOpen} onClose={()=> dispatch({type:"SWITCH_IS_COMMUNITY_MODAL_OPEN"})}>
+                <CommunityModal/>
+            </Modal>
         </div>
     );
 };

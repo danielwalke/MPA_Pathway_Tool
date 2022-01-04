@@ -4,6 +4,7 @@ import {createCsvBlob} from "../csv download/CsvDownLoader";
 import {ToolTipBig} from "../../main/user-interface/UserInterface";
 import {requestGenerator} from "../../request/RequestGenerator";
 import {endpoint_getDependencies} from "../../../App Configurations/RequestURLCollection";
+import {MPA_PATHWAY_TOOL_VERSION} from "../../../App Configurations/SystemSettings";
 
 
 const Metadata = (props) => {
@@ -35,7 +36,7 @@ const Metadata = (props) => {
             pathwayName = `uploaded file ${fileStates.pathwayFile.name}`
         }
         let metaDataBlob = null
-        let metaData = ""
+        let metaData = "MPA_PATHWAY_TOOL version:" + MPA_PATHWAY_TOOL_VERSION + "\n"
         if (fileStates.experimentalDataFile) {
             metaData = `${generalState.mappingStart} - ${generalState.mappingEnd} \texperimental data from the file ${fileStates.experimentalDataFile.name} were successfully mapped on the ${pathwayName}`
 
