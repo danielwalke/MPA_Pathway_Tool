@@ -4,7 +4,7 @@ this component is a modal and responsible for showing all final information abou
 
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {setReactionsAndCompoundsInStore} from "../GraphDrawer";
+import {setReactionsAndCompoundsInStore} from "../../sbmlParser/GraphDrawer";
 import clonedeep from "lodash/cloneDeep";
 import "./RestoreIcon.css"
 import {
@@ -17,9 +17,9 @@ import {
 } from "@material-ui/core";
 
 import ReactionDetailsContainer from "./ReactionDetailsContainer";
-import {annotationIndicator} from "./AnnotationIndicator";
-import SearchField from "./SearchField";
-import {filterArray, getComparator, stableSort} from "./Sorting";
+import {annotationIndicator} from "../AnnotationIndicator";
+import SearchField from "../SearchField";
+import {filterArray, getComparator, stableSort} from "../Sorting";
 
 const ReactionTableRow = (props) => {
 
@@ -31,9 +31,12 @@ const ReactionTableRow = (props) => {
                       sx={{'& > *': {borderBottom: 'unset'}}}
                       hover
                       selected={props.selectedRow === props.index}>
-                <TableCell component="th" scope="row">
-                    {props.row.sbmlId}
-                </TableCell>
+                {
+                    props.annotateSbml &&
+                    <TableCell component="th" scope="row">
+                        {props.row.sbmlId}
+                    </TableCell>
+                }
                 <TableCell>
                     {props.row.sbmlName}
                 </TableCell>
@@ -58,6 +61,8 @@ const ReactionAnnotation = () => {
         const dispatch = useDispatch()
         const state = useSelector(state => state)
 
+        const [columns, setColumns] = useState([])
+
         const [listOfReactions, setListOfReactions] = useState([]);
         const [selectedRow, setSelectedRow] = useState(0)
         const [previousListOfReactions, setPreviousListOfReactions] = useState([])
@@ -68,17 +73,20 @@ const ReactionAnnotation = () => {
         const [orderBy, setOrderBy] = useState('sbmlId')
         const [filterBy, setFilterBy] = useState('')
 
-        const columns = [
-            {id: 'sbmlId', label: 'ID', minWidth: 10},
-            {id: 'sbmlName', label: 'name', minWidth: 10},
-            {id: 'keggId', label: 'KEGG Reaction', minWidth: 10},
-            {id: 'biggId', label: 'BIGG Reaction', minWidth: 10},
-            {id: 'koNumbers', label: 'K Number', minWidth: 10},
-            {id: 'ecNumbers', label: 'EC', minWidth: 10},
-        ]
-
         useEffect(() => {
             setPreviousListOfReactions(clonedeep(state.general.listOfReactions))
+
+            const columns = [
+                {id: 'sbmlName', label: 'name', minWidth: 10},
+                {id: 'keggId', label: 'KEGG Reaction', minWidth: 10},
+                {id: 'biggId', label: 'BIGG Reaction', minWidth: 10},
+                {id: 'koNumbers', label: 'K Number', minWidth: 10},
+                {id: 'ecNumbers', label: 'EC', minWidth: 10}
+            ]
+            if (state.general.annotateSbml) {
+                columns.unshift({id: 'sbmlId', label: 'ID', minWidth: 10},)
+            }
+            setColumns(columns)
         }, [])
 
         useEffect(() => {
@@ -104,6 +112,10 @@ const ReactionAnnotation = () => {
             dispatch({type: "SHOWREACTIONANNOTATION", payload: false})
             dispatch({type: "SHOWANNOTATIONTABLE", payload: false})
             dispatch({type: "SETDATA", payload: data})
+            dispatch({type: "SET_LIST_OF_SPECIES_GLYPHS", payload: []})
+            dispatch({type: "SET_LIST_OF_REACTION_GLYPHS", payload: []})
+            dispatch({type: "SETLISTOFSPECIES", payload: []})
+            dispatch({type: "SETLISTOFReactions", payload: []})
             dispatch({type: "SETLOADING", payload: false})
             dispatch({type: "SWITCHUPLOADMODAL"})
         }
@@ -137,7 +149,7 @@ const ReactionAnnotation = () => {
                             <div className={"search-field-container"}>
                                 <SearchField setFilterBy={setFilterBy}/>
                             </div>
-                            {tableArray && <TableContainer className={"table-container"}>
+                            {tableArray && columns.length > 0 && <TableContainer className={"table-container"}>
                                 <Table size="small" stickyHeader aria-label="reaction table">
                                     <TableHead>
                                         <TableRow>
@@ -169,7 +181,9 @@ const ReactionAnnotation = () => {
                                                               row={row}
                                                               index={tableIndex}
                                                               handleRowClick={handleRowClick}
-                                                              selectedRow={selectedRow}/>
+                                                              selectedRow={selectedRow}
+                                                              annotateSbml={state.general.annotateSbml}
+                                            />
                                         ))}
                                     </TableBody>
                                 </Table>
@@ -182,7 +196,9 @@ const ReactionAnnotation = () => {
                             <ReactionDetailsContainer
                                 index={listOfReactionsIndex}
                                 rowInfo={listOfReactions[listOfReactionsIndex]}
-                                defaultReaction={previousListOfReactions[listOfReactionsIndex]}/>}
+                                defaultReaction={previousListOfReactions[listOfReactionsIndex]}
+                                annotateSbml={state.general.annotateSbml}/>
+                            }
                         </div>
                     </div>
                 </div>

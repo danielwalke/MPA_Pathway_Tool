@@ -19,6 +19,7 @@ export class Reaction {
     _lowerBound
     _upperBound
     _objectiveCoefficient
+    _isForwardReaction
 
     constructor(name) {
         this._reactionName = name
@@ -183,5 +184,13 @@ export class Reaction {
 
     set objectiveCoefficient(value) {
         this._objectiveCoefficient = value;
+    }
+
+    get isForwardReaction() {
+        return this._isForwardReaction;
+    }
+
+    set isForwardReaction(value) {
+        this._isForwardReaction = value;
     }
 }

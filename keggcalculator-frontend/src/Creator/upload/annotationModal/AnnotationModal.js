@@ -1,10 +1,10 @@
 
 import React from 'react';
 import Modal from "@material-ui/core/Modal";
-import CompoundAnnotation from "./CompoundAnnotation";
-import {useStyles} from "../../../ModalStyles/ModalStyles";
+import CompoundAnnotation from "./compound-annotation/CompoundAnnotation";
+import {useStyles} from "../../ModalStyles/ModalStyles";
 import {useSelector} from "react-redux";
-import ReactionAnnotation from "./ReactionAnnotation";
+import ReactionAnnotation from "./reaction-annotation/ReactionAnnotation";
 
 const AnnotationModal = () => {
     const classes = useStyles()

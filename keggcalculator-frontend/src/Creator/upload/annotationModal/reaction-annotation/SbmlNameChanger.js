@@ -5,6 +5,8 @@ import {useDispatch} from "react-redux";
 const SbmlNameChanger = (props) => {
     const dispatch = useDispatch()
 
+    console.log(props)
+
     return (
         <TextField label="Reaction Name"
                    variant={"outlined"}

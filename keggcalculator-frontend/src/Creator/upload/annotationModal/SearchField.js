@@ -1,7 +1,7 @@
 import TextField from "@material-ui/core/TextField";
 import React, {useState} from "react";
 import CloseIcon from "@material-ui/icons/Close";
-import "../../../main/Buttons.css"
+import "../../main/Buttons.css"
 import IconButton from "@material-ui/core/IconButton";
 import {withStyles} from "@material-ui/core";
 

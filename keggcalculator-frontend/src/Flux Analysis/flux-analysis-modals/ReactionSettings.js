@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import StyledSlider from "./StyledSlider";
 import FluxIndicator from "./FluxIndicator";
-import "../../Creator/upload/sbmlParser/annotationModal/AnnotationTable.css"
+import "../../Creator/upload/annotationModal/AnnotationTable.css"
 import "../FluxAnalysisStyles.css"
 import {useDispatch, useSelector} from "react-redux";
 import {TextField} from "@material-ui/core";

@@ -121,16 +121,16 @@ const Start = (props) => {
                     </div>
                 </div>
                 <FaqContainer/>
-                <Card style={{margin: "5px 0"}}><CardContent> <Typography variant="h5" component="h3">
-                    Tutorial
-                </Typography>
-                    <Typography variant="body2" component="p">
-                        You can find more details in the following tutorial.
-                    </Typography></CardContent><CardActionArea>
+                <Card style={{margin: "5px 0"}}>
+                    <CardContent>
+                        <Typography variant="h5" component="h3">Tutorial</Typography>
+                        <Typography variant="body2" component="p">
+                        You can find more details in the following tutorial.</Typography>
+                    </CardContent>
                     <button className={"download-button"} style={{width: "30vw"}}
                             onClick={() => setShowVideos(true)}>Tutorial
                     </button>
-                </CardActionArea></Card>
+                </Card>
                 <ExampleData/>
                 <Modal className={classes.modal} open={showVideos} onClose={() => setShowVideos(false)}>
                     {videos}

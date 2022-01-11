@@ -5,9 +5,9 @@ this component is responsible for showing a warning if the sbml file contains un
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import Modal from "@material-ui/core/Modal";
-import {useStyles} from "../../../ModalStyles/ModalStyles";
-import {addCompoundsToReactions} from "../ReactionCompoundsAdder";
-import {setReactionsAndCompoundsInStore} from "../GraphDrawer";
+import {useStyles} from "../../ModalStyles/ModalStyles";
+import {addCompoundsToReactions} from "../sbmlParser/ReactionCompoundsAdder";
+import {setReactionsAndCompoundsInStore} from "../sbmlParser/GraphDrawer";
 
 const handleShowAnnotationTable = (dispatch) => {
     dispatch({type: "SHOW_ANNOTATION_WARNING", payload: false}) //Annotation modal will show up
@@ -22,23 +22,20 @@ const handleSkipPurpose = (dispatch, state) => {
     //add additional information to each reaction
     const newListOfReactions = addCompoundsToReactions(state, state.general.listOfReactions, state.general.listOfSpecies)
     //set reactions
-    // const reactions = setReactionsInStore(state, newListOfReactions)
-    //set data for the Graph
-    // const data = setReactionsAndCompoundsInStore(state, newListOfReactions, dispatch)
-    dispatch({type: "SETLISTOFREACTIONS", payload: newListOfReactions})
-    // dispatch({type:"SETREACTIONSINARRAY", payload: reactions})
-    // console.log(data);//check whether this is correct, then uncomment the next line
-    // dispatch({type: "SETDATA", payload: data})
+
     dispatch({type: "SETLOADING", payload: false})
     dispatch({type: "SHOW_ANNOTATION_WARNING", payload: false})
     dispatch({type: "SWITCHUPLOADMODAL"})
 
     // creates model representation
-
-    //set data for the Graph
-    const data = setReactionsAndCompoundsInStore(state, state.general.listOfReactions, dispatch)
+    //set data for the Graph & in reaction-Array
+    const data = setReactionsAndCompoundsInStore(state, newListOfReactions, dispatch)
     dispatch({type: "SETDATA", payload: data})
     dispatch({type: "SETLOADING", payload: false})
+    dispatch({type: "SET_LIST_OF_SPECIES_GLYPHS", payload: []})
+    dispatch({type: "SET_LIST_OF_REACTION_GLYPHS", payload: []})
+    dispatch({type: "SETLISTOFSPECIES", payload: []})
+    dispatch({type: "SETLISTOFReactions", payload: []})
 }
 
 const AnnotationWarningModal = () => {

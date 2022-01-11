@@ -1,6 +1,6 @@
 import React from 'react';
 
-import "./AnnotationTable.css"
+import "../AnnotationTable.css"
 import "../../../ModalStyles/Modals.css"
 import CompoundSbmlNameChanger from "./CompoundSbmlNameChanger";
 import CompoundKeggIdSelector from "./CompoundKeggIdSelector";
@@ -29,12 +29,15 @@ const CompoundDetailsContainer = (props) => {
 
     return (
         <div className={"detail-view"}>
-            <CompoundSbmlNameChanger listOfSpecies={props.listOfSpecies}
-                                     index={props.listOfSpeciesIndex}/>
-            <CompoundKeggIdSelector listOfSpecies={props.listOfSpecies}
-                                    index={props.listOfSpeciesIndex}/>
-            <CompoundBiggIdSelector listOfSpecies={props.listOfSpecies}
-                                    index={props.listOfSpeciesIndex}/>
+            {props.annotateSbml && <CompoundSbmlNameChanger
+                listOfSpecies={props.listOfSpecies}
+                index={props.listOfSpeciesIndex}/>}
+            <CompoundKeggIdSelector
+                listOfSpecies={props.listOfSpecies}
+                index={props.listOfSpeciesIndex}/>
+            <CompoundBiggIdSelector
+                listOfSpecies={props.listOfSpecies}
+                index={props.listOfSpeciesIndex}/>
             <div className={"button-bar button-center"}>
                 <button className={"download-button circle-icon"}
                         onClick={() => handleRestore(props.defaultCompound)}>

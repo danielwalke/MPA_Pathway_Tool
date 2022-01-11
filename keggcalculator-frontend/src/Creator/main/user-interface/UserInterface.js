@@ -23,6 +23,9 @@ import StructureModal from "../../graph/double click node/StructureModal";
 import DeleteModal from "../../graph/click node/delete_rightClick/DeleteModal";
 import ReactionDetails from "../../specReaction/reaction/ReactionDetails";
 import ReactionInfo from "../../graph/click node/leftClick/ReactionInfo";
+import AnnotationWarningModal from "../../upload/annotationModal/AnnotationWarningModal";
+import AnnotationModal from "../../upload/annotationModal/AnnotationModal";
+import {convertReactionArray} from "../../upload/annotationModal/convertReactionarray";
 
 export const ToolTipBig = withStyles({
     tooltip: {
@@ -37,6 +40,7 @@ const UserInterface = () => {
     const [drawerOffSet, setDrawerOffset] = React.useState(0)
     const [coordinates, setCoordinates] = React.useState({x: 0, y: 0})
     const graphState = useSelector(state => state.graph)
+    const generalState = useSelector(state => state.general)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -112,6 +116,8 @@ const UserInterface = () => {
             <StructureModal/>
             <DeleteModal/>
             <ReactionDetails/>
+            {generalState.showAnnotationWarning && <AnnotationWarningModal/>}
+            {generalState.showAnnotationTable && <AnnotationModal/>}
             <Toolbar>
                 <ToolTipBig title={"Click to open the menu"} placement={"right"}>
                     <IconButton
@@ -146,7 +152,7 @@ const UserInterface = () => {
                             </IconButton>
                         </ToolTipBig>
                     </div>
-                    <div className={"uploadFilesContainer"}>
+                    <div>
                         <div>
                             <ToolTipBig title={"Click for entering the upload section"} placement={"right"}>
                                 <button className={"download-button"}
@@ -156,7 +162,7 @@ const UserInterface = () => {
                             <UploadModal setOpen={setOpen}/>
                         </div>
                     </div>
-                    <div className={"helpContainer"}>
+                    <div>
                         <ToolTipBig title={"Click for receiving help"} placement={"right"}>
                             <button className={"download-button"}
                                     onClick={() => {
@@ -176,7 +182,7 @@ const UserInterface = () => {
                         </ToolTipBig>
                         <NodeConfigurationModal/>
                     </div>
-                    <div className={"keggReaction"}>
+                    <div>
                         <ToolTipBig title={"Click for adding a reaction from KEGG"} placement={"right"}>
                             <button className={"download-button"}
                                     onClick={handleShowKeggReaction}>Add Kegg
@@ -184,7 +190,7 @@ const UserInterface = () => {
                             </button>
                         </ToolTipBig>
                     </div>
-                    <div className={"userReaction"}>
+                    <div>
                         <ToolTipBig title={"Click for defining your own reaction"} placement={"right"}>
                             <button className={"download-button"}
                                     onClick={handleShowSpecReaction}>Add User-defined
@@ -201,7 +207,7 @@ const UserInterface = () => {
                         </ToolTipBig>
                         <MultiReactionModal/>
                     </div>
-                    <div className={"downloadContainer"}>
+                    <div >
                         <div>
                             <ToolTipBig title={"Click for importing multiple reactions"} placement={"right"}>
                                 <button className={"download-button"}
@@ -210,6 +216,21 @@ const UserInterface = () => {
                             </ToolTipBig>
                         </div>
                         <DonwloadModal/>
+                    </div>
+                    <div>
+                        <div>
+                            <ToolTipBig title={"Annotate network compounds and reactions"} placement={"right"}>
+                                <button className={"download-button"}
+                                        onClick={() => {
+                                            dispatch({type: "ANNOTATESBML", payload: false})
+                                            convertReactionArray(generalState.reactionsInSelectArray, dispatch);
+                                            dispatch({type: "SHOWANNOTATIONTABLE", payload: true})
+                                            dispatch({type: "SHOWCOMPOUNDANNOTATION", payload: true})
+                                        }}>
+                                    Network Annotation
+                                </button>
+                            </ToolTipBig>
+                        </div>
                     </div>
                     {graphState.doubleClickNode.length > 0 &&
                     <div style={{width: "15vw", height: "25vh", overflow: "auto", margin: "3px"}}>

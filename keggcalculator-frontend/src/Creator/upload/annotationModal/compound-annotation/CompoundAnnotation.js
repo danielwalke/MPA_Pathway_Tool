@@ -1,15 +1,17 @@
-import {addCompoundsToReactions} from "../ReactionCompoundsAdder";
+import {addCompoundsToReactions} from "../../sbmlParser/ReactionCompoundsAdder";
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect, useState} from "react";
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableSortLabel} from "@material-ui/core";
 import CompoundDetailsContainer from "./CompoundDetailsContainer";
 import clonedeep from "lodash/cloneDeep";
-import {annotationIndicator} from "./AnnotationIndicator";
-import SearchField from "./SearchField";
-import {filterArray, getComparator, stableSort} from "./Sorting"
+import {annotationIndicator} from "../AnnotationIndicator";
+import SearchField from "../SearchField";
+import {filterArray, getComparator, stableSort} from "../Sorting"
 
 const submit = (state, dispatch) => {
     const newListOfReactions = addCompoundsToReactions(state, state.general.listOfReactions, state.general.listOfSpecies)
+
+    console.log(newListOfReactions)
 
     dispatch({type: "SETLISTOFREACTIONS", payload: newListOfReactions})
     dispatch({type: "SETLOADING", payload: false})
@@ -22,14 +24,18 @@ const CompoundTableRow = (props) => {
     return (
         <React.Fragment>
             <TableRow onClick={() => {
+                console.log(props.row.index)
                 props.handleRowClick(props.index, props.row.index)
             }}
                       sx={{'& > *': {borderBottom: 'unset'}}}
                       hover
                       selected={props.selectedRow === props.index}>
-                <TableCell component="th" scope="row">
-                    {props.row.sbmlId}
-                </TableCell>
+                {
+                    props.annotateSbml &&
+                    <TableCell component="th" scope="row">
+                        {props.row.sbmlId}
+                    </TableCell>
+                }
                 <TableCell>
                     {props.row.sbmlName}
                 </TableCell>
@@ -48,6 +54,8 @@ const CompoundAnnotation = () => {
     const dispatch = useDispatch()
     const state = useSelector(state => state)
 
+    const [columns, setColumns] = useState([])
+
     const [listOfSpecies, setListOfSpecies] = useState([])
     const [tableArray, setTableArray] = useState([])
     const [selectedRow, setSelectedRow] = useState(0)
@@ -55,18 +63,21 @@ const CompoundAnnotation = () => {
     const [previousLisOfCompounds, setPreviousLisOfCompounds] = useState([])
 
     const [order, setOrder] = useState('asc')
-    const [orderBy, setOrderBy] = useState('sbmlId')
+    const [orderBy, setOrderBy] = useState('sbmlName')
     const [filterBy, setFilterBy] = useState('')
-
-    const columns = [
-        {id: 'sbmlId', label: 'ID', minWidth: 20},
-        {id: 'sbmlName', label: 'name', minWidth: 100},
-        {id: 'keggId', label: 'KEGG', minWidth: 10},
-        {id: 'biggId', label: 'BIGG', minWidth: 10},
-    ]
 
     useEffect(() => {
         setPreviousLisOfCompounds(clonedeep(state.general.listOfSpecies))
+
+        const columns = [
+            {id: 'sbmlName', label: 'name', minWidth: 100},
+            {id: 'keggId', label: 'KEGG', minWidth: 10},
+            {id: 'biggId', label: 'BIGG', minWidth: 10},
+        ]
+        if (state.general.annotateSbml) {
+            columns.unshift({id: 'sbmlId', label: 'ID', minWidth: 20})
+        }
+        setColumns(columns)
     },[])
 
     useEffect(() => {
@@ -109,7 +120,7 @@ const CompoundAnnotation = () => {
                         <div className={"search-field-container"}>
                             <SearchField setFilterBy={setFilterBy}/>
                         </div>
-                        {tableArray && <TableContainer className={"table-container"}>
+                        {tableArray && columns.length > 0 && <TableContainer className={"table-container"}>
                             <Table size="small" stickyHeader aria-label="compound table">
                                 <TableHead>
                                     <TableRow>
@@ -142,7 +153,9 @@ const CompoundAnnotation = () => {
                                                               row={row}
                                                               index={tableIndex}
                                                               handleRowClick={handleRowClick}
-                                                              selectedRow={selectedRow}/>
+                                                              selectedRow={selectedRow}
+                                                              annotateSbml={state.general.annotateSbml}
+                                            />
                                         )
                                     })}
                                 </TableBody>
@@ -155,7 +168,9 @@ const CompoundAnnotation = () => {
                         {listOfSpecies.length > 0 &&
                         <CompoundDetailsContainer listOfSpeciesIndex={listOfSpeciesIndex}
                                                   listOfSpecies={listOfSpecies}
-                                                  defaultCompound={previousLisOfCompounds[listOfSpeciesIndex]}/>}
+                                                  defaultCompound={previousLisOfCompounds[listOfSpeciesIndex]}
+                                                  annotateSbml={state.general.annotateSbml}
+                        />}
                     </div>
                 </div>
             </div>

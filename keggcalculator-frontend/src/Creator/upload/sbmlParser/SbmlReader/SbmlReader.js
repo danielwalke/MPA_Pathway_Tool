@@ -12,9 +12,9 @@ import React from 'react';
 import UploadIcon from "../../../icons/uploadIconWhite.svg";
 import {onSBMLModuleFileChange} from "./ReaderFunctions";
 import {useDispatch, useSelector} from "react-redux";
-import AnnotationWarningModal from "../annotationModal/AnnotationWarningModal";
+import AnnotationWarningModal from "../../annotationModal/AnnotationWarningModal";
 import {ToolTipBig} from "../../../main/user-interface/UserInterface";
-import AnnotationModal from "../annotationModal/AnnotationModal";
+import AnnotationModal from "../../annotationModal/AnnotationModal";
 
 const SbmlReader = () => {
     const dispatch = useDispatch();
@@ -36,8 +36,6 @@ const SbmlReader = () => {
             <div className={"fileName"}>
                 {state.general.moduleFileNameSbml.length > 0 ? state.graph.moduleFileNameJson : "No file selected"}
             </div>
-            {state.general.showAnnotationWarning && <AnnotationWarningModal/>}
-            {state.general.showAnnotationTable && <AnnotationModal/>}
         </div>
     );
 };

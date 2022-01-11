@@ -35,7 +35,6 @@ const onRightClickNode = (e, nodeId, dispatch, graphState) => {
     e.preventDefault()
     dispatch({type: "SWITCHDELETEMODAL"})
     dispatch({type: "SETDELETENODE", payload: nodeId})
-
 }
 
 export const handleNodePositionChange = (graphData, x, y, nodeId, dispatch) => {
@@ -67,19 +66,6 @@ export const handleNodePositionChange = (graphData, x, y, nodeId, dispatch) => {
     dispatch({type: "SET_FLUX_GRAPH", payload: fluxGraphData})
 }
 
-export const handleZoomChange = (dispatch, prevZoom, nextZoom) => {
-    console.log(nextZoom)
-    if(prevZoom !== nextZoom) {
-        dispatch({type: "SET_CURRENT_ZOOM", payload: nextZoom})
-    }
-}
-
-export const setGraphPosition = (dispatch) => {
-    const graphElement = document.getElementById('graph-graph-container-zoomable')
-    const transformValue = graphElement ? graphElement.getAttribute('transform') : null
-    transformValue && dispatch({type: "SET_CURRENT_TRANSFORMATION", payload: transformValue})
-}
-
 const GraphVisualization = () => {
     const state = useSelector(state => state)
     const graphState = useSelector(state => state.graph)
@@ -87,20 +73,6 @@ const GraphVisualization = () => {
     const dispatch = useDispatch()
 
     console.log(state)
-
-    // failed attempt to set graph position
-    // useEffect(() => {
-    //     return(
-    //         () => setGraphPosition()
-    //     )
-    // },[graphState.data])
-    //
-    // useEffect(() => {
-    //     const graphElement = document.getElementById('graph-graph-container-zoomable')
-    //     if (graphElement && graphState.currentTransformation) {
-    //         graphElement.setAttribute('transform', graphState.currentTransformation)
-    //     }
-    // },[graphState.currentTransformation])
 
     useEffect(() => {
         myConfig.node.labelProperty = labelCallbackNodes

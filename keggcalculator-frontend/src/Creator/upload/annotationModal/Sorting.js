@@ -26,8 +26,6 @@ export function stableSort(array, comparator) {
 
     const sortedArray = stabilizedThis.map((el) => el[0])
 
-    console.log(sortedArray)
-
     return sortedArray;
 }
 

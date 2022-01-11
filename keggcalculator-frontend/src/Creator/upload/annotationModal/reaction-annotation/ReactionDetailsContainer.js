@@ -9,8 +9,8 @@ import EcSelector from "./ECSelector";
 import KSelector from "./KSelector";
 import RestoreIcon from "@material-ui/icons/Restore";
 import BiggReactionSelector from "./BiggReactionSelector";
-import CompoundSelector from "./CompoundSelector";
-import "./AnnotationTable.css"
+import CompoundSelector from "../compound-annotation/CompoundSelector";
+import "../AnnotationTable.css"
 import "../../../ModalStyles/Modals.css"
 
 const CreateCompoundString = (compoundObject) => {
@@ -33,8 +33,6 @@ const ReactionDetailsContainer = (props) => {
     const dispatch = useDispatch()
 
     const listOfReactions = state.general.listOfReactions
-
-    console.log(props.index)
 
     useEffect(() => {
         // retrieve reaction information from compounds when the selected row is changed
@@ -79,20 +77,25 @@ const ReactionDetailsContainer = (props) => {
     return (
         <div>
             <div className={"detail-view"}>
-                <SbmlNameChanger listOfReactions={listOfReactions}
-                                 index={props.index}/>
+                {props.annotateSbml &&
+                    <SbmlNameChanger
+                        listOfReactions={listOfReactions}
+                        index={props.index}/>}
                 <ReactionKeggIdSelector listOfReactions={listOfReactions}
                                         index={props.index}/>
                 <BiggReactionSelector listOfReactions={listOfReactions}
                                       index={props.index}/>
+                {props.annotateSbml &&
                 <CompoundSelector listOfReactions={listOfReactions}
                                   index={props.index}
                                   propName={"substrates"}
-                                  label={"Substrates"}/>
+                                  label={"Substrates"}
+                                  annotateSbml={props.annotateSbml}/>}
+                {props.annotateSbml &&
                 <CompoundSelector listOfReactions={listOfReactions}
                                   index={props.index}
                                   propName={"products"}
-                                  label={"Products"}/>
+                                  label={"Products"}/>}
                 <EcSelector listOfReactions={listOfReactions}
                             index={props.index}/>
                 <KSelector listOfReactions={listOfReactions}

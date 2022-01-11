@@ -100,6 +100,17 @@ function getCompartment(listOfCompartments) {
     return sbmlToMpaCompartments
 }
 
+export function createSpeciesObject(sbmlId, sbmlName, keggId, biggId, compartment, index) {
+    return {
+        sbmlId: sbmlId,
+        sbmlName: sbmlName,
+        keggId: keggId,
+        biggId: biggId,
+        compartment: compartment,
+        index: index,
+    }
+}
+
 const readSpecies = (dispatch, sbml, listOfCompartments) => {
     const listOfSpeciesElement = sbml.getElementsByTagName("listOfSpecies")[0]
     const compartmentMapping = getCompartment(listOfCompartments)
@@ -122,14 +133,12 @@ const readSpecies = (dispatch, sbml, listOfCompartments) => {
         if (!listOfCompartments.includes(compartment)) {throw 'compartment not contained in listOfCompartments!'}
 
         return (
-            {
-                sbmlId: sbmlId,
-                sbmlName: sbmlName,
-                keggId: keggId,
-                biggId: biggMetaboliteSplitArray[biggMetaboliteSplitArray.length - 1],
-                compartment: compartmentMapping.get(compartment),
-                index: index,
-            }
+            createSpeciesObject(
+                sbmlId,
+                sbmlName,
+                keggId,
+                biggMetaboliteSplitArray[biggMetaboliteSplitArray.length - 1],
+                compartmentMapping.get(compartment), index)
         )
     })
     // console.log(listOfSpecies)
@@ -222,6 +231,33 @@ function mergeReactionLists(listOfUserReations, listOfNewUserReactions, listOfRe
     return [...listOfReactions, ...listOfUserReations, ...listOfNewUserReactions]
 }
 
+export function createReactionObject(
+    sbmlId, sbmlName, keggId, ecNumbers, koNumbers, substrates, products, reversible, taxonomy, biggReaction,
+    upperBound, lowerBound, objectiveCoefficient, exchangeReaction, index, opacity, x, y, isForwardReaction) {
+
+    return {
+            sbmlId: sbmlId,
+            sbmlName: sbmlName,
+            keggId: keggId,
+            ecNumbers: ecNumbers,
+            koNumbers: koNumbers,
+            substrates: substrates,
+            products: products,
+            reversible: reversible,
+            isForwardReaction: isForwardReaction,
+            taxonomy: taxonomy,
+            biggReaction: biggReaction,
+            upperBound: upperBound,
+            lowerBound: lowerBound,
+            objectiveCoefficient: objectiveCoefficient,
+            exchangeReaction: exchangeReaction,
+            index: index,
+            opacity: opacity,
+            x: x,
+            y: y,
+        }
+}
+
 //read reactions from sbml file
 const readReactions = (dispatch, sbml, globalTaxa, listOfObjectives, listOfParameters) => {
     const listOfReactionsElement = sbml.getElementsByTagName("listOfReactions")[0]
@@ -229,6 +265,7 @@ const readReactions = (dispatch, sbml, globalTaxa, listOfObjectives, listOfParam
     const usedIndices = new Set() // indices used in sbml ids of user reactions from sbml
     const listOfNewUserReactions = [] // sbml reactions that are not annotated and dont possess sbmlIds beginning with U
     const listOfReactions = [] // reactions with kegg id
+
     listOfReactionsElement.children.forEach((reaction, index) => {
         const sbmlId = replaceXmlCharacters(reaction.attributes.id);
         const isUserReaction = checkforUserReaction(sbmlId)
@@ -276,26 +313,29 @@ const readReactions = (dispatch, sbml, globalTaxa, listOfObjectives, listOfParam
             [] : listOfReactantsElement.getElementsByTagName("speciesReference")
         const substrates = getSpeciesFromReaction(speciesRefsElementSubstrates)
 
-        const listOfProductsElement = !reaction.getElementsByTagName("listOfProducts")[0] ? {} : reaction.getElementsByTagName("listOfProducts")[0] //I think in the {} should be speciesReference:[]?
+        const listOfProductsElement = !reaction.getElementsByTagName("listOfProducts")[0] ? [] : reaction.getElementsByTagName("listOfProducts")[0]
         const speciesRefsElementProducts = !reaction.getElementsByTagName("listOfProducts")[0] ? [] : listOfProductsElement.getElementsByTagName("speciesReference")
         const products = getSpeciesFromReaction(speciesRefsElementProducts);
 
-        const newReaction = {
-            sbmlId: sbmlId,
-            sbmlName: sbmlName,
-            keggId: keggId,
-            ecNumbers: ecNumbers,
-            koNumbers: koNumbers,
-            substrates: substrates,
-            products: products,
-            reversible: reversible,
-            taxonomy: getTaxonomyFromSbml(annotations, globalTaxa),
-            biggReaction: biggReactionSplitArray[biggReactionSplitArray.length - 1],
-            upperBound: upperBound,
-            lowerBound: lowerBound,
-            objectiveCoefficient: objectiveCoefficient,
-            index: index,
-        };
+        const newReaction = createReactionObject(
+            sbmlId,
+            sbmlName,
+            keggId,
+            ecNumbers,
+            koNumbers,
+            substrates,
+            products,
+            reversible,
+            getTaxonomyFromSbml(annotations, globalTaxa),
+            biggReactionSplitArray[biggReactionSplitArray.length - 1],
+            upperBound,
+            lowerBound,
+            objectiveCoefficient,
+            false,
+            index
+        );
+
+        console.log(newReaction)
 
         if (isUserReaction) {
             // user reaction from sbml
@@ -378,6 +418,9 @@ const findGlobalTaxa = (sbml) => {
 
 //input complete state -> all states from index
 export const onSBMLModuleFileChange = async (event, dispatch, state) => {
+
+    dispatch({type: "ANNOTATESBML", payload: true})
+
     let file = await event.target.files[0];
     let reader = new FileReader()
     reader.readAsText(file)

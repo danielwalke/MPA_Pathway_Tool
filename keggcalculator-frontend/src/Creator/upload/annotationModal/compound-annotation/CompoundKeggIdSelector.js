@@ -46,7 +46,6 @@ const CompoundKeggIdSelector = (props) => {
                     const newListOfSpecies = props.listOfSpecies
                     value ? newListOfSpecies[props.index].keggId = value.substring(0, 6) : newListOfSpecies[props.index].keggId = ""
                     dispatch({type: "SETLISTOFSPECIES", payload: newListOfSpecies})
-                    console.log(value)
                 }}
                 renderInput={params => (
                     <TextField
