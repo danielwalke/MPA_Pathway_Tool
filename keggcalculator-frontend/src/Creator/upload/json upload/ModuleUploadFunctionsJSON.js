@@ -105,6 +105,7 @@ const addReactionAbbreviations = (graphState, reaction) => {
 }
 
 const addCompoundToData = (compound, reaction, reactionNode, links, nodes, graphState, isSubstrate) => {
+    isSubstrate = isSubstrate === reaction.isForwardReaction
     const compoundNode = createNode(compound.name, COMPOUND_NODE_COLOR, COMPOUND_NODE_SYMBOL, +compound.x, +compound.y, compound.opacity, reaction.reversible)
     const compoundLink = isSubstrate ? createLink(compound.name, reaction.reactionName, compound.opacity, false) :
         createLink(reaction.reactionName, compound.name, compound.opacity, false)

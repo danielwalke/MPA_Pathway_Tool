@@ -115,7 +115,7 @@ const ReactionAnnotation = () => {
             dispatch({type: "SET_LIST_OF_SPECIES_GLYPHS", payload: []})
             dispatch({type: "SET_LIST_OF_REACTION_GLYPHS", payload: []})
             dispatch({type: "SETLISTOFSPECIES", payload: []})
-            dispatch({type: "SETLISTOFReactions", payload: []})
+            dispatch({type: "SETLISTOFREACTIONS", payload: []})
             dispatch({type: "SETLOADING", payload: false})
             dispatch({type: "SWITCHUPLOADMODAL"})
         }

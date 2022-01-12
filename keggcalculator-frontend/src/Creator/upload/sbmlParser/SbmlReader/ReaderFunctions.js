@@ -100,7 +100,7 @@ function getCompartment(listOfCompartments) {
     return sbmlToMpaCompartments
 }
 
-export function createSpeciesObject(sbmlId, sbmlName, keggId, biggId, compartment, index) {
+export function createSpeciesObject(sbmlId, sbmlName, keggId, biggId, compartment, index, x, y, opacity, abbreviation) {
     return {
         sbmlId: sbmlId,
         sbmlName: sbmlName,
@@ -108,6 +108,10 @@ export function createSpeciesObject(sbmlId, sbmlName, keggId, biggId, compartmen
         biggId: biggId,
         compartment: compartment,
         index: index,
+        x: x,
+        y: y,
+        opacity: opacity,
+        abbreviation: abbreviation
     }
 }
 
@@ -233,7 +237,8 @@ function mergeReactionLists(listOfUserReations, listOfNewUserReactions, listOfRe
 
 export function createReactionObject(
     sbmlId, sbmlName, keggId, ecNumbers, koNumbers, substrates, products, reversible, taxonomy, biggReaction,
-    upperBound, lowerBound, objectiveCoefficient, exchangeReaction, index, opacity, x, y, isForwardReaction) {
+    upperBound, lowerBound, objectiveCoefficient, exchangeReaction, index, opacity, x, y, isForwardReaction,
+    abbreviation) {
 
     return {
             sbmlId: sbmlId,
@@ -255,6 +260,7 @@ export function createReactionObject(
             opacity: opacity,
             x: x,
             y: y,
+            abbreviation: abbreviation
         }
 }
 
@@ -332,10 +338,8 @@ const readReactions = (dispatch, sbml, globalTaxa, listOfObjectives, listOfParam
             lowerBound,
             objectiveCoefficient,
             false,
-            index
+            index,
         );
-
-        console.log(newReaction)
 
         if (isUserReaction) {
             // user reaction from sbml

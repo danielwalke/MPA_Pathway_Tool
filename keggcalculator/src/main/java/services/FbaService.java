@@ -103,7 +103,7 @@ public class FbaService {
 		try {
 						
 			ProcessBuilder builder = new ProcessBuilder(Arrays.asList(
-					"C:\\Python39\\python",
+					"python",
 					pythonPath,
 					networkDir,
 					pythonResultDir));

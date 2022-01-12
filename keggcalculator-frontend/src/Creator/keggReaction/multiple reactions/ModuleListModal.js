@@ -30,6 +30,7 @@ const ModuleListModal = () => {
     const graphState = useSelector(state => state.graph)
     const dispatch = useDispatch()
     const classes = useStyles()
+
     const handleAutoChange = (e) => {
         const {value} = e.target
         dispatch({type: "SETMODULE", payload: value})

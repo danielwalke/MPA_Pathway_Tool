@@ -18,7 +18,11 @@ export async function convertReactionArray(reactionArray, dispatch) {
                 keggId,
                 compound.biggId ? compound.biggId : "",
                 compound.compartment,
-                undefined
+                undefined,
+                compound.x,
+                compound.y,
+                compound.opacity,
+                compound.abbreviation
             )
 
             speciesMap.set(compound.name, speciesObject)
@@ -45,7 +49,9 @@ export async function convertReactionArray(reactionArray, dispatch) {
             index,
             reaction.opacity,
             reaction.x,
-            reaction.y
+            reaction.y,
+            reaction.isForwardReaction,
+            reaction.abbreviation
         ))
     })
 

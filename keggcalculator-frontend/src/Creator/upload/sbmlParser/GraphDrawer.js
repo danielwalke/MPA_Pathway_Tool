@@ -38,7 +38,7 @@ export const setReactionsAndCompoundsInStore = (state, listOfReactions, dispatch
         }
 
         r._reversible = typeof reaction.reversible !== "undefined" ? reaction.reversible : true
-        r._abbreviation = reaction.sbmlName
+        r._abbreviation = reaction.abbreviation ? reaction.abbreviation : reaction.sbmlName
         r._taxonomy = reaction.taxonomy
         r._koList = reaction.koNumbers
         r._ecList = reaction.ecNumbers
@@ -68,6 +68,9 @@ export const setReactionsAndCompoundsInStore = (state, listOfReactions, dispatch
 
 const getReactions = (reactions) => {
     const reactionObjects = reactions.map(r => {
+
+        console.log(r.isForwardReaction)
+
         const reaction = {}
         reaction.reactionId = r._reactionName.substring(r._reactionName.length - 6, r._reactionName.length)
         reaction.reactionName = r._reactionName
@@ -75,7 +78,7 @@ const getReactions = (reactions) => {
         reaction.ecNumbersString = r._ecList
         reaction.taxa = r._taxonomy
         reaction.reversible = r._reversible
-        reaction.isForwardReaction = r.isForwardReaction ? r.isForwardReaction : true
+        reaction.isForwardReaction = typeof r.isForwardReaction !== "undefined" ? r.isForwardReaction : true
         reaction.opacity = r._opacity
         reaction.abbreviation = r._abbreviation
         reaction.x = parseFloat(r._x)
@@ -114,7 +117,9 @@ const getReactions = (reactions) => {
             })
         })
 
-        console.log(reaction.stochiometryProductsString)
+        reaction.stochiometrySubstratesString = Object.fromEntries(reaction.stochiometrySubstratesString)
+        reaction.stochiometryProductsString = Object.fromEntries(reaction.stochiometryProductsString)
+
 
         if (reaction.products.length === 0 &&
             reaction.substrates.length === 1 &&
@@ -138,6 +143,7 @@ const getSbmlCompound = (sbmlCompound, typeOfCompound, annotateSbml, reactionGly
 
     let compoundName
     let coordinates
+    let opacity
 
     const speciesGlyph = typeof reactionGlyph === "object" && reactionGlyph !== null ?
         getSpeciesGlyph(sbmlCompound.sbmlId, reactionGlyph, speciesGlyphs) : null
@@ -159,6 +165,7 @@ const getSbmlCompound = (sbmlCompound, typeOfCompound, annotateSbml, reactionGly
         compoundName = sbmlCompound.sbmlName.substring(0, sbmlCompound.sbmlName.length - 7) + " " + sbmlCompound.keggId
         coordinates = typeof sbmlCompound.x !== "undefined" && typeof sbmlCompound.y !== "undefined" ?
             {x: sbmlCompound.x, y: sbmlCompound.y} : {x: 0, y: 0}
+        opacity = sbmlCompound.opacity
     }
 
     const compound = new Compound(compoundName)
@@ -166,10 +173,12 @@ const getSbmlCompound = (sbmlCompound, typeOfCompound, annotateSbml, reactionGly
     compound._id = sbmlCompound.keggId
     compound._x = coordinates.x
     compound._y = coordinates.y
-    compound._abbreviation = sbmlCompound.sbmlName
+    compound._abbreviation = sbmlCompound.abbreviation ? sbmlCompound.abbreviation : sbmlCompound.sbmlName
     compound._typeOfCompound = typeOfCompound
     compound._stoichiometry = sbmlCompound.stoichiometry
-    compound._opacity = typeof speciesGlyph === "object" && speciesGlyph !== null ? getCompoundOpacity(speciesGlyph) : 1
+    compound._opacity = sbmlCompound.opacity ?
+        sbmlCompound.opacity : typeof speciesGlyph === "object" && speciesGlyph !== null ?
+            getCompoundOpacity(speciesGlyph) : 1
     compound._biggId = sbmlCompound.biggId
     compound._compartment = sbmlCompound.compartment
     return compound
