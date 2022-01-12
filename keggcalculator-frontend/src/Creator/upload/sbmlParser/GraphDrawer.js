@@ -69,8 +69,6 @@ export const setReactionsAndCompoundsInStore = (state, listOfReactions, dispatch
 const getReactions = (reactions) => {
     const reactionObjects = reactions.map(r => {
 
-        console.log(r.isForwardReaction)
-
         const reaction = {}
         reaction.reactionId = r._reactionName.substring(r._reactionName.length - 6, r._reactionName.length)
         reaction.reactionName = r._reactionName

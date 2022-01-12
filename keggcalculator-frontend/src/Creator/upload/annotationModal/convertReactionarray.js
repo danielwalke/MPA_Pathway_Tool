@@ -17,7 +17,7 @@ export async function convertReactionArray(reactionArray, dispatch) {
                 compound.name,
                 keggId,
                 compound.biggId ? compound.biggId : "",
-                compound.compartment,
+                compound.compartment ? compound.compartment : "cytosol",
                 undefined,
                 compound.x,
                 compound.y,

@@ -12,6 +12,8 @@ import BiggReactionSelector from "./BiggReactionSelector";
 import CompoundSelector from "../compound-annotation/CompoundSelector";
 import "../AnnotationTable.css"
 import "../../../ModalStyles/Modals.css"
+import ExchangeReactionCheckBox from "./ExchangeReactionCheckBox";
+import FBASettingsForm from "./FBASettiningsForm";
 
 const CreateCompoundString = (compoundObject) => {
     /**
@@ -85,21 +87,28 @@ const ReactionDetailsContainer = (props) => {
                                         index={props.index}/>
                 <BiggReactionSelector listOfReactions={listOfReactions}
                                       index={props.index}/>
-                {props.annotateSbml &&
                 <CompoundSelector listOfReactions={listOfReactions}
                                   index={props.index}
                                   propName={"substrates"}
                                   label={"Substrates"}
-                                  annotateSbml={props.annotateSbml}/>}
-                {props.annotateSbml &&
+                                  annotateSbml={props.annotateSbml}/>
                 <CompoundSelector listOfReactions={listOfReactions}
                                   index={props.index}
                                   propName={"products"}
-                                  label={"Products"}/>}
+                                  label={"Products"}/>
                 <EcSelector listOfReactions={listOfReactions}
                             index={props.index}/>
                 <KSelector listOfReactions={listOfReactions}
                            index={props.index}/>
+                <div className={"separator-line"} style={{"margin":"0"}}>
+                    FBA Settings
+                </div>
+                <ExchangeReactionCheckBox
+                    listOfReactions={listOfReactions}
+                    index={props.index}/>
+                <FBASettingsForm
+                    listOfReactions={listOfReactions}
+                    index={props.index}/>
             </div>
             <div className={"button-bar button-center"}>
                 <button className={"download-button circle-icon"}

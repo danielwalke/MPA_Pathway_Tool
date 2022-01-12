@@ -319,8 +319,10 @@ const readReactions = (dispatch, sbml, globalTaxa, listOfObjectives, listOfParam
             [] : listOfReactantsElement.getElementsByTagName("speciesReference")
         const substrates = getSpeciesFromReaction(speciesRefsElementSubstrates)
 
-        const listOfProductsElement = !reaction.getElementsByTagName("listOfProducts")[0] ? [] : reaction.getElementsByTagName("listOfProducts")[0]
-        const speciesRefsElementProducts = !reaction.getElementsByTagName("listOfProducts")[0] ? [] : listOfProductsElement.getElementsByTagName("speciesReference")
+        const listOfProductsElement = !reaction.getElementsByTagName("listOfProducts")[0] ?
+            [] : reaction.getElementsByTagName("listOfProducts")[0]
+        const speciesRefsElementProducts = !reaction.getElementsByTagName("listOfProducts")[0] ?
+            [] : listOfProductsElement.getElementsByTagName("speciesReference")
         const products = getSpeciesFromReaction(speciesRefsElementProducts);
 
         const newReaction = createReactionObject(
@@ -337,7 +339,7 @@ const readReactions = (dispatch, sbml, globalTaxa, listOfObjectives, listOfParam
             upperBound,
             lowerBound,
             objectiveCoefficient,
-            false,
+            products.length === 0,
             index,
         );
 

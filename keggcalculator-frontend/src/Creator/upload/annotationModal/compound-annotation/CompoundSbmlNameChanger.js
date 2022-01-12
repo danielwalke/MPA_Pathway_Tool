@@ -13,7 +13,6 @@ const CompoundSbmlNameChanger = (props) => {
                    onChange={(e) => {
                        const newListOfSpecies = props.listOfSpecies
                        newListOfSpecies[props.index].sbmlName = e.target.value
-                       console.log(newListOfSpecies)
                        dispatch({type: "SETLISTOFSPECIES", payload: newListOfSpecies})
                    }}/>
     );

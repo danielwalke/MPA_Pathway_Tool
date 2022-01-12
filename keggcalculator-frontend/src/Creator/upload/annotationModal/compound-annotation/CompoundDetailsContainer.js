@@ -7,6 +7,7 @@ import CompoundKeggIdSelector from "./CompoundKeggIdSelector";
 import CompoundBiggIdSelector from "./CompoundBiggIdSelector";
 import RestoreIcon from "@material-ui/icons/Restore";
 import {useDispatch} from "react-redux";
+import CompoundCompartmentSelector from "./CompoundCompartmentSelector";
 
 const CompoundDetailsContainer = (props) => {
     /**
@@ -23,6 +24,7 @@ const CompoundDetailsContainer = (props) => {
         newListOfSpecies[props.listOfSpeciesIndex].sbmlName = defaultCompound.sbmlName
         newListOfSpecies[props.listOfSpeciesIndex].keggId = defaultCompound.keggId
         newListOfSpecies[props.listOfSpeciesIndex].biggId = defaultCompound.biggId
+        newListOfSpecies[props.listOfSpeciesIndex].compartment = defaultCompound.compartment
 
         dispatch({type: "SETLISTOFSPECIES", payload: newListOfSpecies})
     }
@@ -38,6 +40,12 @@ const CompoundDetailsContainer = (props) => {
             <CompoundBiggIdSelector
                 listOfSpecies={props.listOfSpecies}
                 index={props.listOfSpeciesIndex}/>
+            <CompoundCompartmentSelector
+                listOfSpecies={props.listOfSpecies}
+                index={props.listOfSpeciesIndex}
+                listOfCompartments={props.listOfCompartments}
+            />
+
             <div className={"button-bar button-center"}>
                 <button className={"download-button circle-icon"}
                         onClick={() => handleRestore(props.defaultCompound)}>

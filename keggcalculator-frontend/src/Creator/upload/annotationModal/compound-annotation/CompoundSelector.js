@@ -5,8 +5,13 @@ import {Autocomplete} from "@material-ui/lab";
 import Chip from "@material-ui/core/Chip";
 import AddIcon from "@material-ui/icons/Add";
 
-export const getSpeciesObject = (listOfSpecies, compoundSbmlId) => {
-    return listOfSpecies.find(compound => compoundSbmlId === compound.sbmlId)
+export const getSpeciesObject = (listOfSpecies, compoundSbmlId, compoundSbmlName) => {
+    if (compoundSbmlId) {
+        return listOfSpecies.find(compound => compoundSbmlId === compound.sbmlId)
+    } else {
+        return listOfSpecies.find(compound => compoundSbmlName === compound.sbmlName)
+    }
+
 }
 
 export const checkForCompound = (compoundList, compoundObj) => {
@@ -16,8 +21,9 @@ export const checkForCompound = (compoundList, compoundObj) => {
      */
 
     let hasCompound
+
     for (const compound of compoundList) {
-        if (compound.sbmlId === compoundObj.sbmlId) {
+        if (compound.sbmlId === compoundObj.sbmlId || compound.sbmlName == compoundObj.sbmlName) {
             hasCompound = true
             break
         } else {
@@ -47,13 +53,22 @@ const CompoundSelector = (props) => {
         // set compounds that are contained in the reaction
         const compoundIds = []
         props.listOfReactions[props.index][`${props.propName}`].forEach(compound => {
-            compoundIds.push(compound.stoichiometry + " " + compound.sbmlId + "  |  " + compound.sbmlName)
+            if (props.annotateSbml) {
+                compoundIds.push(compound.stoichiometry + " " + compound.sbmlId + "  |  " + compound.sbmlName)
+            } else {
+                compoundIds.push(compound.stoichiometry + " " + compound.sbmlName)
+            }
+
         })
         setCompounds(compoundIds)
 
         // set compounds options from listOfSpecies
         setOptions(listOfSpecies.map(compound => {
-            return compound.sbmlId + "  |  " + compound.sbmlName
+            if (props.annotateSbml) {
+                return compound.sbmlId + "  |  " + compound.sbmlName
+            } else {
+                return compound.sbmlName
+            }
         }))
 
     }, [props.index, props.listOfReactions[props.index][`${props.propName}`]])
@@ -62,10 +77,17 @@ const CompoundSelector = (props) => {
         const newListOfReactions = props.listOfReactions
         const newCompoundList = newListOfReactions[props.index][`${props.propName}`]
 
+
         // test if selection was made and stoichiometry isn't 0
         if (compound && stoichiometry.toInteger !== 0) {
-            const sbmlId = compound.split("  |  ")[0]
-            const compoundObj = getSpeciesObject(listOfSpecies, sbmlId)
+            let sbmlId
+            if (props.annotateSbml) {
+                sbmlId = compound.split("  |  ")[0]
+            } else {
+                sbmlId = undefined
+            }
+
+            const compoundObj = getSpeciesObject(listOfSpecies, sbmlId, compound)
 
             // test if compound isn't included already
             if (!checkForCompound(newCompoundList, compoundObj)) {
@@ -93,9 +115,10 @@ const CompoundSelector = (props) => {
             </div>
             <div className={"chip-container"}>
                 {compounds.map(
-                    comp => {
+                    (comp, index) => {
                         return (
                             <Chip size="small"
+                                  key={index}
                                   label={comp}
                                   onDelete={() => {
                                       // deletion of compounds
@@ -106,7 +129,10 @@ const CompoundSelector = (props) => {
                                           compound =>
                                               compound.stoichiometry +
                                               " " + compound.sbmlId +
-                                              "  |  " + compound.sbmlName === comp)
+                                              "  |  " + compound.sbmlName === comp ||
+                                              compound.stoichiometry +
+                                              " " + compound.sbmlName === comp
+                                      )
 
                                       if (arrIndex > -1) {
                                           newCompounds.splice(arrIndex, 1)

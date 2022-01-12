@@ -168,6 +168,7 @@ const CompoundAnnotation = () => {
                         {listOfSpecies.length > 0 &&
                         <CompoundDetailsContainer listOfSpeciesIndex={listOfSpeciesIndex}
                                                   listOfSpecies={listOfSpecies}
+                                                  listOfCompartments={state.general.listOfCompartments}
                                                   defaultCompound={previousLisOfCompounds[listOfSpeciesIndex]}
                                                   annotateSbml={state.general.annotateSbml}
                         />}
