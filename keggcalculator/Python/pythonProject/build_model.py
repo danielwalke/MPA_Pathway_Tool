@@ -1,4 +1,6 @@
 import json
+import pprint
+
 import cobra
 
 
@@ -17,6 +19,9 @@ def build_model(temp_model_path: str):
     model_dict = json.loads(model_string)
     metabolites_array = model_dict['metabolites']
     reactions_array = model_dict['reactions']
+
+    pprint.pprint(reactions_array)
+    pprint.pprint(reactions_array)
 
     # initialize model
     model = cobra.Model("model_name")

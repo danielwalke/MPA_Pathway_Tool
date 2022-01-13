@@ -10,6 +10,10 @@ export default function FluxAnalysisMain(){
     const [mouseCoordinates, setMouseCoordinates] = useState({x: "", y: ""})
 
     useEffect(() => {
+        console.log(fluxState)
+    },[fluxState])
+
+    useEffect(() => {
         generalState.reactionsInSelectArray.forEach(reaction => {
             // initialize reactions that don't have required properties
             reaction.lowerBound = typeof reaction.lowerBound !== "undefined" ?
@@ -28,7 +32,7 @@ export default function FluxAnalysisMain(){
              )}}
         >
             <div className={"main"}>
-                <FluxAnalysisUserInterface />
+                <FluxAnalysisUserInterface reactionArray={generalState.reactionsInSelectArray}/>
                 <FluxAnalysisGraphVisualization />
                 {
                     fluxState.showGraphModal &&

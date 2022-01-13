@@ -21,12 +21,12 @@ export default function DownloadFbaResults() {
     return(
         <div>
             <ToolTipBig title={"Download results of FVA and FBA as .csv"} placement={"right"}>
-                <button
-                    disabled={!fluxState.flux}
-                    className={"download-button"}
-                    onClick={() => handleFbaResultDownload()}>
-                    Download Results
-                </button>
+                    <button
+                        disabled={!fluxState.flux}
+                        className={"download-button"}
+                        onClick={() => handleFbaResultDownload()}>
+                        Download Results
+                    </button>
             </ToolTipBig>
         </div>
     )

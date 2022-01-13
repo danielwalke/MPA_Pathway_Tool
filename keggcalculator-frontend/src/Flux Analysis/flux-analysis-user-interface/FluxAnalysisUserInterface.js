@@ -15,10 +15,21 @@ import {endpoint_postNetworkForFBA} from "../../App Configurations/RequestURLCol
 import FluxBalanceAnalysis from "../flux-analysis-fba/FluxBalanceAnalysis";
 import Loading from "../../Creator/loading/Loading";
 import DownloadFbaResults from "../flux-analysis-download/DownloadFbaResults";
+import {FBAWithAutopacmen} from "../flux-analysis-fba/FBAWithAutopacmen";
 
-export default function FluxAnalysisUserInterface() {
+
+function checkReactionArray(reactionArray, setDisableOptimizeButton) {
+    if (typeof reactionArray === "undefined" || reactionArray.length === 0) {
+        setDisableOptimizeButton(true)
+    } else {
+        setDisableOptimizeButton(false)
+    }
+}
+
+export default function FluxAnalysisUserInterface(props) {
     const [open, setOpen] = useState(true)
     const [drawerOffSet, setDrawerOffset] = useState(0)
+    const [disableOptimizeButton, setDisableOptimizeButton] = useState(true)
 
     const theme = useTheme()
     const useStyles = makeStyles({
@@ -36,6 +47,10 @@ export default function FluxAnalysisUserInterface() {
         const tabHeight = document.getElementsByClassName("MuiTabs-root")[0].clientHeight
         setDrawerOffset(tabHeight + headerHeight)
     }, [])
+
+    useEffect(() => {
+        checkReactionArray(props.reactionArray, setDisableOptimizeButton);
+    },[props.reactionArray])
 
     return(
         <div className={"interface"}>
@@ -65,7 +80,12 @@ export default function FluxAnalysisUserInterface() {
                             </IconButton>
                         </ToolTipBig>
                     </div>
-                    <FluxBalanceAnalysis />
+                    <FluxBalanceAnalysis
+                        disableOptimizeButton={disableOptimizeButton}
+                        setDisableOptimizeButton={setDisableOptimizeButton}/>
+                    <FBAWithAutopacmen
+                        disableOptimizeButton={disableOptimizeButton}
+                        setDisableOptimizeButton={setDisableOptimizeButton}/>
                     <DownloadFbaResults />
                 </div>
             </Drawer>

@@ -67,12 +67,9 @@ export const handleNodePositionChange = (graphData, x, y, nodeId, dispatch) => {
 }
 
 const GraphVisualization = () => {
-    const state = useSelector(state => state)
     const graphState = useSelector(state => state.graph)
     const keggState = useSelector(state => state.keggReaction)
     const dispatch = useDispatch()
-
-    console.log(state)
 
     useEffect(() => {
         myConfig.node.labelProperty = labelCallbackNodes

@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import "./Sample.css"
 import {filterTaxon} from "./TaxonomyFilter";
 import {ToolTipBig} from "../main/user-interface/UserInterface";
+import {getKeggId} from "../../Flux Analysis/services/CreateFbaGraphData";
 
 
 const matchKoOrEc = (proteinKoAndEc, reactionKoNumbers, reactionEcNumbers) => {
@@ -10,55 +11,30 @@ const matchKoOrEc = (proteinKoAndEc, reactionKoNumbers, reactionEcNumbers) => {
     return filteredNumbers.length > 0
 }
 
-const anyItemInArray = (items, array) => {
-    const isAnyItemInArray = items.filter(item => array.includes(item)).length > 0
-    return isAnyItemInArray
+const doesArrayIncludeAnyItem = (items, array) => {
+    return items.filter(item => array.includes(item)).length > 0
 }
-//color nodes depending on data of MPA file
-const handleSample = (e, index, state, dispatch) => {
-    dispatch({type: "SETLOADING", payload: true})
-    console.time("calc")
-    // e.preventDefault()
-    const proteins = Array.from(state.mpaProteins.proteinSet)
-    const numbers = []
-    state.general.reactionsInSelectArray.map(r => r.koNumbersString.map(ko => numbers.push(ko)))
-    state.general.reactionsInSelectArray.map(r => r.ecNumbersString.map(ec => numbers.push(ec)))
-    // const samples = state.mpaProteins.sampleNames.map((sampleName, index)=>{
-    const metaProteins = []
-    proteins.map(protein => {
-        if (anyItemInArray(Array.from(protein.koAndEcSet), numbers)) {
-            metaProteins.push({
-                name: protein.name,
-                taxa: protein.taxa,
-                koAndEc: Array.from(protein.koAndEcSet),
-                quant: protein.quants[index]
-            })
-        }
-        return null
-    })
-    // return {sampleName: sampleName, metaProteins: metaProteins}
-    // })//separate useEffects?
-    //find all reactionNodes -> these should be highlighted
-    const reactionNodes = state.graph.data.nodes.filter(node => node.symbolType === "diamond")
-    const reactions = reactionNodes.map(node => {
-        const reaction = state.general.reactionsInSelectArray.filter(r => r.reactionId === node.id.substring(node.id.length - 6, node.id.length))[0]
-        const filteredProteins = metaProteins.filter(protein => matchKoOrEc(protein.koAndEc, reaction.koNumbersString, reaction.ecNumbersString) && filterTaxon(reaction.taxa, protein.taxa))
+
+const mapProteinsToReactionNodes = (reactionNodes, reactionArray, includedProteins) => {
+    return reactionNodes.map(node => {
+        const reaction = reactionArray.find(r => r.reactionId === getKeggId(node.id))
+        const filteredProteins = includedProteins.filter(
+            protein => matchKoOrEc(protein.koAndEc, reaction.koNumbersString, reaction.ecNumbersString) && filterTaxon(reaction.taxa, protein.taxa))
         // const reFilteredProteins = filteredProteins.filter(protein => filterTaxon(reaction.taxa, protein.taxa))
         const hasMatchedProtein = filteredProteins.length > 0
         let quantSum = 0;
-        filteredProteins.map(protein => quantSum += +protein.quant)
+        filteredProteins.forEach(protein => quantSum += +protein.quant)
         return {
             nodeId: node.id,
             hasMatchedProtein: hasMatchedProtein,
             quantSum: quantSum
         };
     })
-//     const sampleObject = sampleObjectList[index]
-    const data = {nodes: [], links: state.graph.data.links}
-    const nodes = []
-    const compoundNodes = state.graph.data.nodes.filter(node => node.symbolType !== "diamond")
+}
+
+function colorNodes(reactionNodes, reactions, state) {
     const newReactionNodes = reactionNodes.map(node => {
-        const reaction = reactions.filter(r => node.id === r.nodeId)[0]
+        const reaction = reactions.find(r => node.id === r.nodeId)
         if (reaction.hasMatchedProtein) {
             if (+reaction.quantSum < state.mpaProteins.midQuantUser3) {
                 const b = ((+reaction.quantSum - state.mpaProteins.minQuantUser3) / (state.mpaProteins.midQuantUser3 - state.mpaProteins.minQuantUser3)) * 255
@@ -72,18 +48,60 @@ const handleSample = (e, index, state, dispatch) => {
         }
         return node
     })
-    compoundNodes.map(node => nodes.push(node))
-    newReactionNodes.map(node => nodes.push(node))
-    data.nodes = nodes
+    return newReactionNodes;
+}
+
+function getMetaProteinsInReactions(proteins, identifiers, index) {
+    const metaProteins = proteins.map(protein => {
+        if (doesArrayIncludeAnyItem(Array.from(protein.koAndEcSet), identifiers)) {
+            return {
+                name: protein.name,
+                taxa: protein.taxa,
+                koAndEc: Array.from(protein.koAndEcSet),
+                quant: protein.quants[index]
+            }
+        }
+    })
+    return metaProteins;
+}
+
+//color nodes depending on data of MPA file
+const handleSample = (e, index, state, dispatch) => {
+    dispatch({type: "SETLOADING", payload: true})
+
+    const proteins = Array.from(state.mpaProteins.proteinSet)
+    const identifiers = []
+    state.general.reactionsInSelectArray.forEach(reaction => {
+        identifiers.push(...reaction.koNumbersString)
+        identifiers.push(...reaction.ecNumbersString)
+    })
+
+    // const samples = state.mpaProteins.sampleNames.map((sampleName, index)=>{
+    const metaProteins = getMetaProteinsInReactions(proteins, identifiers, index);
+
+    // return {sampleName: sampleName, metaProteins: metaProteins}
+    // })//separate useEffects?
+    //find all reactionNodes -> these should be highlighted
+    const reactionNodes = state.graph.data.nodes.filter(node => node.symbolType === "diamond")
+    const reactions = mapProteinsToReactionNodes(reactionNodes, state.general.reactionsInSelectArray, metaProteins)
+
+//     const sampleObject = sampleObjectList[index]
+    const data = {nodes: [], links: state.graph.data.links}
+
+    const compoundNodes = state.graph.data.nodes.filter(node => node.symbolType !== "diamond")
+    const newReactionNodes = colorNodes(reactionNodes, reactions, state);
+
+    data.nodes = [...compoundNodes, ...newReactionNodes]
+
     dispatch({type: "SETDATA", payload: data})
     dispatch({type: "SETLOADING", payload: false})
-    console.timeEnd("calc")
 }
 
 const Sample = () => {
     const state = useSelector(state => state)
     const dispatch = useDispatch()
     //getSampleColumnSizes(state.proteinState.sampleNames)
+
     return (
         <div>
             {state.mpaProteins.proteinSet.size > 0 &&

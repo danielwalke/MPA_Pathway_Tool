@@ -89,6 +89,7 @@ export function createFbaGraphData(graphData, fluxData) {
 
         // for links connected to reversible nodes, check which link needs to be displlayed according to fba flux
         if (anyNodeReversible && fbaFlux < 0) {
+            console.log(link)
             // reverse link
             newLinks.push(createLink(
                 link.target,
@@ -139,7 +140,7 @@ export function createFbaGraphData(graphData, fluxData) {
 
     const fluxGraphData = {
         data: {
-            nodes: graphData.data.nodes,
+            nodes: [...graphData.data.nodes],
             links: newLinks
         }
     }

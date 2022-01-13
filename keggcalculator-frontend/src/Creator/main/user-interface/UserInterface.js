@@ -43,6 +43,12 @@ const UserInterface = () => {
     const generalState = useSelector(state => state.general)
     const dispatch = useDispatch()
 
+    const state = useSelector(state => state)
+
+    useEffect(() => {
+        console.log(state)
+    },[state])
+
     useEffect(() => {
         const headerHeight = document.getElementsByClassName('MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary MuiPaper-elevation4')[0].clientHeight;
         const tabHeight = document.getElementsByClassName("MuiTabs-root")[0].clientHeight

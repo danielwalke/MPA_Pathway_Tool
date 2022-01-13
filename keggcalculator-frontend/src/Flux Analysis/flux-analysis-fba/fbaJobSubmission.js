@@ -15,14 +15,14 @@ export async function startFBAJob(dispatch, networkObj) {
             throw 'Error while creating fba job.'
         }
 
-        const {jobId, message} = jobMetaData.data
+        const {jobId} = jobMetaData.data
         const header = {
             "Content-Type": "multipart/form-data",
             "type": "formData",
             "Transfer-Encoding": "chunked"
         }
 
-        const formData = new FormData
+        const formData = new FormData()
         formData.append("Content-Type", "multipart/form-data")
         formData.append("network", JSON.stringify(networkObj))
 
@@ -45,8 +45,6 @@ export async function startFBAJob(dispatch, networkObj) {
         console.error(e)
     }
 }
-
-
 
 async function fetchStatus(jobId, endpoint) {
 

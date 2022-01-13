@@ -59,8 +59,6 @@ export default function FluxAnalysisGraphVisualization() {
         dispatch({type: "SET_SELECTED_NODE", payload: node})
         dispatch({type: "SHOW_GRAPH_MODAL", payload: true})
         dispatch({type: "SET_GRAPH_MODAl_INPUT", payload: {...dataObject}})
-
-        console.log(dataObject)
     }
 
     const labelCallbackNodes = (node) => {
@@ -98,13 +96,6 @@ export default function FluxAnalysisGraphVisualization() {
         }
     };
 
-    // const event = document.getElementById(notification.attributes.originEventId)
-    // await event.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
-    // setTimeout(()=>{
-    //     event.click()
-    // },500)
-
-
     if (fluxState.data.nodes.length > 0) {
         return (
             <div >
@@ -117,7 +108,6 @@ export default function FluxAnalysisGraphVisualization() {
                     onClickNode={(nodeId) => {
                         onClickNode(nodeId)
                     }}
-                    // onZoomChange={(prevZoom, newZoom) => handleZoomChange(dispatch, prevZoom, newZoom)}
                 />
             </div>
         );
