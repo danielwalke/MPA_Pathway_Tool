@@ -1,10 +1,9 @@
-import json
 import pprint
 
 import cobra
 
 
-def build_model(temp_model_path: str):
+def build_model(model_dict: dict):
     """returns a cobra model for flux analysis
 
     Keyword arguments:
@@ -12,16 +11,11 @@ def build_model(temp_model_path: str):
     model_json -- json string containing reactions and metabolites Arrays
     """
 
-    temp_file = open(temp_model_path, "r")
-    model_string = temp_file.read()
-    temp_file.close()
-
-    model_dict = json.loads(model_string)
     metabolites_array = model_dict['metabolites']
     reactions_array = model_dict['reactions']
 
-    pprint.pprint(reactions_array)
-    pprint.pprint(reactions_array)
+    # pprint.pprint(metabolites_array)
+    # pprint.pprint(reactions_array)
 
     # initialize model
     model = cobra.Model("model_name")

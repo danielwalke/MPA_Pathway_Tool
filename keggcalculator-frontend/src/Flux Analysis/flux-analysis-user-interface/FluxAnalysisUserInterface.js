@@ -6,12 +6,6 @@ import MenuIcon from "@material-ui/icons/Menu";
 import {ToolTipBig} from "../../Creator/main/user-interface/UserInterface";
 import CloseIcon from "@material-ui/icons/Close";
 import "../../Creator/main/user-interface/UserInterface.css"
-import {getDummyFluxData} from "../services/DummyFlux";
-import {useDispatch, useSelector} from "react-redux";
-import {createFbaGraphData, createFbaGraphDummyData} from "../services/CreateFbaGraphData";
-import {parseRequestArray} from "../services/ParseRequestArray";
-import {requestGenerator} from "../../Creator/request/RequestGenerator";
-import {endpoint_postNetworkForFBA} from "../../App Configurations/RequestURLCollection";
 import FluxBalanceAnalysis from "../flux-analysis-fba/FluxBalanceAnalysis";
 import Loading from "../../Creator/loading/Loading";
 import DownloadFbaResults from "../flux-analysis-download/DownloadFbaResults";

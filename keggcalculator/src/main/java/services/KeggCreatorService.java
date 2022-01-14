@@ -592,56 +592,6 @@ public class KeggCreatorService {
 			}
 		return dummyFluxes;
 	}
-	
-	public String startPythonProcess(String modelContainer) {
-		String results;
-		
-		try {
-			TempFile.createTempFile();
-			TempFile.writeModelToTempFile(modelContainer);
-			
-			String pythonPath = new File("Python/pythonProject/main.py").getAbsolutePath();
-						
-			ProcessBuilder builder = new ProcessBuilder(Arrays.asList(
-					"C:\\Python39\\python",
-					pythonPath,
-					"temp\\tempModel.txt"));
-
-			builder.redirectErrorStream(true); // print Errors from Python
-			Process process = builder.start();
-			
-			BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-			StringBuilder strBuilder = new StringBuilder();
-			
-			String line;
-			
-			while((line=reader.readLine())!=null) {
-				strBuilder.append(line);
-				strBuilder.append(System.getProperty("line.separator"));
-			}
-			
-            System.out.println("Running Python starts");
-            
-            int exitCode = process.waitFor();
-            System.out.println(strBuilder.toString());
-            System.out.println("Exit Code : "+ exitCode);
-            
-			results = TempFile.readTempFile("temp/tempResults.txt");
-            
-            return results;
-			
-			} catch (RuntimeException e) {
-	            e.printStackTrace();
-	            return "";
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	            return "";
-	        } finally {
-	            TempFile.deleteTempFile("temp/tempModel.txt");
-	            TempFile.deleteTempFile("temp/tempResults.txt");
-	            System.out.println("Done");
-	        }
-	}
 
 	public HashSet<String> getTaxonomicNames(String rank) {
 		HashSet<String> names = new HashSet<>();

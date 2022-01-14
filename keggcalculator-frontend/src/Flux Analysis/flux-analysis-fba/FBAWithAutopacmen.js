@@ -1,20 +1,19 @@
 import React, {useState} from "react";
 import {ToolTipBig} from "../../Creator/main/user-interface/UserInterface";
 import {useDispatch, useSelector} from "react-redux";
-import {triggerLoadingWarning} from "../../Creator/main/lib/LoadingWarning";
+import {fba} from "./FluxBalanceAnalysis";
 
 export function FBAWithAutopacmen(props) {
 
     const dispatch = useDispatch()
+    const graphState = useSelector(state => state.graph)
     const generalState = useSelector(state => state.general)
-    const fluxState = useSelector(state => state.fluxAnalysis)
+    const proteinState = useSelector(state => state.mpaProteins)
 
     const handleOptimizeClick = async () => {
-        if (!generalState.loading) {
-            triggerLoadingWarning(dispatch)
-        }
         props.setDisableOptimizeButton(true)
-
+        await fba(generalState, dispatch, graphState, proteinState);
+        props.setDisableOptimizeButton(false)
     }
 
     return(

@@ -1,4 +1,3 @@
-import clonedeep from "lodash/cloneDeep";
 import {changeLinkOrientation, createLink} from "../../Creator/graph/double click node/ChangeLinkOrientation";
 
 export function getKeggId(nodeId) {

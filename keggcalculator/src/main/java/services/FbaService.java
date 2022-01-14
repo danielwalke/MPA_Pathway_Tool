@@ -121,7 +121,7 @@ public class FbaService {
 				strBuilder.append(System.getProperty("line.separator"));
 			}
 			
-            System.out.println("Running Python starts");
+            System.out.println("starting python");
             
             int exitCode = process.waitFor();
             System.out.println(strBuilder.toString());

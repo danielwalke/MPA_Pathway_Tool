@@ -3,7 +3,8 @@ import {useDispatch, useSelector} from "react-redux";
 import "./Sample.css"
 import {filterTaxon} from "./TaxonomyFilter";
 import {ToolTipBig} from "../main/user-interface/UserInterface";
-import {getKeggId} from "../../Flux Analysis/services/CreateFbaGraphData";
+import {getKeggId} from "../../Flux Analysis/services/createFbaGraphData";
+import {getMaxIndex} from "../usefulFunctions/Math";
 
 
 const matchKoOrEc = (proteinKoAndEc, reactionKoNumbers, reactionEcNumbers) => {
@@ -51,18 +52,34 @@ function colorNodes(reactionNodes, reactions, state) {
     return newReactionNodes;
 }
 
-function getMetaProteinsInReactions(proteins, identifiers, index) {
+export function filterProteomeData(proteins, identifiers, index) {
+
+    let quantIndex = index
     const metaProteins = proteins.map(protein => {
+
+        if(typeof index === "undefined") {
+            quantIndex = getMaxIndex(protein.quants)
+        }
+
         if (doesArrayIncludeAnyItem(Array.from(protein.koAndEcSet), identifiers)) {
             return {
                 name: protein.name,
                 taxa: protein.taxa,
                 koAndEc: Array.from(protein.koAndEcSet),
-                quant: protein.quants[index]
+                quant: protein.quants[quantIndex]
             }
         }
     })
     return metaProteins;
+}
+
+export function getAllIdentifiersInNetwork(reactionArray) {
+    const identifiers = []
+    reactionArray.forEach(reaction => {
+        identifiers.push(...reaction.koNumbersString)
+        identifiers.push(...reaction.ecNumbersString)
+    })
+    return identifiers;
 }
 
 //color nodes depending on data of MPA file
@@ -70,14 +87,11 @@ const handleSample = (e, index, state, dispatch) => {
     dispatch({type: "SETLOADING", payload: true})
 
     const proteins = Array.from(state.mpaProteins.proteinSet)
-    const identifiers = []
-    state.general.reactionsInSelectArray.forEach(reaction => {
-        identifiers.push(...reaction.koNumbersString)
-        identifiers.push(...reaction.ecNumbersString)
-    })
+
+    const identifiers = getAllIdentifiersInNetwork(state.general.reactionsInSelectArray);
 
     // const samples = state.mpaProteins.sampleNames.map((sampleName, index)=>{
-    const metaProteins = getMetaProteinsInReactions(proteins, identifiers, index);
+    const metaProteins = filterProteomeData(proteins, identifiers, index);
 
     // return {sampleName: sampleName, metaProteins: metaProteins}
     // })//separate useEffects?

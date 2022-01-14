@@ -9,6 +9,20 @@ export const getMax = (arr) => {
     return max
 }
 
+export const getMaxIndex = (arr) => {
+    let max = 0
+    let maxIndex
+    if (typeof arr === "object" && arr.length > 0) {
+        arr.forEach((item, index) => {
+            if (+item > +max) {
+                max = +item
+                maxIndex = index
+            }
+        })
+    }
+    return maxIndex
+}
+
 export const getMin = (arr) => {
     let min = 0;
     if (typeof arr === "object" && arr.length > 0) {

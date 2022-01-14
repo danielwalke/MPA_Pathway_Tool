@@ -1,4 +1,4 @@
-import {getKeggId} from "./CreateFbaGraphData";
+import {getKeggId} from "./createFbaGraphData";
 
 const writeMetabolitesToReaction = (compounds, listOfMetabolites, reactionMetabolites, stoichiometrySign) => {
     /**
@@ -91,12 +91,23 @@ export function parseDummyRequestArray(reactionsInSelectArray) {
     return requestObj;
 }
 
-export function responseToMap(responseArray) {
-    const fbaDataMap = new Map()
+export function responseToMap(responseObject) {
 
-    responseArray.forEach(reaction => {
-        fbaDataMap.set(Object.keys(reaction)[0], Object.values(reaction)[0])
+    const origModelFbaData = new Map()
+    let sMomentFBAData
+
+    responseObject.original.forEach(reaction => {
+        origModelFbaData.set(Object.keys(reaction)[0], Object.values(reaction)[0])
     })
 
-    return fbaDataMap
+    console.log(responseObject.sMOMENT)
+
+    if (responseObject.sMOMENT.length !== 0) {
+        sMomentFBAData = new Map()
+        responseObject.sMOMENT.forEach(reaction => {
+            sMomentFBAData.set(Object.keys(reaction)[0], Object.values(reaction)[0])
+        })
+    }
+
+    return {origModelFbaData: origModelFbaData, sMomentFBAData: sMomentFBAData}
 }

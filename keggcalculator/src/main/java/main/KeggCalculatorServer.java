@@ -564,27 +564,6 @@ public class KeggCalculatorServer {
 				return "{\"message\":\"internal server error\"}";
 			} 
 		});
-
-		post("fluxanalysis/fba", (req, res) -> {
-			try {
-				return KeggHandleRequests.getFBA(creator, req.queryParams("FBA"));
-			} catch (Exception e) {
-				res.status(500);
-				e.printStackTrace();
-				return "{\"message\":\"internal server error\"}";
-			}
-		});
-
-		post("fluxanalysis/threaded_fba", (req, res) -> {
-			try {
-				return KeggHandleRequests.getFBA(creator, req.body());
-//				return KeggHandleRequests.getFBA(creator, req.queryParams("FBA"));
-			} catch (Exception e) {
-				res.status(500);
-				e.printStackTrace();
-				return "{\"message\":\"internal server error\"}";
-			}
-		});
 		
 		post("fluxanalysis/startFba", (req, res) -> {
 			try {

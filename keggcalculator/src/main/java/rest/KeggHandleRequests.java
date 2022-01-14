@@ -337,11 +337,6 @@ public class KeggHandleRequests {
 		return creator.gson.toJson(results);
 	}
 
-	public static String getFBA(KeggCreatorService creator, String containerString) {
-		String fbaResults = creator.startPythonProcess(containerString);
-		return fbaResults;
-	}
-
 	public static Object getTaxonomicNames(KeggCreatorService creator, String rank) {
 		return creator.gson.toJson(creator.getTaxonomicNames(rank));
 	}

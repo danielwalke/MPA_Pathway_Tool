@@ -1,13 +1,19 @@
 import {requestGenerator} from "../../Creator/request/RequestGenerator";
 import * as RequestUrl from "../../App Configurations/RequestURLCollection";
 
-export async function startFBAJob(dispatch, networkObj) {
+export async function startFBAJob(dispatch, networkObject, proteinData) {
     let body = {
         jobId: "",
-        networkName: "Käsekuchen",
+        networkName: "mpa_network",
         message: "",
         fbaSolution: ""
     }
+
+    const modelData = {
+        networkObject: networkObject,
+        proteinData: proteinData
+    }
+
     try {
         const jobMetaData = await requestGenerator("POST", RequestUrl.endpoint_startFba, "", "", body)
 
@@ -24,7 +30,7 @@ export async function startFBAJob(dispatch, networkObj) {
 
         const formData = new FormData()
         formData.append("Content-Type", "multipart/form-data")
-        formData.append("network", JSON.stringify(networkObj))
+        formData.append("network", JSON.stringify(modelData))
 
         const upload = await requestGenerator(
             "POST", RequestUrl.endpoint_uploadNetwork, {jobId: jobId}, header, formData)
