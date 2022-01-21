@@ -6,7 +6,9 @@ const defaultState = {
     showGraphModal: false,
     graphModalInput: {},
     selectedNode: {},
-    flux: null
+    showSMomentFlux: false,
+    flux: null,
+    sMomentFlux: null
 }
 
 export const fluxAnalysisReducer = (state = defaultState, action) => {
@@ -20,8 +22,12 @@ export const fluxAnalysisReducer = (state = defaultState, action) => {
             return {...state, graphModalInput: payload}
         case "SET_SELECTED_NODE":
             return {...state, selectedNode: payload}
+        case "TOGGLE_FBA_RESULTS":
+            return {...state, showSMomentFlux: !state.showSMomentFlux}
         case "SET_FBA_RESULTS":
             return {...state, flux: payload}
+        case "SET_SMOMENT_FBA_RESULTS":
+            return {...state, sMomentFlux: payload}
         default:
             return state;
     }

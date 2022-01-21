@@ -95,9 +95,8 @@ public class FbaService {
 	
 	public static String startPythonProcess(String modelContainer, String jobId) {
 		String results;
-		String pythonPath = new File("Python/pythonProject/main.py").getAbsolutePath();
-		String networkDir = "upload\\" + jobId + "\\network_" + jobId;
-		String pythonResultDir = "upload\\" + jobId + "\\fbaResults_" + jobId;
+		String pythonPath = new File("Python/main.py").getAbsolutePath();
+		String uploadDir = "upload/";
 		String javaResultDir = "upload/" + jobId + "/fbaResults_" + jobId;
 		
 		try {
@@ -105,8 +104,8 @@ public class FbaService {
 			ProcessBuilder builder = new ProcessBuilder(Arrays.asList(
 					"python",
 					pythonPath,
-					networkDir,
-					pythonResultDir));
+					uploadDir,
+					jobId));
 
 			builder.redirectErrorStream(true); // print Errors from Python
 			Process process = builder.start();
@@ -138,8 +137,8 @@ public class FbaService {
 	            e.printStackTrace();
 	            return "";
 	        } finally {
-	            TempFile.deleteTempFile(modelContainer);
-	            TempFile.deleteTempFile(javaResultDir);
+//	            TempFile.deleteTempFile(modelContainer);
+//	            TempFile.deleteTempFile(javaResultDir);
 	            System.out.println("Done");
 	        }
 	}

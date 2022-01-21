@@ -10,6 +10,7 @@ import FluxBalanceAnalysis from "../flux-analysis-fba/FluxBalanceAnalysis";
 import Loading from "../../Creator/loading/Loading";
 import DownloadFbaResults from "../flux-analysis-download/DownloadFbaResults";
 import {FBAWithAutopacmen} from "../flux-analysis-fba/FBAWithAutopacmen";
+import ChangeDisplayedFBAResults from "../flux-analysis-fba/ChangeDisplayedFbaResults";
 
 
 function checkReactionArray(reactionArray, setDisableOptimizeButton) {
@@ -81,6 +82,7 @@ export default function FluxAnalysisUserInterface(props) {
                         disableOptimizeButton={disableOptimizeButton}
                         setDisableOptimizeButton={setDisableOptimizeButton}/>
                     <DownloadFbaResults />
+                    <ChangeDisplayedFBAResults />
                 </div>
             </Drawer>
         </div>

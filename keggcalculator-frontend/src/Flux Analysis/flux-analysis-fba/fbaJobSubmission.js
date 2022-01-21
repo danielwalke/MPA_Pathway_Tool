@@ -11,7 +11,10 @@ export async function startFBAJob(dispatch, networkObject, proteinData) {
 
     const modelData = {
         networkObject: networkObject,
-        proteinData: proteinData
+        proteinData: proteinData,
+        totalProteinContent: 1,
+        unmeasuredProteinFraction: 1,
+        avgSaturationLevel: 1
     }
 
     try {

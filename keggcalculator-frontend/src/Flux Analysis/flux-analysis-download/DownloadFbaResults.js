@@ -2,7 +2,7 @@ import {ToolTipBig} from "../../Creator/main/user-interface/UserInterface";
 import React from "react";
 import {useSelector} from "react-redux";
 import {saveAs} from "file-saver";
-import {createFluxAnalysisCsv} from "../services/CreateFluxAnalysisCsv";
+import {createFluxAnalysisCsv} from "../services/createFluxAnalysisCsv";
 
 export default function DownloadFbaResults() {
 

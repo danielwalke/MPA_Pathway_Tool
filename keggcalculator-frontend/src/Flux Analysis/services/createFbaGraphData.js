@@ -86,14 +86,16 @@ export function createFbaGraphData(graphData, fluxData) {
         const anyNodeReversible = graphData.data.nodes.filter(
             node => node.id === link.source || node.id === link.target).some(node => node.reversible)
 
+        const adjacentLink = graphData.data.links.filter(
+            graphLink => (graphLink.source === link.target || graphLink.target === link.source) && graphLink.opacity !== "0")
+
         // for links connected to reversible nodes, check which link needs to be displlayed according to fba flux
         if (anyNodeReversible && fbaFlux < 0) {
-            console.log(link)
             // reverse link
             newLinks.push(createLink(
                 link.target,
                 link.source,
-                link.opacity,
+                adjacentLink.opacity,
                 5,
                 getStyleFromFlux(fbaFlux).hexColor,
                 true))
@@ -107,7 +109,7 @@ export function createFbaGraphData(graphData, fluxData) {
                 false))
             continue
 
-        } else if (anyNodeReversible && fbaFlux > 0 || anyNodeReversible && fbaFlux === 0) {
+        } else if ((anyNodeReversible && fbaFlux > 0) || (anyNodeReversible && fbaFlux === 0)) {
             // reverse link
             newLinks.push(createLink(
                 link.target,
@@ -120,7 +122,7 @@ export function createFbaGraphData(graphData, fluxData) {
             newLinks.push(createLink(
                 link.source,
                 link.target,
-                link.opacity,
+                adjacentLink.opacity,
                 5,
                 getStyleFromFlux(fbaFlux).hexColor,
                 false))

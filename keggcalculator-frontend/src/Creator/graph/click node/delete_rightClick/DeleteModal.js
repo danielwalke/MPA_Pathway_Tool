@@ -4,7 +4,6 @@ import {useDispatch, useSelector} from "react-redux";
 import "./DeleteModal.css"
 import {useStyles} from "../../../ModalStyles/ModalStyles";
 import {getNLastChars} from "../../../usefulFunctions/Strings";
-import {getKeggId} from "../../../../Flux Analysis/services/CreateFbaGraphData";
 
 const getListOfContainingReactions = (links, deleteNode) => {
     const linksWithDeleteNode = links.filter(

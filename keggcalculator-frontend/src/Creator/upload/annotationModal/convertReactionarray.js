@@ -1,5 +1,5 @@
 import {createReactionObject, createSpeciesObject} from "../sbmlParser/SbmlReader/ReaderFunctions";
-import {getKeggId} from "../../../Flux Analysis/services/CreateFbaGraphData";
+import {getKeggId} from "../../../Flux Analysis/services/createFbaGraphData";
 
 export async function convertReactionArray(reactionArray, dispatch) {
 

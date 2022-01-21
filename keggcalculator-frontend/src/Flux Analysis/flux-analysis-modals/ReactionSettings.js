@@ -5,7 +5,7 @@ import "../../Creator/upload/annotationModal/AnnotationTable.css"
 import "../FluxAnalysisStyles.css"
 import {useDispatch, useSelector} from "react-redux";
 import {TextField} from "@material-ui/core";
-import {getKeggId} from "../services/CreateFbaGraphData";
+import {getKeggId} from "../services/createFbaGraphData";
 import {changeLinkOrientation} from "../../Creator/graph/double click node/ChangeLinkOrientation";
 
 export default function ReactionSettings({dataObj, setDataObj}) {
@@ -16,8 +16,10 @@ export default function ReactionSettings({dataObj, setDataObj}) {
     const dispatch = useDispatch()
 
     const getInitialFlux = () => {
-        if (fluxState.flux) {
+        if (!fluxState.showSMomentFlux && fluxState.flux) {
             return fluxState.flux.get(getKeggId(dataObj.reactionId)).fbaSolution
+        } else if (fluxState.showSMomentFlux && fluxState.sMomentFlux) {
+            return fluxState.sMomentFlux.get(getKeggId(dataObj.reactionId)).fbaSolution
         } else {
             return null
         }

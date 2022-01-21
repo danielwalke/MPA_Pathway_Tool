@@ -1,8 +1,6 @@
-import {createTheme, Slider, StylesProvider} from "@material-ui/core";
-import React, {useEffect, useState} from "react";
-import { ThemeProvider } from "@material-ui/styles";
-import {resetFluxData} from "../services/CreateFbaGraphData";
-import {useDispatch, useSelector} from "react-redux";
+import {Slider, StylesProvider} from "@material-ui/core";
+import React from "react";
+
 
 export default function StyledSlider({bounds, setBounds, setFinalBounds, setFlux}) {
 

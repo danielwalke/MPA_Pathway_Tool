@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getKeggId} from "../../../../Flux Analysis/services/CreateFbaGraphData";
+import {getKeggId} from "../../../../Flux Analysis/services/createFbaGraphData";
 import {checkAndGenerateNewReactionId} from "../../../specReaction/functions/SpecReactionFunctions";
-import {handleJSONGraphUpload} from "../../../upload/json upload/ModuleUploadFunctionsJSON";
 import "../../../download/DownloadGraph.css"
 import {handleSubmitKeggReaction} from "../../../keggReaction/substrate and products/substrate/SubmitHandling";
 

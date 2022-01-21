@@ -1,9 +1,9 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Graph} from "react-d3-graph";
 import {handleNodePositionChange} from "../../Creator/graph/graph visualization/GraphVisualization";
 import clonedeep from "lodash/cloneDeep";
-import {getKeggId, resetFluxData} from "../services/CreateFbaGraphData";
+import {getKeggId} from "../services/createFbaGraphData";
 
 const findReactionObj = (adjacentReactionNode, generalState) => {
     const reactionNodeId = getKeggId(adjacentReactionNode)

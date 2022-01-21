@@ -66,7 +66,8 @@ export function filterProteomeData(proteins, identifiers, index) {
                 name: protein.name,
                 taxa: protein.taxa,
                 koAndEc: Array.from(protein.koAndEcSet),
-                quant: protein.quants[quantIndex]
+                quant: protein.quants[quantIndex],
+                molecularMass: protein.molecularMass
             }
         }
     })

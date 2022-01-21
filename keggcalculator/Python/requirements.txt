@@ -1,4 +1,9 @@
-pip==21.1.2
+pip>=21.1.2
 setuptools==57.0.0
 future==0.18.2
 cobra==0.22.0
+openpyxl>=3.0.7
+requests>=2.25.1
+Pebble>=4.6.1
+pandas>=1.2.4
+matplotlib>=3.4.2

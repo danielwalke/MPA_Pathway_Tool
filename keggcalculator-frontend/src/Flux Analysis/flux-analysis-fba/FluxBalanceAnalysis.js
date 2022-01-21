@@ -27,6 +27,7 @@ export async function fba(generalState, dispatch, graphState, proteinState) {
     const newGraphData = createFbaGraphData(graphState, origModelFbaData)
 
     dispatch({type: "SET_FBA_RESULTS", payload: origModelFbaData})
+    dispatch({type: "SET_SMOMENT_FBA_RESULTS", payload: sMomentFBAData})
     dispatch({type: "SET_FLUX_GRAPH", payload: newGraphData.data})
     dispatch({type: "SETREACTIONSINARRAY", payload: [...generalState.reactionsInSelectArray]})
     triggerLoadingWarning(dispatch)
