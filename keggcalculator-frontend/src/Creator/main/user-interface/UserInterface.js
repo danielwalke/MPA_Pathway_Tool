@@ -224,19 +224,17 @@ const UserInterface = () => {
                         <DonwloadModal/>
                     </div>
                     <div>
-                        <div>
-                            <ToolTipBig title={"Annotate network compounds and reactions"} placement={"right"}>
-                                <button className={"download-button"}
-                                        onClick={() => {
-                                            dispatch({type: "ANNOTATESBML", payload: false})
-                                            convertReactionArray(generalState.reactionsInSelectArray, dispatch);
-                                            dispatch({type: "SHOWANNOTATIONTABLE", payload: true})
-                                            dispatch({type: "SHOWCOMPOUNDANNOTATION", payload: true})
-                                        }}>
-                                    Network Annotation
-                                </button>
-                            </ToolTipBig>
-                        </div>
+                        <ToolTipBig title={"Annotate network compounds and reactions"} placement={"right"}>
+                            <button className={"download-button"}
+                                    onClick={() => {
+                                        dispatch({type: "ANNOTATESBML", payload: false})
+                                        convertReactionArray(generalState.reactionsInSelectArray, dispatch);
+                                        dispatch({type: "SHOWANNOTATIONTABLE", payload: true})
+                                        dispatch({type: "SHOWCOMPOUNDANNOTATION", payload: true})
+                                    }}>
+                                Network Annotation
+                            </button>
+                        </ToolTipBig>
                     </div>
                     {graphState.doubleClickNode.length > 0 &&
                     <div style={{width: "15vw", height: "25vh", overflow: "auto", margin: "3px"}}>

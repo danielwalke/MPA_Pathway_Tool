@@ -137,8 +137,8 @@ public class FbaService {
 	            e.printStackTrace();
 	            return "";
 	        } finally {
-//	            TempFile.deleteTempFile(modelContainer);
-//	            TempFile.deleteTempFile(javaResultDir);
+	            TempFile.deleteTempFile(modelContainer);
+	            TempFile.deleteTempFile(javaResultDir);
 	            System.out.println("Done");
 	        }
 	}

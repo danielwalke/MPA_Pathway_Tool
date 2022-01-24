@@ -24,7 +24,6 @@ const CompoundTableRow = (props) => {
     return (
         <React.Fragment>
             <TableRow onClick={() => {
-                console.log(props.row.index)
                 props.handleRowClick(props.index, props.row.index)
             }}
                       sx={{'& > *': {borderBottom: 'unset'}}}
@@ -120,7 +119,8 @@ const CompoundAnnotation = () => {
                         <div className={"search-field-container"}>
                             <SearchField setFilterBy={setFilterBy}/>
                         </div>
-                        {tableArray && columns.length > 0 && <TableContainer className={"table-container"}>
+                        {tableArray && columns.length > 0 &&
+                            <TableContainer className={"table-container"}>
                             <Table size="small" stickyHeader aria-label="compound table">
                                 <TableHead>
                                     <TableRow>
@@ -160,7 +160,8 @@ const CompoundAnnotation = () => {
                                     })}
                                 </TableBody>
                             </Table>
-                        </TableContainer>}
+                        </TableContainer>
+                        }
                     </div>
                 </div>
                 <div className={"annotation-frame frame-margin-left"}>

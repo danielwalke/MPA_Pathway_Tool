@@ -11,6 +11,9 @@ import Loading from "../../Creator/loading/Loading";
 import DownloadFbaResults from "../flux-analysis-download/DownloadFbaResults";
 import {FBAWithAutopacmen} from "../flux-analysis-fba/FBAWithAutopacmen";
 import ChangeDisplayedFBAResults from "../flux-analysis-fba/ChangeDisplayedFbaResults";
+import {convertReactionArray} from "../../Creator/upload/annotationModal/convertReactionarray";
+import {useDispatch, useSelector} from "react-redux";
+import FluxAnalysisModal from "./FluxAnalysisModal";
 
 
 function checkReactionArray(reactionArray, setDisableOptimizeButton) {
@@ -25,6 +28,10 @@ export default function FluxAnalysisUserInterface(props) {
     const [open, setOpen] = useState(true)
     const [drawerOffSet, setDrawerOffset] = useState(0)
     const [disableOptimizeButton, setDisableOptimizeButton] = useState(true)
+
+    const fluxState = useSelector(state => state.fluxAnalysis)
+
+    const dispatch = useDispatch()
 
     const theme = useTheme()
     const useStyles = makeStyles({
@@ -50,6 +57,7 @@ export default function FluxAnalysisUserInterface(props) {
     return(
         <div className={"interface"}>
             <Loading />
+            {fluxState.showFluxAnalysisModal && <FluxAnalysisModal/>}
             <Toolbar>
                 <ToolTipBig title={"Click to open the menu"} placement={"right"}>
                     <IconButton
@@ -83,6 +91,18 @@ export default function FluxAnalysisUserInterface(props) {
                         setDisableOptimizeButton={setDisableOptimizeButton}/>
                     <DownloadFbaResults />
                     <ChangeDisplayedFBAResults />
+                    <div>
+                        <ToolTipBig title={"Annotate network compounds and reactions"} placement={"right"}>
+                            <button className={"download-button"}
+                                    // disabled={!fluxState.flux}
+                                    onClick={() => {
+                                        dispatch({type: "SHOW_FLUX_ANALYSIS_MODAL", payload: true})
+                                        dispatch({type: "SHOW_FBA_RESULT_TABLE", payload: true})
+                                    }}>
+                                FBA Result Table
+                            </button>
+                        </ToolTipBig>
+                    </div>
                 </div>
             </Drawer>
         </div>

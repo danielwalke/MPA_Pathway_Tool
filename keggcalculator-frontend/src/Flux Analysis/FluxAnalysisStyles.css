@@ -49,3 +49,18 @@
     width: 90%;
     height: 4.5rem;
 }
+
+.table-cell {
+    display: flex;
+    flex-direction: row;
+    min-width: 5%;
+    width: 20%
+}
+
+.cell-content {
+    margin: 0;
+    flex: 1 1 10%;
+    box-sizing: border-box;
+    border-left: 1px solid rgba(224, 224, 224, 1);
+    border-right: 1px solid rgba(224, 224, 224, 1);
+}

@@ -24,6 +24,7 @@ export async function fba(generalState, dispatch, graphState, proteinState) {
     const response = await startFBAJob(dispatch, networkObj, proteinData)
 
     const {origModelFbaData, sMomentFBAData} = responseToMap(JSON.parse(response))
+
     const newGraphData = createFbaGraphData(graphState, origModelFbaData)
 
     dispatch({type: "SET_FBA_RESULTS", payload: origModelFbaData})

@@ -4,6 +4,8 @@ const defaultState = {
         links: [],
     },
     showGraphModal: false,
+    showFluxAnalysisModal: false,
+    showFBAResultTable: false,
     graphModalInput: {},
     selectedNode: {},
     showSMomentFlux: false,
@@ -28,6 +30,10 @@ export const fluxAnalysisReducer = (state = defaultState, action) => {
             return {...state, flux: payload}
         case "SET_SMOMENT_FBA_RESULTS":
             return {...state, sMomentFlux: payload}
+        case "SHOW_FBA_RESULT_TABLE":
+            return {...state, showFBAResultTable: payload}
+        case "SHOW_FLUX_ANALYSIS_MODAL":
+            return {...state, showFluxAnalysisModal: payload}
         default:
             return state;
     }
