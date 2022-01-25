@@ -26,6 +26,7 @@ import ReactionInfo from "../../graph/click node/leftClick/ReactionInfo";
 import AnnotationWarningModal from "../../upload/annotationModal/AnnotationWarningModal";
 import AnnotationModal from "../../upload/annotationModal/AnnotationModal";
 import {convertReactionArray} from "../../upload/annotationModal/convertReactionarray";
+import PathwayTaxonomyModal from "../../graph/configurations/taxonomy/PathwayTaxonomyModal";
 
 export const ToolTipBig = withStyles({
     tooltip: {
@@ -124,6 +125,7 @@ const UserInterface = () => {
             <ReactionDetails/>
             {generalState.showAnnotationWarning && <AnnotationWarningModal/>}
             {generalState.showAnnotationTable && <AnnotationModal/>}
+            {generalState.showPathwayTaxonomyModal && <PathwayTaxonomyModal/>}
             <Toolbar>
                 <ToolTipBig title={"Click to open the menu"} placement={"right"}>
                     <IconButton

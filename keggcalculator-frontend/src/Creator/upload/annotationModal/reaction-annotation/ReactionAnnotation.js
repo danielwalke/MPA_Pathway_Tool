@@ -19,7 +19,7 @@ import {
 import ReactionDetailsContainer from "./ReactionDetailsContainer";
 import {annotationIndicator} from "../AnnotationIndicator";
 import SearchField from "../SearchField";
-import {filterArray, getComparator, stableSort} from "../Sorting";
+import {filterArray, getComparator, stableSort} from "../sorting";
 
 const ReactionTableRow = (props) => {
 
@@ -141,7 +141,7 @@ const ReactionAnnotation = () => {
         };
 
         return (
-            <div className={"annotation-modal-content"}>
+            <div className={"modal-content"}>
                 <h5 className={"modal-header"}>Reaction Annotations</h5>
                 <div className={"annotation-body"}>
                     <div className={"annotation-frame frame-margin-right"}>

@@ -1,0 +1,39 @@
+
+.taxonomy-column {
+    width: 100%;
+    min-width: 600px;
+    display: grid;
+    grid-template-columns: auto;
+    grid-auto-rows: max-content;
+    grid-row-gap: 1rem;
+    min-height: 0;
+    flex: 1 1 auto;
+    padding: 0.5em 0 0.5em 0;
+    overflow-x: auto;
+}
+
+.taxonomy-selector-container {
+    /*width: 50%;*/
+    /*min-height: 8rem;*/
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,.125);
+    padding: 5px 0 5px 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row-gap: 5px;
+    grid-auto-rows: max-content;
+}
+
+.taxonomy-selector-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5px 0 5px;
+}
+
+.taxonomy-selector-label {
+    margin: 0
+}

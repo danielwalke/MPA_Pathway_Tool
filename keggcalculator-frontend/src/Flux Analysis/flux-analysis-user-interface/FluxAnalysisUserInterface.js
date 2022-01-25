@@ -54,6 +54,10 @@ export default function FluxAnalysisUserInterface(props) {
         checkReactionArray(props.reactionArray, setDisableOptimizeButton);
     },[props.reactionArray])
 
+    const showFluxAnalysisModal = () => {
+
+    }
+
     return(
         <div className={"interface"}>
             <Loading />
@@ -86,15 +90,24 @@ export default function FluxAnalysisUserInterface(props) {
                     <FluxBalanceAnalysis
                         disableOptimizeButton={disableOptimizeButton}
                         setDisableOptimizeButton={setDisableOptimizeButton}/>
+                    <div>
+                        <ToolTipBig title={"Configure model for sMOMENT"} placement={"right"}>
+                            <button className={"download-button"}
+                                    onClick={() => {
+                                        dispatch({type: "SHOW_FLUX_ANALYSIS_MODAL", payload: true})
+                                        dispatch({type: "SHOW_AUTOPACMEN_CONFIG", payload: true})
+                                    }}>
+                                sMOMENT Configuration
+                            </button>
+                        </ToolTipBig>
+                    </div>
                     <FBAWithAutopacmen
                         disableOptimizeButton={disableOptimizeButton}
                         setDisableOptimizeButton={setDisableOptimizeButton}/>
-                    <DownloadFbaResults />
-                    <ChangeDisplayedFBAResults />
                     <div>
-                        <ToolTipBig title={"Annotate network compounds and reactions"} placement={"right"}>
+                        <ToolTipBig title={"Display FBA and FVA results as a table"} placement={"right"}>
                             <button className={"download-button"}
-                                    // disabled={!fluxState.flux}
+                                    disabled={!fluxState.flux}
                                     onClick={() => {
                                         dispatch({type: "SHOW_FLUX_ANALYSIS_MODAL", payload: true})
                                         dispatch({type: "SHOW_FBA_RESULT_TABLE", payload: true})
@@ -103,6 +116,8 @@ export default function FluxAnalysisUserInterface(props) {
                             </button>
                         </ToolTipBig>
                     </div>
+                    <DownloadFbaResults />
+                    <ChangeDisplayedFBAResults />
                 </div>
             </Drawer>
         </div>

@@ -6,7 +6,7 @@ import CompoundDetailsContainer from "./CompoundDetailsContainer";
 import clonedeep from "lodash/cloneDeep";
 import {annotationIndicator} from "../AnnotationIndicator";
 import SearchField from "../SearchField";
-import {filterArray, getComparator, stableSort} from "../Sorting"
+import {filterArray, getComparator, stableSort} from "../sorting"
 
 const submit = (state, dispatch) => {
     const newListOfReactions = addCompoundsToReactions(state, state.general.listOfReactions, state.general.listOfSpecies)
@@ -111,7 +111,7 @@ const CompoundAnnotation = () => {
     };
 
     return (
-        <div className={"annotation-modal-content"}>
+        <div className={"modal-content"}>
             <h5 className={"modal-header"}>Compound Annotations</h5>
             <div className={"annotation-body"}>
                 <div className={"annotation-frame frame-margin-right"}>

@@ -13,9 +13,12 @@ const SpecTaxonomy = () => {
     const generalState = useSelector(state => state.general)
     const specReactionState = useSelector(state => state.specificReaction)
     const [isTaxonomyNcbi, setIsTaxonomyNcbi] = useState(true)
+
     return (
         <div className={"taxonomyContainer"}>
-            <div className={"taxonomicRank"}><TaxonomicRank/></div>
+            <div className={"taxonomicRank"}>
+                <TaxonomicRank/>
+            </div>
             <div className={"switch"}>
                 <ToolTipBig
                     title={isTaxonomyNcbi ? "Choose your own taxonomic name" : `Choose taxonomic name from a list`}

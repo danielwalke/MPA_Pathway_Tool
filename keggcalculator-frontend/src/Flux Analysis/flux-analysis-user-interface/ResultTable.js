@@ -47,7 +47,7 @@ export function ResultTable() {
     };
 
     return(
-        <div className={"annotation-modal-content"}>
+        <div className={"modal-content"}>
             <h5 className={"modal-header"}>Flux Analysis Results</h5>
                 <div className={"annotation-body"}>
                     <div className={"annotation-frame"}>

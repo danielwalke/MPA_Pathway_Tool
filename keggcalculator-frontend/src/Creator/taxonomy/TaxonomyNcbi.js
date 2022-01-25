@@ -34,8 +34,9 @@ const TaxonomyNcbi = (props) => {
             }
         )
     }
+
     return (
-        <div style={{margin: "2px 0"}}>
+        <div style={{margin: "2px 0", width: "100%"}}>
             <ToolTipBig title={"Search a taxonomic name"} placement={"left"}>
                 <Autocomplete
                     size={"small"}
@@ -49,7 +50,7 @@ const TaxonomyNcbi = (props) => {
                             onChange={(event) => handleChange(event)}
                             value={props.taxonomy}
                             {...params}
-                            label="taxonomy"
+                            label="NCBI Taxonomy"
                             variant="outlined"
                         />
                     )}

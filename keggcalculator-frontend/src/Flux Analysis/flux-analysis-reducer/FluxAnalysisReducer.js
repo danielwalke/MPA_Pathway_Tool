@@ -6,11 +6,17 @@ const defaultState = {
     showGraphModal: false,
     showFluxAnalysisModal: false,
     showFBAResultTable: false,
+    showAutopacmenConfig: false,
     graphModalInput: {},
     selectedNode: {},
     showSMomentFlux: false,
     flux: null,
-    sMomentFlux: null
+    sMomentFlux: null,
+    sMomentConfigurations: {
+        proteinContent: 1,
+        unmeasuredProteinFraction: 1,
+        averageSaturationLevel: 1
+    }
 }
 
 export const fluxAnalysisReducer = (state = defaultState, action) => {
@@ -34,6 +40,10 @@ export const fluxAnalysisReducer = (state = defaultState, action) => {
             return {...state, showFBAResultTable: payload}
         case "SHOW_FLUX_ANALYSIS_MODAL":
             return {...state, showFluxAnalysisModal: payload}
+        case "SHOW_AUTOPACMEN_CONFIG":
+            return {...state, showAutopacmenConfig: payload}
+        case "SET_AUTOPACMEN_CONFIGURATIONS":
+            return {...state, sMomentConfigurations: payload}
         default:
             return state;
     }

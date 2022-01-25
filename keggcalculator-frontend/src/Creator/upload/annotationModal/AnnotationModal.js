@@ -5,7 +5,6 @@ import CompoundAnnotation from "./compound-annotation/CompoundAnnotation";
 import {useStyles} from "../../ModalStyles/ModalStyles";
 import {useSelector} from "react-redux";
 import ReactionAnnotation from "./reaction-annotation/ReactionAnnotation";
-import {ResultTable} from "../../../Flux Analysis/flux-analysis-user-interface/ResultTable";
 
 const AnnotationModal = () => {
     const classes = useStyles()

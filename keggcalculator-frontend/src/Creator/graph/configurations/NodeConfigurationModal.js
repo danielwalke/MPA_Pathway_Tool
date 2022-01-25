@@ -5,7 +5,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {Checkbox} from "@material-ui/core";
 import Abbreviations from "./abbreviations/Abbreviations";
 import AbundantNodeConfig from "./split nodes/AbundantNodeConfig";
-import PathwayTaxonomy from "./taxonomy/PathwayTaxonomy";
 import MergeNodesModal from "./merge nodes/MergeNodesModal";
 import NodeModifModal from "./nodeModification/NodeModifModal";
 import Align from "./align/Align";
@@ -63,10 +62,14 @@ const NodeConfigurationModal = () => {
                 </ToolTipBig>
             </div>
             <div>
-                <PathwayTaxonomy/>
+                {/*<PathwayTaxonomy/>*/}
                 <ToolTipBig title={"Click for adding taxonomic requirements to reactions"} placement={"right"}>
                     <button className={"download-button"}
-                            onClick={() => dispatch({type: "SWITCHSHOWPATHWAYTAXONOMY"})}>add Taxonomy
+                            onClick={() => {
+                                dispatch({type: "SHOW_PATHWAY_TAXONOMY_MODAL", payload: true})
+                                dispatch({type: "SHOW_PATHWAY_TAXONOMY_CONFIGURATION", payload: true})
+                            }}>
+                        add Taxonomy
                     </button>
                 </ToolTipBig>
             </div>

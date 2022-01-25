@@ -32,7 +32,7 @@ const TaxonomicRank = () => {
     const classes = useStyles()
     return (
         <ToolTipBig title={"Select a taxonomic rank"} placement={"right"}>
-            <FormControl style={{margin: "2px 0"}} size="small" variant="outlined" className={classes.formControl}>
+            <FormControl style={{"margin": "2px 0", "width": "100%"}} size="small" variant="outlined" className={classes.formControl}>
                 {generalState.taxonomicRank.length === 0 &&
                 <InputLabel id="taxonomicRankInput">taxonomic rank</InputLabel>}
                 <Select
@@ -40,7 +40,7 @@ const TaxonomicRank = () => {
                     value={generalState.taxonomicRank}
                     onChange={(e) => submitTaxonomicRank(e, dispatch)}
                 >
-                    {taxonomicRanks.map(rank => <MenuItem value={rank}>{rank}</MenuItem>
+                    {taxonomicRanks.map(rank => <MenuItem key={rank} value={rank}>{rank}</MenuItem>
                     )}
                 </Select>
             </FormControl>

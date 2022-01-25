@@ -24,6 +24,11 @@
     color: black;
 }
 
+.button-centered {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .button-5rem {
     width: 5rem;
 }

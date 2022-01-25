@@ -3,6 +3,7 @@ import {useStyles} from "../../Creator/ModalStyles/ModalStyles";
 import {useDispatch, useSelector} from "react-redux";
 import Modal from "@material-ui/core/Modal";
 import {ResultTable} from "./ResultTable";
+import AutopacmenConfiguration from "./AutopacmenConfiguration";
 
 export default function FluxAnalysisModal() {
     const classes = useStyles()
@@ -17,13 +18,20 @@ export default function FluxAnalysisModal() {
     return(
         <Modal className={classes.modal} open={state.fluxAnalysis.showFluxAnalysisModal} onClose={() => handleClose()}>
             <div className={classes.paper}>
-                <div className={"annotation-modal"}>
-                    {
-                        state.fluxAnalysis.showFluxAnalysisModal &&
-                        state.fluxAnalysis.showFBAResultTable &&
+                {
+                    state.fluxAnalysis.showFluxAnalysisModal &&
+                    state.fluxAnalysis.showFBAResultTable &&
+                    <div className={"annotation-modal"}>
                         <ResultTable/>
-                    }
-                </div>
+                    </div>
+                }
+                {
+                    state.fluxAnalysis.showFluxAnalysisModal &&
+                    state.fluxAnalysis.showAutopacmenConfig &&
+                    <div className={"small-modal"}>
+                        <AutopacmenConfiguration />
+                    </div>
+                }
             </div>
         </Modal>
     )

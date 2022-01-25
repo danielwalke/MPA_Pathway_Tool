@@ -64,6 +64,8 @@ const defaultState = {
     sbmlIds: {},
     annotateSbml: true,
     reactionAnnotationTableOptions: [],
+    showPathwayTaxonomyModal: false,
+    showPathwayTaxonomyConfiguration: false,
 }
 
 export const generalReducer = (state = defaultState, action) => {
@@ -230,6 +232,10 @@ export const generalReducer = (state = defaultState, action) => {
             return {...state, annotateSbml: payload}
         case "SET_ANNOATION_OPTIONS":
             return {...state, reactionAnnotationTableOptions: payload}
+        case "SHOW_PATHWAY_TAXONOMY_MODAL":
+            return {...state, showPathwayTaxonomyModal: payload}
+        case "SHOW_PATHWAY_TAXONOMY_CONFIGURATION":
+            return {...state, showPathwayTaxonomyConfiguration: payload}
         default:
             return state;
     }
