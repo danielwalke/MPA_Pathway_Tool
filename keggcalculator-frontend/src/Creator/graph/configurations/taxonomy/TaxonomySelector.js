@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {ToolTipBig} from "../../../main/user-interface/UserInterface";
 import TaxonomicRank from "../../double click node/TaxonomicRank";
 import TextField from "@material-ui/core/TextField";

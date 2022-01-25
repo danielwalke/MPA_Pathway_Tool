@@ -1,13 +1,15 @@
 import {ToolTipBig} from "../../Creator/main/user-interface/UserInterface";
-import React from "react";
+import React, {useEffect} from "react";
 import {parseRequestArray, responseToMap} from "../services/parseRequestArray";
 import {createFbaGraphData} from "../services/createFbaGraphData";
 import {useDispatch, useSelector} from "react-redux";
 import {triggerLoadingWarning} from "../../Creator/main/lib/LoadingWarning";
 import {startFBAJob} from "./fbaJobSubmission";
 import {parseProteinData} from "../services/parseProteinData";
+import {getTaxaList} from "../../Creator/graph/double click node/StuctureModalBody";
+import {CustomButton} from "../../Components/Home/Home";
 
-export async function fba(generalState, dispatch, graphState, proteinState) {
+export async function fba(dispatch, generalState, graphState, proteinState, fluxState) {
 
     if (!generalState.loading) {
         triggerLoadingWarning(dispatch)
@@ -21,7 +23,14 @@ export async function fba(generalState, dispatch, graphState, proteinState) {
         proteinData.push(...parseProteinData(generalState.reactionsInSelectArray, proteinState))
     }
 
-    const response = await startFBAJob(dispatch, networkObj, proteinData)
+    const configurations =  fluxState ? fluxState.sMomentConfigurations : {}
+
+    const pathwayTaxonomySet = new Set()
+    generalState.reactionsInSelectArray.forEach(
+        reaction => getTaxaList(reaction.taxa).forEach(taxon => pathwayTaxonomySet.add(taxon)))
+    const networkTaxa = Array.from(pathwayTaxonomySet)
+
+    const response = await startFBAJob(dispatch, networkObj, proteinData, configurations, networkTaxa)
 
     const {origModelFbaData, sMomentFBAData} = responseToMap(JSON.parse(response))
 
@@ -43,19 +52,21 @@ export default function FluxBalanceAnalysis(props) {
 
     const handleOptimizeClick = async() => {
         props.setDisableOptimizeButton(true)
-        await fba(generalState, dispatch, graphState);
+        await fba(dispatch, generalState, graphState);
         props.setDisableOptimizeButton(false)
     }
 
     return(
         <div className={"helpContainer"}>
             <ToolTipBig title={"perform FBA and FVA for the displayed network"} placement={"right"}>
-                <button
-                    disabled={props.disableOptimizeButton}
-                    className={"download-button"}
-                    onClick={() => handleOptimizeClick()}>
-                    Flux Balance Analysis
-                </button>
+                <span>
+                    <CustomButton
+                        disabled={props.disableOptimizeButton}
+                        className={"download-button"}
+                        onClick={() => handleOptimizeClick()}>
+                        Flux Balance Analysis
+                    </CustomButton>
+                </span>
             </ToolTipBig>
         </div>
     )

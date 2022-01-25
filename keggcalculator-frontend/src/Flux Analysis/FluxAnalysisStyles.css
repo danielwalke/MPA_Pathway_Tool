@@ -64,3 +64,15 @@
     border-left: 1px solid rgba(224, 224, 224, 1);
     border-right: 1px solid rgba(224, 224, 224, 1);
 }
+
+.configuration-content {
+    display: grid;
+    grid-template-columns: auto;
+    grid-row-gap: 1.5rem;
+}
+
+.configuration-form-element {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 2rem;
+}

@@ -15,10 +15,11 @@ import Start from "./Start";
 import {makeStyles} from "@material-ui/core";
 import {getLastItemOfList} from "../../Creator/usefulFunctions/Arrays";
 import {Redirect} from 'react-router'
-import {host} from "../../App Configurations/SystemSettings";
 import Footer from "../Footer/Footer";
 import FluxAnalysisMain from "../../Flux Analysis/flux-analysis-main-component/FluxAnalysisMain";
 import DeviceHubIcon from '@mui/icons-material/DeviceHub';
+import styled from "@emotion/styled";
+import Button from "@material-ui/core/Button";
 
 class Home extends Component {
 
@@ -113,3 +114,28 @@ const CustomTabs = (props) => {
         </Tabs>
     )
 }
+
+export const CustomButton = styled(Button)({
+    width: '80%',
+    backgroundColor: "rgb(150, 25, 130)",
+    borderRadius: "5px",
+    border: "none",
+    boxShadow: "0px 0px 1px rgb(56, 9, 49)",
+    color: "white",
+    transition: "all 200ms ease-in-out",
+    /*text-transform: uppercase;*/
+    fontSize: "clamp(12px, 1vw, 22px)",
+    /*font-family: Roboto, serif;*/
+    margin: "2px",
+    padding: "4px",
+    textTransform: "none",
+    '&:hover': {
+        backgroundColor: "rgb(110, -15, 90)",
+        cursor: "pointer",
+    },
+    '&:disabled': {
+        backgroundColor: "lightgray",
+        cursor: "default",
+        color: "black",
+    }
+});

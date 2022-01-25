@@ -13,10 +13,11 @@ const defaultState = {
     flux: null,
     sMomentFlux: null,
     sMomentConfigurations: {
-        proteinContent: 1,
-        unmeasuredProteinFraction: 1,
-        averageSaturationLevel: 1
-    }
+        proteinContent: 1.0,
+        unmeasuredProteinFraction: 1.0,
+        averageSaturationLevel: 1.0
+    },
+    sMomentIsConfigured: false
 }
 
 export const fluxAnalysisReducer = (state = defaultState, action) => {
@@ -44,6 +45,8 @@ export const fluxAnalysisReducer = (state = defaultState, action) => {
             return {...state, showAutopacmenConfig: payload}
         case "SET_AUTOPACMEN_CONFIGURATIONS":
             return {...state, sMomentConfigurations: payload}
+        case "SET_SMOMENT_IS_CONFIGURED":
+            return {...state, sMomentIsConfigured: payload}
         default:
             return state;
     }

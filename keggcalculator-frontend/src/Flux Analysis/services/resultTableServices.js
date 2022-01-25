@@ -25,7 +25,7 @@ export function parseFluxTableArray(generalState, fluxState) {
             fvaMinSmoment: null
         }
 
-        if (fluxState.sMomentFlux.size > 0) {
+        if (fluxState.sMomentFlux && fluxState.sMomentFlux.size > 0) {
 
             const smomentFluxObject = fluxState.sMomentFlux.get(key)
 

@@ -9,8 +9,9 @@
 }
 
 .small-modal {
-    width: 80vw;
-    height: 60vh;
+    width: 50vw;
+    min-width: 500px;
+    max-width: 800px;
 }
 
 .modal-content {

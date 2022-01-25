@@ -2,6 +2,7 @@ import {ToolTipBig} from "../../Creator/main/user-interface/UserInterface";
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {createFbaGraphData} from "../services/createFbaGraphData";
+import {CustomButton} from "../../Components/Home/Home";
 
 
 export default function ChangeDisplayedFBAResults() {
@@ -29,13 +30,15 @@ export default function ChangeDisplayedFBAResults() {
     return(
         <div className={"helpContainer"}>
             <ToolTipBig title={"Toggle between fba results of the original and sMOMENT models"} placement={"right"}>
-                <button
+                <span>
+                    <CustomButton
                     disabled={!fluxState.flux}
                     className={"download-button"}
                     onClick={() => handleSwitchResults()}
                 >
                     Toggle FBA results
-                </button>
+                </CustomButton>
+                </span>
             </ToolTipBig>
         </div>
     )

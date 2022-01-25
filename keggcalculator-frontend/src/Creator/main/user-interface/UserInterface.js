@@ -27,6 +27,7 @@ import AnnotationWarningModal from "../../upload/annotationModal/AnnotationWarni
 import AnnotationModal from "../../upload/annotationModal/AnnotationModal";
 import {convertReactionArray} from "../../upload/annotationModal/convertReactionarray";
 import PathwayTaxonomyModal from "../../graph/configurations/taxonomy/PathwayTaxonomyModal";
+import {CustomButton} from "../../../Components/Home/Home";
 
 export const ToolTipBig = withStyles({
     tooltip: {
@@ -163,71 +164,71 @@ const UserInterface = () => {
                     <div>
                         <div>
                             <ToolTipBig title={"Click for entering the upload section"} placement={"right"}>
-                                <button className={"download-button"}
+                                <CustomButton className={"download-button"}
                                         onClick={() => dispatch({type: "SWITCHUPLOADMODAL"})}>Upload
-                                </button>
+                                </CustomButton>
                             </ToolTipBig>
                             <UploadModal setOpen={setOpen}/>
                         </div>
                     </div>
                     <div>
                         <ToolTipBig title={"Click for receiving help"} placement={"right"}>
-                            <button className={"download-button"}
+                            <CustomButton className={"download-button"}
                                     onClick={() => {
                                         dispatch({type: "ADD_HELP_TO_AUDIT_TRAIL"})
                                         dispatch({type: "SWITCHSHOWUSERINFO"})
                                     }}>Help
-                            </button>
+                            </CustomButton>
                         </ToolTipBig>
                     </div>
                     <div>
                         <ToolTipBig title={"Click for changing the visualization of the pathway"} placement={"right"}>
-                            <button className={"download-button"}
+                            <CustomButton className={"download-button"}
                                     onClick={() => {
                                         dispatch({type: "SWITCHNODECONFIGURATIONMODAL"})
                                     }}>node configurations
-                            </button>
+                            </CustomButton>
                         </ToolTipBig>
                         <NodeConfigurationModal/>
                     </div>
                     <div>
                         <ToolTipBig title={"Click for adding a reaction from KEGG"} placement={"right"}>
-                            <button className={"download-button"}
+                            <CustomButton className={"download-button"}
                                     onClick={handleShowKeggReaction}>Add Kegg
                                 Reaction
-                            </button>
+                            </CustomButton>
                         </ToolTipBig>
                     </div>
                     <div>
                         <ToolTipBig title={"Click for defining your own reaction"} placement={"right"}>
-                            <button className={"download-button"}
+                            <CustomButton className={"download-button"}
                                     onClick={handleShowSpecReaction}>Add User-defined
                                 Reaction
-                            </button>
+                            </CustomButton>
                         </ToolTipBig>
                     </div>
                     <div>
                         <ToolTipBig title={"Click for importing multiple reactions"} placement={"right"}>
-                            <button className={"download-button"}
+                            <CustomButton className={"download-button"}
                                     onClick={() => dispatch({type: "SWITCHMULTIREACTIONMODAL"})}>import multiple
                                 reactions
-                            </button>
+                            </CustomButton>
                         </ToolTipBig>
                         <MultiReactionModal/>
                     </div>
                     <div >
                         <div>
                             <ToolTipBig title={"Click for importing multiple reactions"} placement={"right"}>
-                                <button className={"download-button"}
+                                <CustomButton className={"download-button"}
                                         onClick={() => dispatch({type: "SWITCHDOWNLOADMODAL"})}>Download
-                                </button>
+                                </CustomButton>
                             </ToolTipBig>
                         </div>
                         <DonwloadModal/>
                     </div>
                     <div>
                         <ToolTipBig title={"Annotate network compounds and reactions"} placement={"right"}>
-                            <button className={"download-button"}
+                            <CustomButton className={"download-button"}
                                     onClick={() => {
                                         dispatch({type: "ANNOTATESBML", payload: false})
                                         convertReactionArray(generalState.reactionsInSelectArray, dispatch);
@@ -235,7 +236,7 @@ const UserInterface = () => {
                                         dispatch({type: "SHOWCOMPOUNDANNOTATION", payload: true})
                                     }}>
                                 Network Annotation
-                            </button>
+                            </CustomButton>
                         </ToolTipBig>
                     </div>
                     {graphState.doubleClickNode.length > 0 &&

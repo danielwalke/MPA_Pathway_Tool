@@ -14,6 +14,7 @@ import ChangeDisplayedFBAResults from "../flux-analysis-fba/ChangeDisplayedFbaRe
 import {convertReactionArray} from "../../Creator/upload/annotationModal/convertReactionarray";
 import {useDispatch, useSelector} from "react-redux";
 import FluxAnalysisModal from "./FluxAnalysisModal";
+import {CustomButton} from "../../Components/Home/Home";
 
 
 function checkReactionArray(reactionArray, setDisableOptimizeButton) {
@@ -30,6 +31,7 @@ export default function FluxAnalysisUserInterface(props) {
     const [disableOptimizeButton, setDisableOptimizeButton] = useState(true)
 
     const fluxState = useSelector(state => state.fluxAnalysis)
+    const generalState = useSelector(state => state.general)
 
     const dispatch = useDispatch()
 
@@ -54,22 +56,18 @@ export default function FluxAnalysisUserInterface(props) {
         checkReactionArray(props.reactionArray, setDisableOptimizeButton);
     },[props.reactionArray])
 
-    const showFluxAnalysisModal = () => {
-
-    }
-
     return(
         <div className={"interface"}>
             <Loading />
             {fluxState.showFluxAnalysisModal && <FluxAnalysisModal/>}
             <Toolbar>
                 <ToolTipBig title={"Click to open the menu"} placement={"right"}>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={() => setOpen(true)}
-                        className={clsx({marginRight: theme.spacing(2)}, open && {display: "none"})}
-                    >
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            onClick={() => setOpen(true)}
+                            className={clsx({marginRight: theme.spacing(2)}, open && {display: "none"})}
+                        >
                         {!open && <MenuIcon/>}
                     </IconButton>
                 </ToolTipBig>
@@ -82,9 +80,9 @@ export default function FluxAnalysisUserInterface(props) {
                 <div className={"interfaceContainer"} style={{width: "20vw", flexShrink: 0}}>
                     <div style={{display:"flex", justifyContent:"center"}}>
                         <ToolTipBig title={"Click for closing the menu"} placement={"right"}>
-                            <IconButton onClick={() => setOpen(false)}>
-                                {<CloseIcon/>}
-                            </IconButton>
+                                <IconButton onClick={() => setOpen(false)}>
+                                    {<CloseIcon/>}
+                                </IconButton>
                         </ToolTipBig>
                     </div>
                     <FluxBalanceAnalysis
@@ -92,28 +90,34 @@ export default function FluxAnalysisUserInterface(props) {
                         setDisableOptimizeButton={setDisableOptimizeButton}/>
                     <div>
                         <ToolTipBig title={"Configure model for sMOMENT"} placement={"right"}>
-                            <button className={"download-button"}
-                                    onClick={() => {
-                                        dispatch({type: "SHOW_FLUX_ANALYSIS_MODAL", payload: true})
-                                        dispatch({type: "SHOW_AUTOPACMEN_CONFIG", payload: true})
-                                    }}>
-                                sMOMENT Configuration
-                            </button>
+                            <span>
+                                <CustomButton className={"download-button"}
+                                        disabled={generalState.reactionsInSelectArray.length === 0 || disableOptimizeButton}
+                                        onClick={() => {
+                                            dispatch({type: "SHOW_FLUX_ANALYSIS_MODAL", payload: true})
+                                            dispatch({type: "SHOW_AUTOPACMEN_CONFIG", payload: true})
+                                            dispatch({type: "SET_SMOMENT_IS_CONFIGURED", payload: true})
+                                        }}>
+                                    sMOMENT Configuration
+                                </CustomButton>
+                            </span>
                         </ToolTipBig>
                     </div>
                     <FBAWithAutopacmen
-                        disableOptimizeButton={disableOptimizeButton}
+                        disableOptimizeButton={disableOptimizeButton || !fluxState.sMomentIsConfigured}
                         setDisableOptimizeButton={setDisableOptimizeButton}/>
                     <div>
                         <ToolTipBig title={"Display FBA and FVA results as a table"} placement={"right"}>
-                            <button className={"download-button"}
-                                    disabled={!fluxState.flux}
-                                    onClick={() => {
-                                        dispatch({type: "SHOW_FLUX_ANALYSIS_MODAL", payload: true})
-                                        dispatch({type: "SHOW_FBA_RESULT_TABLE", payload: true})
-                                    }}>
-                                FBA Result Table
-                            </button>
+                            <span>
+                                <CustomButton className={"download-button"}
+                                        disabled={!fluxState.flux}
+                                        onClick={() => {
+                                            dispatch({type: "SHOW_FLUX_ANALYSIS_MODAL", payload: true})
+                                            dispatch({type: "SHOW_FBA_RESULT_TABLE", payload: true})
+                                        }}>
+                                    FBA Result Table
+                                </CustomButton>
+                            </span>
                         </ToolTipBig>
                     </div>
                     <DownloadFbaResults />

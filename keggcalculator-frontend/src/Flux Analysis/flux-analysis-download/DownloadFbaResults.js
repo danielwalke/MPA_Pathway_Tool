@@ -3,6 +3,7 @@ import React from "react";
 import {useSelector} from "react-redux";
 import {saveAs} from "file-saver";
 import {createFluxAnalysisCsv} from "../services/createFluxAnalysisCsv";
+import {CustomButton} from "../../Components/Home/Home";
 
 export default function DownloadFbaResults() {
 
@@ -21,12 +22,14 @@ export default function DownloadFbaResults() {
     return(
         <div>
             <ToolTipBig title={"Download results of FVA and FBA as .csv"} placement={"right"}>
-                    <button
+                <span>
+                    <CustomButton
                         disabled={!fluxState.flux}
                         className={"download-button"}
                         onClick={() => handleFbaResultDownload()}>
                         Download Results
-                    </button>
+                    </CustomButton>
+                </span>
             </ToolTipBig>
         </div>
     )
