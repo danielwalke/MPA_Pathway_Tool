@@ -41,7 +41,7 @@ def build_model(model_dict: dict):
             name=metabolite['metaboliteName'],
             compartment=metabolite['compartment'],
         )
-        if metabolite['biggId'] != '':
+        if 'biggId' in metabolite and metabolite['biggId'] != '':
             cobra_metabolite.annotation['bigg.metabolite'] = metabolite['biggId']
         if kegg_metabolite_pattern.match(metabolite['metaboliteId']):
             cobra_metabolite.annotation['kegg.compound'] = metabolite['metaboliteId']
@@ -66,7 +66,7 @@ def build_model(model_dict: dict):
 
         if reaction_el['exchangeReaction']:
             if len(reaction_metabolites) != 1:
-                print('Exchange Reaction either has 0 or more than one Metabolites assigned to it!')
+                raise Exception('An Exchange Reaction either has 0 or more than one Metabolites assigned to it!')
 
             # adds exchange reaction
             exchange_reaction = model.add_boundary(
@@ -88,7 +88,7 @@ def build_model(model_dict: dict):
 
             if kegg_reaction_pattern.match(reaction_el['reactionId']):
                 reaction.annotation['kegg.reaction'] = reaction_el['reactionId']
-            if reaction_el['biggId'] != '':
+            if 'biggId' in reaction_el and reaction_el['biggId'] != '':
                 reaction.annotation['bigg.reaction'] = reaction_el['biggId']
 
             reaction.annotation['ec-code'] = reaction_el['ecNumbers']
@@ -119,12 +119,14 @@ def build_smoment_model(original_model: cobra.Model, upload_path: str, job_id: s
             original_model,
             data['proteinData'],
             prot_pool_params,
-            job_id + 'smoment_model',
             constants.get_job_dir_path(upload_path, job_id),
-            job_id,
             excluded_reactions,
             "median"
         )
+
+        smoment_model.name = "sMomentModel"
+        smoment_model.id = "sMomentModel"
+        cobra.io.write_sbml_model(smoment_model, constants.get_job_dir_path(upload_path, job_id) + '/sMomentModel.xml')
 
     return smoment_model
 

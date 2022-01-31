@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
@@ -15,6 +16,7 @@ import java.util.concurrent.Executors;
 
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import com.google.gson.Gson;
@@ -24,6 +26,8 @@ import fluxanalysis.FbaJob;
 import fluxanalysis.TempFile;
 import jobs.DeleteThread;
 import json.FbaJobJson;
+import spark.Request;
+import spark.Response;
 
 public class FbaService {
 	public Gson gson;
@@ -141,5 +145,26 @@ public class FbaService {
 //	            TempFile.deleteTempFile(javaResultDir);
 	            System.out.println("Done");
 	        }
+	}
+	
+	public HttpServletResponse getSMomentDownload(Request request, Response response, String jobid) {
+        Path path = Paths.get("upload/" + jobid + "/sMomentModel.xml");
+        byte[] data = null;
+        try {
+            data = Files.readAllBytes(path);
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+        HttpServletResponse raw = response.raw();
+        response.header("Content-Disposition", "attachment; filename="+"sMomentModel_" + jobid + ".xml");
+        response.type("application/force-download");
+        try {
+            raw.getOutputStream().write(data);
+            raw.getOutputStream().flush();
+            raw.getOutputStream().close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return raw;
 	}
 }

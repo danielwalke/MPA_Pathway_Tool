@@ -24,6 +24,7 @@ export default function DownloadFbaResults() {
             <ToolTipBig title={"Download results of FVA and FBA as .csv"} placement={"right"}>
                 <span>
                     <CustomButton
+                        size="small"
                         disabled={!fluxState.flux}
                         className={"download-button"}
                         onClick={() => handleFbaResultDownload()}>

@@ -1,7 +1,7 @@
 import {requestGenerator} from "../../Creator/request/RequestGenerator";
 import * as RequestUrl from "../../App Configurations/RequestURLCollection";
 
-export async function startFBAJob(dispatch, networkObject, proteinData, configurations, networkTaxa) {
+export async function startFBAJob(networkObject, proteinData, configurations, networkTaxa) {
     let body = {
         jobId: "",
         networkName: "mpa_network",
@@ -16,9 +16,9 @@ export async function startFBAJob(dispatch, networkObject, proteinData, configur
     }
 
     if (configurations !== {}) {
-        modelData.totalProteinContent = configurations.totalProteinContent
-        modelData.totalProteinContent = configurations.unmeasuredProteinFraction
-        modelData.totalProteinContent = configurations.avgSaturationLevel
+        modelData.totalProteinContent = configurations.proteinContent
+        modelData.unmeasuredProteinFraction = configurations.unmeasuredProteinFraction
+        modelData.avgSaturationLevel = configurations.averageSaturationLevel
     }
 
     try {
@@ -49,7 +49,7 @@ export async function startFBAJob(dispatch, networkObject, proteinData, configur
         const status = await fetchStatus(jobId, RequestUrl.endpoint_fbaStatus)
 
         if (status) {
-            return status.fbaSolution
+            return status
         } else {
         //    TODO: stop execution
         }

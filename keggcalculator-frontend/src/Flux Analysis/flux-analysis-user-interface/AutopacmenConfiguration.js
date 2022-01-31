@@ -2,16 +2,24 @@ import React, {useEffect, useState} from "react";
 import {getTaxaList} from "../../Creator/graph/double click node/StuctureModalBody";
 import {useDispatch, useSelector} from "react-redux";
 import TaxonomySelector from "../../Creator/graph/configurations/taxonomy/TaxonomySelector";
-import {TextField} from "@material-ui/core";
-import ConfigurationFormElement from "./ConfigurationFromElement";
-import {ToolTipBig} from "../../Creator/main/user-interface/UserInterface";
+import ConfigurationFormElement from "./ConfigurationFormElement";
+import clonedeep from "lodash/cloneDeep";
+import {FBAWithAutopacmen} from "../flux-analysis-fba/FBAWithAutopacmen";
 
 export default function AutopacmenConfiguration() {
 
     const generalState = useSelector(state => state.general)
+    const graphState = useSelector(state => state.graph)
     const fluxState = useSelector(state => state.fluxAnalysis)
     const [networkTaxa, setNetworkTaxa] = useState([])
     const dispatch = useDispatch()
+
+    useEffect(() => {
+
+        return () => {
+            dispatch({type: "SHOW_AUTOPACMEN_CONFIG", payload: false})
+        }
+    },[])
 
     useEffect(() => {
         const pathwayTaxonomySet = new Set()
@@ -23,7 +31,13 @@ export default function AutopacmenConfiguration() {
     const setConfigurations = (prop, value) => {
         const newConfig = {...fluxState.sMomentConfigurations}
         newConfig[prop] = parseFloat(value)
+
         dispatch({type: "SET_AUTOPACMEN_CONFIGURATIONS", payload: newConfig})
+        if (fluxState.flux) {
+            dispatch({type: "SET_FLUX_GRAPH", payload: clonedeep(graphState.data)})
+        }
+        dispatch({type: "SET_FBA_RESULTS", payload: false})
+        dispatch({type: "SET_SMOMENT_FBA_RESULTS", payload: false})
     }
 
     return (
@@ -48,6 +62,7 @@ export default function AutopacmenConfiguration() {
                 setConfigurations={setConfigurations} min={0.0} max={1.0}
                 tooltip={'define the average level of enzyme saturation'}
             />
+            <FBAWithAutopacmen />
         </div>
     )
 }

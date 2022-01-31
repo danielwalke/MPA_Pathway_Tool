@@ -3,9 +3,9 @@ import SearchField from "../../Creator/upload/annotationModal/SearchField";
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableSortLabel} from "@material-ui/core";
 import {useSelector} from "react-redux";
 import ResultTableRow from "./ResultTableRow";
-import {exampleFluxData, exampleSmomentFluxData, fluxExample} from "./exampleData";
 import {parseFluxTableArray} from "../services/resultTableServices";
 import {filterArray, getComparator, stableSort} from "../../Creator/upload/annotationModal/sorting";
+import DownloadFbaResults from "../flux-analysis-download/DownloadFbaResults";
 
 export function ResultTable() {
 
@@ -34,7 +34,7 @@ export function ResultTable() {
     useEffect(() => {
         const newArray = parseFluxTableArray(generalState, fluxState)
         setFluxTableArray(newArray)
-    },[])
+    }, [])
 
     const handleRequestSort = (event, columnId) => {
         const isAsc = orderBy === columnId && order === 'asc';
@@ -46,52 +46,55 @@ export function ResultTable() {
         handleRequestSort(event, columnId);
     };
 
-    return(
+    return (
         <div className={"modal-content"}>
             <h5 className={"modal-header"}>Flux Analysis Results</h5>
-                <div className={"annotation-body"}>
-                    <div className={"annotation-frame"}>
+            <div className={"annotation-body"}>
+                <div className={"annotation-frame"}>
                     <div className={"inner-container"}>
-                    <div className={"search-field-container"}>
-                        <SearchField setFilterBy={setFilterBy}/>
+                        <div className={"search-field-container"}>
+                            <SearchField setFilterBy={setFilterBy}/>
+                        </div>
+                        <TableContainer className={"table-container "}>
+                            <Table size="small" stickyHeader aria-label="compound table">
+                                <TableHead>
+                                    <TableRow>
+                                        {columns.map(column => (
+                                            <TableCell
+                                                key={column.id}
+                                                align={column.align}
+                                                style={column.style}
+                                                sortDirection={orderBy === column.id ? order : false}
+                                            >
+                                                <TableSortLabel
+                                                    active={orderBy === column.id}
+                                                    direction={orderBy === column.id ? order : 'asc'}
+                                                    onClick={createSortHandler(column.id)}>
+                                                    {column.label}
+                                                </TableSortLabel>
+                                            </TableCell>
+                                        ))}
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {fluxTableArray.length > 0 &&
+                                        stableSort(filterArray(fluxTableArray, filterBy), getComparator(order, orderBy)).map((row, tableIndex) => {
+                                            return (
+                                                <ResultTableRow key={tableIndex}
+                                                                row={row}
+                                                                index={tableIndex}
+                                                />
+                                            )
+                                        })}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
                     </div>
-                    <TableContainer className={"table-container "}>
-                        <Table size="small" stickyHeader aria-label="compound table">
-                            <TableHead>
-                                <TableRow>
-                                    {columns.map(column => (
-                                        <TableCell
-                                            key={column.id}
-                                            align={column.align}
-                                            style={column.style}
-                                            sortDirection={orderBy === column.id ? order : false}
-                                        >
-                                            <TableSortLabel
-                                                active={orderBy === column.id}
-                                                direction={orderBy === column.id ? order : 'asc'}
-                                                onClick={createSortHandler(column.id)}>
-                                            {column.label}
-                                            </TableSortLabel>
-                                        </TableCell>
-                                    ))}
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {fluxTableArray.length > 0 &&
-                                    stableSort(filterArray(fluxTableArray, filterBy), getComparator(order, orderBy)).map((row, tableIndex) => {
-                                        return (
-                                            <ResultTableRow key={tableIndex}
-                                                            row={row}
-                                                            index={tableIndex}
-                                            />
-                                        )
-                                    })}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
                 </div>
             </div>
-                </div>
+            <div className={'button-centered'}>
+                <DownloadFbaResults/>
+            </div>
         </div>
     )
 }

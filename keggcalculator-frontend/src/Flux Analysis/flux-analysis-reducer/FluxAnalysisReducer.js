@@ -7,6 +7,7 @@ const defaultState = {
     showFluxAnalysisModal: false,
     showFBAResultTable: false,
     showAutopacmenConfig: false,
+    disableOptimizationButtons: true,
     graphModalInput: {},
     selectedNode: {},
     showSMomentFlux: false,
@@ -17,7 +18,8 @@ const defaultState = {
         unmeasuredProteinFraction: 1.0,
         averageSaturationLevel: 1.0
     },
-    sMomentIsConfigured: false
+    sMomentIsConfigured: false,
+    sMOMENTDownloadLink: "",
 }
 
 export const fluxAnalysisReducer = (state = defaultState, action) => {
@@ -47,6 +49,10 @@ export const fluxAnalysisReducer = (state = defaultState, action) => {
             return {...state, sMomentConfigurations: payload}
         case "SET_SMOMENT_IS_CONFIGURED":
             return {...state, sMomentIsConfigured: payload}
+        case "DISABLE_OPTIMIZE_BUTTONS":
+            return {...state, disableOptimizationButtons: payload}
+        case "SET_SMOMENT_DOWNLOAD_LINK":
+            return {...state, sMOMENTDownloadLink: payload}
         default:
             return state;
     }

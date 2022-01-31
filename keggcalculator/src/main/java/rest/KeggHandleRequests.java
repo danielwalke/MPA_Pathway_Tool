@@ -417,5 +417,10 @@ public class KeggHandleRequests {
 			return "{\"message\": \"not a valid job\"}";
 		}
 	}
+	
+	public static HttpServletResponse downloadSMomentModel(Request req, Response res, FbaService fluxAnalysis,
+			String jobID) {
+		return fluxAnalysis.getSMomentDownload(req, res, jobID);
+	}
 
 }

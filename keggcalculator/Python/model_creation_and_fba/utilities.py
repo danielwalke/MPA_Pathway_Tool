@@ -7,6 +7,12 @@ import cobra
 import pandas
 from matplotlib import pyplot as plt
 
+from autopacmen_modules.helper_general import json_write
+
+
+def write_error_log(job_dir: str, exception_dict: dict[str, str]):
+    json_write(job_dir, exception_dict)
+
 
 def get_fva_statistics(model):
     """adopted from autopacmen

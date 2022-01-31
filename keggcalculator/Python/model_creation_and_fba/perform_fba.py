@@ -6,6 +6,7 @@ from cobra.flux_analysis import flux_variability_analysis
 import json
 
 from model_creation_and_fba import utilities
+from model_creation_and_fba.exceptions import ExceptionWithCode
 
 
 def optimize(model: cobra.Model, orig_model_reaction_names: [], do_pfba: bool):
@@ -25,9 +26,11 @@ def optimize(model: cobra.Model, orig_model_reaction_names: [], do_pfba: bool):
     else:
         fba_solution = cobra.flux_analysis.pfba(model)
 
-    # fva_solution = flux_variability_analysis(model)
-    fva_dict, variabilities = utilities.get_fva_statistics(model)
-    fva_dict.pop('MEAN')
+    try:
+        fva_dict, variabilities = utilities.get_fva_statistics(model)
+        fva_dict.pop('MEAN')
+    except Exception as e:
+        raise ExceptionWithCode(4, "Couldn't get FVA results.")
 
     added_reactions_dict_irrev = \
         utilities.combine_seperated_reactions(fva_dict, fba_solution.fluxes, orig_model_reaction_names)

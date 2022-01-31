@@ -32,7 +32,8 @@ export default function ChangeDisplayedFBAResults() {
             <ToolTipBig title={"Toggle between fba results of the original and sMOMENT models"} placement={"right"}>
                 <span>
                     <CustomButton
-                    disabled={!fluxState.flux}
+                        size="small"
+                    disabled={!fluxState.sMomentFlux}
                     className={"download-button"}
                     onClick={() => handleSwitchResults()}
                 >

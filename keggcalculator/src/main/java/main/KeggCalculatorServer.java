@@ -253,7 +253,6 @@ public class KeggCalculatorServer {
 
 		post("/keggcreator/reactiondatabycompounds", (req, res) -> {
 			try {
-				System.out.println("yo");
 				res.status(201);
 				if (req.queryParams("compoundIds").length() == 0) {
 					return "[]";
@@ -581,6 +580,10 @@ public class KeggCalculatorServer {
 		
 		get("fluxanalysis/fbaStatus", (req, res) -> {
 			return KeggHandleRequests.fbaStatus(req, res, fba, req.queryParams("jobId"));
+		});
+		
+		get("fluxanalysis/downloadSMomentModel/:name", (req, res) -> {
+			return KeggHandleRequests.downloadSMomentModel(req, res, fba, req.params("name"));
 		});
 
 	}

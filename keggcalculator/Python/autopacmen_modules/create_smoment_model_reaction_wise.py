@@ -40,9 +40,7 @@ from model_creation_and_fba import constants
 def create_smoment_model_reaction_wise(model: cobra.Model,
                                        protein_data: dict,
                                        prot_pool_params: dict,
-                                       output_sbml_name: str,
                                        project_folder: str,
-                                       project_name: str,
                                        excluded_reactions: List[str],
                                        type_of_default_kcat_selection: str = "median") -> cobra.Model:
     """Adds proteomic constraints according to sMOMENT to the given stoichiometric model and stores it as SBML.

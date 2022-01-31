@@ -73,3 +73,5 @@ export const endpoint_startFba = host + ":" + portNumber + "/fluxanalysis/startF
 export const endpoint_uploadNetwork = host + ":" + portNumber + "/fluxanalysis/uploadNetwork";
 
 export const endpoint_fbaStatus = host + ":" + portNumber + "/fluxanalysis/fbaStatus";
+
+export const endpoint_downloadSMomentModel = host + ":" + portNumber + "/fluxanalysis/downloadSMomentModel";

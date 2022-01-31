@@ -8,7 +8,7 @@ import {TextField} from "@material-ui/core";
 import {getKeggId} from "../services/createFbaGraphData";
 import {changeLinkOrientation} from "../../Creator/graph/double click node/ChangeLinkOrientation";
 
-export default function ReactionSettings({dataObj, setDataObj}) {
+export default function ReactionSettings({dataObj}) {
 
     const generalState = useSelector(state => state.general)
     const fluxState = useSelector(state => state.fluxAnalysis)
@@ -99,6 +99,9 @@ export default function ReactionSettings({dataObj, setDataObj}) {
 
         if (fluxState.flux) {
             dispatch({type: "SET_FBA_RESULTS", payload: null})
+        }
+        if (fluxState.sMomentFlux) {
+            dispatch({type: "SET_SMOMENT_FBA_RESULTS", payload: null})
         }
 
         dispatch({type: "SETREACTIONSINARRAY", payload: newReactionsInSelectArray})

@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React from "react";
 import {ToolTipBig} from "../../Creator/main/user-interface/UserInterface";
 import {useDispatch, useSelector} from "react-redux";
 import {fba} from "./FluxBalanceAnalysis";
 import {CustomButton} from "../../Components/Home/Home";
 
-export function FBAWithAutopacmen(props) {
+export function FBAWithAutopacmen() {
 
     const dispatch = useDispatch()
     const graphState = useSelector(state => state.graph)
@@ -13,9 +13,9 @@ export function FBAWithAutopacmen(props) {
     const fluxState = useSelector(state => state.fluxAnalysis)
 
     const handleOptimizeClick = async () => {
-        props.setDisableOptimizeButton(true)
+        dispatch({type:"DISABLE_OPTIMIZE_BUTTONS", payload: true})
         await fba(dispatch, generalState, graphState, proteinState, fluxState);
-        props.setDisableOptimizeButton(false)
+        dispatch({type:"DISABLE_OPTIMIZE_BUTTONS", payload: false})
     }
 
     return(
@@ -23,7 +23,8 @@ export function FBAWithAutopacmen(props) {
             <ToolTipBig title={"Create sMOMENT model and perform FBA and FVA"} placement={"right"}>
                 <span>
                     <CustomButton
-                    disabled={props.disableOptimizeButton}
+                        size="small"
+                    disabled={fluxState.disableOptimizationButtons || !fluxState.sMomentIsConfigured}
                     className={"download-button"}
                     onClick={() => handleOptimizeClick()}
                 >
