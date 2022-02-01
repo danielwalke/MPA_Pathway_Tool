@@ -46,8 +46,8 @@ public class TempFile {
 		      reader.close();
 		      return data;
 		    } catch (FileNotFoundException e) {
-		      System.out.println("An error occurred.");
-		      e.printStackTrace();
+		      System.out.println("Could not read result file.");
+//		      e.printStackTrace();
 		      return null;
 		    }
 	}

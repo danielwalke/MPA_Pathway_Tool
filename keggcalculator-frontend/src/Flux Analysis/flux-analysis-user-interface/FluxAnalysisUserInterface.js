@@ -15,6 +15,7 @@ import {useDispatch, useSelector} from "react-redux";
 import FluxAnalysisModal from "./FluxAnalysisModal";
 import {CustomButton} from "../../Components/Home/Home";
 import DownloadSBML from "../flux-analysis-download/DownloadSBML";
+import StatusContainer from "../flux-analysis-status/StatusContainer";
 
 
 function checkReactionArray(reactionArray, dispatch) {
@@ -118,8 +119,9 @@ export default function FluxAnalysisUserInterface(props) {
                         </ToolTipBig>
                     </div>
                     <DownloadFbaResults />
-                    <ChangeDisplayedFBAResults />
                     <DownloadSBML />
+                    <StatusContainer />
+                    <ChangeDisplayedFBAResults />
                 </div>
             </Drawer>
         </div>

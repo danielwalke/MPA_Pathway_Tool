@@ -20,6 +20,7 @@ const defaultState = {
     },
     sMomentIsConfigured: false,
     sMOMENTDownloadLink: "",
+    fluxAnalysisStatus: "",
 }
 
 export const fluxAnalysisReducer = (state = defaultState, action) => {
@@ -53,6 +54,8 @@ export const fluxAnalysisReducer = (state = defaultState, action) => {
             return {...state, disableOptimizationButtons: payload}
         case "SET_SMOMENT_DOWNLOAD_LINK":
             return {...state, sMOMENTDownloadLink: payload}
+        case "SET_STATUS":
+            return {...state, fluxAnalysisStatus: payload}
         default:
             return state;
     }

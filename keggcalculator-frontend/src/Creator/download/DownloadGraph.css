@@ -3,11 +3,11 @@
     background-color: rgb(150, 25, 130);
     border-radius: 5px;
     border: none;
-    box-shadow: 0px 0px 1px rgb(56, 9, 49);
+    box-shadow: 0 0 1px rgb(56, 9, 49);
     color: white;
     transition: all 200ms ease-in-out;
     /*text-transform: uppercase;*/
-    font-size: clamp(12px, 1vw, 22px);;
+    font-size: clamp(12px, 1vw, 22px);
     /*font-family: Roboto, serif;*/
     margin: 2px;
     padding: 4px;

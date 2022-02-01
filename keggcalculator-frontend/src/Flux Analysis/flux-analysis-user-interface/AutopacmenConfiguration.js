@@ -62,7 +62,7 @@ export default function AutopacmenConfiguration() {
                 setConfigurations={setConfigurations} min={0.0} max={1.0}
                 tooltip={'define the average level of enzyme saturation'}
             />
-            <FBAWithAutopacmen />
+            <FBAWithAutopacmen/>
         </div>
     )
 }

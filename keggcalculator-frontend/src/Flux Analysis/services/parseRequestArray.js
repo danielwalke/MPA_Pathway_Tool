@@ -41,10 +41,11 @@ const writeMetabolitesToReaction = (compounds, listOfMetabolites, reactionMetabo
 
 }
 
-export function parseRequestArray(reactionsInSelectArray) {
+export function parseRequestArray(reactionsInSelectArray, dispatch) {
 
     const listOfReactions = []
     const listOfMetabolites = []
+    let hasExchangeReaction = false
 
     reactionsInSelectArray.forEach(reaction => {
         const metabolites = []
@@ -54,6 +55,10 @@ export function parseRequestArray(reactionsInSelectArray) {
 
         writeMetabolitesToReaction(reaction.substrates, listOfMetabolites, metabolites, -1)
         writeMetabolitesToReaction(reaction.products, listOfMetabolites, metabolites, +1)
+
+        if (reaction.exchangeReaction) {
+            hasExchangeReaction = true
+        }
 
         listOfReactions.push({
             reactionId: reaction.reactionId,
@@ -68,6 +73,13 @@ export function parseRequestArray(reactionsInSelectArray) {
             ecNumbers: reaction.ecNumbersString,
         })
     })
+
+    if (!hasExchangeReaction) {
+        dispatch({type: "SET_STATUS", payload:
+                "Your network has no exchange reactions. Please add an exchange reaction for every metabolite that should " +
+                "be transported exchanged with the network."})
+        return
+    }
 
     const stringListOfMetabolites = Array.from(new Set (listOfMetabolites.map(
         item => JSON.stringify(item))))

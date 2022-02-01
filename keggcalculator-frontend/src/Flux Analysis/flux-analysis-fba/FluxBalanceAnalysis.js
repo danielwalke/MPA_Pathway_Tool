@@ -17,10 +17,17 @@ export async function fba(dispatch, generalState, graphState, proteinState, flux
     }
     dispatch({type: "SET_FBA_RESULTS", payload: null})
     dispatch({type: "SET_SMOMENT_FBA_RESULTS", payload: null})
+    dispatch({type: "SET_SMOMENT_DOWNLOAD_LINK", payload: ""})
+    dispatch({type: "SET_STATUS", payload: "initiating..."})
 
-    const networkObj = parseRequestArray(generalState.reactionsInSelectArray)
+    const networkObj = parseRequestArray(generalState.reactionsInSelectArray, dispatch)
+
+    if (!networkObj) {
+        triggerLoadingWarning(dispatch)
+        return
+    }
+
     const proteinData = []
-
 
     if (typeof proteinState !== 'undefined' && proteinState.proteinSet.size > 0) {
         proteinData.push(...parseProteinData(generalState.reactionsInSelectArray, proteinState))
@@ -33,7 +40,13 @@ export async function fba(dispatch, generalState, graphState, proteinState, flux
         reaction => getTaxaList(reaction.taxa).forEach(taxon => pathwayTaxonomySet.add(taxon)))
     const networkTaxa = Array.from(pathwayTaxonomySet)
 
+    dispatch({type: "SET_STATUS", payload: "sending data..."})
     const response = await startFBAJob(networkObj, proteinData, configurations, networkTaxa)
+
+    if (response.fbaSolution === "") {
+        dispatch({type: "SET_STATUS", payload: response.message})
+        return
+    }
 
     const {origModelFbaData, sMomentFBAData} = responseToMap(JSON.parse(response.fbaSolution))
 
@@ -43,9 +56,9 @@ export async function fba(dispatch, generalState, graphState, proteinState, flux
     dispatch({type: "SET_SMOMENT_FBA_RESULTS", payload: sMomentFBAData})
     dispatch({type: "SET_FLUX_GRAPH", payload: newGraphData.data})
     dispatch({type: "SETREACTIONSINARRAY", payload: [...generalState.reactionsInSelectArray]})
+    dispatch({type: "SET_STATUS", payload: "finished"})
 
     if(sMomentFBAData) {
-        console.log(response)
         dispatch({type: "SET_SMOMENT_DOWNLOAD_LINK", payload: `${RequestURL.endpoint_downloadSMomentModel}/${response.jobId}`})
     }
 

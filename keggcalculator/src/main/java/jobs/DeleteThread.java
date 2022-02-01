@@ -1,6 +1,7 @@
 package jobs;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -55,6 +56,9 @@ public class DeleteThread implements Runnable {
 			System.out.println(file.getName() + "\t" + "deleted");
 			file.delete();
 		}
+		
+		deleteDirectoryWithId(new File(downloadDir), jobID);
+		deleteDirectoryWithId(new File(uploadDir), jobID);
 	}
 	
 	public static void listFilesForFolder(File folder, ArrayList<String> filePaths, String jobId) {
@@ -70,6 +74,27 @@ public class DeleteThread implements Runnable {
 	            
 	        }
 	    }
+	}
+	
+	private void deleteDirectoryWithId(File parentDir, String jobID) {
+	    for (File jobDir : parentDir.listFiles()) {
+	    	if (jobDir.getAbsolutePath().contains(jobID)) {
+	    		deleteDir(jobDir);
+	    	}
+	    }
+	    
+	}
+	
+	private boolean deleteDir(File dir) {
+		File[] folderContents = dir.listFiles();
+		if (folderContents != null) {
+	        for (File file : folderContents) {
+	        	deleteDir(file);
+	        }
+	    }
+		
+		System.out.println("Deleted " + dir.getName());
+		return dir.delete();
 	}
 
 }

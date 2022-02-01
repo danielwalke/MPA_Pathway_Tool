@@ -103,6 +103,9 @@ export default function ReactionSettings({dataObj}) {
         if (fluxState.sMomentFlux) {
             dispatch({type: "SET_SMOMENT_FBA_RESULTS", payload: null})
         }
+        if (fluxState.sMOMENTDownloadLink !== "") {
+            dispatch({type: "SET_SMOMENT_DOWNLOAD_LINK", payload: ""})
+        }
 
         dispatch({type: "SETREACTIONSINARRAY", payload: newReactionsInSelectArray})
     }

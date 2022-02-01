@@ -18,13 +18,17 @@ export function FBAWithAutopacmen() {
         dispatch({type:"DISABLE_OPTIMIZE_BUTTONS", payload: false})
     }
 
+    const message = proteinState.proteinSet.size === 0 ?
+        "Please upload protein data to perform FBA with sMOMENT" : "Create an sMOMENT model and perform FBA and FVA"
+
     return(
-        <div className={"helpContainer"}>
-            <ToolTipBig title={"Create sMOMENT model and perform FBA and FVA"} placement={"right"}>
-                <span>
+        <div >
+            <ToolTipBig title={message} placement={"right"}>
+                <span style={{display: "flex", justifyContent: "center"}}>
                     <CustomButton
                         size="small"
-                    disabled={fluxState.disableOptimizationButtons || !fluxState.sMomentIsConfigured}
+                    disabled={fluxState.disableOptimizationButtons ||
+                        !fluxState.sMomentIsConfigured || proteinState.proteinSet.size === 0}
                     className={"download-button"}
                     onClick={() => handleOptimizeClick()}
                 >

@@ -114,7 +114,7 @@ const UserInterface = () => {
     const classes = useStyles()
     return (
         <div className={"interface"}>
-            <Loading className={"loadingContainer"}/>
+            <Loading label={""}/>
             <ModuleListModal/>
             {graphState.showInfo ? <ReactionInfo/> : null}
             <KeggReaction/>
@@ -142,7 +142,7 @@ const UserInterface = () => {
             </Toolbar>
             <Drawer
                 style={{
-                    width: "30vw",
+                    width: "20vw",
                     flexShrink: 0
                 }}
                 variant="persistent"

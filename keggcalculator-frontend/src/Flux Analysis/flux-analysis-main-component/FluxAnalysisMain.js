@@ -2,12 +2,14 @@ import React, {useEffect, useState} from "react";
 import FluxAnalysisUserInterface from "../flux-analysis-user-interface/FluxAnalysisUserInterface";
 import FluxAnalysisGraphVisualization from "../flux-analysis-graph-visualization/FluxAnalysisGraphVisualization";
 import GraphModal from "../flux-analysis-modals/GraphModal";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 export default function FluxAnalysisMain(){
     const fluxState = useSelector(state => state.fluxAnalysis)
     const generalState = useSelector(state => state.general)
     const [mouseCoordinates, setMouseCoordinates] = useState({x: "", y: ""})
+
+    const dispatch = useDispatch()
 
     useEffect(() => {
         console.log(fluxState)
@@ -23,6 +25,12 @@ export default function FluxAnalysisMain(){
             if (typeof reaction.objectiveCoefficient === "undefined") reaction.objectiveCoefficient = 0
             if (!reaction.hasOwnProperty("exchangeReaction")) reaction.exchangeReaction = false
         })
+
+        if (generalState.reactionsInSelectArray.length > 0) {
+            dispatch({type: "SET_STATUS", payload: "ready"})
+        } else {
+            dispatch({type: "SET_STATUS", payload: "no network"})
+        }
     },[])
 
     return (
