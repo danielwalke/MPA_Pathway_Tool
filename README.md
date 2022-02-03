@@ -134,7 +134,7 @@ You can read the [tutorial](https://github.com/danielwalke/MPA_Pathway_Tool/blob
 <a name="publication"/>
 
 ## 6. Publication
-You will find the official publication "MPA_Pathway_Tool: User-friendly, automatic assignment of microbial community data on metabolic pathways" on "".
+You will find the official publication "MPA_Pathway_Tool: User-friendly, automatic assignment of microbial community data on metabolic pathways" [here](https://pure.mpg.de/rest/items/item_3348333/component/file_3348946/content).
 
 <a name="credits"/>
 
