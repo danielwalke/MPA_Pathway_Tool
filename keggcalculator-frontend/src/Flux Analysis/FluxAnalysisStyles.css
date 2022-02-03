@@ -109,13 +109,16 @@
     -webkit-box-shadow: inset 0 0 8px 0 rgba(0,0,0,0.05);
     box-shadow: inset 0 0 8px 0 rgba(0,0,0,0.05);
     overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .switch-buttons {
+    width: 80%;
     margin-top: 10%;
-    margin-left: auto;
-    margin-right: auto;
     display: flex;
+    justify-self: center;
 }
 
 .switch-button-left {
@@ -129,4 +132,9 @@
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     border: 2px solid rgba(0,0,0,.125);
+}
+
+.switch-button-not-active {
+    background-color: unset;
+    color: #941680;
 }

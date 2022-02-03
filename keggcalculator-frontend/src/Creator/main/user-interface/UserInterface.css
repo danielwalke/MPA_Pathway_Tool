@@ -1,5 +1,6 @@
 .interfaceContainer {
     /*width: auto;*/
+    width: 15rem;
     display: grid;
     grid-auto-columns: auto;
     height: auto;

@@ -21,10 +21,13 @@ def optimize(model: cobra.Model, orig_model_reaction_names: [], do_pfba: bool):
 
     model = utilities.split_all_reversibles(model)
 
-    if not do_pfba:
-        fba_solution = model.optimize()
-    else:
-        fba_solution = cobra.flux_analysis.pfba(model)
+    try:
+        if not do_pfba:
+            fba_solution = model.optimize()
+        else:
+            fba_solution = cobra.flux_analysis.pfba(model)
+    except Exception as e:
+        raise ExceptionWithCode(3, "FBA couldn't be performed.")
 
     try:
         fva_dict, variabilities = utilities.get_fva_statistics(model)
@@ -32,10 +35,13 @@ def optimize(model: cobra.Model, orig_model_reaction_names: [], do_pfba: bool):
     except Exception as e:
         raise ExceptionWithCode(4, "Couldn't get FVA results.")
 
-    added_reactions_dict_irrev = \
-        utilities.combine_seperated_reactions(fva_dict, fba_solution.fluxes, orig_model_reaction_names)
+    try:
+        added_reactions_dict_irrev = \
+            utilities.combine_seperated_reactions(fva_dict, fba_solution.fluxes, orig_model_reaction_names)
 
-    # combine reversible reactions
-    all_combined_reacions_dict = utilities.combine_reversible_reactions(added_reactions_dict_irrev)
+        # combine reversible reactions
+        all_combined_reacions_dict = utilities.combine_reversible_reactions(added_reactions_dict_irrev)
+    except Exception as e:
+        raise ExceptionWithCode(5, "Couldn't assemble results.")
 
     return all_combined_reacions_dict

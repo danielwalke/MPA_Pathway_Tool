@@ -27,9 +27,9 @@ export default function FluxAnalysisMain(){
         })
 
         if (generalState.reactionsInSelectArray.length > 0) {
-            dispatch({type: "SET_STATUS", payload: "ready"})
+            dispatch({type: "SET_STATUS", payload: {alert: false, message: "ready"}})
         } else {
-            dispatch({type: "SET_STATUS", payload: "no network"})
+            dispatch({type: "SET_STATUS", payload: {alert: true, message: "no network"}})
         }
     },[])
 

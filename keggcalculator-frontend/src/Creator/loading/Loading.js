@@ -19,7 +19,6 @@ export default function Loading(props) {
 
 const SnackbarLoader = ({state, label}) => {
     const dispatch = useDispatch()
-    console.log(label)
     return (
         <div>
             {state.loading &&

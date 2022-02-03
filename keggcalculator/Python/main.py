@@ -28,11 +28,8 @@ def run_process(upload_dir: str, job_id: str):
 
         orig_model_reaction_names = [reaction.id for reaction in copy.deepcopy(model).reactions]
 
-        try:
-            fba_results = perform_fba.optimize(model, orig_model_reaction_names, True)
-            smoment_fba_results = perform_fba.optimize(s_moment_model, orig_model_reaction_names, True)
-        except Exception as e:
-            raise ExceptionWithCode(3, str(e))
+        fba_results = perform_fba.optimize(model, orig_model_reaction_names, True)
+        smoment_fba_results = perform_fba.optimize(s_moment_model, orig_model_reaction_names, True)
 
         data_manipulation.write_to_temp_file(
             data_manipulation.parse_result_object_to_json(fba_results, smoment_fba_results),
@@ -51,7 +48,7 @@ def run_process(upload_dir: str, job_id: str):
         if hasattr(e, 'code'):
             exception_dict['code'] = e.code
 
-        json_write(constants.get_job_dir_path(upload_dir, job_id) + '/error_log.txt', exception_dict)
+        json_write(constants.get_job_dir_path(upload_dir, job_id) + '/error_log.json', exception_dict)
 
 
 if __name__ == '__main__':

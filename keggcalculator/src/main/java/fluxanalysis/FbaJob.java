@@ -14,6 +14,7 @@ public class FbaJob implements Runnable {
 		this.job = fbaJob;
 		this.job.message = "created";
 		this.job.fbaSolution = "";
+		this.job.jobCode = "0";
 	}
 	
 	@Override
@@ -53,17 +54,34 @@ public class FbaJob implements Runnable {
 			}
 		} catch (Exception e) {
 			this.job.message = "Upload failed";
+			this.job.jobCode = "-1";
 			e.printStackTrace();
 		}
 		
 		try {
 			if (startPythonProcess) {
-				this.job.fbaSolution = FbaService.startPythonProcess(uploadDir, this.job.jobId);
-				this.job.message = "finished";
+				ProcessResultObject processResult = FbaService.startPythonProcess(uploadDir, this.job.jobId);
+				
+				
+				if (processResult.getExitCode() == 1) {
+					this.job.message = "A server error occured.";
+					this.job.jobCode = "-1";
+				} else if (processResult.getResults() == "" || processResult.getResults() == null) {
+					this.job.message = FbaService.evaluateErrorLog(
+							KeggCalculatorConstants.UPLOAD_DIR + this.job.jobId);
+					this.job.jobCode = "-1";
+				} else {
+					this.job.message = "finished";
+					this.job.jobCode = "1";
+				}
+				
+				this.job.fbaSolution = processResult.getResults();
+								
 				startPythonProcess = false;
 			}
 		} catch (Exception e) {
-			this.job.message = "failed";
+			this.job.message = "A server error occured";
+			this.job.jobCode = "-1";
 			e.printStackTrace();
 		}
 	

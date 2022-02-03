@@ -2,6 +2,7 @@ package services;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -20,9 +21,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
 
 import constants.KeggCalculatorConstants;
 import fluxanalysis.FbaJob;
+import fluxanalysis.ProcessResultObject;
 import fluxanalysis.TempFile;
 import jobs.DeleteThread;
 import json.FbaJobJson;
@@ -97,8 +100,9 @@ public class FbaService {
 		}
 	}
 	
-	public static String startPythonProcess(String modelContainer, String jobId) {
-		String results;
+	public static ProcessResultObject startPythonProcess(String modelContainer, String jobId) {
+		String results = "";
+		int exitCode = 0;
 		String pythonPath = new File("Python/main.py").getAbsolutePath();
 		String uploadDir = "upload/";
 		String javaResultDir = "upload/" + jobId + "/fbaResults_" + jobId;
@@ -126,20 +130,24 @@ public class FbaService {
 			
             System.out.println("starting python");
             
-            int exitCode = process.waitFor();
+            exitCode = process.waitFor();
             System.out.println(strBuilder.toString());
             System.out.println("Exit Code : "+ exitCode);
             
 			results = TempFile.readTempFile(javaResultDir);
-			            
-            return results;
 			
+			return new ProcessResultObject(results, exitCode);
+			            			
 			} catch (RuntimeException e) {
 	            e.printStackTrace();
-	            return "";
+	            results = "";
+	            exitCode = 1;
+	            return new ProcessResultObject(results, exitCode);
 	        } catch (Exception e) {
 	            e.printStackTrace();
-	            return "";
+	            results = "";
+	            exitCode = 1;
+	            return new ProcessResultObject(results, exitCode);
 	        } finally {
 	            System.out.println("Done");
 	        }
@@ -164,5 +172,68 @@ public class FbaService {
             e.printStackTrace();
         }
         return raw;
+	}
+	
+	public static String evaluateErrorLog(String jobDir) throws IOException {
+		
+		int code = 0;
+		File errorLogPath = new File(jobDir + "/error_log.json");
+		
+		if(errorLogPath.exists()) {
+		    JsonReader reader = new JsonReader(new FileReader(errorLogPath));
+		    try {
+		        code = readErrorLog(reader);
+		      } finally {
+		        reader.close();
+		      }
+		}
+		
+		return getErrorMessageForCode(code);
+		
+	}
+	
+	public static int readErrorLog(JsonReader reader) throws IOException {
+		
+		int code = 0;
+		
+		reader.beginObject();
+		while (reader.hasNext()) {
+			String prop = reader.nextName();
+			if(prop.equals("code")) {
+				code = reader.nextInt();
+			} else {
+				reader.skipValue();
+			}
+		}
+		reader.endObject();
+		
+		return code;
+	}
+	
+	public static String getErrorMessageForCode(int code) {
+		String message;
+		
+		switch (code) {
+		case 1:
+			message = "An error occurred while building the cobra model.";
+			break;
+		case 2:
+			message = "An error occurred while building the cobra sMOMENT model. Please check your input data file.";
+			break;
+		case 3:
+			message = "Couldn't generate an FBA solution. Please check model boundaries.";
+			break;
+		case 4:
+			message = "Couldn't generate FVA results.";
+			break;
+		case 5:
+			message = "Couldn't assemble results.";
+			break;
+		default:
+			message = "An unknown error occurred.";
+			break;
+		}
+		
+		return message;
 	}
 }

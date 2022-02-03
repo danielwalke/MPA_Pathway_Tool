@@ -46,6 +46,7 @@ export function parseRequestArray(reactionsInSelectArray, dispatch) {
     const listOfReactions = []
     const listOfMetabolites = []
     let hasExchangeReaction = false
+    let hasObjective = false
 
     reactionsInSelectArray.forEach(reaction => {
         const metabolites = []
@@ -58,6 +59,10 @@ export function parseRequestArray(reactionsInSelectArray, dispatch) {
 
         if (reaction.exchangeReaction) {
             hasExchangeReaction = true
+        }
+
+        if (reaction.objectiveCoefficient !== 0) {
+            hasObjective = true
         }
 
         listOfReactions.push({
@@ -75,9 +80,17 @@ export function parseRequestArray(reactionsInSelectArray, dispatch) {
     })
 
     if (!hasExchangeReaction) {
-        dispatch({type: "SET_STATUS", payload:
+        dispatch({type: "SET_STATUS", payload: {alert: true, message:
                 "Your network has no exchange reactions. Please add an exchange reaction for every metabolite that should " +
-                "be transported exchanged with the network."})
+                    "be exchanged with the network."
+            }})
+        return
+    }
+
+    if (!hasObjective) {
+        dispatch({type: "SET_STATUS", payload: {alert: true, message:
+                    "Your network contains no reaction to be minimized or maximized. Please set an objective Coefficient."
+            }})
         return
     }
 

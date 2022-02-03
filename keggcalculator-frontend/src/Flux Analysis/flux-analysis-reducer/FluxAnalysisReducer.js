@@ -20,7 +20,7 @@ const defaultState = {
     },
     sMomentIsConfigured: false,
     sMOMENTDownloadLink: "",
-    fluxAnalysisStatus: "",
+    fluxAnalysisStatus: {alert: false, message: ""},
 }
 
 export const fluxAnalysisReducer = (state = defaultState, action) => {

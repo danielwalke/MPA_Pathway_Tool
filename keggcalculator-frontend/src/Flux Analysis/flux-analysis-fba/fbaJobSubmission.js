@@ -51,7 +51,7 @@ export async function startFBAJob(networkObject, proteinData, configurations, ne
         if (status) {
             return status
         } else {
-        //    TODO: stop execution
+            throw 'No valid response.'
         }
 
     } catch (e) {
@@ -65,13 +65,10 @@ async function fetchStatus(jobId, endpoint) {
         const status = await requestGenerator("GET", endpoint, {jobId: jobId}, "", "")
 
         if (status.status === 200) {
-            if (status.data.message === "finished") {
+            if (status.data.jobCode === "1" || status.data.jobCode === "-1") {
                 return status.data
-            } else if (status.data.message === "failed") {
-                console.log('Job failed')
-                break;
             } else {
-                await sleep(5000)
+                await sleep(1000)
             }
         } else {
             throw 'Error while requesting fba job status.'

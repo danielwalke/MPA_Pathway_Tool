@@ -18,7 +18,7 @@ export async function fba(dispatch, generalState, graphState, proteinState, flux
     dispatch({type: "SET_FBA_RESULTS", payload: null})
     dispatch({type: "SET_SMOMENT_FBA_RESULTS", payload: null})
     dispatch({type: "SET_SMOMENT_DOWNLOAD_LINK", payload: ""})
-    dispatch({type: "SET_STATUS", payload: "initiating..."})
+    dispatch({type: "SET_STATUS", payload: {alert: false, message: "initiating..."}})
 
     const networkObj = parseRequestArray(generalState.reactionsInSelectArray, dispatch)
 
@@ -40,11 +40,18 @@ export async function fba(dispatch, generalState, graphState, proteinState, flux
         reaction => getTaxaList(reaction.taxa).forEach(taxon => pathwayTaxonomySet.add(taxon)))
     const networkTaxa = Array.from(pathwayTaxonomySet)
 
-    dispatch({type: "SET_STATUS", payload: "sending data..."})
+    dispatch({type: "SET_STATUS", payload: {alert: false, message: "sending data..."}})
     const response = await startFBAJob(networkObj, proteinData, configurations, networkTaxa)
 
+    if (!response) {
+        dispatch({type: "SET_STATUS", payload: {alert: true, message: "A server error occurred."}})
+        triggerLoadingWarning(dispatch)
+        return
+    }
+
     if (response.fbaSolution === "") {
-        dispatch({type: "SET_STATUS", payload: response.message})
+        dispatch({type: "SET_STATUS", payload: {alert: true, message: response.message}})
+        triggerLoadingWarning(dispatch)
         return
     }
 
@@ -56,7 +63,7 @@ export async function fba(dispatch, generalState, graphState, proteinState, flux
     dispatch({type: "SET_SMOMENT_FBA_RESULTS", payload: sMomentFBAData})
     dispatch({type: "SET_FLUX_GRAPH", payload: newGraphData.data})
     dispatch({type: "SETREACTIONSINARRAY", payload: [...generalState.reactionsInSelectArray]})
-    dispatch({type: "SET_STATUS", payload: "finished"})
+    dispatch({type: "SET_STATUS", payload: {alert: false, message: "finished"}})
 
     if(sMomentFBAData) {
         dispatch({type: "SET_SMOMENT_DOWNLOAD_LINK", payload: `${RequestURL.endpoint_downloadSMomentModel}/${response.jobId}`})

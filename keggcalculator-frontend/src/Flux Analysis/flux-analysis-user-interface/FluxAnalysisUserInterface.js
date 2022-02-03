@@ -7,7 +7,6 @@ import {ToolTipBig} from "../../Creator/main/user-interface/UserInterface";
 import CloseIcon from "@material-ui/icons/Close";
 import "../../Creator/main/user-interface/UserInterface.css"
 import FluxBalanceAnalysis from "../flux-analysis-fba/FluxBalanceAnalysis";
-import Loading from "../../Creator/loading/Loading";
 import DownloadFbaResults from "../flux-analysis-download/DownloadFbaResults";
 import {FBAWithAutopacmen} from "../flux-analysis-fba/FBAWithAutopacmen";
 import ChangeDisplayedFBAResults from "../flux-analysis-fba/ChangeDisplayedFbaResults";
@@ -58,7 +57,6 @@ export default function FluxAnalysisUserInterface(props) {
 
     return(
         <div className={"interface"}>
-            <Loading />
             {fluxState.showFluxAnalysisModal && <FluxAnalysisModal/>}
             <Toolbar>
                 <ToolTipBig title={"Click to open the menu"} placement={"right"}>
@@ -77,7 +75,7 @@ export default function FluxAnalysisUserInterface(props) {
                 anchor="left"
                 open={open}
                 classes={{paper: classes.drawerPaper}}>
-                <div className={"interfaceContainer"} style={{width: "20vw", flexShrink: 0}}>
+                <div className={"interfaceContainer"}>
                     <div style={{display:"flex", justifyContent:"center"}}>
                         <ToolTipBig title={"Click for closing the menu"} placement={"right"}>
                                 <IconButton onClick={() => setOpen(false)}>

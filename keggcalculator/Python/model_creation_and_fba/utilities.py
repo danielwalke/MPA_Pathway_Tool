@@ -25,8 +25,6 @@ def get_fva_statistics(model):
     maximums = []
     variabilities = []
 
-    print(model.objective)
-
     for reaction in model.reactions:
         if reaction.id == "ER_pool_TG_":
             continue
@@ -108,10 +106,15 @@ def get_fva_statistics(model):
     mean_minimum = statistics.mean(minimums)
     mean_maximum = statistics.mean(maximums)
     num_zeroes = len([x for x in variabilities if x < 10e-10])
-    mean_variability = statistics.mean(
-        [x for x in variabilities if x > 10e-10])
-    median_variability = statistics.median(
-        [x for x in variabilities if x > 10e-10])
+
+    variabilites_above_zero = [x for x in variabilities if x > 10e-10]
+
+    if len(variabilites_above_zero) > 0:
+        mean_variability = statistics.mean(variabilites_above_zero)
+        median_variability = statistics.median(variabilites_above_zero)
+    else:
+        mean_variability = 0
+        median_variability = 0
 
     fva_dict["MEAN"] = {}
     fva_dict["MEAN"]["minimum"] = mean_minimum
@@ -136,7 +139,7 @@ def split_all_reversibles(model: cobra.Model) -> cobra.Model:
     for reaction_id in model_reaction_ids:
         reaction = model.reactions.get_by_id(reaction_id)
 
-        if reaction.lower_bound >= 0:
+        if reaction.lower_bound >= 0 or reaction.upper_bound <= 0:
             continue
 
         forward_reaction = copy.deepcopy(reaction)

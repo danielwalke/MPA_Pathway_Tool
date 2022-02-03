@@ -4,6 +4,7 @@ public class FbaJobJson {
 	public String jobId;
 	public String networkName;
 	public String message;
+	public String jobCode; // 0 running, -1 fail, 1 done
 	public String fbaSolution;
 	
 	public void cloneFrom(FbaJobJson fbaJob) {
@@ -29,6 +30,12 @@ public class FbaJobJson {
 			this.fbaSolution = fbaJob.fbaSolution;
 		} else {
 			this.fbaSolution = "";
+		}
+		
+		if (fbaJob.jobCode != null) {
+			this.jobCode = fbaJob.jobCode;
+		} else {
+			this.jobCode = "";
 		}
 	}
 }

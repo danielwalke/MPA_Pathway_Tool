@@ -4,6 +4,7 @@ const defaultState = {
     compoundList: [],//mount?
     compMap: new Map(),//mount
     loading: false,//general
+    alert: false,
     reactionsInSelectArray: [],//all reactions
     keggReactions: [],
     showKeggReaction: false,
