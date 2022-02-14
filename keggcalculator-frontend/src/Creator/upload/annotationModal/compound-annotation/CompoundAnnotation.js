@@ -7,16 +7,15 @@ import clonedeep from "lodash/cloneDeep";
 import {annotationIndicator} from "../AnnotationIndicator";
 import SearchField from "../SearchField";
 import {filterArray, getComparator, stableSort} from "../sorting"
+import {ArrowForwardIos} from "@material-ui/icons";
 
 const submit = (state, dispatch) => {
     const newListOfReactions = addCompoundsToReactions(state, state.general.listOfReactions, state.general.listOfSpecies)
 
-    console.log(newListOfReactions)
-
     dispatch({type: "SETLISTOFREACTIONS", payload: newListOfReactions})
     dispatch({type: "SETLOADING", payload: false})
     dispatch({type: "SHOWCOMPOUNDANNOTATION", payload: false})
-    dispatch({type: "SHOWREACTIONANNOTATION", payload: true})
+    dispatch({type: "SHOW_GENE_PRODUCT_ANNOTATION", payload: true})
 }
 
 const CompoundTableRow = (props) => {
@@ -148,6 +147,7 @@ const CompoundAnnotation = () => {
                                 </TableHead>
                                 <TableBody>
                                     {tableArray.map((row, tableIndex) => {
+                                        console.log(row)
                                         return (
                                             <CompoundTableRow key={tableIndex}
                                                               row={row}
@@ -178,9 +178,9 @@ const CompoundAnnotation = () => {
             </div>
             <div className={"button-bar button-right"}>
                 <button
-                    className={"download-button finish-button"}
+                    className={"download-button circle-icon button-10rem"} style={{paddingLeft: "1rem"}}
                     onClick={() => submit(state, dispatch, listOfSpecies)}>
-                    Finish
+                    Gene Products <ArrowForwardIos style={{fontSize: "1rem"}}/>
                 </button>
             </div>
         </div>

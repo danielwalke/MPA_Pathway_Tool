@@ -20,7 +20,7 @@ export async function fba(dispatch, generalState, graphState, proteinState, flux
     dispatch({type: "SET_SMOMENT_DOWNLOAD_LINK", payload: ""})
     dispatch({type: "SET_STATUS", payload: {alert: false, message: "initiating..."}})
 
-    const networkObj = parseRequestArray(generalState.reactionsInSelectArray, dispatch)
+    const networkObj = parseRequestArray(generalState.reactionsInSelectArray, generalState.listOfGeneProducts, dispatch)
 
     if (!networkObj) {
         triggerLoadingWarning(dispatch)
@@ -30,8 +30,14 @@ export async function fba(dispatch, generalState, graphState, proteinState, flux
     const proteinData = []
 
     if (typeof proteinState !== 'undefined' && proteinState.proteinSet.size > 0) {
-        proteinData.push(...parseProteinData(generalState.reactionsInSelectArray, proteinState))
+        console.log('in da loop')
+        proteinData.push(
+            ...parseProteinData(generalState.reactionsInSelectArray, proteinState, generalState.listOfGeneProducts))
+    } else {
+        networkObj.geneProducts = []
     }
+
+    console.log(proteinData)
 
     const configurations =  fluxState ? fluxState.sMomentConfigurations : {}
 

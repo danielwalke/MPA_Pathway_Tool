@@ -20,6 +20,7 @@ export class Reaction {
     _upperBound
     _objectiveCoefficient
     _isForwardReaction
+    _geneProteinRule
 
     constructor(name) {
         this._reactionName = name
@@ -36,6 +37,7 @@ export class Reaction {
         this._lowerBound = 0.0
         this._upperBound = 1000.0
         this._objectiveCoefficient = 0.0
+        this._geneProteinRule = []
     }
 
     addProductObject(compound, coefficient) {
@@ -192,5 +194,13 @@ export class Reaction {
 
     set isForwardReaction(value) {
         this._isForwardReaction = value;
+    }
+
+    get geneProteinRule() {
+        return this._geneProteinRule;
+    }
+
+    set geneProteinRule(value) {
+        this._geneProteinRule = value;
     }
 }

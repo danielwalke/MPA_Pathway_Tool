@@ -9,7 +9,6 @@ source:"", target:"", opacity:1}]}
 import {handleJSONGraphUpload} from "../json upload/ModuleUploadFunctionsJSON";
 import {Reaction} from "../model/Reaction";
 import {Compound} from "../model/Compound";
-import {getLastItemOfList} from "../../usefulFunctions/Arrays";
 import {NOT_KEY_COMPOUND_OPACITY} from "../../graph/Constants";
 
 export const setReactionsAndCompoundsInStore = (state, listOfReactions, dispatch) => {
@@ -47,6 +46,7 @@ export const setReactionsAndCompoundsInStore = (state, listOfReactions, dispatch
         r.upperBound = reaction.upperBound
         r.objectiveCoefficient = reaction.objectiveCoefficient
         r.isForwardReaction = reaction.isForwardReaction
+        r._geneProteinRule = reaction.geneRule ? reaction.geneRule : []
 
         reaction.substrates.forEach(substrate => {
             const compound = getSbmlCompound(substrate, "substrate", state.general.annotateSbml, reactionGlyph, state.general.listOfSpeciesGlyphs)
@@ -88,6 +88,7 @@ const getReactions = (reactions) => {
         reaction.lowerBound = r._lowerBound
         reaction.upperBound = r._upperBound
         reaction.objectiveCoefficient = r._objectiveCoefficient
+        reaction.geneRule = r._geneProteinRule
         reaction.substrates = r._substrates.map(substrate => {
             reaction.stochiometrySubstratesString.set(substrate._id, substrate._stoichiometry)
             return ({

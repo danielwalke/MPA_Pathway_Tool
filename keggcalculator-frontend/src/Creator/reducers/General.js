@@ -49,6 +49,7 @@ const defaultState = {
     showAnnotationWarning: false,
     showAnnotationTable: false, //boolean, which checks whether the user intents to make annotation for the compounds in the given sbml-file
     showCompoundAnnotation: false,
+    showGeneProductAnnotation: false,
     showReactionAnnotation: false,
     annotation: "",
     moduleFileNameSbml: "",
@@ -56,6 +57,7 @@ const defaultState = {
     addLinkModal: false, //modal for adding new links useful for signaling pathway
     listOfReactionGlyphs: [], //positons of nodes in sbml file
     listOfSpeciesGlyphs: [],
+    listOfGeneProducts: [],
     taxonomicNames: [], //taxonomic names received from server after submitting taxonomic rank
     mappingStart: "", //start time of mapping
     mappingEnd: "", //end time of mapping
@@ -197,6 +199,8 @@ export const generalReducer = (state = defaultState, action) => {
             return {...state, showAnnotationTable: payload}
         case "SHOWCOMPOUNDANNOTATION":
             return {...state, showCompoundAnnotation: payload}
+        case "SHOW_GENE_PRODUCT_ANNOTATION":
+            return {...state, showGeneProductAnnotation: payload}
         case "SHOWREACTIONANNOTATION":
             return {...state, showReactionAnnotation: payload}
         case "SWITCHSHOWMULTIPLEKEGGREACTIONS":
@@ -207,6 +211,8 @@ export const generalReducer = (state = defaultState, action) => {
             return {...state, listOfReactionGlyphs: payload}
         case "SET_LIST_OF_SPECIES_GLYPHS":
             return {...state, listOfSpeciesGlyphs: payload}
+        case "SET_LIST_OF_GENE_PRODUCTS":
+            return {...state, listOfGeneProducts: payload}
         case "ADD_KEGG_REACTION":
             if(state.keggReactions.includes(payload)){
                 return state

@@ -9,6 +9,8 @@ import clonedeep from "lodash/cloneDeep"
 import {requestGenerator} from "../../../request/RequestGenerator";
 import {endpoint_TaxonomyById} from "../../../../App Configurations/RequestURLCollection";
 import {getNLastChars} from "../../../usefulFunctions/Strings";
+import {readGeneProducts} from "./readGeneProducts";
+import {getGeneProteinReactionRule} from "../../annotationModal/geneProductAnnotation/generateGeneProduct";
 //get specific compound id in the appropriate format
 export const getCompoundId = (index) => {
     if (index < 10) {
@@ -236,7 +238,7 @@ function mergeReactionLists(listOfUserReations, listOfNewUserReactions, listOfRe
 }
 
 export function createReactionObject(
-    sbmlId, sbmlName, keggId, ecNumbers, koNumbers, substrates, products, reversible, taxonomy, biggReaction,
+    sbmlId, sbmlName, keggId, ecNumbers, koNumbers, geneRule, substrates, products, reversible, taxonomy, biggReaction,
     upperBound, lowerBound, objectiveCoefficient, exchangeReaction, index, opacity, x, y, isForwardReaction,
     abbreviation) {
 
@@ -260,7 +262,8 @@ export function createReactionObject(
             opacity: opacity,
             x: x,
             y: y,
-            abbreviation: abbreviation
+            abbreviation: abbreviation,
+            geneRule: geneRule
         }
 }
 
@@ -278,6 +281,7 @@ const readReactions = (dispatch, sbml, globalTaxa, listOfObjectives, listOfParam
         const sbmlName = typeof reaction.attributes.name === "string" ? replaceXmlCharacters(reaction.attributes.name) : replaceXmlCharacters(reaction.attributes.id);
         const reversible = reaction.attributes["reversible"] === "true"
         const annotations = reaction.getElementsByTagName("rdf:li").map(link => link.attributes["rdf:resource"])
+        const geneProteinReactionRule = getGeneProteinReactionRule(reaction.getElementsByTagName("fbc:geneProductAssociation"))
 
         let lowerBoundParam = listOfParameters.find(param => param.id === reaction.attributes["fbc:lowerFluxBound"])
         let upperBoundParam = listOfParameters.find(param => param.id === reaction.attributes["fbc:upperFluxBound"])
@@ -331,6 +335,7 @@ const readReactions = (dispatch, sbml, globalTaxa, listOfObjectives, listOfParam
             keggId,
             ecNumbers,
             koNumbers,
+            geneProteinReactionRule,
             substrates,
             products,
             reversible,
@@ -444,6 +449,7 @@ export const onSBMLModuleFileChange = async (event, dispatch, state) => {
 
             const listOfCompartments = readCompartments(dispatch, sbml)
             const listOfSpecies = readSpecies(dispatch, sbml, listOfCompartments)
+            const listOfGeneProducts = readGeneProducts(dispatch, sbml)
             const listOfObjectives = readListOfObjectives(dispatch, sbml)
             const listOfParameters = readListOfParameters(dispatch, sbml)
             const listOfReactions = readReactions(dispatch, sbml, globalTaxa, listOfObjectives, listOfParameters)
@@ -455,6 +461,7 @@ export const onSBMLModuleFileChange = async (event, dispatch, state) => {
             dispatch({type: "SET_LIST_OF_SPECIES_GLYPHS", payload: listOfSpeciesGlyphs})
 
             dispatch({type: "SETLISTOFSPECIES", payload: listOfSpecies})
+            dispatch({type: "SET_LIST_OF_GENE_PRODUCTS", payload: listOfGeneProducts})
             dispatch({type: "SETLISTOFREACTIONS", payload: listOfReactions})
 
             dispatch({type: "ADD_PATHWAY_TO_AUDIT_TRAIL", payload: file.name})

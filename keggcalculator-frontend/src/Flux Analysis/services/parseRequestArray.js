@@ -41,7 +41,7 @@ const writeMetabolitesToReaction = (compounds, listOfMetabolites, reactionMetabo
 
 }
 
-export function parseRequestArray(reactionsInSelectArray, dispatch) {
+export function parseRequestArray(reactionsInSelectArray, listOfGeneProducts, dispatch) {
 
     const listOfReactions = []
     const listOfMetabolites = []
@@ -76,6 +76,7 @@ export function parseRequestArray(reactionsInSelectArray, dispatch) {
             biggId: reaction.biggId,
             keggOrthologies: reaction.koNumbersString,
             ecNumbers: reaction.ecNumbersString,
+            geneRule: reaction.geneRule ? reaction.geneRule : []
         })
     })
 
@@ -98,7 +99,7 @@ export function parseRequestArray(reactionsInSelectArray, dispatch) {
         item => JSON.stringify(item))))
     const uniqueListOfMetabolites = stringListOfMetabolites.map(item => JSON.parse(item))
 
-    return {reactions: listOfReactions, metabolites: uniqueListOfMetabolites};
+    return {reactions: listOfReactions, metabolites: uniqueListOfMetabolites, geneProducts: listOfGeneProducts};
 }
 
 export function parseDummyRequestArray(reactionsInSelectArray) {

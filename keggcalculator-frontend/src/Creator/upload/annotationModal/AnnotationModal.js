@@ -5,6 +5,7 @@ import CompoundAnnotation from "./compound-annotation/CompoundAnnotation";
 import {useStyles} from "../../ModalStyles/ModalStyles";
 import {useSelector} from "react-redux";
 import ReactionAnnotation from "./reaction-annotation/ReactionAnnotation";
+import {GeneAnnotation} from "./geneProductAnnotation/GeneAnnotation";
 
 const AnnotationModal = () => {
     const classes = useStyles()
@@ -18,6 +19,11 @@ const AnnotationModal = () => {
                         state.general.showAnnotationTable &&
                         state.general.showCompoundAnnotation &&
                         <CompoundAnnotation/>
+                    }
+                    {
+                        state.general.showAnnotationTable &&
+                        state.general.showGeneProductAnnotation &&
+                        <GeneAnnotation/>
                     }
                     {
                         state.general.showAnnotationTable &&

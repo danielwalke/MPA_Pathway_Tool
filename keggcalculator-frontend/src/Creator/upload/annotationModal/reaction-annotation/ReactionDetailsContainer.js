@@ -14,23 +14,13 @@ import "../AnnotationTable.css"
 import "../../../ModalStyles/Modals.css"
 import ExchangeReactionCheckBox from "./ExchangeReactionCheckBox";
 import FBASettingsForm from "./FBASettiningsForm";
-
-const CreateCompoundString = (compoundObject) => {
-    /**
-     * creates string of compound names
-     */
-    let compoundArray = []
-    compoundObject.forEach((compound) => {
-            compoundArray.push(compound.sbmlName)
-        }
-    )
-    return compoundArray.join(", ")
-}
+import GeneRule from "./GeneRule";
 
 const ReactionDetailsContainer = (props) => {
     /**
     Setting and displaying reaction details
      */
+
     const state = useSelector(state => state)
     const dispatch = useDispatch()
 
@@ -57,6 +47,7 @@ const ReactionDetailsContainer = (props) => {
                 dispatch({type: "SET_ANNOATION_OPTIONS", payload: resp.data})
             }
         )
+        console.log("index")
     }, [props.index])
 
     const handleRestore = (defaultReaction) => {
@@ -79,36 +70,37 @@ const ReactionDetailsContainer = (props) => {
     return (
         <div>
             <div className={"detail-view"}>
-                {props.annotateSbml &&
-                    <SbmlNameChanger
+                    {props.annotateSbml &&
+                        <SbmlNameChanger
+                            listOfReactions={listOfReactions}
+                            index={props.index}/>}
+                    <ReactionKeggIdSelector listOfReactions={listOfReactions}
+                                            index={props.index}/>
+                    <BiggReactionSelector listOfReactions={listOfReactions}
+                                          index={props.index}/>
+                    <CompoundSelector listOfReactions={listOfReactions}
+                                      index={props.index}
+                                      propName={"substrates"}
+                                      label={"Substrates"}
+                                      annotateSbml={props.annotateSbml}/>
+                    <CompoundSelector listOfReactions={listOfReactions}
+                                      index={props.index}
+                                      propName={"products"}
+                                      label={"Products"}/>
+                    <EcSelector listOfReactions={listOfReactions}
+                                index={props.index}/>
+                    <KSelector listOfReactions={listOfReactions}
+                               index={props.index}/>
+                    <div className={"separator-line"}>Gene Rule</div>
+                    <GeneRule listOfReactions={listOfReactions}
+                              index={props.index}/>
+                    <div className={"separator-line"}>FBA Settings</div>
+                    <ExchangeReactionCheckBox
                         listOfReactions={listOfReactions}
-                        index={props.index}/>}
-                <ReactionKeggIdSelector listOfReactions={listOfReactions}
-                                        index={props.index}/>
-                <BiggReactionSelector listOfReactions={listOfReactions}
-                                      index={props.index}/>
-                <CompoundSelector listOfReactions={listOfReactions}
-                                  index={props.index}
-                                  propName={"substrates"}
-                                  label={"Substrates"}
-                                  annotateSbml={props.annotateSbml}/>
-                <CompoundSelector listOfReactions={listOfReactions}
-                                  index={props.index}
-                                  propName={"products"}
-                                  label={"Products"}/>
-                <EcSelector listOfReactions={listOfReactions}
-                            index={props.index}/>
-                <KSelector listOfReactions={listOfReactions}
-                           index={props.index}/>
-                <div className={"separator-line"} style={{"margin":"0"}}>
-                    FBA Settings
-                </div>
-                <ExchangeReactionCheckBox
-                    listOfReactions={listOfReactions}
-                    index={props.index}/>
-                <FBASettingsForm
-                    listOfReactions={listOfReactions}
-                    index={props.index}/>
+                        index={props.index}/>
+                    <FBASettingsForm
+                        listOfReactions={listOfReactions}
+                        index={props.index}/>
             </div>
             <div className={"button-bar button-center"}>
                 <button className={"download-button circle-icon"}

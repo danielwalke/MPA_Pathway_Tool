@@ -9,6 +9,17 @@ export const getMax = (arr) => {
     return max
 }
 
+export const getMaxProp = (arr, prop) => {
+    let max = 0;
+    if (typeof arr === "object" && arr.length > 0) {
+        arr.map(item => {
+            max = +item[prop] > +max ? +item[prop] : max
+            return null
+        })
+    }
+    return max
+}
+
 export const getMaxIndex = (arr) => {
     let max = 0
     let maxIndex
@@ -29,6 +40,18 @@ export const getMin = (arr) => {
         arr.map(item => {
             min = +item < +min ? +item : min
             return null
+        })
+    }
+    return min
+}
+
+export const getMinProp = (arr, prop) => {
+    let min = 0;
+    if (typeof arr === "object" && arr.length > 0) {
+        arr.forEach(item => {
+            if (item !== null) {
+                min = +item[prop] < +min ? +item[prop] : min
+            }
         })
     }
     return min

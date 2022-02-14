@@ -35,8 +35,6 @@ export function filterArray(array, input) {
         let indices = []
         const inputLowerCase = input.toLowerCase()
 
-        console.log(array)
-
         array.forEach(
             item => {
                 if (item.sbmlId || item.sbmlName) {
@@ -59,10 +57,15 @@ export function filterArray(array, input) {
                         indices.push(item.index)
                     }
                 }
+
+                if (item.id && item.uniprotAccession) {
+                    if (item.id.toLowerCase().includes(inputLowerCase) && !indices.includes(item.index)) {
+                        result.push(item)
+                        indices.push(item.index)
+                    }
+                }
             }
         )
-
-        console.log(result)
 
         return result
 

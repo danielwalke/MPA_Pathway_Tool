@@ -52,7 +52,7 @@ function colorNodes(reactionNodes, reactions, state) {
     return newReactionNodes;
 }
 
-export function filterProteomeData(proteins, identifiers, index) {
+export function filterProteomeData(proteins, identifiers, prop, index) {
 
     let quantIndex = index
     const metaProteins = proteins.map(protein => {
@@ -61,13 +61,22 @@ export function filterProteomeData(proteins, identifiers, index) {
             quantIndex = getMaxIndex(protein.quants)
         }
 
-        if (doesArrayIncludeAnyItem(Array.from(protein.koAndEcSet), identifiers)) {
+        let testCondition
+
+        if (typeof  protein[prop] === "string") {
+            testCondition = identifiers.includes(protein[prop])
+        } else {
+            testCondition = doesArrayIncludeAnyItem(Array.from(protein[prop]), identifiers)
+        }
+
+        if (testCondition) {
             return {
                 name: protein.name,
                 taxa: protein.taxa,
                 koAndEc: Array.from(protein.koAndEcSet),
                 quant: protein.quants[quantIndex],
-                molecularMass: protein.molecularMass
+                molecularMass: protein.molecularMass,
+                uniprotAccession: protein.uniprotAccession
             }
         }
     })
@@ -92,7 +101,7 @@ const handleSample = (e, index, state, dispatch) => {
     const identifiers = getAllIdentifiersInNetwork(state.general.reactionsInSelectArray);
 
     // const samples = state.mpaProteins.sampleNames.map((sampleName, index)=>{
-    const metaProteins = filterProteomeData(proteins, identifiers, index);
+    const metaProteins = filterProteomeData(proteins, identifiers, "koAndEcSet", index);
 
     // return {sampleName: sampleName, metaProteins: metaProteins}
     // })//separate useEffects?

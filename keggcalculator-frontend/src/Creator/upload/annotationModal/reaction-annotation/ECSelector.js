@@ -71,8 +71,9 @@ const EcSelector = (props) => {
             }}
 
             renderTags={(values) =>
-                values.map((value) => (
+                values.map((value, index) => (
                     <Chip
+                        key={index}
                         size="small"
                         label={value}
                         onDelete={() => {

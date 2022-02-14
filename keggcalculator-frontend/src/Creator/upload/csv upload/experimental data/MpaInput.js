@@ -61,7 +61,7 @@ export const onFileChange = (files, dispatch) => {
             let entryIndexShift = 0
 
             if(headerEntries.includes("molecular Mass")) {
-                entryIndexShift++
+                entryIndexShift += 2
                 columnIterator += entryIndexShift
             }
 
@@ -79,12 +79,14 @@ export const onFileChange = (files, dispatch) => {
                 let koAndEcSet = new Set()
                 let quantArray = []
                 let molecularMass
+                let uniprotAccession
 
                 splitAndAddIdsToSet(entries[1], koAndEcSet)
                 splitAndAddIdsToSet(entries[2], koAndEcSet)
 
-                if(entryIndexShift === 1) {
-                    molecularMass = parseFloat(entries[3])
+                if(entryIndexShift === 2) {
+                    uniprotAccession = entries[3]
+                    molecularMass = parseFloat(entries[4])
                 }
 
                 const taxa = {}
@@ -110,6 +112,7 @@ export const onFileChange = (files, dispatch) => {
                 const protein = {
                     name: entries[0],
                     koAndEcSet: koAndEcSet,
+                    uniprotAccession: uniprotAccession,
                     molecularMass: molecularMass,
                     taxa: taxa,
                     quants: quantArray
@@ -139,7 +142,7 @@ export const onFileChange = (files, dispatch) => {
     dispatch({type: "SETLOADING", payload: false})
 }
 
-const MpaInput = (props) => {
+const MpaInput = () => {
     const dispatch = useDispatch()
     const state = {
         general: useSelector(state => state.general),
@@ -162,7 +165,7 @@ const MpaInput = (props) => {
 
     const onFileClick = (files, dispatch) => {
         onFileChange(files, dispatch)
-        props.setOpen(false)//closes the drawer menu
+        // props.setOpen(false)//closes the drawer menu
     }
 
     return (

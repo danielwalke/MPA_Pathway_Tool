@@ -34,6 +34,7 @@ export async function convertReactionArray(reactionArray, dispatch) {
             reaction.reactionId,
             reaction.ecNumbersString,
             reaction.koNumbersString,
+            reaction.geneRule ? reaction.geneRule : [],
             reaction.substrates,
             reaction.products,
             reaction.reversible,

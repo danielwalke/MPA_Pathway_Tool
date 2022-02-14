@@ -20,6 +20,8 @@ import ReactionDetailsContainer from "./ReactionDetailsContainer";
 import {annotationIndicator} from "../AnnotationIndicator";
 import SearchField from "../SearchField";
 import {filterArray, getComparator, stableSort} from "../sorting";
+import {ArrowBackIosNew} from "@mui/icons-material";
+import {ArrowForwardIos} from "@material-ui/icons";
 
 const ReactionTableRow = (props) => {
 
@@ -102,8 +104,7 @@ const ReactionAnnotation = () => {
         }, [listOfReactions, order, orderBy, filterBy])
 
         useEffect(() => {
-            tableArray.length > 0 && setListOfReactionsIndex(tableArray[0].index)
-            setSelectedRow(0)
+            tableArray.length > 0 && handleRowClick(0, tableArray[0].index)
         }, [tableArray])
 
         const handleFinish = () => {
@@ -120,14 +121,15 @@ const ReactionAnnotation = () => {
             dispatch({type: "SWITCHUPLOADMODAL"})
         }
 
-        const handleGoToCompounds = () => {
+        const handleGoToGenes = () => {
             dispatch({type: "SHOWREACTIONANNOTATION", payload: false})
-            dispatch({type: "SHOWCOMPOUNDANNOTATION", payload: true})
+            dispatch({type: "SHOW_GENE_PRODUCT_ANNOTATION", payload: true})
         }
 
         const handleRowClick = (tableIndex, reactionIndex) => {
+            const listOfReactionsIndex = listOfReactions.findIndex(reaction => reaction.index === reactionIndex)
             setSelectedRow(tableIndex)
-            setListOfReactionsIndex(reactionIndex)
+            setListOfReactionsIndex(listOfReactionsIndex)
         }
 
         const handleRequestSort = (event, columnId) => {
@@ -203,8 +205,12 @@ const ReactionAnnotation = () => {
                     </div>
                 </div>
                 <div className={"button-bar spaced-buttons"}>
-                    <button className={"download-button finish-button"} onClick={handleGoToCompounds}> Compounds </button>
-                    <button className={"download-button finish-button"} onClick={handleFinish}> Finish </button>
+                    <button className={"download-button circle-icon button-10rem"} style={{paddingRight: "1rem"}} onClick={handleGoToGenes}>
+                        <ArrowBackIosNew style={{fontSize: "1rem"}}/> Gene Products
+                    </button>
+                    <button className={"download-button circle-icon button-10rem"} style={{paddingLeft: "1rem"}} onClick={handleFinish}>
+                        Finish <ArrowForwardIos style={{fontSize: "1rem"}}/>
+                    </button>
                 </div>
             </div>
         )
