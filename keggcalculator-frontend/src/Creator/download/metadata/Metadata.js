@@ -28,7 +28,7 @@ const Metadata = (props) => {
         const pathwayFile = zip.folder("pathway file")
         let pathwayName = ""
         if (fileStates.pathwayFile === null) {
-            pathwayFile.file("pathway file.csv", new File(new Array(createCsvBlob(generalState, graphState)), "pathway file.csv"))
+            pathwayFile.file("pathway file.csv", new File(new Array(createCsvBlob(generalState)), "pathway file.csv"))
             pathwayName = "created file"
         } else {
             pathwayFile.file(fileStates.pathwayFile.name, fileStates.pathwayFile)

@@ -48,5 +48,70 @@ function traverseGeneRule(geneRuleEl, idIndex, parentId, geneRuleList) {
     }
 
     return idIndex
+}
 
+export function extractListOfGenes(geneRuleSplitArray) {
+    const geneRule = []
+    const listOfGenes = []
+
+    for (const entry of geneRuleSplitArray) {
+        let geneRuleJson
+        if (typeof entry === "string") {
+            geneRuleJson = JSON.parse(entry)
+        } else {
+            geneRuleJson = entry
+        }
+
+        if ("gene" in geneRuleJson) {
+            geneRule.push({id: geneRuleJson.id, parent: geneRuleJson.parent, gene: geneRuleJson.gene})
+            const uniprotAccession = geneRuleJson.uniprotAccession ? geneRuleJson.uniprotAccession : ""
+            listOfGenes.push(
+                JSON.stringify({gene: geneRuleJson.gene, uniprotAccession: uniprotAccession}))
+        } else if ("relation" in geneRuleJson) {
+            geneRule.push({id: geneRuleJson.id, parent: geneRuleJson.parent, relation: geneRuleJson.relation})
+        }
+    }
+    return {geneRule, listOfGenes};
+}
+
+export function convertGeneRuleToArray(geneRuleString) {
+
+    const geneRuleSplitArray = geneRuleString.split(", ")
+    const {geneRule, listOfGenes} = extractListOfGenes(geneRuleSplitArray);
+
+    return [geneRule, listOfGenes]
+}
+
+export function extendGeneRule(geneRule, listOfGeneProducts) {
+    const extendedGeneRule = []
+    for (const entry of geneRule) {
+        const newEntry = {...entry}
+        if ("gene" in entry) {
+            const geneProduct = listOfGeneProducts.find(geneProduct => geneProduct.id === entry.gene)
+            newEntry.uniprotAccession = geneProduct ? geneProduct.uniprotAccession : ""
+            extendedGeneRule.push(newEntry)
+            continue
+        }
+        extendedGeneRule.push(newEntry)
+    }
+    return extendedGeneRule
+}
+
+export function convertGeneRuleToString(geneRule, listOfGeneProducts) {
+    const extendedGeneRule = extendGeneRule(geneRule, listOfGeneProducts)
+    return extendedGeneRule.map(entry => JSON.stringify(entry)).join(', ')
+}
+
+export function createAndDispatchListOfGeneProducts(setOfGeneProducts, dispatch) {
+    const arrayOfGeneProducts = [...setOfGeneProducts]
+
+    console.log(arrayOfGeneProducts)
+
+    const newListOfGeneProducts = arrayOfGeneProducts.map((geneProduct, index) => {
+        const {gene, uniprotAccession} = JSON.parse(geneProduct)
+
+        return {id: gene, uniprotAccession: uniprotAccession, index: index}
+    })
+
+    dispatch({type: "SET_LIST_OF_GENE_PRODUCTS", payload: newListOfGeneProducts})
 }

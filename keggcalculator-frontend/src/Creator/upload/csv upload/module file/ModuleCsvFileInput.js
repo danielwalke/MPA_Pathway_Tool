@@ -13,13 +13,9 @@ export const onModuleFileChange = (files, dispatch, state) => {
         reader.onload = e => {
             try {
                 const result = e.target.result.trim()
-                const reactions = readFile(result)
-                console.log(reactions)
+                const reactions = readFile(result, dispatch)
                 const {nodes, links} = handleJSONGraphUpload(reactions, dispatch, state.graph)
-                // const rows = result.split("\n")
-                // rows.shift() //header
-                // const {nodes, links} = handleGraphUpload(rows, dispatch, state.graph)
-                // const reactionList = handleReactionListUpload(rows)
+
                 const data = {nodes: nodes, links: links}
                 dispatch({type: "SETDATA", payload: data})
                 dispatch({type: "SWITCHISMODULEIMPORT"})

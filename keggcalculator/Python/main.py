@@ -4,6 +4,8 @@ import sys
 import copy
 import traceback
 
+import cobra
+
 from autopacmen_modules.helper_general import json_write
 from model_creation_and_fba import build_model
 from model_creation_and_fba import perform_fba
@@ -18,6 +20,8 @@ def run_process(upload_dir: str, job_id: str):
 
         try:
             model = build_model.build_model(data['networkObject'])
+            cobra.io.write_sbml_model(model,
+                                      constants.get_job_dir_path(upload_dir, job_id) + '/Model.xml')
         except Exception as e:
             raise ExceptionWithCode(1, str(e))
 

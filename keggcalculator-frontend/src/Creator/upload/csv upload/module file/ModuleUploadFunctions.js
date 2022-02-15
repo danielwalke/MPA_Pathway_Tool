@@ -1,6 +1,7 @@
 import {handleJSONGraphUpload} from "../../json upload/ModuleUploadFunctionsJSON";
 import {CsvColumns, getReaction} from "./CsvFile";
 import {getNLastChars} from "../../../usefulFunctions/Strings";
+import {createReactionObject} from "../../sbmlParser/SbmlReader/ReaderFunctions";
 
 export const handleGraphUpload = (rows, dispatch, graphState) => {
     let reactions = []

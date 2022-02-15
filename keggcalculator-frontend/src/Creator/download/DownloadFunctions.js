@@ -1,6 +1,7 @@
 import {getNodePosition} from "./NodePosition";
 import clonedeep from "lodash/cloneDeep"
 import {getTaxaList} from "../graph/double click node/StuctureModalBody";
+import {convertGeneRuleToString} from "../upload/annotationModal/geneProductAnnotation/generateGeneProduct";
 
 const readNodeInformation = (reactionObjects, reactionNames, reactionName, compoundName, graphState) => {
     if (!reactionNames.includes(reactionName)) {
@@ -55,7 +56,9 @@ export const getReactions = (graphState) => {
     return {reactionObjects, reactionNames}
 }
 
-export const addOutput = (output, reaction, compound, reactionCounter, compoundType, reversible) => {
+export const addOutput = (output, reaction, compound, reactionCounter, compoundType, reversible, listOfGeneProducts) => {
+
+    console.log(reaction.geneRule)
 
     const reactionBiggId = reaction.biggId ? reaction.biggId : ""
     const compoundBiggId = compound.biggId ? compound.biggId : ""
@@ -86,12 +89,12 @@ export const addOutput = (output, reaction, compound, reactionCounter, compoundT
     output = output.concat(keyCompound.toString(), ";") //key compound
     output = output.concat(compoundBiggId, ";")
     output = output.concat(reactionBiggId, ";")
-    console.log(compound)
     output = output.concat(compound.compartment ? compound.compartment : "cytosol", ";")
     output = output.concat(reaction.lowerBound ? reaction.lowerBound : "-1000.0", ";")
     output = output.concat(reaction.upperBound ? reaction.upperBound : "1000.0", ";")
     output = output.concat(reaction.objectiveCoefficient ? reaction.objectiveCoefficient : "0.0", ";")
     output = output.concat(reaction.exchangeReaction ? reaction.exchangeReaction : "false", ";")
+    output = output.concat(reaction.geneRule ? convertGeneRuleToString(reaction.geneRule, listOfGeneProducts) : "", ";")
     output = output.concat("\n") //next compound
     return output;
 }

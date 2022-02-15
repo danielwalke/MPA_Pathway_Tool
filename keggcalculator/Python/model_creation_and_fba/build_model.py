@@ -45,6 +45,7 @@ def build_model(model_dict: dict):
             cobra_metabolite.annotation['bigg.metabolite'] = metabolite['biggId']
         if kegg_metabolite_pattern.match(metabolite['metaboliteId']):
             cobra_metabolite.annotation['kegg.compound'] = metabolite['metaboliteId']
+
         metabolites_dict[metabolite['metaboliteId']] = cobra_metabolite
 
     # generate reactions
@@ -97,6 +98,9 @@ def build_model(model_dict: dict):
             # add metabolites to reaction
             reaction.add_metabolites(reaction_metabolites)
             model.add_reactions([reaction])
+
+            print(reaction.name)
+            print(reaction.bounds)
 
         # set objective coefficient for reaction
         getattr(model.reactions, reaction_el['reactionId']).objective_coefficient = reaction_el['objectiveCoefficient']

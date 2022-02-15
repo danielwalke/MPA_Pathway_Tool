@@ -180,12 +180,17 @@ const readListOfParameters = (dispatch, sbml) => {
     if (sbml.getElementsByTagName("listOfParameters")[0]) {
         const listOfParametersChildren = sbml.getElementsByTagName("listOfParameters")[0].children
 
-        return listOfParametersChildren.map(parameter => {
-            return {
+        const parameters = []
+
+        listOfParametersChildren.forEach(parameter => {
+
+            parameters.push({
                 id: parameter.attributes.id,
                 value: parameter.attributes.value
-            }
+            })
         })
+
+        return parameters
     } else {
         return []
     }
@@ -283,8 +288,8 @@ const readReactions = (dispatch, sbml, globalTaxa, listOfObjectives, listOfParam
         const annotations = reaction.getElementsByTagName("rdf:li").map(link => link.attributes["rdf:resource"])
         const geneProteinReactionRule = getGeneProteinReactionRule(reaction.getElementsByTagName("fbc:geneProductAssociation"))
 
-        let lowerBoundParam = listOfParameters.find(param => param.id === reaction.attributes["fbc:lowerFluxBound"])
-        let upperBoundParam = listOfParameters.find(param => param.id === reaction.attributes["fbc:upperFluxBound"])
+        let lowerBoundParam = {...listOfParameters.find(param => param.id === reaction.attributes["fbc:lowerFluxBound"])}
+        let upperBoundParam = {...listOfParameters.find(param => param.id === reaction.attributes["fbc:upperFluxBound"])}
 
         lowerBoundParam = lowerBoundParam ? lowerBoundParam : {id: undefined, value: undefined}
         upperBoundParam = upperBoundParam ? upperBoundParam : {id: undefined, value: undefined}

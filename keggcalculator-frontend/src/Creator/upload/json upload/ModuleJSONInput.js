@@ -3,6 +3,10 @@ import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {handleJSONGraphUpload} from "./ModuleUploadFunctionsJSON";
 import {ToolTipBig} from "../../main/user-interface/UserInterface";
+import {
+    createAndDispatchListOfGeneProducts,
+    extractListOfGenes
+} from "../annotationModal/geneProductAnnotation/generateGeneProduct";
 
 const correctStochiometryProp = (compounds) => {
     compounds.forEach(compounds => {
@@ -20,6 +24,7 @@ export const onModuleFileChange = (file, dispatch, state) => {
         const result = e.target.result.trim()
         try {
             const reactions = JSON.parse(result)
+            const setOfGeneProducts = new Set()
 
             reactions.forEach(
                 reaction => {
@@ -35,9 +40,19 @@ export const onModuleFileChange = (file, dispatch, state) => {
 
                     correctStochiometryProp(reaction.substrates)
                     correctStochiometryProp(reaction.products)
+
+                    if ("geneRule" in reaction && reaction.geneRule.length > 0) {
+                        const {geneRule, listOfGenes} = extractListOfGenes(reaction.geneRule)
+
+                        reaction.geneRule = geneRule
+                        listOfGenes.forEach(gene => setOfGeneProducts.add(gene))
+                    } else {
+                        reaction.geneRule = []
+                    }
                 }
             )
 
+            createAndDispatchListOfGeneProducts(setOfGeneProducts, dispatch)
             const {nodes, links} = handleJSONGraphUpload(reactions, dispatch, state.graph)
             const data = {nodes: nodes, links: links}
             dispatch({type: "SETDATA", payload: data})

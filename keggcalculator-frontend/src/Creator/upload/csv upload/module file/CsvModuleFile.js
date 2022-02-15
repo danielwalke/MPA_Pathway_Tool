@@ -1,9 +1,14 @@
 import {getNLastChars} from "../../../usefulFunctions/Strings";
+import {
+    convertGeneRuleToArray,
+    createAndDispatchListOfGeneProducts
+} from "../../annotationModal/geneProductAnnotation/generateGeneProduct";
 
-export const readFile = (string) => {
+export const readFile = (string, dispatch) => {
     const lines = string.split("\n")
     lines.shift() //skip header
     const reactions = []
+    const setOfGeneProducts = new Set()
     lines.forEach(line => {
         const entries = line.split(";")
         const reactionName = entries[1].replaceAll("\t", ";")
@@ -28,7 +33,6 @@ export const readFile = (string) => {
             taxonomy[name] = rank
         }
         const reactionX = entries[9]
-        console.log(entries[9])
         const reactionY = entries[10]
         const compoundX = entries[11]
         const compoundY = entries[12]
@@ -42,6 +46,16 @@ export const readFile = (string) => {
         const reactionupperBound = entries[20] ? parseFloat(entries[20]) : 1000.0
         const reactionObjectiveCoefficient = entries[21] ? parseFloat(entries[21]) : 0.0
         const reactionExchangeReaction = entries[22] ? entries[22] === "true" : false
+        const reactionGeneRuleRaw = entries[23] ? entries[23] : []
+        let genes // [geneRule, listOfGenes]
+
+        if (typeof reactionGeneRuleRaw === "string") {
+            genes = convertGeneRuleToArray(reactionGeneRuleRaw)
+            genes[1].forEach(geneString => setOfGeneProducts.add(geneString))
+
+        } else {
+            genes = [reactionGeneRuleRaw]
+        }
 
         const reactionNames = reactions.map(reaction => reaction.reactionName)
         if (!reactionNames.includes(reactionName)) {
@@ -65,7 +79,8 @@ export const readFile = (string) => {
                 lowerBound: reactionLowerBound,
                 upperBound: reactionupperBound,
                 objectiveCoefficient: reactionObjectiveCoefficient,
-                exchangeReaction: reactionExchangeReaction
+                exchangeReaction: reactionExchangeReaction,
+                geneRule: genes[0]
             }
             reactions.push(reaction)
         }
@@ -92,6 +107,9 @@ export const readFile = (string) => {
 
 
     })
+
+    createAndDispatchListOfGeneProducts(setOfGeneProducts, dispatch)
+
     return reactions
 }
 
