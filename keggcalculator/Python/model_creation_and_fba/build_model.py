@@ -11,6 +11,47 @@ from model_creation_and_fba import data_manipulation
 from model_creation_and_fba import constants
 
 
+def traverserse_gene_rule(relation, children, gene_rule, parents):
+    genes = []
+
+    for child in children:
+
+        if child['id'] in parents:
+            if child['relation'] == 'OR':
+                new_relation = ' or '
+            elif child['relation'] == 'AND':
+                new_relation = ' and '
+            new_children = [new_child for new_child in gene_rule if new_child['parent'] == child['id']]
+            genes.append(traverserse_gene_rule(new_relation, new_children, gene_rule, parents))
+        else:
+            genes.append(child['gene'])
+
+    gene_rule_string_part = relation.join(genes)
+
+    if not len(genes) == 1:
+        gene_rule_string_part = '( ' + gene_rule_string_part + ' )'
+
+    return gene_rule_string_part
+
+
+def generate_gene_rule_string(gene_rule):
+
+    if len(gene_rule) == 0:
+        return ''
+
+    highest_parent = [parent for parent in gene_rule if parent['parent'] == 0][0]
+
+    if 'relation' in highest_parent:
+        children_of_highest_parent = [child for child in gene_rule if child['parent'] == 1]
+        relation = ' or ' if highest_parent['relation'] == 'OR' else ' and '
+        gene_rule_string = traverserse_gene_rule(
+            relation, children_of_highest_parent, gene_rule, [child['parent'] for child in gene_rule])
+    else:
+        gene_rule_string = highest_parent['gene']
+
+    return gene_rule_string
+
+
 def build_model(model_dict: dict):
     """returns a cobra model for flux analysis
 
@@ -44,7 +85,7 @@ def build_model(model_dict: dict):
         if 'biggId' in metabolite and metabolite['biggId'] != '':
             cobra_metabolite.annotation['bigg.metabolite'] = metabolite['biggId']
         if kegg_metabolite_pattern.match(metabolite['metaboliteId']):
-            cobra_metabolite.annotation['kegg.compound'] = metabolite['metaboliteId']
+            cobra_metabolite.annotation['kegg.compound'] = metabolite['metaboliteId'].split("_")[0]
 
         metabolites_dict[metabolite['metaboliteId']] = cobra_metabolite
 
@@ -97,19 +138,25 @@ def build_model(model_dict: dict):
 
             # add metabolites to reaction
             reaction.add_metabolites(reaction_metabolites)
+            print(generate_gene_rule_string(reaction_el['geneRule']))
+            reaction.gene_reaction_rule = generate_gene_rule_string(reaction_el['geneRule'])
             model.add_reactions([reaction])
-
-            print(reaction.name)
-            print(reaction.bounds)
 
         # set objective coefficient for reaction
         getattr(model.reactions, reaction_el['reactionId']).objective_coefficient = reaction_el['objectiveCoefficient']
+
+    for gene in model.genes:
+        gene_obj = [gene_obj for gene_obj in model_dict['geneProducts'] if gene_obj['id'] == gene.id]
+        if len(gene_obj) == 1:
+            gene.annotation['uniprot'] = gene_obj[0]['uniprotAccession']
 
     return model
 
 
 def build_smoment_model(original_model: cobra.Model, upload_path: str, job_id: str, data: dict):
     smoment_model = None
+
+    pprint.pprint(data)
 
     if len(data['proteinData']) != 0 and data_manipulation.check_molecular_masses(data['proteinData']):
         create_model_specific_db(original_model, constants.get_network_path(upload_path, job_id))

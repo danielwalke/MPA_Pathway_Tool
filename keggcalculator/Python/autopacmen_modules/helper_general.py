@@ -398,3 +398,37 @@ def standardize_folder(folder: str) -> str:
         folder += "/"
 
     return folder
+
+
+def gene_rule_as_list(gene_rule: str) -> List[Any]:
+    """Returns a given string gene rule in list form.
+
+    I.e. (b0001 and b0002) or b0003 is returned as
+    [["b0001", "b0002"], "b0003"]
+
+    Arguments:
+
+    Returns:
+        object:
+    *gene_rule: str ~ The gene rule which shall be converted into the list form.
+    """
+    print(gene_rule)
+    gene_rules_array: List[Any] = []
+    if (" or " in gene_rule) and (" and " in gene_rule):
+        gene_rule_split = gene_rule.split("or")
+        gene_rule_split = [x.replace("(", "").replace(")", "") for x in gene_rule_split]
+        for part in gene_rule_split:
+            and_list = part.split(" and ")
+            and_list = [x.replace(" ", "") for x in and_list]
+            gene_rules_array.append(and_list)
+    elif (" or " in gene_rule):
+        gene_rule_split = gene_rule.split(" or ")
+        gene_rule_split = [x.replace("(", "").replace(")", "").replace(" ", "") for x in gene_rule_split]
+        for part in gene_rule_split:
+            gene_rules_array.append(part)
+    else:  # if ("and" in gene_rule):
+        gene_rule_split = gene_rule.split(" and ")
+        gene_rule_split = [x.replace("(", "").replace(")", "").replace(" ", "") for x in gene_rule_split]
+        gene_rules_array.append(gene_rule_split)
+
+    return gene_rules_array

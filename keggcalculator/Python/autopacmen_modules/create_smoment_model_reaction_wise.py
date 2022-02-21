@@ -29,6 +29,7 @@ import sys
 from typing import Dict, List
 # Internal modules
 from model_creation_and_fba import data_manipulation
+from model_creation_and_fba.data_manipulation import build_autopacmen_gene_rules
 from .helper_general import json_load, standardize_folder
 from .helper_create_model import add_prot_pool_reaction, get_irreversible_model, get_p_measured, \
     read_enzyme_stoichiometries_xlsx, read_protein_data_xlsx, \
@@ -84,7 +85,7 @@ def create_smoment_model_reaction_wise(model: cobra.Model,
             protein_id_concentration_mapping[protein['name']] = protein['quant']
 
     reaction_id_gene_rules_mapping, reaction_id_gene_rules_protein_stoichiometry_mapping = \
-        data_manipulation.assign_proteins_to_mpa_reactions(model, protein_data)
+        build_autopacmen_gene_rules(model)
 
     # Calculate p_measured
     p_measured = get_p_measured(protein_id_concentration_mapping, protein_id_mass_mapping)

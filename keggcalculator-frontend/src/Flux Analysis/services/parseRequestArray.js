@@ -68,10 +68,6 @@ export function parseRequestArray(reactionsInSelectArray, listOfGeneProducts, di
             hasObjective = true
         }
 
-        console.log("=================")
-        console.log(reaction.lowerBound)
-        console.log(reaction.upperBound)
-
         listOfReactions.push({
             reactionId: reaction.reactionId,
             reactionName: reaction.reactionName,

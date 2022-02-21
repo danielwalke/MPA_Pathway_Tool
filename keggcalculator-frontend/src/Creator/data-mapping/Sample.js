@@ -55,7 +55,8 @@ function colorNodes(reactionNodes, reactions, state) {
 export function filterProteomeData(proteins, identifiers, prop, index) {
 
     let quantIndex = index
-    const metaProteins = proteins.map(protein => {
+    const metaProteins = []
+    for (const protein of proteins) {
 
         if(typeof index === "undefined") {
             quantIndex = getMaxIndex(protein.quants)
@@ -70,16 +71,16 @@ export function filterProteomeData(proteins, identifiers, prop, index) {
         }
 
         if (testCondition) {
-            return {
+            metaProteins.push({
                 name: protein.name,
                 taxa: protein.taxa,
                 koAndEc: Array.from(protein.koAndEcSet),
                 quant: protein.quants[quantIndex],
                 molecularMass: protein.molecularMass,
                 uniprotAccession: protein.uniprotAccession
-            }
+            })
         }
-    })
+    }
     return metaProteins;
 }
 

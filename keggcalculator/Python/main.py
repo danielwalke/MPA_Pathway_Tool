@@ -20,8 +20,6 @@ def run_process(upload_dir: str, job_id: str):
 
         try:
             model = build_model.build_model(data['networkObject'])
-            cobra.io.write_sbml_model(model,
-                                      constants.get_job_dir_path(upload_dir, job_id) + '/Model.xml')
         except Exception as e:
             raise ExceptionWithCode(1, str(e))
 

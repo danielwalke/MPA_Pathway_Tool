@@ -71,15 +71,15 @@ def create_combined_kcat_database(sabio_rk_kcat_database_path: str, brenda_kcat_
         # Get the wildcard status (i.e., found with a * wildcard?) and check if the EC number occurs anywhere...
         # ...for SABIO-RK
         if ec_number_key not in sabio_rk_database.keys():
-            print(f"WARNING: EC number {ec_number_key} could not be found in SABIO-RK, even with wildcards")
-            print("Possible reasons: The EC number format is invalid or there was an SABIO-RK API error")
+            # print(f"WARNING: EC number {ec_number_key} could not be found in SABIO-RK, even with wildcards")
+            # print("Possible reasons: The EC number format is invalid or there was an SABIO-RK API error")
             is_sabio_rk_from_wildcard = True  # Let the combined database ignore this entry
         else:
             is_sabio_rk_from_wildcard = sabio_rk_database[ec_number_key]["WILDCARD"]
         # ...and for BRENDA
         if ec_number_key not in brenda_database.keys():
-            print(f"WARNING: EC number {ec_number_key} could not be found in SABIO-RK, even with wildcards")
-            print("Possible reason: The EC number format is invalid")
+            # print(f"WARNING: EC number {ec_number_key} could not be found in SABIO-RK, even with wildcards")
+            # print("Possible reason: The EC number format is invalid")
             is_brenda_from_wildcard = True  # Let the combined database ignore this entry
         else:
             is_brenda_from_wildcard = brenda_database[ec_number_key]["WILDCARD"]

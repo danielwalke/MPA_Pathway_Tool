@@ -15,5 +15,16 @@ function getAllUniprotIds(reactionArray, listOfGeneProducts) {
 export function parseProteinData(reactionArray, proteinState, listOfGeneProducts) {
     // const identifiers = getAllIdentifiersInNetwork(reactionArray)
     const uniProtIdentifiers = getAllUniprotIds(reactionArray, listOfGeneProducts)
-    return filterProteomeData(Array.from(proteinState.proteinSet), uniProtIdentifiers, "uniprotAccession")
+    const filteredProteinData = filterProteomeData(Array.from(proteinState.proteinSet), uniProtIdentifiers, "uniprotAccession")
+
+    const proteinData = []
+    for (const protein of filteredProteinData) {
+        proteinData.push({
+            name: protein.name,
+            molecularMass: protein.molecularMass,
+            uniprotAccession: protein.uniprotAccession,
+            quantity: protein.quant
+        })
+    }
+    return proteinData
 }

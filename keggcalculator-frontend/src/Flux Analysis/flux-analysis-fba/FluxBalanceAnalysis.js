@@ -30,14 +30,18 @@ export async function fba(dispatch, generalState, graphState, proteinState, flux
     const proteinData = []
 
     if (typeof proteinState !== 'undefined' && proteinState.proteinSet.size > 0) {
-        console.log('in da loop')
         proteinData.push(
             ...parseProteinData(generalState.reactionsInSelectArray, proteinState, generalState.listOfGeneProducts))
     } else {
         networkObj.geneProducts = []
     }
 
-    console.log(proteinData)
+    if (networkObj.geneProducts.length === 0 && proteinData.length > 0) {
+        dispatch({type: "SET_STATUS", payload: {alert: true, message: "Your model does not contain any gene rules. " +
+                    "Please add gene rules and UniProt Accession identifiers to perform FBA with sMOMENT."}})
+        triggerLoadingWarning(dispatch)
+        return
+    }
 
     const configurations =  fluxState ? fluxState.sMomentConfigurations : {}
 
