@@ -14,7 +14,7 @@ const makeSpeciesReferenceObj = (reactant) => {
         const ref = {
             '@': {
                 species: comps.sbmlId,
-                name: comps.abbreviation.substring(0, comps.abbreviation.length - 7),
+                name: comps.name.substring(0, comps.name.length - 7),
                 stoichiometry: comps.stoichiometry ? comps.stoichiometry : comps.stochiometry,
                 constant: "true"
             }

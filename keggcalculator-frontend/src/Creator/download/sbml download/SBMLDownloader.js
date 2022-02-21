@@ -2,19 +2,20 @@ import React from "react";
 import objectToXML from "object-to-xml"
 import {saveAs} from "file-saver";
 import clonedeep from "lodash/cloneDeep";
-import makeSpeciesList from "./MakeSpeciesList";
-import makeReactionList from "./MakeReactionList";
-import makeReactionObjList from "./MakeReactionObjList";
-import makeSpeciesObjList from "./MakeSpeciesObjList";
-import makeReactionGlyphObjList from "./MakeReactionGlyphObjList";
-import makeSpeciesGlyphObjList from "./MakeSpeciesGlyphObjList";
-import makeCompartmentObjList from "./MakeCompartmentObjList";
-import MakeRenderInformationObj from "./MakeRenderInformationObj";
+import makeSpeciesList from "./makeSpeciesList";
+import makeReactionList from "./makeReactionList";
+import makeReactionObjList from "./makeReactionObjList";
+import makeSpeciesObjList from "./makeSpeciesObjList";
+import makeReactionGlyphObjList from "./makeReactionGlyphObjList";
+import makeSpeciesGlyphObjList from "./makeSpeciesGlyphObjList";
+import makeCompartmentObjList from "./makeCompartmentObjList";
+import MakeRenderInformationObj from "./makeRenderInformationObj";
 import {useDispatch} from "react-redux";
 import {ToolTipBig} from "../../main/user-interface/UserInterface";
-import {requestTaxonomiesForReactions} from "./RequestTaxonomiesForReactions";
+import {requestTaxonomiesForReactions} from "./requestTaxonomiesForReactions";
 import {makeObjectiveObjList} from "./makeObjectiveObjList";
 import {makeParameterObjList} from "./makeParameterObjList";
+import {makeGeneProductList} from "./makeGeneProductList";
 
 const SBMLDownloader = (props) => {
 
@@ -30,7 +31,8 @@ const SBMLDownloader = (props) => {
             state.generalState.reactionsInSelectArray, reactionTaxonomies)
         const [speciesObjArray, compartmentObjArray] = makeSpeciesList(reactionList)
 
-        const reactionXmlList = makeReactionObjList(reactionList, reactionToParameterMap)
+        const {reactionXmlList, genesInReactions} = makeReactionObjList(reactionList, reactionToParameterMap)
+        const geneProductXmlList = makeGeneProductList(genesInReactions, state.generalState.listOfGeneProducts)
         const speciesXmlList = makeSpeciesObjList(speciesObjArray)
         const compartmentXmlList = makeCompartmentObjList(compartmentObjArray)
 
@@ -55,9 +57,9 @@ const SBMLDownloader = (props) => {
                     version: "2",
                     'xmlns:layout': "http://www.sbml.org/sbml/level3/version2/layout/version1",
                     'layout:required': "false",
-                    'xmlns:render': "http://www.sbml.org/sbml/level3/version1/render/version1",
+                    'xmlns:render': "http://www.sbml.org/sbml/level3/version2/render/version1",
                     'render:required': "false",
-                    'xmlns:fbc': "http://www.sbml.org/sbml/level3/version1/fbc/version2",
+                    'xmlns:fbc': "http://www.sbml.org/sbml/level3/version2/fbc/version2",
                     'fbc:required':"false"
                 },
                 model: {
@@ -68,6 +70,7 @@ const SBMLDownloader = (props) => {
                         listOfSpecies: {species: speciesXmlList},
                         listOfReactions: {reaction: reactionXmlList},
                         listOfCompartments: {compartment: compartmentXmlList},
+                        'fbc:listOfGeneProducts': geneProductXmlList,
                         'layout:listOfLayouts': {
                             '@': {
                                 'xmlns:xsi': "http://www.w3.org/2001/XMLSchema-instance",

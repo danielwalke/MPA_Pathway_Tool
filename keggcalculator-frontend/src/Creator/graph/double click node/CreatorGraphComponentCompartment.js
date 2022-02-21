@@ -27,34 +27,16 @@ export default function CreatorGraphComponentCompartment({compoundId}) {
                 }
             }
 
-            if (match) {break}
+            if (match) {
+                break
+            }
         }
     },[])
 
     useEffect(() => {
         const newReactionArray = updateCompoundInAdjacentReactions(compoundId, graphState, generalState, "compartment", compartment)
-        console.log(newReactionArray)
         dispatch({type: "SETREACTIONSINARRAY", payload: newReactionArray})
 
-        // generalState.reactionsInSelectArray.forEach(
-        //     reaction => {
-        //         reaction.substrates.forEach(
-        //             substrate => {
-        //                 if(substrate.name === compoundId) {
-        //                     substrate.compartment = compartment
-        //                 }
-        //             }
-        //         )
-        //
-        //         reaction.products.forEach(
-        //             product => {
-        //                 if (product.name === compoundId) {
-        //                     product.compartment = compartment
-        //                 }
-        //             }
-        //         )
-        //     }
-        // )
     },[compartment])
 
     return(

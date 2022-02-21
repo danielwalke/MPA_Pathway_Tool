@@ -1,5 +1,5 @@
 import React from "react";
-import MakeSpeciesReferenceGlyph from "./MakeSpeciesReferenceGlyph";
+import MakeSpeciesReferenceGlyph from "./makeSpeciesReferenceGlyph";
 
 const MakeReactionGlyphObjList = (reactionList) => {
 

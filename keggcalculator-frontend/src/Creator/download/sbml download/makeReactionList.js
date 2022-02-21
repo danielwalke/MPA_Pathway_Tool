@@ -26,7 +26,6 @@ const makeUniqueSpeciesId = (abbreviation, compoundId, abbreviationList, compoun
     } else {
         // do nothing
         abbreviationList[abbreviation].count += 1
-        // abbreviationList[abbreviation].id = keggCompound
     }
 
     return abbreviationList[abbreviation].id
@@ -90,8 +89,7 @@ const makeReactionList = (reactionsInSelectArray, reactionTaxonomies) => {
         compounds.map(compound => {
             compound.glyphId = makeUniqueGlyphId(
                 getKeggId(compound), compound.x, compound.y, compound.stoichiometry, 1, speciesGlyphList)
-            compound.sbmlId = makeUniqueSpeciesId(
-                compound.abbreviation, getKeggId(compound), abbreviationList, compoundList)
+            compound.sbmlId = `${getKeggId(compound)}_${compound.compartment}`
         })
     }
 

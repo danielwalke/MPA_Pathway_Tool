@@ -4,6 +4,7 @@ import React from "react";
 import {makeStyles} from "@material-ui/core";
 import "./Abbreviation.css"
 import {ToolTipBig} from "../../../main/user-interface/UserInterface";
+import {updateElementsInReactionArray} from "../../../usefulFunctions/reactionArrayFunctions";
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -22,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Abbreviation = () => {
     const state = useSelector(state => state.graph)
+    const generalState = useSelector(state => state.general)
     const dispatch = useDispatch()
     const classes = useStyles()
     const nodesSet = new Set()
@@ -49,7 +51,7 @@ const Abbreviation = () => {
     }
 
     const handleSubmitAbbreviation = (e, node, defValue) => {
-        // const node = state.abbreviation.node
+        console.log(node)
         const nodeAbbr = typeof state.abbreviation.abbreviation === "undefined" ? `${defValue}` : `${state.abbreviation.abbreviation}`
         if (e.target.name === "otherNodes") {
             if (typeof state.abbreviation.node !== "undefined") {
@@ -63,6 +65,9 @@ const Abbreviation = () => {
                 state.abbreviationsObject[`${filteredNode}`] = nodeAbbr
             })
         }
+
+        updateElementsInReactionArray(node, {abbreviation: nodeAbbr}, generalState.reactionsInSelectArray, dispatch)
+
         dispatch({type: "ADD_ABBREVIATION_TO_AUDIT_TRAIL", payload: state.abbreviationsObject})
         dispatch({type: "SETABBREVIATIONOBJECT", payload: state.abbreviationsObject})
 

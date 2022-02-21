@@ -65,9 +65,6 @@ const getKeggReactions = (reactions, reaction, annotatedRefLinks, unAnnotatedRea
             }
         })
     }
-    // for (const annotatedRefLink of annotatedRefLinks) {
-    //
-    // }
 }
 
 export const getReactionsFromSbml = (sbmlObject) => {
@@ -109,89 +106,6 @@ export const getSpeciesInformation = (reactions, sbmlObject) => {
     return reactions
 }
 
-const nodeInData = (nodes, newNode) => {
-    let isInData = false
-    const foundNodes = nodes.filter(node => node.id === newNode.id)
-    if (foundNodes.length > 0) {
-        isInData = true
-    }
-    return isInData
-}
-
-const linkInData = (links, newLink) => {
-    let isInData = false
-    const foundLinks = links.filter(link => link.source === newLink.source && link.target === newLink.target)
-    if (foundLinks.length > 0) {
-        isInData = true
-    }
-    return isInData
-}
-
-export const drawGraphFromSbml = (reactions, data, graphState) => {
-    const reactionList = graphState.data.nodes.filter(node => node.symbolType === "diamond")
-    const compoundList = graphState.data.nodes.filter(node => node.symbolType === "circle")
-    reactions.map((reaction, reactionIndex) => {
-        const reactionNode = {
-            id: `${reaction.name} ${reaction.id}`,
-            opacity: 1,
-            x: 0,
-            y: 0,
-            symbolType: "diamond",
-            color: "black"
-        }
-        const substrates = reaction.substrateObjects.length > 0 ? reaction.substrateObjects : reaction.substrates
-        substrates.map((substrate, index) => {
-            const substrateNode = {
-                id: `${substrate.name} ${substrate.id}`,
-                opacity: 1,
-                x: 0,
-                y: 0,
-                symbolType: "circle",
-                color: "darkgreen"
-            }
-            if (!nodeInData(data.nodes, substrateNode)) {
-                data.nodes.push(substrateNode)
-            }
-            const substrateLink = {
-                source: substrateNode.id,
-                target: reactionNode.id,
-                opacity: 1
-            }
-            if (!linkInData(data.links, substrateLink)) {
-                data.links.push(substrateLink)
-            }
-        })
-        const products = reaction.productObjects.length > 0 ? reaction.productObjects : reaction.products
-        products.map((product, index) => {
-            const productNode = {
-                id: `${product.name} ${product.id}`,
-                opacity: 1,
-                x: 0,
-                y: 0,
-                symbolType: "circle",
-                color: "darkgreen"
-            }
-            if (!nodeInData(data.nodes, productNode)) {
-                data.nodes.push(productNode)
-            }
-            const productLink = {
-                source: reactionNode.id,
-                target: productNode.id,
-                opacity: 1
-            }
-            if (!linkInData(data.links, productLink)) {
-                data.links.push(productLink)
-            }
-
-        })
-        if (!nodeInData(data.nodes, reactionNode)) {
-            data.nodes.push(reactionNode)
-        }
-
-    })
-    return data
-}
-
 export const setReactionListfromSbml = (reactions, dispatch) => {
     let reqPromise
     const reactionsFromRequest = []
@@ -209,9 +123,7 @@ export const setReactionListfromSbml = (reactions, dispatch) => {
 
 }
 
-
 export const getSpeciesFromSbml = (sbmlObject) => {
-    console.log(sbmlObject)
     const listOfSpecies = sbmlObject.getElementsByTagName("listOfSpecies")[0]
     const list = []
     listOfSpecies.children.map((species, index) => {
@@ -223,7 +135,6 @@ export const getSpeciesFromSbml = (sbmlObject) => {
         const compoundId = getCompoundId(rawId, index)
         list.push({name: id.concat(name), id: compoundId, keggAnnotations: keggAnnotations})
     })
-    console.log(list)
     return list
 }
 
@@ -234,40 +145,4 @@ const getCompoundId = (id, length) => {
         return `K${getUserReactionId(length)}`;
     }
 
-}
-
-//TODO: fill
-export const setReactionList = (reactions, dispatch, generalState) => {
-    const reactionObjects = reactions.map((reaction, index) => {
-        const reactionCount = generalState.reactionsInSelectArray.length + index
-        reaction.id = getReactionId(reaction.id, reactionCount)
-        const substrates = {}
-        reaction.substrateObjects.map(substrateObject => {
-            substrates[`${substrateObject.compoundId}`] = substrateObject.stoichiometry
-        })
-        const products = {}
-        reaction.productObjects.map(productObject => {
-            products[`${productObject.compoundId}`] = productObject.stoichiometry
-        })
-        return {
-            ecNumbersString: reaction.ecNumbers,
-            koNumbersString: reaction.koNumbers,
-            isForwardReaction: true,
-            reactionId: getReactionId(reaction.id, reactionCount),
-            reactionName: reaction.name.concat(";" + reaction.id),
-            stochiometrySubstratesString: substrates,
-            stochiometryProductsString: products,
-            taxa: {}
-        }
-    })
-    console.log(reactionObjects)
-    dispatch({type: "ADDREACTIONSTOARRAY", payload: reactionObjects})
-}
-
-const getReactionId = (id, length) => {
-    if (id.match(/[R][0-9][0-9][0-9][0-9][0-9]/)) {
-        return id.substring(id.length - 6, id.length);
-    } else {
-        return `U${getUserReactionId(length)}`;
-    }
 }
