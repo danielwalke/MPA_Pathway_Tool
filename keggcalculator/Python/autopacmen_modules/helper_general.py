@@ -412,7 +412,6 @@ def gene_rule_as_list(gene_rule: str) -> List[Any]:
         object:
     *gene_rule: str ~ The gene rule which shall be converted into the list form.
     """
-    print(gene_rule)
     gene_rules_array: List[Any] = []
     if (" or " in gene_rule) and (" and " in gene_rule):
         gene_rule_split = gene_rule.split("or")
@@ -421,7 +420,7 @@ def gene_rule_as_list(gene_rule: str) -> List[Any]:
             and_list = part.split(" and ")
             and_list = [x.replace(" ", "") for x in and_list]
             gene_rules_array.append(and_list)
-    elif (" or " in gene_rule):
+    elif " or " in gene_rule:
         gene_rule_split = gene_rule.split(" or ")
         gene_rule_split = [x.replace("(", "").replace(")", "").replace(" ", "") for x in gene_rule_split]
         for part in gene_rule_split:

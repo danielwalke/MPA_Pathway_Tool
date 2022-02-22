@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {triggerLoadingWarning} from "../../Creator/main/lib/LoadingWarning";
 import {startFBAJob} from "./fbaJobSubmission";
 import {parseProteinData} from "../services/parseProteinData";
-import {getTaxaList} from "../../Creator/graph/double click node/StuctureModalBody";
+import {getTaxaListJSONString} from "../../Creator/graph/double click node/StuctureModalBody";
 import {CustomButton} from "../../Components/Home/Home";
 import * as RequestURL from "../../App Configurations/RequestURLCollection";
 
@@ -18,7 +18,7 @@ export async function fba(dispatch, generalState, graphState, proteinState, flux
     dispatch({type: "SET_FBA_RESULTS", payload: null})
     dispatch({type: "SET_SMOMENT_FBA_RESULTS", payload: null})
     dispatch({type: "SET_SMOMENT_DOWNLOAD_LINK", payload: ""})
-    dispatch({type: "SET_STATUS", payload: {alert: false, message: "initiating..."}})
+    dispatch({type: "SET_STATUS", payload: {alert: false, message: "initializing..."}})
 
     const networkObj = parseRequestArray(generalState.reactionsInSelectArray, generalState.listOfGeneProducts, dispatch)
 
@@ -47,11 +47,18 @@ export async function fba(dispatch, generalState, graphState, proteinState, flux
 
     const pathwayTaxonomySet = new Set()
     generalState.reactionsInSelectArray.forEach(
-        reaction => getTaxaList(reaction.taxa).forEach(taxon => pathwayTaxonomySet.add(taxon)))
-    const networkTaxa = Array.from(pathwayTaxonomySet)
+        reaction => getTaxaListJSONString(reaction.taxa).forEach(taxon => pathwayTaxonomySet.add(taxon)))
+    const networkTaxaObj = JSON.parse(Array.from(pathwayTaxonomySet)[0])
+
+    if (!('species' in networkTaxaObj)) {
+        dispatch({type: "SET_STATUS", payload: {
+                alert: true, message: "Please set a single species taxonomy for the network. sMOMENT does not support zero or more than one network taxonomies."}})
+        triggerLoadingWarning(dispatch)
+        return
+    }
 
     dispatch({type: "SET_STATUS", payload: {alert: false, message: "sending data..."}})
-    const response = await startFBAJob(networkObj, proteinData, configurations, networkTaxa)
+    const response = await startFBAJob(networkObj, proteinData, configurations, networkTaxaObj.species)
 
     if (!response) {
         dispatch({type: "SET_STATUS", payload: {alert: true, message: "A server error occurred."}})

@@ -17,6 +17,16 @@ export const getTaxaList = (reactionTaxa) => {
     return taxaList
 }
 
+export const getTaxaListJSONString = (reactionTaxa) => {
+    const taxaList = []
+    for (const reactionTaxon in reactionTaxa) {
+        if (reactionTaxa.hasOwnProperty(reactionTaxon)) {
+            taxaList.push(`{"${reactionTaxa[reactionTaxon]}": "${reactionTaxon}"}`)
+        }
+    }
+    return taxaList
+}
+
 export const getStructureBody = (state, dispatch, generalState, isNcbiTaxonomy, setIsNcbiTaxonomy) => {
     const compound = !state.data.nodes.filter(node => node.id === state.doubleClickNode)[0] ?
         {} : state.data.nodes.filter(node => node.id === state.doubleClickNode)[0]
@@ -69,9 +79,9 @@ export const getStructureBody = (state, dispatch, generalState, isNcbiTaxonomy, 
         dispatch({type: 'SETREACTIONSINARRAY', payload: newReactionsInSelectArray})
     }
 
-    const body = (
+    return (
         <div className={"structureBodyContainer"}>
-            <div >
+            <div>
                 <h3 style={{padding: "2px"}}>
                     ID: {compound.id}
                 </h3>
@@ -102,13 +112,10 @@ export const getStructureBody = (state, dispatch, generalState, isNcbiTaxonomy, 
                 }
 
                 {nodeId.match(/[R,U]/) &&
-                <CreatorGraphReactionDetails
-                    isNcbiTaxonomy={isNcbiTaxonomy} setIsNcbiTaxonomy={setIsNcbiTaxonomy} nodeId={nodeId}
-                    reaction={reaction}/>}
+                    <CreatorGraphReactionDetails
+                        isNcbiTaxonomy={isNcbiTaxonomy} setIsNcbiTaxonomy={setIsNcbiTaxonomy} nodeId={nodeId}
+                        reaction={reaction}/>}
             </div>
         </div>
-    )
-
-
-    return body;
+    );
 }

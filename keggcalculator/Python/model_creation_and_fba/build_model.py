@@ -160,7 +160,7 @@ def build_smoment_model(original_model: cobra.Model, upload_path: str, job_id: s
 
     if len(data['proteinData']) != 0 and data_manipulation.check_molecular_masses(data['proteinData']):
         create_model_specific_db(original_model, constants.get_network_path(upload_path, job_id))
-        get_reactions_kcat_mapping(upload_path, job_id, original_model, "Escherichia coli", "mean")
+        get_reactions_kcat_mapping(upload_path, job_id, original_model, data['networkTaxonomy'], "mean")
         excluded_reactions = []
 
         prot_pool_params = \
@@ -172,7 +172,7 @@ def build_smoment_model(original_model: cobra.Model, upload_path: str, job_id: s
             prot_pool_params,
             constants.get_job_dir_path(upload_path, job_id),
             excluded_reactions,
-            "median"
+            "mean"
         )
 
         smoment_model.name = "sMomentModel"

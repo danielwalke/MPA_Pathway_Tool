@@ -71,7 +71,6 @@ def build_autopacmen_gene_rules(model: cobra.Model):
 
         reaction_id_gene_rules_mapping[reaction.id] = []
         reaction_id_gene_rules_protein_stoichiometry_mapping[reaction.id] = {}
-        print(reaction.gene_reaction_rule)
         gene_rule_list = gene_rule_as_list(reaction.gene_reaction_rule)
 
         for entry in gene_rule_list:
@@ -79,7 +78,8 @@ def build_autopacmen_gene_rules(model: cobra.Model):
             if "[" in gene_rule_or_part:
                 gene_rule_or_part = tuple(eval(gene_rule_or_part))
             reaction_id_gene_rules_mapping[reaction.id].append(gene_rule_or_part)
-            reaction_id_gene_rules_protein_stoichiometry_mapping[reaction.id][gene_rule_or_part] = {}
+            if gene_rule_or_part not in reaction_id_gene_rules_protein_stoichiometry_mapping[reaction.id].keys():
+                reaction_id_gene_rules_protein_stoichiometry_mapping[reaction.id][gene_rule_or_part] = {}
 
             if type(gene_rule_or_part) is tuple:
                 for gene in gene_rule_or_part:

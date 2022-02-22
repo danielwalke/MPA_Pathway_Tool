@@ -81,8 +81,8 @@ def create_smoment_model_reaction_wise(model: cobra.Model,
 
     for protein in protein_data:
         protein_id_mass_mapping[protein['name']] = protein['molecularMass']
-        if 'quant' in protein:
-            protein_id_concentration_mapping[protein['name']] = protein['quant']
+        if 'quantity' in protein:
+            protein_id_concentration_mapping[protein['name']] = protein['quantity']
 
     reaction_id_gene_rules_mapping, reaction_id_gene_rules_protein_stoichiometry_mapping = \
         build_autopacmen_gene_rules(model)

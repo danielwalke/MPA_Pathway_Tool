@@ -93,7 +93,6 @@ export default function FluxAnalysisUserInterface(props) {
                                         onClick={() => {
                                             dispatch({type: "SHOW_FLUX_ANALYSIS_MODAL", payload: true})
                                             dispatch({type: "SHOW_AUTOPACMEN_CONFIG", payload: true})
-                                            dispatch({type: "SET_SMOMENT_IS_CONFIGURED", payload: true})
                                         }}>
                                     sMOMENT Configuration
                                 </CustomButton>

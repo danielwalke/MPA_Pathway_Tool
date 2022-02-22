@@ -11,9 +11,17 @@ export default function DownloadFbaResults() {
 
     const handleFbaResultDownload = () => {
         try {
-            const blob = createFluxAnalysisCsv(fluxState.flux)
-            saveAs(blob, "Flux_Analysis_Results.csv")
-            // dispatch({type: "ADD_CSV_DOWNLOAD_TO_AUDIT_TRAIL"})
+            let zip = require("jszip")()
+            const fluxData = zip.folder("flux_analysis_data")
+            const origModelFluxData = createFluxAnalysisCsv(fluxState.flux)
+            fluxData.file("original_model_flux_data.csv", new File(new Array(origModelFluxData), "original_model_flux_data.csv"))
+            if (fluxState.sMomentFlux) {
+                const sMomentModelFluxData = createFluxAnalysisCsv(fluxState.sMomentFlux)
+                fluxData.file("smoment_model_flux_data.csv", new File(new Array(sMomentModelFluxData), "smoment_model_flux_data.csv"))
+            }
+            zip.generateAsync({type: "blob"}).then((content) => {
+                saveAs(content, "flux_analysis_data.zip");
+            });
         } catch (e) {
             console.log(e)
         }

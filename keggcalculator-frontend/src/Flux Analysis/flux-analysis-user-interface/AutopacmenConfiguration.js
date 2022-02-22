@@ -28,6 +28,17 @@ export default function AutopacmenConfiguration() {
         setNetworkTaxa(Array.from(pathwayTaxonomySet))
     },[generalState.reactionsInSelectArray])
 
+    useEffect(() => {
+        if (networkTaxa.length === 1 && networkTaxa[0].includes("species")) {
+            dispatch({type: "SET_SMOMENT_IS_CONFIGURED", payload: true})
+            dispatch({type: "SET_STATUS", payload: {alert: false, message: "ready"}})
+        } else {
+            dispatch({type: "SET_STATUS", payload: {
+                alert: true, message: "Please set a single species taxonomy for the network. sMOMENT does not support zero or more than one network taxonomies."}})
+        }
+
+    }, [networkTaxa])
+
     const setConfigurations = (prop, value) => {
         const newConfig = {...fluxState.sMomentConfigurations}
         newConfig[prop] = parseFloat(value)
