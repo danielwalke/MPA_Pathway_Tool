@@ -38,7 +38,7 @@ def check_molecular_masses(protein_data: list):
     return True
 
 
-def assign_proteins_to_mpa_reactions(model: cobra.Model, protein_data: dict[str: []]):
+def assign_proteins_to_mpa_reactions(model: cobra.Model, protein_data: dict):
     reaction_protein_mapping = {}
     reaction_protein_stoichiometry_mapping = {}
 

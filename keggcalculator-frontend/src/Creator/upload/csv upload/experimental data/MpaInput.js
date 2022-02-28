@@ -11,7 +11,7 @@ export function trimQuotes(string) {
 }
 
 function splitAndAddIdsToSet(entry, idSet) {
-    if (entry.length > 0) { //ko numbers
+    if (typeof entry !== 'undefined' && entry.length > 0) { //ko numbers
         if (entry.includes("|")) {
             const kos = entry.split("|")
             kos.forEach(ko => idSet.add(ko))

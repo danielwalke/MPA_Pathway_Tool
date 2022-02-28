@@ -110,7 +110,7 @@ public class FbaService {
 		try {
 						
 			ProcessBuilder builder = new ProcessBuilder(Arrays.asList(
-					"python",
+					"python -3.7",
 					pythonPath,
 					uploadDir,
 					jobId));

@@ -66,9 +66,6 @@ def build_model(model_dict: dict):
     metabolites_array = model_dict['metabolites']
     reactions_array = model_dict['reactions']
 
-    # pprint.pprint(metabolites_array)
-    # pprint.pprint(reactions_array)
-
     # initialize model
     model = cobra.Model("model_name")
 
@@ -138,7 +135,6 @@ def build_model(model_dict: dict):
 
             # add metabolites to reaction
             reaction.add_metabolites(reaction_metabolites)
-            print(generate_gene_rule_string(reaction_el['geneRule']))
             reaction.gene_reaction_rule = generate_gene_rule_string(reaction_el['geneRule'])
             model.add_reactions([reaction])
 
@@ -147,7 +143,7 @@ def build_model(model_dict: dict):
 
     for gene in model.genes:
         gene_obj = [gene_obj for gene_obj in model_dict['geneProducts'] if gene_obj['id'] == gene.id]
-        if len(gene_obj) == 1:
+        if len(gene_obj) == 1 and gene_obj[0]['uniprotAccession'] != "":
             gene.annotation['uniprot'] = gene_obj[0]['uniprotAccession']
 
     return model
@@ -156,9 +152,8 @@ def build_model(model_dict: dict):
 def build_smoment_model(original_model: cobra.Model, upload_path: str, job_id: str, data: dict):
     smoment_model = None
 
-    pprint.pprint(data)
-
     if len(data['proteinData']) != 0 and data_manipulation.check_molecular_masses(data['proteinData']):
+        print('heyyyy')
         create_model_specific_db(original_model, constants.get_network_path(upload_path, job_id))
         get_reactions_kcat_mapping(upload_path, job_id, original_model, data['networkTaxonomy'], "mean")
         excluded_reactions = []

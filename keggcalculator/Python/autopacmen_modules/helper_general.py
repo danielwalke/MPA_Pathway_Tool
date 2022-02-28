@@ -274,7 +274,7 @@ def json_load(path: str) -> Dict[Any, Any]:
     * path: str ~ The path of the JSON file
     """
 
-    print(os.getcwd())
+    # print(os.getcwd())
 
     with open(path) as f:
         dictionary = json.load(f)

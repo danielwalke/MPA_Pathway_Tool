@@ -305,11 +305,11 @@ def _print_assigned_kcats(reaction_id: str, forward_kcat: float, reverse_kcat: f
     * forward_kcat: float ~ The assigned forward kcat
     * reverse_kcat: float ~ The assigned reverse kcat
     """
-    print("***")
-    print("Reaction:", reaction_id)
-    print("Forward kcat:", forward_kcat)
-    print("Reverse kcat:", reverse_kcat)
-    print("")
+    # print("***")
+    # print("Reaction:", reaction_id)
+    # print("Forward kcat:", forward_kcat)
+    # print("Reverse kcat:", reverse_kcat)
+    # print("")
 
 
 # PUBLIC FUNCTIONS
@@ -388,8 +388,8 @@ def get_reactions_kcat_mapping(upload_path: str,
             # If the EC number could not be found in the given EC number<->kcat
             # database, print it and proceed with the next eligible EC number
             if eligible_ec_identifier not in kcat_database.keys():
-                print(f"INFO: No entry for EC number {eligible_ec_identifier}")
-                print("")
+                # print(f"INFO: No entry for EC number {eligible_ec_identifier}")
+                # print("")
                 continue
             # Otherwise, get the reaction ID entry from the given database :D
             metabolite_ids = kcat_database[eligible_ec_identifier]

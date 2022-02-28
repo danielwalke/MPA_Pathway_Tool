@@ -253,7 +253,6 @@ def get_model_with_separated_measured_enzyme_reactions(model: cobra.Model, prote
         for enzyme in gene_rule:
             if type(enzyme) == str:
                 if enzyme not in list(protein_id_mass_mapping.keys()):
-                    print(enzyme)
                     all_available = False
                     break
             else:
