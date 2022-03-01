@@ -75,6 +75,7 @@ const AbundantNodeConfig = () => {
                         y: origNodeY + splitNodeDist * index,
                         color: COMPOUND_NODE_COLOR,
                         opacity: 0.4,
+                        symbolType: origNode.symbolType
                     }
                     newNodes.push(newProps)
 
@@ -92,6 +93,7 @@ const AbundantNodeConfig = () => {
                         y: origNodeY + splitNodeDist * index,
                         color: COMPOUND_NODE_COLOR,
                         opacity: 0.4,
+                        symbolType: origNode.symbolType
                     }
                     newNodes.push(newProps)
 
