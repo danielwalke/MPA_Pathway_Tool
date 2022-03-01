@@ -3,6 +3,15 @@ import clonedeep from "lodash/cloneDeep"
 import {getTaxaList} from "../graph/double click node/StuctureModalBody";
 import {convertGeneRuleToString} from "../upload/annotationModal/geneProductAnnotation/generateGeneProduct";
 
+export function updateCoordinatesOfObject(object, objectProp, graphNodes) {
+    const nodeObject = graphNodes.find(node => node.id === object[objectProp])
+    if (typeof nodeObject !== 'undefined') {
+        object.x = nodeObject.x
+        object.y = nodeObject.y
+    }
+
+}
+
 const readNodeInformation = (reactionObjects, reactionNames, reactionName, compoundName, graphState) => {
     if (!reactionNames.includes(reactionName)) {
         reactionNames.push(reactionName)
@@ -57,8 +66,6 @@ export const getReactions = (graphState) => {
 }
 
 export const addOutput = (output, reaction, compound, reactionCounter, compoundType, reversible, listOfGeneProducts) => {
-
-    console.log(reaction.geneRule)
 
     const reactionBiggId = reaction.biggId ? reaction.biggId : ""
     const compoundBiggId = compound.biggId ? compound.biggId : ""

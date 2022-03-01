@@ -28,7 +28,7 @@ const SBMLDownloader = (props) => {
 
         const reactionTaxonomies = await requestTaxonomiesForReactions(state.generalState.reactionsInSelectArray)
         const {reactionList, listOfObjectives, reactionToParameterMap, parametersMap} = makeReactionList(
-            state.generalState.reactionsInSelectArray, reactionTaxonomies)
+            state.generalState.reactionsInSelectArray, state.graphState.data, reactionTaxonomies)
         const [speciesObjArray, compartmentObjArray] = makeSpeciesList(reactionList)
 
         const {reactionXmlList, genesInReactions} = makeReactionObjList(reactionList, reactionToParameterMap)

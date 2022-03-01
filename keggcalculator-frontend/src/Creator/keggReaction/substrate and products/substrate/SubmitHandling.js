@@ -58,6 +58,7 @@ const getJSONReaction = (state) => {
     reaction.opacity = 1
     reaction.x = 0
     reaction.y = 0
+    reaction.abbreviation = reaction.reactionName
 
     return reaction
 }

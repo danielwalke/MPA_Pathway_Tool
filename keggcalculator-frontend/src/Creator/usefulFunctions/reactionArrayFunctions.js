@@ -18,7 +18,7 @@ export function updateElementsInReactionArray(nodeName, propsToBeChanged, reacti
         const newReaction = {...reaction}
 
         for (const prop of Object.keys(propsToBeChanged)) {
-            if (reaction.name === nodeName && prop in reaction) {
+            if (reaction.reactionName === nodeName && prop in reaction) {
                 newReaction[prop] = propsToBeChanged[prop]
             }
         }

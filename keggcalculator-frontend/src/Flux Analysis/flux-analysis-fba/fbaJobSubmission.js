@@ -12,7 +12,7 @@ export async function startFBAJob(networkObject, proteinData, configurations, ne
     const modelData = {
         networkObject: networkObject,
         proteinData: proteinData,
-        networkTaxonomy: networkTaxonomy
+        networkTaxonomy: typeof networkTaxonomy === 'undefined' ? '' : networkTaxonomy.species
     }
 
     if (configurations !== {}) {

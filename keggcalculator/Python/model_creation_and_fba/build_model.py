@@ -139,7 +139,8 @@ def build_model(model_dict: dict):
             model.add_reactions([reaction])
 
         # set objective coefficient for reaction
-        getattr(model.reactions, reaction_el['reactionId']).objective_coefficient = reaction_el['objectiveCoefficient']
+        getattr(model.reactions, reaction_el['reactionId']).objective_coefficient =\
+            float(reaction_el['objectiveCoefficient'])
 
     for gene in model.genes:
         gene_obj = [gene_obj for gene_obj in model_dict['geneProducts'] if gene_obj['id'] == gene.id]

@@ -10,9 +10,7 @@ listOfSpecies: [
 {sbmlId: "", sbmlName:"", keggId:"", keggName:""}]
  */
 
-function updateCompoundObjects(compoundObjects, listOfSpecies, annotateSbml, string) {
-
-    console.log(string)
+function updateCompoundObjects(compoundObjects, listOfSpecies, annotateSbml) {
 
     return compoundObjects.map(compound => {
         let species
@@ -35,10 +33,8 @@ export const addCompoundsToReactions = (state, listOfReactions, listOfSpecies) =
     return listOfReactions.map(reaction => {
         //override substartes and products with altered information
 
-        console.log(reaction)
-
-        reaction.substrates = updateCompoundObjects(reaction.substrates, listOfSpecies, state.general.annotateSbml, "sub")
-        reaction.products = updateCompoundObjects(reaction.products, listOfSpecies, state.general.annotateSbml, "prod")
+        reaction.substrates = updateCompoundObjects(reaction.substrates, listOfSpecies, state.general.annotateSbml)
+        reaction.products = updateCompoundObjects(reaction.products, listOfSpecies, state.general.annotateSbml)
 
         return reaction
     })

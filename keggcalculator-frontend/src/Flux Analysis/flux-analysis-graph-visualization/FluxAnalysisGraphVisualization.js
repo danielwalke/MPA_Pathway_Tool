@@ -104,7 +104,7 @@ export default function FluxAnalysisGraphVisualization() {
                     id="graph"
                     data={fluxState.data}
                     config={myConfig}
-                    onNodePositionChange={(id, x, y) => handleNodePositionChange(fluxState, x, y, id, dispatch)}
+                    onNodePositionChange={(id, x, y) => handleNodePositionChange(fluxState, generalState.reactionsInSelectArray, x, y, id, dispatch)}
                     onClickNode={(nodeId) => {
                         onClickNode(nodeId)
                     }}

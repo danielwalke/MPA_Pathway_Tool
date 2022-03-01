@@ -4,17 +4,37 @@ import {saveAs} from "file-saver";
 import clonedeep from "lodash/cloneDeep"
 import {ToolTipBig} from "../../main/user-interface/UserInterface";
 import {extendGeneRule} from "../../upload/annotationModal/geneProductAnnotation/generateGeneProduct";
+import {updateCoordinatesOfObject} from "../DownloadFunctions";
+
+function extendGeneRuleForReaction(reaction, listOfGeneProducts) {
+    if ("geneRule" in reaction) {
+        reaction.geneRule = extendGeneRule(reaction.geneRule, listOfGeneProducts)
+    } else {
+        reaction.geneRule = []
+    }
+
+    return reaction
+}
 
 function extendGeneRules(reactionArray, listOfGeneProducts) {
     return reactionArray.map(reaction => {
-        if ("geneRule" in reaction) {
-            const newGeneRule = extendGeneRule(reaction.geneRule, listOfGeneProducts)
-            reaction.geneRule = newGeneRule
-        } else {
-            reaction.geneRule = []
+        return extendGeneRuleForReaction(reaction, listOfGeneProducts)
+    })
+}
+
+function updateJson(generalState, graphState) {
+
+    return generalState.reactionsInSelectArray.map(reaction => {
+        updateCoordinatesOfObject(reaction, 'reactionName', graphState.data.nodes)
+
+        for (const substrate of reaction.substrates) {
+            updateCoordinatesOfObject(substrate, 'name', graphState.data.nodes)
+        }
+        for (const product of reaction.products) {
+            updateCoordinatesOfObject(product, 'name', graphState.data.nodes)
         }
 
-        return reaction
+        return extendGeneRuleForReaction(reaction, generalState.listOfGeneProducts)
     })
 }
 
@@ -23,8 +43,8 @@ const JSONDownloader = (props) => {
     const dispatch = useDispatch()
     const handleJsonDownload = () => {
         try {
-            const {generalState} = clonedeep(props)
-            const outputJson = extendGeneRules(generalState.reactionsInSelectArray, generalState.listOfGeneProducts)
+            const {generalState, graphState} = clonedeep(props)
+            const outputJson = updateJson(generalState, graphState)
 
             let blob = new Blob(
                 new Array(JSON.stringify(outputJson, null, 2)), {type: "text/plain;charset=utf-8"});

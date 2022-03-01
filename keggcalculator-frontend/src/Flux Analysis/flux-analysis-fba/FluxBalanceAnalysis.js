@@ -21,44 +21,57 @@ export async function fba(dispatch, generalState, graphState, proteinState, flux
     dispatch({type: "SET_STATUS", payload: {alert: false, message: "initializing..."}})
 
     const networkObj = parseRequestArray(generalState.reactionsInSelectArray, generalState.listOfGeneProducts, dispatch)
+    const configurations =  fluxState ? fluxState.sMomentConfigurations : {}
+    const proteinData = []
+    const pathwayTaxonomySet = new Set()
+    let networkTaxaObj
 
     if (!networkObj) {
         triggerLoadingWarning(dispatch)
         return
     }
 
-    const proteinData = []
+    // autoPACMEN functions
+    if (typeof proteinState !== 'undefined' && typeof fluxState !== 'undefined') {
 
-    if (typeof proteinState !== 'undefined' && proteinState.proteinSet.size > 0) {
-        proteinData.push(
-            ...parseProteinData(generalState.reactionsInSelectArray, proteinState, generalState.listOfGeneProducts))
-    } else {
-        networkObj.geneProducts = []
-    }
+        if (proteinState.proteinSet.size > 0) {
+            proteinData.push(
+                ...parseProteinData(generalState.reactionsInSelectArray, proteinState, generalState.listOfGeneProducts))
+        } else {
+            networkObj.geneProducts = []
+        }
 
-    if (networkObj.geneProducts.length === 0 && proteinData.length > 0) {
-        dispatch({type: "SET_STATUS", payload: {alert: true, message: "Your model does not contain any gene rules. " +
-                    "Please add gene rules and UniProt Accession identifiers to perform FBA with sMOMENT."}})
-        triggerLoadingWarning(dispatch)
-        return
-    }
+        if (networkObj.geneProducts.length === 0 && proteinData.length > 0) {
+            dispatch({
+                type: "SET_STATUS", payload: {
+                    alert: true, message: "Your model does not contain any gene rules. " +
+                        "Please add gene rules and UniProt Accession identifiers to perform FBA with sMOMENT."
+                }
+            })
+            triggerLoadingWarning(dispatch)
+            return
+        }
 
-    const configurations =  fluxState ? fluxState.sMomentConfigurations : {}
+        generalState.reactionsInSelectArray.forEach(
+            reaction => getTaxaListJSONString(reaction.taxa).forEach(taxon => pathwayTaxonomySet.add(taxon)))
+        if (pathwayTaxonomySet.size !== 0) {
+            networkTaxaObj = JSON.parse(Array.from(pathwayTaxonomySet)[0])
+        }
 
-    const pathwayTaxonomySet = new Set()
-    generalState.reactionsInSelectArray.forEach(
-        reaction => getTaxaListJSONString(reaction.taxa).forEach(taxon => pathwayTaxonomySet.add(taxon)))
-    const networkTaxaObj = JSON.parse(Array.from(pathwayTaxonomySet)[0])
-
-    if (!('species' in networkTaxaObj)) {
-        dispatch({type: "SET_STATUS", payload: {
-                alert: true, message: "Please set a single species taxonomy for the network. sMOMENT does not support zero or more than one network taxonomies."}})
-        triggerLoadingWarning(dispatch)
-        return
+        if (typeof networkTaxaObj === 'undefined' || !('species' in networkTaxaObj)) {
+            dispatch({
+                type: "SET_STATUS", payload: {
+                    alert: true,
+                    message: "Please set a single species taxonomy for the network. sMOMENT does not support zero or more than one network taxonomies."
+                }
+            })
+            triggerLoadingWarning(dispatch)
+            return
+        }
     }
 
     dispatch({type: "SET_STATUS", payload: {alert: false, message: "sending data..."}})
-    const response = await startFBAJob(networkObj, proteinData, configurations, networkTaxaObj.species)
+    const response = await startFBAJob(networkObj, proteinData, configurations, networkTaxaObj)
 
     if (!response) {
         dispatch({type: "SET_STATUS", payload: {alert: true, message: "A server error occurred."}})

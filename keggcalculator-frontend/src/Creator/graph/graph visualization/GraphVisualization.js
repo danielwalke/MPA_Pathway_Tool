@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect} from "react";
 import {Graph} from "react-d3-graph";
 import {useDispatch, useSelector} from "react-redux";
 import {handleSubmit} from "../../keggReaction/substrate and products/SubmitHandler";
@@ -31,13 +31,13 @@ const onClickNode = (nodeId, dispatch, graphState, keggState) => {
     }
 }
 
-const onRightClickNode = (e, nodeId, dispatch, graphState) => {
+const onRightClickNode = (e, nodeId, dispatch) => {
     e.preventDefault()
     dispatch({type: "SWITCHDELETEMODAL"})
     dispatch({type: "SETDELETENODE", payload: nodeId})
 }
 
-export const handleNodePositionChange = (graphData, x, y, nodeId, dispatch) => {
+export const handleNodePositionChange = (graphData, reactionArray, x, y, nodeId, dispatch) => {
 
     const nodes = graphData.data.nodes.map(node => {
         if (node.id === nodeId) {
@@ -69,6 +69,7 @@ export const handleNodePositionChange = (graphData, x, y, nodeId, dispatch) => {
 const GraphVisualization = () => {
     const graphState = useSelector(state => state.graph)
     const keggState = useSelector(state => state.keggReaction)
+    const generalState = useSelector(state => state.general)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -155,10 +156,10 @@ const GraphVisualization = () => {
                         console.log("Hello")
                         onClickNode(nodeId, dispatch, graphState, keggState, x, y)
                     }}
-                    onRightClickNode={(event, nodeId) => onRightClickNode(event, nodeId, dispatch, graphState)}
+                    onRightClickNode={(event, nodeId) => onRightClickNode(event, nodeId, dispatch)}
                     onDoubleClickNode={(node) => handleDoubleClick(node)}
                     onClickLink={(source, target) => handleClickLink(source, target)}
-                    onNodePositionChange={(id, x, y) => handleNodePositionChange(graphState, x, y, id, dispatch)}
+                    onNodePositionChange={(id, x, y) => handleNodePositionChange(graphState, generalState.reactionsInSelectArray, x, y, id, dispatch)}
                     // onZoomChange={(prevZoom, newZoom) => handleZoomChange(dispatch, prevZoom, newZoom)}
                 />
             </div>

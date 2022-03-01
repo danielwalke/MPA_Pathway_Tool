@@ -2,8 +2,6 @@ import React from 'react';
 import {saveAs} from "file-saver"
 import {createCsvBlob} from "../csv download/CsvDownLoader";
 import {ToolTipBig} from "../../main/user-interface/UserInterface";
-import {requestGenerator} from "../../request/RequestGenerator";
-import {endpoint_getDependencies} from "../../../App Configurations/RequestURLCollection";
 
 
 const Metadata = (props) => {
@@ -26,16 +24,16 @@ const Metadata = (props) => {
         const expData = zip.folder("experimental data")
         fileStates.experimentalDataFile && expData.file(fileStates.experimentalDataFile.name, fileStates.experimentalDataFile)
         const pathwayFile = zip.folder("pathway file")
-        let pathwayName = ""
+        let pathwayName
         if (fileStates.pathwayFile === null) {
-            pathwayFile.file("pathway file.csv", new File(new Array(createCsvBlob(generalState)), "pathway file.csv"))
+            pathwayFile.file("pathway file.csv", new File(new Array(createCsvBlob(generalState, graphState)), "pathway file.csv"))
             pathwayName = "created file"
         } else {
             pathwayFile.file(fileStates.pathwayFile.name, fileStates.pathwayFile)
             pathwayName = `uploaded file ${fileStates.pathwayFile.name}`
         }
-        let metaDataBlob = null
-        let metaData = ""
+        let metaDataBlob
+        let metaData
         if (fileStates.experimentalDataFile) {
             metaData = `${generalState.mappingStart} - ${generalState.mappingEnd} \texperimental data from the file ${fileStates.experimentalDataFile.name} were successfully mapped on the ${pathwayName}`
 

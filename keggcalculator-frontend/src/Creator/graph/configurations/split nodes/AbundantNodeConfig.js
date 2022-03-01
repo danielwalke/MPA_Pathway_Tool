@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import Modal from "@material-ui/core/Modal";
 import {makeStyles} from "@material-ui/core";
@@ -8,6 +8,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import "./AbundantNodeConfig.css"
 import {COMPOUND_NODE_COLOR} from "../../Constants"
 import {ToolTipBig} from "../../../main/user-interface/UserInterface";
+import {changePropsInListEl} from "../../../usefulFunctions/reactionArrayFunctions";
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -27,61 +28,102 @@ const useStyles = makeStyles((theme) => ({
 
 const AbundantNodeConfig = () => {
     const graphState = useSelector(state => state.graph)
+    const generalState = useSelector(state => state.general)
     const dispatch = useDispatch()
     const classes = useStyles()
 
-    const filterAbundantCompounds = () => {
-        let nodes = []
-        let data = {}
+    const [autocompleteOptions, setAutocompleteOptions] = useState([])
 
-        graphState.abundantCompounds.map(comp => {
-            nodes = graphState.data.nodes
+    useEffect(() => {
+        const options = []
+        graphState.data.nodes.forEach(node => {
+                if (node.symbolType === 'circle') {
+                    options.push(node.id)
+                }
+            }
+        )
+        setAutocompleteOptions(options)
+    },[])
+
+    const filterAbundantCompounds = () => {
+        const newNodes = [...graphState.data.nodes]
+        const newLinks = [...graphState.data.links]
+        const newReactionArray = [...generalState.reactionsInSelectArray]
+        const data = {nodes: [], links: []}
+
+        graphState.abundantCompounds.forEach(comp => {
             let origNodeX = 0
             let origNodeY = 0
             let splitNodeDist = 0
 
-            const origNode = nodes.filter(node => comp === node.id)[0]
+            const origNode = newNodes.find(node => comp === node.id)
 
             if (origNode) {
-                origNodeX = nodes.filter(node => comp === node.id)[0].x
-                origNodeY = nodes.filter(node => comp === node.id)[0].y
+                origNodeX = origNode.x
+                origNodeY = origNode.y
                 splitNodeDist = 40
             }
 
-            const abundantLinks = graphState.data.links.filter(
-                link => link.source === comp || link.target === comp)
-
             let index = 0
-            abundantLinks.map(link => {
-                // add nodes for non reversed links
-                if (!link.isReversibleLink) {
-                    if (link.source === comp) {
-                        nodes.push({id: `${index}__${link.source}`, color: COMPOUND_NODE_COLOR, opacity: 0.4, x: origNodeX, y: origNodeY+splitNodeDist*index})
-                    } else {
-                        nodes.push({id: `${index}__${link.target}`, color: COMPOUND_NODE_COLOR, opacity: 0.4, x: origNodeX, y: origNodeY+splitNodeDist*index})
+            newLinks.forEach(link => {
+                let linkContainsCompound = link.source === comp || link.target === comp
+
+                if (link.source === comp && !link.isReversibleLink) {
+                    const newProps = {
+                        id: `${index}__${link.source}`,
+                        x: origNodeX,
+                        y: origNodeY + splitNodeDist * index,
+                        color: COMPOUND_NODE_COLOR,
+                        opacity: 0.4,
                     }
+                    newNodes.push(newProps)
+
+                    const reaction = newReactionArray.find(reaction => reaction.reactionName === link.target)
+                    reaction.substrates = changePropsInListEl(
+                        reaction.substrates,
+                        comp,
+                        {x: newProps.x, y: newProps.y, name: newProps.id}
+                    )
+
+                } else if (link.target === comp && !link.isReversibleLink) {
+                    const newProps = {
+                        id: `${index}__${link.target}`,
+                        x: origNodeX,
+                        y: origNodeY + splitNodeDist * index,
+                        color: COMPOUND_NODE_COLOR,
+                        opacity: 0.4,
+                    }
+                    newNodes.push(newProps)
+
+                    const reaction = newReactionArray.find(reaction => reaction.reactionName === link.source)
+                    reaction.products = changePropsInListEl(
+                        reaction.products,
+                        comp,
+                        {x: newProps.x, y: newProps.y, name: newProps.id}
+                    )
                 }
 
-                // modify links
+                // modify all links
                 if (link.source === comp) {
                     link.source = `${index}__${link.source}`
                     link.opacity = 0.4
-                } else {
+                } else if (link.target === comp) {
                     link.target = `${index}__${link.target}`
                     link.opacity = 0.4
                 }
 
-                !link.isReversibleLink && index ++
-                return null
+                !link.isReversibleLink && linkContainsCompound && index++
             })
-
-            data.links = graphState.data.links
-            return null;
         })
 
-        data.nodes = nodes.filter(node => !graphState.abundantCompounds.includes(node.id))
+        data.links = newLinks
+        data.nodes = newNodes.filter(node => !graphState.abundantCompounds.includes(node.id))
+
+        console.log(data)
+        console.log(newReactionArray)
 
         dispatch({type: "SETDATA", payload: data})
+        dispatch({type: "SETREACTIONSINARRAY", payload: newReactionArray})
         dispatch({
             type: "ADD_SPLIT_NODES_TO_AUDIT_TRAIL", payload: graphState.abundantCompounds
         })
@@ -96,7 +138,7 @@ const AbundantNodeConfig = () => {
     const body = (
         <div className={classes.paper}>
             <div style={{display: "grid", gridTemplateColumns: "8fr 2fr"}}>
-                <Compound/>
+                <Compound options={autocompleteOptions}/>
                 <ToolTipBig title={"Select node for splitting"} placement={"right"}>
                     <button className={"addNode"} disabled={!isRequestValid(graphState.abundantCompound)}
                             onClick={() => dispatch({
@@ -143,7 +185,7 @@ const AbundantNodeConfig = () => {
 export default AbundantNodeConfig
 
 
-const Compound = () => {
+const Compound = ({options}) => {
     const graphState = useSelector(state => state.graph)
     return (<Field
         // className={"compound"}
@@ -151,6 +193,6 @@ const Compound = () => {
         id={"Abundantompound"}
         boolean={true}
         dispatchTypeOptions={"SETABUNDANTCOMPOUNDOPTIONS"}
-        options={graphState.data.nodes.map(node => node.id)}
+        options={options}
         compound={graphState.abundantCompound}/>)
 }

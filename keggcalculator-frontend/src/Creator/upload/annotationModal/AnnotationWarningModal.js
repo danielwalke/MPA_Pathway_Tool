@@ -35,7 +35,7 @@ const handleSkipPurpose = (dispatch, state) => {
     dispatch({type: "SET_LIST_OF_SPECIES_GLYPHS", payload: []})
     dispatch({type: "SET_LIST_OF_REACTION_GLYPHS", payload: []})
     dispatch({type: "SETLISTOFSPECIES", payload: []})
-    dispatch({type: "SETLISTOFReactions", payload: []})
+    dispatch({type: "SETLISTOFREACTIONS", payload: []})
 }
 
 const AnnotationWarningModal = () => {

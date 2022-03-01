@@ -1,11 +1,11 @@
 import React from "react";
 import {saveAs} from "file-saver";
 import {useDispatch} from "react-redux";
-import {addOutput} from "../DownloadFunctions";
+import {addOutput, updateCoordinatesOfObject} from "../DownloadFunctions";
 import clonedeep from "lodash/cloneDeep";
 import {ToolTipBig} from "../../main/user-interface/UserInterface";
 
-export const createCsvBlob = (generalState) => {
+export const createCsvBlob = (generalState, graphState) => {
 
     const reactions = clonedeep(generalState.reactionsInSelectArray)
 
@@ -18,15 +18,20 @@ export const createCsvBlob = (generalState) => {
     const compoundTypeSubstrate = "substrate"
     const compoundTypeProduct = "product"
     for (const reaction of reactions) {
+        updateCoordinatesOfObject(reaction, 'reactionName', graphState.data.nodes)
+
         for (const substrate of reaction.substrates) {
+            updateCoordinatesOfObject(substrate, 'name', graphState.data.nodes)
             output = addOutput(
                 output, reaction, substrate, reactionCounter, compoundTypeSubstrate, reaction.reversible,
                 generalState.listOfGeneProducts)
         }
         for (const product of reaction.products) {
+            updateCoordinatesOfObject(product, 'name', graphState.data.nodes)
             output = addOutput(output, reaction, product, reactionCounter, compoundTypeProduct, reaction.reversible,
                 generalState.listOfGeneProducts)
         }
+
         if (reaction.substrates.length === 0 && reaction.products.length === 0) {
             output = addOutput(output, reaction, {
                 stiochiometry: "",
@@ -50,7 +55,7 @@ const CsvDownLoader = (props) => {
 
         try {
             const {generalState, graphState} = clonedeep(props)
-            const blob = createCsvBlob(generalState)
+            const blob = createCsvBlob(generalState, graphState)
             saveAs(blob, "ModuleGraph.csv")
             dispatch({type: "ADD_CSV_DOWNLOAD_TO_AUDIT_TRAIL"})
         } catch (e) {

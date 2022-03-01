@@ -1,4 +1,5 @@
 import React from "react"
+import {updateCoordinatesOfObject} from "../DownloadFunctions";
 
 const getKeggId = comp => comp.name.substring(comp.name.length - 6, comp.name.length)
 
@@ -71,22 +72,20 @@ const createParameterFromBound = (boundary, listOfParametersMap) => {
     return parameter
 }
 
-const makeReactionList = (reactionsInSelectArray, reactionTaxonomies) => {
+const makeReactionList = (reactionsInSelectArray, graphData, reactionTaxonomies) => {
     /**
      * Updates substrate and product objects with unique glyph and unique sbml ids
      */
 
     const speciesGlyphList = {}
 
-    const abbreviationList = {}
-    const compoundList = {}
-
     const listOfObjectives = []
     const parametersMap = new Map()
     const reactionToParameterMap = new Map()
 
-    const updateCompoundObj = (compounds) => {
+    const updateCompoundObj = (compounds, graphData) => {
         compounds.map(compound => {
+            updateCoordinatesOfObject(compound, 'name', graphData.nodes)
             compound.glyphId = makeUniqueGlyphId(
                 getKeggId(compound), compound.x, compound.y, compound.stoichiometry, 1, speciesGlyphList)
             compound.sbmlId = `${getKeggId(compound)}_${compound.compartment}`
@@ -94,13 +93,15 @@ const makeReactionList = (reactionsInSelectArray, reactionTaxonomies) => {
     }
 
     const reactionList = reactionsInSelectArray.map(reaction => {
+
+        updateCoordinatesOfObject(reaction, 'reactionName', graphData.nodes)
         reaction.taxonomyIds = reactionTaxonomies.filter(tax => tax.reactionId === reaction.reactionId)
 
         let lowerBound
         let upperBound
 
-        updateCompoundObj(reaction.substrates)
-        updateCompoundObj(reaction.products)
+        updateCompoundObj(reaction.substrates, graphData)
+        updateCompoundObj(reaction.products, graphData)
 
         if (reaction.objectiveCoefficient && reaction.objectiveCoefficient != 0) {
             listOfObjectives.push(

@@ -37,7 +37,7 @@ export const setReactionsAndCompoundsInStore = (state, listOfReactions, dispatch
         }
 
         r._reversible = typeof reaction.reversible !== "undefined" ? reaction.reversible : true
-        r._abbreviation = reaction.abbreviation ? reaction.abbreviation : reaction.sbmlName
+        r._abbreviation = reaction.abbreviation ? reaction.abbreviation : r._reactionName
         r._taxonomy = reaction.taxonomy
         r._koList = reaction.koNumbers
         r._ecList = reaction.ecNumbers
@@ -67,7 +67,7 @@ export const setReactionsAndCompoundsInStore = (state, listOfReactions, dispatch
 }
 
 const getReactions = (reactions) => {
-    const reactionObjects = reactions.map(r => {
+    return reactions.map(r => {
 
         const reaction = {}
         reaction.reactionId = r._reactionName.substring(r._reactionName.length - 6, r._reactionName.length)
@@ -127,7 +127,6 @@ const getReactions = (reactions) => {
         }
         return reaction
     })
-    return reactionObjects
 }
 
 const getReactionOpacity = (reactionGlyph) => reactionGlyph.isKeyCompound ? 1 : NOT_KEY_COMPOUND_OPACITY
@@ -142,7 +141,6 @@ const getSbmlCompound = (sbmlCompound, typeOfCompound, annotateSbml, reactionGly
 
     let compoundName
     let coordinates
-    let opacity
 
     const speciesGlyph = typeof reactionGlyph === "object" && reactionGlyph !== null ?
         getSpeciesGlyph(sbmlCompound.sbmlId, reactionGlyph, speciesGlyphs) : null
@@ -164,7 +162,6 @@ const getSbmlCompound = (sbmlCompound, typeOfCompound, annotateSbml, reactionGly
         compoundName = sbmlCompound.sbmlName.substring(0, sbmlCompound.sbmlName.length - 7) + " " + sbmlCompound.keggId
         coordinates = typeof sbmlCompound.x !== "undefined" && typeof sbmlCompound.y !== "undefined" ?
             {x: sbmlCompound.x, y: sbmlCompound.y} : {x: 0, y: 0}
-        opacity = sbmlCompound.opacity
     }
 
     const compound = new Compound(compoundName)
@@ -172,7 +169,7 @@ const getSbmlCompound = (sbmlCompound, typeOfCompound, annotateSbml, reactionGly
     compound._id = sbmlCompound.keggId
     compound._x = coordinates.x
     compound._y = coordinates.y
-    compound._abbreviation = sbmlCompound.abbreviation ? sbmlCompound.abbreviation : sbmlCompound.sbmlName
+    compound._abbreviation = sbmlCompound.abbreviation ? sbmlCompound.abbreviation : compoundName
     compound._typeOfCompound = typeOfCompound
     compound._stoichiometry = sbmlCompound.stoichiometry
     compound._opacity = sbmlCompound.opacity ?
