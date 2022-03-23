@@ -30,10 +30,8 @@ def run_process(upload_dir: str, job_id: str):
 
         orig_model_reaction_names = [reaction.id for reaction in copy.deepcopy(model).reactions]
 
-        fba_results = perform_fba.optimize(model, orig_model_reaction_names, True)
-        print(fba_results)
-        smoment_fba_results = perform_fba.optimize(s_moment_model, orig_model_reaction_names, True)
-        print(smoment_fba_results)
+        fba_results = perform_fba.optimize(copy.deepcopy(model), orig_model_reaction_names, True, True)
+        smoment_fba_results = perform_fba.optimize(s_moment_model, orig_model_reaction_names, True, True)
 
         data_manipulation.write_to_temp_file(
             data_manipulation.parse_result_object_to_json(fba_results, smoment_fba_results),

@@ -67,8 +67,6 @@ export function filterProteomeData(proteins, identifiers, prop, index) {
         if (typeof  protein[prop] === "string") {
             testCondition = identifiers.includes(protein[prop])
         } else {
-            console.log(protein)
-            console.log(identifiers)
             testCondition = doesArrayIncludeAnyItem(Array.from(protein[prop]), identifiers)
         }
 

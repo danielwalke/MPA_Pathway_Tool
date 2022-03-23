@@ -13,9 +13,11 @@ function getStyleFromFlux(flux) {
     const highFlux = {r: 255, g: 82, b:40}
     const color = {r: 211, g: 211, b: 211}
     if (Math.abs(flux) > 1e-3) {
-        color.r = Math.round((highFlux.r-lowFlux.r) * Math.abs(flux)/1000) + lowFlux.r
+        const fluxCoeff = Math.abs(flux) < 20 ? Math.abs(flux)/20 * 0.8 :
+            Math.abs(flux)/1000 * 0.2 + 0.8
+        color.r = Math.round((highFlux.r-lowFlux.r) * fluxCoeff) + lowFlux.r
         color.g = 40
-        color.b = Math.round((highFlux.b-lowFlux.b) * Math.abs(flux)/1000) + lowFlux.b
+        color.b = Math.round((highFlux.b-lowFlux.b) * fluxCoeff) + lowFlux.b
     }
     const hexColor = RGBToHex(color.r, color.g, color.b).toUpperCase()
 

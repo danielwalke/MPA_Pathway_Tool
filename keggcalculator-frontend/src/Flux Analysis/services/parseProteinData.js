@@ -19,8 +19,11 @@ export function parseProteinData(reactionArray, proteinState, listOfGeneProducts
 
     const proteinData = []
     for (const protein of filteredProteinData) {
+        const geneProduct = listOfGeneProducts.find(
+            geneProduct => geneProduct.uniprotAccession === protein.uniprotAccession)
+
         proteinData.push({
-            name: protein.name,
+            name: geneProduct ? geneProduct.id : protein.name,
             molecularMass: protein.molecularMass,
             uniprotAccession: protein.uniprotAccession,
             quantity: protein.quant

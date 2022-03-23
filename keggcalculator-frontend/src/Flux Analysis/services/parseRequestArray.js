@@ -21,7 +21,10 @@ const writeMetabolitesToReaction = (compounds, listOfMetabolites, reactionMetabo
         for (const compound of compounds) {
 
             const compartment = compound.compartment ? compound.compartment : 'cytosol'
+            // const compartment = !compound.compartment ? 'c' :
+            //     compound.compartment === 'cytosol' ? 'c' : 'e'
             const id = `${getKeggId(compound.name)}_${compartment}`
+            // const id = `${compound.biggId}_${compartment}`
 
             listOfMetabolites.push({
                 metaboliteId: id,
@@ -70,6 +73,7 @@ export function parseRequestArray(reactionsInSelectArray, listOfGeneProducts, di
 
         listOfReactions.push({
             reactionId: reaction.reactionId,
+            // reactionId: reaction.biggId,
             reactionName: reaction.reactionName,
             lowerBound: typeof reaction.lowerBound === 'string' ? parseFloat(reaction.lowerBound) : reaction.lowerBound,
             upperBound: typeof reaction.upperBound === 'string' ? parseFloat(reaction.upperBound) : reaction.upperBound,

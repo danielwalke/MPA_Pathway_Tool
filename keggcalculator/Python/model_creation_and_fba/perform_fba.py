@@ -9,17 +9,51 @@ from model_creation_and_fba import utilities
 from model_creation_and_fba.exceptions import ExceptionWithCode
 
 
-def optimize(model: cobra.Model, orig_model_reaction_names: [], do_pfba: bool):
+def find_model_objectives(model: cobra.Model):
+    objective_ids = {}
+
+    for reaction in model.reactions:
+        if reaction.objective_coefficient != 0.0:
+            objective_ids[reaction.id] = reaction.objective_coefficient
+
+    return objective_ids
+
+
+def optimize(model: cobra.Model, orig_model_reaction_names: [], do_pfba: bool, split_reversibles: bool):
     """performs fba and fva and returns an Array of dictionaries, containing the results
 
     Keyword arguments:
     model -- valid cobra-model
     """
 
+    # cobra_config = cobra.Configuration()
+    # cobra_config.solver = "glpk"
+
+    # model.solver = 'glpk'
+
     if not model:
         return {}
 
-    model = utilities.split_all_reversibles(model)
+    objective_reaction_ids = find_model_objectives(model)
+
+    if split_reversibles:
+        model = utilities.split_all_reversibles(model)
+
+    for split_reaction in model.reactions:
+        direction = ''
+        if '_forward' in split_reaction.id:
+            direction = '_forward'
+        elif '_reverse' in split_reaction.id:
+            direction = '_reverse'
+
+        orig_id = split_reaction.id.split('_forward')[0].split('_reverse')[0].split('_TG_')[0].split('_GPRSPLIT_')[0]
+        # print(orig_id)
+
+        if orig_id in objective_reaction_ids.keys():
+            if direction == '_forward' or direction == '':
+                split_reaction.objective_coefficient = objective_reaction_ids[orig_id]
+            elif direction == '_reverse':
+                split_reaction.objective_coefficient = -objective_reaction_ids[orig_id]
 
     try:
         if not do_pfba:

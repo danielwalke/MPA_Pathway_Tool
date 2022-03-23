@@ -10,6 +10,9 @@ from autopacmen_modules.parse_sabio_rk_for_model import parse_sabio_rk_for_model
 from model_creation_and_fba import data_manipulation
 from model_creation_and_fba import constants
 
+import tempfile
+
+
 
 def traverserse_gene_rule(relation, children, gene_rule, parents):
     genes = []
@@ -67,7 +70,7 @@ def build_model(model_dict: dict):
     reactions_array = model_dict['reactions']
 
     # initialize model
-    model = cobra.Model("model_name")
+    model = cobra.Model("mpa_model")
 
     metabolites_dict = {}
 
@@ -154,7 +157,6 @@ def build_smoment_model(original_model: cobra.Model, upload_path: str, job_id: s
     smoment_model = None
 
     if len(data['proteinData']) != 0 and data_manipulation.check_molecular_masses(data['proteinData']):
-        print('heyyyy')
         create_model_specific_db(original_model, constants.get_network_path(upload_path, job_id))
         get_reactions_kcat_mapping(upload_path, job_id, original_model, data['networkTaxonomy'], "mean")
         excluded_reactions = []

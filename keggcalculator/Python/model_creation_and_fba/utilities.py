@@ -139,7 +139,7 @@ def split_all_reversibles(model: cobra.Model) -> cobra.Model:
     for reaction_id in model_reaction_ids:
         reaction = model.reactions.get_by_id(reaction_id)
 
-        if reaction.lower_bound >= 0 or reaction.upper_bound <= 0:
+        if reaction.lower_bound >= 0:
             continue
 
         forward_reaction = copy.deepcopy(reaction)

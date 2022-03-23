@@ -21,6 +21,8 @@ stoichiometric model :D
 
 # IMPORTS
 # External modules
+import re
+
 import cobra
 import math
 import random
@@ -80,9 +82,12 @@ def create_smoment_model_reaction_wise(model: cobra.Model,
     mean_saturation = prot_pool_params['avgSaturationLevel']
 
     for protein in protein_data:
-        protein_id_mass_mapping['G_' + protein['name']] = protein['molecularMass']
+        if not re.search('^G_', protein['name']):
+            protein['name'] = 'G_' + protein['name']
+
+        protein_id_mass_mapping[protein['name']] = protein['molecularMass']
         if 'quantity' in protein:
-            protein_id_concentration_mapping['G_' + protein['name']] = protein['quantity']
+            protein_id_concentration_mapping[protein['name']] = protein['quantity']
 
     reaction_id_gene_rules_mapping, reaction_id_gene_rules_protein_stoichiometry_mapping = \
         build_autopacmen_gene_rules(model)
@@ -187,6 +192,7 @@ def create_smoment_model_reaction_wise(model: cobra.Model,
                     if enzyme_id not in list(protein_id_mass_mapping.keys()):
                         all_available = False
                         break
+
         # If not all of the mass-checked enzymes have a found mass, ignore this reaction
         if not all_available:
             continue
