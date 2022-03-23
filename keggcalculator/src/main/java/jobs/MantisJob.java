@@ -198,7 +198,7 @@ public class MantisJob implements Runnable {
 				String id = lineEntries[0].trim();
 				MantisProtein mantisProtein = file.getMantisProtein(id.trim());
 				
-				String[] lineInstances = line.split("|");
+				String[] lineInstances = line.split("\\|");
 				String[] links = lineInstances[1].split("\t");
 				for(String link : links) {
 					String ecPrefix = "enzyme_ec:";
