@@ -121,7 +121,7 @@ public class MantisJob implements Runnable {
 			int index = 0;
 			writeKNumbers(writer, protein, index);
 			index = 0;
-			writeEcNumbers(writer, protein, index);
+			writeOtherNumbers(writer, protein, index);
 			writeTaxa(writer, protein);
 			writer.write("\t" + protein.getDescription());
 			for (double quant : protein.getQuants()) {
@@ -142,14 +142,29 @@ public class MantisJob implements Runnable {
 		
 	}
 
-	private void writeEcNumbers(BufferedWriter writer, MantisProtein protein, int index) throws IOException {
-		for (String ecNumber : protein.getEcNumbers()) {
-			writer.write(ecNumber);
-			if (index < protein.getEcNumbers().size() - 1) {
+	private void writeOtherNumbers(BufferedWriter writer, MantisProtein protein, int index) throws IOException {
+		HashSet<String> aggregatedNumbers = getAggregatedNumbers(protein);
+		for (String number : aggregatedNumbers) {
+			writer.write(number.trim());
+			if (index < aggregatedNumbers.size() - 1) {
 				writer.write("|");
 			}
 			index++;
 		}
+	}
+	
+	private HashSet<String> getAggregatedNumbers(MantisProtein protein){
+		HashSet<String> aggregatedSet = new HashSet<>();
+		for (String ecNumber : protein.getEcNumbers()) {
+			aggregatedSet.add(ecNumber);
+		}
+		for (String biggNumber : protein.getBiggNumbers()) {
+			aggregatedSet.add(biggNumber);
+		}
+		for (String keggReaction : protein.getKeggReactions()) {
+			aggregatedSet.add(keggReaction);
+		}
+		return aggregatedSet;
 	}
 
 	private void writeKNumbers(BufferedWriter writer, MantisProtein protein, int index) throws IOException {
@@ -180,15 +195,25 @@ public class MantisJob implements Runnable {
 			line = reader.readLine();
 			while (line != null) {
 				String[] lineEntries = line.split("\t");
-				String refFile = lineEntries[1];
 				String id = lineEntries[0].trim();
-				String kNumber = lineEntries[2].trim();
-				HashSet<String> links = new HashSet<>();
-				for (int linkIndex = 14; linkIndex < lineEntries.length; linkIndex++) {
-					links.add(lineEntries[linkIndex].trim());
-				}
-				if (refFile.equals("kofam_merged")) {
-					fillInformationInProtein(id, kNumber, links, file);
+				MantisProtein mantisProtein = file.getMantisProtein(id.trim());
+				
+				String[] lineInstances = line.split("|");
+				String[] links = lineInstances[1].split("\t");
+				for(String link : links) {
+					String ecPrefix = "enzyme_ec:";
+					String koPrefix = "kegg_ko:";
+					String biggPrefix = "bigg_reaction:";
+					String keggPrefix = "kegg_reaction:";
+					if(!link.contains(":")) continue;
+					
+					String[] linkInstances = link.split(":");
+					String number = linkInstances[1];
+					
+					if(link.contains(ecPrefix)) mantisProtein.addEcNumber(number);
+					if(link.contains(koPrefix)) mantisProtein.addKNumber(number);
+					if(link.contains(biggPrefix)) mantisProtein.addBiggNumber(number);
+					if(link.contains(keggPrefix)) mantisProtein.addKeggReaction(number);
 				}
 				line = reader.readLine();
 			}
@@ -199,22 +224,6 @@ public class MantisJob implements Runnable {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-
-	}
-
-	private void fillInformationInProtein(String id, String kNumber, HashSet<String> links, MantisFile file) {
-		MantisProtein mantisProtein = file.getMantisProtein(id.trim());
-		mantisProtein.addKNumber(kNumber);
-		addEcNumbers(links, mantisProtein);	
-	}
-
-	private void addEcNumbers(HashSet<String> links, MantisProtein mantisProtein) {
-		for (String link : links) {
-			if (link.contains("enzyme_ec:")) {
-				String[] linkEntries = link.split(":");
-				mantisProtein.addEcNumber(linkEntries[1]);
-			}
 		}
 	}
 

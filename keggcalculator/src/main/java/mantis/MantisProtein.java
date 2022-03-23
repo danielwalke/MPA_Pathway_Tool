@@ -15,6 +15,9 @@ public class MantisProtein {
 	private String description;
 	private HashSet<String> kNumbers;
 	private HashSet<String> ecNumbers;
+	private HashSet<String> biggNumbers; //I know its not called numbers but just lets keep it consistent here
+	private HashSet<String> keggReactions; //thats how pedro called this in mantis
+
 
 	public MantisProtein() {
 		this.uuid = UUID.randomUUID().toString();
@@ -26,10 +29,24 @@ public class MantisProtein {
 		this.description = "";
 		this.kNumbers = new HashSet<>();
 		this.ecNumbers = new HashSet<>();
+		this.biggNumbers = new HashSet<>();
+		this.keggReactions = new HashSet<>();
 	}
 	
 	public void addKNumber(String kNumber) {
 		this.kNumbers.add(kNumber);
+	}
+	
+	public void addKeggReaction(String rNumber) {
+		this.keggReactions.add(rNumber);
+	}
+	
+	public HashSet<String> getKeggReactions() {
+		return keggReactions;
+	}
+
+	public void addBiggNumber(String biggNumber) {
+		this.biggNumbers.add(biggNumber);
 	}
 
 	public void addEcNumber(String ecNumber) {
@@ -40,8 +57,9 @@ public class MantisProtein {
 		return kNumbers;
 	}
 
-
-
+	public HashSet<String> getBiggNumbers() {
+		return biggNumbers;
+	}
 
 	public HashSet<String> getEcNumbers() {
 		return ecNumbers;
