@@ -25,6 +25,7 @@ export const startMantisJob = (dispatch, state) =>{
             formData.append("Content-Type", "multipart/form-data");
             formData.append("uploaded_file", state.mantisFile);
             dispatch({type:"SET_MANTIS_JOB_MESSAGE", payload: message})
+            console.log(message)
             requestGenerator("POST", RequestURL.endpoint_uploadMantisFile, {jobID: jobID}, header, formData).then(response => {
                 if (response.status !== 200) {
                     dispatch({type: "SET_IS_MANTIS_LOADING", payload: false})
