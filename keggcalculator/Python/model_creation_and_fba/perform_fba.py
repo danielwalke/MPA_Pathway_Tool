@@ -34,6 +34,7 @@ def optimize(model: cobra.Model, orig_model_reaction_names: [], do_pfba: bool, s
     if not model:
         return {}
 
+    model.solver.configuration.tolerances.feasibility = 1e-09
     objective_reaction_ids = find_model_objectives(model)
 
     if split_reversibles:

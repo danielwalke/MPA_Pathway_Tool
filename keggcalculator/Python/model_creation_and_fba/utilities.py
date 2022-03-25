@@ -1,6 +1,4 @@
 import copy
-import csv
-import pprint
 import re
 import statistics
 import cobra
@@ -26,6 +24,7 @@ def get_fva_statistics(model):
     variabilities = []
 
     for reaction in model.reactions:
+
         if reaction.id == "ER_pool_TG_":
             continue
         elif "armr" in reaction.id:

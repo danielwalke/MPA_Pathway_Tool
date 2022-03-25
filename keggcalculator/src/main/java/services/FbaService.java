@@ -114,7 +114,7 @@ public class FbaService {
 					pythonPath,
 					uploadDir,
 					jobId));
-
+			
 			builder.redirectErrorStream(true); // print Errors from Python
 			Process process = builder.start();
 			
@@ -122,12 +122,11 @@ public class FbaService {
 			StringBuilder strBuilder = new StringBuilder();
 			
 			String line;
-			
+		
 			while((line=reader.readLine())!=null) {
 				strBuilder.append(line);
 				strBuilder.append(System.getProperty("line.separator"));
 			}
-			
             System.out.println("starting python");
             
             exitCode = process.waitFor();

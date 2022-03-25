@@ -10,9 +10,6 @@ from autopacmen_modules.parse_sabio_rk_for_model import parse_sabio_rk_for_model
 from model_creation_and_fba import data_manipulation
 from model_creation_and_fba import constants
 
-import tempfile
-
-
 
 def traverserse_gene_rule(relation, children, gene_rule, parents):
     genes = []

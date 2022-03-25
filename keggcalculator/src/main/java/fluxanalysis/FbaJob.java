@@ -62,7 +62,6 @@ public class FbaJob implements Runnable {
 			if (startPythonProcess) {
 				ProcessResultObject processResult = FbaService.startPythonProcess(uploadDir, this.job.jobId);
 				
-				
 				if (processResult.getExitCode() == 1) {
 					this.job.message = "A server error occured.";
 					this.job.jobCode = "-1";
