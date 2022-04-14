@@ -12,10 +12,14 @@ def extract_data(temp_model_path: str):
     return data_dict
 
 
-def parse_result_object_to_json(non_smoment_fba_results: dict, smoment_fba_results: dict):
+def parse_result_object_to_json(
+        non_smoment_fba_results: dict, non_smoment_split_fba_results: dict,
+        smoment_fba_results: dict, smoment_fba_split_reactions_results: dict):
     return json.dumps({
         'original': [{key: non_smoment_fba_results[key]} for key in non_smoment_fba_results.keys()],
-        'sMOMENT': [{key: smoment_fba_results[key]} for key in smoment_fba_results.keys()]
+        'original_split': [{key: non_smoment_split_fba_results[key]} for key in non_smoment_split_fba_results.keys()],
+        'sMOMENT': [{key: smoment_fba_results[key]} for key in smoment_fba_results.keys()],
+        'sMOMENT_split': [{key: smoment_fba_split_reactions_results[key]} for key in smoment_fba_split_reactions_results.keys()],
     })
 
 

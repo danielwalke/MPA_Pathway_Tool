@@ -32,7 +32,7 @@ def optimize(model: cobra.Model, orig_model_reaction_names: [], do_pfba: bool, s
     # model.solver = 'glpk'
 
     if not model:
-        return {}
+        return {}, {}
 
     model.solver.configuration.tolerances.feasibility = 1e-09
     objective_reaction_ids = find_model_objectives(model)
@@ -71,7 +71,7 @@ def optimize(model: cobra.Model, orig_model_reaction_names: [], do_pfba: bool, s
         raise ExceptionWithCode(4, "Couldn't get FVA results.")
 
     try:
-        added_reactions_dict_irrev = \
+        added_reactions_dict_irrev, split_reactions_dict = \
             utilities.combine_seperated_reactions(fva_dict, fba_solution.fluxes, orig_model_reaction_names)
 
         # combine reversible reactions
@@ -79,4 +79,4 @@ def optimize(model: cobra.Model, orig_model_reaction_names: [], do_pfba: bool, s
     except Exception as e:
         raise ExceptionWithCode(5, "Couldn't assemble results.")
 
-    return all_combined_reacions_dict
+    return all_combined_reacions_dict, split_reactions_dict

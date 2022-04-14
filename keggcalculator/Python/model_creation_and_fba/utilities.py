@@ -32,6 +32,8 @@ def get_fva_statistics(model):
         elif "ENZYME_DELIVERY" in reaction.id:
             continue
 
+        print(reaction)
+
         # Minimum
         with model:
             # knocks out all split reverse reactions
@@ -144,6 +146,7 @@ def split_all_reversibles(model: cobra.Model) -> cobra.Model:
         forward_reaction = copy.deepcopy(reaction)
         forward_reaction.upper_bound = reaction.upper_bound
         forward_reaction.lower_bound = 0
+        # forward_reaction.objective_coefficient = reaction.objective_coefficient
         forward_reaction.id += "_forward"
         model.add_reactions([forward_reaction])
 
@@ -151,6 +154,7 @@ def split_all_reversibles(model: cobra.Model) -> cobra.Model:
         reverse_reaction.id += "_reverse"
         reverse_reaction.upper_bound = -reaction.lower_bound
         reverse_reaction.lower_bound = 0
+        # forward_reaction.objective_coefficient = -reaction.objective_coefficient
         reverse_reaction_metabolites_copy = copy.deepcopy(
             reverse_reaction.metabolites)
         for key in list(reverse_reaction_metabolites_copy.keys()):
@@ -167,9 +171,17 @@ def combine_seperated_reactions(fva_result_dict: dict, fba_solutions: pandas.Ser
     summed_rev_fluxes_dict = {}
     summed_irrev_fluxes_dict = {}
 
+    split_reactions_dict = {}
+
     # pprint.pprint(original_reaction_names)
 
     for model_reaction in list(fva_result_dict.keys()):
+
+        split_reactions_dict[model_reaction] = {
+            "fbaSolution": fba_solutions.loc[model_reaction],
+            "minFlux": fva_result_dict[model_reaction]["minimum"],
+            "maxFlux": fva_result_dict[model_reaction]["maximum"]
+        }
 
         model_reaction_without_additions = model_reaction.replace("_forward", "").replace("_reverse", "")
         model_reaction_without_additions = model_reaction_without_additions.split("_GPRSPLIT")[0]
@@ -222,7 +234,7 @@ def combine_seperated_reactions(fva_result_dict: dict, fba_solutions: pandas.Ser
     added_reactions_dict_irrev = {
         **summed_irrev_fluxes_dict, **summed_fwd_fluxes_dict, **summed_rev_fluxes_dict}
 
-    return added_reactions_dict_irrev
+    return added_reactions_dict_irrev, split_reactions_dict
 
 
 def combine_reversible_reactions(merged_reactions_dict: dict):

@@ -127,20 +127,30 @@ export function parseDummyRequestArray(reactionsInSelectArray) {
 export function responseToMap(responseObject) {
 
     const origModelFbaData = new Map()
+    const origModelSplitFbaData = new Map()
     let sMomentFBAData
+    let sMomentSplitFBAData
 
     responseObject.original.forEach(reaction => {
         origModelFbaData.set(Object.keys(reaction)[0], Object.values(reaction)[0])
     })
 
-    console.log(responseObject.sMOMENT)
+    responseObject.original_split.forEach(reaction => {
+        origModelSplitFbaData.set(Object.keys(reaction)[0], Object.values(reaction)[0])
+    })
 
     if (responseObject.sMOMENT.length !== 0) {
         sMomentFBAData = new Map()
+        sMomentSplitFBAData = new Map()
+
         responseObject.sMOMENT.forEach(reaction => {
             sMomentFBAData.set(Object.keys(reaction)[0], Object.values(reaction)[0])
         })
+
+        responseObject.sMOMENT_split.forEach(reaction => {
+            sMomentSplitFBAData.set(Object.keys(reaction)[0], Object.values(reaction)[0])
+        })
     }
 
-    return {origModelFbaData: origModelFbaData, sMomentFBAData: sMomentFBAData}
+    return {origModelFbaData: origModelFbaData, origModelSplitFbaData: origModelSplitFbaData, sMomentFBAData: sMomentFBAData, sMomentSplitFBAData: sMomentSplitFBAData}
 }

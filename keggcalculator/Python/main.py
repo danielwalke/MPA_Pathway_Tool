@@ -30,13 +30,16 @@ def run_process(upload_dir: str, job_id: str):
 
         orig_model_reaction_names = [reaction.id for reaction in copy.deepcopy(model).reactions]
 
-        fba_results = perform_fba.optimize(model, orig_model_reaction_names, True, True)
+        fba_results, fba_split_reactions_results =\
+            perform_fba.optimize(model, orig_model_reaction_names, True, True)
 
-        smoment_fba_results = perform_fba.optimize(s_moment_model, orig_model_reaction_names, True, True)
+        smoment_fba_results, smoment_fba_split_reactions_results =\
+            perform_fba.optimize(s_moment_model, orig_model_reaction_names, True, True)
 
-        data_manipulation.write_to_temp_file(
-            data_manipulation.parse_result_object_to_json(fba_results, smoment_fba_results),
-            constants.get_results_path(upload_dir, job_id))
+        result_json = data_manipulation.parse_result_object_to_json(
+            fba_results, fba_split_reactions_results, smoment_fba_results, smoment_fba_split_reactions_results)
+
+        data_manipulation.write_to_temp_file(result_json, constants.get_results_path(upload_dir, job_id))
 
     except Exception as e:
         print('==============')

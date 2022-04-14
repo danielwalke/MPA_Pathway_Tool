@@ -74,7 +74,7 @@ export async function fba(dispatch, generalState, graphState, proteinState, flux
     const response = await startFBAJob(networkObj, proteinData, configurations, networkTaxaObj)
 
     if (!response) {
-        dispatch({type: "SET_STATUS", payload: {alert: true, message: "A server error occurred."}})
+        dispatch({type: "SET_STATUS", payload: {alert: true, message: "Error in communication with server."}})
         triggerLoadingWarning(dispatch)
         return
     }
@@ -85,12 +85,17 @@ export async function fba(dispatch, generalState, graphState, proteinState, flux
         return
     }
 
-    const {origModelFbaData, sMomentFBAData} = responseToMap(JSON.parse(response.fbaSolution))
+    const {origModelFbaData, origModelSplitFbaData, sMomentFBAData, sMomentSplitFBAData} = responseToMap(JSON.parse(response.fbaSolution))
 
     const newGraphData = createFbaGraphData(graphState, origModelFbaData)
 
+    console.log(origModelSplitFbaData)
+
     dispatch({type: "SET_FBA_RESULTS", payload: origModelFbaData})
+    dispatch({type: "SET_SPLIT_FBA_RESULTS", payload: origModelSplitFbaData})
     dispatch({type: "SET_SMOMENT_FBA_RESULTS", payload: sMomentFBAData})
+    dispatch({type: "SET_SMOMENT_SPLIT_FBA_RESULTS", payload: sMomentSplitFBAData})
+
     dispatch({type: "SET_FLUX_GRAPH", payload: newGraphData.data})
     dispatch({type: "SETREACTIONSINARRAY", payload: [...generalState.reactionsInSelectArray]})
     dispatch({type: "SET_STATUS", payload: {alert: false, message: "finished"}})

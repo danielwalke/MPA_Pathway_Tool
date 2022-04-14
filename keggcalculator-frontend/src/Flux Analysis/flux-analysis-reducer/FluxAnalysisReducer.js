@@ -12,7 +12,9 @@ const defaultState = {
     selectedNode: {},
     showSMomentFlux: false,
     flux: null,
+    fluxSplit: null,
     sMomentFlux: null,
+    sMomentSplitFluxes: null,
     sMomentConfigurations: {
         proteinContent: 1.0,
         unmeasuredProteinFraction: 1.0,
@@ -38,8 +40,12 @@ export const fluxAnalysisReducer = (state = defaultState, action) => {
             return {...state, showSMomentFlux: !state.showSMomentFlux}
         case "SET_FBA_RESULTS":
             return {...state, flux: payload}
+        case "SET_SPLIT_FBA_RESULTS":
+            return {...state, fluxSplit: payload}
         case "SET_SMOMENT_FBA_RESULTS":
             return {...state, sMomentFlux: payload}
+        case "SET_SMOMENT_SPLIT_FBA_RESULTS":
+            return {...state, sMomentSplitFluxes: payload}
         case "SHOW_FBA_RESULT_TABLE":
             return {...state, showFBAResultTable: payload}
         case "SHOW_FLUX_ANALYSIS_MODAL":
