@@ -29,7 +29,7 @@
     transition: all 400ms ease-in-out;
     text-transform: uppercase;
     font-size: clamp(10px, 1vw, 14px);
-    font-family: Roboto;
+    font-family: "Arial" ;
     margin: 2px;
     transform: translate(0, -3px);
     padding: 0;

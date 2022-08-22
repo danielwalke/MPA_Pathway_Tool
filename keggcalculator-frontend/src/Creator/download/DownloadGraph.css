@@ -6,7 +6,7 @@
     transition: all 400ms ease-in-out;
     text-transform: uppercase;
     font-size: clamp(12px, 1vw, 22px);;
-    font-family: Roboto;
+    font-family: "Arial" ;
     margin: 2px;
     padding: 4px;
 }

@@ -4,7 +4,7 @@
     color: white;
     transition: all 400ms ease-in-out;
     font-size: clamp(12px, 1.7vw, 17px);
-    font-family: Roboto;
+    font-family: "Arial" ;
     padding: 5px;
     margin: 2px 5px;
 }

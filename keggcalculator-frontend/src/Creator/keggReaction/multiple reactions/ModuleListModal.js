@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
         backgroundColor: theme.palette.background.paper,
-        fontFamily: "Roboto",
+        fontFamily: "Arial" ,
         border: '2px solid rgb(150, 25, 130)',
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),

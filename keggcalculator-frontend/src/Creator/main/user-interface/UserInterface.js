@@ -29,7 +29,8 @@ export const ToolTipBig = withStyles({
     tooltip: {
         color: "white",
         backgroundColor: "rgb(150, 25, 130)",
-        fontSize: "0.8em"
+        fontSize: "0.8em",
+        fontFamily: "Arial"
     }
 })(Tooltip);
 

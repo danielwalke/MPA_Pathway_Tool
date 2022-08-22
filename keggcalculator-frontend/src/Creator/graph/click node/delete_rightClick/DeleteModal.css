@@ -6,7 +6,7 @@
     text-transform: uppercase;
     font-size: clamp(10px, 1.7vw, 17px);
     margin-right: 30px;
-    font-family: Roboto;
+    font-family: "Arial" ;
 }
 
 .buttonDelete:hover {

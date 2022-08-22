@@ -12,7 +12,7 @@
     transition: all 400ms ease-in-out;
     text-transform: uppercase;
     font-size: clamp(4px, 0.8vw, 10px);;
-    font-family: Roboto;
+    font-family: "Arial" ;
     margin: 2px;
     padding: 4px;
 }
@@ -37,7 +37,7 @@
     transition: all 400ms ease-in-out;
     text-transform: uppercase;
     font-size: clamp(12px, 1vw, 15px);
-    font-family: Roboto;
+    font-family: "Arial" ;
     padding: 0;
     margin: 2px;
 }

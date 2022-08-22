@@ -18,7 +18,7 @@ const ExampleJsonDownload = () => {
                 transition: "all 400ms ease-in-out",
                 textTransform: "uppercase",
                 fontSize: "clamp(12px, 1vw, 22px)",
-                fontFamily: "Roboto",
+                fontFamily: "Arial" ,
                 margin: "5",
                 padding: "8px"
             }} onClick={() => handleDownload()}>download</Link>

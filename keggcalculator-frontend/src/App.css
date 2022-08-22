@@ -36,3 +36,8 @@
         transform: rotate(360deg);
     }
 }
+
+
+html, body, .MuiTypography-body2, .MuiTypography-root, .MuiButton-root, .MuiTab-wrapper, .MuiFormLabel-root, .MuiInputBase-root, .MuiAutocomplete-root, .MuiAutocomplete-root{
+    font-family: "Arial" !important;
+}

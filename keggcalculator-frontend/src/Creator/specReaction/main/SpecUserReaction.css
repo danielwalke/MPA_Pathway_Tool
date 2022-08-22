@@ -58,7 +58,7 @@
     transition: all 400ms ease;
     text-transform: uppercase;
     font-size: clamp(12px, 1vw, 15px);
-    font-family: Roboto;
+    font-family: "Arial" ;
 }
 
 .buttonShowReaction:hover {
@@ -75,7 +75,7 @@
     text-transform: uppercase;
     font-size: clamp(12px, 1vw, 15px);
     padding: 0;
-    font-family: Roboto;
+    font-family: "Arial" ;
 }
 
 .buttonSpec:hover {
