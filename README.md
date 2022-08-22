@@ -26,7 +26,8 @@
 <a name="description"/>
 
 ### 1.1 Description
-The MPA_Pathway_Tool is a user-friendly, stand-alone web application.It was implemented in Java and ReactJS. It will be freely available on https://mpa-pathwaymapper.ovgu.de/.
+The MPA_Pathway_Tool is a user-friendly, stand-alone web application.It was implemented in Java and ReactJS. It will be freely available on 
+http://141.44.141.132:9001/home (https://mpa-pathwaymapper.ovgu.de/).
 - allows **user-friendly creation of user-defined pathways** and **mapping of experimental data** on them
 - Keywords: __omics__, __pathway creation__, __pathway analysis__
 
